@@ -30,6 +30,7 @@ CASE_JSON_SCHEMA: dict[str, Any] = {
         "key_facts_bullets",
         "issues_bullets",
         "holdings_bullets",
+        "decision",
         "outcome",
         "ml",
     ],
@@ -125,6 +126,7 @@ CASE_JSON_SCHEMA: dict[str, Any] = {
         "key_facts_bullets": {"type": "array", "items": {"type": "string"}},
         "issues_bullets": {"type": "array", "items": {"type": "string"}},
         "holdings_bullets": {"type": "array", "items": {"type": "string"}},
+        "decision": {"type": ["string", "null"]},
         "outcome": {
             "type": "object",
             "additionalProperties": False,
@@ -166,6 +168,16 @@ CASE_JSON_SCHEMA: dict[str, Any] = {
 }
 
 SCHEMA_VALIDATOR = Draft202012Validator(CASE_JSON_SCHEMA)
+
+# Validator for raw LLM output: case_id and file_name are pipeline-generated
+# and cannot be extracted from the document, so they must not be required here.
+_LLM_OUTPUT_SCHEMA: dict[str, Any] = {
+    **CASE_JSON_SCHEMA,
+    "required": [r for r in CASE_JSON_SCHEMA["required"] if r not in ("case_id", "file_name")],
+}
+# Exported alias so llm_client.py can reference the LLM-appropriate schema.
+LLM_OUTPUT_SCHEMA: dict[str, Any] = _LLM_OUTPUT_SCHEMA
+_LLM_OUTPUT_VALIDATOR = Draft202012Validator(_LLM_OUTPUT_SCHEMA)
 
 
 def empty_case_record(case_id: str, file_name: str) -> dict[str, Any]:
@@ -212,6 +224,7 @@ def empty_case_record(case_id: str, file_name: str) -> dict[str, Any]:
         "key_facts_bullets": [],
         "issues_bullets": [],
         "holdings_bullets": [],
+        "decision": None,
         "outcome": {
             "label": None,
             "winner": None,
@@ -261,6 +274,36 @@ def validate_case_record(record: dict[str, Any]) -> None:
         return
     formatted = []
     for err in errors:
+        path = ".".join(str(p) for p in err.path) or "$"
+        formatted.append(f"{path}: {err.message}")
+    raise ValueError("Schema validation failed: " + " | ".join(formatted))
+
+
+def validate_llm_output(record: dict[str, Any]) -> None:
+    """Like validate_case_record but does not require case_id / file_name.
+
+    Those two fields are pipeline-generated identifiers that the LLM cannot
+    extract from the document text.  Using the full schema for validation was
+    causing a guaranteed first-attempt failure for every document.
+    """
+    errors = sorted(_LLM_OUTPUT_VALIDATOR.iter_errors(record), key=lambda e: list(e.path))
+    if not errors:
+        return
+
+    filtered: list[Any] = []
+    for err in errors:
+        # case_id / file_name are pipeline-controlled and may appear in LLM
+        # output as null. Ignore those type errors here.
+        path_list = [str(p) for p in err.path]
+        if path_list in (["case_id"], ["file_name"]):
+            continue
+        filtered.append(err)
+
+    if not filtered:
+        return
+
+    formatted = []
+    for err in filtered:
         path = ".".join(str(p) for p in err.path) or "$"
         formatted.append(f"{path}: {err.message}")
     raise ValueError("Schema validation failed: " + " | ".join(formatted))

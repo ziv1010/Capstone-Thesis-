@@ -7,7 +7,7 @@ Reproducible Python pipeline for born-digital Indian court judgments/orders.
 - Deterministic paragraphization (blank lines + indentation + numbered/bullet starts)
 - spaCy NER extraction (`PERSON`, `ORG`, `GPE`, `DATE`)
 - Regex extraction for provisions, statutes, and precedents/citations
-- Pluggable local LLM client (`http://localhost:11434/api/generate` by default)
+- Local Hugging Face LLM client (`Qwen/Qwen2.5-32B-Instruct` by default)
 - Strict JSON schema validation with one automatic retry for JSON-fix
 - Deterministic leakage firewall for `ml.input_text`
 - Exports:
@@ -32,10 +32,9 @@ Reproducible Python pipeline for born-digital Indian court judgments/orders.
 Use Python 3.11 or 3.12 for best spaCy compatibility.
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m spacy download en_core_web_sm
+micromamba create -y -n thesis_work python=3.11 pip
+micromamba run -n thesis_work pip install -r requirements.txt
+micromamba run -n thesis_work python -m spacy download en_core_web_sm
 ```
 
 ## Input
@@ -43,17 +42,29 @@ Default input directory is `./data/pdfs/`.
 
 Run with explicit directory:
 ```bash
-python -m src.main --pdf_dir ./data/pdfs --out_dir ./outputs --config ./configs/config.yaml
+micromamba run -n thesis_work python -m src.main \
+  --pdf_dir ./data/pdfs \
+  --out_dir ./outputs \
+  --config ./configs/config.yaml \
+  --cuda_visible_devices 6,7
 ```
 
 If your PDFs are currently in `./data/`, run:
 ```bash
-python -m src.main --pdf_dir ./data --out_dir ./outputs --config ./configs/config.yaml
+micromamba run -n thesis_work python -m src.main \
+  --pdf_dir ./data \
+  --out_dir ./outputs \
+  --config ./configs/config.yaml \
+  --cuda_visible_devices 6,7
 ```
 
 ## Skip LLM Execution (parser + NER + regex only)
 ```bash
-python -m src.main --pdf_dir ./data --out_dir ./outputs --config ./configs/config.yaml --skip_llm
+micromamba run -n thesis_work python -m src.main \
+  --pdf_dir ./data \
+  --out_dir ./outputs \
+  --config ./configs/config.yaml \
+  --skip_llm
 ```
 
 ## Notes
