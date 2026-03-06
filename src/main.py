@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import time
@@ -252,6 +253,34 @@ def _sanitize_case_record(case_record: dict[str, Any]) -> dict[str, Any]:
     }
 
     return case_record
+
+
+def _load_existing_records_for_resume(json_dir: Path) -> tuple[set[str], list[dict[str, Any]]]:
+    existing_case_ids: set[str] = set()
+    existing_records: list[dict[str, Any]] = []
+
+    for json_path in sorted(json_dir.glob("*.json")):
+        try:
+            with json_path.open("r", encoding="utf-8") as f:
+                loaded = json.load(f)
+            if not isinstance(loaded, dict):
+                raise ValueError("JSON record is not an object")
+
+            case_id = _str_or_none(loaded.get("case_id")) or json_path.stem
+            file_name = _str_or_none(loaded.get("file_name")) or f"{json_path.stem}.pdf"
+            record = coerce_case_record(loaded, case_id=case_id, file_name=file_name)
+            record = _sanitize_case_record(record)
+            validate_case_record(record)
+
+            existing_case_ids.add(case_id)
+            existing_records.append(record)
+        except Exception as exc:
+            print(
+                f"[WARN] Skipping invalid existing JSON during resume: {json_path.name} ({exc})",
+                flush=True,
+            )
+
+    return existing_case_ids, existing_records
 
 
 def _enrich_with_deterministic_extractors(
@@ -751,6 +780,19 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skip LLM extraction and run parser+NER+regex+exports only",
     )
+    parser.add_argument(
+        "--resume",
+        dest="resume",
+        action="store_true",
+        default=True,
+        help="Resume by skipping PDFs whose JSON already exists in outputs/json (default: enabled)",
+    )
+    parser.add_argument(
+        "--no_resume",
+        dest="resume",
+        action="store_false",
+        help="Disable resume and reprocess all PDFs",
+    )
     return parser.parse_args()
 
 
@@ -762,14 +804,51 @@ def main() -> None:
     jsonl_path = out_root / "cases.jsonl"
     csv_path = out_root / "cases.csv"
 
-    if jsonl_path.exists():
-        jsonl_path.unlink()
-
-    pdf_files = list_pdf_files(args.pdf_dir)
-    if not pdf_files:
+    all_pdf_files = list_pdf_files(args.pdf_dir)
+    if not all_pdf_files:
         print(f"[INFO] No PDF files found in {args.pdf_dir}")
         return
-    print(f"[INFO] Found {len(pdf_files)} PDF files", flush=True)
+
+    existing_case_ids: set[str] = set()
+    records: list[dict[str, Any]] = []
+    if args.resume:
+        existing_case_ids, records = _load_existing_records_for_resume(json_dir)
+        if existing_case_ids:
+            print(
+                f"[INFO] Resume enabled: found {len(existing_case_ids)} existing JSON records in {json_dir}",
+                flush=True,
+            )
+
+    pdf_files: list[Path] = []
+    skipped_existing = 0
+    for pdf_path in all_pdf_files:
+        case_id = stable_case_id(pdf_path.name)
+        if args.resume and case_id in existing_case_ids:
+            skipped_existing += 1
+            continue
+        pdf_files.append(pdf_path)
+
+    print(
+        f"[INFO] Found {len(all_pdf_files)} PDF files "
+        f"({skipped_existing} already completed, {len(pdf_files)} pending)",
+        flush=True,
+    )
+
+    if jsonl_path.exists():
+        jsonl_path.unlink()
+    for existing_record in records:
+        append_case_jsonl(existing_record, jsonl_path)
+
+    if not pdf_files:
+        if records:
+            write_cases_csv(records, csv_path)
+            print(
+                f"[DONE] Nothing pending. Rebuilt exports with {len(records)} records at {out_root}",
+                flush=True,
+            )
+        else:
+            print("[INFO] Nothing pending and no existing records were loaded", flush=True)
+        return
 
     nlp = load_spacy_model(str(config.get("spacy_model", "en_core_web_sm")))
 
@@ -813,7 +892,7 @@ def main() -> None:
             flush=True,
         )
 
-    records: list[dict[str, Any]] = []
+    new_records = 0
     total_files = len(pdf_files)
     for idx, pdf_file in enumerate(pdf_files, start=1):
         print(f"[PROGRESS] [{idx}/{total_files}] Starting {pdf_file.name}", flush=True)
@@ -829,6 +908,7 @@ def main() -> None:
             write_case_json(record, json_dir)
             append_case_jsonl(record, jsonl_path)
             records.append(record)
+            new_records += 1
             print(
                 f"[OK] Processed {pdf_file.name} in {time.perf_counter() - file_start:.1f}s",
                 flush=True,
@@ -838,7 +918,11 @@ def main() -> None:
 
     if records:
         write_cases_csv(records, csv_path)
-        print(f"[DONE] Wrote {len(records)} records to {out_root}")
+        print(
+            f"[DONE] Wrote {len(records)} records to {out_root} "
+            f"({new_records} new, {len(records) - new_records} pre-existing)",
+            flush=True,
+        )
     else:
         print("[INFO] No records written")
 
