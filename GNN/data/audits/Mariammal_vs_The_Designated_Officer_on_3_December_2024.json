@@ -1,0 +1,58 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "da244ed3c25340398ad0b6c758e5d685_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In view of the above, the writ petition is dismissed."
+    },
+    {
+      "annotation_id": "833d0c688da542ea95d50e4244fd57d0_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the respondents 1 & 3 are directed to complete the enquiry proceedings and pass orders on merits and in accordance with law within a period of four weeks from the date of receipt of a copy of this order."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1333,
+      "facts": 728,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 28,
+    "ignored_annotations": 2,
+    "ignored_entities": []
+  }
+}

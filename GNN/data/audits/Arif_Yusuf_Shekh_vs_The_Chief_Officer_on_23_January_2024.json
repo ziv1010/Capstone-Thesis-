@@ -1,0 +1,94 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d6e97808579e4aacb0b70d4ca1b9e24a_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the aforesaid and statement made by Mr. B the writ-applicant were to approach the respondent authority by preferring an application in the prescribed format seeking permission to run a slaughter house, the same be considered by "
+    },
+    {
+      "annotation_id": "f10ceb6ebdcd40ef8a948909dfce903d_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The present writ-application stands disposed of accordingly."
+    },
+    {
+      "annotation_id": "c816ad090def48b7bb621742d7685a6a_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nDirect service is permitted."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1937,
+      "facts": 289,
+      "arguments": 790
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "225bad5bd63d42b9b64fdc28aae550ef_5",
+        "entity_text": "Nabil O. Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "225bad5bd63d42b9b64fdc28aae550ef_5",
+        "entity_text": "Chirag B. Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a07fb732cc86498dad9e3bf1ef584d44_8",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "38995a97369546d188046610fdc1425f_9",
+        "entity_text": "Patel",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

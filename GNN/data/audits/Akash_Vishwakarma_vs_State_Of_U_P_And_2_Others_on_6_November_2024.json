@@ -1,0 +1,86 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b8bd5566204045a59a636565ae051287_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In fact, the same would be granted by the District Magistrate."
+    },
+    {
+      "annotation_id": "e3145555890842b9ae23ed3d895d32f8_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. In light of the same, the petitioner is directed to add the concerned District Magistrate as a party to this writ petition during the course of the day."
+    },
+    {
+      "annotation_id": "2bd0ef6c909841e6afd7a34d0f019dde_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Since the State-respondent is already appearing in the matter, this matter is disposed of with the direction upon the petitioner to move an appropriate application before the District Magistrate within a period of seven days from date."
+    },
+    {
+      "annotation_id": "eb801753538346538558e0e461abc5e4_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the event such an application is filed, the District Magistrate shall decide the said application within ten days by passing a reasoned order after granting an opportunity of hearing to the petitioner."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 381,
+      "facts": 494,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

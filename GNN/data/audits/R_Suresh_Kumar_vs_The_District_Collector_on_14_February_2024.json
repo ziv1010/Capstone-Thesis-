@@ -1,0 +1,110 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c36295e481874cc1b51a782825311e96_11",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2.When the matter came up for hearing on 24.01.2024, this Court passed the following order:\n'It is the case of the petitioner that one P.C.Pandi, who is running a tea shop at the campus of Block Development Office, Melur under the Scheme fo"
+    },
+    {
+      "annotation_id": "d42bd11daac2406dabdc37e805d270cc_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. Considering the fact that the aforesaid allegation of the petitioner is very serious in nature and affecting the public in large, we direct the Superintendent of Police,\nMaduri viz., the second respondent herein to file a detailed status"
+    },
+    {
+      "annotation_id": "5886d2fd83b641fb9694430b7c47dace_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4.Recording the aforesaid statement made in the counter-affidavit, no further order is required in this Writ Petition."
+    },
+    {
+      "annotation_id": "ac8b1ec729d347e6b50c7b9d4672c6aa_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the Writ Petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1518,
+      "facts": 1047,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 35,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "7af28d85017d4c5c939f84fae6480d81_13",
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2d05cecaa8764c498c28010707a0589e_18",
+        "entity_text": "R.Meenakshi Sundarm",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f068e7bf8210405e871c2abe214a54c8_24",
+        "entity_text": "Pandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e214123214db4312be63df1d5bac9594_37",
+        "entity_text": "Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9e24557497724b6a80008144c45acb6f_38",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

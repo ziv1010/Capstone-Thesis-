@@ -1,0 +1,148 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1be80ab181554ae1a5c501a39fe55671_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. The specific case of the petitioners is that the petitioners have been making the repayment and maintaining the loan account initially."
+    },
+    {
+      "annotation_id": "e8ac476241ba4ca8ad6582435b6d45bc_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The default in repayment of the account occurred lately due to reasons beyond the control of the petitioners."
+    },
+    {
+      "annotation_id": "6fcd8e1f21f94b54866be348b7fb243f_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioners have provided substantial security which will safeguard the interest of the Bank."
+    },
+    {
+      "annotation_id": "675af764a8274c67b56a67e52cb536f3_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. In the facts and circumstances of the case, I am inclined to dispose of the writ petition giving a short and reasonable time to the petitioners to clear off the liability."
+    },
+    {
+      "annotation_id": "ce9f57c7f5a646c4952bb5b431cee291_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "11. The writ petition is therefore disposed of with the following directions:\n(i) The petitioners shall remit an amount of 3 lakhs on or before 30.03.2024."
+    },
+    {
+      "annotation_id": "aa0ac914318147fd821beff5820090b6_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(ii) The petitioners shall remit the balance outstanding amount in subsequent consecutive 12 equal monthly instalments thereafter, along with accruing interest and other Bank charges, if any."
+    },
+    {
+      "annotation_id": "3f35d56987ba440d836280f9b52b20ce_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iii) If the petitioners commit default in making payments as directed above, the respondents will be at liberty to continue with coercive proceedings against the petitioners in accordance with law."
+    },
+    {
+      "annotation_id": "5de3218e165c451b9b2395cc7b4c8f11_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iv) If the petitioners pay the amount as directed above, any coercive proceedings against the petitioners will stand deferred."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1826,
+      "facts": 1324,
+      "arguments": 452
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 29,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "2c384d784ec14f5091d1c1a1fb81be10_0",
+        "entity_text": "N.Nagaresh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fe95615ad31f4e5e8b65b9a3f50434c5_5",
+        "entity_text": "SRI.ATHUL SHAJI",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

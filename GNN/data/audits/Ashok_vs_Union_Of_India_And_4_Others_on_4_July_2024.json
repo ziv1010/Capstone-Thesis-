@@ -1,0 +1,109 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e9cd2f350d2c496bbe4dcaa9c638df70_12",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2.  The case made out by the petitioner is that he has been carrying out the work as Commission Vendor since the year 1985."
+    },
+    {
+      "annotation_id": "9bade83e2e914e80bfc16f07e077e677_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Neither the petitioner has made application in any manner before the FSSAI for issuance of certificate."
+    },
+    {
+      "annotation_id": "dcccf29610dd44cba5eb58071d0c31e1_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. In our view, without having a valid FSSAI certificate the petitioner cannot claim any right for carrying out the work as a Commission Vendor on the Railway Platform."
+    },
+    {
+      "annotation_id": "9d823a44eb534128b177fee462778920_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Accordingly, the impugned orders cannot be interfered with and both the writ petitions are dismissed."
+    },
+    {
+      "annotation_id": "3ae3936769ae4ce793027b85de9fae71_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. However, we make it clear that in the event the FSSAI certificate is obtained by the petitioner from the authority concerned, he may apply to the Railways for allowing him to continue with his retail snacks and tea shop on the Railway Pl"
+    },
+    {
+      "annotation_id": "62695d49a96d413fb6a58f3260bb56c3_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The decision shall be taken by the Railways with regard to issue whether such a licence should be granted to the petitioner."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 612,
+      "facts": 782,
+      "arguments": 419
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 6,
+    "ignored_entities": []
+  }
+}

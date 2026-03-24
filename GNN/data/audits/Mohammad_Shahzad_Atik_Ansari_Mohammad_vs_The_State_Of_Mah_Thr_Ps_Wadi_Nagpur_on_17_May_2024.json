@@ -1,0 +1,112 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a043853ff964426ca08fe8d5e009e0f4_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "protect the applicants by granting ad-interim anticipatory bail on the following conditions."
+    },
+    {
+      "annotation_id": "a50f72ac570549b99a80774782145aeb_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. In the event of arrest of the applicants in connection with Crime No.140 of 2024, registered with Wadi Police Station, District Nagpur, for the offences punishable under Sections 380, 457, 406,\n120-B and 188 read with Section 34 of the I"
+    },
+    {
+      "annotation_id": "31ad4af158ab470d96b8c64b1364c215_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", the applicants be released on bail on their furnishing P.R. Bond in the sum of Rs.25,000/- each with one solvent surety in the like amount."
+    },
+    {
+      "annotation_id": "9e1fe9377fe74e4b80d3fd16b45f983c_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. The applicants shall attend the concerned Police Station on every Saturday between 01:00 p.m. to 02:00 p.m. and they shall co-operate in the investigation."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 313,
+      "facts": 459,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "65ea17a0a15d4adc8a70bc40c23feb9a_4",
+        "entity_text": "S. V. Kolhe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "93293afdac964d29bd7a2d1aa9e4912a_12",
+        "entity_text": "Tata Sumo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "691721ccf0034b50ab9ef83fb1483cbf_14",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "82cea055057b4b4ca8c5229900500260_20",
+        "entity_text": "Ashish Tambe TAMBE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8fd9ee9435d44740a286c363e46b7768_24",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2beadfece99842db8ac40b77c17cedef_41",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The FIR speaks for itself."
+    },
+    {
+      "annotation_id": "f53bc23d08714e53bc4cda06ef69183f_42",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Applicant had not co-operated with the investigation."
+    },
+    {
+      "annotation_id": "95d0210e5a10440aa1989fac7a88ec69_43",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He had got down from the tempo and had ran away."
+    },
+    {
+      "annotation_id": "ca749e30b0cd4f6ba3aeae127ee71ce3_44",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "At this stage, there is no reason to disbelieve the first informant who has mentioned the Applicant's name and has also mentioned his village."
+    },
+    {
+      "annotation_id": "5fa988e0ed444ef0bb1794352e919032_48",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The offence is made out."
+    },
+    {
+      "annotation_id": "19d00445d7de4f8189d217519e54c799_49",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In this view of the matter, the custodial interrogation of the Applicant is necessary to find out who is the supplier and the receiver of the said property."
+    },
+    {
+      "annotation_id": "ca094314bcb145d19c1b699d0b5f70e2_50",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nConsidering these aspects, no case for grant of anticipatory bail is made out."
+    },
+    {
+      "annotation_id": "6194e52245d94d4db08aec04fffecfb7_51",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Application is rejected."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1276,
+      "facts": 230,
+      "arguments": 259
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 45,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "8f665df3ef954111a97683336f871aea_2",
+        "entity_text": "YUGANDHARA  SHARAD PATIL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b45201dd39e146d89b305f778a88c83c_4",
+        "entity_text": "Asif Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b45201dd39e146d89b305f778a88c83c_4",
+        "entity_text": "S.K. Ali Shabi Fatima",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b45201dd39e146d89b305f778a88c83c_4",
+        "entity_text": "A.A. Siddiquie",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3c363363cda24b8499da39480168437f_5",
+        "entity_text": "Mahalakshmi Ganapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "97aa8efcafdb49d7aab8881afe33f4b3_11",
+        "entity_text": "Asif Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "97aa8efcafdb49d7aab8881afe33f4b3_11",
+        "entity_text": "Ganapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a1e290b1d87d4e9fadce36bcaee609de_12",
+        "entity_text": "Hari Mengal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fc8194d2f38f469b902bf121c4befdb4_24",
+        "entity_text": "Roshan Pair",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

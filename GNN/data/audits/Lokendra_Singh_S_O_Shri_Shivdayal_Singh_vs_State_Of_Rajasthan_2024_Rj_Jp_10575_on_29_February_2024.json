@@ -1,0 +1,70 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "36ea7658d34343338adf8f7af590d15c_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Learned State counsel is directed to file reply to this petition."
+    },
+    {
+      "annotation_id": "7f32398175d048009be5b83ad74a4470_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMeanwhile, further proceedings pending before the trial court arising out of FIR No.159/2022 registered at Police Station Sadar Dholpur, District Dholpur shall remain stayed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 775,
+      "facts": 480,
+      "arguments": 247
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "4c2e03a84e79439c96f737b7c145ec37_3",
+        "entity_text": "Shivdayal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4c2e03a84e79439c96f737b7c145ec37_3",
+        "entity_text": "Har Manegar Ryagi Industries",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

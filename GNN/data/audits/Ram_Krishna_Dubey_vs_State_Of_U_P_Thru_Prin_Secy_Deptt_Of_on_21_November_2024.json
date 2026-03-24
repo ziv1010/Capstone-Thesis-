@@ -1,0 +1,155 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "599fb6a0df78488888b0b32279e4f6e4_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. Learned Standing counsel does not oppose the prayer made by the petitioner."
+    },
+    {
+      "annotation_id": "b17f8cc5e95e4618a4d50291c4a5c6aa_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, it is provided that the respondents shall serve a copy of the charge sheet upon the petitioner within next seven days."
+    },
+    {
+      "annotation_id": "6e9c77320ce64aa692d7b43e25827891_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On receipt of the charge sheet the inquiry proceedings shall be concluded with expedition, say within next three months from the date a certified copy of this order is placed before him."
+    },
+    {
+      "annotation_id": "2963c6348a2d45e689755242940e6b97_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. Learned counsel for the petitioner submits that the petitioner shall cooperate in the proceedings before the inquiry officer."
+    },
+    {
+      "annotation_id": "92d461d6f121448facdaab4706b5c305_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is further provided that in case the inquiry proceedings are not concluded within the time prescribed by this Court, liberty is given to the petitioner to move appropriate application under Section 4 sub-clause 8 of U.P. Government Serva"
+    },
+    {
+      "annotation_id": "eb553ce240a54035ae81f74595894305_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In case, such an application is made, the competent authority shall consider and decide the same by passing a reasoned and speaking order within one week from the date of date of receipt of the same and communicate the same to the petitione"
+    },
+    {
+      "annotation_id": "f8a05b1ded8b405088285000b700b87e_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 29,
+          "end": 56
+        }
+      ],
+      "text_preview": "With aforesaid direction the petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 1086,
+      "end": 1113
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 524,
+      "facts": 1541,
+      "arguments": 357
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "103f10e04f14436aa273cae03feb495e_2",
+        "entity_text": "Anuj Kudesia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "103f10e04f14436aa273cae03feb495e_2",
+        "entity_text": "Abhishek Tiwari",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

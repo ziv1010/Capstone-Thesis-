@@ -1,0 +1,130 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9deaf368cf7248c0a8b46a4aa5b86728_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. In view of the above, the third respondent is directed to initiate the prosecution as against the said Sivakumar and proceed further in the manner known to law within a period of two weeks from the date of receipt of a copy of this order"
+    },
+    {
+      "annotation_id": "caf4acc4d13c4f808dc57ce75a0fa390_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner is directed to submit a representation to the second respondent in order to remove the lock and seal and on receipt of the same, the second respondent is directed to consider the representation of the petitioner to remove the"
+    },
+    {
+      "annotation_id": "d326c7539ce148e9bcb0f726bbd7cd89_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 38,
+          "end": 65
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 33,
+          "end": 65
+        }
+      ],
+      "text_preview": "8. With the above direction, the writ petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 662,
+      "end": 689
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 657,
+      "end": 689
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1220,
+      "facts": 548,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 33,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "4669971da583425dbe04131fac09f875_9",
+        "entity_text": "Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c12b089bf2b943bda5df0ec8e32d1cfe_18",
+        "entity_text": "Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c12b089bf2b943bda5df0ec8e32d1cfe_18",
+        "entity_text": "Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d445eb34b67b485fba08783f04e5396c_20",
+        "entity_text": "Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ac6a16d24eac4f84a6355e17669c4c43_22",
+        "entity_text": "Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "88cb2ded02ae4188a69012b4857c5fa8_32",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

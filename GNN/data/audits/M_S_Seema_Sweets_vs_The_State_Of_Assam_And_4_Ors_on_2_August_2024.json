@@ -1,0 +1,55 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5ca6f31f3b2e47cd8a1e7676fd5188d6_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, this writ petition stands closed being infructuous."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1405,
+      "facts": 0,
+      "arguments": 198
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 7,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "80787203000b48108e8c688ca8ade60b_4",
+        "entity_text": "H Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2f8f41bc60af460c9c4de2312c8a0162_5",
+        "entity_text": "R Deka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

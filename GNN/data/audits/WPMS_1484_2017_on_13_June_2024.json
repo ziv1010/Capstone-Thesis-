@@ -1,0 +1,146 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "44f8409bcba64d42a848257e19fabc92_9",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. In view of unrebutted averments made in paragraph nos.16 & 17 of the writ petition, the writ petition deserves to be allowed, as order, which entails civil consequences to a person, cannot be passed without affording reasonable opportuni"
+    },
+    {
+      "annotation_id": "727fe9813b7b42bbadd730e379712ed4_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 100,
+          "end": 109
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 125,
+          "end": 134
+        }
+      ],
+      "text_preview": "\n5. On this short point alone, the impugned orders dated 13.06.2017 and 16.06.2017 are liable to be set aside and are hereby set aside."
+    },
+    {
+      "annotation_id": "7e5b81e550dc4204ba91338c27858225_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 9,
+          "end": 28
+        }
+      ],
+      "text_preview": "The writ petition is allowed."
+    },
+    {
+      "annotation_id": "f8b695f6f724427690c03a98fb1ca849_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the respondents shall be at liberty to pass fresh order in respect of petitioner, as per law."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 145,
+      "end": 164
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 100,
+      "end": 109
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 125,
+      "end": 134
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 166,
+      "facts": 323,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "e88af89263e74557b3cb993cd7232728_1",
+        "entity_text": "Manoj Kumar Tiwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a5971daa95384a6581a1e077d85159a9_2",
+        "entity_text": "Gopal K. Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "738f50291b834c9f9b4912e831523627_3",
+        "entity_text": "Suyash Pant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7c127a59cbca42f1a1a505f03319af64_13",
+        "entity_text": "Arpan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "84c8f5caf6b54abe9c8cbe76277051b8_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He further states that the notice already given to the petitioner shall be withdrawn and only after giving a fresh notice and opportunity of hearing any action against the petitioner shall be taken.\n"
+    },
+    {
+      "annotation_id": "e8cd18487c2c402e810a21ce1be2c430_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The aforesaid statement is taken on record."
+    },
+    {
+      "annotation_id": "1c4f3adb86654a24b5b00a7a048cdc26_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn view thereof, the writ petition is consigned to record."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1432,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "9deaf9695e5a483db10ce256b657fe99_8",
+        "entity_text": "Hemendra Kumar Bhatt",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "80a749eb00f84abfbb2bcf38ca1c1fa1_15",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

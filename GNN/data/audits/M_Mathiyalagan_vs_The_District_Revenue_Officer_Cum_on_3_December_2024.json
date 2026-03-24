@@ -1,0 +1,106 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6c4fbbae89f142deafb95b46fb75eaa0_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the constitution of the Tribunal, the learned counsel for the petitioner on instructions seeks permission of this Court to withdraw the Writ Petition, with liberty to approach the concerned Tribunal."
+    },
+    {
+      "annotation_id": "2c28f49c9c534b71a2b59d2ac614b123_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 85,
+          "end": 100
+        }
+      ],
+      "text_preview": "\n2. In view of the statement made, the Writ Petition is dismissed as withdrawn, with liberty granted to the petitioner to approach the Tribunal."
+    },
+    {
+      "annotation_id": "97cd12b3f551409e8a94840c56942d1f_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that when the petitioner approaches the Tribunal, the period during which this Writ Petition was pending shall be excluded for the purpose of calculating the period of limitation."
+    },
+    {
+      "annotation_id": "7a9d5983cbf7429cabb45570ac11f90b_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nConsequently, connected miscellaneous petitions are closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bliberty\\s+granted\\b",
+      "matched_text": "liberty granted",
+      "start": 296,
+      "end": 311
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1063,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "6ffd195a5c954c4da0f73da9969718d1_15",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

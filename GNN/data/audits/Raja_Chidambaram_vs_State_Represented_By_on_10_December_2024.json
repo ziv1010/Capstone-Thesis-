@@ -1,0 +1,130 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "34eb70d867fa4a6c8ab69705dd31b9ad_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. The grounds raised by the counsel for the petitioners are all factual in nature and it requires appreciation of evidence and this Court cannot decide the same in exercise of its jurisdiction under Section 482 of Criminal Procedure Code."
+    },
+    {
+      "annotation_id": "4774097e0840414197a6a65e1e0dcdba_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is left open to the petitioners to raise all the grounds before the Court below and the same shall be considered on its own merits and in accordance with law."
+    },
+    {
+      "annotation_id": "d0dc1578b53d4865a09cf267222c6e78_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court is not inclined to interfere with the proceedings pending before the Court below."
+    },
+    {
+      "annotation_id": "ad658b20b7df440aa485980a31ad9b8e_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioners shall be present before the Court below at the time of questioning under Section 313 (1)(b) of Cr.P.C and at the time of passing of the final judgement and as and when required."
+    },
+    {
+      "annotation_id": "bad29c94c51e49408f464b1b5f4379d3_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Accordingly, this Criminal Original Petition is disposed of with a direction to the Court below to complete the proceedings in S.T.C.No.8 of 2022 within a period of three months from the date of receipt of a copy of this order."
+    },
+    {
+      "annotation_id": "89461ec7cb714b76950211ad025e0b30_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If the petitioners adopt any dilatory tactics, it is open to the trial Court to insist upon the presence of the petitioners and remand them to custody as per the judgment of the Hon'ble Supreme Court in STATE OF UTTAR PRADESH VS. SHAMBHU NA"
+    },
+    {
+      "annotation_id": "b015e3e07857491db342905651356693_23",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1380,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 7,
+    "ignored_entities": []
+  }
+}

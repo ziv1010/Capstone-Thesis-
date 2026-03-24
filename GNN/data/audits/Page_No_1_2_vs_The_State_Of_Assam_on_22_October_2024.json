@@ -1,0 +1,79 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "95caa8a1e3b44f6b876b07f3a26e60b5_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nOn instruction of the petitioner, Mr. Khan, learned counsel is not pressing this pre-arrest bail application to which Mr. Borthakur, learned Additional Public Prosecutor, Assam has no objection.\nAccordingly, this pre-arrest bail applicatio"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1285,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "21a6dec33f0d4fa3bd92457a3c771392_2",
+        "entity_text": "SHAHADAT ALI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "21a6dec33f0d4fa3bd92457a3c771392_2",
+        "entity_text": "GARUGAON",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8f26b175d16c4acdb4deaf0bd58af68c_3",
+        "entity_text": "MANIKPUR  DIST. BONGAIGAON",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "229f816d647f40b297f8261e29405301_5",
+        "entity_text": "ABDUL CHABUR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "25d73ca992af4bc48923575a3c15c26f_8",
+        "entity_text": "U U Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "25d73ca992af4bc48923575a3c15c26f_8",
+        "entity_text": "P Borthakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "38f4887888bb4efe9b4f37774c1ee44e_9",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

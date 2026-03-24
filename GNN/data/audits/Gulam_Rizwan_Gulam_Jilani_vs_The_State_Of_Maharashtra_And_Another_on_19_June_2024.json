@@ -1,0 +1,142 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3cc61526e5a74a4499dade5a4ef2fa1d_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Perused the F.I.R. and the police papers produced on record."
+    },
+    {
+      "annotation_id": "ff111a4013f5414eb42f997c5051a660_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No custodial interrogation of the applicant is required."
+    },
+    {
+      "annotation_id": "0237517be87c498bbec4e65732d2bb91_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "(i) The application is allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 488,
+      "facts": 1217,
+      "arguments": 185
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 27,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "57cd9c04c11d41318f5ad9a811bb3187_8",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "57cd9c04c11d41318f5ad9a811bb3187_8",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "419120e66e0e499f94fea9d6d6892955_9",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "419120e66e0e499f94fea9d6d6892955_9",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "697f36317783448297165d319cc622d8_10",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d5a85ecbfd1f4dfe89f22e76751cf850_11",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d5a85ecbfd1f4dfe89f22e76751cf850_11",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e0f9c7af84804eacbaae4a94a9e32e4c_15",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e0f9c7af84804eacbaae4a94a9e32e4c_15",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bce6c3d8e3f0488c8b7aa63d49266b2b_18",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bce6c3d8e3f0488c8b7aa63d49266b2b_18",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3f1349a093384bc4bf3bedf92ba0c90a_24",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3f1349a093384bc4bf3bedf92ba0c90a_24",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4c288aab16cd4fc38da291f25f8c7bd9_25",
+        "entity_text": "Gajanan Kale",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

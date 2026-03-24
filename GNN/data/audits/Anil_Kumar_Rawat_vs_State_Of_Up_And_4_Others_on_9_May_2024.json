@@ -1,0 +1,272 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3d9ed4f8be3143e5ae78c1929e4cfc5b_9",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 90,
+          "end": 97
+        }
+      ],
+      "text_preview": "Appellate Court, vide order dated 31.01.2024 (Annexsure No.8), has allowed the appeal and quashed the suspension order dated 19.12.2022."
+    },
+    {
+      "annotation_id": "1bcb15f963f745328682dfb7513e9de3_11",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 90,
+          "end": 97
+        }
+      ],
+      "text_preview": "Learned Commissioner, vide order dated 19.03.2024, has allowed the review application and quashed the order dated 31.01.2024, which is under question before this Court."
+    },
+    {
+      "annotation_id": "1b124d716297446e93b995ec64869289_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In penultimate paragraph of the order dated 19.03.2024, learned Commissioner has unequivocally observed that designated officer is present, however, neither Mr. Anil Kumar Rawat nor his counsel is present."
+    },
+    {
+      "annotation_id": "b7023175a1c74093bf8b9f2d1cc42617_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Order dated 19.03.2024 further reveals that designated officer has filed the application (review) on 06.02.2024."
+    },
+    {
+      "annotation_id": "943df22eb70a45af8fcf613e2568e6a2_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nOn the date fixed for hearing i.e. 18.03.2024 designated officer was present, however, none was present on behalf of the petitioner."
+    },
+    {
+      "annotation_id": "b94c9f7fa15b4943819fbec19f273e3e_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There is nothing on the record to demonstrate that petitioner has deliberately ignored the proceeding before learned Commissioner despite full knowledge about the filing of the review application and date of hearing i.e. 18.03.2024, thus, i"
+    },
+    {
+      "annotation_id": "bab6b8abd3e54a9682f255ace1149c9d_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "So far as the maintainability of the review application is concerned, it is open for the petitioner to raise this objection before the appellate court."
+    },
+    {
+      "annotation_id": "452269bab44d4ac1b23b399109393adb_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. In this conspectus, as above, in my considered opinion, present writ petition deserves to be allowed on the limited point of opportunity of hearing."
+    },
+    {
+      "annotation_id": "7290f9f0b1c344caa280fedce673f4a1_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. As such, instant writ petition succeeds and is allowed."
+    },
+    {
+      "annotation_id": "db2ee5e2685f4114b123eebc1141a577_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ],
+      "text_preview": "Order impugned dated 19.03.2024 passed by learned Commissioner Food Safety & Drugs Administration U.P. Lucknow (respondent no.2) is quashed."
+    },
+    {
+      "annotation_id": "c11d507ec896476ba5941b6308a80be2_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Proceeding initiated on the basis of the review application dated 06.02.2024 moved by designated officer is restored to its original number and parties are relegate before learned Commissioner, who shall reconsider the said review applicati"
+    },
+    {
+      "annotation_id": "049f4bed7a504d48b9df5ef34636b76e_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Petitioner is hereby directed to present/appear on 29.05.2024 before Commissioner, Food Safety & Drugs Administration, Sector-C, Aliganj, Lucknow (respondent no.2), who has passed the order impugned, and file his detailed reply/objection to"
+    },
+    {
+      "annotation_id": "a2c10a01df1b496bb9a21ad31af5f791_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "After receiving the said reply/objection, learned Commissioner shall fix a date for final hearing and make endeavour to decide the aforesaid proceeding, in accordance with law, expeditiously, preferably within a period of two months."
+    },
+    {
+      "annotation_id": "76e51910b0524ceb8d9a9bb76489e187_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "11. It is expected that it should be decided by a reasoned and speaking order, in accordance with law,\nafter affording opportunity of hearing to the parties concerned without granting unnecessary adjournments to either of the parties."
+    },
+    {
+      "annotation_id": "d2506a09bad4406396f1f426e51eeb4a_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n12. With the aforesaid direction, present writ petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 343,
+      "end": 350
+    }
+  ],
+  "suspicious_annotation_count": 15,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 548,
+          "end": 555
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 685,
+          "end": 692
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 407,
+      "facts": 920,
+      "arguments": 168
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 15,
+    "ignored_entities": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9be827993db84971996e4a908335c034_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Subject to the orders of Hon'ble the Acting Chief Justice, list the instant matter on 2nd September, 2024 before the Roster Bench."
+    },
+    {
+      "annotation_id": "de28e980d364438e81ad5ada14c9b794_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nInterim order, if any, to continue till then."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 612,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 7,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "293c8eb8e5fa465d85b05449ec5fbcb3_1",
+        "entity_text": "Chandra Dhari Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "293c8eb8e5fa465d85b05449ec5fbcb3_1",
+        "entity_text": "Chandra Dhari Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

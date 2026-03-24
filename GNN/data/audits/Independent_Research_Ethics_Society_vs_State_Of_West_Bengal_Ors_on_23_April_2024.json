@@ -1,0 +1,70 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "361285f6fce2493a85f77fcc8f5057ad_5",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. The present challenge pertains to the alleged inaction on the part of the respondent-authorities on a complaint lodged by the petitioner with regard to fraudulent, deceptive and unfair trade practices adopted by one Budge Budge Refinerie"
+    },
+    {
+      "annotation_id": "0803f1d36d2d49fe8ef2f8c7480a6d00_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. In view of the stand taken by the respondent nos. 4 to 6 as regards steps having already been initiated with regard to the concern of the petitioner, the said respondents are directed to file a report in the form of an affidavit, upon ci"
+    },
+    {
+      "annotation_id": "ff82ebd1330f4cbeb3dfe3ce5d3a0db6_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. The matter shall be placed for hearing under the same heading on May 07, 2024 for filing of such report by the respondent nos. 4 to 6 and fir passing further orders."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 202,
+      "facts": 0,
+      "arguments": 1396
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

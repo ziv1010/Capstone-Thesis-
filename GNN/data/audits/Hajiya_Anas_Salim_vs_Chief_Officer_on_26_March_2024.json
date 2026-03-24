@@ -1,0 +1,75 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "dbc38a436b9e4c7c883b77c8536c2c85_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", if the writ-applicant were to approach the respondent authority by preferring an application in the prescribed format seeking permission to run a slaughter house, the same be considered by the respondent authority in accordance with law a"
+    },
+    {
+      "annotation_id": "518983421f3a4d5ea5b2012355b35931_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The present writ-application stands disposed of accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1999,
+      "facts": 286,
+      "arguments": 437
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "96f88781e146422bae97fcdcbb338337_3",
+        "entity_text": "Nabil O. Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1327bce9891c4e4eaca50f2890d2b976_6",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e58d57ebad4f4ecc912026408639c5c4_7",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1e1d5a9f46514fc28dc4667bf2eb8385_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nLearned Standing Counsel states that the competent authority shall take an appropriate decision in the matter."
+    },
+    {
+      "annotation_id": "91342a88c18242eda9876af374e43904_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nConsidering the nature of order proposed to be passed, we do not deem it necessary to issue notice to 5th respondent."
+    },
+    {
+      "annotation_id": "e00d1217b57d45f999cb34b4b7329b79_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nSince the petitioner has already submitted his reply to the notice, we deem it appropriate to direct the respondents to accord consideration to the petitioner's reply to the notice dated 16.10.2023 and 14.11.2023 by passing a reasoned orde"
+    },
+    {
+      "annotation_id": "656a39a54b884a15823b9ffb98a77b34_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The writ petition is disposed off, accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 362,
+      "facts": 200,
+      "arguments": 308
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

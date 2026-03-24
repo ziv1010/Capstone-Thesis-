@@ -1,0 +1,78 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "084944b4971f4ebd9b80bb57e6a6786a_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He informs the Court that he will withdraw the order dated 06.09.2024 and the order dated 04.07.2024."
+    },
+    {
+      "annotation_id": "d780ada2b4b94e408134efb5e37bd7a5_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The contempt petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1170,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "eda9763e70c144bf885a09d5043d0d76_6",
+        "entity_text": "Sathish Paraseran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ec789ba16ccb402c8d52250fc7641e12_7",
+        "entity_text": "Vijayan Subraman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1169cf0c7ccf47d29d3ca83d2dead2a5_8",
+        "entity_text": "G.Thalaimutharasu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "83b3b115dadf4102adbf129530263ef6_9",
+        "entity_text": "Thiru.Mariyappan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

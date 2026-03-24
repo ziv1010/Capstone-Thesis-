@@ -1,0 +1,64 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b8c88e52f78749318535ce4fd34bbd66_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the present contempt petition is dismissed as rendered infructuous."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1037,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "a36774a79072434bbccd60c25f154a49_0",
+        "entity_text": "Vinit Kumar Mathur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d53ec17216f4623b74ee61b5611366b_2",
+        "entity_text": "Girdharee Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d53ec17216f4623b74ee61b5611366b_2",
+        "entity_text": "Kesha Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "02a5bf8de83041d89e9b770614865f9d_3",
+        "entity_text": "Shubhra Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

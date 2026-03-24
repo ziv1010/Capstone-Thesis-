@@ -1,0 +1,131 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2c944a6f838944618a6501c89bf3ddc6_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Only the present four appeals have been restored by order dated 29.08.2023 in C.M.P. Nos. 5895, 5897,\n5898 & 16845 of 2023, the reason being that, as putforth by the learned counsel for the respondents,\nsome of the writ petitioners had been"
+    },
+    {
+      "annotation_id": "e1f94e39370448a3991e4b5b25ff7365_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. In such circumstances, we are of the considered view that the appellants are riding two horses which is neither necessary nor appropriate."
+    },
+    {
+      "annotation_id": "b4ed1f2cfd87404b898ea9e09c3111d9_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The primary employer in this case is the Food Safety and Standards Authority of India and the substantial lis of the appellants is qua that employer."
+    },
+    {
+      "annotation_id": "fe0086fb824243d8ba1be337e9d789b9_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "They have been appointed on contract basis by the Southern Regional Office of the Food Safety and Standards Authority of India, based on which the present writ appeals have been instituted in this High Court."
+    },
+    {
+      "annotation_id": "e6ff3ab37c544e18ae6563af8e9faeea_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In the light of the circumstances as aforesaid, we think that it would serve their interests fully in pursuing the matters before Delhi High Court."
+    },
+    {
+      "annotation_id": "db6fbd6b20c140948a6f9374fec82f22_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Should, for any reason, it becomes necessary that they would have to revive the prayers in these writ appeals, such liberty is given to the appellants.\n6."
+    },
+    {
+      "annotation_id": "81caa64401ac4e98a7d8e1bf1a29ac3f_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "With the above liberty, the writ appeals are closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 2323,
+      "facts": 138,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "b2f2465f3e7840bcb0fa54c9e7e7f6e5_12",
+        "entity_text": "K. Thennan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b2f2465f3e7840bcb0fa54c9e7e7f6e5_12",
+        "entity_text": "K. Mohanamurali",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

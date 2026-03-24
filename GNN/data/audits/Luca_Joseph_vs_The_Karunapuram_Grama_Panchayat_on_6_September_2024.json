@@ -1,0 +1,112 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2eea8de0ac4f4797a923e875a1bff7a1_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the interim order granted on 22.3.2024 is vacated."
+    },
+    {
+      "annotation_id": "e77d1efd91bc4ff194e4e81d64e4ea67_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that the petitioner cannot conduct the meat shop as he does not have a valid licence."
+    },
+    {
+      "annotation_id": "fdee879822e448eaab3e34078f41c608_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe writ petition is accordingly dismissed."
+    },
+    {
+      "annotation_id": "486e8d69ad6949ee9576025c98b616a1_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the dismissal of WP(C)No.12625/2024,\nnothing further remains to be considered in this writ petition."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 2368,
+      "facts": 97,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 27,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "44d36b1ea824436a8def0071f8cfbeca_8",
+        "entity_text": "ADV SMT.JASMINE V.H.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b84bef575377439a83e1801912bb0f0a_10",
+        "entity_text": "C.H.ABDUL RASAC",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b84bef575377439a83e1801912bb0f0a_10",
+        "entity_text": "K.R.AVINASH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1e1d0254fa6141808c12e4af5546f5c9_12",
+        "entity_text": "ANSARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0cd57e14723430ba255ff1b2e66b31d_19",
+        "entity_text": "Luca Joseph",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

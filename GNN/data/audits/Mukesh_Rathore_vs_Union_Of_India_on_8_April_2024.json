@@ -1,0 +1,105 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "88b74b6347794ec3bbc24a1d01060e1e_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Counsel for the State submits that the case shall be decided at an early date."
+    },
+    {
+      "annotation_id": "f790bb530231439f88710b82bd4efc0e_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In view of the same, the petition is disposed of with a direction to the Collector, Khargone to decide the petitioner's case as expeditiously as possible, preferably within a period of two months from the date of receipt of certified cop"
+    },
+    {
+      "annotation_id": "20ba57f5761f4c23ac95cd36c831db23_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. It is made clear that this Court has not reflected upon the merits of the case."
+    },
+    {
+      "annotation_id": "cccf129716c74f199f42ea323140c9b6_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 28,
+          "end": 55
+        }
+      ],
+      "text_preview": "\n7. With the aforesaid, the petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 426,
+      "end": 453
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1686,
+      "facts": 207,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "5a7095170e884c09a7d3aaa9b0d9e9a6_5",
+        "entity_text": "SURBHI BAHEL",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

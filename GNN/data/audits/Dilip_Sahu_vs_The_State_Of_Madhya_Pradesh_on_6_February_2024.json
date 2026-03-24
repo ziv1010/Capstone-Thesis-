@@ -1,0 +1,131 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0f745c3ad3244656822fb001a47da04d_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nWe find no scope here to interfere with the reasoning given by the High Court."
+    },
+    {
+      "annotation_id": "3cec3b21d34f4099bb897264504cabd3_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. The Appeal is accordingly dismissed."
+    },
+    {
+      "annotation_id": "0d5b43ff396b42f98981087bb4a1d28b_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2 The Appeal stands dismissed in terms of the signed order which is placed on the file."
+    },
+    {
+      "annotation_id": "2c0e874f1b584e91bc24bfc0b78df5f8_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nPending application(s), if any, shall stand disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1214,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "68d9b220732740b4b378b8c1eb23b59c_1",
+        "entity_text": "Sudhanshu Dhulia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "68d9b220732740b4b378b8c1eb23b59c_1",
+        "entity_text": "Sudhanshu Dhulia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "01d639b8c82c42378dd046260ecfb403_25",
+        "entity_text": "S.K. Gangele",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "01d639b8c82c42378dd046260ecfb403_25",
+        "entity_text": "Priya Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "06b65db50540437ab43029a1a23633ca_27",
+        "entity_text": "Akanksha Tomar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "502c179fa748495185e66f4b2cbe7a31_28",
+        "entity_text": "Argha Roy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "502c179fa748495185e66f4b2cbe7a31_28",
+        "entity_text": "Ojaswini Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c20bf750adaa4e0da82b3b8e961b0388_29",
+        "entity_text": "Rahul Kaushik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f254def74757467f8645b86e969ee810_33",
+        "entity_text": "KAVITA PAHUJA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

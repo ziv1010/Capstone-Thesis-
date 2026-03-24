@@ -1,0 +1,111 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "284ddd32d18845dfb4aff16fed28a9c0_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Considering the above said facts, this Court directs the petitioner to give an application before the respondents afresh seeking permission to run a grocery shop and on receipt of the same, the respondents shall consider the same and pas"
+    },
+    {
+      "annotation_id": "09e7be9dc681439d807fb9bb07484a63_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 39,
+          "end": 66
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 34,
+          "end": 66
+        }
+      ],
+      "text_preview": "7. With the above direction, this writ petition stands disposed of."
+    },
+    {
+      "annotation_id": "2352646f89364c08bf8389f20184118f_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Consequently, the connected Miscellaneous Petitions are closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 436,
+      "end": 463
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 431,
+      "end": 463
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1356,
+      "facts": 1373,
+      "arguments": 761
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 38,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "38929c7968a84c7da8379b385c6cce34_7",
+        "entity_text": "Maniammal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2cd51cd8806b4ea4a6e76e6acf0f581d_39",
+        "entity_text": "Murugan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

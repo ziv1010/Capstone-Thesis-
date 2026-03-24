@@ -1,0 +1,67 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b584115e949a44b68f80d5f5838d7136_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(II). Issue a writ, order or direction in the nature of mandamus commanding &\ndirecting the opposite parties/authorities concerned to grant, the petitioner, a license as a Food business Operator as provided under Regulation 2.1 (Chapter II"
+    },
+    {
+      "annotation_id": "1d47953b18c54f0290cabd20a1e4ceac_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis writ petition is disposed of with a direction to opposite party no.4 to consider the application made by the petitioner for grant of NOC and pass an appropriate reasoned and speaking order within a period of two weeks from the date a "
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1157,
+      "facts": 197,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "166ce1e978d44b7b8d5a1a0c5d731e1b_4",
+        "entity_text": "Kapil Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3afce1a8f0a9466cbc4b03c3c946e2dc_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f76e748f1e1c469c99416e77edddc232_38",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the contravention as alleged by the first respondent cannot be sustainable since there is absolutely no mentioning of the nutritional claim by the petitioner."
+    },
+    {
+      "annotation_id": "dbe18eabfce9479597a31ef330ef5fcd_39",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTherefore, there is no contravention of the regulations 2.2.2(3)(v) of the Food Safety and Standards https://www.mhc.tn.gov.in/judis (Packaging and Labeling) Regulation, 2011."
+    },
+    {
+      "annotation_id": "e7d95c118c3e4564bcb34fb2f9b93d0d_41",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As per the Regulation 2.2.2(3)(v) of the Food Safety and Standards (Packaging and Labeling) Regulation,\n2011 provides for nutritional information that is required to be furnished in the label namely the nutritional value amounts to proteins"
+    },
+    {
+      "annotation_id": "842958181b7a4cffaf96f8a3812917d2_42",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This requirements would be possible only if the petitioner has enriched the same with such vitamins or minerals as provided under Regulation."
+    },
+    {
+      "annotation_id": "e86454ac04644cf4972a495236be9548_43",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Admittedly, the petitioner does not claim enriched beverage with nutrients or vitamins that mango is rich in Vitamin A and C which is not enriched by the petitioner."
+    },
+    {
+      "annotation_id": "6e32cf0780ff473eb372afe4c64b082c_44",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore,\nthe petitioner did not furnish any nutritional amount of minerals and vitamins present in the drink."
+    },
+    {
+      "annotation_id": "a10b5ca6044842fd92376355fb0743e2_45",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 183,
+          "end": 190
+        }
+      ],
+      "text_preview": "\n5. In view of the above, without considering the same, the adjudicating authority imposed a fine as if the accused admitted their guilt and hence, the impugned order is liable to be quashed.\nhttps://www.mhc.tn.gov.in/judis 6."
+    },
+    {
+      "annotation_id": "cb4411082caa4bb0baa07209b3ce2b5d_46",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 73,
+          "end": 92
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 52,
+          "end": 59
+        }
+      ],
+      "text_preview": "Accordingly, the impugned order dated 27.04.2018 is quashed and the writ petition is allowed."
+    },
+    {
+      "annotation_id": "9183f4eca7714812a6e72e5ec4af8f03_47",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No costs."
+    },
+    {
+      "annotation_id": "383b700eaf784453982f333ec0f74e7d_48",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Consequently, connected miscellaneous petition is also closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 300,
+      "end": 319
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 183,
+      "end": 190
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 279,
+      "end": 286
+    }
+  ],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1781,
+      "facts": 828,
+      "arguments": 109
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 40,
+    "ignored_annotations": 10,
+    "ignored_entities": []
+  }
+}

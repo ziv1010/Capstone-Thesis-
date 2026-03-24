@@ -1,0 +1,168 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "147db0bac9ce4dae9353aba0c7b19426_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. In view of the said submission made by either parties, there shall be a direction to the petitioner forthwith to make an application before the Department of Food Safety and obtain an appropriate permission for providing Herbal Hookah S"
+    },
+    {
+      "annotation_id": "faaca9beb9a44e08831e69eafefc2b05_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner shall also give an undertaking letter before the respondent police to have separate smoking area for serving Herbal Hookah Services (without any content or trace of Tobacco and Nicotine)."
+    },
+    {
+      "annotation_id": "cc4623bf64fc487d85548e291615acb5_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On receipt of the said undertaking, the respondent police are directed not to interfere with the business premises of the petitioner after getting permission by the Department of Food Safety."
+    },
+    {
+      "annotation_id": "71c3df65bfb9481ba508b424e5890322_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. It is made clear that the petitioner will strictly adhere the undertaking and will not violate it by taking advantage of the order passed by this Court."
+    },
+    {
+      "annotation_id": "2faa6da3e9c64d1ab709e6671b2e5650_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "I also further make it clear that it will not prevent the respondent police for making the periodical inspection as to whether the undertaking is followed by the petitioner."
+    },
+    {
+      "annotation_id": "f39c3bb7ba774d10aad6564ac23aa86b_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 36,
+          "end": 63
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 31,
+          "end": 63
+        }
+      ],
+      "text_preview": "With the above directions, the writ petition stands disposed of ."
+    },
+    {
+      "annotation_id": "2176ca9239734108bf34e5625d66f473_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently,\nconnected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently,\nconnected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 761,
+      "end": 788
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 756,
+      "end": 788
+    },
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently,\nconnected miscellaneous petition is closed",
+      "start": 791,
+      "end": 847
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1016,
+      "facts": 468,
+      "arguments": 512
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 22,
+    "ignored_annotations": 7,
+    "ignored_entities": []
+  }
+}

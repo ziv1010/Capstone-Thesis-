@@ -1,0 +1,136 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5413a5eb308c4fe8a956c36fe92d90d5_10",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "an order dated 4th September, 2023, this Court has granted ad-interim relief to the co-accused."
+    },
+    {
+      "annotation_id": "2ec046bb7b8d477ca040ec45d14a0094_12",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court was persuaded to grant ad- interim relief to the co-accused as the applicability of provisions of Section 328 of the Indian Penal Code, 1860 (\"the Penal Code\") is debatable and the issue is pending before the Supreme Court."
+    },
+    {
+      "annotation_id": "9f4a2ce04fa64fae897e5d64719ca198_13",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In identical matters, this Court has granted interim protection to the persons, who have been arraigned for the offence punishable under Section 328 of the Penal Code."
+    },
+    {
+      "annotation_id": "2b4a930b057a4cbdaa538a0d8a602ef3_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. In the aforesaid view of the matter, I am inclined to protect the liberty of the applicant by granting interim protection."
+    },
+    {
+      "annotation_id": "8d66d0d757f74c14873dd16a152b22fa_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Hence the following order:\n :ORDER:\n(i) Issue notice to the respondent, returnable on 8 th April, 2024."
+    },
+    {
+      "annotation_id": "3774e14c49cc4f88b0eb12c77c483fa1_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(ii) The learned APP waives notice for respondent/State."
+    },
+    {
+      "annotation_id": "1a535670cc3d46ce9aaff0af1b52eacf_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iii) In the event of arrest of the applicant in CR No.112 of 2023, registered with Igatpuri Police Station, Nashik Rural, the applicant be released on bail on furnishing a PR Bond in the sum of Rs.30,000/- with one or two sureties in the "
+    },
+    {
+      "annotation_id": "74d10c7cf7bd4226ba4fa1eb92fb4ae5_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(v) The applicant shall not tamper with the prosecution evidence and/or give threat or inducement to the first informant or any of the persons acquainted with the facts of the case."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 521,
+      "facts": 893,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 8,
+    "ignored_entities": []
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7fd13cb517324363b4592e6e0aeed214_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", this writ petition is dismissed as withdrawn."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 3023,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 33,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "cb0a49beae7e4c919bff782941aa0fcd_2",
+        "entity_text": "Battu Devanand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5abedc65d6254ca490220c18af1f194e_3",
+        "entity_text": "Battu Devanand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "091d0b8a140b41439a6edaded4109376_5",
+        "entity_text": "S.Joseph Selvaraj Fernando",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

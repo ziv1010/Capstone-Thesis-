@@ -1,0 +1,99 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7c24c92a2cbf4dc588f96153110f1ba3_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On due consideration of the rival submissions so also the facts and circumstances of the case, this Court is of the view that both the Courts below have not committed any error in appreciation of evidence available on record and hence no in"
+    },
+    {
+      "annotation_id": "fb2385a2fa36480d9306b90105195c9b_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, looking to the submissions of the learned counsel for the appellant, this Court is of the view that the fine amount imposed against the appellant be reduced from Rs.1,00,000/- to Rs.50,000/-."
+    },
+    {
+      "annotation_id": "f2dbba7ddaff4f39867e3856152513a9_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The appellant is directed to deposit the fine amount, after adjusting the fine amount if already deposited within a period of one month from today till then it is directed that no coercive action shall be taken against the appellant."
+    },
+    {
+      "annotation_id": "4f9df1ab14b8455db86fcb33a5ba45bb_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that in case of default in depositing the fine amount within the stipulated period concerned authorities are at liberty to proceed against the appellant in accordance with law."
+    },
+    {
+      "annotation_id": "31d034f4e97d4a939d2ba23209a09f98_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "With the aforesaid observations and directions, criminal appeal stands disposed off."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1656,
+      "facts": 942,
+      "arguments": 772
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

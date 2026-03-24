@@ -1,0 +1,137 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c75a06532e3c4cc6b21fbe2d06692ff2_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "We find absolutely no merit in this writ petition."
+    },
+    {
+      "annotation_id": "c8e90070547e460abae2e17e996cc589_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe writ petition is accordingly dismissed."
+    },
+    {
+      "annotation_id": "4fa49183ef1749d9bbbfb1d200766eaa_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "We direct that the revenue officials shall remove all identified 56 encroachers in a time bound manner, at any rate, within a period of six weeks, with the assistance of police, if necessary."
+    },
+    {
+      "annotation_id": "9b1412cf68ad4757981cf2b0cc3f5f21_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The District Police Chief shall ensure that necessary police personnel are deployed to remove such encroachers."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 3648,
+      "facts": 642,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 33,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "99dc44d4c4764c308163d93d7939886c_1",
+        "entity_text": "A. Muhamed Mustaque",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "99dc44d4c4764c308163d93d7939886c_1",
+        "entity_text": "A.Muhamed Mustaque",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "706471eb95004dfaa24b393d794b7614_5",
+        "entity_text": "DEVIKULAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "18947cbcb15f48d0b64668f32b5e1516_7",
+        "entity_text": "UDUMBANCHOLA THALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "18947cbcb15f48d0b64668f32b5e1516_7",
+        "entity_text": "UDUMBANCHOLA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d88f395c51694413b6e1a612bf475da2_15",
+        "entity_text": "K.N.RAJAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d88f395c51694413b6e1a612bf475da2_15",
+        "entity_text": "NARAYANAN NAIR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8ec5bc376a7c489e8a3c04e653b4b107_16",
+        "entity_text": "SAJEEV SEBASTIAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1c57c2d71c5f46fabda94fe5bb36e73d_18",
+        "entity_text": "A.L.NAVANEETH KRISHNAN(K/777/2015",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4128b0c53d3547c7afb2f4c44dfc8459_36",
+        "entity_text": "SANJEEV KAMAKSHI",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

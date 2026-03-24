@@ -1,0 +1,92 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a5465316aff5438c85a1911bbcea8164_5",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nUpon the pendency of the application for seeking temporary stay/ injunction upon the order passed by the Additional District Magistrate (Administration) a report has been submitted by the District Shiv Shankar Sahu vs State Of U.P. on 1 Ap"
+    },
+    {
+      "annotation_id": "dfa4533e3b174c7aa32b407896cb57ec_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the circumstances, therefore, interim relief application may be directed to be disposed of expeditiously in a time bound period."
+    },
+    {
+      "annotation_id": "96311be9c1314adabe51d0b953ca5a28_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 28,
+          "end": 55
+        }
+      ],
+      "text_preview": "\nIn view of the above, this petition stands disposed of with with a direction to the appellate court hearing the Food Safety Appeal No.- 51 of 2021 to dispose of the pending interim relief application after giving full opportunity of hearin"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 160,
+      "end": 187
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 370,
+      "facts": 857,
+      "arguments": 253
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "b610634ea895423d8fbb8cf5fc28eb12_3",
+        "entity_text": "Sanjay Kumar Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

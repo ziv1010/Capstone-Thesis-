@@ -1,0 +1,183 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e3cbafcb02e24cb4afacdd646469adaf_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "She submitted that, the legal aspects discussed in that order are squarely applicable to the present case.\n7."
+    },
+    {
+      "annotation_id": "aab93d42ebfd4c468a5c0711b1d24921_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "I have considered these submissions."
+    },
+    {
+      "annotation_id": "38bacfebb26e4171ab1b28e006a64d1b_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As far as the 4 of 4 25-aba-3323 & 3357-22 applicability of Section 328 of the I.P.C. is concerned"
+    },
+    {
+      "annotation_id": "ac27e7b2465e4318996e98bf0282481f_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", the said issue is discussed in detail in the aforementioned order dated 30.01.2024 passed in A.B.A.No.207 of 2024."
+    },
+    {
+      "annotation_id": "1ece5e202f7f41dcabca186c7836957d_30",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The reasoning and findings recorded under that order are squarely applicable to the facts and arguments in the present case."
+    },
+    {
+      "annotation_id": "23ea0d06fdbd4c7ea35b5b64c512b4fa_31",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The applicants have committed another offence of a much higher degree when they were protected by ad-interim order during pendency of these applications and, therefore, they have misused their liberty."
+    },
+    {
+      "annotation_id": "628945aa896e4e7286cd604a8eb1e3de_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On all these counts the applicants do not deserve protection U/s.438 of the Cr.p.c."
+    },
+    {
+      "annotation_id": "438a0349463c4e25805581ae14ff58f1_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Their custodial interrogation is necessary."
+    },
+    {
+      "annotation_id": "04c05bdc8fd942d79d2f2b0fdbc68428_34",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Hence, both the applications are rejected."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 721,
+      "facts": 295,
+      "arguments": 579
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 27,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "ce36c773fb624cc4aa5710702ac5a880_8",
+        "entity_text": "Anil Gavte",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a787bdc017a9457bb79839df29201f8a_12",
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a787bdc017a9457bb79839df29201f8a_12",
+        "entity_text": "Shoeb Ansari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a787bdc017a9457bb79839df29201f8a_12",
+        "entity_text": "Shahanawaj Ansari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a787bdc017a9457bb79839df29201f8a_12",
+        "entity_text": "Hidayat Udekari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d07be577a786464c8ced8bebdb07ded1_13",
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "882ca3e0f87e4625beaafcdb8770147b_16",
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

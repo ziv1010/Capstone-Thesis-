@@ -1,0 +1,105 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1b6b6549a51349ba83d1fe6c2e357a5a_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "By an order dated 07.08.2023, this Court directed the respondents to consider the application submitted by the petitioner and dispose of the same within a period of six weeks."
+    },
+    {
+      "annotation_id": "5cef87acd7864380beb880e9c4b11061_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that the petitioner shall submit an affidavit to the effect that she will not carry out any business under the name and style of M/s.J.J.MEE Foods at the said premises."
+    },
+    {
+      "annotation_id": "20d48cdd068c4ab78f388f05a8b64cb2_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 36,
+          "end": 63
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 31,
+          "end": 63
+        }
+      ],
+      "text_preview": "With the above direction, this writ petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 398,
+      "end": 425
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 393,
+      "end": 425
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1104,
+      "facts": 852,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "9764f4e8b17f450a950f5d4f1489a2a8_26",
+        "entity_text": "Muthulakshmi Salai",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "26139d58e77047b8a64eb96ccf571058_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view thereof, petitioner is permitted to make a fresh detailed representation to respondent no.2-Superintendent of Police, Bahraich, raising all his grievance, annexing therewith a copy of this writ petition along with annexures and all "
+    },
+    {
+      "annotation_id": "7ded199f8fd247ccb05f041dd553ebaa_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. In case such a representation is moved by petitioner, respondent no.2 shall consider and decide the same in accordance with law by a reasoned and speaking order within a period of one month from the date, a certified copy of this order a"
+    },
+    {
+      "annotation_id": "06f305833eac407fbc82899c04c28756_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. With the aforesaid directions, present writ petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 519,
+      "facts": 0,
+      "arguments": 510
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

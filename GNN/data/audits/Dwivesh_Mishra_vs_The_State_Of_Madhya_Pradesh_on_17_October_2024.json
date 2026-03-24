@@ -1,0 +1,93 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6081063699e748c68e21d55f5813d0df_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, considering the role of the present applicant, application filed by the present applicant deserves to be dismissed."
+    },
+    {
+      "annotation_id": "5daf6521901b4c47b757a7750416f59c_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "A perusal of record reflects that there is no documents on record to demonstrate that the applicant had purchased 5850 bottles of Wincerex Syrup batch No. WCCS-3150 from Wings Pharmaceuticals Private Limited Delhi and this aspect has also b"
+    },
+    {
+      "annotation_id": "780f72bf2a214d5c88395d871b17642e_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is evident that earlier bail application of the present applicant filed before this Court was dismissed as withdrawn after lengthy arguments vide order dated 09.09.2024 in M.Cr.C.No.36961/2024.\n7."
+    },
+    {
+      "annotation_id": "b675ea24ba564b8d85106db67b6479e4_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the aforesaid facts and circumstances of the case and also looking to the huge quantity of contraband, it would not be appropriate to release the applicant on bail, at this stage,\ninasmuch as there is no change in circumstances."
+    },
+    {
+      "annotation_id": "bd2ef9df95164ebaaa35007c169f606e_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, the bail application of the applicant filed under Section 483 of BNSS stands dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 432,
+      "facts": 487,
+      "arguments": 227
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

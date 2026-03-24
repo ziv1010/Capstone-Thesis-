@@ -1,0 +1,79 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0f9fdabac959418e8c417737ca0f34e5_37",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. The Order dated 21.02.2023 be complied with before the next date of hearing."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1661,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 47,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "3a2baa41495145bba4fd50565ed6845b_12",
+        "entity_text": "Adit S. Pujar  Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3a2baa41495145bba4fd50565ed6845b_12",
+        "entity_text": "Ze",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5372181516de48349421f794d4e3f940_17",
+        "entity_text": "RAKYAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0e8f6b00a753478b85faefcb1423bde7_26",
+        "entity_text": "Nikhil Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0e8f6b00a753478b85faefcb1423bde7_26",
+        "entity_text": "Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0e8f6b00a753478b85faefcb1423bde7_26",
+        "entity_text": "Bi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a7593767c31e46cbb568eafa54250ca1_44",
+        "entity_text": "S. Zakir",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

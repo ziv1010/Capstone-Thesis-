@@ -1,0 +1,136 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "623c8ab7257b4b3ba1db0772d1b52903_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He is ready to abide by all the terms and conditions as may be imposed by this Court."
+    },
+    {
+      "annotation_id": "bf34d0108644445f9d271c5f27f2fb4b_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the above submissions and the reason for absence, but without commenting on the merits of the case, this Court intends to allow this application but with certain stringent conditions."
+    },
+    {
+      "annotation_id": "000398ea223c4be78387ff591614c7f3_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the application is allowed."
+    },
+    {
+      "annotation_id": "b6ed0e2fecd64a098c5e8cd7eefc6520_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is hereby directed that the applicant shall be released on bail on his furnishing personal bond of Rs.50,000/- (Rupees Fifty Thousand Only) with one solvent surety in the like amount to the satisfaction of trial Court/CJM, Gwalior."
+    },
+    {
+      "annotation_id": "8ede76f429644455a3e8723c11259d6f_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. This order will remain operative subject to compliance of the following conditions by the applicant :-\n(i) The applicant will comply with all the terms and conditions of the bond executed by him;\n(ii) The applicant will co-operate in the"
+    },
+    {
+      "annotation_id": "eb9aeb708ebf4e3e8a9271e8f71f7213_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n8. A copy of this order be sent to the trial Court concerned for compliance and information."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 777,
+      "facts": 498,
+      "arguments": 323
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "24c31d7c3a0546b18e97f1d52cfabd1e_4",
+        "entity_text": "GORISHANKAR SHRIVASTAVA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "010103a14089461d9859c714c955a569_5",
+        "entity_text": "RAJEEV SHRIVASTAVA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7bd1a19e64234f3e8abc34bb50f3d989_6",
+        "entity_text": "RAVINDRA SINGH KUSHWAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "314a03a11d3145c4beb6ce6098c296e1_25",
+        "entity_text": "Van VANDANA VERMA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

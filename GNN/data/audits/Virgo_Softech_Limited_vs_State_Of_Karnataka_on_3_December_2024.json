@@ -1,0 +1,119 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "40b0898bdaa745149cc9de8773945ae5_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nVirgo Softech Limited vs State Of Karnataka on 3 December, 2024 Indian Kanoon - http://indiankanoon.org/doc/139716504/\n3 NC: 2024:KHC:49738  "
+    },
+    {
+      "annotation_id": "9775ff9aa45c4361b8fdb6b97bd31405_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The requirement for OEM authorization ensures that tenderers, once declared successful, have guaranteed access to reliable products and full warranties from manufacturers."
+    },
+    {
+      "annotation_id": "624359aa29054ce3bbd67143dae15216_24",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n The petitioner's contention that the tender conditions favor a specific entity is unsubstantiated."
+    },
+    {
+      "annotation_id": "f5f79bdb952046648608e789a98b3a4f_25",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Furthermore, the petitioner does not meet the eligibility criteria,\nincluding the requisite turnover of Rs.100crore, and thus lacks the standing to maintain this writ petition."
+    },
+    {
+      "annotation_id": "865e93e4b09d43fcb146ced33f036699_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. When the clauses in a tender document are stipulated to ensure fairness, transparency, and the achievement of legitimate objectives, they cannot be deemed arbitrary or discriminatory under the law."
+    },
+    {
+      "annotation_id": "e06a6bc709d740aa8e23cf2c92a9be43_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. In conclusion, no illegality is found in the impugned order passed by the tender inviting authority (Respondent No.2) pursuant to the Request for Proposal bearing No. TD/2024- 25/SE0058 dated 18.07.2024."
+    },
+    {
+      "annotation_id": "fc11cc64de364de2ba0cfb07aeb4f15a_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the petition stands dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1992,
+      "facts": 216,
+      "arguments": 380
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 7,
+    "ignored_entities": []
+  }
+}

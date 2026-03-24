@@ -1,0 +1,102 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5b7c33265797458b9c1c61f9d5b8f552_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Merely because names of applicants do not appear in First Information Report, they are not entitled to get protection from arrest."
+    },
+    {
+      "annotation_id": "25871f1c6ab24d29960942b3663fe942_9",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "During investigation their involvement is seen in this crime."
+    },
+    {
+      "annotation_id": "4f98d198af6d43a88cf0245f8d0918e3_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 113,
+          "end": 128
+        }
+      ],
+      "text_preview": "\nApplicants are on bail in similar offence earlier and which makes it clear that the applicants are misusing the liberty granted by the Court and taking disadvantage of the same to commit further crimes."
+    },
+    {
+      "annotation_id": "448049898e254cea8a3b0f79dfe8cd82_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Only for this reason applicants are not entitled for any protection from arrest."
+    },
+    {
+      "annotation_id": "28b0d63e5ed2437085ff2cd9c2b1b91a_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence,\napplications stand dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1260,
+      "facts": 0,
+      "arguments": 583
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

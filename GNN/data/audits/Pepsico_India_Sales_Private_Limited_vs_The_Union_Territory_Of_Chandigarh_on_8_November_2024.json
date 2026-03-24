@@ -1,0 +1,172 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "82c729948d9c46b2b5d73efa09c71944_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIt is an admitted position that the 12:14:28 IST Reason:\nCRL. A. NO.4510 OF 2024 etc. respondents have applied in the pending complaints for compounding."
+    },
+    {
+      "annotation_id": "a48280214933490cbfcc0c2dbf02024b_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 213,
+          "end": 220
+        }
+      ],
+      "text_preview": "5. Hence, we pass following order:\n6. The complaints subject matter of these two appeals, being Complaint Case Nos.315 of 2004 and 316 of 2004 pending before the Chief Judicial Magistrate, Chandigarh, shall stand quashed subject to the appe"
+    },
+    {
+      "annotation_id": "592869d154f544869182955b9a8a2077_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 48,
+          "end": 55
+        }
+      ],
+      "text_preview": "We make it clear that the complaints will stand quashed only subject to compliance with the requirement of deposit within the stipulated time."
+    },
+    {
+      "annotation_id": "72a137eef0b24289af2bbf04740b4691_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n8. The Appeals are allowed on above terms."
+    },
+    {
+      "annotation_id": "b71ddcd9e7a44e988aae3b74d61f98cf_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n9. Pending application(s), if any, shall stand disposed of."
+    },
+    {
+      "annotation_id": "2f43464911be4b309168a856b76728fb_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe Appeals are allowed in terms of the signed order."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 213,
+      "end": 220
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 415,
+      "end": 422
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 619,
+      "facts": 0,
+      "arguments": 612
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 22,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "4866700961214a308b30932167160e46_17",
+        "entity_text": "Kanu Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bfc8145f0603431fa5b738f62ca4c60b_18",
+        "entity_text": "Bhuvan Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "59fb7fc2a7e64796b861992725aee724_19",
+        "entity_text": "Varun Chugh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a14685f384664b8d807d2a5f376ceab6_20",
+        "entity_text": "Shreekant Neelappa Terdal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fdd0b6661ce14d1cbb8f7519311c2348_25",
+        "entity_text": "KAVITA PAHUJA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fdd0b6661ce14d1cbb8f7519311c2348_25",
+        "entity_text": "ANU BHALLA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

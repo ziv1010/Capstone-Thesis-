@@ -1,0 +1,99 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2d932fe7eb92438aa539dfa413ddf97d_4",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The learned trial Court has erred in not appreciating the fact."
+    },
+    {
+      "annotation_id": "d62808078d2d4772bce58abf99b9db37_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The appellant is in custody since 30.01.2024."
+    },
+    {
+      "annotation_id": "d73a1dbeef764683b0e78245e9cff328_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Under these circumstances, learned counsel prays that the application for suspension of sentence of the appellant be allowed."
+    },
+    {
+      "annotation_id": "af2c58ae5bcd4f79b0f069887f17cc0b_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5 . Looking to the facts and circumstances of the case, contention of learned counsel for the appellants and without commenting on the merits of the case, the application is allowed."
+    },
+    {
+      "annotation_id": "d86efe2be5a7467790cb3fc20d57cd45_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. It is directed that subject to depositing the fine amount, if already not deposited, the appellants Akbar Hussain and Mo. Salim shall be released on bail, on furnishing a personal bond in the sum of Rs.50,000/- (Rupees Fifty thousand onl"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 556,
+      "facts": 246,
+      "arguments": 221
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

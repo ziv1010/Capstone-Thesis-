@@ -1,0 +1,71 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "250f1f4497e04ba38c1cd04e0dff4f41_2",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": " THE BRANCH MANAGER, REPCO HOME FINANCE LTD., KOLLAM BRANCH, 1ST  FLOOR,KRISHNASWAMY AVENUE, CONVENT ROAD, BEHIND DISTRICT HOSPITAL,\n KOLLAM DISTRICT, PIN-691001  Writ Petition (Civil) praying inter alia that in the circumstances  stated in"
+    },
+    {
+      "annotation_id": "fa488f7a0f5a408cb51db8c1407283ad_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Issue notice to respondents by usual mode as well as speed post, for which steps are to be taken within two days."
+    },
+    {
+      "annotation_id": "60b11bb0d7294107a6f6df70718b1ae8_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nSubject to the petitioner making payment of Rs.2 lakhs on or before 04.11.2024, the petitioner shall not be dispossessed from the secured asset till the next date of posting."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 626,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 4,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

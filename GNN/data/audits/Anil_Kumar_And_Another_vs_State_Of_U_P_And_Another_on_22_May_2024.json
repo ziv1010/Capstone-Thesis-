@@ -1,0 +1,102 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7c03e95c26714f5bb218287c811a75e2_7",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 125,
+          "end": 132
+        }
+      ],
+      "text_preview": "\nThere is a violation of Section 44 of Food Safety and Standards Act, 2006, therefore, impugned proceeding is deserved to be quashed on this ground."
+    },
+    {
+      "annotation_id": "d5ac0a8645e548df88347b30f3b7c75c_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the rival submissions of the counsel for the parties and perusal of record, it appears that though there appears to be delay in sending the sample but this cannot be a ground to quash the impugned proceedings."
+    },
+    {
+      "annotation_id": "97274839585146fd86c7e38370f1d1cf_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, it is permitted to applicants to raise such dispute during trial."
+    },
+    {
+      "annotation_id": "801b58146dc94743824354b1f2fce493_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. In view of the above, the present application under Section 482 is hereby dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 322,
+          "end": 329
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1016,
+      "facts": 0,
+      "arguments": 352
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "585dbde3bcd14f808409d21c081b3883_4",
+        "entity_text": "Rajeev Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

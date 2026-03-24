@@ -1,0 +1,68 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "cfd0b3b9e81545eab8f0666ae4fb2071_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, this petition has become infructuous."
+    },
+    {
+      "annotation_id": "899ec296489a4fa5a0f3083d8ea2a752_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the present petition stands dismissed as rendered infructuous."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1707,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "96e405421fcc459a8db69f0d3f251951_11",
+        "entity_text": "VISHAL UPADHYAY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "96e405421fcc459a8db69f0d3f251951_11",
+        "entity_text": "RAJEEV UPADHYAY-",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

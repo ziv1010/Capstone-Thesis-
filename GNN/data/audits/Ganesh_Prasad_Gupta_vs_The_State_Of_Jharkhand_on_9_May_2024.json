@@ -1,0 +1,129 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0d82fc02228741c58a21fba1e3dbaa26_6",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2.  The present criminal writ petition has been filed for following reliefs:-\n\"That, the petitioner begs to move before this Hon'ble Court for issuance of an appropriate writ/writs, order/orders, direction/directions or a writ in the nature"
+    },
+    {
+      "annotation_id": "bf6492b5385b4379b107f27048d1660a_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAND Be further pleased to release the seized food grains i.e. wheat and rice in favour of the petitioner.\""
+    },
+    {
+      "annotation_id": "e417c3125e2d46ba938d8fc453969168_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Considering the fact that it is consumable item, the court below is directed to release the same after taking the evidentiary value."
+    },
+    {
+      "annotation_id": "a6e79d5fba414205a79b6ac5f8b48358_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The court below is at liberty to impose any other condition."
+    },
+    {
+      "annotation_id": "113f3c84212140b2ae02e27a102f8f8a_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 67,
+          "end": 94
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 62,
+          "end": 94
+        }
+      ],
+      "text_preview": "5. With above observation and direction, the present criminal writ petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 236,
+      "end": 263
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 231,
+      "end": 263
+    }
+  ],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 436,
+      "facts": 1098,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "42f92cbd67ab4c2dbcea5ff6a62d557e_16",
+        "entity_text": "Shahid/-",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

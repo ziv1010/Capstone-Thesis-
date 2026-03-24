@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "485b173ce2244456a6033e52d023071b_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", the respondents 2 and 4 are directed to consider the representation submitted by the petitioner, dated 17.04.2019, after affording an opportunity of hearing to the petitioner and the seventh respondent and pass appropriate orders, on meri"
+    },
+    {
+      "annotation_id": "8520287cacfc4cafb66e1e1a8955c4d2_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4.With the above direction, this Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 2664,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "5a98b1eadadc4c299a735376231f05c0_2",
+        "entity_text": "G.K.Ilanthiraiyan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

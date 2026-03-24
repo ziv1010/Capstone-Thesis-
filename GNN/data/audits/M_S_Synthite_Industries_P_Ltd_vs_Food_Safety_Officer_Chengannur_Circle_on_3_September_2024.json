@@ -1,0 +1,64 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "cd996a842b51433eae4897f1182c0534_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Having regard to the orders produced as Annexure-F and on a consideration of the circumstances pointed out by the learned counsel, there will be an interim stay as prayed for, for a period of six months."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 2319,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "a964408c0d7d4cc6ab6e49c496c0e807_2",
+        "entity_text": "K. Babu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9cd103c548ae4f509d214ab915dc3f2d_9",
+        "entity_text": "Vaibhav Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9cd103c548ae4f509d214ab915dc3f2d_9",
+        "entity_text": "Amit Mehana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1a42f43ffb3940f2bd203f5661f16d6c_14",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

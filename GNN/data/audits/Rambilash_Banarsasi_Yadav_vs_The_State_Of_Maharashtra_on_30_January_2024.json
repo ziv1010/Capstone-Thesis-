@@ -1,0 +1,182 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2bfd8f34971c4640834c5902e1d52918_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "These offences are of the similar nature."
+    },
+    {
+      "annotation_id": "bf2b1d5ec47b4e03962cb2c401abde14_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As far as the applicability of Section 328 of the I.P.C. is concerned, this Court, vide the order dated 30.01.2024 passed in A.B.A.No.207 of 2024 has dealt with this issue."
+    },
+    {
+      "annotation_id": "4cee69b620c443aaa0b9507e0cb00fbb_31",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The observations in that order are squarely applicable to the facts and arguments on behalf of the applicant in the present case."
+    },
+    {
+      "annotation_id": "5d833d512b79480c91db077e04a45dc3_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There is definite material against the applicant."
+    },
+    {
+      "annotation_id": "9dbd3281e9aa40a197cc2026470b5d32_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The offence is serious."
+    },
+    {
+      "annotation_id": "38a77ffa1500434b8dce45a566cfec1b_34",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The applicant's custodial interrogation is necessary."
+    },
+    {
+      "annotation_id": "dcbe17ec97174b98acbca27bf79be62f_35",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There are similar antecedents against him."
+    },
+    {
+      "annotation_id": "e9c0f519cd3b4d87bdc40a5262c19e7a_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering all these aspects, the applicant cannot be protected."
+    },
+    {
+      "annotation_id": "e5b15d493c334dd39fe1947d4587c9a0_37",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. The application is rejected."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 818,
+      "facts": 304,
+      "arguments": 93
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "c327ff7e23ea45998867855376615fa9_8",
+        "entity_text": "Pratap",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c327ff7e23ea45998867855376615fa9_8",
+        "entity_text": "Pachunde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f62530cb81da445dbc181a29956007c2_14",
+        "entity_text": "Abhishek Nimbalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f62530cb81da445dbc181a29956007c2_14",
+        "entity_text": "Kumatkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7389ca699f1b4a7286c793b286ab0121_18",
+        "entity_text": "Raghvendra Jaswant Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5f806a3212ea4b65b33ae1ca93e3d189_20",
+        "entity_text": "Arjunsingh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

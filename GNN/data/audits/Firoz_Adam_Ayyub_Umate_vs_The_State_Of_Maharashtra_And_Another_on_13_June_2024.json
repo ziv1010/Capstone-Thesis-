@@ -1,0 +1,174 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ebebbb2a32514b43b031fb6546d41f6c_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Perused the FIR and police papers produced on record."
+    },
+    {
+      "annotation_id": "0ca95ddb00e848c0b5fea23e6200476f_24",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. Gutkha has been seized from the possession of accused nos.1 and 2."
+    },
+    {
+      "annotation_id": "c0c20665670d446b99a25f81a6c89271_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "They have been released on anticipatory bail by this Court."
+    },
+    {
+      "annotation_id": "08785c9fdc9d4c039131bb11342e2a20_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is Firoz @ Adam Ayyub Umate vs The State Of Maharashtra And Another on 13 June, 2024 Indian Kanoon - http://indiankanoon.org/doc/131966494/\n2 alleged that accused nos.1 and 2 have purchased the said Gutkha  3 894.2024ABA.odt  from applic"
+    },
+    {
+      "annotation_id": "5fd88f82ce0e45cc8f298735274eae72_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As Gutkha is already seized, custodial interrogation of  the applicant"
+    },
+    {
+      "annotation_id": "266a80a865af4099b5ac321124325223_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "is not required."
+    },
+    {
+      "annotation_id": "6f2d755410084aff9398385d99b71b03_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the above, I pass the  following order :-\n ORDER (i) The application is allowed.\n(ii) In the event of arrest of the applicant in connection with FIR No.115 of 2024 registered with Renapur Police Station, Tq. Renapur, Dist.Latur,"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 484,
+      "facts": 786,
+      "arguments": 393
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "dd88df9a854c4d3b829b516a7497476b_9",
+        "entity_text": "Vithal Londhe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "17593c006fa74d96b5846d5440032523_10",
+        "entity_text": "B. Chandrakant Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "17593c006fa74d96b5846d5440032523_10",
+        "entity_text": "Bilal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "17593c006fa74d96b5846d5440032523_10",
+        "entity_text": "Mehetabsab",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "05474e6192dd44f5a8e35ec5ca7bb800_11",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "05474e6192dd44f5a8e35ec5ca7bb800_11",
+        "entity_text": "Premnath More",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e852844022a94806b0502514d675bac7_13",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "17d0042a3f374a948b21eb2268641d50_17",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "08653e1f04da460cb96e490e47fb5d22_18",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d50ed4ad33424b628c500e5bf0e942d0_20",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

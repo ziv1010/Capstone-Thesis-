@@ -1,0 +1,134 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a2fd239eb83a4dcc8aebc2d55660e410_37",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Having considered the submissions made at the Bar, we SSCR Nos.29, 30 and 36 of 2023 and 3 and 4 of 2024 deem it appropriate to direct the Chief Police Co-ordinator at Sannidhanam to ensure through the Special Officers at Nilakkal and Pamba"
+    },
+    {
+      "annotation_id": "f3f52649b5b34b97893c9358eebaab2f_47",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nOn such request, Registry shall list the matter forthwith, after obtaining the orders of the Hon'ble the Chief Justice."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 8211,
+      "facts": 1271,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 48,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "d8878349f1fc4c6ebdda032ce7d8776a_1",
+        "entity_text": "Anil K. Narendran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d8878349f1fc4c6ebdda032ce7d8776a_1",
+        "entity_text": "Anil K.Narendran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8cea0cc3dda645d0859383e184b059bc_12",
+        "entity_text": "GURUVAYUR DEVASWOM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8cea0cc3dda645d0859383e184b059bc_12",
+        "entity_text": "GURUVAYUR DEVASWOM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "15cb43cf12694d38a19b66ba4e4c4b81_15",
+        "entity_text": "SRI.S.RAJMOHAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "861e5c84e60848e89f3bfe3b25eac27d_16",
+        "entity_text": "SRI.G.BIJU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "861e5c84e60848e89f3bfe3b25eac27d_16",
+        "entity_text": "TRAVANCORE DEVASWOM BOARD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "efc55f8889b44f01858ae8e3c8adbbad_17",
+        "entity_text": "SABARIMALA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c3be8e347766409eb3c09fe0c3534eaf_23",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7a4dad8f40414f328c3a6f1d3261ec52_28",
+        "entity_text": "Makarajyothi darshan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0578077a45504ebba5e464eea2d9feee_38",
+        "entity_text": "Uchapooja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "04c5fbead843479997829034cb3ac7ac_39",
+        "entity_text": "Makarajyothi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "04c5fbead843479997829034cb3ac7ac_39",
+        "entity_text": "Makarasamkrama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "aa5986586711404cbd69d7939a594a73_40",
+        "entity_text": "Makarasamkramapooja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "90637d4528e54c98b083bbea7b2cb5f2_49",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

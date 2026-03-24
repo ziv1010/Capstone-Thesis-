@@ -1,0 +1,54 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "da769cc54688400cbf2336f9d54a0b71_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn view of the order dated 11.03.2024, matter is again adjourned."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 316,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 5,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "5b07198a69324a088c75b4605e696a7c_2",
+        "entity_text": "Anil Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5b07198a69324a088c75b4605e696a7c_2",
+        "entity_text": "Anil Verma",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

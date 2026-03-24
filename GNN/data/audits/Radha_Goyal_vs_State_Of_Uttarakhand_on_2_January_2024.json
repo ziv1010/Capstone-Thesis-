@@ -1,0 +1,199 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "4c64498a6e794bab87108d1a755531a5_9",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. The Court wanted to know from learned State Counsel as to whether there is any Public Analyst Report with regard to the quality of the Rashan?"
+    },
+    {
+      "annotation_id": "eba42679fde84d12b0c195677b7562e3_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nRadha Goyal vs State Of Uttarakhand on 2 January, 2024 Indian Kanoon - http://indiankanoon.org/doc/29497662/\n1"
+    },
+    {
+      "annotation_id": "238c7b6cdb1a474fa9c7b7ccc3b167a5_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. Having considered, this Court is of the view that this is a case, in which the applicant should be granted anticipatory bail."
+    },
+    {
+      "annotation_id": "4f13c4d409ca4fb595768f1171af2277_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The instant anticipatory bail application deserves to be allowed."
+    },
+    {
+      "annotation_id": "3d9da4cccfba407f87539659ce9b0cbf_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n8. The anticipatory bail application is allowed."
+    },
+    {
+      "annotation_id": "af134a76810549e786a20d0f3f579461_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. In the eventuality of arrest, the applicant shall be enlarged on bail on her furnishing a personal bond with two sureties, each in the like amount, to the satisfaction of the court concerned."
+    },
+    {
+      "annotation_id": "e880a4c1ac594606b6b6ed3144b7cf10_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In addition to it, the applicant shall also comply with the following conditions:-\n(i) The applicant shall not approach any witness in any manner, whatsoever."
+    },
+    {
+      "annotation_id": "c28f86f729d04e879dbd5312c0b98f82_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(ii) The applicant shall not leave the country without prior permission of the concerned court."
+    },
+    {
+      "annotation_id": "830ff6e188e746f59d9d37862fe150a5_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iii) The applicant shall deposit her passport with the court concerned."
+    },
+    {
+      "annotation_id": "d45adead5a8b479e9c394200ac45150d_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The passport may only be returned by the order of the court concerned."
+    },
+    {
+      "annotation_id": "6550bf7b7c4f47738bff765d54f457f4_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In case the applicant does not have passport, she shall give an undertaking to that effect to the court concerned."
+    },
+    {
+      "annotation_id": "06128f6930634555a08a87c34d0175b9_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iv) The applicant shall also give an undertaking on (i) & (ii) above."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 12,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 361,
+      "facts": 479,
+      "arguments": 467
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 12,
+    "ignored_entities": [
+      {
+        "annotation_id": "0b17a595aadf469585514ab7fc2be8f2_8",
+        "entity_text": "Rashan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

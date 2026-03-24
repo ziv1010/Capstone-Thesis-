@@ -1,0 +1,84 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "542fd39f9c1445648ce909ee6fabf58f_2",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": " AND  2 OTHERS  Application praying that in the circumstances stated therein  the High Court be pleased to stay all further proceedings in  CC.No.65/2020 pending on the files of the court of the Chief  Judicial Magistrate, Thrissur, pending"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 645,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 5,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "d2988070d42c4dc693a6c52daa10f31a_3",
+        "entity_text": "S.P.VIJAYA BHANU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SRI.M.REVIKRISHNAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SRI.AJEESH K.SASI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SRI.P.M.RAFIQ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "J.ANAKKALLUNKAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SRI.V.C.SARATH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SMT.POOJA  PANKAJ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9840e99cf95d4c8ca62c5b61e463b04b_4",
+        "entity_text": "SRUTHY N. BHAT",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

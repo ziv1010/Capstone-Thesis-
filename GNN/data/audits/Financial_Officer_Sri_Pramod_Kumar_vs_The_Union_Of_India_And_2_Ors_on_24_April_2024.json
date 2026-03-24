@@ -1,0 +1,69 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e4633fca91414df0baf08e8a989b0f58_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, this matter stands closed having been rendered infructuous."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1433,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "cc69b8ac5287442487d54f1768a64462_1",
+        "entity_text": "Kalyan Rai Surana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6989d1dd56a94b2aafce8284e7616d3b_2",
+        "entity_text": "Kalyan Rai Surana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "29aa167c2a77429e8f74521cbf8a3fbf_9",
+        "entity_text": "D K DAS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "caa9ee30efe64c0d9db7a077325ef173_10",
+        "entity_text": "R. K. Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8481d2337cad40fa970289cf9b77a794_13",
+        "entity_text": "B. Chakravarty",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

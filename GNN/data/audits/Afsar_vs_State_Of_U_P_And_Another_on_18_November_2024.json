@@ -1,0 +1,64 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "74ce0bb9aea946909478e3cac15c2e9d_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Under the circumstances, this writ petition is disposed of directing the respondent no. 2 to consider the application of the petitioner and to take a call as to whether the 'no objection certificate'\nwhich has to be granted by the respon"
+    },
+    {
+      "annotation_id": "f14f5c57441348d5bf4b77ea5c9610fd_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is expected that the decision shall be taken within two weeks from the date a certified copy of this order is filed before the respondent no. 2."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 558,
+      "facts": 393,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "aa13ff29fc884aa491d99d54f14d9444_3",
+        "entity_text": "Saurabh Tiwari",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

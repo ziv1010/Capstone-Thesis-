@@ -1,0 +1,97 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "32329e912cba40acbde026597b2557c8_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the present writ petition has been filed."
+    },
+    {
+      "annotation_id": "ecaa7625e516499c9b9337db85cd643e_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2 3. The Learned Deputy Solicitor General appearing for R2 to R5 would submit that, the representation of the petitioner will be considered and appropriate orders will be passed, on merits and in accordance with law, within a time which ma"
+    },
+    {
+      "annotation_id": "38b07920f87048348a5a5507aea42c46_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. In view of the submission made by the Learned Deputy Solicitor General, without expressing any opinion on merits of the case, this Court directs the 3rd respondent to consider the petitioner's representation dated 19.05.2023 and pass app"
+    },
+    {
+      "annotation_id": "3420d70e330a4d8a86b18fd1c2a4f1b2_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Accordingly, this Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1846,
+      "facts": 877,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "2ba8f8031c704aa7b315d1818821ea14_22",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4eac0863931a45e6a2be79b83d1706e6_33",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3aa17041e98c42a9b227f0a76fdb9334_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of that,\nthe application deserves to be rejected."
+    },
+    {
+      "annotation_id": "e533c55938d6412f809fbf62366a871d_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "the issue regarding the applicability of Section 328 of the Indian Penal Code, 1860, is pending before the Hon'ble Apex Court."
+    },
+    {
+      "annotation_id": "7ba12b5314cf424f9766145240242e6b_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As far as the custodial interrogation of the present applicant is concerned, which is not required, as entire stock has already been recovered by the investigating officer."
+    },
+    {
+      "annotation_id": "9713f4626d2947308a3123d5a61c43de_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of that, the interim protection granted to the present applicant deserves to be confirmed."
+    },
+    {
+      "annotation_id": "83571acda15c4f6ebb974d095dc2b3ea_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of that, I proceed to pass the following order;\na] Interim protection granted to the applicant by order dated 11/07/2024 is confirmed by imposing similar conditions."
+    },
+    {
+      "annotation_id": "37c68557b73c4b5290ae2002df38f8a6_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nCriminal Application stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1005,
+      "facts": 465,
+      "arguments": 355
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "ab5ba437028141b2a8fd7120f69f6bc1_5",
+        "entity_text": "Suresh Posanna Torem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d6b259f4fe241fda07d93a07c9a1ba1_20",
+        "entity_text": "R.K. NANDURKAR",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

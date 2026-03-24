@@ -1,0 +1,61 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1a582338d161419b9b8013e8c3068a07_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The present writ-applications stand disposed of accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 3461,
+      "facts": 287,
+      "arguments": 434
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "35e2ce3178504785a5d6cb539860f81f_14",
+        "entity_text": "Nabil O. Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "94c1f74a6a494f23a53c78d355186e6f_18",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2181ad0318ee4bc48a765036a87bb497_20",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "bdde3b849a0e4155b733522860174e82_9",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n1.  The present petition, which is categorized as a Public Interest Litigation (PIL) raises the public cause of there being no particular Policy, Rules or Regulation for enabling the customers to know as Govansh Sewa Sadan vs Union Of Indi"
+    },
+    {
+      "annotation_id": "61ae303db73c47a6abd34a022892a56c_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "For the time being, the grievance having been satisfied, this Court does not deem it appropriate to continue with the present petition and disposes of the same while giving liberty to the petitioner to re-visit the Court in case the grievan"
+    },
+    {
+      "annotation_id": "3cdeda08aabb4c83bfd756ba7201da2a_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 43,
+          "end": 70
+        }
+      ],
+      "text_preview": "7. With the aforesaid liberty, the present petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 396,
+      "end": 423
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 849,
+      "facts": 0,
+      "arguments": 1818
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6fd57f065f2a4c3aa633de2181f6df94_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Perused the investigation papers from which it reveals that the co-accused was found along with the huge quantity of 521.76 kg of contraband articles which is prohibited in the State of Maharashtra."
+    },
+    {
+      "annotation_id": "e9d7e61d435544a88934c998ed8bd58d_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It reveals that the co-accused has contravened the provisions and transported the huge stock in his vehicle."
+    },
+    {
+      "annotation_id": "54a4ce17f7b54ebbae2e5b141af872f7_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It further reveals during the investigation that he has procured the said contraband articles from the present applicant."
+    },
+    {
+      "annotation_id": "a9f1162106704297909862c56f4affe9_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nDuring investigation, the Investigating Officer has also carried out the investigation and it revealed to him that there are various criminal antecedents against the present applicant."
+    },
+    {
+      "annotation_id": "c730846491ba439ba900e5a1dc8f57e0_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the involvement of the present applicant repeatedly in the similar type of the offence and considering that huge stock which was procured by the co-accused from the present applicant"
+    },
+    {
+      "annotation_id": "1ac854d2adeb47e1a00e2d6cb3439c9f_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", the custodial interrogation is required."
+    },
+    {
+      "annotation_id": "76b66a538edc4ec6ba633c9f1b996ba7_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of that, the application deserves to be rejected."
+    },
+    {
+      "annotation_id": "df1e65da38f54ae0b5dcc89ea6059136_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Hence, the application is rejected accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 785,
+      "facts": 674,
+      "arguments": 776
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "ede6668b713647f6b8aa55f1cce444c0_5",
+        "entity_text": "S.V. Babhare",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}
