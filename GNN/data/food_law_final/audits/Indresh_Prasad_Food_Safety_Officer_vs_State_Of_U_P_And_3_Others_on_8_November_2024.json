@@ -1,0 +1,185 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a5aa8ebb97de407eb4a6b258b28505f5_10",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 80,
+          "end": 87
+        }
+      ],
+      "text_preview": "Lastly, submitted that under such facts, impugned order is bad and liable to be quashed."
+    },
+    {
+      "annotation_id": "e784f6acc3764408950a5202168a9c70_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. From perusal, it is apparently clear that argument so made by learned counsel for petitioner is getting full support from the papers annexed along with writ petition."
+    },
+    {
+      "annotation_id": "749213d881f74586846d043549d3fcc3_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 74,
+          "end": 81
+        }
+      ],
+      "text_preview": "6. Therefore, under such facts, impugned order dated 30.07.2024 is hereby quashed."
+    },
+    {
+      "annotation_id": "b67731e08eb94f329c10d1f643e20bc0_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 9,
+          "end": 28
+        }
+      ],
+      "text_preview": "\n7. Writ petition is allowed."
+    },
+    {
+      "annotation_id": "831b6814b5564be7a4a2964ec274f553_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No order as to costs."
+    },
+    {
+      "annotation_id": "d9eb52a567e147b0931d8e45cf498ac6_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. As in the present case, petitioner has already submitted reply of charge sheet, therefore,\nDisciplinary Authority is directed to complete inquiry as well as disciplinary proceedings, maximum within a period of eight weeks from the date o"
+    },
+    {
+      "annotation_id": "655d0804ad164578a519b1d938eebffb_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Petitioner is also directed to extend his full cooperation in inquiry proceedings."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 92,
+      "end": 111
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 74,
+      "end": 81
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 587,
+          "end": 594
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 474,
+      "facts": 602,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "6b9473cdf1d04a47904889434a39b37b_5",
+        "entity_text": "Seraj Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4e4b74110d344bef9e8e7de74709d36a_6",
+        "entity_text": "Seraj Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "82eccd540bf542f9b1848ca22d875a37_7",
+        "entity_text": "Seraj Ahmad",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

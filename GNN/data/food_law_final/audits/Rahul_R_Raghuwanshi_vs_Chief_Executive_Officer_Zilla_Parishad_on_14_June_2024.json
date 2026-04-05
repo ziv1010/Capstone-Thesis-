@@ -1,0 +1,144 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "232f5272c3d349da8e2781f800425671_8",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. The cause raised is with regard to the health of mal-nourished tribal children and pregnant and lactating women in the underdeveloped area."
+    },
+    {
+      "annotation_id": "3a0cec1e8be243289897595c427193e5_12",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 42,
+          "end": 51
+        }
+      ],
+      "text_preview": "He further sought directions to quash and set aside the decision of respondent no. 1 accepting the tender of an unqualified and ineligible bidder in response to the said tender."
+    },
+    {
+      "annotation_id": "24ab03d242cc4cfc8340d7afcfcd24ec_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Having considered the contentions set out in the petition and the documents placed on record, the cause espoused by the petitioner pertaining to the safety of health of mal-nourished children and pregnant and lactating women in under dev"
+    },
+    {
+      "annotation_id": "4a9c241c3f154c6ba3b4db78a74ed91c_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In my opinion, the petition do constitute public interest and therefore is required to be registered as Public Interest Litigation."
+    },
+    {
+      "annotation_id": "5c662ecb1676451aa1cf40bc94e740d3_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Registry is directed to Register the Public Interest Litigation.\"\n4. Considering the sensitivity involved in the cause raised by the Petitioner and keeping in view that the earlier unsuccessful bidder had approached this Court in Writ P"
+    },
+    {
+      "annotation_id": "b1df1a482a92452cac62ffce1f48308b_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Only after compliance of the above direction, issue notice to Respondent Nos. 1, 4, 5 and 6,\nreturnable 20.07.2024."
+    },
+    {
+      "annotation_id": "e3c803458db0425697cf2ad6e6990e98_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "All office objections to be removed on or before 1st July, 2024, failing which, the Petition would stand dismissed on 2nd July, 2024 without reference to the Court."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 690,
+      "facts": 247,
+      "arguments": 465
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "a492a053cab44c2393e73c68cad641b7_7",
+        "entity_text": "Sumeda Dhopate",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "992fe695a7df47d8ac91acfb11bd6e6e_27",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a9a7c3e785b94a5a91a9ab21214273a3_32",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

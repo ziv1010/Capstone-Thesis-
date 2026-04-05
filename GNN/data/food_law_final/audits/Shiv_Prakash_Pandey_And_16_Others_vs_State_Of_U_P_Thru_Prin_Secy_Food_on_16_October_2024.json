@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "16bca4e6d5f54dc8951696c82b2a69d2_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. In view of the submissions made, the appeal is dismissed as withdrawn with liberty as aforesaid."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 663,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 7,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "cf031502456d4e448af7a6385087cda8_7",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

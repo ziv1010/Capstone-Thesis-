@@ -1,0 +1,121 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1c36e486a7ac4c7486a17fad41f8bb02_5",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. The petitioner is apprehending arrest in connection with Paralakhemundi P.S. Case No. 358 of 2023 corresponding to G.R. Case No. 697 of 2023 pending in the court of learned S.D.J.M.,\nParalakhemundi for the alleged commission of offence "
+    },
+    {
+      "annotation_id": "a8d932397f364f4dad502d125609e36d_6",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is alleged that the petitioner was the driver of the vehicle in which the tobacco products were being transported."
+    },
+    {
+      "annotation_id": "50f2c97465344c8d94e37436c76bb013_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. Having regard to the nature of accusations and the materials on record, I am not inclined to grant anticipatory bail to the petitioner."
+    },
+    {
+      "annotation_id": "79298d33ffd2474390b561b780dafa21_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The ABLAPL is however, disposed of granting liberty to the petitioner to surrender before the court below within two weeks from the date of receipt of certified copy of this order and to move for bail."
+    },
+    {
+      "annotation_id": "729b96d2d3814eb9904bff304d10ab6d_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In such event, he shall be released on bail on such terms and condition as the court below may deem fit and proper to impose."
+    },
+    {
+      "annotation_id": "7b2f60f7a1544302bbf9ed4d5ed7e438_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. The ABLAPL is disposed of."
+    },
+    {
+      "annotation_id": "d5d8d4e36a204bf8bbfde35b47761c3b_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. Urgent certified copy of this order be granted on proper application."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 426,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 7,
+    "ignored_entities": []
+  }
+}

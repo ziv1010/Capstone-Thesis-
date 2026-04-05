@@ -1,0 +1,160 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e701bcb1f5ea490ca90d1ea90aeb1377_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This is in view of the fact that a communication dated 07.08.2020 was sent by the designated officer directing the petitioner to avail his right within a period of 30 days for sending the sample for referral."
+    },
+    {
+      "annotation_id": "771c0de8e95a415d816de4236f24597d_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, this communication was posted only on 25.09.2020."
+    },
+    {
+      "annotation_id": "c3985a2233b745c7b29eff8e2d8c91c2_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the mean time, the order of sanction was issued on 10.08.2020 and the private complaint was filed."
+    },
+    {
+      "annotation_id": "bc934330f10748e0b56fd73c8ae0f04b_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5.The above procedural infirmity is clearly in violation of the provisions of the Act and it took away the right available to the petitioner to send the sample for referral."
+    },
+    {
+      "annotation_id": "c5cfa93766b440c5922cb77e649a8ac1_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The sanction was granted in this case even before the expiry of the time that was given to the petitioner to send the sample for referral."
+    },
+    {
+      "annotation_id": "2fbbbbea2c3f4109a1c7591ccb143925_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6.In view of the above, the continuation of the criminal proceedings as against the petitioner will result in abuse of process of law and the same requires the interference of this Court."
+    },
+    {
+      "annotation_id": "745c35842caa4fe296c4ef1a6d2c5f87_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 124,
+          "end": 131
+        }
+      ],
+      "text_preview": "\n7.In the result, the proceedings in STC.No.13 of 2022 on the file of the learned Judicial Magistrate,\nVadipatti, is hereby quashed and this Criminal Original Petition stands allowed."
+    },
+    {
+      "annotation_id": "d58e3771ec0a4e428a9d2f41c3609781_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently,\nconnected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently,\nconnected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 124,
+      "end": 131
+    },
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently,\nconnected miscellaneous petition is closed",
+      "start": 184,
+      "end": 240
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1118,
+      "facts": 210,
+      "arguments": 251
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 8,
+    "ignored_entities": []
+  }
+}

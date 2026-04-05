@@ -1,0 +1,300 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e243203948b54880a51258d5555cefe0_35",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence,\nthe defendant was set ex parte by this Court on 18.03.2024."
+    },
+    {
+      "annotation_id": "a44573e34df142bebef7d226db11183f_37",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nHe had also filed a proof affidavit by reiterating the contents of the plaint filed in support of this suit."
+    },
+    {
+      "annotation_id": "0529a85548a74a11baafd0bc4d2573e3_38",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Through PW1, 45 documents have been marked as Exs.P1 to P45.\n6."
+    },
+    {
+      "annotation_id": "9174be0623b747d8a93ec69b10f60495_40",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "is the advertisement for Vasanta Bhavan in Maalai Malar newspaper dated 24.03.2005 and Exs.P2 to P5 are the advertisement bills issued by various newspaper companies."
+    },
+    {
+      "annotation_id": "a83b96d199834271b921e05a5eceafc4_42",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "to P8 are the advertisement for plaintiff hotel in various dates."
+    },
+    {
+      "annotation_id": "717caec963754c55b090619bfb54ff73_44",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "is the certificate issued by the Tamil Nadu Food Safety and Drugs and Administration Department."
+    },
+    {
+      "annotation_id": "940de0380a3144cc9e02f1769c4a719d_47",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "are the ISO certificate and trademark registration certificate in the name of the plaintiff's hotel."
+    },
+    {
+      "annotation_id": "5e2b24a6010b4ffe9acb71a6b99404e5_51",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "& P14 are the legal usage certificate in the name of plaintiff's hotel."
+    },
+    {
+      "annotation_id": "f79d6e6879e24b7a82171a17f4ceaf6e_59",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "is the lease deed to run the restaurant named Vasanta Bhavan dated 19.10.1979."
+    },
+    {
+      "annotation_id": "b8da69629f894599bbb26ac6d50a81e9_62",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "are the copies of receipt received and issued by Krishna Agro Industries Corporation in the name of Vasanta Bhavan."
+    },
+    {
+      "annotation_id": "91e9cc192474467983857ebf7f209a58_63",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Exs. P39, P41 & P43 are the advertisement bills issued by the various newspapers in the name of plaintiff's hotel."
+    },
+    {
+      "annotation_id": "973b83885ba04d04bb71a22c73537792_67",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the same, the Civil Suit is decreed with costs."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 12,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2655,
+      "facts": 1584,
+      "arguments": 997
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 92,
+    "ignored_annotations": 12,
+    "ignored_entities": [
+      {
+        "annotation_id": "7282fb82691e42989b6bb30af46cde19_5",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7ae79cbcb1b244b1bb52502de5818e03_7",
+        "entity_text": "Vijayan Subramanian",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "798a24b76a034dbe8e992858abbae66d_9",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "91a7c5542cc742259389a5ddcd551061_10",
+        "entity_text": "Muthukrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "91a7c5542cc742259389a5ddcd551061_10",
+        "entity_text": "M.Ravi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "annotation_id": "91a7c5542cc742259389a5ddcd551061_10",
+        "entity_text": "Anand Krishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "91a7c5542cc742259389a5ddcd551061_10",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a32c89c05a884e57b655bfc8f86a8851_12",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a32c89c05a884e57b655bfc8f86a8851_12",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "10c5b1ebdf2a4c369025cc76ca10c564_13",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7a15fde511104392a142115494283583_14",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2fb3c99dbc2148fd840b170abca8e58d_18",
+        "entity_text": "VASANTA BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8641649edf664c7e9f16c3dc2f0b77a4_57",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "209ce4796dd64a51b5b52ff8a7b59550_69",
+        "entity_text": "M.Ravi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "annotation_id": "413401802b124d0b8f4f55496ba59d25_72",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "413401802b124d0b8f4f55496ba59d25_72",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1ad50210f4ef4f15845ec97bac6a2f66_75",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f387fc2a567042f9882872b87a0f0c9e_79",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "474c928ae6cd4757a42e3c888ffb501e_80",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e5286c2ed3dd4e6fbf31216e474cc729_82",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ec9f7aae1c8d43668f9a3ce1cd8a61cb_83",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b37659ce30bc4086941de1acf4184037_88",
+        "entity_text": "Vasanta Bhavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fbd72335da1947b6bcb8881e59da8e2b_94",
+        "entity_text": "Amudha Surabhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5c44211b648147b0be38ef07f50b76d0_100",
+        "entity_text": "Maalai Malar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

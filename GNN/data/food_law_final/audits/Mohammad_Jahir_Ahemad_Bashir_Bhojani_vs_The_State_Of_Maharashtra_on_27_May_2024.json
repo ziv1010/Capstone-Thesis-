@@ -1,0 +1,100 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "181fd263eb2c442ba1daff66e84be6c7_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ". Applicant is seeking pre-arrest bail in furtherance of an offence bearing CR No. 246/2024, of Ahmedpur Police Station, Tq. Ahmedpur, Dist. Latur punishable U/Sec. 188, 272, 273, 328 r/w Sec.\n34 of the Indian Penal Code and Sec. 59 of the "
+    },
+    {
+      "annotation_id": "90d574b2df77497da048764de40b02ab_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Learned counsel for the applicant informs that his client schedules to proceed on Haj pilgrimage from 30.05.2024."
+    },
+    {
+      "annotation_id": "52d24174b6e7481e80fb51f8ecd91419_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On instructions he submits that his client is ready to co-operate and attend the concern police station on 28.05.2024 and 29.05.2024.\n4."
+    },
+    {
+      "annotation_id": "f091a9d749474cd9ae2764b9e65f4202_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Issue notice to the respondents, returnable on 24.06.2024."
+    },
+    {
+      "annotation_id": "addac66277b5434fa78d6804717e80f8_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be ad-interim protection in terms of prayer clause \"c\" on furnishing personal bond of Rs. 15,000/- (Rs. Fifteen thousands only) with one solvent surety of like amount."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 511,
+      "facts": 214,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

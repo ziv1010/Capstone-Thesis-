@@ -1,0 +1,119 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f62847ecb27a42adaf053058a842cbd7_5",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIt has been argued that in view of Clause 5.5 of the Government policy dated 07.06.2023, the petitioner is entitled to be retained at Prayagarj and not to be transferred at any other place except Sanjay Kumar Singh vs State Of Up And 3 Oth"
+    },
+    {
+      "annotation_id": "eb0f32c3fb474fef9692a6da31b3b663_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The order has been passed without any application of mind."
+    },
+    {
+      "annotation_id": "cdee3c189ea547d29a9300089b78a6f4_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 39,
+          "end": 46
+        }
+      ],
+      "text_preview": "\nThe order dated 21.02.2024 is, hereby quashed."
+    },
+    {
+      "annotation_id": "ccf82f075dc34d11855dba5588c5052f_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 5,
+          "end": 24
+        }
+      ],
+      "text_preview": "\nThe petition is allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 112,
+      "end": 131
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 98,
+      "end": 105
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 362,
+      "facts": 358,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 7,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "241364b838ec404ab8505d79f8becbe5_2",
+        "entity_text": "Ashutosh Mishra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

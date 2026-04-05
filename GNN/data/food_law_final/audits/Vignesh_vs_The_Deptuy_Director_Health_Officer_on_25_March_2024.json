@@ -1,0 +1,83 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0f2f2b49acd747718efb18166cc3ace2_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is for the petitioner to prosecute the said suit."
+    },
+    {
+      "annotation_id": "040baf782cbb4e71abf857c5241c6231_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The writ petition is, accordingly, disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 2173,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 36,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "ed8541cbb09f4b068020a3fce17ec219_14",
+        "entity_text": "Bhavani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ed8541cbb09f4b068020a3fce17ec219_14",
+        "entity_text": "Annamalai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fa06a79bc5af49f8988ae7439447fb87_16",
+        "entity_text": "Banavedu Thottam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0b69d363e903400f91b3cadac35f579e_29",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "42f84d52c50b4d38ba6572f1a79c6e78_37",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

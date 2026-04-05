@@ -1,0 +1,54 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "380bb11c2a9a42c986218c7a6f577f71_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. In view of the endorsement made by the learned counsel for the petitioner, this writ petition is dismissed as withdrawn."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1347,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "7120c10946aa4fce9d7b54fda48b7d50_6",
+        "entity_text": "Solaiammal Mahal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "145305c25cbd4c4eb170bbd3937bdb02_14",
+        "entity_text": "V.BHAVANI",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b02dacadec634853b1f8d04e8cca976a_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. The application stands disposed of."
+    },
+    {
+      "annotation_id": "db21d786f36c4a4298d650f9a4dd43e2_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 157,
+          "end": 166
+        }
+      ],
+      "text_preview": "3. This is a writ petition under Article 226 of the Constitution of India, 1950, inter alia, seeking the following reliefs:-\n\"a) To call for the records and set aside the impugned order dated 22.11.2022 at Annexure P-1.\nb) To direct the Res"
+    },
+    {
+      "annotation_id": "8954ec8fe7b943febe6487c57a1433bd_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Order is downloaded from the DHC Server on 04/03/2024 at 22:06:56 basis that the petitioner had failed to join the respondent by an extended date of joining that was stipulated as 15.11.2022."
+    },
+    {
+      "annotation_id": "4649c74ddf8944f9b8e4cdbd7d2166f3_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He further submits that in the present case, the respondent has violated the same, and as such,\nthe petitioner is entitled for revival of the appointment letter dated 30.06.2022.\n7."
+    },
+    {
+      "annotation_id": "a26166d9245449b586398d79187e83fe_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Issue notice."
+    },
+    {
+      "annotation_id": "d23a2adb88ba408ab466c15655f5dedf_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n9. Upon the petitioner taking appropriate steps within a week, notice be served upon the respondents by all permissible modes."
+    },
+    {
+      "annotation_id": "bf4cc78f041841a49e54bb4781af2aad_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Rejoinder, thereto if any, be filed within six weeks, thereafter, with an advance copy to learned counsel for the respondent."
+    },
+    {
+      "annotation_id": "b3c326cc55d7416fb8f6af8f911e7541_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The appointments, which are being made, may be continued, however, shall be subject to the outcome of the present petition."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 197,
+      "end": 206
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 574,
+      "facts": 120,
+      "arguments": 235
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "c593975d0ae64f0cb79cd7a250894cc0_1",
+        "entity_text": "PUSHP VANAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0ba08839807b4cb3846809e10775a132_2",
+        "entity_text": "Shanker Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0ba08839807b4cb3846809e10775a132_2",
+        "entity_text": "Gaur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0f049d174b34b4ebb86b16c2bf1ef0d_12",
+        "entity_text": "Shanker Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cb543a896991442b9ddec5fce2a8d59d_15",
+        "entity_text": "Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c9a143ae6bde4c6d98b26404d7076982_18",
+        "entity_text": "Rakesh Chaudhary",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

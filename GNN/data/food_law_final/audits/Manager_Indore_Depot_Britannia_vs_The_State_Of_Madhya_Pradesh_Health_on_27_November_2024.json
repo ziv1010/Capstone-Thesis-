@@ -1,0 +1,120 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0765ca94f4d34d5ca4fc0cecc633b7d4_3",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 87,
+          "end": 94
+        }
+      ],
+      "text_preview": "\n2. This Court in connected W.P. No.2665/2013, in similar facts and circumstances, has quashed the report of Food Analyst on account of the sample of food was not analysed by the accredited laboratory under Section 43 of the Food Safety and"
+    },
+    {
+      "annotation_id": "01b79999413a46ffabcc15607202d731_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 166,
+          "end": 173
+        }
+      ],
+      "text_preview": "3. Consequently, in the present case also, the report dated 15.03.2013 (Annexure P/2) which is foundation for launching prosecution against the petitioners is hereby quashed."
+    },
+    {
+      "annotation_id": "65bea4106d7b47f3bcf0db93e3a467f6_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 115,
+          "end": 122
+        }
+      ],
+      "text_preview": "Consequently, the impugned sanction order dated 20.02.2015 (Annexure P/4) and consequential proceedings are hereby quashed."
+    },
+    {
+      "annotation_id": "e6e52b9a45ff475a9191b320a7d1072d_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Accordingly, the petition stands allowed and disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 166,
+      "end": 173
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 290,
+      "end": 297
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1348,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 5,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

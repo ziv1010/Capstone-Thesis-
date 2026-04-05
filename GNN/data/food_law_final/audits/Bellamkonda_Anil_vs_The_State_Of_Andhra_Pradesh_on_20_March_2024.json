@@ -1,0 +1,141 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "554c8372f3d94cdaa9d1a38e7741fd5a_14",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 105,
+          "end": 112
+        }
+      ],
+      "text_preview": "Learned counsel for the petitioner would submit that this is a covered matter and earlier this Court has quashed several F.I.Rs and charge sheets registered for the similar offences based on identical facts and thereby prayed to quash the c"
+    },
+    {
+      "annotation_id": "93014d163d714946acf241855a3d6e4e_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 160,
+          "end": 167
+        }
+      ],
+      "text_preview": "5. As can be seen from the common order passed by this Court in Criminal Petition No.5421 of 2019 and batch, dated 18.12.2019 it is evident that this Court has quashed several F.I.Rs registered for the  3 similar offences based on identical"
+    },
+    {
+      "annotation_id": "2f36c8a7f3bb4ffd9e0ca7f097670f6a_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the petitioner, who is similarly placed, is also entitled for quashing of charge sheet registered against him."
+    },
+    {
+      "annotation_id": "e13a1641f4254e5190d9a4daf5cec231_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 98,
+          "end": 117
+        }
+      ],
+      "text_preview": "6. In view of the aforesaid order of this Court and for the reasons stated therein, this Criminal Petition is allowed quashing the proceedings in C.C.No.260 of 2019 on the file of the learned II Additional Junior Civil Judge, Sattenapalli, "
+    },
+    {
+      "annotation_id": "3c7179453d14423191ac94cfc9497d5e_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. As a sequel thereto, the miscellaneous applications, if any,\npending in this Criminal Petition shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 220,
+      "end": 239
+    }
+  ],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 105,
+          "end": 112
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1240,
+      "facts": 0,
+      "arguments": 290
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "5735b16c2fd04e0288293387b72c0c6b_10",
+        "entity_text": "RAJA REDDY KONETI",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

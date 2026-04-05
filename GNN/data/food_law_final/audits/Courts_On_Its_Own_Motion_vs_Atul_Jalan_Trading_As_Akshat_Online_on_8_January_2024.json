@@ -1,0 +1,65 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9560ab31ea634cc8878c77f4265a96d2_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Accordingly, issue notice without process fee to the Union of India, Government of NCT of Delhi and Food Safety and Standards Authority of India and Delhi Police through their standing counsel,\nreturnable on 8th February, 2024.\n5."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1334,
+      "facts": 87,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "346e10b8093f4e138485405cda5f467e_2",
+        "entity_text": "Alexande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "255a69c2ac734c33b984afc20ff73f31_11",
+        "entity_text": "Shwetasree Mazumdar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "169cae50ef2b41d6a96a7ed1cb2aa0ab_12",
+        "entity_text": "Shwetasree Mazumdar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1b29eead66fd4416a54de78ea018a4d2_17",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

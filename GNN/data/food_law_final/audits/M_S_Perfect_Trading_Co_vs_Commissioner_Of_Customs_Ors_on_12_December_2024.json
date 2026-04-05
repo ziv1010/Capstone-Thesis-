@@ -1,0 +1,106 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "48f26d7b188d450ebf4686e3b171835a_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Order is downloaded from the DHC Server on 17/12/2024 at 21:37:44 consignments and submit a report to this Court."
+    },
+    {
+      "annotation_id": "6d59e40cabd040a88b9a3e34ac4e938e_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe food inspector for conducting the inspection shall be nominated by the CEO concerned."
+    },
+    {
+      "annotation_id": "3b5d1eb584964839bb90efb9f89591c2_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "A copy of this order be communicated to the concerned CEO of FSSAI and the Customs Department for necessary compliance."
+    },
+    {
+      "annotation_id": "2493516a950f45228aa96bf80833f2bc_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. The inspection shall take place on 20th December, 2024."
+    },
+    {
+      "annotation_id": "45f0b1e5495043c4b48ddaa82f1d3ff6_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Let a report be filed by 10th January, 2025.\n9."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 389,
+      "facts": 897,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "61ca4abfaf0f43c4b50ed44744bd1e3a_14",
+        "entity_text": "Singla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

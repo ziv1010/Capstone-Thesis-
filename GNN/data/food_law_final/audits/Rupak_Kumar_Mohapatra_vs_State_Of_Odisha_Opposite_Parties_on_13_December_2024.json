@@ -1,0 +1,96 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "02cbee7abbb8412b9c1a4783f2cdd27d_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. When the aforesaid co-accused of the petitioner Manas Kumar Rout, who was implicated with similar acquisitions and allegations like the petitioner, has already been allowed to go on bail vide order dated 03.12.2024 passed in BLAPL No.11"
+    },
+    {
+      "annotation_id": "51f6b284d96f4c61b38ae55441c6dfc6_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Therefore, the bail application filed by the petitioner is allowed."
+    },
+    {
+      "annotation_id": "61e69d4970a542108b4820abf45eb72c_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n1 7. He (petitioner) is allowed to go on bail on furnishing bail bond of Rs.50,000/-(rupees fifty thousand) with two solvent sureties each for the like amount to the satisfaction of the learned Court in seisin over the matter with conditio"
+    },
+    {
+      "annotation_id": "fd80535c10aa4da893277083a3d546a3_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, the bail application of the petitioner is disposed of finally."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 698,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "d6257c05318e437f877c218a0db1797e_11",
+        "entity_text": "Saroj Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d6257c05318e437f877c218a0db1797e_11",
+        "entity_text": "Ajit Kumar Jena",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

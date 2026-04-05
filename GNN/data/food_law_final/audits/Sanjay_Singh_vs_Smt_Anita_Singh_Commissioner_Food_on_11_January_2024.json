@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c6e6116f830f43d0ac635697c9944ee7_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn view of the aforesaid, no contempt is made out."
+    },
+    {
+      "annotation_id": "e419ee2fb9ab44ccb013d93723b82105_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nNotices are discharged Hence, contempt petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 578,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "fa50b7cb4d5d47ebacd584456fd5b6f3_9",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

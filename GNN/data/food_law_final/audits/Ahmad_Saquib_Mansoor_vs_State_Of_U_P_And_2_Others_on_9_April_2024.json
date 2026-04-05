@@ -1,0 +1,156 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8446bc8e04bc4fc9a1d52b2bfecc7b29_6",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. Present writ petition has been preferred for following reliefs:-\n\"(i) issue suitable writ, order or direction in the nature of mandamus directing the respondent authorities not to interfere in the peaceful carrying out business activity"
+    },
+    {
+      "annotation_id": "8b492fa9ee8a48f38d1997306f46f7a1_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(iii) issue suitable writ, order or direction in the nature of mandamus directing the respondent authorities to compensate the petitioner due to illegal partial demolition of his shop situate at 19/35, M.G. Marg, Civil Lines Zone No.3, Pra"
+    },
+    {
+      "annotation_id": "658244a339134e93a9327034cdfff4c8_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the facts and circumstances of the case, we find substance in the objection raised by learned counsel for the PDA."
+    },
+    {
+      "annotation_id": "0c31575b7af14048975fd7c94bbf8e08_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, since the matter is pending since 2020, in the interest of justice, it is provided that in case the petitioner prefers an appeal along with stay application against the order impugned within two weeks, the stay application would be"
+    },
+    {
+      "annotation_id": "07f20c88480e4a6293bd34f83c7ddfb3_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Till the disposal of stay application, the parties shall maintain status quo as on today qua the property in dispute."
+    },
+    {
+      "annotation_id": "7bb25661fbd540b1aa6e63d386ee56ef_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The appellate authority shall also make an endeavour to decide the appeal expeditiously."
+    },
+    {
+      "annotation_id": "df9342d9a86041c9a3f2846ad77b0916_14",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 13,
+          "end": 40
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 8,
+          "end": 40
+        }
+      ],
+      "text_preview": "\n6. The writ petition stands disposed of accordingly.\nOrder Date :- 9.4.2024 SP/ \nAhmad Saquib Mansoor vs State Of U.P. And 2 Others on 9 April, 2024 Indian Kanoon - http://indiankanoon.org/doc/14078555/\n2"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 507,
+      "facts": 649,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "8cfcab9fd38c4526a8b546cb88a8b6ae_2",
+        "entity_text": "Mahesh Chandra Tripathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e126529242c24d33aaefb02cd806b112_5",
+        "entity_text": "Arun Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e3c2de55dabb468585ffbe520061c112_7",
+        "entity_text": "U.P. Dookan Aur Vanijya Adhishthan Adhiniyam 1962",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e3c2de55dabb468585ffbe520061c112_7",
+        "entity_text": "U.P. Dookan Aur Vanijya Adhishthan Niyamavali, 1963",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

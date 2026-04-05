@@ -1,0 +1,72 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8797edb75e944347afbd9ba2d7468416_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. In view of the above, the writ petition is dismissed as withdrawn."
+    },
+    {
+      "annotation_id": "fd50a49ff1094b2f82ffceeb36242843_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently,\nConnected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently,\nConnected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently,\nConnected miscellaneous petition is closed",
+      "start": 71,
+      "end": 127
+    }
+  ],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1261,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 2,
+    "ignored_entities": []
+  }
+}

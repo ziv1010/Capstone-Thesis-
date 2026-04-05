@@ -70,6 +70,15 @@ def build_case_star_graph(cleaned_case: CleanedCase, cfg: dict[str, Any]) -> Cas
                     "case_id": cleaned_case.case_id,
                     "section": section_name,
                     "text_length": len(text_value),
+                    # citation / bridging counts filled in after entity loop
+                    "cited_statute_count": 0,
+                    "cited_provision_count": 0,
+                    "cited_precedent_count": 0,
+                    "petitioner_lawyer_count": 0,
+                    "defence_lawyer_count": 0,
+                    "petitioner_count": 0,
+                    "respondent_count": 0,
+                    "judge_count": 0,
                 },
                 share_across_cases=False,
             )
@@ -134,15 +143,17 @@ def build_case_star_graph(cleaned_case: CleanedCase, cfg: dict[str, Any]) -> Cas
                 node_keys.add((entity.entity_type, key))
 
             relation = {
-                "petitioner": "has_petitioner",
-                "respondent": "has_respondent",
-                "court": "heard_in",
-                "judge": "decided_by_bench",
-                "lawyer": "has_lawyer",
-                "org": "mentions_org",
-                "gpe": "mentions_gpe",
-                "case_number": "has_case_number",
-                "date": "has_date",
+                "petitioner":        "has_petitioner",
+                "respondent":        "has_respondent",
+                "court":             "heard_in",
+                "judge":             "decided_by_bench",
+                "lawyer":            "has_lawyer",
+                "petitioner_lawyer": "has_petitioner_lawyer",
+                "defence_lawyer":    "has_defence_lawyer",
+                "org":               "mentions_org",
+                "gpe":               "mentions_gpe",
+                "case_number":       "has_case_number",
+                "date":              "has_date",
             }.get(entity.entity_type)
             if relation:
                 edges.append(
@@ -158,9 +169,9 @@ def build_case_star_graph(cleaned_case: CleanedCase, cfg: dict[str, Any]) -> Cas
 
             if arguments_node_key and entity.seen_in_arguments:
                 citation_relation = {
-                    "statute": "cites_statute",
-                    "provision": "cites_provision",
-                    "precedent": "cites_precedent",
+                    "statute":    "cites_statute",
+                    "provision":  "cites_provision",
+                    "precedent":  "cites_precedent",
                 }.get(entity.entity_type)
                 if citation_relation:
                     edges.append(
@@ -170,6 +181,62 @@ def build_case_star_graph(cleaned_case: CleanedCase, cfg: dict[str, Any]) -> Cas
                             dst_type=entity.entity_type,
                             src_key=arguments_node_key,
                             dst_key=key,
+                            metadata={"case_id": cleaned_case.case_id},
+                        )
+                    )
+
+                # --- citation edges: typed lawyer → arguments ---
+                if entity.entity_type in {"petitioner_lawyer", "defence_lawyer"}:
+                    edges.append(
+                        GraphEdge(
+                            src_type=entity.entity_type,
+                            relation="citation",
+                            dst_type="arguments",
+                            src_key=key,
+                            dst_key=arguments_node_key,
+                            metadata={
+                                "case_id": cleaned_case.case_id,
+                                "mention_count": entity.local_case_frequency,
+                                "first_seen_section": entity.first_seen_section,
+                            },
+                        )
+                    )
+
+                # --- bridging edges: provision/statute → arguments ---
+                if entity.entity_type in {"provision", "statute"}:
+                    edges.append(
+                        GraphEdge(
+                            src_type=entity.entity_type,
+                            relation="used_in_arguments",
+                            dst_type="arguments",
+                            src_key=key,
+                            dst_key=arguments_node_key,
+                            metadata={"case_id": cleaned_case.case_id},
+                        )
+                    )
+
+                # --- bridging edges: petitioner/respondent → arguments ---
+                if entity.entity_type in {"petitioner", "respondent"}:
+                    edges.append(
+                        GraphEdge(
+                            src_type=entity.entity_type,
+                            relation="is_party_in_arguments",
+                            dst_type="arguments",
+                            src_key=key,
+                            dst_key=arguments_node_key,
+                            metadata={"case_id": cleaned_case.case_id},
+                        )
+                    )
+
+                # --- bridging edges: judge → arguments ---
+                if entity.entity_type == "judge":
+                    edges.append(
+                        GraphEdge(
+                            src_type="judge",
+                            relation="presided_arguments",
+                            dst_type="arguments",
+                            src_key=key,
+                            dst_key=arguments_node_key,
                             metadata={"case_id": cleaned_case.case_id},
                         )
                     )

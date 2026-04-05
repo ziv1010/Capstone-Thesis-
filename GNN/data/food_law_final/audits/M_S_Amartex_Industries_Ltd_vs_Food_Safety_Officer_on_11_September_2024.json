@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7b05673f85e348628f93705b01f1a3de_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. In the case at hand, impugned order dated 04.01.2022 is an order, whereby, an application under Section 5 of the Limitation Act, has been dismissed."
+    },
+    {
+      "annotation_id": "fa802000c2e640a7a46a7ea7dffcaa29_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view thereof and the fact that none has put in appearance on behalf of the petitioner, present matter is dismissed for .\nnon prosecution."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1090,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "de3379997e354efdb96eef4523c1c97e_9",
+        "entity_text": "Gautam Sood",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

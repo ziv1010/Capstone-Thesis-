@@ -1,0 +1,102 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "67c4afc7e30b4e05b38ac98160925806_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. Considering the facts and circumstances of the case, without entering into the merits, respondent no. 2-Assistant Commissioner, Food Safety and Drug Administration, Lucknow, is directed to decide representation of the petitioner dated 1"
+    },
+    {
+      "annotation_id": "f3cc5dc1012d469db51910283d4dfad4_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 49,
+          "end": 76
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 44,
+          "end": 76
+        }
+      ],
+      "text_preview": "\n8. With above observations/directions, the writ petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 558,
+      "end": 585
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 553,
+      "end": 585
+    }
+  ],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 624,
+      "facts": 162,
+      "arguments": 640
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "a7403370fa684ad88daed653bbbd0fb8_3",
+        "entity_text": "Akhilesh Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4389d5ce205143b4abb5dfd55ca459a6_5",
+        "entity_text": "Shishir Pradhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4389d5ce205143b4abb5dfd55ca459a6_5",
+        "entity_text": "Akhilesh Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

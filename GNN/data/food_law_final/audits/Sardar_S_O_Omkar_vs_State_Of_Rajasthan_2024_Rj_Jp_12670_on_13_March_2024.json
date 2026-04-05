@@ -1,0 +1,100 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8a548dab179d49af9808f07392f01f4b_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "to enlarge the accused-petitioners on bail."
+    },
+    {
+      "annotation_id": "3536dab3f2e24032830226c10cc20428_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, this bail application under Section 439 Cr.P.C. is allowed and it is ordered that the accused-petitioners (i) Sardar S/o Omkar, (ii) Digamber S/o Harisingh and (iii) Surajpal S/o Premsingh in connection with FIR No.89/2024 reg"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1100,
+      "facts": 214,
+      "arguments": 456
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "77b2860199d6424e916550b4933b039f_2",
+        "entity_text": "AT JAIPUR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "539f4e83bf394ef29c315eba47cbbb8b_3",
+        "entity_text": "Omkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "539f4e83bf394ef29c315eba47cbbb8b_3",
+        "entity_text": "Mahasingh  Ka Bas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "53eb0ca70c514907813206af55e8daed_4",
+        "entity_text": "Harisingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bd1d37f7a17d439eafd8aec6a47885f4_6",
+        "entity_text": "Premsingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3b7cddb47bbe4475a79c11aec8e19f3f_8",
+        "entity_text": "C. G. Chopra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d0e9963dc0f247da99917d8a88579a56_15",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ad44b9ce36d545e0a8f912dde10ffab8_19",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

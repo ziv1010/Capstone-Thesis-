@@ -1,0 +1,68 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c77583fffb024afd9b08f642e08e2fb2_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "When the case is taken up today, the Counsel for the petitioners seeks permission to withdraw the writ petition with liberty to move again."
+    },
+    {
+      "annotation_id": "79f9f2695edb45c3960fa49c9523f3b3_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis writ petition is dismissed as withdrawn with liberty to move again and without prejudice to the contentions raised."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1815,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "f21d32e8a7e8495aad9b7ae9795301d4_8",
+        "entity_text": "Vidya Kuriakose",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c6cd63fc302649fc9e5bda6fc23b50cc_9",
+        "entity_text": "Suman Chakravarthy",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

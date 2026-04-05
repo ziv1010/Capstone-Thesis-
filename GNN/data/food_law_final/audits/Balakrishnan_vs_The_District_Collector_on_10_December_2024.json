@@ -1,0 +1,85 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "624cd0aa8d3c437cb54a98ccd03d32e3_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n ORDER This Writ Petition has been filed by the petitioner for a direction directing the respondents 2 and 3 to take appropriate action as against the fifth respondent for causing the pollution by complaints dated 05.08.2019 and 16.08.2019"
+    },
+    {
+      "annotation_id": "883df0ff357c4b089799f73bc7a73f52_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the petitioner is at liberty to lodge a fresh complaint on a fresh cause of action before the authority concerned."
+    },
+    {
+      "annotation_id": "0f7325f82e724c808d44024523509c56_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nOn receipt of the same, the second respondent is directed to issue https://www.mhc.tn.gov.in/judis notice to the parties concerned, conduct enquiry and after affording an opportunity of hearing to the parties concerned, pass orders on meri"
+    },
+    {
+      "annotation_id": "3af3603782dc4a4fbca1eb52cadd34e4_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3.With the above direction, this Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1588,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

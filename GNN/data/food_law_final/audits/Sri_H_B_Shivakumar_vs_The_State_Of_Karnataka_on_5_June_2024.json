@@ -1,0 +1,136 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e08b5cd24ff84f10b89f7be0436ce0cb_5",
+      "summary_section": "PREAMBLE",
+      "labels": [
+        "PREAMBLE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "SET ASIDE",
+          "start": 278,
+          "end": 287
+        }
+      ],
+      "text_preview": "\n THIS WRIT PETITION IS FILED UNDER ARTICLES 226 AND 227 OF CONSTITUTION OF INDIA PRAYING TO a) CALL FOR THE ENTIRE RECORDS LEADING TO PASSING OF THE ORDER DATED 09.08.2023 IN APPLICATION No.10779/2022 PASSED BY THE LEARNED KARNATAKA STATE "
+    },
+    {
+      "annotation_id": "b25bb3be274840688de2e7dc49ab50a1_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is stated that the writ petition can be disposed of in the same fashion as in the connected judgment and that liberty may be given to the Government as has been granted in the said matter as well.\n"
+    },
+    {
+      "annotation_id": "6d0957d910eb4278a0ac878f1347f1c4_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Having considered the contentions advanced and in view of the fact that the petitioner had been working as Food Safety Officer from the year 2011 and since, he has been further promoted and has thereafter retired from service in the year"
+    },
+    {
+      "annotation_id": "8f87b9c97780494abd31bde96bda11ae_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "We therefore dispose of the writ petition in the same fashion as has been done in the common judgment."
+    },
+    {
+      "annotation_id": "a3c14938f68b48c2a827272df55460bf_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nORDER (i) The Writ Petition is partly allowed.\n(ii) The orders of the Tribunal rendered in Application No.10779/2022 dated 09.08.2023 passed by the Karnataka State Administrative Tribunal is set-aside."
+    },
+    {
+      "annotation_id": "42136dc5d5d44a1c8e6cf36f9a0867cd_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that despite the discussion made herein above and in view of the fact that no prayer for declaration of appointment having been sought, the observations with regard to the appointments are clarified as not conclusive and it"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "SET ASIDE",
+          "start": 1627,
+          "end": 1636
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "SET ASIDE",
+          "start": 1627,
+          "end": 1636
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1809,
+      "facts": 0,
+      "arguments": 334
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "e4206e39a98842d189152595cf89705c_4",
+        "entity_text": "VIKAS ROJIPURA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

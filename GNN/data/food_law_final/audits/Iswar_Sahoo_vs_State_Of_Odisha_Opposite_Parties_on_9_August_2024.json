@@ -1,0 +1,164 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "96f8b8b82b954f8ebbc8c74241b1c975_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Considering the facts of the case, this Court is not inclined to grant anticipatory bail to the Petitioner."
+    },
+    {
+      "annotation_id": "348c3f10b17243ebb80bf198e36308b1_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. However, on the submission of the learned counsel, the Petitioner is given liberty to surrender before the learned court in seisin over the matter in the aforesaid case in the first hour within 21 working days hence and move for bail."
+    },
+    {
+      "annotation_id": "75f24ed7ba8d487e8a59759902560bb6_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On such event, the learned Magistrate shall consider his application for bail in the first hour strictly on the basis of the materials on record."
+    },
+    {
+      "annotation_id": "3fb059713c024cdea63e631b78c24350_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In case of rejection of the bail application, the Petitioner may move for bail before the higher forum in the second hour."
+    },
+    {
+      "annotation_id": "428cf7e9e5a84cb399ef3a226e7633a8_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On such event, the higher forum shall consider and dispose of the bail application of the Petitioner on the same day strictly on the basis of the materials on record, by maintaining the principles of parity, if applicable."
+    },
+    {
+      "annotation_id": "c1d0add8f035450e9c53358ff6c7e96a_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Case Diary be made available to the concerned courts."
+    },
+    {
+      "annotation_id": "27218171b30e4955881d36719b182ff7_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Records be transmitted to the higher forum at the cost of the Petitioner, if applied for."
+    },
+    {
+      "annotation_id": "33650a1194e345d3ba437e5db11ca669_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. The ABLAPL is accordingly disposed of."
+    },
+    {
+      "annotation_id": "7fa5977a0cfa4ce7b4d57f90fa3fa15d_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n8. Issue urgent certified copy of the order as per Rules."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 438,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "a893c67792234cd0b740407710e7daf5_22",
+        "entity_text": "Anil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d22acd1f80924c908744a1580bbc9dd3_24",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

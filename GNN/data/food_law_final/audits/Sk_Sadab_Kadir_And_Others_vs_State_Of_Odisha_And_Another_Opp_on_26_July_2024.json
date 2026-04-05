@@ -1,0 +1,170 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "125325bd075b4d35a8ebd5f272e5af17_32",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 227,
+          "end": 234
+        }
+      ],
+      "text_preview": "6. On the above basis, it is submitted that as the disputes between the husband and wife has since been resolved amicably as also the fact that the concerned parties do not wish to continue with the proceeding, the same may be quashed."
+    },
+    {
+      "annotation_id": "f9235aea366b45f1895760c791d36ff9_40",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the submissions made as noted above, and the additional affidavit filed by the Petitioners, it is evident that the dispute between the parties has been amicably settled."
+    },
+    {
+      "annotation_id": "8ae2557afd864b7e870109396039677b_41",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In such circumstances, no fruitful purpose would be served by allowing continuance of the criminal proceedings against the Petitioners especially when the chance of conviction in the said case is bleak."
+    },
+    {
+      "annotation_id": "c0a1979ba16b4beeb14706de25808ed5_42",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. This Court is therefore, inclined to allow the prayer of the Petitioners."
+    },
+    {
+      "annotation_id": "3bd29c8247b64a6f8a79b67b9108d9fa_43",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 218,
+          "end": 225
+        }
+      ],
+      "text_preview": "The proceedings in G.R.\nCase No.1028 of 2022 arising out of Angul Town P.S. Case No.379 of 2022 pending in the court of learned S.D.J.M., Angul under Sections 498-A/406/34 of IPC and Section 4 of the DP Act are hereby quashed."
+    },
+    {
+      "annotation_id": "f08d94e97b46431abe9a7d0b3ada9dba_44",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. Accordingly, the CRLMC is disposed of."
+    },
+    {
+      "annotation_id": "dcf4b8232a3b47b09748e80384caf366_45",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n11. Urgent certified copy of this order be granted on proper application."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 295,
+      "end": 302
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 486,
+      "facts": 1355,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 41,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "45c0004e1ec44bff97d3e0947315251e_13",
+        "entity_text": "Saher Saniya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "45c0004e1ec44bff97d3e0947315251e_13",
+        "entity_text": "Akhaya Kumar  Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d62b225b08734f69a7f0600a5e323a89_26",
+        "entity_text": "Pantha Nivas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "dd18082e97df4c2dad5a2b09f75b4f8b_39",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "50bad770adda4da6809706d0944420e2_47",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

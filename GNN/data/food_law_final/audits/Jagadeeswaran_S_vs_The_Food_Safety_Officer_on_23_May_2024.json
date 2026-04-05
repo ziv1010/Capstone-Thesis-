@@ -1,0 +1,103 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c70df6c86d624519aa954c6b04d8fdb1_2",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "And 2 Others\n Application praying that in the circumstances stated therein the High\n Court be pleased to stay all further proceedings in Cc No.369 of 2019\n pending on the files of the Court of the Judicial Magistrate of the\n First Class-I, "
+    },
+    {
+      "annotation_id": "a17877bdc7a54dea84e5b29d1dd94d58_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Interim order shall stand extended by two months."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 690,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 4,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "M.Revikrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Ajeesh K.Sasi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "P.M.Rafiq",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Thomas J.Anakkallunkal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "V.C.Sarath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Vipin Narayan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Pooja Pankaj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Abel Tom Benny",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b7d0a29f09894644a4c3e3bebbfaccc8_3",
+        "entity_text": "Kiran Antony",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

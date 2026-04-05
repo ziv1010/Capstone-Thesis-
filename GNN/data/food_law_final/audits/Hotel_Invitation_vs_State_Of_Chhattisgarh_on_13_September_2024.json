@@ -1,0 +1,101 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5057b6768bb148c4927b7f2096626d1a_29",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Though, it mentions that the petitioner violated the provisions of the National Food Security and Standards Act, 2006 or the Chhattisgarh Excise Act,\n1915, however, there is no specific mention as to what was the violation and violation in "
+    },
+    {
+      "annotation_id": "e174fd87aa044fd1ab4ae8d47ab9e5d2_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nFor the foregoing discussion, purely as an interim measure, the respondents are directed to unseal the hotel and restaurant of the petitioner."
+    },
+    {
+      "annotation_id": "3d3abecde7a243d1b99d76a3491c3813_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This order be in operation till the next date of hearing."
+    },
+    {
+      "annotation_id": "04ec2351b3114765bd93c307e3ded588_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "List this case in the week commencing 14.10.2024."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1934,
+      "facts": 88,
+      "arguments": 419
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 30,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "f89cacfd851b4d9cba39d3e9251b530b_14",
+        "entity_text": "Vinay Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a72dada922584c41b8f1db56cd9edce3_15",
+        "entity_text": "Sandeep Dubey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "526e53ce7c8e4260aa634ebfb48f116d_33",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

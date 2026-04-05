@@ -1,0 +1,71 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2e3aa8a892d84010af149f298ec25a3e_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Upon hearing learned counsel for the petitioner and perusal of record, it transpires, at present,\nadjudication order has been passed against the petitioner dated 30.04.2023."
+    },
+    {
+      "annotation_id": "42c747fc54754be29ba8e94b259dbf0b_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. In face of factual disputes involved, interference claimed under Article 226 of the Constitution of India is declined."
+    },
+    {
+      "annotation_id": "926994e593304ea6b9416c7e05833e74_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Present writ petition is accordingly disposed of, leaving it open to the petitioner to avail his statutory remedy in accordance with law.\nRahul Sagar vs State Of Up And 3 Others on 5 February, 2024 Indian Kanoon - http://indiankanoon.or"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 534,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

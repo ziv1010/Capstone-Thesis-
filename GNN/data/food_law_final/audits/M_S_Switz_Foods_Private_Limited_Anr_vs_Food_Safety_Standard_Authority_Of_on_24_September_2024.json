@@ -1,0 +1,44 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7fddaba331ca42528aa08574b086709d_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioners are directed to serve copy of the application along with annexure thereto upon the opposite party and file affidavit of service on the adjourned date."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 427,
+      "facts": 0,
+      "arguments": 353
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 7,
+    "ignored_annotations": 1,
+    "ignored_entities": []
+  }
+}

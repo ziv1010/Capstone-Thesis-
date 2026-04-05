@@ -1,0 +1,92 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1321da9fe9d54b5dadff4caae8c56df0_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As of today, the said period has lapsed and therefore, Reason:\nthe Notification impugned has run its course and is no longer in operation."
+    },
+    {
+      "annotation_id": "bba0d9a5c23f4fa59fe7959c2e71c23f_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn the circumstances, the Special Leave Petition does not call for any interference and the same is, accordingly, disposed of as infructuous,."
+    },
+    {
+      "annotation_id": "e42b93acb6bc4c6186a2bb86fa111cb0_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nPending application(s), if any, shall stand disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1196,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "9f430445c2ca44b69cf141a745cfb842_13",
+        "entity_text": "Dasti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9661a9bc805e42e4b2422db1ff2476aa_14",
+        "entity_text": "Aaditya A. Pande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3344d0e16ffd4a51a32200b359a88207_15",
+        "entity_text": "RADHA SHARMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3344d0e16ffd4a51a32200b359a88207_15",
+        "entity_text": "DIVYA BABBAR",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

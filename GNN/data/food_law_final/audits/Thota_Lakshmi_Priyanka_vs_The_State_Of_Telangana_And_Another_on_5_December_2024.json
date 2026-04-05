@@ -1,0 +1,152 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f01477ded94648c4a36fd15de99b1de1_2",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 583,
+          "end": 592
+        }
+      ],
+      "text_preview": "In this writ petition, the petitioner is challenging the action of the respondents in issuing the impugned Memo No. 369/Rectt-pool-II/3/2022, dated 12.01.2023 rejecting the case of the petitioner to be considered as local candidate to Zone-"
+    },
+    {
+      "annotation_id": "1fe515201f88465f9b49191c52139541_9",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court finds that in W.P.No.19038 of 2023, this Court had already considered the decisions in W.P.No.28495 of 2022 and also W.A.No.778 of 2022 and vide orders dated 20.09.2023, this Court directed the respondents to consider the candida"
+    },
+    {
+      "annotation_id": "66c2ce39e0374c7e9aae6220f89ced0b_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In this case also, since the petitioner has completed her graduation from Zone-VI (Charminar), she is entitled to be considered as a local candidate of Zone-VI (Charminar) as held by this Court in W.P.No.19038 of 2023.\n7."
+    },
+    {
+      "annotation_id": "3666f3346cd24ce5b74fe37ae8380b45_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court therefore, sets aside the impugned order dated 12.01.2023 and the respondents are directed to consider PMD,J the petitioner as a local candidate of Zone-VI (Charminar) and consider her case for appointment to the post of Food Saf"
+    },
+    {
+      "annotation_id": "93ead5f725fb477d86c97397d932f611_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, this writ petition is disposed of."
+    },
+    {
+      "annotation_id": "65f26dae38ce4410a6c69503999de57a_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be no order as to costs."
+    },
+    {
+      "annotation_id": "1f3495405bba4c68bb457a0c50a69d03_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Miscellaneous petitions, if any, pending in this writ petition, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 583,
+          "end": 592
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 195,
+      "facts": 1687,
+      "arguments": 1710
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "f27f108879c249a68e3d7db8206d5597_1",
+        "entity_text": "P.Madhavi Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7f0fd747126a4f1bbbeefdb78e7295fe_22",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

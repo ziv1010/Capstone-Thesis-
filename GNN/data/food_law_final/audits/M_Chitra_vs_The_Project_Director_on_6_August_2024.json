@@ -1,0 +1,77 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d8ab9761784844469ffa469898c1e576_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Without expressing any opinion on the merits of the writ petition, the third respondent is directed to consider the representation submitted by the petitioner seeking waiver of loan and pass orders on https://www.mhc.tn.gov.in/judis merits "
+    },
+    {
+      "annotation_id": "87a0b6b3726e4720a04d868fc831b053_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. With the above directions, this writ petition is disposed of."
+    },
+    {
+      "annotation_id": "a60bba9250f54401831d54e0c17f0d45_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThere shall be no order as to costs."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1365,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "ef3893b92d3b4e00afc3c076bffb13c3_16",
+        "entity_text": "G.K.ILANTHIRAIYAN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

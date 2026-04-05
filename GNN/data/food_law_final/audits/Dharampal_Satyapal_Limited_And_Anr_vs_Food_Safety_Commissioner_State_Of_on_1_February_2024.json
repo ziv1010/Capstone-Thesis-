@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0fa84215da46484eb20afdfe97b9a348_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2.  Ms.Diwan, AGP states that within two weeks Reply Affidavit shall be filed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 746,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "0d096178d0ee4dcaae5e6f37be572099_7",
+        "entity_text": "Ashvini",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d290a90d4204465f9aa70755d2f2196f_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Apparently, it appears that petitioner is running his business under the name and style of Cannaught Plaza Restaurants Pvt. Ltd. but was impleaded as accused under the name of Mcdonalds (Restaurants) Axis Building, BMC Square Jalandhar t"
+    },
+    {
+      "annotation_id": "ebaf25e41e1d48538a19c4b4fdf361d0_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 106,
+          "end": 115
+        }
+      ],
+      "text_preview": "Be that as it may, without expressing any opinion on the merits of the case, the impugned order is hereby set aside with direction to the petitioner to appear before the trial Court within 15 days and to seek bail."
+    },
+    {
+      "annotation_id": "0f5c2217681d49c68181415f95ab94e4_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The aforesaid order is subject to costs of Rs.7500/- to be deposited by the petitioner with the District Legal Services Authority concerned."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 106,
+      "end": 115
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 493,
+      "facts": 446,
+      "arguments": 759
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

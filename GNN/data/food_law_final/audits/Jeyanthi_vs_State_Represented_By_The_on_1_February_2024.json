@@ -1,0 +1,191 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8a89f9a847114aa89d0273a4eb0d8e07_13",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 211,
+          "end": 218
+        }
+      ],
+      "text_preview": "4. The learned Government Advocate (Crl. Side) would submit that there are materials available to proceed with the case as against the petitioners herein and at the threshold, the criminal proceedings cannot be quashed and the charges again"
+    },
+    {
+      "annotation_id": "10f4ade9fdd74fbca0aa6a03dd1560e0_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In the above circumstances, the trial court has rightly taken the case on file and this Court is of the considered view that no prejudice would be caused to the petitioners, if they are subjected to due trial as sufficient opportunity wo"
+    },
+    {
+      "annotation_id": "9d3bf8f067044666b28b600ccf200c0d_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioners cannot be let by quashing the charges framed against them as that would completely undermine the alleged act, which is the subject matter of criminal trial pending against them."
+    },
+    {
+      "annotation_id": "d68cf4d49912434ab961edf2ddfb255f_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Useful reference in this regard can be made to the decision of the Honble Apex Court in State of Haryana  Vs - Bhajan Lal (1992 SCC (Crl.) 426)\n6."
+    },
+    {
+      "annotation_id": "46fb5a6b9e1d445ca446529945f3d556_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "For the reasons aforesaid, this Court finds no ground or scope to quash S.T.C.No.1106 of 2021,\npending on the file of the learned Judicial Magistrate, Melur, Madurai District."
+    },
+    {
+      "annotation_id": "5e4f2ad681134ab29281b54265c2a6c1_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, this Criminal https://www.mhc.tn.gov.in/judis Original Petition is dismissed."
+    },
+    {
+      "annotation_id": "6e302e423bca4607a748045d7ed8484f_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    },
+    {
+      "annotation_id": "3bd0ceb564fd423491606ef9e3146e00_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTaking into consideration the request as made by the learned counsel for the petitioners, the appearance of the petitioners before the trial court is dispensed with except for their appearance for the purpose of receiving the copy of the p"
+    },
+    {
+      "annotation_id": "1d9a66d6bbcb4f3da84e2ea1ff09896d_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nHowever, if for any particular reason, the presence of the petitioners is necessary, the trial court, at its wisdom, shall direct their appearance on those days."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 267,
+      "end": 323
+    }
+  ],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 211,
+          "end": 218
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1145,
+      "facts": 323,
+      "arguments": 364
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "f1fa3e59c1064284b217ca85ce685f99_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cf1f56d1dbcf40388656b7ea6d9a1fd3_23",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

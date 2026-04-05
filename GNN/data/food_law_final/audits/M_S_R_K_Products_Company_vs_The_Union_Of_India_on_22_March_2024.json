@@ -1,0 +1,79 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0c620db66728469186ab2ec7e87634f4_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Taking into consideration the specific averments made at paragraph Nos. 4, 5 and 6 of the Counter affidavit filed by the respondents, the writ petition filed by the petitioner is dismissed."
+    },
+    {
+      "annotation_id": "83b8d563dee949a7a5e5ae7ad4558d21_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nHowever, there shall be no order as to costs."
+    },
+    {
+      "annotation_id": "c76e46aad0bc472cab60ca8e9291e14a_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMiscellaneous petitions, if any, pending shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 354,
+      "facts": 458,
+      "arguments": 866
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "ec74478b0eb0405590ddd8c59d152819_4",
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

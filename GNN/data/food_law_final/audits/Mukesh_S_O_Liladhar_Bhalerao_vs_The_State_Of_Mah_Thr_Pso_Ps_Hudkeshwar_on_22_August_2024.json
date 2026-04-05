@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "442c6a3d89794cc4a88fda626e75a8d2_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2.  This is an application seeking to quash F.I.R. in Crime No.0732/2022 registered by non-applicant No.1 for the offence punishable under Sections 188, 272, 273 and 328 of Indian Penal Code, Sections 3(1)(zz)(iv), 26(2)(iv), 27(3)(a), 30("
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 665,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "24c677de37a240179606392f9fa30361_5",
+        "entity_text": "Amit Madiwale",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

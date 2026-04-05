@@ -1,0 +1,219 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7837554beb0046c3986990f84d111c98_16",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 270,
+          "end": 279
+        }
+      ],
+      "text_preview": "Even though a case has been registered in the year 2023 itself, there was no progress till the date of the superannuation and therefore, placing a government servant under suspension on the last date of his superannuation is unsustainable a"
+    },
+    {
+      "annotation_id": "833bb42687524bf7a0f4270ce04dcd19_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. On perusal of the impugned order, it is seen that a regular case has been registered against the petitioner on the allegation of possession of disproportionate assets to the tune of Rs.49,68,251/-\nduring the check period from 01.04.2003 "
+    },
+    {
+      "annotation_id": "42bcc5d04152461a8058cfdaacdb7f2e_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is also stated that the investigation of Vigilance and Anti Corruption is in progress."
+    },
+    {
+      "annotation_id": "e03a6f611cca41c1acf506ad95ee9a98_24",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Till the petitioner was in service, no departmental action has been initiated against the petitioner on the complaint which was made before the Vigilance and Anti Corruption."
+    },
+    {
+      "annotation_id": "cf5141f4a0ce4df9a570b824f5f61832_25",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Even at the time when the petitioner was served with the order of suspension, he was not given with any charge memo."
+    },
+    {
+      "annotation_id": "08756b8bbf24430495ccaddb77b57a7d_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In that view of the matter, the petitioner may be allowed to retire subject to pending criminal case, by setting aside the impugned order."
+    },
+    {
+      "annotation_id": "c59065727bab43c3af71a8eaed72a5fd_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nhttps://www.mhc.tn.gov.in/judis 9"
+    },
+    {
+      "annotation_id": "d41d3e3615d743e78c2bbd292c3544f2_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 25,
+          "end": 44
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 90,
+          "end": 99
+        }
+      ],
+      "text_preview": ". Accordingly, this Writ Petition is allowed and the impugned orders dated 29.06.2024 are set aside and the petitioner is allowed to retire subject to the result of the criminal case."
+    },
+    {
+      "annotation_id": "2674fbfc76924229b84fd216f8f70e03_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No costs."
+    },
+    {
+      "annotation_id": "89daefad0583490d929fd94a9d493138_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 1,
+          "end": 57
+        }
+      ],
+      "text_preview": "\nConsequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 199,
+      "end": 218
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 264,
+      "end": 273
+    },
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 369,
+      "end": 425
+    }
+  ],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1384,
+      "facts": 0,
+      "arguments": 750
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 10,
+    "ignored_entities": [
+      {
+        "annotation_id": "19e76ff63a4a470b82008964b3524e41_10",
+        "entity_text": "S.Louis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "19e76ff63a4a470b82008964b3524e41_10",
+        "entity_text": "J.Ashok",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

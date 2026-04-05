@@ -1,0 +1,163 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "200bcb1dcb24443085cc77b6985485c6_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe offences alleged cannot be taken lightly and hence the interest of justice requires the complainant to get an order on merits."
+    },
+    {
+      "annotation_id": "bd5b40d635084010b59fce978fed2d47_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, it is seen that the complainant was also not vigilant in conducting the case."
+    },
+    {
+      "annotation_id": "da1528d3665848cfab35ceac92e8f717_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On the days on which he was absent, he ought to have informed the Assistant Public Prosecutor, who could have sought necessary adjournment from the trial court."
+    },
+    {
+      "annotation_id": "350b6192815b481f81766c1b377ca36e_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bappeal\\s+allowed\\b",
+          "matched_text": "appeal allowed",
+          "start": 68,
+          "end": 82
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 50,
+          "end": 59
+        }
+      ],
+      "text_preview": "In the interest of justice, the impugned order is set aside and the appeal allowed on condition that the 2024:KER:87170 complainant pays cost of 2,500/- to the District Legal Services Authority,\nKozhikode within a period of one month from t"
+    },
+    {
+      "annotation_id": "deeff11323f44347b265bd49879f2c5d_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that if the costs is not paid as directed, the appeal would stand dismissed."
+    },
+    {
+      "annotation_id": "17ec58116ade4363884c3ddb6c96f39a_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the event of compliance, the complaint shall stand restored to file and the trial court shall proceed with the complaint as per law."
+    },
+    {
+      "annotation_id": "0bce167ac1a44763a6fb792d1a45e0b7_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe appeal is disposed of as above."
+    },
+    {
+      "annotation_id": "06e19e58e99845f4b1b483292cbff1e3_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nInterlocutory applications, if any pending, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bappeal\\s+allowed\\b",
+      "matched_text": "appeal allowed",
+      "start": 68,
+      "end": 82
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 50,
+      "end": 59
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1797,
+      "facts": 807,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 8,
+    "ignored_entities": []
+  }
+}

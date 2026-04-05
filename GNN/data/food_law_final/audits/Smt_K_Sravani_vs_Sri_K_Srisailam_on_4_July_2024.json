@@ -1,0 +1,83 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2d7f9061eda1410e941fb97b514edac0_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Admittedly, in this case petitioner is suffering with cancer and distance between both the Courts is nearly 20 kilometers and this Court is of the considered opinion that in respect of transfer of proceedings of a matrimonial dispute, the c"
+    },
+    {
+      "annotation_id": "f10076cab450419a91edc68eed384014_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of above, this Court is of the opinion that sufficient grounds are made out on facts and in law to accept the plea of the petitioner-wife for transfer of F.C.O.P.No.17 of 2024 from the file of Family Court-cum- Senior Civil Judge Co"
+    },
+    {
+      "annotation_id": "8cd792af90154b73b514ef9ca7f3adc1_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the result, Transfer C.M.P is allowed with a direction to transfer F.C.O.P.No.17 of 2024 from the file of Family Court-cum-Senior Civil Judge Court, R.R.District at Shadnagar to the Judge,\nSenior Civil Judge Court at Kalwakurthy duly ind"
+    },
+    {
+      "annotation_id": "af33a6d9b9e94b7d8f4e344655d1ddb8_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be no order as to costs."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 299,
+      "facts": 384,
+      "arguments": 939
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

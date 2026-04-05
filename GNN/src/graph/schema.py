@@ -9,6 +9,8 @@ ENTITY_NODE_TYPES = (
     "respondent",
     "court",
     "judge",
+    "petitioner_lawyer",
+    "defence_lawyer",
     "lawyer",
     "statute",
     "provision",
@@ -61,6 +63,8 @@ RELATION_DEFINITIONS: dict[tuple[str, str, str], bool] = {
     ("case", "heard_in", "court"): True,
     ("case", "decided_by_bench", "judge"): True,
     ("case", "has_lawyer", "lawyer"): True,
+    ("case", "has_petitioner_lawyer", "petitioner_lawyer"): True,
+    ("case", "has_defence_lawyer", "defence_lawyer"): True,
     ("case", "mentions_org", "org"): False,
     ("case", "mentions_gpe", "gpe"): False,
     ("case", "has_case_number", "case_number"): False,
@@ -69,6 +73,15 @@ RELATION_DEFINITIONS: dict[tuple[str, str, str], bool] = {
     ("arguments", "cites_provision", "provision"): True,
     ("arguments", "cites_precedent", "precedent"): False,
     ("provision", "belongs_to_statute", "statute"): True,
+    # citation edges: lawyer -> arguments
+    ("petitioner_lawyer", "citation", "arguments"): True,
+    ("defence_lawyer",    "citation", "arguments"): True,
+    # bridging edges: shorten hop distance
+    ("provision",   "used_in_arguments", "arguments"): True,
+    ("statute",     "used_in_arguments", "arguments"): True,
+    ("petitioner",  "is_party_in_arguments", "arguments"): True,
+    ("respondent",  "is_party_in_arguments", "arguments"): True,
+    ("judge",       "presided_arguments", "arguments"): True,
 }
 
 

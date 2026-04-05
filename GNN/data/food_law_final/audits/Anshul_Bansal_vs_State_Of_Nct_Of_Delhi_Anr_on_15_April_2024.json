@@ -1,0 +1,115 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f6ff1a7518124533b49a2ffd004afc00_5",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. It is the case of the petitioner that in view of Section 89 of the Food Safety and Standard Act,\n2006, in case of an alleged violation of the said Act, the FIR cannot be registered and the case can only proceed on the complaint of the Fo"
+    },
+    {
+      "annotation_id": "7f49d50c579541d9a5daca63cccd6f1a_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe authenticity of the order can be re-verified from Delhi High Court Order Portal by scanning the QR code shown above."
+    },
+    {
+      "annotation_id": "143585dd875f4a35944ed0ce9f6fd848_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let notice of this petition be also served on the respondent no.2, through all modes, returnable on 25th July, 2024.\n"
+    },
+    {
+      "annotation_id": "4ed2de8e29494f36a80234fd3d333412_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Reply be filed within a period of four weeks of receipt of notice."
+    },
+    {
+      "annotation_id": "a26ccf3c399c4543b0226de46e6ce529_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Rejoinder thereto, if any, be filed within a period of three weeks thereafter."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 438,
+      "facts": 375,
+      "arguments": 203
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "2e682a635d9c4786bdbe592914366f83_3",
+        "entity_text": "Priyanka Dalal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2e682a635d9c4786bdbe592914366f83_3",
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bcde90d2e8d34dc99e60f2c22182b351_8",
+        "entity_text": "Priyanka Dalal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

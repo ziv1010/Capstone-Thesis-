@@ -1,0 +1,44 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "73ac6e4516e7415a857082097446287b_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It shall be done within six weeks from today based on the orders to be passed by the Pollution Control Board on the above application preferred by the WP(C) NO.\n13432 OF 2024 2024:KER:63829 petitioner and make a fresh application for renewa"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1652,
+      "facts": 404,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 1,
+    "ignored_entities": []
+  }
+}

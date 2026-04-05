@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f13d386527cf4db0bb9a8ca3f4b8f2d5_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. In view of the above, this writ petition is dismissed as withdrawn."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1319,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "e92b075dea674eaa917dd4daf014f4e5_2",
+        "entity_text": "Sakthivel ...Petitio",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

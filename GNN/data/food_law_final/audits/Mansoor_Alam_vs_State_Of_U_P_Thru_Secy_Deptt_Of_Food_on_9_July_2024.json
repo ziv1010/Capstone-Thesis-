@@ -1,0 +1,110 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ba61dea426cd44f69c5f7dcb6064d4cd_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nII. Issue a writ, order or direction in the nature of mandamus commanding &\ndirecting the opposite parties/ authorities concerned to grant, the petitioner, a license as a Food business Operator as provided under Regulation 2.1 (Chapter II)"
+    },
+    {
+      "annotation_id": "a8d8d8db908b4d7a85685e9d95ec1f81_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. The learned Standing Counsel has informed this Court that appropriate order directing NOC is to be passed by Superintendent of Police of the District concerned."
+    },
+    {
+      "annotation_id": "0a71d550809442728f366a03794be39c_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. This writ petition is disposed of with a direction to the petitioner to make fresh application to the Superintendent of Police, Gonda, within a week from today."
+    },
+    {
+      "annotation_id": "b3099197de6a4c72baf6ce91630c04d3_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If such an application is made, the Superintendent of Police, Gonda shall call for a report from the Station House Officer of the police station concerned and also from Nagar Palika Parishad, Gonda and then pass appropriate order, in accord"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1306,
+      "facts": 307,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "83b97dd796f54d0285dfb586bd4bc119_3",
+        "entity_text": "Shikhar Chaube",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "83b97dd796f54d0285dfb586bd4bc119_3",
+        "entity_text": "Akshya Tiwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "83b97dd796f54d0285dfb586bd4bc119_3",
+        "entity_text": "Saurabh Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8fdf91ea44af4ba9ba12b84ce34621a6_4",
+        "entity_text": "Ajitanshu Tripathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7fcf162a5f8046c29ac60858725bca47_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

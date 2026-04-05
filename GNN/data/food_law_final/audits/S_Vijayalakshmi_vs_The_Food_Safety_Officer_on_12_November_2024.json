@@ -1,0 +1,179 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ed48ae1326d840228cab68bb9c417ca4_42",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6.Admittedly, the petitioner was engaged in the packaging of lighting ghee in the name of Kubera Krishna Lighting ghee."
+    },
+    {
+      "annotation_id": "7481d1ca615d4aed9530b51a3369ea29_56",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 139,
+          "end": 146
+        }
+      ],
+      "text_preview": "In view of the above, the impugned order passed by the first respondent, dated 17.03.2018 cannot be sustained and the same is liable to be quashed."
+    },
+    {
+      "annotation_id": "79ad8d79dc124f44aae5d78e17fc1717_57",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "https://www.mhc.tn.gov.in/judis"
+    },
+    {
+      "annotation_id": "e23a1fe7109f40e998667d2be1e99927_58",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 107,
+          "end": 126
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 86,
+          "end": 93
+        }
+      ],
+      "text_preview": "8.Accordingly, the impugned order passed by the first respondent, dated 17.03.2018 is quashed and the Writ Petition is allowed."
+    },
+    {
+      "annotation_id": "25cab1f4b38340c499e5d5620dad984b_59",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The first respondent is directed to deseal the premises of the petitioner in Door No.82/L situated at Thirumalaisamypuram, Nagal Nagar, Dindigul, forthwith."
+    },
+    {
+      "annotation_id": "23bbfcd3dd8a4ffa9b87c38036bc3798_60",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be no order as to costs."
+    },
+    {
+      "annotation_id": "5894bbb60c21463d804bfcaed9e75f5c_61",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Consequently, connected Miscellaneous Petitions are closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 287,
+      "end": 306
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 139,
+      "end": 146
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 266,
+      "end": 273
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1549,
+      "facts": 1942,
+      "arguments": 141
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 57,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "d1792c19ca8d40f3a7dcb7a5755b1346_6",
+        "entity_text": "Vijayakumari Natarajan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "feeb8bcad6214da98f6beb9ca78f38b5_46",
+        "entity_text": "Dheepam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

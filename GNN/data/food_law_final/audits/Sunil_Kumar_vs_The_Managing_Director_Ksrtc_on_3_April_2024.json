@@ -1,0 +1,455 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "079f9791dcc046d5867e186304aa7535_7",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 108,
+          "end": 117
+        }
+      ],
+      "text_preview": "The appeal preferred by the claimant is founded on the premise of inadequacy of compensation awarded and to set aside the contributory negligence of 10% fastened against the claimant whereas, the appeal preferred by the Corporation is on th"
+    },
+    {
+      "annotation_id": "76a2f00f127d4bf2a9e55c756b17792c_33",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2024:KHC:17008 P21 are the medical bills, prescriptions and records to show the expenses expended by the claimant."
+    },
+    {
+      "annotation_id": "2fbeeec0d9144ebd879387c8a153b7fe_34",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. Now coming to the question of age, avocation, income and disability sustained by the claimant,\nthe claimant was aged 24 years as on date of occurrence of accident and the multiplier is applied at '18', which is correctly taken by the tr"
+    },
+    {
+      "annotation_id": "667353fe8de7474e9998632d977ab735_35",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The tribunal has assessed the notional income of Rs.10,000/- per month."
+    },
+    {
+      "annotation_id": "cefbe44bf1454fc8b251dfc699d39c96_36",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There is no documentary proof of evidence produced regarding the income."
+    },
+    {
+      "annotation_id": "911202ba1527489e809349a6d6321244_37",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The notional income chart for the accident of the year 2019 prescribes Rs.14,000/-."
+    },
+    {
+      "annotation_id": "2e5b74542f3c4ad9a8cb090eb57bff5f_38",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the income is taken as Rs.14,000/- per month as against Rs.10,000/- per month."
+    },
+    {
+      "annotation_id": "6da9af2e59f44b319811c9e8ec7afba7_39",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. PW.2-Doctor, opined the disability to an extent of 32.5% to the whole body."
+    },
+    {
+      "annotation_id": "de752036d11a44429110ea097668f8db_40",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The tribunal not agreeing with the degree of disability assessed by the Doctor, assessed disability of 20% to the whole body."
+    },
+    {
+      "annotation_id": "2729ad0d99cb4693b9e106867e64b31f_41",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nNC: 2024:KHC:17008 9."
+    },
+    {
+      "annotation_id": "a7aec941f839498ebac6ed3a37c96e57_43",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the tribunal has assessed the disability at 20%, which is erroneous."
+    },
+    {
+      "annotation_id": "f0508456e26d4784aefd2201f7926ee3_45",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the disability is taken at 16% rather than 20% as taken by the tribunal."
+    },
+    {
+      "annotation_id": "465ca519144c413c953d4c1441d599a4_46",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, loss of future income due to disability would be Rs.4,83,840/- (Rs.14,000/- X 12 X 18 X 16%) as against Rs.4,32,000/- awarded by the tribunal."
+    },
+    {
+      "annotation_id": "440d30eb5c0544a29c1685f13ef0c94b_47",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. Towards treatment, hospitalisation, medicines, and transportation, the tribunal awarded Rs.3,62,000/-, NC: 2024:KHC:17008 which does not call for interference and the same is retained."
+    },
+    {
+      "annotation_id": "b0b21d3d76df4dd9a8d6061920099946_48",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "11. Towards food, nourishment and miscellaneous expenditures, Rs.25,000/- is awarded by the tribunal, which appears to be on the lower side."
+    },
+    {
+      "annotation_id": "514e325c4eff4b26af74b14dfeebeaf8_49",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the claimant was inpatient for 2 months."
+    },
+    {
+      "annotation_id": "26ce5a11e91c493a88eb8e0ec1321799_50",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, this Court deems is appropriate to award Rs.75,000/- under this head."
+    },
+    {
+      "annotation_id": "2ac15fa36d1748b28493bd07f9f0387d_51",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "12. Towards loss of income during laid-up period, the tribunal awarded Rs.30,000/-."
+    },
+    {
+      "annotation_id": "16c4d3bb4cb142ba84cde6be3ab85261_52",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of this Court enhancing the income of Rs.14,000/- from Rs.10,000/- and the claimant was inpatient for 2 months, additional four months is required for him to recuperate and get back to his normal day Sunil Kumar vs The Managing Dire"
+    },
+    {
+      "annotation_id": "c7c84a1d5d8844d58e8257a9e1e686cc_53",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the claimant is entitled to Rs.84,000/- (Rs.14,000/- X 6) under this head."
+    },
+    {
+      "annotation_id": "9a0735fdf8ea4b9e8f4eb16e4ba95fa6_54",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "13. Towards pain and sufferings, the tribunal awarded Rs.1,00,000/-, which does not call for interference and the same is retained."
+    },
+    {
+      "annotation_id": "9f9f8dd2b3014457a4d625b87d3b4123_55",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n- 10 - NC: 2024:KHC:17008 14."
+    },
+    {
+      "annotation_id": "4d83cc7508354188bfbaeba5320d8537_56",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Towards loss of amenities, the tribunal awarded Rs.25,000/-, which does not call for interference and the same is retained."
+    },
+    {
+      "annotation_id": "58eabb3f9b3244daacf82e861eae1a69_57",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "15. Now coming to the question of contributory negligence passed by the tribunal, though learned counsels relied on Ex.P3, Ex.R4 and Ex.R5, it cannot be said that there is contributory negligence by the rider of the motorcycle."
+    },
+    {
+      "annotation_id": "09dfe895980548bf9b7bf636ec91516e_58",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the FIR and charge sheet is laid against the driver of the KSRTC Bus, which has not been questioned or challenged before any Court of law."
+    },
+    {
+      "annotation_id": "c24b2837f2c54fc4bc3e86cd80447e49_59",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, I do not find any cogent reason to interfere with fastening of contributory negligence of 10% against the claimant and there is no need to enhance the contributory negligence against the claimant as nothing satisfactory is placed"
+    },
+    {
+      "annotation_id": "3b7f545f93d94e6789a1867a570a4f28_60",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, 10% contributory negligence as ordered by the Tribunal, is retained."
+    },
+    {
+      "annotation_id": "39b0e4b1f6d4468da338ee53e8538ab3_62",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the above, the claimant would be entitled to a total compensation of Rs.10,16,856/- as against Rs.8,77,000/- as mentioned in the table below:\n Heads Amount in Rs.\nLoss of future income 4,83,840-00 Pain and sufferings 1,00,000-00 "
+    },
+    {
+      "annotation_id": "b317e9e5cd2447eb8afe43c925b1f1ed_63",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Loss of income during laid- 84,000-00 up period Food, conveyance and 75,000-00 attendant charges Medical expenses 3,62,000-00"
+    },
+    {
+      "annotation_id": "a055e3d8c3d8401295771443d104ea79_65",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Contributory negligence @ 1,12,984-00 10%\n TOTAL 10,16,856-00 Sunil Kumar vs The Managing Director Ksrtc on 3 April, 2024 Indian Kanoon - http://indiankanoon.org/doc/12472388/\n5 17."
+    },
+    {
+      "annotation_id": "aa6cfe1278464c76add4ce49547b1024_68",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, it is appropriate - 12 - NC: 2024:KHC:17008 to award interest @ 6% as against 9% awarded by the tribunal."
+    },
+    {
+      "annotation_id": "a3310e3259d8417aa91edec1df377af8_69",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "18. Accordingly, I pass the following:\nORDER i) The appeals are disposed off;\nii) The judgment and award dated 11.01.2021 passed by the Court of the VIII Additional Small Causes Judge and The Motor Accident Claims Tribunal at Bangalore (SCC"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 32,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 108,
+          "end": 117
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2180,
+      "facts": 1619,
+      "arguments": 371
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 38,
+    "ignored_annotations": 32,
+    "ignored_entities": [
+      {
+        "annotation_id": "32817b2b96d34246b69cf55ce656e5c1_2",
+        "entity_text": "RANGEGOWDA N.R.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d8e2ef24d2674e6ba354aff9ddd84430_3",
+        "entity_text": "SMT. S.NIRMALA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f1ee488fb1c841cdb79ed27ddf32fca6_4",
+        "entity_text": "RANGEGOWDA N.R.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

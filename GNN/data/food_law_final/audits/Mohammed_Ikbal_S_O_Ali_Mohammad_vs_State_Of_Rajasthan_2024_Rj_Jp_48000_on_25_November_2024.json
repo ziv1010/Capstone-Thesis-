@@ -1,0 +1,88 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "58bbdbfa262642a98e732c6acb31516a_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe civil writ petition is dismissed accordingly."
+    },
+    {
+      "annotation_id": "328e12c63d254b5281aee4b4e1317b6d_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Pending application(s), if any, also stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 2139,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "619ee18f98d14f328a119321090354df_7",
+        "entity_text": "Japhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "619ee18f98d14f328a119321090354df_7",
+        "entity_text": "Ali Mohammad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "62cf443c843845c8a8982af4485336fd_12",
+        "entity_text": "Khalid Khatri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "62cf443c843845c8a8982af4485336fd_12",
+        "entity_text": "Gulam Husain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "03575b5c5498468b9dbc437de0402bae_15",
+        "entity_text": "Mohammed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d73739ef94784d1e9457e4540110baf8_16",
+        "entity_text": "Ikbal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

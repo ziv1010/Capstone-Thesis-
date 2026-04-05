@@ -1,0 +1,96 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b9b8505d25cf4b8c9ad4b77bd3144ec4_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Nevertheless, violation of the State's Transfer Policy is alleged by the petitioner, which they ought to adhere to."
+    },
+    {
+      "annotation_id": "aec53a7f43884c6bab540434cc99971c_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn the circumstances, the Commissioner, Food Safety and Drugs Administration, U. P., Lucknow is ordered to decide the petitioner's representation dated 03.07.2024 within a week of receipt of a copy of this order in accordance with the Stat"
+    },
+    {
+      "annotation_id": "a7b695aed83e40c9aa34a265cbb3c278_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis petition is disposed of in terms of the aforesaid orders."
+    },
+    {
+      "annotation_id": "dc34e958c2214d03ac1af59f8a01bd65_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let this order be communicated to the Commissioner, Food Safety and Drugs Administration, U. P.,\nLucknow through the Civil Judge (Senior Division), Lucknow by the Registrar (Compliance) within 48 hours."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 420,
+      "facts": 541,
+      "arguments": 497
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "2140a46a74134357b5d7c9df4943cb38_5",
+        "entity_text": "A. K. Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6017814fc9b547aaa7da9f39556bc3ba_13",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

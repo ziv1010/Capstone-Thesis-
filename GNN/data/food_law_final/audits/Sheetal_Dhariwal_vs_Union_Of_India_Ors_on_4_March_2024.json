@@ -1,0 +1,58 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6d6dbcb69ddb40f5a8b27be448880478_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. Consequently, the present public interest litigation is dismissed."
+    },
+    {
+      "annotation_id": "480f453141df4b2296106d6c1d0913da_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the Petitioner is given liberty to file a fresh petition with the relevant data and after impleading the necessary parties."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 426,
+      "facts": 684,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 2,
+    "ignored_entities": []
+  }
+}

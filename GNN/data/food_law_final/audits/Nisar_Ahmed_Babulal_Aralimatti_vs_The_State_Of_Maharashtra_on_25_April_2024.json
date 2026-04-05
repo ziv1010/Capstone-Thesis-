@@ -1,0 +1,97 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "82e38ec53bd44017b6657cadbae6332d_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. In the matters having identical allegations, this Court has granted interim relief, as the question of applicability of Section 328 of the Penal Code in a case of the present nature awaits the decision of the Supreme Court."
+    },
+    {
+      "annotation_id": "3030ed821f9e43d98f55361f4277b9f7_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n909 aba 1091 of 2024.doc 5. In view of the above, in the event of arrest of the applicant in CR No.110 of 2024, registered with Supa Police Station, the applicant be released on bail on furnishing a PR Bond in the sum of Rs.30,000/- with o"
+    },
+    {
+      "annotation_id": "94f4e1e65d37480090acc552f81c1a49_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. The applicant shall cooperate with the investigation and report to the Investigating Officer as and when directed."
+    },
+    {
+      "annotation_id": "81c2c1a209aa454db5faf12ec45c3c68_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. The applicant shall not tamper with the prosecution evidence and give threat or inducement to the first informant and any person acquainted with the facts of the case."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 496,
+      "facts": 589,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "507d00b39824428d957a3902c022adff_12",
+        "entity_text": "Gutakha Pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6da0d81dad7b42c78670d67c05c8f732_19",
+        "entity_text": "S.S.Phadke",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

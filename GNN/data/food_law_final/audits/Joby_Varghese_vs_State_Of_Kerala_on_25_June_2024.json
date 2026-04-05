@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d0c3254e5f2e4938946e07839f9fd78e_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "this\n application and this Court's order dated 20/06/2024 therein"
+    },
+    {
+      "annotation_id": "754ee91c74334654a17bd2c9060fe93c_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nInterim order is extended till then."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1737,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "c47b4692bc6f40f5b927f984c0445b14_9",
+        "entity_text": "CHITHRA P.George",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

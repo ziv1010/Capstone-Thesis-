@@ -24,7 +24,7 @@ ALLOWED_ENTITY_LABELS = {
     "RESPONDENT": "respondent",
     "COURT": "court",
     "JUDGE": "judge",
-    "LAWYER": "lawyer",
+    "LAWYER": "lawyer",  # will be refined to petitioner_lawyer / defence_lawyer
     "STATUTE": "statute",
     "PROVISION": "provision",
     "CASE_NUMBER": "case_number",
@@ -33,6 +33,31 @@ ALLOWED_ENTITY_LABELS = {
     "GPE": "gpe",
     "PRECEDENT": "precedent",
 }
+
+_PETITIONER_SIGNALS = {
+    "for appellant", "for petitioner", "for the petitioner", "for the appellant",
+    "counsel for petitioner", "counsel for appellant", "sr. counsel for petitioner",
+    "senior counsel for petitioner", "adv. for petitioner", "advocate for petitioner",
+}
+_RESPONDENT_SIGNALS = {
+    "for respondent", "for the respondent", "for the state", "for state",
+    "counsel for respondent", "counsel for state", "sr. counsel for respondent",
+    "public prosecutor", "app. s/l", "a.g.a.", "a.p.p.", "addl. pp",
+    "additional public prosecutor", "government pleader",
+}
+
+
+def _infer_lawyer_side(raw_text: str, mention_start: int | None, mention_end: int | None) -> str:
+    """Return 'petitioner_lawyer' | 'defence_lawyer' | 'lawyer' (unknown)."""
+    if mention_start is None or mention_end is None:
+        return "lawyer"
+    start = max(0, mention_start - 300)
+    window = raw_text[start: mention_end + 150].lower()
+    if any(sig in window for sig in _PETITIONER_SIGNALS):
+        return "petitioner_lawyer"
+    if any(sig in window for sig in _RESPONDENT_SIGNALS):
+        return "defence_lawyer"
+    return "lawyer"
 
 SECTION_NAME_MAP = {
     "PREAMBLE": "preamble",
@@ -181,6 +206,13 @@ def extract_entities_from_annotations(
                 continue
 
             node_type = ALLOWED_ENTITY_LABELS[label]
+            # Refine generic LAWYER to side-specific type using context window
+            if node_type == "lawyer":
+                node_type = _infer_lawyer_side(
+                    raw_text=str(raw_result.get("data", {}).get("text", "") or ""),
+                    mention_start=entity.get("start"),
+                    mention_end=entity.get("end"),
+                )
             raw_name = normalize_whitespace(str(entity.get("text", "") or ""))
             candidate_name = normalize_whitespace(str(entity.get("normalized_name", "") or raw_name))
             canonical_name = normalize_entity_name(candidate_name, node_type)

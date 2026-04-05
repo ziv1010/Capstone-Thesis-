@@ -1,0 +1,45 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ee96cffe3bc8471992df20befdb32123_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He submits that for the purpose of this petition, the petitioner will be satisfied if appropriate directions are given to learned Chief Judicial Magistrate, Ambala to decide the application within specific time frame so that the petitioner "
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 359,
+      "facts": 329,
+      "arguments": 375
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 1,
+    "ignored_entities": []
+  }
+}

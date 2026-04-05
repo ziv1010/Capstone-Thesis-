@@ -1,0 +1,181 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "34365b1d91a74e939976ad1008476ca1_9",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_RESPONDENT"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 136,
+          "end": 145
+        }
+      ],
+      "text_preview": "\nOn the other hand learned Standing Counsel has submitted that till the Special Adverse Entry passed against the petitioner will not be set aside, he is not entitled for any service benefits."
+    },
+    {
+      "annotation_id": "6de3d4a4dbe14f98887cdfbccc145ba9_10",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "After hearing learned counsel for the parties and going through the records available, it is found that the petitioner has made a representation within 45 days of the communication of the Special Adverse Entry dated 08.08.2022 as per Rule 4"
+    },
+    {
+      "annotation_id": "0a08de10c1b3465aa99e1f12ac30cb22_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The representation made by the petitioner is to be decided by the Competent Authority or Accepting Authority, as the case may be, within a period of 120 days as per Rule 4 (4) of the Rules, 1995 from the date of expiry of 45 days specified "
+    },
+    {
+      "annotation_id": "0afb02ba0e1341b59321b90021e3231c_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nSub Rule 3 of Rule 4 of the Rules, 1995 provides that the Competent Authority or Accepting Authority as the case may be, shall within a period not exceeding one week from the date of receipt of the representation under sub-Rule (2), transm"
+    },
+    {
+      "annotation_id": "948b4206093b4e5a8f08b9e85a049fd5_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Perusal of aforesaid provisions the maximum period of 180 days is provided to the Competent Authority or the Accepting Authority to take decision on the representation of the delinquent employee against the adverse annual confidential repor"
+    },
+    {
+      "annotation_id": "9edcafe89c754a7daf3411ff610abf23_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the present case, period of 180 days has already expired in March, 2023 and now February, 2024 is going on."
+    },
+    {
+      "annotation_id": "aa87ea92c9fd4423b61914dabd24ad0d_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Rule 5 of the Rules, 1995 provides that the adverse entry of a Government Servant will not be considered for the purpose of promotion and other service benefits only on two eventuality firstly,\nwhere the adverse report is not communicated a"
+    },
+    {
+      "annotation_id": "8f349ea325854bb9bff22c84e05722a2_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "For convenience, the Rule 5 of the Rules,\n1995 is quoted hereinbelow:-\nRam Milan Rana vs State Of U.P. Thru. Addl. Chief Secy. ... on 21 March, 2024 Indian Kanoon - http://indiankanoon.org/doc/174115904/\n2 \" 5. Report not to be treated adve"
+    },
+    {
+      "annotation_id": "47a31f9dff574c1198b8d7e215204618_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Where an adverse report is not communicated or a representation against an adverse report has not been disposed of in accordance with Rule 4, such report shall not be treated adverse for the purposes of promotion, crossing of Efficiency Bar"
+    },
+    {
+      "annotation_id": "494bc8ec014740498bd91e63e9bfd64a_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\"\nIn the light of the statutory provisions, in case representation of the petitioner has not been decided by the Competent Authority or the Accepting Authority, as the case may be, the Special Adverse Entry dated 08.08.2022 shall not be tak"
+    },
+    {
+      "annotation_id": "2626639173b547979ad6aee61e7f0eb0_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn view of the above, the writ petition stands allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 11,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 135,
+          "end": 144
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 488,
+      "facts": 1102,
+      "arguments": 195
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 11,
+    "ignored_entities": []
+  }
+}

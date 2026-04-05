@@ -1,0 +1,88 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "00cc3912fcbd42dabfa7d6725180d9eb_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In view of the statement made by the learned Standing Counsel on instruction, this writ petition is dismissed on the ground of an alternative remedy, leaving it open for the petitioner to prefer an appeal before the Tribunal under Sectio"
+    },
+    {
+      "annotation_id": "8c4d3bead5294e40bfdef91f2e5d15bd_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If such an appeal is filed by the petitioner within four weeks from today along a certified copy of this order,\nit shall be decided by the Tribunal in accordance with law on merit without raising any objection as to the limitation."
+    },
+    {
+      "annotation_id": "32e1dea68335408590978bb9a6a6a5fe_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. It is made clear that we have not expressed any opinion on merits of the case of the petitioners."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 342,
+      "facts": 0,
+      "arguments": 357
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "0c105401f7ea44bfbf143642f7da51eb_5",
+        "entity_text": "Dileep Kumar Kesarwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "88bd979c78e4450ca38c5593646b2b90_7",
+        "entity_text": "Dileep Kumar Kesarwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "737f60cb454a434b83572c3e438ef50a_14",
+        "entity_text": "Abhishek",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

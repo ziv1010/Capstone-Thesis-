@@ -1,0 +1,176 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "22a5788d1ae64a259eb6f5bf171995f6_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Perused the papers of investigations, particularly report and the seizure panchanama."
+    },
+    {
+      "annotation_id": "ae3bca216e87492b96cf959a96e253e2_30",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Their case is that they are not knowing that they are transporting the contraband which is prohibited in Maharashtra."
+    },
+    {
+      "annotation_id": "9c96a6a4a2f64f2899ed1b0d57e28bc8_31",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nConsidering this fact and without adverting to the merits of the case, the applications deserve to be allowed on certain conditions."
+    },
+    {
+      "annotation_id": "d585e773cc8a43b89aa9a12cea23c6c0_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the following order."
+    },
+    {
+      "annotation_id": "2c9ca928a11a40e39ef90e12a9c1fe71_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "ORDER I."
+    },
+    {
+      "annotation_id": "b211e1f14ed043988ba0dbeec5438398_34",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Applications are allowed."
+    },
+    {
+      "annotation_id": "3a465e9407de4c1a84baa50d22f2d21d_35",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "II. The applicants in connection with crime No. 61 of 2024 registered at Shirpur City Police Station,\nDist. Dhule, for the offences punishable under section 328, 272, 273, 188, 34 of the Indian Penal Code and sections 26(2)(iv), 27(3)(d), ("
+    },
+    {
+      "annotation_id": "ed5203580d2346bd896836025ca5f010_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nd) They shall not indulge in such activities henceforth."
+    },
+    {
+      "annotation_id": "e506b6eea607456fa5316be425a7676c_38",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The trial Court shall release the applicants on bail as soon as they deposit the amount mentioned above."
+    },
+    {
+      "annotation_id": "4c9b138dea6441078eeefe7525f46c8e_39",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "II. If any breach of the above conditions is found, the prosecution is at liberty to proceed against the applicants-accused for cancellation of bail and the trial Court is at liberty to decide that issue without reference to this Court."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 713,
+      "facts": 1009,
+      "arguments": 123
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 31,
+    "ignored_annotations": 10,
+    "ignored_entities": [
+      {
+        "annotation_id": "b47fbdb80d744a01ac706191c1b4ae65_11",
+        "entity_text": "Baviskar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "eac6eb7bfbf54dfba4ec3e8f1012ca71_15",
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

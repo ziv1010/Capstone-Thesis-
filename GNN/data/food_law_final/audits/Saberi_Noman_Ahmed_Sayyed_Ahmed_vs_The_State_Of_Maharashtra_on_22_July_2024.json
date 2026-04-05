@@ -1,0 +1,135 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "be1d10e471b440b28834dd523fd6e977_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence requested to reject the application."
+    },
+    {
+      "annotation_id": "67da4b751acd44baae0a3ee48b6aee25_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The allegations against the Saberi Noman Ahmed Sayyed Ahmed vs The State Of Maharashtra on 22 July, 2024 Indian Kanoon - http://indiankanoon.org/doc/86168828/\n2 applicant are that he had sent co-accused to see if the vehicle carrying out th"
+    },
+    {
+      "annotation_id": "64e3bd84988a453bab8882260659647a_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Except this allegation, there  aba903.24  -3- are no allegations against the applicant."
+    },
+    {
+      "annotation_id": "a96e6d3b755848fe8d8d0d5f9f15a29b_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the allegations against the applicant, the custodial interrogation of the applicant is not required."
+    },
+    {
+      "annotation_id": "31f1c7c314cb457882570ce5049eafca_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence I pass the following order :-\n ORDER (i) The application is allowed.\n(ii) The interim anticipatory bail granted to the applicant vide order dated 04.06.2024 stands confirmed on the same terms and conditions.\n"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 491,
+      "facts": 278,
+      "arguments": 593
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "c0c7dc5f9bfd4059b9d2c4b1516c5799_11",
+        "entity_text": "Rafik Abdul Shabir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0c7dc5f9bfd4059b9d2c4b1516c5799_11",
+        "entity_text": "Amin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0c7dc5f9bfd4059b9d2c4b1516c5799_11",
+        "entity_text": "Ulla Shami Ulla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0c7dc5f9bfd4059b9d2c4b1516c5799_11",
+        "entity_text": "Alok Rajeshwar Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c0c7dc5f9bfd4059b9d2c4b1516c5799_11",
+        "entity_text": "Yogesh Nitin Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ccb96b421aa44d84981d97817eef0099_12",
+        "entity_text": "Alok Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ccb96b421aa44d84981d97817eef0099_12",
+        "entity_text": "Yogesh Yadav",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

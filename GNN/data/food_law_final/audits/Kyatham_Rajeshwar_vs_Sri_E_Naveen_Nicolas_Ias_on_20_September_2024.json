@@ -1,0 +1,77 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "60c557eec6cd4b6ba142def45cd7f0ae_1",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis Contempt Case is filed for alleged violation of the order passed by this Court in W.P.No.32318 of 2023, dated 01.12.2023.\n2."
+    },
+    {
+      "annotation_id": "858959011a3b497196811343afe9adbe_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Recording the said submission, the Contempt Case is closed."
+    },
+    {
+      "annotation_id": "a2ee4c243def428ca26c38c79eb7d4da_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMiscellaneous petitions if any, pending in this Contempt Case shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 144,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "2aa34a2849bc4bdfbcbe90d6b57c2e88_2",
+        "entity_text": "M.Ramgopal Rao",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

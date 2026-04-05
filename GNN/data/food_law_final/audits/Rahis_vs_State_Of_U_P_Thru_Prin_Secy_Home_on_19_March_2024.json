@@ -1,0 +1,85 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f5cb392ab4794f648449af3cdbb7a1cb_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. Petitioner has approached this Court for issuance of a writ of mandamus commanding and directing the respondent No.3 to decide the application of the petitioner dated 26.09.2023 (Annexure No.1 to the writ petition) pending before him fo"
+    },
+    {
+      "annotation_id": "2f4301ed17f6450d8b54033de2d5025e_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Looking into the facts and circumstances of the case, without entering into the merits of the case,\nrespondent no.3- Prescribed Authority, Food Safety & Drug Administration Officer, Bahraich is directed to consider and decide the repres"
+    },
+    {
+      "annotation_id": "71e1b6fa991c411f8bbe4c06447bf025_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, while deciding the representation of the petitioner, respondent No.3 shall seek a detailed report from the concerned police authority and also the Municipal Authority as to whether the proposed shop falls in a commercial or in a re"
+    },
+    {
+      "annotation_id": "81effabe575d4cebb2aca28cf9bcc8b0_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. With the aforesaid direction, present writ petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 264,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d87ef4b6cba246da8263713faecc7d09_25",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nhttps://www.mhc.tn.gov.in/judis"
+    },
+    {
+      "annotation_id": "ec844491cfb54e769492ed4ffafbd0a3_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\"(3) The Designated Officer after scrutiny of the report of Food Analyst shall decide as to whether the contravention is punishable with imprisonment or fine only and in the case of contravention punishable with imprisonment, he shall send "
+    },
+    {
+      "annotation_id": "8c117b683cc74698a0edbce601689f49_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nT.Sundarammal vs The Food Safety Officer on 11 November, 2024 Indian Kanoon - http://indiankanoon.org/doc/163208894/\n2 5."
+    },
+    {
+      "annotation_id": "1eeeb760f56c495f9ce8621363ecb80e_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Under Section 42 of the said Act, the Food Safety Officer shall have to send his recommendation for prosecution within 14 days from the date of receipt of analysis report to the Commissioner of Food Safety for sanction the prosecution."
+    },
+    {
+      "annotation_id": "54f2c5a8cc284771afbf436dcbe9c80c_29",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In case of contravention is punishable with imprisonment or fine only, the first respondent need not send a communication for sanction within a period of 14 days."
+    },
+    {
+      "annotation_id": "17415d71089442b4991ae76d1b04a20a_30",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, it is applicable only its where the contravention is punishable with imprisonment."
+    },
+    {
+      "annotation_id": "50a99f62c88145d3bc9dfc3452589e02_31",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. In view of the above, the judgment referred to above case is not applicable to the facts of present case."
+    },
+    {
+      "annotation_id": "2fd956d41b8d4f7d8c4876ae9b3b5093_32",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "That apart, though the petitioners filed a writ petition and it is pending without any interim order so far, they have not complied the order passed by the first respondent."
+    },
+    {
+      "annotation_id": "0735088f9457414db4df132e405a1a08_34",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the above, this Court finds no infirmity or illegality in the order passed by the second respondent and this writ petition is devoid of merits and it is liable to be dismissed."
+    },
+    {
+      "annotation_id": "83540e32831141ef8ed6d53a8da05550_35",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The first respondent is directed to take appropriate action as against the petitioner for non-compliance of the order passed by the second respondent, forthwith."
+    },
+    {
+      "annotation_id": "681a9347bd534852982c929edab1eb6c_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, the writ petition stands dismissed."
+    },
+    {
+      "annotation_id": "06bcc3d5e5034fa1b179f65523358754_38",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 214,
+      "end": 270
+    }
+  ],
+  "suspicious_annotation_count": 12,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1119,
+      "facts": 647,
+      "arguments": 185
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 32,
+    "ignored_annotations": 12,
+    "ignored_entities": [
+      {
+        "annotation_id": "6495ad8da3fb425f9c9f8772060245ae_11",
+        "entity_text": "Kushali Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "345c7f8a7a5541b0965d027ba1c0efd4_41",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6414eb37c30345f8b76452ccf68960dc_43",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

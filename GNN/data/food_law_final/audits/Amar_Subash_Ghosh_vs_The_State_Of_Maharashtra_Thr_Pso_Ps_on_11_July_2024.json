@@ -1,0 +1,94 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2ed0684f9c1941a0b5a38efc4f4d9d5c_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As far as the custodial interrogation of the present applicant is concerned, which is not required as entire stock is already recovered by the Investigating Officer."
+    },
+    {
+      "annotation_id": "e609cdb556a940af8e7c7c402c04c025_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of that, the prayer for grant of ad-interim protection deserves to be allowed by imposing certain conditions."
+    },
+    {
+      "annotation_id": "5d4bb7a911e744da9f2bbfb0f423f158_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, I proceed to pass following order:\n (3) 14.aba  ORDER (I) In the event of arrest in connection with Crime No.45/2024 registered with Police Station,\nDhanora, District Gadchiroli for the offences punishable under Sections 188, 2"
+    },
+    {
+      "annotation_id": "1d9b986cd61840bc96638eac860da252_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "(ii) The applicant shall attend concerned Police Station as and when required for the investigation purpose and shall cooperate with the investigating agency."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1303,
+      "facts": 103,
+      "arguments": 385
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "c9b6cdb5d3474c92ad7f7726e797268a_2",
+        "entity_text": "Gadchiroli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3e24b6395f1f4d76bc83f221a901c229_3",
+        "entity_text": "Suresh Posanna Torem",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

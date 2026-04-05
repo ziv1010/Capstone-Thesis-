@@ -1,0 +1,134 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d34f59ed0a2741a9bac5385553b659aa_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner undertakes to compound the offence."
+    },
+    {
+      "annotation_id": "acb72ebafdd248e1be6c4e2fada700a8_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe petitioner has to pay the compounding charges to the tune of Rs.5,000/-."
+    },
+    {
+      "annotation_id": "e1e317c83d894cbc8eb537b1625c8cd6_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The second respondent shall issue proceedings immediately and the petitioner shall also remit the same."
+    },
+    {
+      "annotation_id": "44f979ab07c3473586bf55b995650dc2_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Subject to the petitioner compounding the offence, the lock and seal shall be removed."
+    },
+    {
+      "annotation_id": "549f617c52284c8f8d1155d2df5cbfac_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The entire exercise shall be completed within a period of seven days from the date of receipt of a copy of this order."
+    },
+    {
+      "annotation_id": "c1884d013c3348899da406ed522543da_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 13,
+          "end": 32
+        }
+      ],
+      "text_preview": "\n3.This writ petition is allowed on these terms."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 452,
+      "end": 471
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1475,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 28,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "a27e44412df04fcd95077d8a2173a09f_9",
+        "entity_text": "A.Albert James",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

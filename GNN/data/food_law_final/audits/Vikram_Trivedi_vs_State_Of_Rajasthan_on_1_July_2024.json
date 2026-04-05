@@ -1,0 +1,137 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a953fc749e594993b5361b3aa3f3cbbb_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "[CRLMP-8909/2022] Section 77 of the FSSA Act reads as under.\n77. Time limit for prosecutions.-\nNotwithstanding anything contained in this Act"
+    },
+    {
+      "annotation_id": "b40f17ff8eb7433da90ad79302a3df07_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", no court shall take cognizance of an offence under this Act after the expiry of the period of one year from the date of commission of an offence:Provided that the Commissioner of Food Safety may, for reasons to be recorded in writing,\napp"
+    },
+    {
+      "annotation_id": "454ea2be92984fc09154efdbfdda7d48_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nA plain reading of the provision makes it abundantly clear that the ordinary period of taking cognizance of any offence under this Act is one year from the date of commission of the offence, but as per the proviso, the Commissioner of Food"
+    },
+    {
+      "annotation_id": "589fe6bc646045e3ae507ff3733c7eaf_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The complaint had been submitted in this matter within the approved period thus prima facie no case is made out for quashing of the entire proceeding on the ground of limitation alone."
+    },
+    {
+      "annotation_id": "eb72bdb970f746c4a6f7c8f972c5ff88_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Accordingly, there is no force in the instant miscellaneous petition."
+    },
+    {
+      "annotation_id": "fe55d9e5f5d64e45911ca935f0ac41e3_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The same deserves to be and is hereby dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1804,
+      "facts": 655,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "ec465cab13fc4774b17f090d32e0a47a_2",
+        "entity_text": "Vikram Trivedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ec465cab13fc4774b17f090d32e0a47a_2",
+        "entity_text": "Govind Lal Trivedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cffb1f8180504f738d063c4f06d1d0a0_3",
+        "entity_text": "Staya Narayan  Kabra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "050eea7e8e8248089caf3e4aedb0fbae_4",
+        "entity_text": "Hanuman Sahai Badaya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2b7b5b0f9ffc4acfa989d86940a52d83_5",
+        "entity_text": "Hanuman Sahai Badaya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "34850f4439b74a88b385f637d5ec2134_7",
+        "entity_text": "Sandeep Agarwal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

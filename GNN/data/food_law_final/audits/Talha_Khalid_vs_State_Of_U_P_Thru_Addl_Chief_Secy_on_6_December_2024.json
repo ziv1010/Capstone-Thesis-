@@ -1,0 +1,116 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "79e8bd1e68e0488cb45b02dad4adaa7e_25",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, he has left it to the discretion of the Court to pass appropriate order."
+    },
+    {
+      "annotation_id": "dfa9e3aa6f2c422d8ed0df8a53204e09_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Considering the aforesaid, particularly the fact that the petitioner has worked for 3 years on Class III post before impugned order came to be passed on the ground that the petitioner does not have typing efficiency of 25 words per minut"
+    },
+    {
+      "annotation_id": "9e223c4128e3462eb51c6ce3d05c7c06_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If the petitioner fails despite the last opportunity, which is granted by this Court in exercise of equity jurisdiction, the petitioner shall continue on Class IV post."
+    },
+    {
+      "annotation_id": "957b7e80fd924970ba865853a50f61a5_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 54,
+          "end": 81
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 49,
+          "end": 81
+        }
+      ],
+      "text_preview": "9. With the aforesaid direction/observation, the writ petition stands disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 223,
+      "end": 250
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 218,
+      "end": 250
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "annotation_fallback:facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 615,
+      "facts": 657,
+      "arguments": 624
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "8fac930281a34ba29621229fc34be49d_5",
+        "entity_text": "B.K. Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

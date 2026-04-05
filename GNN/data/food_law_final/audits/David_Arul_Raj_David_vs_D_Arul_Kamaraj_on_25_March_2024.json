@@ -1,0 +1,144 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9ea6e6ac98a74a929f0c8345ac127a9a_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the trial Court has taken on file in C.C.No.143 of 2021 is erroneous one."
+    },
+    {
+      "annotation_id": "f175b6e4c8b54730937729be98bc0e3e_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Further, on considering the records, it reveals that there is no prima facie materials against the petitioner involved in unlawfully activities with dishonest intention the part of the petitioner, hence there is no criminal offence is made "
+    },
+    {
+      "annotation_id": "1bd03cb6a7ad4be5b4e72bd021478615_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, this Court is of the view that the dispute is civil in nature,\nthus Civil dispute has been given criminal colour."
+    },
+    {
+      "annotation_id": "d4e6640b623c4f4a8d7f093bed05b3ff_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, this Court is inclined to quash the proceedings in C.C.No.516 of 2023 pending on the file of the learned Judicial Magistrate,\nPallavaram.\n"
+    },
+    {
+      "annotation_id": "cfe0d6d486da4a67b8e7522ac048fd93_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 41,
+          "end": 60
+        }
+      ],
+      "text_preview": "6. In the result, this Criminal Original Petition is allowed."
+    },
+    {
+      "annotation_id": "29ab22dccdff40b78efdbdab33360029_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 187,
+      "end": 206
+    },
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 208,
+      "end": 264
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 334,
+      "facts": 168,
+      "arguments": 940
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "87b99009bfb24cc99d5759514126c668_29",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

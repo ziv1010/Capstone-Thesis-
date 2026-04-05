@@ -1,0 +1,160 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d3962b8dc0294844a57eafd61cf72f8e_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "on 21 August, 2024 Indian Kanoon - http://indiankanoon.org/doc/93001428/\n2 Administration, U.P., Lucknow.\n9."
+    },
+    {
+      "annotation_id": "a39d4cffffe8424a81ad747fc82217ac_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Since the person who has been transferred in place of the petitioner could not submit his joining at Ayodhya for his compelling medical reasons, therefore, no third party interest has been created by now."
+    },
+    {
+      "annotation_id": "4519279a98bd4d2eb4ea2d14a401e12d_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Further, the grievance of the petitioner appears to be bonafide, therefore, it should have been considered sympathetically."
+    },
+    {
+      "annotation_id": "d70d4f3785e74c3bbde28dc21b6bcf17_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. Therefore, without entering into the merits of the issue, liberty is given to the petitioner to prefer a fresh representation to opposite party No.2/ Commissioner, Food Safety And Drug Administration, U.P., Lucknow, taking all pleas and"
+    },
+    {
+      "annotation_id": "5a9835e3007e4dbdab3d2c76b16fb27c_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Till the disposal of the aforesaid application or a period of two months, whichever is earlier, the petitioner shall not be relieved from his present place of posting i.e. Ayodhya, if he has not been relieved as on today, and he shall be pe"
+    },
+    {
+      "annotation_id": "6cbe0220dfe04095902ccd4f5a56cc74_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "With the aforesaid directions, the writ petition is disposed of finally."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 585,
+      "facts": 506,
+      "arguments": 1382
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "d1d7a138864543ceb550e24bac34e079_3",
+        "entity_text": "Rakesh Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d1d7a138864543ceb550e24bac34e079_3",
+        "entity_text": "Jogendra Nath Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "62bae35d6faf40548bb864af237acf6a_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e8d3b248503149f4be5420473176ebfe_11",
+        "entity_text": "Pradeep Kumar Maurya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e8d3b248503149f4be5420473176ebfe_11",
+        "entity_text": "Pradeep Kumar Maurya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e81740ce6d2a449980bbb4bdc7497641_12",
+        "entity_text": "Pradeep Kumar Maurya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b1a988f599484342b0f40c3641671f0a_14",
+        "entity_text": "Pradeep Kumar Maurya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b1a988f599484342b0f40c3641671f0a_14",
+        "entity_text": "Pradeep Kumar Maurya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b33a2cd931774296870e5d23009b26e8_17",
+        "entity_text": "Jogendra Nath Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3d2b8590eb1d477d979e6ebefea25785_25",
+        "entity_text": "Manoj K.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

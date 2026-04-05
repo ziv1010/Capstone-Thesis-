@@ -1,0 +1,74 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b7e25fbadcc24aafbf371d1d5688ef84_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. The Order dated 21.02.2023 be complied with before the next date of hearing."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1383,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 38,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "de933d4775ab4877820e9fa7e9448414_10",
+        "entity_text": "Adit S. Pujar  Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "de933d4775ab4877820e9fa7e9448414_10",
+        "entity_text": "Ze",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "04efed514b7045598149f6581e52e667_18",
+        "entity_text": "Nikhil Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "04efed514b7045598149f6581e52e667_18",
+        "entity_text": "Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "04efed514b7045598149f6581e52e667_18",
+        "entity_text": "Bi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "38bf8267226d450ab50c15e78a1f460f_35",
+        "entity_text": "S. Zakir",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "2457980e20814baa9da841b85cf19bcc_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Without entering into the merits of the case, this writ petition is disposed of with a direction to respondent no. 3 to take appropriate decision for grant of license as expeditiously as possible,\npreferably within a period of two weeks fro"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 648,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 5,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "35c50ca06fe347fb8514b2f1bc20f50d_5",
+        "entity_text": "A. Mandhani",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "135be63b3cb74c82911fac304883993d_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "03. It is seen that by order dated 09.12.2020, the operation of the impugned order dated 04.12.2020 as well as order dated 18.03.2020 was stayed with further clarification that the respondents shall permit the petitioner to continue on the "
+    },
+    {
+      "annotation_id": "338c78f987a04b239cc270b79795df78_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "04. A period of more than three years has already elapsed since the passing of the transfer orders and by virtue of interim orders the petitioner has already continued on his present place of posting."
+    },
+    {
+      "annotation_id": "7f2fab1cff2042abb3367c4a13d8e8ef_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 193,
+          "end": 200
+        }
+      ],
+      "text_preview": "05. Thus in the facts as are available as on date, the impugned transfer orders dated 18.03.2020 (Annexure P/7), 24.03.2020 (Annexure P/11) and 04.12.2020 (Annexure P/19) of the petitioner are quashed reserving liberty to the respondents to"
+    },
+    {
+      "annotation_id": "2f5b2e5f5a5e43c89a652a70434fd3ca_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "06. With the aforesaid directions, petition stands disposed off."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 668,
+      "end": 675
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1525,
+      "facts": 220,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "7a706950982c45dfac2df027adeef587_8",
+        "entity_text": "SHILPA NAGDEVE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

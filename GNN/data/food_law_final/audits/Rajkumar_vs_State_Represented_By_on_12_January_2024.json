@@ -1,0 +1,54 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8337001b69354b688f0cdd69e5bb5d08_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Recording the said submission, this Criminal Original Petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1039,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "c793e97156624b0ebbb45ae9823604a0_5",
+        "entity_text": "R.M.Anbunithi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6a255bc0d4b24c0f926dbdc256d8e8e7_15",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

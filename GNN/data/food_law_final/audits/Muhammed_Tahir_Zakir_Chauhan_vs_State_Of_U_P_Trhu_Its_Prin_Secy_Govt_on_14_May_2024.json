@@ -1,0 +1,125 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8558a32fa407495887f1176fb2ba3d88_44",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. Considering the submissions made at the Bar, prima facie, without going into the merits of the arguments with regard to the allegation leveled against the applicants specially with regard to exercise of sovereign functions without any a"
+    },
+    {
+      "annotation_id": "d3558cba6c8a4204b86b3b2ed1852fc0_45",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the bail application is allowed."
+    },
+    {
+      "annotation_id": "77f29744faad424bbc232ca35f10f8e4_46",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. Let the applicants namely (1) Muhammed Tahir Zakir Chauhan, (2) Mohammed Anwar Muhammed Ali Khan (3) Maulana Habib Yusuf Patel (4) Muddassir Mohammed Iqbal Sapadia, be released on bail in FIR/ Case Crime No. 332 of 2023, under Sections "
+    },
+    {
+      "annotation_id": "e9324c3da84b485db656575474874792_47",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(c) The applicants shall not leave the country without prior permission of the trial Court;\n(d) The applicants shall surrender their Passports with the trial Court."
+    },
+    {
+      "annotation_id": "25bbd0d5bd314ef1bdebcc1b3e101740_48",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(e) The applicants shall not commit any offence similar to the offence of which they are accused or suspected of the commission; and (f) The applicants shall not directly or indirectly make any inducement, threat or promise to any person a"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1770,
+      "facts": 1249,
+      "arguments": 1576
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 45,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "dca7e93c55124c36962b2ca47e04205d_18",
+        "entity_text": "Vikas Vikdram Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "dca7e93c55124c36962b2ca47e04205d_18",
+        "entity_text": "V.K. Shahi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "dca7e93c55124c36962b2ca47e04205d_18",
+        "entity_text": "Anurag Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "31ac57b304414250a7402b00d6473c0d_42",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "af68811ddcff442eac0424641a0a2ec7_49",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

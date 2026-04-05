@@ -1,0 +1,196 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c15a0269ec9c44d288076982d51b6e44_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He also produced a copy of the order dated 07.03.2024 in W.P.Nos.4457 of 2022 etc. passed by this Court, which reads as under:\nIn these four writ petitions, the impugned orders have been passed contrary to the principles of natural justice "
+    },
+    {
+      "annotation_id": "57f0b352ed2f4fc7b206bcfadf2bc609_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In all other https://www.mhc.tn.gov.in/judis cases, the impugned order has come to be passed without hearing the petitioners."
+    },
+    {
+      "annotation_id": "4f2112905c3344429b881eb57823c851_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. In such circumstances, and since Mr.Kumaresan, learned Additional Advocate General would also fairly accede to the position that there has been no hearing of the petitioners prior to passing of the impugned orders dated 04.01.2022, 10.0"
+    },
+    {
+      "annotation_id": "3fad461f9651483eb8ce6201afe584aa_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Orders, de novo, will be passed prior to 19.04.2024 in accordance with law and the Food Safety Standards,\nAct 2006 and allied Rules."
+    },
+    {
+      "annotation_id": "e0713e1cdcc440af99dc074a2224a220_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 24,
+          "end": 33
+        }
+      ],
+      "text_preview": "\n3. Impugned orders are set aside on the short point of violation of principles of natural justice alone."
+    },
+    {
+      "annotation_id": "a87527fb405f44ba974e29f675dd8052_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThese writ petitions stand disposed in terms of this order."
+    },
+    {
+      "annotation_id": "0b11b0e5a661444b8ebcb18923a71425_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No costs."
+    },
+    {
+      "annotation_id": "a3c53805b26e4f1b9a9014ce253d8b20_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Connected miscellaneous petitions are closed."
+    },
+    {
+      "annotation_id": "30c8e7c819844d47b2da906832cf086e_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. The learned Special Government Pleader appearing for the respondents submits that this Court may direct the 2nd respondent to send the samples for reanalysis and after re-analysing the said sample produced by the second respondent if it "
+    },
+    {
+      "annotation_id": "afe1c385bb8a4fe6a61a6d53aeb5ec1d_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 44,
+          "end": 53
+        }
+      ],
+      "text_preview": "In view of the above, the impugned order is set aside and the Writ Petition is disposed of directing the second respondent to send the sample of HANS Chaap Tobacco for Referral Food Laboratories for the purpose of carrying out analysis of t"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 283,
+      "end": 292
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 919,
+      "end": 928
+    }
+  ],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1642,
+      "facts": 1365,
+      "arguments": 984
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 10,
+    "ignored_entities": []
+  }
+}

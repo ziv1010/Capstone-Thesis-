@@ -1,0 +1,93 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8dfb02e1ded145d6b673237b7fed33a0_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is submitted that, while issuing the fresh e-Tender notice, care shall be taken to incorporate necessary terms and conditions under the FSSAI Act, 2006.\n03."
+    },
+    {
+      "annotation_id": "2456609279b04afcb67d621c70f405b2_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the aforesaid submissions made by learned counsel for the respondent-SKIMS that the grievance of the petitioner in this petition stands redressed, this petition is virtually rendered infructuous and is disposed of as such."
+    },
+    {
+      "annotation_id": "181b365f8b9b4a1fbca1d63417d5a054_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The respondents shall issue fresh e-Tender for the work in question."
+    },
+    {
+      "annotation_id": "a3dc35a35f854807b1430fb6c2499204_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The respondents, while doing so, shall keep in view the requisite terms and M/S. Albanit And Co. Through Its Prop vs Union Territory Of J&K And Others on 3 June, 2024 Indian Kanoon - http://indiankanoon.org/doc/16589640/\n1 conditions/guidel"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 520,
+      "facts": 157,
+      "arguments": 467
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "862400091e7f485c9a106a14fe818ab5_9",
+        "entity_text": "Shamim Dar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "a8faa183e06a48069f00780e55e78f00_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. Considering the said submissions, prayer is allowed with a liberty to the petitioner to approach the Tribunal challenging the impugned order."
+    },
+    {
+      "annotation_id": "7a513995b827468782fc82c2a053f483_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If such application is filed along with any application for condoning the delay the same will be considered sympathetically considering the fact that this writ petition is pending before this Court."
+    },
+    {
+      "annotation_id": "10a2e904aa0347a1a70d9ca9846b4d23_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Accordingly, the instant writ petition is withdrawn."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 806,
+      "facts": 697,
+      "arguments": 264
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "b325d9eae72149beac21e369bd2ad450_14",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "949b07ff23ca430e9f9446f6ad27528c_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "To avoid any controversy on the impugned directives, since the original directives is issued by the Muzaffarnagar Police in Hindi, the translation thereof reads as under:\nDuring the Shravan Kanwar Yatra, a large number of Kanwariyas from ne"
+    },
+    {
+      "annotation_id": "ffd02c931d2e449eb054528b8a6a3600_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "During the holy month of Shravan many people, especially Kanwariyas, abstain from certain food items in their diet."
+    },
+    {
+      "annotation_id": "b5ee3d9af04b4e93869272eae8b21ba7_34",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is also argued that just on the eve of Kanwariya Yatras for the year 2024, the impugned directives have been issued and there is no instance of any similar directives in the past years."
+    },
+    {
+      "annotation_id": "e95eac4e93e5404c979d4a451a5fe6c2_35",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "11. The implication of the directions and their enforcement is spread across multiple States in the country covering the route of the Kanwariya Yatris."
+    },
+    {
+      "annotation_id": "d49b857e09dd45789e7c3ed993c30eb8_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let notice, returnable on 26.07.2024, be issued in these writ petitions.\n"
+    },
+    {
+      "annotation_id": "dce5b0350a4d408796aae4405940eee2_37",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "12. The petitioners are permitted to serve dasti notice on the respective Standing Counsel for the State of Uttar Pradesh, State of Uttarakhand, State of Madhya Pradesh and Govt. of NCT of Delhi."
+    },
+    {
+      "annotation_id": "2b3ff8823ca4415f9e09efe15fb734a5_38",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If these States are not already impleaded, we order for suo moto impleadment of these States."
+    },
+    {
+      "annotation_id": "159662571e80495fbb6f83e7840e2dd1_39",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "13. Until the returnable date, we deem it appropriate to pass interim order prohibiting the enforcement of the impugned directives."
+    },
+    {
+      "annotation_id": "f23aedec5ed14abaac4390c59b205be4_41",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "But they must not be forced to display the name/identity of the owners and also the employees, deployed in their respective establishments."
+    },
+    {
+      "annotation_id": "91d50528ca6845e9be173fee9ace1b1e_42",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is ordered accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1500,
+      "facts": 458,
+      "arguments": 1036
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 35,
+    "ignored_annotations": 10,
+    "ignored_entities": [
+      {
+        "annotation_id": "187410860562435f9940948253e2aa05_40",
+        "entity_text": "Kanwariyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d57c873d41e47b199062c89999bf3b2_43",
+        "entity_text": "KRITIKA TIWARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d57c873d41e47b199062c89999bf3b2_43",
+        "entity_text": "KAMLESH RAWAT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a33dce72a34a4a65bbea6d1791935229_44",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

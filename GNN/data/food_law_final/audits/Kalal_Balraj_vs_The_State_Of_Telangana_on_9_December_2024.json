@@ -1,0 +1,199 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f5db63aaebb143d58106e07e33837e4b_6",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 130,
+          "end": 137
+        }
+      ],
+      "text_preview": "Learned counsel for the petitioner further submitted that this Court vide Orders dated 17.03.2021 passed in CRL.P.No.1945 of 2021 quashed the proceedings against accused Nos.5 and 6 in same CC i.e. C.C.No.1014 of 2017 and prayed this Court "
+    },
+    {
+      "annotation_id": "fa23aa74bb704402b3a11c62def1ae8b_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In Chidurala Shyamsubder's case (supra), a learned Single Judge of the High Court, following the guidelines laid down by the Hon'ble Supreme Court in State of Haryana v. Bhajan Lal 2, held that the Police are incompetent to take cognizance "
+    },
+    {
+      "annotation_id": "0f5de3de2a554ebdb23eabb9ebbd2c08_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 236,
+          "end": 243
+        }
+      ],
+      "text_preview": "Therefore, the said proceedings in C.C.No.1014 of 2017 against the petitioner are contrary to the principle held by the learned Single Judge of the High Court in Chidurala Shyamsubder (supra) and, accordingly, the same are liable to be quas"
+    },
+    {
+      "annotation_id": "a4d5cfd70d134ae38fab8f0af1c89bb9_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 58,
+          "end": 77
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 394,
+          "end": 401
+        }
+      ],
+      "text_preview": "05. In view of the above submission, the present Criminal Petition is allowed in terms of Chidurala Shyamsubder (supra), and the proceedings in C.C.No.1014 of 2017, pending on the file of the Kalal Balraj vs The State Of Telangana on 9 Dece"
+    },
+    {
+      "annotation_id": "a6fc43d2219943349578448bde4c1267_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 53,
+          "end": 60
+        }
+      ],
+      "text_preview": "06. Since the proceedings in C.C.No.1014 of 2017 are quashed against the petitioner-accused No.2,\nthe petitioner is at liberty to file appropriate application before the learned Court below for return of seized property."
+    },
+    {
+      "annotation_id": "b7566ef5025648c8b230d67e35013a6b_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "On such application being filed, the learned Court below is directed to release the seized property to petitioner on verifying the documents with regard to ownership of the said property."
+    },
+    {
+      "annotation_id": "31bb0c5f86864e24a317a363b3624f1a_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAs a sequel, pending miscellaneous applications, if any, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 58,
+      "end": 77
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 394,
+      "end": 401
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 456,
+      "end": 463
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 130,
+          "end": 137
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 467,
+      "facts": 150,
+      "arguments": 768
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "9c27f3c69bba419aae0044fafc2bcd57_4",
+        "entity_text": "G.Akhil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9c27f3c69bba419aae0044fafc2bcd57_4",
+        "entity_text": "Jithender Rao Veeramalla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

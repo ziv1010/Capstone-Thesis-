@@ -1,0 +1,182 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3437ae41308c4ea0afd0e410beb174cf_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is made clear that the same shall be applicable on all of the petitions on mutatis mutandis basis."
+    },
+    {
+      "annotation_id": "85ccb2798ffc4848baf43a84ced7be98_26",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. In S.B. Civil Writ Petition No. 16686/2018, vide order dated 02.08.2018, the Court had granted interim protection by staying the operation of transfer order dated 12 th July, 2018."
+    },
+    {
+      "annotation_id": "5037facb280d4ae6af81197670224fba_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Nevertheless, on the directions of the Court the instant matters pertaining to transfer issues are on the board after a lapse of six years."
+    },
+    {
+      "annotation_id": "579e04b71ec04720b1fdf5f0dbf7aabc_32",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\"4. In our opinion, the courts should not interfere with a transfer order which is made in public interest and for administrative reasons unless the transfer orders are made in violation of any mandatory statutory rule or on the ground of m"
+    },
+    {
+      "annotation_id": "d694ba3e34d241fb9e7e35def4c783cb_33",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "A government servant holding a transferable post has no vested right to remain posted at one place or the other, he is liable to be transferred from one place to the other."
+    },
+    {
+      "annotation_id": "c94dbfc31fe54bbb94350d98c59ddc39_34",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTransfer orders issued by the competent authority do not violate any of his legal rights."
+    },
+    {
+      "annotation_id": "f656e247251c4546af05f590a65c6b28_35",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Even if a transfer order is passed in violation of executive instructions or orders, the courts ordinarily should not interfere with the order instead affected party should approach the higher authorities in the department."
+    },
+    {
+      "annotation_id": "fb13d0278b464b0da4631444e21ec7c9_36",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If the courts continue to interfere with day-to-day transfer orders issued by the government and its subordinate authorities, there will be complete chaos in the administration which would not be conducive to public interest."
+    },
+    {
+      "annotation_id": "e5fbfb0497ea45b9920ff6375b6aa445_37",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The High Court overlooked these aspects in interfering with the transfer orders.\""
+    },
+    {
+      "annotation_id": "37e1009efff04369991224e1172ad74b_38",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Accordingly, the present petitions are disposed of with the aforementioned directions."
+    },
+    {
+      "annotation_id": "bf0820a5bf164c98893fcbb8a4ca0244_39",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Pending applications, if any, shall stand disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 11,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 5653,
+      "facts": 258,
+      "arguments": 269
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 31,
+    "ignored_annotations": 11,
+    "ignored_entities": [
+      {
+        "annotation_id": "29088143cc4347daa9e6ee6c4243cda4_17",
+        "entity_text": "Chandravir Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bfa728c5e2fb4865988e3279f11171a9_41",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

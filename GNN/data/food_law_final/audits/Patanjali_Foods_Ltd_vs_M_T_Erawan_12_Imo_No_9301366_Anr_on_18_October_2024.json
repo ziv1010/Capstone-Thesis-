@@ -1,0 +1,95 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7818b1e349df425d8729ef47cf68bb65_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nUpon considering the provisions contained in Section 4 of the Admiralty Jurisdiction and Settlement of Maritime Claims Act, 2017 and the provisions contained in Section 5 of the said Act and considering the contentions and the materials on"
+    },
+    {
+      "annotation_id": "b7c99fedc13c41fdb4cb2d400550d2ee_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let there be an order of arrest of MT ERAWAN 12 (IMO No. 9301366) along with her hull, tackle,\nengines, gears, apparel, equipment and/or paraphernalia lying on board from the date of this order.\nLet a copy of the arrest of the vessel be com"
+    },
+    {
+      "annotation_id": "83ab091e1ee24b57bdc8576e985f2c95_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Marshall shall also communicate the same to the Port Authorities, Custom Authorities and the vessel owner."
+    },
+    {
+      "annotation_id": "049c8021b8b34259831747a4895b488b_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let the matter appear on the reopening date of the vacation."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 642,
+      "facts": 1650,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "0a4d62cadf37472ca58e5d0ad9c21152_10",
+        "entity_text": "Arvee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4370aaea365442d28e04f7b234a78e84_19",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

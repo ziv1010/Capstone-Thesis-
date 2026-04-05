@@ -1,0 +1,97 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "fbb6268cd0d24da48558d746265c1e6c_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. Considering the aforesaid, fresh notice, returnable in four weeks be issued to the Food Safety Officer and a copy of the petition be served on the standing counsel for the State, namely, Mr. D.\nKumanan."
+    },
+    {
+      "annotation_id": "3eecdc1c4d7e43deac4349ef6d86e4fe_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "A copy of this order be sent by the Registry to the Chief Secretary and the Law Secretary of the State of Tamil Nadu indicating the fact that in this Court, no one is representing the State."
+    },
+    {
+      "annotation_id": "5e47fcdb37b0446a8cc54498680227d8_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. The Chief Secretary and the Law Secretary of the State shall take appropriate steps to ensure presence of counsel before this Court."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 188,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "dd05172760d849b488397d8e1845811a_1",
+        "entity_text": "J.K. Maheshwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "dd05172760d849b488397d8e1845811a_1",
+        "entity_text": "Rajesh Bindal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cd4657521e89443db9888fc32824521d_15",
+        "entity_text": "GULSHAN KUMAR ARORA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cd4657521e89443db9888fc32824521d_15",
+        "entity_text": "NAND KISHOR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cd4657521e89443db9888fc32824521d_15",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b4175cc71105490b9920782355732a41_10",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "By moving this application under Section 482 of Cr.P.C., the prayer is made to quash the entire proceedings of Case No.16899 of 2023 (State Versus Maroof) under Section 59(i) of Food Safety and Standards Act, 2006, Police Station Gal Shahee"
+    },
+    {
+      "annotation_id": "68f095178426455f8959b84f5b520088_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The court has not taken cognizance in the matter, the A.C.J.M. concerned has not noted his satisfaction also."
+    },
+    {
+      "annotation_id": "b07ad34b8c024035b6c55587d93ebe11_18",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "After this order dated 09.05.2023, vide order dated 09.06.2023 directly the bailable warrants Rs.20,000/- have been issued against the applicants."
+    },
+    {
+      "annotation_id": "b8ae3acbf0f64720bb9c4012595b6b47_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court finds force in the argument of the learned counsel for the applicants."
+    },
+    {
+      "annotation_id": "4dd2d65eb4964fd18505d3837610ab57_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The trial court only registered the complaint but did not mention its satisfaction that a prima facie case is made out against the applicants to summon them under the mentioned sections."
+    },
+    {
+      "annotation_id": "b3b65bd060174f25be8d0c1b7fff910c_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The magistrate does not appear to apply his mind whether any sufficient ground for proceeding against the applicants exists in the case or not, while the opinion of the magistrate in this regard is must for summoning an accused."
+    },
+    {
+      "annotation_id": "a48e59477a514d6583e92b02bc64cd8d_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 112,
+          "end": 121
+        }
+      ],
+      "text_preview": "\nIn the opinion of the Court, the order dated 09.05.2023 being a cryptic and non-speaking order is liable to be set aside."
+    },
+    {
+      "annotation_id": "0dcbd42d721c4ead8d4f8666e718ca3c_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 30,
+          "end": 39
+        }
+      ],
+      "text_preview": "The order dated 09.05.2023 is set aside."
+    },
+    {
+      "annotation_id": "9e48210060ad4064b3eec6acdce20e76_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe trial court is directed to pass a fresh and speaking order on the point mentioning its satisfaction regarding summoning/ non-summoning of the applicants in the mentioned sections."
+    },
+    {
+      "annotation_id": "79737689151f4d17a7cb0972e85f4992_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe application under Section 482 of Cr.P.C. is allowed, accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 112,
+      "end": 121
+    },
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 153,
+      "end": 162
+    }
+  ],
+  "suspicious_annotation_count": 10,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 416,
+      "facts": 459,
+      "arguments": 350
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 10,
+    "ignored_entities": []
+  }
+}

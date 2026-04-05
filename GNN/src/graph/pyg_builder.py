@@ -74,15 +74,27 @@ def _entity_scalar_vector(node: dict[str, Any], scalar_dim: int, scalar_names: l
 
 
 def _text_scalar_vector(node_type: str, node: dict[str, Any], scalar_dim: int) -> np.ndarray:
+    meta = node["metadata"]
+    text_scalar_values = [
+        _scaled_length(meta.get("text_length")),
+        1.0 if node_type == "preamble"   else 0.0,
+        1.0 if node_type == "facts"      else 0.0,
+        1.0 if node_type == "arguments"  else 0.0,
+        # citation/bridging counts (only meaningful for arguments nodes)
+        _scaled_count(meta.get("cited_statute_count",    0)),
+        _scaled_count(meta.get("cited_provision_count",  0)),
+        _scaled_count(meta.get("cited_precedent_count",  0)),
+        _scaled_count(meta.get("petitioner_lawyer_count", 0)),
+        _scaled_count(meta.get("defence_lawyer_count",   0)),
+        _scaled_count(meta.get("petitioner_count",       0)),
+        _scaled_count(meta.get("respondent_count",       0)),
+        _scaled_count(meta.get("judge_count",            0)),
+    ]
     vector = np.zeros((scalar_dim,), dtype=np.float32)
-    if scalar_dim >= 1:
-        vector[0] = _scaled_length(node["metadata"].get("text_length"))
-    if scalar_dim >= 2:
-        vector[1] = 1.0 if node_type == "preamble" else 0.0
-    if scalar_dim >= 3:
-        vector[2] = 1.0 if node_type == "facts" else 0.0
-    if scalar_dim >= 4:
-        vector[3] = 1.0 if node_type == "arguments" else 0.0
+    for idx, val in enumerate(text_scalar_values):
+        if idx >= scalar_dim:
+            break
+        vector[idx] = float(val)
     return vector
 
 

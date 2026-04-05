@@ -1,0 +1,86 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5290ca3ecae04885bfd70ab352aeb2d0_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Accordingly, and as prayed for, let this matter be posted on 03.04.2024 so that the response be filed."
+    },
+    {
+      "annotation_id": "ae9c583a55514008873659b8167ea1fe_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. However, in the meanwhile, the Deputy Commissioner of the concerned districts across the State and the Sr. Superintendent of Police/ Superintendent of Police of the concerned district and the local bodies are hereby directed to look into"
+    },
+    {
+      "annotation_id": "e009ca0622ce4bf7bd5774fcf8b50182_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe Sr. S.P/ S.P of the concerned districts are directed to hold the officer-in-charge of the concerned police station to be responsible if anybody is being found in killing the animals without giving any carcasses and doing the said busin"
+    },
+    {
+      "annotation_id": "293a8b0ca95040179dc63c19e139066d_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe aforesaid direction have been transmitted by taking into consideration the fact that there is no dispute on behalf of learned counsel appearing for the parties so far as the applicability of the regulation is concerned."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1708,
+      "facts": 0,
+      "arguments": 971
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

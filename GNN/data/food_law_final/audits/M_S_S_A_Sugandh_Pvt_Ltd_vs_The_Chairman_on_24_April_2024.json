@@ -1,0 +1,127 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8c73173ec546424ca7f637eaf47b7e37_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Since the learned counsel for the State has clarified that the Chewing Tobacco is not a prohibited product, the State Pollution Control Board should not have gone into this aspect."
+    },
+    {
+      "annotation_id": "6a788471db1b47e0b67cec167baf3ca1_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Under such circumstances, the application filed by the present Petitioner for Consent to Establish has been refused."
+    },
+    {
+      "annotation_id": "a2f4cad48b034ec9b2caef3f60389371_13",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 568,
+          "end": 577
+        }
+      ],
+      "text_preview": "7. Considering the letter dated 16.03.2024 issued by the Health and Family Welfare Department,\nGovernment of Odisha wherein, it has been clearly stated that the Chewing Tobacco is not a prohibited item under Section 30(2)(a) of the Food Saf"
+    },
+    {
+      "annotation_id": "c46f1c3b9ca3427e8d7f7a74cd714da3_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the Petitioner is directed to file application for consent to establish the unit for Chewing Tobacco before the authority."
+    },
+    {
+      "annotation_id": "cedef6db37294f989486f25b6e0c1f40_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In such event, the authority concerned shall consider the same afresh in accordance with law."
+    },
+    {
+      "annotation_id": "65390111070641d8b5c96ae22117e3f9_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Accordingly, Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 1238,
+          "end": 1247
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1174,
+      "facts": 1253,
+      "arguments": 431
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 6,
+    "ignored_entities": []
+  }
+}

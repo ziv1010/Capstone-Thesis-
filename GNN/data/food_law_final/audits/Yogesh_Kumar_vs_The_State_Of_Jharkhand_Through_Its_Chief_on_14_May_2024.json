@@ -1,0 +1,104 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "888e728d6735498d9146d0335207603b_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. The present writ petition has been filed for following reliefs:-\n\"That, the instant writ petition, petitioner prays for issuance of writ/writs, Order /\nOrders, direction/directions in the nature of Mandamus directing and commanding upon"
+    },
+    {
+      "annotation_id": "ccc7de8ad41c44e78ee07921890e4ddc_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Permission is accorded."
+    },
+    {
+      "annotation_id": "885ecb7ecb594c75bfabb20c063edfd7_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "petition stands disposed of",
+          "start": 34,
+          "end": 61
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "writ petition stands disposed of",
+          "start": 29,
+          "end": 61
+        }
+      ],
+      "text_preview": "\n5. Accordingly, the present writ petition stands disposed of with the aforesaid liberty."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "petition stands disposed of",
+      "start": 772,
+      "end": 799
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "writ petition stands disposed of",
+      "start": 767,
+      "end": 799
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1184,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "e8b66074e79440b7b96e7ff1fd14174d_16",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

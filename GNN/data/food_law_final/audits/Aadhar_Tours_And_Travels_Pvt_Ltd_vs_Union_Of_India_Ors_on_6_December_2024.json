@@ -1,0 +1,358 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "97c7b0b798c04823a1f7d360c51f7091_440",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe authenticity of the order can be re-verified from Delhi High Court Order Portal by scanning the QR code shown above."
+    },
+    {
+      "annotation_id": "9bab30ea355f4abab22778910717568c_442",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the date of hearing fixed in the matter i.e. 07 December 2024 stands cancelled."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 12165,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 448,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "8fd564423acc4189abbb8ab9b5185ace_7",
+        "entity_text": "ANKITA GARG",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4d70a90811cd43b9b3b5e7977245d255_10",
+        "entity_text": "PRAMOD KUMAR GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8a8a88c58579459c97b57d6165e375e3_12",
+        "entity_text": "PAWAN SINGLA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6803875af5aa43188b6b69c89f5baf9c_34",
+        "entity_text": "AJAY MITTAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6bf850500523491e8fe6dde3392a831e_45",
+        "entity_text": "HARJEET SINGH KANDHARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "09f9661ef94f42ed8cd2c0bfb15cc506_51",
+        "entity_text": "SUNITA SHARMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1f450275805043dd8512df9a390d937f_52",
+        "entity_text": "Aadhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "952c83eba3ef49d5bb857c180b697214_57",
+        "entity_text": "RAJAT SIKKA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "449bedaf9a934b859c3de7b892b71b77_59",
+        "entity_text": "GAYATRI DHODY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "649f239ede7240df8883fc769a3c0495_67",
+        "entity_text": "VINOD GOYAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0c551821485449c8b650ae36e6537614_84",
+        "entity_text": "SANGEETA VERMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "60274c02940f46d0aae72b764f23a92f_87",
+        "entity_text": "LALIT GULATI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0a4c52bc8c224a7e9c39f779a6c2f2df_119",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d9453350e68345ac8924474e6b5a23ae_165",
+        "entity_text": "RITIKA GARG",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8a44db34746a4701a23a32d2ada4fcc8_170",
+        "entity_text": "DELHI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9791fa71951f406495829ee368c3f6fc_173",
+        "entity_text": "HIMANK GARG",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7f1fa0156b984017944c8315eb689739_182",
+        "entity_text": "MADHUR KABRA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "825134462e6f43c0af9d8d35ebb7e45a_190",
+        "entity_text": "JINDAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3a43c77400544a26a2f641052f3db499_198",
+        "entity_text": "BEE KAY WIRES PVT. LTD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "30541d8a07bd4c1c92433f6e2f11f270_210",
+        "entity_text": "RAM KALI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "aa23530630484ad6a0c048b58b7899b3_222",
+        "entity_text": "YOGEN KHOSLA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "aa23530630484ad6a0c048b58b7899b3_222",
+        "entity_text": "Petiti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cd33ee66adfa40418182b51cae4716f3_228",
+        "entity_text": "MOHAN SINGH CHAUHAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "987ddbbc1e4647ab9ae9abf415ff00b1_229",
+        "entity_text": "Aadhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "eea2928e318443459d8a2cbf6cbab8b3_251",
+        "entity_text": "GREENBERRY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0c4b8e4b3b1e45b598c69370bd85d5d7_275",
+        "entity_text": "KANWAR MEET SEHGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e4618ae3a1b84e70a18b516347e87028_282",
+        "entity_text": "ABHISHEK ARORA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "ebad22a75dd04f0daff8f5e59ab27d41_289",
+        "entity_text": "ANIL MITTAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7fbfc4912f2448d98327b6c79b407549_291",
+        "entity_text": "RAJESH GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0b01aecaedcd4a1ebb9452e73adcfb9d_295",
+        "entity_text": "REENA KUMARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b554fd3bcf4a43a699e64e84b06fe2bf_339",
+        "entity_text": "CHANDRAMAULI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6a58e7fa767c45958228a2037116609d_356",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5406bae37e5d42a0be33f2ef6b2eda1a_357",
+        "entity_text": "RUCHIKA JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5ad024c6550544d19f51fe0ea89ea79d_381",
+        "entity_text": "PRATISHTHA GARG",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "32d81820a2cb475daeccbf14217a7468_385",
+        "entity_text": "HARI MOHAN SHARMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9251ae9c9a4041039a5db0162d632fed_396",
+        "entity_text": "SHRI GIRIRAJ STEELS PVT. LTD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4b890bb8b13f47e298bd9f4e324d0c3b_397",
+        "entity_text": "BRIJ MOHAN GOYAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "401a0903dd4445dab65f33f3b0e187d6_398",
+        "entity_text": "PAWAN GOYAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c2e54f72d24a4922b4d64440d8215f88_409",
+        "entity_text": "ANKIT MITTAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "142f6a1abffe426a971e3ef33f66408f_418",
+        "entity_text": "Shekhar Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "142f6a1abffe426a971e3ef33f66408f_418",
+        "entity_text": "Gautam Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "142f6a1abffe426a971e3ef33f66408f_418",
+        "entity_text": "Shaantanu Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "142f6a1abffe426a971e3ef33f66408f_418",
+        "entity_text": "Manish Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e6b6a4b4240142328390087672033c55_423",
+        "entity_text": "Bharat Beriwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "85adc5263f3849869d2e53b532e91f0b_425",
+        "entity_text": "Himanshu Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "85adc5263f3849869d2e53b532e91f0b_425",
+        "entity_text": "Amit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fd63c38319c14c1a8d5f93e93df4610d_426",
+        "entity_text": "Sanjay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fd63c38319c14c1a8d5f93e93df4610d_426",
+        "entity_text": "Monica Banjamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d2848513a60848db8c87f8c8a5dc0bd2_431",
+        "entity_text": "Shlok Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d2848513a60848db8c87f8c8a5dc0bd2_431",
+        "entity_text": "Madhavi Shukla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d2848513a60848db8c87f8c8a5dc0bd2_431",
+        "entity_text": "N",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d2848513a60848db8c87f8c8a5dc0bd2_431",
+        "entity_text": "Sudarshan Roy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e763a7b44c34444f99419e21a37c0579_433",
+        "entity_text": "Sushil Raaja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e763a7b44c34444f99419e21a37c0579_433",
+        "entity_text": "Vinita Bakshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fdbb2949ae284a9895efc57d135b2d49_434",
+        "entity_text": "Kavindra Gill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8264da609bfe40658893b1bb0b21a8a3_435",
+        "entity_text": "Rohit Puri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8264da609bfe40658893b1bb0b21a8a3_435",
+        "entity_text": "Yuvraj Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7722f4b63dc5471dabaf37bd8ce624b2_437",
+        "entity_text": "Niraj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8afb38d8c0e5477ba7373935442b68a7_444",
+        "entity_text": "Lalchandani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8afb38d8c0e5477ba7373935442b68a7_444",
+        "entity_text": "Rai",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

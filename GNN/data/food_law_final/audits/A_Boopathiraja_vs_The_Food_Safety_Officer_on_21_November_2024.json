@@ -1,0 +1,72 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d568ca08d318485a9d488faae9fd2026_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6.As per the order dated 04.01.2024, issued by the Tamil Nadu Food Safety and Drug Administration Department, if any banned food products found and seized less than the sample quantity and if it is the first time offence, the penalty can b"
+    },
+    {
+      "annotation_id": "feaf05f12e1e4fbbafe0c4e2e5cc5090_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7.Considering the above facts, the first respondent is directed to impose a fine on the petitioner in accordance with law the order passed by the Tamil Nadu Food Safety and Drug Administration Department, dated 04.01.2024."
+    },
+    {
+      "annotation_id": "c9697d576d304b729c7d33fe54e1b9e8_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The first respondent is also directed to consider the application submitted by the petitioner for license, dated 11.09.2024 and pass orders on merits and in accordance with law within a period of one week from the date of receipt of a https"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1443,
+      "facts": 1649,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 34,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

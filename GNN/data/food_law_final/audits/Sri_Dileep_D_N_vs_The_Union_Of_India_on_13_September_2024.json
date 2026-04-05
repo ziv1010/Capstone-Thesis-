@@ -1,0 +1,92 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d3863bbdc0d54a6fa2c2678f97fc9638_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 25,
+          "end": 44
+        }
+      ],
+      "text_preview": "6. Accordingly, the writ petition is allowed."
+    },
+    {
+      "annotation_id": "54a8d23804c04471a819a3c3d44b412c_15",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 200,
+          "end": 207
+        }
+      ],
+      "text_preview": "7. The impugned letter/notice dated 5.4.2022, issued by the first respondent, vide Annexure-S, and the impugned endorsement dated 7.5.2022, issued by the fifth respondent, vide Annexure-X, are hereby quashed."
+    },
+    {
+      "annotation_id": "8b57b11bffba49baa9eb4bf9faae8c12_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. The petitioner is at liberty to sell Bio-Diesel in accordance with the law."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 25,
+      "end": 44
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 2347,
+      "facts": 683,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

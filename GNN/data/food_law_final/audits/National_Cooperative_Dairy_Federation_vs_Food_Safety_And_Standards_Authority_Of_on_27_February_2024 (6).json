@@ -1,0 +1,103 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "24ae007f688d45ccaa078375dc250c5c_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. The Order dated 21.02.2023 be complied with before the next date of hearing."
+    },
+    {
+      "annotation_id": "478a1416ea4e485ea2ade1145945378d_35",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe authenticity of the order can be re-verified from Delhi High Court Order Portal by scanning the QR code shown above."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 865,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 42,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "e56374ccd42e4d74b53f46017f80cde6_11",
+        "entity_text": "Adit S. Pujar  Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e56374ccd42e4d74b53f46017f80cde6_11",
+        "entity_text": "Ze",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0c8fff663c854a2983e56b5771efdf6f_14",
+        "entity_text": "Abhishek Manchanda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0c8fff663c854a2983e56b5771efdf6f_14",
+        "entity_text": "Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0c8fff663c854a2983e56b5771efdf6f_14",
+        "entity_text": "Karth",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fcab48d3acc243f4ab2fa45892f7fd33_21",
+        "entity_text": "Nikhil Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fcab48d3acc243f4ab2fa45892f7fd33_21",
+        "entity_text": "Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fcab48d3acc243f4ab2fa45892f7fd33_21",
+        "entity_text": "Bi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1bce7961f2544abf91d3443f2fd085a0_40",
+        "entity_text": "S. Zakir",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

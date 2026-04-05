@@ -1,0 +1,130 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "20ac727b08e248fb8f3758902ab15c2e_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "We are unable to accept the contention raised by the learned counsel for the petitioner that he has substantially complied with the condition."
+    },
+    {
+      "annotation_id": "7de43275336447f5b7ae428cf44ecf13_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As per Clause 10(viii), the petitioner was required to submit copy of valid license issued under the provisions of Food Safety Standards Act, 2006."
+    },
+    {
+      "annotation_id": "a141cad67869435ba2028fddb4299190_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The same has to be understood that 'license' means complete copy of license."
+    },
+    {
+      "annotation_id": "14d4495d3c3c4de391fa4d515ecd877e_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Even after filing of the replies by the respondents, the petitioner has not filed the complete copy of the license therefore,\nadverse inference has to be drawn and 3 WP-5601-2024 Committee has rightly rejected the tender."
+    },
+    {
+      "annotation_id": "d6338a579be44cc9b8f01578edc8ed5f_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn the contractual matters, terms and conditions of the tender has to be interpreted strictly."
+    },
+    {
+      "annotation_id": "268739b1403d49219de02838b4eec6cd_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. In view of the aforesaid, we do not find any case for interference under Article 226 of the Constitution of India."
+    },
+    {
+      "annotation_id": "5614b64f53de4bd1a21be9173d2ae6f0_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAccordingly, the writ petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "annotation_fallback:arguments"
+    },
+    "retained_lengths": {
+      "preamble": 894,
+      "facts": 705,
+      "arguments": 1469
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "b65ccb52a91a4406a7fc2def59129f60_1",
+        "entity_text": "NANDKISHOR KUSHWAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b65ccb52a91a4406a7fc2def59129f60_1",
+        "entity_text": "NANDKISHOR KUSHWAH",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

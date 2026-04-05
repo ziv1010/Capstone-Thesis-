@@ -1,0 +1,119 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "4088546028ec4d5cb1903d742768e406_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the petitioners are directed to file an appeal before the Food Safety Appellate Tribunal on or before 30.01.2025."
+    },
+    {
+      "annotation_id": "89f9fbedce9443019f7fc56021688b79_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If such an appeal is filed, the Appellate Tribunal shall not insist upon the period of limitation, as the petitioners would be entitled to have the benefit of Section 14 of the Limitation Act, 1963."
+    },
+    {
+      "annotation_id": "459af80de9cb40a2859f16c9ffa5f71a_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "Petition stands disposed of",
+          "start": 31,
+          "end": 58
+        },
+        {
+          "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+          "matched_text": "Writ Petition stands disposed of",
+          "start": 26,
+          "end": 58
+        }
+      ],
+      "text_preview": "3. With such liberty, the Writ Petition stands disposed of."
+    },
+    {
+      "annotation_id": "a66b5d062b3a469f905db15a0a0f6aed_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, there shall be no order as to costs."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "Petition stands disposed of",
+      "start": 351,
+      "end": 378
+    },
+    {
+      "pattern": "\\bwrit\\s+petition\\s+stands\\s+disposed\\s+of\\b",
+      "matched_text": "Writ Petition stands disposed of",
+      "start": 346,
+      "end": 378
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1091,
+      "facts": 285,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "4410d6dbf45b45e0b01ee9c1280dca3b_23",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

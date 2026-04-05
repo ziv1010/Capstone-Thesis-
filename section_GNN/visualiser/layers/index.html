@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Layers Explorer – Legal GNN</title>
+  <meta name="description" content="Explanation of the graph layers and HGT model layers used in the Legal GNN visualiser."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1e2633;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --yellow: #e3b341;
+      --orange: #ffa657;
+      --pink: #ff9bce;
+      --cyan: #76e3ea;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(88,166,255,0.08), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(63,185,80,0.06), transparent 24%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(13,17,23,0.9);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), var(--green));
+      font-size: 1.1rem;
+    }
+    header h1 { font-size: 1.12rem; font-weight: 600; }
+    header p { font-size: 0.78rem; color: var(--muted); margin-top: 0.12rem; }
+
+    nav { display: flex; gap: 0.4rem; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--text);
+      background: var(--surface2);
+    }
+    nav a.active { color: var(--accent); }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-card, .panel {
+      background: rgba(22,27,34,0.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+    }
+
+    .hero-copy {
+      padding: 1.7rem 1.8rem;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      line-height: 1.08;
+      margin-bottom: 0.9rem;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.1rem;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .hero-diagram {
+      padding: 1.3rem;
+      display: grid;
+      gap: 0.85rem;
+      align-content: center;
+    }
+
+    .flow-step {
+      background: linear-gradient(135deg, rgba(30,38,51,0.9), rgba(22,27,34,0.9));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.95rem 1rem;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: "↓";
+      position: absolute;
+      left: 50%;
+      bottom: -0.95rem;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .flow-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .flow-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-copy {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+      max-width: 80ch;
+    }
+
+    .layer-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .layer-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+      min-height: 220px;
+    }
+
+    .layer-kicker {
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .layer-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .layer-card p {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.66rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid currentColor;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+      position: relative;
+    }
+    .stack-step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      background: rgba(88,166,255,0.16);
+      color: var(--accent);
+      border: 1px solid rgba(88,166,255,0.38);
+    }
+    .stack-card h3 {
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+    }
+    .stack-card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .callout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+    }
+    .callout h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.65rem;
+    }
+    .callout p, .callout li {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+    .callout ul {
+      padding-left: 1rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .layer-grid,
+      .stack-grid,
+      .callout-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .layer-grid .layer-card:last-child {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .container {
+        padding: 1.2rem;
+      }
+      .hero,
+      .layer-grid,
+      .stack-grid,
+      .callout-grid {
+        grid-template-columns: 1fr;
+      }
+      .layer-grid .layer-card:last-child {
+        grid-column: span 1;
+      }
+      .hero h2 {
+        font-size: 1.55rem;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="logo">🧭</div>
+      <div>
+        <h1>Layers Explorer</h1>
+        <p>Graph structure, cross-case sharing, and HGT message-passing in one place</p>
+      </div>
+    </div>
+    <nav>
+      <a href="../index.html">Graphs</a>
+      <a href="../stats/index.html">Entity Stats</a>
+      <a href="index.html" class="active">Layers</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <div class="eyebrow">section_GNN / layers</div>
+          <h2>What the visualiser is showing, and what the model actually learns from it.</h2>
+          <p>
+            The graph view mixes two ideas: a local case-star around one selected case, and cross-case sharing through globally reused nodes like judges, courts, lawyers, statutes, provisions, and precedents. This page separates those layers so the picture is easier to read.
+          </p>
+          <div class="chip-row">
+            <span class="chip">case star</span>
+            <span class="chip">shared authority nodes</span>
+            <span class="chip">HGTConv</span>
+            <span class="chip">case readout</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-diagram">
+          <div class="flow-step">
+            <div class="flow-label">1. Focus Case</div>
+            <div class="flow-value">One selected case expands into sections, parties, forum, counsel, and cited authorities.</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-label">2. Shared Nodes</div>
+            <div class="flow-value">Judges, courts, lawyers, statutes, provisions, and precedents can be reused across cases.</div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-label">3. Connected Cases</div>
+            <div class="flow-value">Smaller dashed case nodes indicate other cases that touch the same shared graph points.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="padding:1.4rem 1.4rem 1.5rem; margin-bottom:1.5rem;">
+      <div class="section-title">🕸️ Graph Layers</div>
+      <div class="section-copy">
+        These are conceptual layers in the heterogeneous legal graph. They are not rendered as hard horizontal bands, but they explain why some nodes sit close to the case root while others act like bridges across multiple cases.
+      </div>
+
+      <div class="layer-grid">
+        <article class="layer-card">
+          <div class="layer-kicker">Layer 1</div>
+          <h3>Case Anchor</h3>
+          <p>The orange <code>case</code> node is the supervision target. At training time, the classifier reads the final embedding of this node to predict outcome.</p>
+          <div class="tags">
+            <span class="tag" style="color:#f0883e">⚖️ case</span>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-kicker">Layer 2</div>
+          <h3>Section Text</h3>
+          <p>These nodes keep the leakage-safe textual structure close to the case root. They represent preamble, facts, arguments, and side-specific argument slices.</p>
+          <div class="tags">
+            <span class="tag" style="color:#58a6ff">📄 preamble</span>
+            <span class="tag" style="color:#79c0ff">📋 facts</span>
+            <span class="tag" style="color:#56d364">💬 arguments</span>
+            <span class="tag" style="color:#3fb950">🗣 petitioner_arguments</span>
+            <span class="tag" style="color:#d2a8ff">🛡 respondent_arguments</span>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-kicker">Layer 3</div>
+          <h3>Parties and Forum</h3>
+          <p>These nodes describe who is involved and where the matter is heard: petitioner, respondent, judge, and court. Some of them are local, some are reused globally.</p>
+          <div class="tags">
+            <span class="tag" style="color:#ff7b72">👤 petitioner</span>
+            <span class="tag" style="color:#ffa657">🏛 respondent</span>
+            <span class="tag" style="color:#e3b341">👨‍⚖️ judge</span>
+            <span class="tag" style="color:#76e3ea">🏛 court</span>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-kicker">Layer 4</div>
+          <h3>Counsel and Authorities</h3>
+          <p>Lawyers and cited authorities are the strongest bridges across cases. They let the graph carry signals from one matter to another through shared legal context.</p>
+          <div class="tags">
+            <span class="tag" style="color:#ff9bce">👔 petitioner_lawyer</span>
+            <span class="tag" style="color:#d2a8ff">🥋 defence_lawyer</span>
+            <span class="tag" style="color:#39d353">📜 statute</span>
+            <span class="tag" style="color:#26a641">§ provision</span>
+            <span class="tag" style="color:#0075ca">📗 precedent</span>
+          </div>
+        </article>
+
+        <article class="layer-card">
+          <div class="layer-kicker">Layer 5</div>
+          <h3>Global Shared Layer</h3>
+          <p>When two cases hit the same shared node, they become graph neighbors in the global structure. In the graph tab, the dashed case nodes are a visual summary of those cross-case overlaps.</p>
+          <div class="tags">
+            <span class="tag" style="color:#76e3ea">shared court</span>
+            <span class="tag" style="color:#e3b341">shared judge</span>
+            <span class="tag" style="color:#d2a8ff">shared counsel</span>
+            <span class="tag" style="color:#39d353">shared citation</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" style="padding:1.4rem 1.4rem 1.5rem; margin-bottom:1.5rem;">
+      <div class="section-title">🧠 Model Stack</div>
+      <div class="section-copy">
+        The implementation in <code>src/models/hetero_gnn.py</code> follows a simple pipeline: type-specific input projections, a configurable stack of heterogeneous graph convolutions, then an MLP head over the final <code>case</code> embedding.
+      </div>
+
+      <div class="stack-grid">
+        <article class="stack-card">
+          <div class="stack-step">1</div>
+          <h3>Input Projection</h3>
+          <p>Each node type gets its own linear projection into a shared hidden size, then receives a learned type embedding. That puts text, judges, statutes, and other node families into the same latent space.</p>
+          <div class="tags">
+            <span class="tag" style="color:var(--accent)">Linear(node_type)</span>
+            <span class="tag" style="color:var(--accent)">type embedding</span>
+          </div>
+        </article>
+
+        <article class="stack-card">
+          <div class="stack-step">2</div>
+          <h3>Heterogeneous Message Passing</h3>
+          <p>With <code>architecture: hgt</code>, each layer uses <code>HGTConv</code>. The model keeps separate attention projections per node/edge type pattern, so a judge-to-case signal is not treated like a statute-to-arguments signal.</p>
+          <div class="tags">
+            <span class="tag" style="color:var(--green)">HGTConv × N</span>
+            <span class="tag" style="color:var(--green)">num_heads</span>
+          </div>
+        </article>
+
+        <article class="stack-card">
+          <div class="stack-step">3</div>
+          <h3>Residual Refinement</h3>
+          <p>After every convolution, the model applies dropout, adds the residual, normalizes with LayerNorm, and then applies ReLU. That stabilizes training while still letting each node type evolve across layers.</p>
+          <div class="tags">
+            <span class="tag" style="color:var(--yellow)">dropout</span>
+            <span class="tag" style="color:var(--yellow)">residual</span>
+            <span class="tag" style="color:var(--yellow)">LayerNorm</span>
+          </div>
+        </article>
+
+        <article class="stack-card">
+          <div class="stack-step">4</div>
+          <h3>Case Readout</h3>
+          <p>The final hidden vector for the <code>case</code> node goes into a 2-layer <code>MLPHead</code>. That is the point where the graph has already mixed text, forum, counsel, and authority signals into one representation.</p>
+          <div class="tags">
+            <span class="tag" style="color:var(--pink)">hidden["case"]</span>
+            <span class="tag" style="color:var(--pink)">MLPHead</span>
+            <span class="tag" style="color:var(--pink)">logits</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="callout-grid">
+      <article class="callout">
+        <h3>How To Read The Graph Tab</h3>
+        <ul>
+          <li>The large orange case node is the current focus case.</li>
+          <li>Its nearby section and entity nodes are the local case-star context.</li>
+          <li>Smaller dashed case nodes are other sample cases that overlap on shared graph nodes.</li>
+          <li>The dashed links are a visual shortcut so those related cases are visible without expanding their full local stars.</li>
+        </ul>
+      </article>
+
+      <article class="callout">
+        <h3>What Matters For Outcome Prediction</h3>
+        <p>
+          The model does not make predictions from a single text blob. It learns from the combination of section text, who appeared in the matter, what court heard it, and which legal authorities were cited. Cross-case sharing is useful because it lets similar structural patterns reinforce one another during message passing.
+        </p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

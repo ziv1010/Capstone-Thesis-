@@ -1,0 +1,77 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8babdf3a4a824b63b9ea5c321c5177a2_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The instant Writ Petition has been filed by a Firka Surveyor working under the second respondent herein, seeking mandamus for expeditious disposal of the appeal pending before the first respondent."
+    },
+    {
+      "annotation_id": "0ee39d26509a41299a79dca195d7c910_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nChallenging the said order, the petitioner has filed appeal before the first respondent on 17.05.2024 and since the appeal is yet to be disposed of, the instant Writ Petition has been filed."
+    },
+    {
+      "annotation_id": "7922e647e4a8475f9fd609cfeda1e7a5_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Considering the abovesaid facts, the first respondent is directed to dispose of the appeal filed by the petitioner on 17.05.2024 on merits and in accordance with law within a period of 12 weeks from the date of receipt of a copy of this"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 854,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "b38d36a54a1148429dbb49fc5cd34dda_19",
+        "entity_text": "P.Senthil Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

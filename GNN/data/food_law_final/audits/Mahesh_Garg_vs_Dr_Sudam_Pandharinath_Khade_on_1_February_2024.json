@@ -1,0 +1,204 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "02792c1364864f808b708e5fd8f3b4e9_13",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In terms whereof, the Court ordered in paras 12 and 13 as follows:-\n\"12."
+    },
+    {
+      "annotation_id": "fc91e3ff7c5d429a899deb330b27fcdd_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Given the above, there is no dispute by the State Government for the establishment of three labs at Indore, Jabalpur and Gwalior and up-gradation of the lab at Bhopal."
+    },
+    {
+      "annotation_id": "494b8a0251ff4478b64501b52ce831b6_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "13. With the aforesaid directions the Public Interest Litigation is disposed of."
+    },
+    {
+      "annotation_id": "395e23e2c66c4367ad23813aaae0b80c_26",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nOn considering the same, we do not find that any contempt would arise in this matter."
+    },
+    {
+      "annotation_id": "7abfeb68678746eab7d68533f4385d52_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The contempt would arise only when there is a willful disobedience being committed by the accused."
+    },
+    {
+      "annotation_id": "732647426a2d43a2aae004d0da64b280_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the instant case, in our considered view, the Court should not have passed an order directing compliance within a period of one year in a subject matter in which the Court is not an expert."
+    },
+    {
+      "annotation_id": "7f9ff54f09bb422da54cf1f68c6cf67d_29",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, to hold that the Court hopes and trusts that the respondents shall make efforts to complete the task by the end of the year 2022 is quite a different matter."
+    },
+    {
+      "annotation_id": "8652ee0aa5c14e7ca8ec45065cec785a_30",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There can be only way of persuasion so far as the issue is concerned."
+    },
+    {
+      "annotation_id": "e00857b061874e6a97ce86aa75cc640e_31",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In our considered view, there cannot be a direction to complete setting up of the food safety laboratories in a time that is specified by the Court itself."
+    },
+    {
+      "annotation_id": "b8cb626ed19e4186b57a92f33229187a_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, we do not find that any contempt would arise."
+    },
+    {
+      "annotation_id": "b1eb6073d4ff451bbed997245b296f8d_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe petition is disposed off accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 11,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1433,
+      "facts": 470,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 29,
+    "ignored_annotations": 11,
+    "ignored_entities": [
+      {
+        "annotation_id": "1e2dad34c8394cf4b646b3bbb6767408_7",
+        "entity_text": "S.K. SUMAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b24d4f29b7be4e408e94a4059d863b25_8",
+        "entity_text": "AKSHAY KUMAR SINGH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3615fbc4f8784fcca5a3f69c6e0b0224_10",
+        "entity_text": "SANTOSH MASSEY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e54a1ec1d137414bb3de55277b3ff769_34",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9acfdb40b40f4329954398141c874ba4_37",
+        "entity_text": "RAVI MALIMATH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9acfdb40b40f4329954398141c874ba4_37",
+        "entity_text": "VIJAY K",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d2a8153f4d244dbc9b4066e050179d43_39",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

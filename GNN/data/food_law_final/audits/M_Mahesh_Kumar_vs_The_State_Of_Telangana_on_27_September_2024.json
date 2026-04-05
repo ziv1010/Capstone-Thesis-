@@ -1,0 +1,167 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b70e649390664859bbab8ca8a03f2d64_34",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 175,
+          "end": 182
+        }
+      ],
+      "text_preview": "Learned counsel for the petitioners further stated that in similar circumstances, this Court vide common order dated 25.09.2024 in Criminal Petition Nos.7888 and 7925 of 2019 quashed the proceedings initiated against the petitioners therein"
+    },
+    {
+      "annotation_id": "fd19bd71e0354f7093c753a9eab79878_39",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Having regard to the submissions made by both the learned counsel, upon perusing the material available on record and the decision passed the Hon'ble Supreme Court in M/s.Neeharika Infrastructure Private Limited Vs. State of Maharashtra "
+    },
+    {
+      "annotation_id": "b58b57c0748841558c589dd283fdaac8_40",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, this Court is not inclined to entertain the Criminal Petition at this stage and the Criminal petition is liable to be dismissed."
+    },
+    {
+      "annotation_id": "adb1589ec8f9408eb03a7d570e9cb133_41",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. Accordingly, this Criminal Petition is dismissed."
+    },
+    {
+      "annotation_id": "0350f614747d41439624e9a4581f1939_42",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the appearance of the petitioners,\nbefore the trial Court, is dispensed with on each and every adjournment."
+    },
+    {
+      "annotation_id": "582c967d92b442738783af1ac70affe1_43",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the petitioners shall appear before the trial Court as and when specifically required."
+    },
+    {
+      "annotation_id": "52bee33c7be842f89392d0879a60f6db_44",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Petitioners are at liberty to avail alternate remedies, as available under law, including filing an application under Section 239 of Cr.P.C., if not filed yet."
+    },
+    {
+      "annotation_id": "41e385881fcd476c8246b30e263246e4_45",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMiscellaneous Petitions, pending if any, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 149,
+      "facts": 1792,
+      "arguments": 278
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 40,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "5d504772850e43a7896b6ef8266799d1_1",
+        "entity_text": "Leoraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5d504772850e43a7896b6ef8266799d1_1",
+        "entity_text": "E.Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "eea6b8790874445a832c805ca5b5a11e_4",
+        "entity_text": "G.Madhusudhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "annotation_id": "c1e3dcf3c066435295391f17ea465448_47",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

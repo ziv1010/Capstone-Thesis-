@@ -1,0 +1,90 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1f6895ee05484cfa8b4cfca3edee9d40_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner is absent."
+    },
+    {
+      "annotation_id": "096d25e70e1a49c69ed3c55c1a0946da_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the Writ Petition is dismissed for non-prosecution."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1521,
+      "facts": 95,
+      "arguments": 414
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "f2e7bde7815146f1904bc2992791d10d_15",
+        "entity_text": "Ganesh S.Kalburgi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "12674896f23d427db4fe601194b892ec_16",
+        "entity_text": "Ganesh S.Kalburgi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "12674896f23d427db4fe601194b892ec_16",
+        "entity_text": "Deshpande.G.V.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "12674896f23d427db4fe601194b892ec_16",
+        "entity_text": "Ameet Kumar Deshpande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "12674896f23d427db4fe601194b892ec_16",
+        "entity_text": "Ameet Kumar Deshpande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fd12c4a0aca747f3a24cd89541912b49_21",
+        "entity_text": "Deshpande.G.V.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

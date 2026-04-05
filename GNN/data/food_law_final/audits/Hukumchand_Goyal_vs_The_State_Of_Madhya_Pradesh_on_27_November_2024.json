@@ -1,0 +1,119 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "86941b0581634ee2837ddb4cb37b3d4c_8",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the instant case, the impugned order has been passed in pursuance to the prosecution launched against the petitioner on the basis of report of Food Analyst dated 05.02.2012."
+    },
+    {
+      "annotation_id": "b07fa471592b4e2782df91a3982816c2_9",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 86,
+          "end": 93
+        }
+      ],
+      "text_preview": "3. This Court in connected W.P. No.2665/2013, in similar facts and circumstances, has quashed the report of Food Analyst on account of the sample of food was not analysed by the accredited laboratory under Section 43 of the Food Safety and "
+    },
+    {
+      "annotation_id": "612ef630d87846768ba1062f7b310fa9_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 150,
+          "end": 157
+        }
+      ],
+      "text_preview": "4. Consequently, in the present case also, the report dated 15.02.2012 which is foundation for launching prosecution against the petitioner is hereby quashed."
+    },
+    {
+      "annotation_id": "cebfc68114ce4b889d91d0b69097bb49_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 75,
+          "end": 82
+        }
+      ],
+      "text_preview": "Consequently, the impugned order dated 09.10.2014 (Annexure P/1) is hereby quashed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 150,
+      "end": 157
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 234,
+      "end": 241
+    }
+  ],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 533,
+      "facts": 580,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

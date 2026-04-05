@@ -1,0 +1,86 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "56f50b37b122477eb29e87d68b52baad_3",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. Challenge in the writ petition is to an order passed under Section 26(2) of the Food Safety and Standards Act, 2006 whereby, the penalty to the tune of Rs. 1,00,000/- has been imposed by upon the petitioner."
+    },
+    {
+      "annotation_id": "64c982cd4ded4cd0824eadbab73b6727_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "We are not inclined to entertain the writ petition because against the order impugned, the petitioner has remedy of filing an appeal as provided under Section 70 of the Act."
+    },
+    {
+      "annotation_id": "0de838450aba4635a327b4269382eb83_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Sub-section (5) of Section 71 which provides the procedures and powers of the Tribunal makes the provision of the Limitation Act applicable to an appeal to the Tribunal."
+    },
+    {
+      "annotation_id": "88b800b164e64c459cee285d3d0b01cf_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. Under the circumstances and since, the petitioner has statutory alternative remedy, this petition is dismissed with the observation that the petitioner may avail such remedy in case he is advised."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 442,
+      "facts": 0,
+      "arguments": 222
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

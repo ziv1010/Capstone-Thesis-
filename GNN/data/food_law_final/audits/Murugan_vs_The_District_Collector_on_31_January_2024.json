@@ -1,0 +1,95 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "34e39d71c8d348529b30a5ed5ab800c3_9",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n Order \nThis Writ Petition is filed seeking for issuance of a Writ of Certiorarified Mandamus to call for the records of the impugned order of the 3rd respondent in his Nil proceedings dated 30.12.2023 and quash the same as illegal and fur"
+    },
+    {
+      "annotation_id": "31455b52fb8145a6a2e8f5ac14e90b6a_30",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Court has already decided the petitioner's claim in W.P(MD)No.336 of 2024."
+    },
+    {
+      "annotation_id": "1dca373e796c4c51b2c6671949d52e62_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, this Court is not inclined to entertain this writ petition at this stage also."
+    },
+    {
+      "annotation_id": "8696a8127bb94e7fb1b3d25302e1d908_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, this Writ Petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1443,
+      "facts": 1211,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 36,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "5700fcb1c648418793ea8f760012cf25_11",
+        "entity_text": "Maniammal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "132dc12168454b4f965bcc1d4046fca0_39",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

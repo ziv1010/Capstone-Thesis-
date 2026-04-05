@@ -1,0 +1,79 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "545662b30bd4423fb882afa11550d8aa_29",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In view of the above, the second respondent is directed to file a complaint before the adjudicating authority within a period of two weeks from the date of receipt of copy of this order."
+    },
+    {
+      "annotation_id": "cc8bac7b6a7b44189db6d2659c7b9aab_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 36,
+          "end": 55
+        }
+      ],
+      "text_preview": "With the above direction, this writ petition is allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 226,
+      "end": 245
+    }
+  ],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1797,
+      "facts": 511,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 40,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "109b9d4f073e4a57885e4d1605abab01_10",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

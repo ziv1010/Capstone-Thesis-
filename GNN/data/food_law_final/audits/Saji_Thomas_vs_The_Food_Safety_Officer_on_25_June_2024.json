@@ -1,0 +1,64 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "92e69aac90304531aac4629690420693_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Application praying that in the circumstances stated therein the  High Court be pleased to stay all further proceedings in S.T.1713/2020  pending on the files of Court of the Judicial First Class Magistrate,\n Kattapana pending disposal of t"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 676,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "3de2a52c10f84f259e618da72cc65e1c_1",
+        "entity_text": "Bechu Kurian",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1b92ff1994444246b1e06dfef57fdad5_2",
+        "entity_text": "Bechu Kurian Thomas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1d325042223a4a0e909972a4ae2a3a65_6",
+        "entity_text": "PREMJIT NAGENDRAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5f97dab9bdf844569a2b73387b4b33a5_8",
+        "entity_text": "SANTHAN.V NAIR",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

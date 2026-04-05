@@ -1,0 +1,126 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "968a71e14949445982e44eb432168019_5",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "02. This Court has examined respondent No. 4 - Vidhi Dubey, Chairperson, Child Welfare Committee (CWC), Jammu to have assessment of the circumstances under which Aarti Devi alongwith her two minor children, one of whom being one month old, "
+    },
+    {
+      "annotation_id": "b06233b5d41b4aee9ba7b6050f499b4a_6",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "03. The respondent No. 4 - Vidhi Dubey, Chairperson, Child Welfare Committee (CWC), Jammu has assured this Court that subject to final orders of this Court so long as Aarti Devi alongwith her two children are in the Shelter Home - Pareesha "
+    },
+    {
+      "annotation_id": "3d9a2a4094c74499a875143d615f79b0_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "that Shelter Home - Pareesha for the time being is the best place for the three persons i.e. the Aarti and her two children to be there till the disposal of this petition."
+    },
+    {
+      "annotation_id": "73f6ec2471c346b38910de035cb7a642_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "06. It is directed that Shelter Home - Pareesha shall allow no access either to the petitioner - Malti Devi or to Rinku Devi in their purported claim as being mother-in-law and mother of Aarti Devi."
+    },
+    {
+      "annotation_id": "0a8d5437900b4853b375d478a0f3fc30_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nAny act of interference on the part of the above-named two women or their representatives/agents meant to scare the administration of Shelter Home - Pareesha shall be seriously dealt with by lodging a report to Senior Superintendent of Pol"
+    },
+    {
+      "annotation_id": "1eb3219d5f8b47ec879345cc196efacc_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Director Social Welfare, Jammu is also directed to ensure that all the needs and necessities of Aarti Devi and of her two children are fully met without putting any call to the petitioner - Malti Devi or for that matter Rinku Devi asking fo"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 420,
+      "facts": 361,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "d96abbe6eeee41d683b5f27e34e2ce68_4",
+        "entity_text": "Rajesh Jasrotia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "3670eaa708a04e0e853e8d181841b494_10",
+        "entity_text": "Monika Kohli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2ea7e8eb7fb744c9a369ace0bfa381b9_15",
+        "entity_text": "Monika Kohli",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

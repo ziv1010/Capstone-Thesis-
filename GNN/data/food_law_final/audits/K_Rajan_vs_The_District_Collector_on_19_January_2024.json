@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1f6444eb18cc4d639b7ce60413adde86_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Since the representation of the petitioner is of the year 2012 and it is pending before the 1st respondent for nearly a decade, the 1st respondent viz., the District Collector, Krishnagiri is directed to consider the representation date"
+    },
+    {
+      "annotation_id": "f1173843eff74ef4910422b6a879398a_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. With the above direction, this Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1266,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 22,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "6b8ff49ff0604163883b6ed017654927_12",
+        "entity_text": "R.Neethi Perumal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

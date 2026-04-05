@@ -1,0 +1,69 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c06e8baca3a447f4b7e4d34d86f1ad57_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Having regard to the submissions made, we permit the petitioner to withdraw the writ petition with liberty to avail such legal remedy as may be advised."
+    },
+    {
+      "annotation_id": "34daf1f1766d4175acbc0b267d569ef3_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. Accordingly, the petition is disposed of as withdrawn in terms of the prayer made."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 492,
+      "facts": 0,
+      "arguments": 258
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "1b0318f53e634626b537d569f14a9f91_9",
+        "entity_text": "Nitika Sri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "67af1a85d89e46b7b9cffac225e08052_11",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

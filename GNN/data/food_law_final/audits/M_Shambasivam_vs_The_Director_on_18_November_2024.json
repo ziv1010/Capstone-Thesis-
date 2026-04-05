@@ -1,0 +1,87 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "315f5f05e953484a9246413964fc8448_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2.On the ground that the appellant herein is physically challenged and hence, he ought not to have been transferred to any other office from Trichy to Dindigul District, when he had preferred the writ petition by placing reliance upon the "
+    },
+    {
+      "annotation_id": "c3fdc1b8f39845b9b988c931e421b70f_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, this Writ Appeal stands closed with a direction to the first respondent herein to pass appropriate orders as aforesaid as expeditiously as https://www.mhc.tn.gov.in/judis possible."
+    },
+    {
+      "annotation_id": "d7322843fc594ca58ed1ab4ad022479d_13",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1125,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "1068987d74d34b5586dbd2763c3a65fe_10",
+        "entity_text": "G.Subramanian",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b30ec3813923406f9a710dc1f529bb58_17",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

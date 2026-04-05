@@ -1,0 +1,94 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7ca824efdd814d53bd980d0d9ae1c9d7_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. The allegations against the applicant are that the applicant is owner of the shop from where the Gutka has been seized."
+    },
+    {
+      "annotation_id": "feb9b020941844278c04d03a129c62fd_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The police has already seized the Gutka."
+    },
+    {
+      "annotation_id": "c088212bcb5449a5ae1b3fb99dfeb091_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The applicant has no criminal antecedents."
+    },
+    {
+      "annotation_id": "dff14e77147648409baa5f39a1f091af_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As the Gutka is already seized, hence the custodial interrogation of the applicant is not required and I pass the following order :-\n ORDER (i) The application is allowed.\n(ii) In the event of arrest of the applicant in connection with FIR "
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 484,
+      "facts": 382,
+      "arguments": 164
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 19,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "7524a0abc6e74a978c88d3326b1bf3c7_13",
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c84b19f0cc56476d9c8d61dd7c178745_14",
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

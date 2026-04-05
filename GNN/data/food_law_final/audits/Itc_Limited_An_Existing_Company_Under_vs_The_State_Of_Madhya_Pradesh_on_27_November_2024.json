@@ -1,0 +1,121 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "db1aed3317044ba9b95a1300866141ae_7",
+      "summary_section": "PREAMBLE",
+      "labels": [
+        "PREAMBLE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 87,
+          "end": 94
+        }
+      ],
+      "text_preview": "\n2. This Court in connected W.P. No.2665/2013, in similar facts and circumstances, has quashed the report of Food Analyst on account of the sample of food was not analysed by the accredited laboratory under Section 43 of the Food Safety and"
+    },
+    {
+      "annotation_id": "3ecddd9245684a45aaa2b92a569d7222_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 165,
+          "end": 172
+        }
+      ],
+      "text_preview": "3. Consequently, in the present case also, the report dated 13.07.2012 (Annexure P/3) which is foundation for launching prosecution against the petitioner is hereby quashed."
+    },
+    {
+      "annotation_id": "35a226d711e04dbda91a3b46945a01b6_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 84,
+          "end": 91
+        }
+      ],
+      "text_preview": "Consequently, the impugned sanction order dated 18.03.2013 (Annexure P/8) is hereby quashed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 165,
+      "end": 172
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 258,
+      "end": 265
+    }
+  ],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 726,
+          "end": 733
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 726,
+          "end": 733
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 907,
+      "facts": 389,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 3,
+    "ignored_entities": []
+  }
+}

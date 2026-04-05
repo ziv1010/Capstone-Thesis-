@@ -1,0 +1,95 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "eda82d6ad9774a9c8843a9298e2f6ca7_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Petitioner is at liberty to press for interim relief on the next date of hearing."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2168,
+      "facts": 0,
+      "arguments": 459
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "375cbefbc7224df08fcf0d639bd2747c_4",
+        "entity_text": "SUNNY SUNNY ANKUSHRAO ANKUSHRAO THOTE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8fbb96d25bf346b98818aff84de94520_5",
+        "entity_text": "SUNNY THOTE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "354358b636f64106b6eb0b32cab259df_8",
+        "entity_text": "Tushar Sonawane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "08dbc9125da84683b519786551bd9677_9",
+        "entity_text": "M.M. Deshmukh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "63c676ae546c4b7297618b69acc6b0f2_10",
+        "entity_text": "Mahendra Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9ac7acd668a34712bb817186c66b3864_12",
+        "entity_text": "Swapnil B.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9ac7acd668a34712bb817186c66b3864_12",
+        "entity_text": "R.C. Powar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d3d83147bcf94addb64abcd3f2ff71ee_13",
+        "entity_text": "Sajay Reday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "75b7df30f2384838a048390b00025e0d_17",
+        "entity_text": "Sonawane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c6943fa7c011422e869e5d0a737b9bdd_21",
+        "entity_text": "SUNNY THOTE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

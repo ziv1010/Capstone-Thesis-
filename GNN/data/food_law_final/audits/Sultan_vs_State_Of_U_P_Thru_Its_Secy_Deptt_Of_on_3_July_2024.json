@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "07b0bb0cf4b7492d8e553e9f472c1298_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis writ petition is disposed of with a direction to opposite party no.4 to consider the application made by the petitioner for grant of NOC and pass an appropriate reasoned and speaking order within a period of two weeks from the date a "
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 662,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "6469ea29479d464896476ed35ba54dad_2",
+        "entity_text": "Saurabh Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

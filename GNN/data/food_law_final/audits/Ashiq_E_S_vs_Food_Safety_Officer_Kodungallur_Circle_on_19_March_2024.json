@@ -1,0 +1,54 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "c496c47d47f543f2bee830047fc051e5_2",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "that in the circumstances stated therein  the High Court be pleased to stay all further proceedings in  C.C.1036/2021 pending on the files of the Judicial First Class  Magistrate, Chalakudy, pending disposal of the above Criminal  Miscellan"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 763,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 4,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "6a3710a3d6314e2297fc5139b29c29ea_0",
+        "entity_text": "Bechu Kurian Thomas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6c4c6258b3cc4c7281a1d7742609bdc0_3",
+        "entity_text": "S.PREMJIT NAGENDRAN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

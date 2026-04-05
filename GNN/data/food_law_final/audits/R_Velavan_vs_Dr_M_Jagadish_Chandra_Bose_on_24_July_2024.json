@@ -1,0 +1,98 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5d2117882ed74348a04c6badb5dd269a_4",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Contempt Petition has been filed to punish the respondent for non compliance of the order R.Velavan vs Dr.M.Jagadish Chandra Bose on 24 July, 2024 Indian Kanoon - http://indiankanoon.org/doc/32339187/\n1 dated 22.05.2024 passed by this "
+    },
+    {
+      "annotation_id": "a19ef79dd3a44e5eb950125e590384ec_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. It is seen that this Court granted interim stay of recovery alone."
+    },
+    {
+      "annotation_id": "d91d1a00edce4977804ce659e86701f5_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe revision of pay scale is nothing to do with the order passed by this Court on 22.05.2024."
+    },
+    {
+      "annotation_id": "e45b8a69ce744754b0df6f2a2ffa4fab_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTherefore, no contempt is made out as against the respondent and the present petition is liable to be dismissed."
+    },
+    {
+      "annotation_id": "8fda22ac22cd4b57b85a340a5bc93325_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the Contempt Petition stands dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 674,
+      "facts": 350,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 5,
+    "ignored_entities": []
+  }
+}

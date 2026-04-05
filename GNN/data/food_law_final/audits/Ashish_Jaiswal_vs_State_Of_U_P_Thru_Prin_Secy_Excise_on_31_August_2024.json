@@ -1,0 +1,89 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e44be0b701cf486fac235d7031d2b317_4",
+      "summary_section": "issue",
+      "labels": [
+        "ISSUE"
+      ],
+      "reasons": [
+        "forbidden_section:issue"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. This writ petition has been filed for the following main prayer:-\n\" (i). issue a writ, order or direction in the nature of mandamus commanding the respondents no. 2 and 7 to consider and issue the license to the petitioner for running t"
+    },
+    {
+      "annotation_id": "bf8d8a3a7ddd4931bc3a671f179734d0_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is also provided further that aforesaid restrictions shall not be applied to the licensed establishments falling within the purview of municipal areas."
+    },
+    {
+      "annotation_id": "9f8467e3d50b407dae1fdc5ceb46d92d_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This writ petition is disposed of with a direction to the District Excise Officer, Pratapgarh to inform the petitioner of the short comings found in his application within a period of ten days from the date of certified copy of the order is"
+    },
+    {
+      "annotation_id": "3cb2af53ebc34f999d999c51d1625eea_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner shall try and satisfy the conditions laid down in the Rules, 2020 and the Circular dated 05.07.2024 and submit a fresh application, if need be, to the District Excise Officer.\n"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 446,
+      "facts": 754,
+      "arguments": 750
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "0b3f93a592e6485998b84e7c57e5dd55_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

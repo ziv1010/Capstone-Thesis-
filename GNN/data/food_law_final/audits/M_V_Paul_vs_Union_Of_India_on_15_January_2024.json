@@ -1,0 +1,49 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3765781f9b0a4fc0b2ed23cc2241c7fc_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Petitioner, is at liberty to avail the remedy of appeal seeking condonation of delay by resorting to remedy, in accordance with law, if so advised."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1470,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "fdbe23e9a2e74c29b129b94ee38b5bab_6",
+        "entity_text": "ADV SRI.JAGADEESH",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

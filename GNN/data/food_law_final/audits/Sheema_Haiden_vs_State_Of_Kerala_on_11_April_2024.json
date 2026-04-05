@@ -1,0 +1,70 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "bfc86fad4775479086a74c2b948e5769_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. In view of the above, the petitioner shall produce the proper document relating to Annexure-3 for perusal of the Court."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1409,
+      "facts": 224,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "316edb78f9bd410cb7370c759951f203_6",
+        "entity_text": "Ajeesh K.Sasi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "316edb78f9bd410cb7370c759951f203_6",
+        "entity_text": "Sruthy N. Bhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "316edb78f9bd410cb7370c759951f203_6",
+        "entity_text": "Rahul Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "316edb78f9bd410cb7370c759951f203_6",
+        "entity_text": "Nanditha S.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "316edb78f9bd410cb7370c759951f203_6",
+        "entity_text": "Sohail Ahammed Harris",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

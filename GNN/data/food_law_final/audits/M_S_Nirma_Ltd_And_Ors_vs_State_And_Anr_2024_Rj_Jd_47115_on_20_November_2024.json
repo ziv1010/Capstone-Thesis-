@@ -1,0 +1,130 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7434599ef80b441ca6eec057edb28a68_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n2. After arguing to some extent, it is felt appropriate to direct to the petitioners to appear before the ADM, Bhilwara and to submit a detailed objection regarding continuation of the proceeding against him."
+    },
+    {
+      "annotation_id": "73caff0d958448baa59dec146f867d55_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As per him, no case is made out against the petitioners for even proceeding further in the matter in light of the provision contained under 3(I)(k) where the word Food Additive has been defined."
+    },
+    {
+      "annotation_id": "5fb85c8e9e98414eba6e07e8ae2358f8_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Upon receiving the objection on behalf of the petitioners, it would be imperative upon the learned ADM, Bhilwara to consider the same in light of the spirit of law and the connotation made in this regard in the statute book itself and he wo"
+    },
+    {
+      "annotation_id": "eb36569370ec492cb80e2d5589c8364d_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. Accordingly, the instant criminal misc. petition as well as stay petition is disposed of."
+    },
+    {
+      "annotation_id": "daf6bade45424c76a8beacb4ca66f419_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. The needful shall be done within a period of two months after filing of the objection."
+    },
+    {
+      "annotation_id": "1eb4cb777b95457db64a7f9345e3ef68_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n5. Needless to say, the petitioners are not precluded from approaching this Court again if any order averse to their interest is passed."
+    },
+    {
+      "annotation_id": "a75fbff84e0942a48429eae79d385d3e_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. In the meantime, no coercive measure shall be taken against them."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1739,
+      "facts": 76,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "23141335c945489e8893cde9d821268e_22",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

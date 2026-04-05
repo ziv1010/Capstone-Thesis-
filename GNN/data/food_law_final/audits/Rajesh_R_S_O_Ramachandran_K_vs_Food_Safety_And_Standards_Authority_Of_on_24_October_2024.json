@@ -1,0 +1,68 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "32c7c2845f5146b9b60455160e77b928_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": " Writ petition (civil) praying inter alia that in the circumstances  stated in the affidavit filed along with the WP(C) the High Court be  pleased to stay of Exhibit-P5 passed by the 3rd respondent, till the  disposal of the writ petition(c"
+    },
+    {
+      "annotation_id": "e76552e2fb2d41219b8f4f32918b82e0_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There will be a direction to the learned Standing Counsel for the Municipality to file a counter in all these writ petitions, if not already filed, before 09.11.2024."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1096,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "6b96fc62c305481988a0dd17f7e861a8_0",
+        "entity_text": "Rajesh R.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "fc6904f76a914626b2c3ee9d6b7cded3_7",
+        "entity_text": "GIRIJA SASIKUMARAN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

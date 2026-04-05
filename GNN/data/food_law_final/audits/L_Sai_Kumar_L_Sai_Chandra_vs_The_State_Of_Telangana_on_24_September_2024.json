@@ -1,0 +1,138 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "eba285ff7c03493482b059ce0a9e7779_7",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "4. Learned Additional Public Prosecutor also submitted that the issue in the present criminal petition is covered by the earlier order in the above criminal petition."
+    },
+    {
+      "annotation_id": "48f87059ac194faeafee1dbb1ba81b71_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 135,
+          "end": 154
+        }
+      ],
+      "text_preview": "5. In view of the said representation and as the matter is squarely covered by the order in the above criminal petition, this criminal petition is allowed in terms of the above said order, adopting the reasoning contained therein."
+    },
+    {
+      "annotation_id": "6e4a34003159469eb427625663083b21_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 131,
+          "end": 138
+        }
+      ],
+      "text_preview": "The proceedings against the petitioner/accused in Crime No.220 of 2024 on the file of Alair Police Station, Rachakonda, are hereby quashed."
+    },
+    {
+      "annotation_id": "8e57a93dcc3b4e66bdee9137bfdda497_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Further, the Station House Officer/Investigating Officer is hereby directed to return the seized property on proper identification and verification under due acknowledgment."
+    },
+    {
+      "annotation_id": "c72aa2792ae3473c93da82d47e795d1a_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nPending miscellaneous petitions, if any, in this Criminal Petition shall also stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 135,
+      "end": 154
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 362,
+      "end": 369
+    }
+  ],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 685,
+      "facts": 0,
+      "arguments": 160
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "549357f0917340a494bae69f81d103c6_4",
+        "entity_text": "Y.Bala Murali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "549357f0917340a494bae69f81d103c6_4",
+        "entity_text": "Arun Kumar Doddla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

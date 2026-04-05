@@ -1,0 +1,104 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0fce6fdb7ae340a6b16ba5008e9d0d4a_5",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "ORDER DATED:\n11/03/2024 undefined Palika to process the application filed by the Petitioner at Annexure A to this Petition and to give opportunity of hearing to Grant a Legal and Valid NOC and Permission for Running Slaughter and (B) grant "
+    },
+    {
+      "annotation_id": "609013921b514aab9072ff7d3ee8b3e1_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The present writ-application stands disposed of accordingly."
+    },
+    {
+      "annotation_id": "f9643698ece1411a9741834ad85abbcf_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nDirect service is permitted."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1502,
+      "facts": 289,
+      "arguments": 719
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "d5483ba3362a4fcb9ca9c59ed3e5b467_4",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5ba6482c6e70434a8fc3fe0320d5d5b7_6",
+        "entity_text": "Nabil O. Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5ba6482c6e70434a8fc3fe0320d5d5b7_6",
+        "entity_text": "Chirag B. Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "722ef4ca7e2a41839f5c922c90805a1d_9",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "dd4f4336250a4d59988986be84e5da9a_10",
+        "entity_text": "Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "09801e89d1c5438d9a837ae0abf9ad85_11",
+        "entity_text": "Chirag Patel",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

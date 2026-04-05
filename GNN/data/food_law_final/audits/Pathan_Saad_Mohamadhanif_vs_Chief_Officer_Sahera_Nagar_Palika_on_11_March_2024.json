@@ -1,0 +1,94 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "153da7e6929c45108f54246024b290e3_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. Considering the aforesaid and statement made by Mr. NEUTRAL CITATION C/SCA/919/2024 ORDER DATED: 11/03/2024 undefined Chirag Patel, the learned advocate appearing for the respondent authority, if the writ-applicant were to approach the r"
+    },
+    {
+      "annotation_id": "011d091cff6f4d28aec34a01a125f2df_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. The present writ-application stands disposed of accordingly."
+    },
+    {
+      "annotation_id": "22132aaa793949999c647550eff57cf7_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nDirect service is permitted."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2144,
+      "facts": 286,
+      "arguments": 434
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "22792f29d8cb425caf608f84ec95e2d5_2",
+        "entity_text": "Nabil O. Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "22792f29d8cb425caf608f84ec95e2d5_2",
+        "entity_text": "Chirag B. Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1b3e4baf2391492b800fe5c761ff8fb4_5",
+        "entity_text": "Bloch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "71ac46cae45b4177aa2fd60f51d012b3_6",
+        "entity_text": "Patel",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

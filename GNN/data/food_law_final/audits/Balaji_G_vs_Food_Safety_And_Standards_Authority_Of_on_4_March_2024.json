@@ -1,0 +1,63 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "3f8144a8578c4971b125cda0c7c27c6f_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. The parties are permitted to file written submissions, not exceeding two pages in the form of pointers/bullet points with cross reference to the page numbers of the relevant documents that they seek to rely on, within four weeks from to"
+    },
+    {
+      "annotation_id": "20876c1b53d14233bd6f11909d78500c_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe authenticity of the order can be re-verified from Delhi High Court Order Portal by scanning the QR code shown above."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 441,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "3fc7375641ee4aada098a325f6b14747_0",
+        "entity_text": "Tushar Rao Gedela",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

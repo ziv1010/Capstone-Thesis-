@@ -1,0 +1,968 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "65bd68d1f05c46d38b5b38c2e32b78b2_28",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 65,
+          "end": 74
+        }
+      ],
+      "text_preview": "A learned single Judge of this Court, by order dated 15.07.2022, set aside the order of the Chief Judicial Magistrate dated 11-01-2016 and directed reconsideration."
+    },
+    {
+      "annotation_id": "dd4c3701b6c04b8383062a881d441181_30",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Pursuant to the above direction, the learned Chief Judicial Magistrate considered the matter afresh and, by the impugned order dated 20.07.2023, held that the prosecution had made out sufficient grounds for proceeding against the accused."
+    },
+    {
+      "annotation_id": "7130f79bfb3249f1b7acec78fe8acb4a_39",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. To resolve the question mentioned in the exordium to this judgment, it is necessary to refer to section 77 of the Act, which provides a time limit of one year for taking cognizance of the offence."
+    },
+    {
+      "annotation_id": "b846c248493a4fd3a950518083d72076_40",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe said provision, after prescribing a time limit of one year for prosecutions, carves out a proviso,\nenabling the said time limit to be extended upto three years, provided reasons are given in writing by the Commissioner for such extensi"
+    },
+    {
+      "annotation_id": "f544276c5ba54ba18d95bccf8e096cc3_41",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "For the purpose of better comprehension, section 77 of the Act is extracted as below:\n\"S.77."
+    },
+    {
+      "annotation_id": "64535f3303be400dbfb408ec68453d16_42",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Time limit for prosecutions.-"
+    },
+    {
+      "annotation_id": "64c163bd48254c2bb13d9ef91bc4c21d_43",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Notwithstanding anything contained in this Act,\nno court shall take cognizance of an offence under this Act after the expiry of the period of one year from the date of commission of an offence:\nProvided that the Commissioner of Food Safety "
+    },
+    {
+      "annotation_id": "f8ed35957e5b4ee78944eebc9e460f78_44",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. In Annexure A14, it is seen that an FIR was registered on 28.04.2013 after the pan masala manufactured by the petitioner was seized."
+    },
+    {
+      "annotation_id": "2e1293bf078e480ab554b2f4f521ac19_45",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Though the seized articles were subjected to an analysis and a report dated 20.09.2013 was received, the Designated Officer issued a letter to the Commissioner of Food Safety seeking sanction for prosecution only on 21.03.2015."
+    },
+    {
+      "annotation_id": "f7ea6d50347a44bca6e9dc78e9312e59_46",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "By that time itself, a period of one year and six months had elapsed."
+    },
+    {
+      "annotation_id": "7e0e3d9db6da43b98fc3881cbd280a57_47",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Thereafter, by order dated 11.8.2015, the Commissioner granted sanction to launch the prosecution."
+    },
+    {
+      "annotation_id": "f7de91cd87d8434b93a003f3c28e1fec_48",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Another five months had elapsed by then."
+    },
+    {
+      "annotation_id": "36f74036de884ce795ebd46251956ce6_49",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The reason recorded in writing in the order dated 11.08.2015 by the Commissioner of Food Safety reads as follows:\n\"In this case since the period of commission of offence is (sic) exceeds one year, an extended period upto 30.09.2015 is sanct"
+    },
+    {
+      "annotation_id": "273908dd851d44328dcf4177381b3f55_50",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The reason for according extension of period is due to procedural and administrational delay.\""
+    },
+    {
+      "annotation_id": "d1fa5b401e4c41379bca799b44654a60_51",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "11. Thus, the only reason mentioned to explain the delay is the procedural and administrational delay."
+    },
+    {
+      "annotation_id": "039d80195f3e45bc8160eb730b8fe6a4_52",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There is a complete absence of any explanation of what is the procedural delay."
+    },
+    {
+      "annotation_id": "84f4b633bfdf4b22ba19a1d80e63d7c1_53",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No material has been referred to in the order of the Commissioner to explain the nature of the administrational delay or the factors responsible for such a delay."
+    },
+    {
+      "annotation_id": "c5698f11db154de49faddffe22f8d274_54",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "12. The words 'procedural and administrational delay' are too vague and obscure terms to be regarded as an explanation or as reasons for delay."
+    },
+    {
+      "annotation_id": "26bbef5f32ad443d86ba05036cae7a98_55",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Those terms cannot signify a reason and are only broad terminologies used to denote a title for the delay and not anything of relevance or significance."
+    },
+    {
+      "annotation_id": "0eea5585326040c7ba4b5b9bed6fcbca_56",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "When the statute expressly requires reasons to be stated in writing, it mandates a precise reference to the causes for the delay, which can be tested on the touchstone of relevancy or sufficiency by a court of law."
+    },
+    {
+      "annotation_id": "de52a1952ac443bf94c1df6da77fe6eb_57",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nDharampalsatyapal Limited vs State Of Kerala on 6 March, 2024 Indian Kanoon - http://indiankanoon.org/doc/112396005/\n6 13."
+    },
+    {
+      "annotation_id": "4b2124ecfee34aee9919f5557dca230c_58",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The terms procedural and administrative delay have been the subject of consideration by the courts under section 5 of the Limitation Act 1963."
+    },
+    {
+      "annotation_id": "027ef335c18c4bfcba04b905b453e6e5_59",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In State of Uttar Pradesh v. Amar Nath Yadav [(2014) 2 SCC 422], the Supreme Court had observed that it is time to inform all the Government bodies, their agencies and instrumentalities that unless they have reasonable and acceptable explan"
+    },
+    {
+      "annotation_id": "495c7722b3ed46febd4777752ff713e9_60",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Government departments are under a special obligation to ensure that they perform their duty with diligence and commitment."
+    },
+    {
+      "annotation_id": "4a068686a21a4543bcca7a0d3b77634b_61",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Similarly, in the decision Simplex Infrastructure Limited v. Union of India [(2019) 2 SCC 455] Supreme Court observed that administrative difficulties cannot be a valid reason to condone delay."
+    },
+    {
+      "annotation_id": "18a958fd44894a5c866fe8a9e848e66e_62",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n14. Section 77 of the Act, which stipulates that prosecutions must be launched within a period of one year, has significance."
+    },
+    {
+      "annotation_id": "fb1713a1279a4481995e22f214a503e9_63",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It entails the Food Inspectors to act swiftly and without delay."
+    },
+    {
+      "annotation_id": "88ff7f25710642f882af9e69d250a6ac_64",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is also a measure of fair and reasonable procedure prescribed under law before depriving the liberty of an individual."
+    },
+    {
+      "annotation_id": "58d392a62d124e28b8e71415d37e1b7a_65",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "When the statute prescribes a period of limitation and carves out an exception from the main provision, the conditions required to fall within the exception must be strictly adhered to."
+    },
+    {
+      "annotation_id": "888d139c01e54faeb8f3ce83a2da17a4_66",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The principle that penal statutes are to be interpreted strictly also has to be followed."
+    },
+    {
+      "annotation_id": "b19b488202f544dbbc431eaf71341676_67",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, as a measure of depriving the liberty of an individual when the statute provides certain conditions to be satisfied, there cannot be any scope for a liberal interpretation."
+    },
+    {
+      "annotation_id": "d4ac8691a7764b64b8ffa91fcf3b7111_68",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The requirement for giving reasons in writing enables the court to review whether the stated reasons for extending the time for prosecution are legally and factually justifiable or not."
+    },
+    {
+      "annotation_id": "ed4e149864dc438d9a726fb9d32c221c_69",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "15. In the instant case, the letter from the Designated Officer was issued after a delay of 18 months."
+    },
+    {
+      "annotation_id": "668ec30cd18c49eab85efef27065192f_70",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nA further delay of five months from 21.03.2015 to 11.08.2015 at the office of the Commissioner has also not been explained."
+    },
+    {
+      "annotation_id": "2d1126687b074ed9b178e290b3792a1f_71",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The aforenoted delay is substantial and beyond the period stipulated for taking cognizance."
+    },
+    {
+      "annotation_id": "cc41eb4a7d3d401c94bc41146fc52278_72",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The reason for such a long delay has not been indicated at all."
+    },
+    {
+      "annotation_id": "5b64e293d1dd40f4b3d41cda14fbaa65_73",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the absence of any reason for such a long delay, the sanction becomes legally invalid."
+    },
+    {
+      "annotation_id": "1470983dd1c2436a9670456ef5192fcf_74",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the above circumstances,\nthis Court is of the view that the Commissioner had failed to record any reason worth its name to extend the period stipulated under section 77 of the Act for sanctioning the prosecution."
+    },
+    {
+      "annotation_id": "7505fba018c54d228c671c9a57ff4382_75",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "16. This Court is fortified in the above conclusion by the decisions of the Madras High Court in Mondelez India Foods Private Limited and Others v. A.Elankov (O.P. No.17767/2018), and that in P.Paneer Selvam and Others v. Sri. Jaganadhan MA"
+    },
+    {
+      "annotation_id": "3275a95012cb46c6af0b013094af58cc_76",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the former decision, the Court observed that the delay caused in identifying the address of the accused could not be treated as a valid administrative reason."
+    },
+    {
+      "annotation_id": "6673ae5fb4c94d579142331e3cb94a1b_77",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the latter decision, another learned Single Judge observed that the reference to administrative reasons without explaining the reason for the delay is not sufficient to condone the delay."
+    },
+    {
+      "annotation_id": "6d7769818e394befb653ec32fb2711f4_78",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "17. Though the contention of the respondents regarding the applicability of sections 468 and 473 was impressive, it is evident, on a deeper scrutiny, that the said contention has no merit."
+    },
+    {
+      "annotation_id": "2693a9aa34eb416981adb483d7c0c8d4_79",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The provisions of Cr.P.C are made applicable as per section 41(2) of the Act."
+    },
+    {
+      "annotation_id": "62e308e39d844b43956391df760180e9_80",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, the applicability is \"as far as may be\" and not in its entirety."
+    },
+    {
+      "annotation_id": "2bad0445b1a5480995383ba5f6003963_81",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The words \"as far as may be\" indicate that the provisions of Cr.P.C. will apply only in the absence of specific provisions in the Act."
+    },
+    {
+      "annotation_id": "f99638a9817545ac95577dac43e3a207_82",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is elementary that the general law cannot override the specific provisions."
+    },
+    {
+      "annotation_id": "7d98b95898054e8494144096b648a57b_83",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "When the Act stipulates that the prosecution has Dharampalsatyapal Limited vs State Of Kerala on 6 March, 2024 Indian Kanoon - http://indiankanoon.org/doc/112396005/\n7 to be launched within one year and the period can be extended only for r"
+    },
+    {
+      "annotation_id": "de189690458e42ffb041f587b2ea0c0e_84",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Further, extension of the period of limitation merely on the ground that it is necessary to do so in the interest of justice and not on the grounds of explained delay would be improper."
+    },
+    {
+      "annotation_id": "7f8bb976f6bb458a81bf13e4d4905ee2_85",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "18. The learned Magistrate had mechanically issued the impugned order without comprehending the purpose for which this Court remitted the matter back to it."
+    },
+    {
+      "annotation_id": "e7497f65e61e4e5caed08f39d7a83dfa_86",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "No reasons are forthcoming from the impugned order as to the reason for condoning the delay."
+    },
+    {
+      "annotation_id": "9ea8eac5dfc94c0b8e03ecf78e16d5dc_87",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "19. Viewed in the above perspective, the proceedings initiated against the petitioner in S.T.\nNo.622/2015, before the Chief Judicial Magistrate Court."
+    },
+    {
+      "annotation_id": "6f796bbb109c4b4daf9b3e5c9e335eff_88",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 25,
+          "end": 32
+        }
+      ],
+      "text_preview": "Palakkad is liable to be quashed."
+    },
+    {
+      "annotation_id": "7c5bf0a4e5cd40bab83228767206776b_89",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Ordered accordingly."
+    },
+    {
+      "annotation_id": "06a716b4fbda4bac98ca32b4a05e2262_91",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The proceedings in S.T. No.623/2015 and S.T. No.624/2015 before the Chief Judicial Magistrate Court, Palakkad, which are challenged in the above two cases, are also identically placed as that in ST. No. 622/2015."
+    },
+    {
+      "annotation_id": "054e002cfa244f3eadb8af151f11fcb6_92",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The product involved, the date of detection and the report, apart from the letters and sanction order, are also the same."
+    },
+    {
+      "annotation_id": "a9e6f90cdb2341bab2b605680279dcdf_93",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The reason specified in the sanction orders is identical to that in S.T. No.622/2015."
+    },
+    {
+      "annotation_id": "b9b234f559234c6693cb0ae4317ab179_94",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, the challenges raised in Crl.M.C No. 8244/2023 and Crl.M.C No.\n7809/2023 are also to be allowed."
+    },
+    {
+      "annotation_id": "2c7380a5ec73431a8ac246793e87ed58_95",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 216,
+          "end": 223
+        }
+      ],
+      "text_preview": "21. Thus, the complaints filed in S.T. No.623/2015 (Annexure A14 in Crl.M.C No. 8244/2023) and S.T. No.624/2015 (Annexure A14 in Crl.M.C No. 7809/2023) before the Chief Judicial Magistrate Court, Palakkad are hereby quashed."
+    },
+    {
+      "annotation_id": "fc361bd63e3b4c039581befedec36138_96",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "22. Petitioner challenges the prosecution initiated in ST No. 52/2016 on the files of the Chief Judicial Magistrate, Palakkad."
+    },
+    {
+      "annotation_id": "13bd940b2ac64c159b3b841f4218c16e_97",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The product involved is a mouth freshener under the brand name Pass-Pass, manufactured by the petitioner."
+    },
+    {
+      "annotation_id": "e8e60548aedf40b39ab29d223ba9fa84_98",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As in the other cases, the products were seized, alleging that they contained tobacco and nicotine, but when the samples were sent for chemical analysis, the report dated 17-10-2013 showed the test for nicotine and tobacco as negative but r"
+    },
+    {
+      "annotation_id": "86119564f7c1483d863d58d66271cdfd_99",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Thereafter, a letter dated 22-10-2015 was issued seeking sanction for prosecution and by order dated 16-11-2015, sanction was accorded."
+    },
+    {
+      "annotation_id": "06962054f49d44eb931fdebfe84a1643_100",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Pursuant thereto, the complaint was instituted, and the learned CJM took cognizance of the complaint by its order dated 25-02-2016, which is challenged in this petition under section 482 Cr.P.C.\n23."
+    },
+    {
+      "annotation_id": "812e86e0942f4e93917ad8b753769334_101",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In Annexure 2 order granting sanction for prosecution, the Commissioner has extended the period for the following reason: \"Therefore considering that the need for extension of period is due to the various procedural and adminstrational dela"
+    },
+    {
+      "annotation_id": "30c78cfe576a4993a9984910a2aabafa_102",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The only difference from the other cases already considered is the addition of the words 'insufficient staff strength of the department' in the present case."
+    },
+    {
+      "annotation_id": "eb75f4d29d8f40f8acf431280228ae2c_103",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "24. The analyst report in the instant case is dated 17-10-2013, while the letter seeking sanction was issued only on 22-10-2015, and the sanction was accorded on 16-11-2015."
+    },
+    {
+      "annotation_id": "bed1497e547743c7944415cd70389a45_105",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "the period"
+    },
+    {
+      "annotation_id": "2a3d3fcf416847238723cf58c71f81c8_106",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "are not valid as has already been considered in the earlier three cases."
+    },
+    {
+      "annotation_id": "fe9d8a4c8f0842d692b641e748ef3617_107",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Insufficient staff strength also cannot be a valid reason to extend the period."
+    },
+    {
+      "annotation_id": "c8c0bc04cbca4c6aa4396ad1d54a9980_108",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Thus, the summons issued to the petitioner in ST No.52/2016 on the files of the Chief Judicial Magistrate, Palakkad, is illegal, and the court erred in taking cognizance."
+    },
+    {
+      "annotation_id": "ed5c5055d26842c0b82bc0cf314ec3d1_109",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 162,
+          "end": 169
+        }
+      ],
+      "text_preview": "25. Therefore, the order dated 25-02-2016 issuing summons to the petitioner in S.T. No.52/2016 on the files of the Chief Judicial Magistrate, Palakkad, is hereby quashed."
+    },
+    {
+      "annotation_id": "097e9364b62b46149df45c12cb7615d5_110",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThese criminal miscellaneous cases are allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 176,
+      "end": 183
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 643,
+      "end": 650
+    }
+  ],
+  "suspicious_annotation_count": 72,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 4778,
+      "facts": 277,
+      "arguments": 114
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 81,
+    "ignored_annotations": 72,
+    "ignored_entities": [
+      {
+        "annotation_id": "de570560fa434374b763a893a8e665ee_19",
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "de570560fa434374b763a893a8e665ee_19",
+        "entity_text": "Rajanigandha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "db3ef93c43ae4ca2a98b3c55601078c1_31",
+        "entity_text": "Telma Raju",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

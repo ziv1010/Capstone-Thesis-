@@ -1,0 +1,135 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6a1ea1bd6e8e435a96f3f00523775cb7_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", since the petitioner had paid the compounding fee, the second respondent is directed to de-seal the premises on 02.04.2024."
+    },
+    {
+      "annotation_id": "ee3ebda1b400466582fd4fbb6c6a0065_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The petitioner is directed not to vend any banned Tobacco product in future."
+    },
+    {
+      "annotation_id": "29b12caf16f9496d81b69d19d947a4f2_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If in future, the direction is breached by the petitioner, not only the petitioner will be liable to prosecution but the second respondent can move this Court for punishing the petitioner for contempt of Court."
+    },
+    {
+      "annotation_id": "e88e081ca94d4fc288659bfb5e91c46f_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This direction is given based on the undertaking given by the petitioner through his Counsel."
+    },
+    {
+      "annotation_id": "30e2653125de4b4182fc1f01ed19038a_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 81,
+          "end": 100
+        }
+      ],
+      "text_preview": "\n5.With the aforesaid direction to de-seal the premises on 02.04.2024, this writ petition is allowed."
+    },
+    {
+      "annotation_id": "d122ec5b781249489ff8cb06f9ee9492_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Consequently, the connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 589,
+      "end": 608
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1296,
+      "facts": 240,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 28,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "34886e5197684701915e13b7f6b05d09_33",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

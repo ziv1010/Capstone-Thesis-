@@ -1,0 +1,213 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1eaf56eb4a78434381459972a2e8c1ee_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. Though the petitioner was served with the impugned order, the petitioner was not served with Form V-A."
+    },
+    {
+      "annotation_id": "c82486581a324752ae8d54c5d0471d8a_28",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "That apart, the order passed by the first respondent is merely on the confession of the petitioner that he had sold the groundnut sweet in the name 'Sri Shanmuga Vilas Special Groundnut Sweet' and it would not amount to admission of guilty."
+    },
+    {
+      "annotation_id": "4f1f8fd2c0ad4ac195bb71a0de27fad0_29",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He admitted that the said branded groundnut sweet was sold in his shop."
+    },
+    {
+      "annotation_id": "41853b72b4c8460a8fab3f839d408802_30",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "But it does not mean that he admitted his guilty that he had sold the misbranded item."
+    },
+    {
+      "annotation_id": "3a377233b338471a8bae9e85f45a531e_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 319,
+          "end": 326
+        }
+      ],
+      "text_preview": "Therefore, when the third respondent failed to follow the procedure as S.Jeyaraj vs / on 8 November, 2024 Indian Kanoon - http://indiankanoon.org/doc/190965881/\n2 contemplated under the said Act and Rules, the entire proceedings cannot be s"
+    },
+    {
+      "annotation_id": "01f94ef03c654e55a413e5156cdf15ec_32",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 122,
+          "end": 129
+        }
+      ],
+      "text_preview": "Accordingly, the impugned https://www.mhc.tn.gov.in/judis order dated 20.01.2018 passed by the first respondent is hereby quashed."
+    },
+    {
+      "annotation_id": "e86844fb89c24f94a9d14cea9836727d_33",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 10,
+          "end": 29
+        }
+      ],
+      "text_preview": "This writ petition is allowed accordingly."
+    },
+    {
+      "annotation_id": "744a53a8b93d415eb6723a7c5fa9fbb9_35",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "petition is allowed",
+      "start": 469,
+      "end": 488
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 319,
+      "end": 326
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 450,
+      "end": 457
+    },
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 502,
+      "end": 558
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1288,
+      "facts": 462,
+      "arguments": 106
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 35,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "40cc99a929cb4440be5488fff2764b57_2",
+        "entity_text": "G.K.Ilanthiraiyan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "8cf1c00b309540ca8be7002e7d15fbdc_5",
+        "entity_text": "S.Jeyaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "5d49d64e8ff14fe588dc52f88d5eb63b_10",
+        "entity_text": "S.Jeyaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "027882b7602841f3abccb048e3364b72_11",
+        "entity_text": "M.Aasha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

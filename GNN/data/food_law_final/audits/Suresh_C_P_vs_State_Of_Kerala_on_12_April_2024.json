@@ -1,0 +1,110 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0d9b7652937f4707a036e5bbe23329e8_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nii. To issue a writ of mandamus or any other appropriate writ order or direction directing the 2nd respondent to ensure that no business is being carried on by the 3rd respondent in room No.1683 of Ward VI of Thodupuzha Municipality withou"
+    },
+    {
+      "annotation_id": "b4192dfe5d8c4ea29657e95ef8af1d40_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\niii. To grant such other reliefs which this Hon'ble Court deems fit and proper in the circumstances of the case."
+    },
+    {
+      "annotation_id": "314a00c37e8b4f62a257c77fdd9b5acc_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "When this writ petition came up for consideration on 17.12.2016, this Court passed the following order:\n\"Admit.\nGovernment Pleader takes notice for R1, R4 and R5."
+    },
+    {
+      "annotation_id": "a06f4ad5b7b14e0a828e80ef2b52c773_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe official respondents 2 and 5 shall ensure that the business carried on by the 3rd respondent is with due license and if not, the same shall be stopped forthwith.\""
+    },
+    {
+      "annotation_id": "915b0c70d7774aa082e335892b8b9a57_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. In the light of the above order, no further order is necessary."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1893,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "1b88faac77bb40c88a63b8a00ff82723_21",
+        "entity_text": "P.V.KUNHIKRISHNAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "a4ec5511cd75425480be3f88575b09cb_27",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

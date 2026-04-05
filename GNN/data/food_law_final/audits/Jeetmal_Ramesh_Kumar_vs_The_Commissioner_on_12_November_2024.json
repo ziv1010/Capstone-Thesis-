@@ -1,0 +1,94 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9617131d23e84cffb321a6e3e7cc1803_12",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Pending trial before the jurisdictional Magistrate Court, the appellant filed the writ petition in W.P.(MD) No.778 of 2019 challenging the report of the food analyst and this Court, by order dated 14.02.2019, dismissed the said writ petitio"
+    },
+    {
+      "annotation_id": "b78d827616c149cfa8dec5fdd236090c_13",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Thereafter, the appellant was prosecuted and the case was split up in respect of the appellant and after completion of trial, he was found guilty of the offence and he was sentenced to undergo imprisonment till the rising of the court and t"
+    },
+    {
+      "annotation_id": "a1826a24b7a04c7882e1c4ae3ab44aab_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5.Since the appellant has already suffered conviction, no further orders are necessary in this appeal and hence, this Writ Appeal is dismissed."
+    },
+    {
+      "annotation_id": "aae972bcec59479497d7d79696d0718c_19",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 1,
+          "end": 57
+        }
+      ],
+      "text_preview": "\nConsequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1274,
+      "facts": 380,
+      "arguments": 357
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 28,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "89946fe48a064fd3a2b27ba048d8b94d_23",
+        "entity_text": "Jeetmal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

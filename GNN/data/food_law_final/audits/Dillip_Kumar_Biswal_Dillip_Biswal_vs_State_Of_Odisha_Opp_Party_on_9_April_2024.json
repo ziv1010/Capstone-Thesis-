@@ -1,0 +1,98 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0d58a7d224034bfe9b42db9148afbdc2_4",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. This application under Sections 397, 401 of the Code of Criminal Procedure has been filed challenging the order dated 27.09.2023 passed in C.T. Case No. 60 of 2021 by the learned J.M.F.C,\nChandikhol rejecting the application of the petit"
+    },
+    {
+      "annotation_id": "39fa2b8b39a84ec6911a40697b56ee81_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n11. Judgment is reserved."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 447,
+      "facts": 1278,
+      "arguments": 1537
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 34,
+    "ignored_annotations": 2,
+    "ignored_entities": [
+      {
+        "annotation_id": "c345f2f0d2864b0ba21dfa77e18c1621_5",
+        "entity_text": "Ramesh Biswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c345f2f0d2864b0ba21dfa77e18c1621_5",
+        "entity_text": "Ramesh Biswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "86dc177429d74e0a918ccc956ac37e2a_11",
+        "entity_text": "Ramesh Biswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f07f55499fc64f99bfd7bc09dff2688a_13",
+        "entity_text": "Ramesh Biswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f07f55499fc64f99bfd7bc09dff2688a_13",
+        "entity_text": "Kissan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e93f088f16f54763843c53ecdad07b54_15",
+        "entity_text": "Ramesh Biswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e1f72d4bdbe44178a4bc91817a4bb06e_32",
+        "entity_text": "Sukanta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "e1f72d4bdbe44178a4bc91817a4bb06e_32",
+        "entity_text": "SUKANTA KUMAR BEHERA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

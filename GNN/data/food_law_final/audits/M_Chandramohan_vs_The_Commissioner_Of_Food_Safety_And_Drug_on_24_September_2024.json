@@ -1,0 +1,57 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "249dbc18bf0f41a69b1815fbcb75a462_27",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "From the reading of Rule No.10 of the Service Rules applicable to the Food Safety Officers as well as the counter filed by the State, it is clear that so far the Government has not taken any stand with regard to settling the service conditi"
+    },
+    {
+      "annotation_id": "8476903d824a4b889e424bd0cbf807f1_31",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. In view of the abovesaid facts, this Court is inclined to dispose of the Writ Petition with an observation that as and when the State settles the service conditions of the Writ Petitioners, in case,\nthey are aggrieved over the said servi"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 2,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2933,
+      "facts": 436,
+      "arguments": 522
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 39,
+    "ignored_annotations": 2,
+    "ignored_entities": []
+  }
+}

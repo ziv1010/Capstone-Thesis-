@@ -1,0 +1,132 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f68acb1a590e4440a3ef6a3e17f764fa_10",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "After conclusion of the proceeding, the Respondent No. 2 found the petitioner guilty and imposed a fine of Rs. 3.00 lakh upon him."
+    },
+    {
+      "annotation_id": "5ccef881dc834549a5567c22f2f307f4_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the fact that the Appellate Forum has already been formed, this writ application is not maintainable."
+    },
+    {
+      "annotation_id": "80f915ecb447478b957eeae1cfaf66b0_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, it is dismissed."
+    },
+    {
+      "annotation_id": "7ceb50221f994509bf5072f88614496e_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nPetitioner, if so advised, may agitate his grievances before the Appellate Forum within one month."
+    },
+    {
+      "annotation_id": "98a2f03f6ec946389cb91272c299b2a8_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "If the application is filed within month, the Appellate Forum shall condone the delay in filing of the appeal before it."
+    },
+    {
+      "annotation_id": "9f60dc0f34a84fa0aaf8880ddb59c221_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 76,
+          "end": 93
+        }
+      ],
+      "text_preview": "The amounts so deposited by the petitioner shall be returned to him, if his appeal is allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+      "matched_text": "appeal is allowed",
+      "start": 327,
+      "end": 344
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 663,
+      "facts": 376,
+      "arguments": 508
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "b6a9ea1c2aff468eb837f20f3a91507b_20",
+        "entity_text": "Ranjeet/",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

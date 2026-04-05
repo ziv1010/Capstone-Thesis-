@@ -1,0 +1,78 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "fa6c024d339141d4a0cf5c4e43f3abd1_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The said hearing has been communicated to the petitioner vide notice dated 13.03.2024.\n3.In light of the aforesaid"
+    },
+    {
+      "annotation_id": "02cb8a64da7e48f4ad7f2ec880ad5880_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": ", the petitioner may well pursue the appellate remedy availed by him."
+    },
+    {
+      "annotation_id": "b6d09dff9a9343a38d1c1aab8244f4b4_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This writ petition is found not maintainable and the same is dismissed with liberty."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1689,
+      "facts": 419,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 18,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "9612c235b6c44d219e21096c750add7a_10",
+        "entity_text": "M.R.Gokul Krishnan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

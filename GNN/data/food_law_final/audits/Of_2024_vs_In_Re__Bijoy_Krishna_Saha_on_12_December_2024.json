@@ -1,0 +1,99 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "9ed37262bafb497ca4ac824aefadcb70_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Report does not show the seized food items are harmful for human consumption."
+    },
+    {
+      "annotation_id": "82cf6ebb2fc14e3fbaecf3c94e0dcd4b_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the aforesaid fact, we are of the opinion custodial interrogation of the accused/petitioner for progress of investigation is not necessary and he may be granted anticipatory bail."
+    },
+    {
+      "annotation_id": "81f690e307104fc4a528a547c2ba8e38_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. Accordingly, we direct in the event of arrest, the accused/petitioner, namely, Bijoy Krishna Saha,\nbe released on bail upon furnishing a bond of Rs.10,000/- (Rupees Ten thousand only), with two sureties of like amount each, to the satis"
+    },
+    {
+      "annotation_id": "c3dd321e5289427a87f70777ba5dd7c3_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The application for anticipatory bail is, thus, disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 476,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "b530d600095444e3a2922cbfa3421875_5",
+        "entity_text": "Susnigdho Bhattacharyya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b530d600095444e3a2922cbfa3421875_5",
+        "entity_text": "Tirupati Mukherjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4e3f9d8fa1924060a6fd2641f79dc29f_14",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

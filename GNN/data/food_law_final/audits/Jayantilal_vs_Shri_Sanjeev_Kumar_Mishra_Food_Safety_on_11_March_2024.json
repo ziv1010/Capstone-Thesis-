@@ -1,0 +1,59 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7b660fba94b1467685bbc1dc928827c7_4",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nBut till now it appears that no order has been received."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 338,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 6,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "eda7508caee5425d86b6985b2865fcda_2",
+        "entity_text": "Anil Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "eda7508caee5425d86b6985b2865fcda_2",
+        "entity_text": "Anil Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "bb1bd4df24a24c03bb91530ba516dbdf_6",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

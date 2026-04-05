@@ -1,0 +1,50 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "f1d39c558d3a4fadbeb0a936358f94c8_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. With the above directions, this Writ Petition is disposed of."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 1,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1579,
+      "facts": 787,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 35,
+    "ignored_annotations": 1,
+    "ignored_entities": [
+      {
+        "annotation_id": "1f6caa54c4814b1999215fd2153a7a88_9",
+        "entity_text": "T.Aswin Raja Simman",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

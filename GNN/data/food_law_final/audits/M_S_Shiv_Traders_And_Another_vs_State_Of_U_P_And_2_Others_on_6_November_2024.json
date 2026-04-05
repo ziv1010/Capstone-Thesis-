@@ -1,0 +1,83 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ff0edacdfbd74cd6862d6ade375c33fe_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n1 3. The order impugned has been passed by the competent authority under Section 68 of the Act and therefore, the appeal, as filed under Section 76 of the Act against the said order, is not maintainable."
+    },
+    {
+      "annotation_id": "f0fc3b2ddc2c408db2edeba1dd8850a2_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. In view thereof, the appeal is dismissed as not maintainable."
+    },
+    {
+      "annotation_id": "7b90263af8924fb3b3ef52330a95ac49_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The appellants would be free to take appropriate proceedings in accordance with law."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 826,
+      "facts": 231,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 10,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "ad2aa8ec31684e8a9d50235cc6e29ca5_3",
+        "entity_text": "R.P.S. Chauhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f58973014fca4bd38b1bb954b3a4e5fc_12",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "5a0ccd65b45e4c2f93accd14d621911f_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "As far as the present applicant is concerned who was not found at the spot, his involvement reveals on the basis of the statement of the co-accused, immediate custodial interrogation of the present applicant is not required."
+    },
+    {
+      "annotation_id": "d79b68b73c364e368544069dbdd042e9_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Moreover, the issue regarding the applicability of Section 328 of IPC is pending before the Hon'ble Apex Court."
+    },
+    {
+      "annotation_id": "fc9e18028db34e51b2a334a05c8e3e99_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering all these aspects, at this stage, the applicant can be protected by granting ad-interim protection."
+    },
+    {
+      "annotation_id": "57e08036ede649209a038408107b5a96_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, I proceed to pass the following order :\n(i) Issue notice to the non-applicant, returnable after two weeks.\n(ii) Learned APP waives notice for the State.\n"
+    },
+    {
+      "annotation_id": "8c80038518cf4611bf8fee21cf65a5f0_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "( iii )"
+    },
+    {
+      "annotation_id": "6ce74023fb03434c9eccfb0fd0a96e77_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the event of arrest, the applicant - Sachin s/o Nanaji Lekkalwar in connection with Crime No.204/2024 registered with Police Station Mul, District Chandrapur for the offences punishable under Sections 188, 273 and 328 of the Indian Penal"
+    },
+    {
+      "annotation_id": "03939cd7aa9e486893c7d3bf2d11d998_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n (iv) The applicant shall attend the  concerned police station as and when required for the investigation purpose and shall cooperate with the investigating agency."
+    },
+    {
+      "annotation_id": "c371f9a015f84846bc528f9dfaa125cb_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(v) The applicant shall not directly or indirectly make any inducement and threat or promise to any person acquainted with the facts of the present case."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "annotation_fallback:facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 722,
+      "facts": 462,
+      "arguments": 1130
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 23,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "85bb3d83d73c40ebaa021ce08ee629a2_8",
+        "entity_text": "Kishor Damodhar Vairagade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "af9faf85d3f64d23b7e833f16702d18a_17",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9af51fb08da440d29971dc4fa0af275d_28",
+        "entity_text": "Divya Sachin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "990ee85bbd924ad5bbd19f6d9a772938_30",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

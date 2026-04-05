@@ -1,0 +1,156 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "cfe5fceb6ef44b6dabeca91889af7c17_13",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Having heard the learned counsel for the parties and on careful perusal of the record, it is found that Tribunal only assumed income as Rs.5,000/- whereas on the date of accident it was Rs.8700/-\nper month."
+    },
+    {
+      "annotation_id": "b5b889b711f84dc8972bf71636c0b0e8_14",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Learned Tribunal has applied multiplier of 17 in para 45 of the impugned award but learned Tribunal discussed in para 41 that the deceased was of the age group of 26 to 30, therefore,\napplication of multiplier is correct."
+    },
+    {
+      "annotation_id": "5155841cb38945819fceabbca5cab743_15",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "But due to increase in income as Rs.8700/- per month instead of Rs.5,000/- the enhancement is more than Rs.1,00,000/- Therefore, the amount of Rs.1,00,000/-\nmay be enhanced in favour of the claimants/appellants."
+    },
+    {
+      "annotation_id": "340d289526a049688d377d6ee0faa833_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The calculation is not disputed by the learned counsel for the parties."
+    },
+    {
+      "annotation_id": "d6e849cd5fdb46c386194fad838fca0d_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. Therefore, the facts and circumstances of the case and having regard to the evidence on record the amount of Rs.1,00,000/- is hereby enhanced in favour of the claimants/appellants in addition to the amount already awarded in favour of ap"
+    },
+    {
+      "annotation_id": "cfbc79cc42a34e29bcd033b0582767c0_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Other terms and conditions of the award shall remain intact."
+    },
+    {
+      "annotation_id": "4f2e7ac1846d44c583fddb920e2da9a9_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 29,
+          "end": 46
+        }
+      ],
+      "text_preview": "\n10. In the above terms, the appeal is allowed and disposed of."
+    },
+    {
+      "annotation_id": "4f2d15c16c35440aa6c04396bbc04ca4_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Record be sent back."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+      "matched_text": "appeal is allowed",
+      "start": 340,
+      "end": 357
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 2313,
+      "facts": 666,
+      "arguments": 143
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "e40652376ec44a20b9dd9a01d9bbc4e5_7",
+        "entity_text": "Trala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

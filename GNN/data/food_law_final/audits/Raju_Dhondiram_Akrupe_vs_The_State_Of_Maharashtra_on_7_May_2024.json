@@ -1,0 +1,149 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "54b957dc141d4a15a60882a106b9d5b7_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. I have perused the transcript of the conversation between the applicant and the Roshan Modi."
+    },
+    {
+      "annotation_id": "1b077145c48c45aea6144ceb76121a90_22",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Prima facie, at this stage, the accusation that the applicant had abetted the commission of the offence of co-accused appears to be inferential."
+    },
+    {
+      "annotation_id": "585e4a23bf494995935a8a0cf81e33bd_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There does not seem to be any direct demand made by the applicant to the first informant."
+    },
+    {
+      "annotation_id": "e3b77449650c471eacacae3913dfc01b_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the aforesaid view of the matter, I am inclined to protect the liberty of the applicant while directing him to join in the investigation.\n8."
+    },
+    {
+      "annotation_id": "a32efee2f7d04f9e80cb767f2cc094c9_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the event of arrest in C.R. No. 441 of 2024 registered at Chitalsar Manpada police station,\nThane the applicant be released on bail on furnishing a P.R. bond in the sum of Rs.30,000/- with one or two sureties in the like amount."
+    },
+    {
+      "annotation_id": "7ba1e5a134d9453aae2c153ac6c495f4_27",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. The applicant shall cooperate with the investigation and attend ACB, Thane on 14th 15th and 16th May, 2024 between 10 am to 1 pm and, thereafter, as and when directed till the next date."
+    },
+    {
+      "annotation_id": "968ecb86147c4d3db3f2d3d4643e0dec_28",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "10. The applicant shall not tamper with the prosecution evidence and give threat or inducement to first informant, any of the prosecution witnesses or any person acquainted with the facts of the case."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 663,
+      "facts": 462,
+      "arguments": 637
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 25,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "61e55dcb55d44bd29b173e0a2841fe8d_11",
+        "entity_text": "Vishal Parekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0cf1b63d0ee2497ead0b59529f9b863e_12",
+        "entity_text": "Roshan Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4060e782fea54aca94754f79fa241204_13",
+        "entity_text": "Roshan Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4e4d0430088e430f84d0e5884e982fd3_24",
+        "entity_text": "Vishal Parekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "9637b76019cc4475a7e5d761a40cf355_31",
+        "entity_text": "Vishal Parekar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

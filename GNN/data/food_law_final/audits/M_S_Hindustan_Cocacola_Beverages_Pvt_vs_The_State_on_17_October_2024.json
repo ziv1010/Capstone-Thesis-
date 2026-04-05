@@ -1,0 +1,210 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "ecf368a5219f4727afa396192a506de3_11",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 128,
+          "end": 135
+        }
+      ],
+      "text_preview": "5. Learned counsel for petitioner submitted that mainly on four grounds the proceedings against the petitioner are liable to be quashed."
+    },
+    {
+      "annotation_id": "392f31965a2a4f5ba67d24c8bb581a12_15",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 432,
+          "end": 439
+        }
+      ],
+      "text_preview": "6. On the other hand, the learned Assistant Public Prosecutor appearing for the respondent while advocating for continuation of the proceedings against the petitioner submitted that the Food Safety Officer, Rangareddy District was even perm"
+    },
+    {
+      "annotation_id": "afa2572fc0374420b96b375ed5a810a9_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Reverting to the facts of the case on hand, it is seen that the sample of the water bottles was taken on 20.06.2017 and the report of the same was immediately received on 21.06.2017 whereas, at this M/S. Hindustan Cocacola Beverages Pvt. .."
+    },
+    {
+      "annotation_id": "42fb52e041e440a59d492c5afe2a2d0f_20",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Moreover, the complaint against the petitioner is filed after lapse of one and half year i.e., on 20.06.2017 which shows that in total there is delay of four years and the sanctioning authority has not granted sanction within one year of re"
+    },
+    {
+      "annotation_id": "1330efea1b61429d9b890881652fad46_21",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Thus, it can be seen that even after considering the proviso of Section 77 of Act, 2006 the case is hit by limitation."
+    },
+    {
+      "annotation_id": "e3593d26c8d34137bd2b02a3c7d6c0b5_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "9. In view thereof, this Court is of the opinion that the proceedings initiated against the petitioner cannot be proceeded with when the case is hit by delay of total four years."
+    },
+    {
+      "annotation_id": "f76eecfbd05345a79824d937fb31e980_23",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 209,
+          "end": 216
+        }
+      ],
+      "text_preview": "Further, accused No.1 failed to submit any invoice which would show that he purchased water bottles from petitioner and on this ground as well the proceedings initiated against the petitioner are liable to be quashed."
+    },
+    {
+      "annotation_id": "597085e0b92d4b67b627a8934bc64f93_24",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 45,
+          "end": 64
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 254,
+          "end": 261
+        }
+      ],
+      "text_preview": "10. With the above discussion, this Criminal Petition is allowed, and the proceedings initiated against the petitioner in C.C.No.2268 of 2022 pending on the file of the IV Additional Metropolitan Magistrate, Ranga Reddy District at L.B. Nag"
+    },
+    {
+      "annotation_id": "466cab1ece754eccb3c562cbaa6dc80e_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMiscellaneous applications, if any pending, shall also stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 224,
+      "end": 243
+    },
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 433,
+      "end": 440
+    }
+  ],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 999,
+      "facts": 541,
+      "arguments": 1385
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "cbccec57884444c8a20d60704e94cda2_3",
+        "entity_text": "Ranga Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "10e3aa86eb94418fb2e56fe0214fc7cb_10",
+        "entity_text": "Leo Raj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "10e3aa86eb94418fb2e56fe0214fc7cb_10",
+        "entity_text": "S.Ganesh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

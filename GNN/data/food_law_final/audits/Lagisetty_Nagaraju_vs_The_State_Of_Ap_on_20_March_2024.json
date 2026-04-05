@@ -1,0 +1,140 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "02c187cfd427472cbd31251f65fea876_5",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "learned counsel for the petitioners and acceded to, by the learned Assistant Public Prosecutor that the subject matter of this Criminal Petition is squarely covered by the common order passed by this Court in Criminal Petition No.2966 of 20"
+    },
+    {
+      "annotation_id": "4574722b4bf546afb29fffa9aef49cf6_6",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nwherein this Court held thus."
+    },
+    {
+      "annotation_id": "23fda5f8c91e45e4a6e6ca801ffa5416_7",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\"Criminal Petition Nos.3555, 3671, 3725, 4062 and  4064 of 2021 are partly allowed quashing the FIRs  (shown in Table-III) registered for the offences  punishable under the provisions of the IPC, FSS Act and  COTPA alone."
+    },
+    {
+      "annotation_id": "028bf5f9eea646fb9fff78b324380a65_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Investigating officers shall proceed  with the investigation in relation to the offences  3  punishable under the provisions of NDPS Act relating to  the FIRs shown in Table-III.\""
+    },
+    {
+      "annotation_id": "19fa9b8152f5483d8bde75ac0c78f8dc_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "Petition is allowed",
+          "start": 174,
+          "end": 193
+        }
+      ],
+      "text_preview": "3. Hence, following the said order passed by this Court in Criminal Petition No.2966 of 2021 and batch, dated 28.12.2021 and for the reasons mentioned therein, this Criminal Petition is allowed quashing the proceedings in CC No.69 of 2021 o"
+    },
+    {
+      "annotation_id": "2f1796d7ccc54f15bc9c3a300c3f375b_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "insofar as the offences punishable under the provisions of the IPC and FSS Act."
+    },
+    {
+      "annotation_id": "56e6091c79de4b4898c9413049012973_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n As a sequel thereto, the miscellaneous applications, if any,\npending in this Criminal Petition shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+      "matched_text": "Petition is allowed",
+      "start": 611,
+      "end": 630
+    }
+  ],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 1248,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 15,
+    "ignored_annotations": 7,
+    "ignored_entities": []
+  }
+}

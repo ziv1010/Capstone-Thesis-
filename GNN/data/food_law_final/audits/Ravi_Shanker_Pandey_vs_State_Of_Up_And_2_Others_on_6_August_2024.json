@@ -1,0 +1,103 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "bc8d147a30f340a8b39f2acc736e0e1c_5",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe violation of the State's Transfer Policy howsoever gross is not a ground for this Court to issue a writ."
+    },
+    {
+      "annotation_id": "bbfb96d28c9b457a9f389f607d102259_6",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Nevertheless, violation of the State's Transfer Policy is alleged by the petitioner, which they ought to adhere to."
+    },
+    {
+      "annotation_id": "72889171d4384cd782959a46f50ffda1_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nIn the circumstances, the Commissioner, Food Safety and Drugs Administration, U. P., Lucknow is ordered to decide the petitioner's representation dated 29.06.2024 within a week of receipt of a copy of this order in accordance with the Stat"
+    },
+    {
+      "annotation_id": "1e330392d7a549c29375fa5c0909b7b2_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThis petition is disposed of in terms of the aforesaid orders."
+    },
+    {
+      "annotation_id": "95c71e5c63a24eee8890df19aca0cd2a_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Let this order be communicated to the Commissioner, Food Safety and Drugs Administration, U. P.,\nLucknow through the Civil Judge (Senior Division), Lucknow by the Registrar (Compliance) within 48 hours."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 367,
+      "facts": 360,
+      "arguments": 297
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 8,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "72cd282d92414641971c478bc505a8f1_4",
+        "entity_text": "A. K. Pandey",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

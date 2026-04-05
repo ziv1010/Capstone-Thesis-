@@ -1,0 +1,163 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "b745bd904fca4a0f8c2fa292686886a8_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "However, we cannot stop because the war is yet to be won."
+    },
+    {
+      "annotation_id": "99bdee70278e4f95aac31e2e7e4d3074_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "ANALYSIS"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3. As has been earlier indited by this Court, one of the main reasons why the food articles in question become poisonous is because those are not consumed within the time frames it is intended for."
+    },
+    {
+      "annotation_id": "884c852f5a064ae39b7db37349e79861_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The prescription of this Court - that there should be a marking on the article specifying the time,\nwithin which it must be consumed - is certainly very vital."
+    },
+    {
+      "annotation_id": "0c99f1df209d407b9a924757f8536deb_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "I can only assume, at this point, that adherence to this perhaps averted other instances, coupled by the efforts taken by the officers."
+    },
+    {
+      "annotation_id": "26231f0cd4a0461bb74dc52aa18d5d4b_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n4. The number of eateries in Kerala is very large, which fact can be taken judicial notice of."
+    },
+    {
+      "annotation_id": "ca73ecbeef6946ef83a3323e4ffd4a38_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTherefore, inspections have to be done consistently and without fail, because any relaxation would give an impression to the manufacturers that action would be lax.\nWP(C)19941/23 & 43260/23 5."
+    },
+    {
+      "annotation_id": "541feb5f28c34ae7bf9e29bf5e8947c8_18",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Since the Food Safety Commissioner in Charge submits that inspections will be continued and violators dealt with, to the highest warrant in law, I am of the view that this Court will be justified in adjourning this matter for further report"
+    },
+    {
+      "annotation_id": "0ef812064de74f838ba6b006036b17f4_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. That apart, in one of the afore Writ Petitions, there is also a prayer for compensation, which will also depend upon the pleadings to be made by the respondents and the submissions to be made on their behalf."
+    },
+    {
+      "annotation_id": "eca6949ca9304198b1544452622e5dfa_20",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nI, therefore, adjourn these matters to be called on 12.02.2024; within which time, all pleadings shall be completed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1952,
+      "facts": 491,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "dd50d532753547ef8da7ea70a702d3e7_1",
+        "entity_text": "Devan Ramachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7bddaa79a86d48d1a1538a49320d6b50_5",
+        "entity_text": "S.SACHIN RAMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "37ba503e53484df1b753966ab8316f94_7",
+        "entity_text": "Jaffer Malik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "26a7515ea7ee45f1a5f92a66e7ad5369_11",
+        "entity_text": "Jaffer Malik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

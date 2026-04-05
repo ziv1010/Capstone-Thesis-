@@ -1,0 +1,127 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d46ba8604cd0458793e9aae1d1e55178_2",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 473,
+          "end": 482
+        }
+      ],
+      "text_preview": "This writ petition is filed seeking the following relief:\n\"....to issue a Writ, Order or Direction more particularly one in the nature of Writ of Mandamus declaring the impugned proceedings of the 3rd respondent vide proceedings No.AMCG/Leg"
+    },
+    {
+      "annotation_id": "a7e56596038e4182b1764cf8cf4fa95d_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He further submits that taking into consideration the eligibility and fulfillment of requirements as per the provisions of the Act and Rules made thereunder, shops were allotted to eligible licensees."
+    },
+    {
+      "annotation_id": "7d5a535c302345c480d7e3fa70da7a7d_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n6. In view of shifting of existing market in Gaddiannaram to new place at Batasingaram, if the petitioner is otherwise eligible as per the rules framed by the Government, petitioner is permitted to S.Govind Reddy vs The State Of Telangana,"
+    },
+    {
+      "annotation_id": "33acd1593d16438ab68a76c3d0d61373_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n7. With the above direction, this Writ Petition is disposed of."
+    },
+    {
+      "annotation_id": "cc59198af37d4f3e8c8d0d42f009874e_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be no order as to costs."
+    },
+    {
+      "annotation_id": "0b7d48378f7645a389701e4d44511eed_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Miscellaneous Petitions, if any, pending in this writ petition shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 473,
+          "end": 482
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 139,
+      "facts": 1517,
+      "arguments": 680
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 14,
+    "ignored_annotations": 6,
+    "ignored_entities": []
+  }
+}

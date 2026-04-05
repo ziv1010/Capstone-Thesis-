@@ -1,0 +1,87 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7f81cbc4616248d0b01e51753d6eb4b6_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the representation submitted by the petitioner to remove the Lock and Seal cannot be considered at present."
+    },
+    {
+      "annotation_id": "08444fb9ac4b4e65afc79753637a667d_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, the writ petition is devoid of merits and is liable to dismissed."
+    },
+    {
+      "annotation_id": "ef368e42b160418bb079ab75104d69f3_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. Accordingly, the writ petition is dismissed."
+    },
+    {
+      "annotation_id": "81548bba945d46d9b7ed5f6ce3c13c11_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The first respondent is directed to complete the enquiry process on imposition of fine within a period of eight weeks from the date of receipt of a Anandharaj vs The Food Safety Officer on 10 December, 2024 Indian Kanoon - http://indiankano"
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1057,
+      "facts": 822,
+      "arguments": 775
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 24,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

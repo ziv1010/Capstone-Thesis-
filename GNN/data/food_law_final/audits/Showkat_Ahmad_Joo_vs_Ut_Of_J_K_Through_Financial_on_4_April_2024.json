@@ -1,0 +1,128 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "00fabf7d3e9f4af4873f9c78b2fa94dc_8",
+      "summary_section": "facts",
+      "labels": [
+        "RLC"
+      ],
+      "reasons": [
+        "forbidden_labels:RLC"
+      ],
+      "matched_phrases": [],
+      "text_preview": "02. The respondent No. 2 - District Magistrate, Pulwama has subjected the petitioner to preventive detention custody by virtue of an Order dated 34/DMP/PSA/23 dated 24.05.2023 in order to prevent the petitioner from acting in a manner preju"
+    },
+    {
+      "annotation_id": "354c33417cbb424084f40009a6620b5b_16",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is this detention order which is in serious challenge in the writ petition."
+    },
+    {
+      "annotation_id": "26fe61ca2ec048a095cab0e86dda4823_17",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 1752,
+          "end": 1761
+        }
+      ],
+      "text_preview": "06. A bare perusal of the grounds of detention supporting the preventive detention order would show that from Section 107/151 Cr.P.C. the respondent No. 2 - District Magistrate, Pulwama switched over to the J&K Public Safety Act, 1978 witho"
+    },
+    {
+      "annotation_id": "985ddd9343c04d748f85be0e425643e7_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 123,
+          "end": 132
+        }
+      ],
+      "text_preview": "In view of the aforesaid, the impugned detention Order No. 34/DMP/PSA/23 dated 24.05.2023 against the petitioner is hereby set aside and the petitioner is to be set free to his personal liberty by the Superintendent of the Jail concerned wi"
+    },
+    {
+      "annotation_id": "583bd6c17b3d4722a22981293e11b0f3_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Disposed of accordingly."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bset\\s+aside\\b",
+      "matched_text": "set aside",
+      "start": 123,
+      "end": 132
+    }
+  ],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 824,
+      "facts": 912,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "c08eaac8fc234ab4961cf97616c2941b_9",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "f25eabed9b254eae8edbbe4db8f86a03_21",
+        "entity_text": "Muneesh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "7e44f699f09e42d1900a60b2e207cc7a_10",
+      "summary_section": "arguments",
+      "labels": [
+        "ARG_PETITIONER"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 169,
+          "end": 176
+        }
+      ],
+      "text_preview": "Therefore, the proceedings initiated by the respondent under Sec.58, 59(1) of Food Safety and Standard Act, 2006 is tainted with illegality and the same is liable to be quashed."
+    },
+    {
+      "annotation_id": "db559224cbf1435b820a0dba6e53e4cb_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Admittedly, the petitioner is not able to produce the license to sell the tobacco products at Tamil Nadu."
+    },
+    {
+      "annotation_id": "db6d94f6f161438e81ab6a2a476d22ea_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Furthermore, if at all, any defence is available for the petitioner in respect of obtaining sanction, he is entitled to putforth the same before the trial court."
+    },
+    {
+      "annotation_id": "8278bbe9be234fbbaafcd35825334d2c_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "So, the allegations https://www.mhc.tn.gov.in/judis levelled against the petitioner needs detailed trial."
+    },
+    {
+      "annotation_id": "25a9efb762cb4f59a784beb2a11acbed_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, this court is not inclined to quash the proceedings initiated against him."
+    },
+    {
+      "annotation_id": "98a775c91fac45498af5561adf785396_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, this Criminal Original Petition is dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 402,
+          "end": 409
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1181,
+      "facts": 409,
+      "arguments": 417
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "927eea9a7d9b4080a46af09abd670e13_20",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2782e8d41f8541ab96ddd860acf63953_26",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

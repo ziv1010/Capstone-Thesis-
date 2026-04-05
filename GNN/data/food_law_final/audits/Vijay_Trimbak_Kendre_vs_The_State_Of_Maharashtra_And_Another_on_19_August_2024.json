@@ -1,0 +1,85 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6e15049433914f0cbe3f8d394b41ccf0_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n 2 Issue notice to the respondent, returnable on 30 th August, 2024."
+    },
+    {
+      "annotation_id": "89a88b2cb06e4bd5a087e8e2d2990c3c_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThe learned APP waives notice on behalf of both the respondents."
+    },
+    {
+      "annotation_id": "9bcdb52392664d4a80f7ecf7cc292081_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n3 In the event of arrest of applicant in connection with Crime No.301 of 2024, registered with Umerga Police Station, Taluka Umerga, District Dharashiv, for the offences punishable under Sections 188, 272, 273, 328 of the Indian Penal Code"
+    },
+    {
+      "annotation_id": "586f80a3566a42e2b8c66611530af86f_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The applicant shall attend the concerned police station as and when required and shall co- operate in the investigation."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 474,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 9,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

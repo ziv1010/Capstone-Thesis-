@@ -1,0 +1,180 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "e0931d1ff8a3443eaa3e6ace18a5f77c_6",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 39,
+          "end": 48
+        }
+      ],
+      "text_preview": "This Criminal Appeal has been filed to set aside the impugned order in Crl.M.P.No.23 of 2024 dated 12.03.2024 passed by the learned Sessions Judge, Special Court for Trial of Cases under SC & ST (POA) Act, Perambalur and enlarge the appella"
+    },
+    {
+      "annotation_id": "656b89b6b79740e5b4fdad12e284bc8c_35",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "His only apprehension is, he is fearing for life and threat."
+    },
+    {
+      "annotation_id": "6c6f6cc8fd0e4e66a673063b034c699d_36",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Further, the appellants are in confinement from 05.03.2024."
+    },
+    {
+      "annotation_id": "739881a6519940bcbce5fedfc32e1681_37",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the same, this Court is inclined to grant bail to the appellants subject to the following conditions:\n(i)The appellants shall execute a bond for a sum of Rs.10,000/- (Rupees Ten thousand only) each, with two sureties https://www."
+    },
+    {
+      "annotation_id": "b269e46c87d149919ce2aa346e62f569_38",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the event of any threat, appropriate steps to be taken."
+    },
+    {
+      "annotation_id": "b62bdab821af44c2949243f220c43b93_39",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(v)The appellants shall not give any inconvenience or trouble knowingly or unknowingly to the 3rd respondent, failing which, the bail shall be cancelled without any further reference."
+    },
+    {
+      "annotation_id": "0a456d03a9d14aec9319d393290392d7_40",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(vi)the appellants shall not commit any offences of similar https://www.mhc.tn.gov.in/judis nature;"
+    },
+    {
+      "annotation_id": "1b8abda780c04050be427b5ecfb2c0df_42",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "(viii)the appellants shall not tamper with evidence or witness either during investigation or trial;\n(ix)on breach of any of the aforesaid conditions, the learned Judicial Magistrate/Trial Court is entitled to take appropriate action agains"
+    },
+    {
+      "annotation_id": "a13ff26460624bbc926df4041178ac53_43",
+      "summary_section": null,
+      "labels": [
+        "NONE"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 174,
+          "end": 183
+        }
+      ],
+      "text_preview": ", the impugned order in Crl.M.P.No.23 of 2024, dated 12.03.2024 passed by the learned Sessions Judge, Special Court for Trial of Cases under SC & ST (POA) Act, Perambalur is set aside and the https://www.mhc.tn.gov.in/judis Criminal Appeal "
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 9,
+  "retained_texts": {
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 39,
+          "end": 48
+        }
+      ]
+    },
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1301,
+      "facts": 1578,
+      "arguments": 205
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 43,
+    "ignored_annotations": 9,
+    "ignored_entities": [
+      {
+        "annotation_id": "43972aed67db4624a21748f024408b47_51",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

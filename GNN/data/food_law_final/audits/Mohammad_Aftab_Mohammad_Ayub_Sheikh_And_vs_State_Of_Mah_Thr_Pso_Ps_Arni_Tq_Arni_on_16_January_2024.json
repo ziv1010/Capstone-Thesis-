@@ -1,0 +1,82 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "dd74690740a546c2854f5fa687d75366_8",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": " This is an application seeking to quash the charge-sheet arising out of Crime No. 299 of 2022 dated 01/04/2022 registered for the offences punishable under Section 188,272,273,328 of the Indian Penal Code r/w Sec.26(2)(i),27 (3)(e),30(2)(a"
+    },
+    {
+      "annotation_id": "b231ba1af2f645159ec7685bbb8fcd9e_9",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. Issue notice to the non-applicants, returnable after for weeks.\n4."
+    },
+    {
+      "annotation_id": "08e16cd3d325457f9c19a24e51e4f3b2_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the meantime, the trial court shall not proceed till the next date of hearing."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE"
+    },
+    "retained_lengths": {
+      "preamble": 676,
+      "facts": 0,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "aedf76aa7d3e41e0ac0a2b751c9f165c_13",
+        "entity_text": "Kavita P Tayade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "aedf76aa7d3e41e0ac0a2b751c9f165c_13",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

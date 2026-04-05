@@ -1,0 +1,214 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "0d2cd98ca1d1447c97d01a55b292f249_61",
+      "summary_section": "facts",
+      "labels": [
+        "FAC"
+      ],
+      "reasons": [
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 100,
+          "end": 107
+        }
+      ],
+      "text_preview": "As such, no offence is made out against these petitioners, and the present application is fit to be quashed."
+    },
+    {
+      "annotation_id": "5ba9f74d42d84d36b81c092413be62e2_64",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "He next submits that there are sufficient materials on record against these petitioners, and it cannot be said that prima facie no case is made against these petitioners."
+    },
+    {
+      "annotation_id": "4e889e91153149bc8509275f6710c058_65",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Hence, no interference is required by this court at this stage ."
+    },
+    {
+      "annotation_id": "f86cb4282fec496ca3db07f1fcc65e5b_66",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. From bare perusal of the FIR, it is apparent that the informant was not aware whether the cylinder in question was supplied by the agency or not, and he came to know about this fact only through his neighbor Santosh Kumar."
+    },
+    {
+      "annotation_id": "6be51c4e9366417a8dd1890056bf5a0f_67",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "During the course of the investigation, it has also come in light that the cylinder in question was not delivered by the aforementioned agency or its staff."
+    },
+    {
+      "annotation_id": "fd7843fca0334ba68974190e6bfa4b56_68",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nContinuation of proceedings against these petitioners would amount to abuse of the process of the court."
+    },
+    {
+      "annotation_id": "8304270d979246f89450d08c70b855b2_69",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 262,
+          "end": 269
+        }
+      ],
+      "text_preview": "8 . In view of the foregoing discussions, order dated 27.04.203 , passed by the learned Additional District Judge - III , Rohtas, at Sasaram, in Sessions Trial No. 402 of 2022 , Gr. No. 309 of 2013 arising out of Dehri Town P . S. Case No. "
+    },
+    {
+      "annotation_id": "a322519dd78e4a6a8f323e3aaf66dbe0_71",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the present quashing application is allowed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 262,
+      "end": 269
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1480,
+      "facts": 1960,
+      "arguments": 546
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 65,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "7820bb7d35db4192bddbc9e2176d0c76_15",
+        "entity_text": "Surye Dev Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7820bb7d35db4192bddbc9e2176d0c76_15",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4d30fb6042d04625ad19fa9451c04f8a_24",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b2093eae93984603963ff6ab134f0252_42",
+        "entity_text": "Ambika Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "b2093eae93984603963ff6ab134f0252_42",
+        "entity_text": "Md. Ibrahim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "517ea733f56a4438ac9be34ced241822_44",
+        "entity_text": "Ambika Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "2900862f0ec347fab5e0cbfc40bfb61f_49",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0d27956f2d5342019d9b021eaf3b166e_50",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "18febc47a36444158a5e9e920287c161_53",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6e14359e22d44d7f939e898fe884badd_54",
+        "entity_text": "Nanhaku Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "4d7ec28924eb4f72b88019cdbd71787a_57",
+        "entity_text": "Ambika Prasad Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "91bcf0eb8c3d4720a780cfceb4dddcc8_59",
+        "entity_text": "Ambika Prasad Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

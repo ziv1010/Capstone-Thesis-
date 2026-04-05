@@ -1,0 +1,161 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "abe2d21b9c32417399d34c9aa261b639_9",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "It is also held that the provisions of Sections 272 and 273 of IPC cannot be invoked in the matters relating to adulteration of food."
+    },
+    {
+      "annotation_id": "25ccd20cdd9b49d19eaf7e5e5b6344b6_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "All these judgments are applicable to the case of the petitioners herein."
+    },
+    {
+      "annotation_id": "34abec9dbbe143b3b03b829f861e36b8_11",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. In view of the above law on the subject, this Court is of the considered view that the petitioners cannot be prosecuted under the provisions of IPC since the FSSA Act has got overriding effect on Mr. Jithender Kumar Agarwal vs The State "
+    },
+    {
+      "annotation_id": "12b13ec52d4543cd9b121139b7e02527_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Though the learned Additional Public Prosecutor has submitted that liberty may be granted for them to prosecute the petitioner/accused under the provisions of FSSA Act, it is to be seen that under Section 77 of the FSSA Act, no Court shall "
+    },
+    {
+      "annotation_id": "3849786327c04214a136da9cb0428330_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the present case the date of complaint is 19.10.2019, and almost four years have lapsed from the date of complaint."
+    },
+    {
+      "annotation_id": "a1099975521b44aca12007d68e25d841_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Therefore, no prosecution can be initiated against the petitioner at this belated point of time in view of the bar contained under Section 77 of the Act."
+    },
+    {
+      "annotation_id": "5c5397a7c8fe4d44852ff711e2fe8bba_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 161,
+          "end": 168
+        }
+      ],
+      "text_preview": "8. Accordingly, both these criminal petitions are allowed and the proceedings against the petitioners in Crime No.164 of 2019 of P.S. Dabeerpura, Hyderabad, are quashed."
+    },
+    {
+      "annotation_id": "786b11e3f4c5484babf6f4321e7d1b37_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nPending miscellaneous applications, if any, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bquashed\\b",
+      "matched_text": "quashed",
+      "start": 354,
+      "end": 361
+    }
+  ],
+  "suspicious_annotation_count": 8,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 361,
+      "facts": 490,
+      "arguments": 241
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 12,
+    "ignored_annotations": 8,
+    "ignored_entities": [
+      {
+        "annotation_id": "ac00ec7dff4044988bde1f3010fe786b_3",
+        "entity_text": "B.Chandrasen Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "0a408102c29041f6b54b08a08e390482_19",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

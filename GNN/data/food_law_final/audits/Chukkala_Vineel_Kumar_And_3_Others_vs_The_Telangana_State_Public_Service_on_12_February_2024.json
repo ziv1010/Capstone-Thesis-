@@ -1,0 +1,135 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8d0b5158badb4c40ad904a19765d2d53_6",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In the said Judgment, the Hon'ble Supreme Court directed to follow the principles of Horizontal Reservation for Women Candidates without earmarking any roster points for them."
+    },
+    {
+      "annotation_id": "53e9a6bd19fe479eb7419ef777e1d49a_8",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "PRE_RELIED"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nHowever, since there is a decision of Hon'ble Supreme Court, which is settled law, the respondents are, therefore, directed to follow the decision of the Hon'ble Supreme Court in Raiesh Kumar Daria Vs. Rajasthan Public Service Commission a"
+    },
+    {
+      "annotation_id": "697d85582f134114a0ab4d371359fe50_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nTherefore, learned counsel prayed this Court to dispose the matter."
+    },
+    {
+      "annotation_id": "836cfc4590254156a197d98a6ed89ee3_11",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "5. In view of the above, the interim order, dated 19.12.2022 is hereby made absolute and the respondents are directed to go ahead with the selections as per the interim order, dated 19.12.2022.\n6."
+    },
+    {
+      "annotation_id": "c01eb0a353374f339eeb9391f925c61f_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "With the above observation, this Writ Petition is disposed of."
+    },
+    {
+      "annotation_id": "d86f15b489cb47438aae24a48f6aeb19_13",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "There shall be no order as to costs."
+    },
+    {
+      "annotation_id": "3fee7edc0fa3498dab42aad9ea80fb7d_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nMiscellaneous Petitions, if any, pending in this Writ Petition, shall stand closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 7,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 1291,
+      "facts": 0,
+      "arguments": 187
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 11,
+    "ignored_annotations": 7,
+    "ignored_entities": [
+      {
+        "annotation_id": "793597efcd9f4b109e85139a81c0fd83_3",
+        "entity_text": "J.Sudheer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "793597efcd9f4b109e85139a81c0fd83_3",
+        "entity_text": "M.Ramgopal Rao",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legal GNN – Case Graph Visualiser</title>
+  <meta name="description" content="Interactive heterogeneous graph visualisation of Indian legal case data used in the Legal GNN pipeline."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --surface2: #1e2633;
+      --border:   #30363d;
+      --text:     #e6edf3;
+      --muted:    #8b949e;
+      --accent:   #58a6ff;
+
+      /* node colours by type */
+      --c-case:                #f0883e;
+      --c-preamble:            #58a6ff;
+      --c-facts:               #79c0ff;
+      --c-arguments:           #56d364;
+      --c-petitioner_args:     #3fb950;
+      --c-respondent_args:     #d2a8ff;
+      --c-petitioner:          #ff7b72;
+      --c-respondent:          #ffa657;
+      --c-judge:               #e3b341;
+      --c-court:               #76e3ea;
+      --c-petitioner_lawyer:   #ff9bce;
+      --c-defence_lawyer:      #d2a8ff;
+      --c-lawyer:              #b9beff;
+      --c-statute:             #39d353;
+      --c-provision:           #26a641;
+      --c-precedent:           #0075ca;
+      --c-org:                 #bc8cff;
+      --c-gpe:                 #54aeff;
+      --c-date:                #aff7c8;
+      --c-case_number:         #c9d1d9;
+
+      --r-has_preamble:        #58a6ff;
+      --r-has_facts:           #79c0ff;
+      --r-has_arguments:       #56d364;
+      --r-has_petitioner:      #ff7b72;
+      --r-has_respondent:      #ffa657;
+      --r-decided_by_bench:    #e3b341;
+      --r-heard_in:            #76e3ea;
+      --r-has_petitioner_lawyer: #ff9bce;
+      --r-has_defence_lawyer:  #d2a8ff;
+      --r-cites_statute:       #39d353;
+      --r-cites_provision:     #26a641;
+      --r-citation:            #bc8cff;
+      --r-other:               #555;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ──────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+
+    .logo {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, #58a6ff, #3fb950);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    header h1 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #58a6ff, #3fb950);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p { font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
+
+    .header-right { display: flex; gap: 0.5rem; align-items: center; }
+
+    .badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--text);
+      background: var(--surface2);
+    }
+    nav a.active { color: var(--accent); }
+
+    /* ── LAYOUT ──────────────────────────────────── */
+    .app {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr) 380px;
+      height: calc(100vh - 65px);
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────── */
+    aside {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .sidebar-section {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-section h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* case picker */
+    .case-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    .case-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .case-card.active { border-color: var(--accent); background: rgba(88,166,255,0.08); }
+
+    .section-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 0.7rem;
+    }
+
+    #case-search {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 0.65rem 0.75rem;
+      font-size: 0.76rem;
+      margin-bottom: 0.7rem;
+      outline: none;
+    }
+
+    #case-search::placeholder {
+      color: var(--muted);
+    }
+
+    #case-search:focus {
+      border-color: var(--accent);
+    }
+
+    #case-list {
+      max-height: 34vh;
+      overflow-y: auto;
+      padding-right: 0.2rem;
+    }
+
+    #case-list::-webkit-scrollbar,
+    .related-list::-webkit-scrollbar,
+    .legend::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #case-list::-webkit-scrollbar-thumb,
+    .related-list::-webkit-scrollbar-thumb,
+    .legend::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 999px;
+    }
+
+    .case-card-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .case-card-meta {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .pill-green   { background: rgba(63,185,80,0.2);  color: #3fb950; }
+    .pill-red     { background: rgba(255,123,114,0.2); color: #ff7b72; }
+    .pill-blue    { background: rgba(88,166,255,0.2);  color: #58a6ff; }
+    .pill-yellow  { background: rgba(227,179,65,0.2);  color: #e3b341; }
+    .pill-orange  { background: rgba(255,166,87,0.2);  color: #ffa657; }
+
+    /* legend */
+    .legend { display: flex; flex-direction: column; gap: 0.3rem; overflow-y: auto; max-height: 260px; }
+    .legend-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; color: var(--muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* node info */
+    #node-info {
+      height: 100%;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    #node-info h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .info-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem;
+    }
+
+    .info-type {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      word-break: break-word;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-row span:first-child {
+      flex: 0 0 38%;
+      text-transform: lowercase;
+    }
+
+    .info-row span:last-child {
+      color: var(--text);
+      text-align: left;
+      flex: 1;
+      max-width: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .placeholder-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+
+    .placeholder-text.compact {
+      padding: 0.35rem 0;
+      text-align: left;
+      font-size: 0.72rem;
+    }
+
+    .related-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .related-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .related-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .related-title {
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 0.45rem;
+      color: var(--text);
+    }
+
+    .related-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .reason-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .reason-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.64rem;
+      padding: 0.18rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .mini-note {
+      font-size: 0.68rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: 0.45rem;
+    }
+
+    .info-subtitle {
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0.8rem 0 0.45rem;
+    }
+
+    .info-json {
+      background: rgba(13,17,23,0.72);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem;
+      color: #c9d1d9;
+      font-size: 0.68rem;
+      line-height: 1.55;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+    }
+
+    .inspector-panel {
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    /* ── MAIN GRAPH AREA ─────────────────────────── */
+    main {
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    #graph-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* graph controls */
+    .graph-controls {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .ctrl-btn {
+      width: 36px; height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .ctrl-btn:hover { background: var(--surface2); border-color: var(--accent); color: var(--accent); }
+
+    /* stats bar */
+    .graph-stats {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .stat-chip {
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    .stat-chip strong { color: var(--text); }
+
+    /* loading overlay */
+    #loading {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 50;
+      transition: opacity 0.5s;
+    }
+
+    .spinner {
+      width: 40px; height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .load-text { font-size: 0.82rem; color: var(--muted); }
+
+    /* tooltip */
+    #tooltip {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.72rem;
+      color: var(--text);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      max-width: 220px;
+      z-index: 200;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    #tooltip strong { display: block; margin-bottom: 0.2rem; color: var(--accent); }
+
+    /* links in SVG */
+    .link { stroke-opacity: 0.45; cursor: pointer; }
+    .link.synthetic { stroke-opacity: 0.85; }
+    .link.selected { stroke-opacity: 1; stroke-width: 4px !important; }
+    .link-hitbox { stroke: transparent; stroke-width: 14px; stroke-linecap: round; pointer-events: stroke; cursor: pointer; }
+    .node circle { cursor: pointer; stroke-width: 1.5; transition: r 0.15s; }
+    .node text { font-size: 9px; fill: var(--text); pointer-events: none; font-family: 'Inter', sans-serif; }
+
+    .node circle:hover { filter: brightness(1.3); }
+    .node.selected circle { stroke: white !important; stroke-width: 2.5px; }
+    .node.case-connected circle { stroke-dasharray: 5 3; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo">⚖️</div>
+    <div>
+      <h1>Legal GNN — Case Graph Visualiser</h1>
+      <p>Heterogeneous graph structure · HGT Architecture</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="badge">HGT</div>
+    <div class="badge">section_GNN</div>
+    <nav>
+      <a href="index.html" class="active">Graphs</a>
+      <a href="stats/index.html">Entity Stats</a>
+      <a href="layers/index.html">Layers</a>
+    </nav>
+  </div>
+</header>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-section">
+      <h3>📁 Loaded Cases</h3>
+      <div class="section-note" id="catalog-summary"></div>
+      <input id="case-search" type="search" placeholder="Filter loaded cases…" />
+      <div id="case-list"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>🔗 Connected Cases</h3>
+      <div id="connected-cases">
+        <div class="placeholder-text compact">Select a case to see which other loaded cases share graph nodes with it.</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>🎨 Node Legend</h3>
+      <div class="legend" id="legend"></div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div id="loading">
+      <div class="spinner"></div>
+      <span class="load-text">Parsing case data…</span>
+    </div>
+
+    <div class="graph-stats" id="graph-stats"></div>
+    <div id="tooltip"></div>
+
+    <svg id="graph-svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6"
+                refX="6" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#444" opacity="0.8"/>
+        </marker>
+      </defs>
+    </svg>
+
+    <div class="graph-controls">
+      <button class="ctrl-btn" id="zoom-in"  title="Zoom In">＋</button>
+      <button class="ctrl-btn" id="zoom-out" title="Zoom Out">－</button>
+      <button class="ctrl-btn" id="zoom-fit" title="Fit to Screen">⊡</button>
+      <button class="ctrl-btn" id="toggle-labels" title="Toggle Labels">🏷</button>
+    </div>
+  </main>
+
+  <section class="inspector-panel">
+    <div id="node-info">
+      <h3>🔍 Selection Inspector</h3>
+      <div class="placeholder-text">Click any node or edge in the graph to inspect its stored metadata.</div>
+    </div>
+  </section>
+</div>
+
+<script src="data/training_graph/index.js"></script>
+<script src="data/cases_catalog.js"></script>
+<script>
+const FALLBACK_CASES_DATA = [
+  {
+    id: "case_001",
+    title: "A.G.Rajendran vs The Food Safety Officer",
+    date: "24 Apr 2024",
+    court: "Madurai Bench of Madras High Court",
+    judge: "A.A.Nakkiran",
+    outcome: "appellant_won",
+    petitioner: "A.G.Rajendran",
+    respondent: "Food Safety Officer",
+    petitioner_lawyer: "M.Rajaraman",
+    defence_lawyer: "K.SanjaiGandhi",
+    statutes: ["Food Safety and Standards Act, 2006"],
+    provisions: ["Section 46(4)", "Rule 2.4.6(1)"],
+    precedents: [],
+    case_numbers: ["Crl.O.P.(MD)No.18125 of 2022", "S.T.C.No.204 of 2022"],
+    facts_summary: "Food Safety Officers took oil samples from petitioner's shop. Sample was found substandard. Designated Officer failed to dispose appeal within time limit.",
+    arguments_summary: "Petitioner: Designated Officer violated FSSA by not forwarding sample to referral lab. Respondent: Petitioner should have filed appeal in Form VIII not Form VII."
+  },
+  {
+    id: "case_002",
+    title: "A.Selvam vs The Food Safety Officer",
+    date: "24 Apr 2024",
+    court: "Madurai Bench of Madras High Court",
+    judge: "A.A.Nakkiran",
+    outcome: "appellant_won",
+    petitioner: "A.Selvam",
+    respondent: "Food Safety Officer",
+    petitioner_lawyer: "M.Rajaraman",
+    defence_lawyer: "K.SanjaiGandhi",
+    statutes: ["Food Safety and Standards Act, 2006"],
+    provisions: ["Section 46(4)", "Rule 2.4.6"],
+    precedents: [],
+    case_numbers: ["Crl.O.P.(MD)No.18126 of 2022"],
+    facts_summary: "Connected case to A.G.Rajendran — same Food Safety Officer, same petitioner's lawyer and same statutory violations regarding referral lab procedure.",
+    arguments_summary: "Same judge and counsel appeared in this related food safety matter before the Madurai Bench."
+  },
+  {
+    id: "case_003",
+    title: "A.Boopathiraja vs The Food Safety Officer",
+    date: "21 Nov 2024",
+    court: "Madurai Bench of Madras High Court",
+    judge: "B.Pugalendhi",
+    outcome: "respondent_won",
+    petitioner: "A.Boopathiraja",
+    respondent: "Food Safety Officer",
+    petitioner_lawyer: "S.Mugumaaran",
+    defence_lawyer: "K.SanjaiGandhi",
+    statutes: ["Food Safety and Standards Act, 2006", "Prevention of Food Adulteration Act"],
+    provisions: ["Section 482 Cr.P.C", "Section 26 FSSA"],
+    precedents: ["State of Karnataka vs Prakash Nayak"],
+    case_numbers: ["Crl.O.P.(MD)No.6754 of 2023"],
+    facts_summary: "Petitioner challenged food adulteration charges. Sample was declared adulterated during lab test. Petitioner claimed procedural violations by the food officer.",
+    arguments_summary: "Petitioner: Procedural lapses vitiate prosecution. Respondent (K.SanjaiGandhi): Lab report is conclusive; prosecution is maintainable."
+  }
+];
+
+const HAS_EXACT_TRAINING_EXPORT = Array.isArray(window.TRAINING_GRAPH_CASE_INDEX) && window.TRAINING_GRAPH_CASE_INDEX.length > 0;
+let CASES_DATA = HAS_EXACT_TRAINING_EXPORT
+  ? window.TRAINING_GRAPH_CASE_INDEX
+  : Array.isArray(window.VISUALISER_CASES) && window.VISUALISER_CASES.length
+    ? window.VISUALISER_CASES
+    : FALLBACK_CASES_DATA;
+let CATALOG_META = window.TRAINING_GRAPH_META || window.VISUALISER_CATALOG_META || null;
+let CASE_DESCRIPTOR_INDEX = new Map();
+let CASE_CONNECTION_COUNTS = new Map();
+let CASE_DETAIL_CACHE = new Map();
+let caseSearchQuery = "";
+
+const NODE_CONFIG = {
+  case:                   { color: "#f0883e", radius: 22, emoji: "⚖️",  label: "Case" },
+  preamble:               { color: "#58a6ff", radius: 12, emoji: "📄",  label: "Preamble" },
+  facts:                  { color: "#79c0ff", radius: 12, emoji: "📋",  label: "Facts" },
+  arguments:              { color: "#56d364", radius: 12, emoji: "💬",  label: "Arguments" },
+  petitioner_arguments:   { color: "#3fb950", radius: 10, emoji: "🗣️", label: "Petitioner Args" },
+  respondent_arguments:   { color: "#d2a8ff", radius: 10, emoji: "🛡️", label: "Respondent Args" },
+  other_lawyer_arguments: { color: "#8b949e", radius: 10, emoji: "🧾", label: "Other Lawyer Args" },
+  petitioner:             { color: "#ff7b72", radius: 13, emoji: "👤",  label: "Petitioner" },
+  respondent:             { color: "#ffa657", radius: 13, emoji: "🏛️", label: "Respondent" },
+  judge:                  { color: "#e3b341", radius: 14, emoji: "👨‍⚖️", label: "Judge" },
+  court:                  { color: "#76e3ea", radius: 13, emoji: "🏛️", label: "Court" },
+  petitioner_lawyer:      { color: "#ff9bce", radius: 11, emoji: "👔",  label: "Petitioner Lawyer" },
+  defence_lawyer:         { color: "#d2a8ff", radius: 11, emoji: "🥋",  label: "Defence Lawyer" },
+  lawyer:                 { color: "#b9beff", radius: 10, emoji: "⚖️",  label: "Lawyer" },
+  statute:                { color: "#39d353", radius: 12, emoji: "📜",  label: "Statute" },
+  provision:              { color: "#26a641", radius:  9, emoji: "§",   label: "Provision" },
+  precedent:              { color: "#0075ca", radius: 10, emoji: "📗",  label: "Precedent" },
+  case_number:            { color: "#c9d1d9", radius:  8, emoji: "#",   label: "Case Number" },
+  date:                   { color: "#aff7c8", radius:  7, emoji: "📅",  label: "Date" },
+  org:                    { color: "#bc8cff", radius:  8, emoji: "🏢",  label: "Org" },
+  gpe:                    { color: "#54aeff", radius:  8, emoji: "📍",  label: "GPE" },
+};
+
+const EDGE_COLOR = {
+  has_preamble:             "#58a6ff",
+  has_facts:                "#79c0ff",
+  has_arguments:            "#56d364",
+  has_petitioner_arguments: "#3fb950",
+  has_respondent_arguments: "#d2a8ff",
+  has_other_lawyer_arguments: "#8b949e",
+  has_petitioner:           "#ff7b72",
+  has_respondent:           "#ffa657",
+  decided_by_bench:         "#e3b341",
+  heard_in:                 "#76e3ea",
+  has_lawyer:               "#b9beff",
+  has_petitioner_lawyer:    "#ff9bce",
+  has_defence_lawyer:       "#d2a8ff",
+  has_date:                 "#aff7c8",
+  mentions_org:             "#bc8cff",
+  mentions_gpe:             "#54aeff",
+  cites_statute:            "#39d353",
+  cites_provision:          "#26a641",
+  cites_precedent:          "#0075ca",
+  has_case_number:          "#c9d1d9",
+  belongs_to_statute:       "#26a641",
+  citation:                 "#bc8cff",
+  used_in_arguments:        "#39d353",
+  is_party_in_arguments:    "#8b5cf6",
+  presided_arguments:       "#e3b341",
+  connected_via_shared:     "#8b949e",
+  default:                  "#444"
+};
+
+const SHAREABLE_FIELD_SPECS = [
+  { type: "court", key: "courts", fallback: ["court"] },
+  { type: "judge", key: "judges", fallback: ["judge"] },
+  { type: "petitioner_lawyer", key: "petitioner_lawyers", fallback: ["petitioner_lawyer"] },
+  { type: "defence_lawyer", key: "defence_lawyers", fallback: ["defence_lawyer"] },
+  { type: "lawyer", key: "lawyers", fallback: ["lawyer"] },
+  { type: "statute", key: "statutes", fallback: [] },
+  { type: "provision", key: "provisions", fallback: [] },
+  { type: "precedent", key: "precedents", fallback: [] },
+  { type: "org", key: "orgs", fallback: [] },
+  { type: "gpe", key: "gpes", fallback: [] },
+  { type: "date", key: "dates", fallback: [] },
+  { type: "case_number", key: "case_numbers", fallback: [] },
+];
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function truncateText(value, maxLength) {
+  const text = String(value ?? "");
+  return text.length > maxLength ? `${text.slice(0, maxLength - 1)}…` : text;
+}
+
+function formatNodeType(type) {
+  return NODE_CONFIG[type]?.label || String(type || "").replace(/_/g, " ");
+}
+
+function formatOutcome(outcome) {
+  if (outcome === "appellant_won") return "appellant won";
+  if (outcome === "appellant_lost") return "appellant lost";
+  if (outcome === "respondent_won") return "respondent won";
+  if (outcome === "postponed_or_procedural") return "procedural";
+  return String(outcome || "unknown").replace(/_/g, " ");
+}
+
+function outcomePillClass(outcome) {
+  if (outcome === "appellant_won") return "pill-green";
+  if (outcome === "appellant_lost" || outcome === "respondent_won") return "pill-red";
+  return "pill-blue";
+}
+
+function normalizeValue(value) {
+  return String(value ?? "").toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function descriptorKey(type, value) {
+  return `${type}::${normalizeValue(value)}`;
+}
+
+function defaultInspectorMarkup() {
+  return `
+    <h3>🔍 Selection Inspector</h3>
+    <div class="placeholder-text">Click any node or edge in the graph to inspect its stored metadata.</div>
+  `;
+}
+
+function stringifyInspectorValue(value) {
+  if (value == null) return "—";
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  try {
+    return JSON.stringify(value);
+  } catch (error) {
+    return String(value);
+  }
+}
+
+function inspectorJsonMarkup(payload) {
+  try {
+    return escapeHtml(JSON.stringify(payload, null, 2));
+  } catch (error) {
+    return escapeHtml(String(payload));
+  }
+}
+
+function inspectorRow(label, value) {
+  return `
+    <div class="info-row">
+      <span>${escapeHtml(label)}</span>
+      <span>${escapeHtml(stringifyInspectorValue(value))}</span>
+    </div>
+  `;
+}
+
+function formatRelationLabel(relation) {
+  return String(relation || "").replace(/_/g, " ");
+}
+
+function edgeEndpointPayload(endpoint) {
+  if (endpoint && typeof endpoint === "object") {
+    return {
+      id: endpoint.id,
+      type: endpoint.type,
+      label: endpoint.meta?.title || endpoint.meta?.full || endpoint.label,
+      visualRole: endpoint.visualRole || null
+    };
+  }
+  return {
+    id: String(endpoint ?? ""),
+    type: null,
+    label: String(endpoint ?? ""),
+    visualRole: null
+  };
+}
+
+function edgeEndpointLabel(endpoint) {
+  const payload = edgeEndpointPayload(endpoint);
+  return payload.label || payload.id;
+}
+
+function hasExactTrainingGraph(caseData) {
+  return Array.isArray(caseData?.graph_nodes) && Array.isArray(caseData?.graph_edges);
+}
+
+function caseSummaryById(caseId) {
+  return CASES_DATA.find(caseData => caseData.id === caseId) || null;
+}
+
+function normalizeTrainingConnections(caseData) {
+  return (caseData.connections || [])
+    .map(connection => {
+      const summary = caseSummaryById(connection.case_id) || {};
+      const relatedCaseData = {
+        ...summary,
+        id: connection.case_id,
+        title: connection.title || summary.title || connection.case_id,
+        date: connection.date || summary.date || "",
+        outcome: connection.raw_label || connection.outcome || summary.outcome || "",
+        split: connection.split || summary.split || "unknown"
+      };
+      const reasons = (connection.reasons || [])
+        .map(reason => ({
+          key: `${reason.type}::${reason.node_id || normalizeValue(reason.label)}`,
+          nodeId: reason.node_id,
+          type: reason.type,
+          label: reason.label,
+          color: NODE_CONFIG[reason.type]?.color || "#8b949e"
+        }))
+        .sort((left, right) =>
+          formatNodeType(left.type).localeCompare(formatNodeType(right.type)) ||
+          left.label.localeCompare(right.label)
+        );
+
+      return { caseData: relatedCaseData, reasons };
+    })
+    .sort((left, right) =>
+      right.reasons.length - left.reasons.length ||
+      left.caseData.title.localeCompare(right.caseData.title)
+    );
+}
+
+async function ensureCaseDetail(caseData) {
+  if (!caseData?.detail_path || hasExactTrainingGraph(caseData)) return caseData;
+  if (CASE_DETAIL_CACHE.has(caseData.id)) {
+    Object.assign(caseData, CASE_DETAIL_CACHE.get(caseData.id));
+    return caseData;
+  }
+
+  const response = await fetch(encodeURI(caseData.detail_path));
+  if (!response.ok) {
+    throw new Error(`Failed to load case detail for ${caseData.id}: ${response.status}`);
+  }
+
+  const detail = await response.json();
+  CASE_DETAIL_CACHE.set(caseData.id, detail);
+  Object.assign(caseData, detail);
+  return caseData;
+}
+
+function toArray(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (value == null || value === "") return [];
+  return [value];
+}
+
+function getCaseValues(caseData, key, fallbackKeys = []) {
+  const directValues = toArray(caseData[key]);
+  if (directValues.length) return directValues;
+
+  for (const fallbackKey of fallbackKeys) {
+    const fallbackValues = toArray(caseData[fallbackKey]);
+    if (fallbackValues.length) return fallbackValues;
+  }
+  return [];
+}
+
+function graphValuesForType(caseData, type) {
+  const spec = SHAREABLE_FIELD_SPECS.find(item => item.type === type);
+  return spec ? getCaseValues(caseData, spec.key, spec.fallback) : [];
+}
+
+function connectivityValuesForType(caseData, type) {
+  const connectivityValues = toArray(caseData.connectivity?.[type]);
+  const graphValues = graphValuesForType(caseData, type);
+  if (!connectivityValues.length) return graphValues;
+  if (!graphValues.length) return connectivityValues;
+
+  const graphValueKeys = new Set(graphValues.map(value => normalizeValue(value)));
+  const renderableConnectivityValues = connectivityValues.filter(value => graphValueKeys.has(normalizeValue(value)));
+  return renderableConnectivityValues.length ? renderableConnectivityValues : graphValues;
+}
+
+function getShareableDescriptors(caseData) {
+  const descriptors = [];
+  const seen = new Set();
+
+  SHAREABLE_FIELD_SPECS.forEach(spec => {
+    connectivityValuesForType(caseData, spec.type).forEach(rawValue => {
+      const label = String(rawValue ?? "").trim();
+      if (!label) return;
+      const key = descriptorKey(spec.type, label);
+      if (seen.has(key)) return;
+      seen.add(key);
+      descriptors.push({
+        key,
+        type: spec.type,
+        label,
+        color: NODE_CONFIG[spec.type]?.color || "#8b949e"
+      });
+    });
+  });
+
+  return descriptors;
+}
+
+function rebuildCaseIndexes() {
+  if (HAS_EXACT_TRAINING_EXPORT) {
+    CASE_DESCRIPTOR_INDEX = new Map();
+    CASE_CONNECTION_COUNTS = new Map(
+      CASES_DATA.map(caseData => [caseData.id, Number(caseData.connection_degree || 0)])
+    );
+    return;
+  }
+
+  CASE_DESCRIPTOR_INDEX = new Map(
+    CASES_DATA.map(caseData => [caseData.id, getShareableDescriptors(caseData)])
+  );
+  CASE_CONNECTION_COUNTS = new Map(
+    CASES_DATA.map(caseData => [caseData.id, getConnectedCaseSummaries(caseData).length])
+  );
+}
+
+function getConnectedCaseSummaries(focusCase) {
+  if (Array.isArray(focusCase?.connections)) {
+    return normalizeTrainingConnections(focusCase);
+  }
+
+  const focusDescriptors = CASE_DESCRIPTOR_INDEX.get(focusCase.id) || [];
+  const focusByKey = new Map(focusDescriptors.map(descriptor => [descriptor.key, descriptor]));
+
+  return CASES_DATA
+    .filter(caseData => caseData.id !== focusCase.id)
+    .map(caseData => {
+      const reasons = [];
+      const seen = new Set();
+
+      (CASE_DESCRIPTOR_INDEX.get(caseData.id) || []).forEach(descriptor => {
+        if (!focusByKey.has(descriptor.key) || seen.has(descriptor.key)) return;
+        seen.add(descriptor.key);
+        reasons.push(focusByKey.get(descriptor.key));
+      });
+
+      if (!reasons.length) return null;
+
+      reasons.sort((left, right) =>
+        formatNodeType(left.type).localeCompare(formatNodeType(right.type)) ||
+        left.label.localeCompare(right.label)
+      );
+
+      return { caseData, reasons };
+    })
+    .filter(Boolean)
+    .sort((left, right) =>
+      right.reasons.length - left.reasons.length ||
+      left.caseData.title.localeCompare(right.caseData.title)
+    );
+}
+
+function buildExactGraph(caseData) {
+  const nodes = [];
+  const links = [];
+  const nodeMap = new Map();
+  const linkKeys = new Set();
+  const connections = normalizeTrainingConnections(caseData);
+
+  function addNodeFromExport(exportedNode, extra = {}) {
+    if (nodeMap.has(exportedNode.id)) return nodeMap.get(exportedNode.id);
+    const cfg = NODE_CONFIG[exportedNode.type] || NODE_CONFIG.org;
+    const isFocusCase = exportedNode.type === "case" && exportedNode.id === `case::${caseData.id}`;
+    const node = {
+      id: exportedNode.id,
+      type: exportedNode.type,
+      label: exportedNode.label || exportedNode.text || exportedNode.id,
+      text: exportedNode.text || "",
+      meta: exportedNode.meta || {},
+      shareAcrossCases: Boolean(exportedNode.share_across_cases),
+      color: cfg.color,
+      radius: extra.radius || cfg.radius,
+      visualRole: extra.visualRole || (isFocusCase ? "focus_case" : "graph_node"),
+      ...extra
+    };
+    nodes.push(node);
+    nodeMap.set(node.id, node);
+    return node;
+  }
+
+  function addLink(source, target, relation, meta = {}, colorOverride = null) {
+    const key = `${source}|${relation}|${target}`;
+    if (linkKeys.has(key)) return;
+    linkKeys.add(key);
+    links.push({
+      source,
+      target,
+      relation,
+      meta,
+      color: colorOverride || EDGE_COLOR[relation] || EDGE_COLOR.default
+    });
+  }
+
+  (caseData.graph_nodes || []).forEach(exportedNode => {
+    addNodeFromExport(exportedNode);
+  });
+
+  (caseData.graph_edges || []).forEach(exportedEdge => {
+    addLink(
+      exportedEdge.source,
+      exportedEdge.target,
+      exportedEdge.relation,
+      exportedEdge.meta || {},
+      null
+    );
+  });
+
+  return { nodes, links, connections };
+}
+
+function buildGraph(caseData) {
+  if (hasExactTrainingGraph(caseData)) {
+    return buildExactGraph(caseData);
+  }
+
+  const nodes = [];
+  const links = [];
+  const nodeMap = new Map();
+  const linkKeys = new Set();
+  const sharedNodeIdByKey = new Map();
+  const connections = getConnectedCaseSummaries(caseData);
+
+  function addNode(id, type, label, meta = {}, extra = {}) {
+    if (!nodeMap.has(id)) {
+      const cfg = NODE_CONFIG[type] || NODE_CONFIG.org;
+      const node = {
+        id,
+        type,
+        label,
+        meta,
+        color: cfg.color,
+        radius: cfg.radius,
+        visualRole: extra.visualRole || "graph_node",
+        ...extra
+      };
+      nodes.push(node);
+      nodeMap.set(id, node);
+    }
+    return nodeMap.get(id);
+  }
+
+  function addLink(srcId, dstId, relation, meta = {}, colorOverride = null) {
+    const key = `${srcId}|${relation}|${dstId}`;
+    if (linkKeys.has(key)) return;
+    linkKeys.add(key);
+    links.push({
+      source: srcId,
+      target: dstId,
+      relation,
+      meta,
+      color: colorOverride || EDGE_COLOR[relation] || EDGE_COLOR.default
+    });
+  }
+
+  function registerSharedNode(type, value, nodeId) {
+    if (!value) return;
+    sharedNodeIdByKey.set(descriptorKey(type, value), nodeId);
+  }
+
+  const caseId = caseData.id;
+  const petitioners = getCaseValues(caseData, "petitioners", ["petitioner"]);
+  const respondents = getCaseValues(caseData, "respondents", ["respondent"]);
+  const judges = getCaseValues(caseData, "judges", ["judge"]);
+  const courts = getCaseValues(caseData, "courts", ["court"]);
+  const petitionerLawyers = getCaseValues(caseData, "petitioner_lawyers", ["petitioner_lawyer"]);
+  const defenceLawyers = getCaseValues(caseData, "defence_lawyers", ["defence_lawyer"]);
+  const lawyers = getCaseValues(caseData, "lawyers", ["lawyer"]);
+  const statutes = getCaseValues(caseData, "statutes");
+  const provisions = getCaseValues(caseData, "provisions");
+  const precedents = getCaseValues(caseData, "precedents");
+  const caseNumbers = getCaseValues(caseData, "case_numbers");
+
+  addNode(
+    caseId,
+    "case",
+    truncateText(caseData.title, 40),
+    {
+      title: caseData.title,
+      date: caseData.date,
+      outcome: caseData.outcome,
+      judge: judges.join(", "),
+      court: courts.join(", ")
+    },
+    { visualRole: "focus_case" }
+  );
+
+  addNode(`${caseId}_preamble`, "preamble", "Preamble", {
+    section: "preamble",
+    text: "Case header / parties"
+  });
+  addLink(caseId, `${caseId}_preamble`, "has_preamble");
+
+  addNode(`${caseId}_facts`, "facts", "Facts", {
+    section: "facts",
+    text: caseData.facts_summary
+  });
+  addLink(caseId, `${caseId}_facts`, "has_facts");
+
+  addNode(`${caseId}_arguments`, "arguments", "Arguments", {
+    section: "arguments",
+    text: caseData.arguments_summary
+  });
+  addLink(caseId, `${caseId}_arguments`, "has_arguments");
+
+  addNode(`${caseId}_pet_args`, "petitioner_arguments", "Petitioner Args", {
+    section: "petitioner_arguments",
+    text: "Petitioner-side reasoning extracted from the case."
+  });
+  addLink(caseId, `${caseId}_pet_args`, "has_petitioner_arguments");
+
+  addNode(`${caseId}_res_args`, "respondent_arguments", "Respondent Args", {
+    section: "respondent_arguments",
+    text: "Respondent-side reasoning extracted from the case."
+  });
+  addLink(caseId, `${caseId}_res_args`, "has_respondent_arguments");
+
+  petitioners.forEach(petitioner => {
+    const petitionerId = `pet_${normalizeValue(petitioner).replace(/\W/g, "_")}`;
+    addNode(petitionerId, "petitioner", truncateText(petitioner, 28), { role: "Petitioner", full: petitioner });
+    addLink(caseId, petitionerId, "has_petitioner");
+  });
+
+  respondents.forEach(respondent => {
+    const respondentId = `res_${normalizeValue(respondent).replace(/\W/g, "_").slice(0, 64)}`;
+    addNode(respondentId, "respondent", truncateText(respondent, 28), { role: "Respondent", full: respondent });
+    addLink(caseId, respondentId, "has_respondent");
+  });
+
+  judges.forEach(judge => {
+    const judgeId = `judge_${normalizeValue(judge).replace(/\W/g, "_")}`;
+    addNode(judgeId, "judge", truncateText(judge, 28), { role: "Judge", full: judge });
+    addLink(caseId, judgeId, "decided_by_bench");
+    registerSharedNode("judge", judge, judgeId);
+  });
+
+  courts.forEach(court => {
+    const courtId = `court_${normalizeValue(court).replace(/\W/g, "_").slice(0, 64)}`;
+    addNode(courtId, "court", truncateText(court, 28), { full: court });
+    addLink(caseId, courtId, "heard_in");
+    registerSharedNode("court", court, courtId);
+  });
+
+  petitionerLawyers.forEach(petitionerLawyer => {
+    const petitionerLawyerId = `pl_${normalizeValue(petitionerLawyer).replace(/\W/g, "_").slice(0, 64)}`;
+    addNode(petitionerLawyerId, "petitioner_lawyer", truncateText(petitionerLawyer, 26), { side: "Petitioner", full: petitionerLawyer });
+    addLink(caseId, petitionerLawyerId, "has_petitioner_lawyer");
+    addLink(petitionerLawyerId, `${caseId}_pet_args`, "citation");
+    registerSharedNode("petitioner_lawyer", petitionerLawyer, petitionerLawyerId);
+  });
+
+  defenceLawyers.forEach(defenceLawyer => {
+    const defenceLawyerId = `dl_${normalizeValue(defenceLawyer).replace(/\W/g, "_").slice(0, 64)}`;
+    addNode(defenceLawyerId, "defence_lawyer", truncateText(defenceLawyer, 26), { side: "Defence", full: defenceLawyer });
+    addLink(caseId, defenceLawyerId, "has_defence_lawyer");
+    addLink(defenceLawyerId, `${caseId}_res_args`, "citation");
+    registerSharedNode("defence_lawyer", defenceLawyer, defenceLawyerId);
+  });
+
+  lawyers.forEach(lawyer => {
+    const lawyerId = `law_${normalizeValue(lawyer).replace(/\W/g, "_").slice(0, 64)}`;
+    addNode(lawyerId, "lawyer", truncateText(lawyer, 26), { full: lawyer });
+    addLink(caseId, lawyerId, "has_lawyer");
+    addLink(lawyerId, `${caseId}_arguments`, "citation");
+    registerSharedNode("lawyer", lawyer, lawyerId);
+  });
+
+  statutes.forEach(statute => {
+    const statuteId = `stat_${normalizeValue(statute).replace(/\W/g, "_").slice(0, 48)}`;
+    addNode(statuteId, "statute", truncateText(statute, 30), { full: statute });
+    addLink(`${caseId}_arguments`, statuteId, "cites_statute");
+    registerSharedNode("statute", statute, statuteId);
+  });
+
+  provisions.forEach(provision => {
+    const provisionId = `prov_${normalizeValue(provision).replace(/\W/g, "_")}`;
+    addNode(provisionId, "provision", truncateText(provision, 24), { full: provision });
+    addLink(`${caseId}_arguments`, provisionId, "cites_provision");
+    registerSharedNode("provision", provision, provisionId);
+    if (statutes.length > 0) {
+      const statuteId = `stat_${normalizeValue(statutes[0]).replace(/\W/g, "_").slice(0, 48)}`;
+      addLink(provisionId, statuteId, "belongs_to_statute");
+    }
+  });
+
+  precedents.forEach(precedent => {
+    const precedentId = `prec_${normalizeValue(precedent).replace(/\W/g, "_").slice(0, 48)}`;
+    addNode(precedentId, "precedent", truncateText(precedent, 28), { full: precedent });
+    addLink(`${caseId}_arguments`, precedentId, "cites_precedent");
+    registerSharedNode("precedent", precedent, precedentId);
+  });
+
+  caseNumbers.forEach(caseNumber => {
+    const caseNumberId = `cn_${normalizeValue(caseNumber).replace(/\W/g, "_").slice(0, 48)}`;
+    addNode(caseNumberId, "case_number", truncateText(caseNumber, 22), { full: caseNumber });
+    addLink(caseId, caseNumberId, "has_case_number");
+    registerSharedNode("case_number", caseNumber, caseNumberId);
+  });
+
+  connections.forEach(connection => {
+    const related = connection.caseData;
+    addNode(
+      related.id,
+      "case",
+      truncateText(related.title, 40),
+      {
+        title: related.title,
+        date: related.date,
+        outcome: related.outcome,
+        judge: getCaseValues(related, "judges", ["judge"]).join(", "),
+        court: getCaseValues(related, "courts", ["court"]).join(", "),
+        shared_count: connection.reasons.length
+      },
+      {
+        visualRole: "connected_case",
+        radius: 18,
+        relatedReasons: connection.reasons
+      }
+    );
+
+    connection.reasons.forEach(reason => {
+      const sharedNodeId = sharedNodeIdByKey.get(reason.key);
+      if (!sharedNodeId) return;
+      addLink(
+        related.id,
+        sharedNodeId,
+        "connected_via_shared",
+        {
+          synthetic: true,
+          sharedType: reason.type,
+          sharedLabel: reason.label,
+          connectedCaseId: related.id,
+          focusCaseId: caseData.id
+        },
+        reason.color
+      );
+    });
+  });
+
+  return { nodes, links, connections };
+}
+
+let simulation;
+let svgEl;
+let gEl;
+let zoom;
+let showLabels = true;
+let selectedNode = null;
+let selectedEdge = null;
+let activeCase = 0;
+let renderSequence = 0;
+
+function setupSVG() {
+  svgEl = d3.select("#graph-svg");
+  svgEl.selectAll("*").remove();
+
+  svgEl.append("defs")
+    .append("marker")
+    .attr("id", "arrow")
+    .attr("markerWidth", 8)
+    .attr("markerHeight", 6)
+    .attr("refX", 6)
+    .attr("refY", 3)
+    .attr("orient", "auto")
+    .append("polygon")
+    .attr("points", "0 0, 8 3, 0 6")
+    .attr("fill", "#555")
+    .attr("opacity", "0.8");
+
+  zoom = d3.zoom()
+    .scaleExtent([0.1, 8])
+    .on("zoom", event => gEl.attr("transform", event.transform));
+
+  svgEl.call(zoom);
+  svgEl.on("click", event => {
+    if (event.target === svgEl.node()) {
+      clearSelection();
+      document.getElementById("node-info").innerHTML = defaultInspectorMarkup();
+    }
+  });
+  gEl = svgEl.append("g");
+}
+
+async function renderGraph(caseData) {
+  const renderId = ++renderSequence;
+  let resolvedCaseData = caseData;
+  if (resolvedCaseData?.detail_path) {
+    document.querySelector("#loading .load-text").textContent = "Loading exact training graph…";
+    try {
+      resolvedCaseData = await ensureCaseDetail(resolvedCaseData);
+    } catch (error) {
+      if (renderId !== renderSequence) return;
+      document.getElementById("node-info").innerHTML = `
+        <h3>🔍 Selection Inspector</h3>
+        <div class="placeholder-text">Failed to load exact graph data for this case.</div>
+      `;
+      document.getElementById("loading").style.display = "none";
+      console.error(error);
+      return;
+    }
+  } else {
+    document.querySelector("#loading .load-text").textContent = "Parsing case data…";
+  }
+
+  if (renderId !== renderSequence) return;
+
+  const { nodes, links, connections } = buildGraph(resolvedCaseData);
+  selectedNode = null;
+  selectedEdge = null;
+  document.getElementById("node-info").innerHTML = defaultInspectorMarkup();
+  setupSVG();
+
+  const width = svgEl.node().clientWidth || 900;
+  const height = svgEl.node().clientHeight || 700;
+
+  simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links)
+      .id(node => node.id)
+      .distance(link => {
+        if (link.meta?.synthetic) return 135;
+        const sourceIsCase = typeof link.source === "object" && link.source?.type === "case";
+        const targetIsCase = typeof link.target === "object" && link.target?.type === "case";
+        if (sourceIsCase || targetIsCase) return 120;
+        return 72;
+      })
+      .strength(link => link.meta?.synthetic ? 0.6 : 0.78))
+    .force("charge", d3.forceManyBody().strength(node => node.visualRole === "connected_case" ? -240 : -320))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collision", d3.forceCollide(node => node.radius + 10))
+    .alphaDecay(0.03);
+
+  const link = gEl.append("g")
+    .attr("class", "links")
+    .selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("class", d => `link${d.meta?.synthetic ? " synthetic" : ""}`)
+    .attr("stroke", d => d.color)
+    .attr("stroke-width", d => d.meta?.synthetic ? 2 : 1.5)
+    .attr("stroke-dasharray", d => d.meta?.synthetic ? "6 4" : null)
+    .attr("marker-end", d => d.meta?.synthetic ? null : "url(#arrow)")
+    .each(function(datum) {
+      datum._visibleLine = this;
+    });
+
+  const linkHitbox = gEl.append("g")
+    .attr("class", "link-hitboxes")
+    .selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("class", "link-hitbox")
+    .on("click", onEdgeClick)
+    .on("mouseenter", onEdgeEnter)
+    .on("mouseleave", onEdgeLeave);
+
+  const node = gEl.append("g")
+    .attr("class", "nodes")
+    .selectAll("g")
+    .data(nodes)
+    .join("g")
+    .attr("class", d => {
+      const classNames = ["node"];
+      if (d.visualRole === "focus_case") classNames.push("case-focus");
+      if (d.visualRole === "connected_case") classNames.push("case-connected");
+      return classNames.join(" ");
+    })
+    .call(d3.drag()
+      .on("start", (event, datum) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        datum.fx = datum.x;
+        datum.fy = datum.y;
+      })
+      .on("drag", (event, datum) => {
+        datum.fx = event.x;
+        datum.fy = event.y;
+      })
+      .on("end", (event, datum) => {
+        if (!event.active) simulation.alphaTarget(0);
+        datum.fx = null;
+        datum.fy = null;
+      }))
+    .on("click", onNodeClick)
+    .on("mouseenter", onNodeEnter)
+    .on("mouseleave", onNodeLeave);
+
+  node.append("circle")
+    .attr("r", d => d.radius)
+    .attr("fill", d => d.color)
+    .attr("stroke", d => d.visualRole === "connected_case" ? "#8b949e" : d3.color(d.color).darker(0.5))
+    .attr("stroke-width", d => d.visualRole === "focus_case" ? 2.4 : 1.5)
+    .attr("opacity", d => d.visualRole === "connected_case" ? 0.82 : 0.92);
+
+  node.append("text")
+    .attr("text-anchor", "middle")
+    .attr("dy", "0.35em")
+    .attr("font-size", d => `${Math.max(8, d.radius * 0.7)}px`)
+    .attr("pointer-events", "none")
+    .text(d => (NODE_CONFIG[d.type] || {}).emoji || "●");
+
+  node.append("text")
+    .attr("dy", d => d.radius + 11)
+    .attr("text-anchor", "middle")
+    .attr("class", "node-label")
+    .text(d => truncateText(d.meta.title || d.label, 14))
+    .attr("opacity", showLabels ? 1 : 0);
+
+  simulation.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => adjustEnd(d).x2)
+      .attr("y2", d => adjustEnd(d).y2);
+
+    linkHitbox
+      .attr("x1", d => d.source.x)
+      .attr("y1", d => d.source.y)
+      .attr("x2", d => adjustEnd(d).x2)
+      .attr("y2", d => adjustEnd(d).y2);
+
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+
+  updateStats(nodes, links, resolvedCaseData, connections);
+  renderConnectedCases(resolvedCaseData, connections);
+
+  document.getElementById("loading").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+  }, 500);
+
+  document.getElementById("toggle-labels").onclick = () => {
+    showLabels = !showLabels;
+    gEl.selectAll(".node-label").attr("opacity", showLabels ? 1 : 0);
+  };
+
+  const focusNodeSelection = node.filter(datum => datum.visualRole === "focus_case");
+  if (!focusNodeSelection.empty()) {
+    selectedNode = focusNodeSelection.node();
+    d3.select(selectedNode).classed("selected", true);
+    showNodeInfo(focusNodeSelection.datum());
+  }
+}
+
+function adjustEnd(linkDatum) {
+  const dx = linkDatum.target.x - linkDatum.source.x;
+  const dy = linkDatum.target.y - linkDatum.source.y;
+  const length = Math.sqrt(dx * dx + dy * dy) || 1;
+  const radius = (linkDatum.target.radius || 10) + 6;
+  return {
+    x2: linkDatum.target.x - (dx / length) * radius,
+    y2: linkDatum.target.y - (dy / length) * radius
+  };
+}
+
+const tooltip = document.getElementById("tooltip");
+
+function clearSelection() {
+  if (selectedNode) d3.select(selectedNode).classed("selected", false);
+  if (selectedEdge) d3.select(selectedEdge).classed("selected", false);
+  selectedNode = null;
+  selectedEdge = null;
+}
+
+function onNodeEnter(event, datum) {
+  const heading = datum.visualRole === "connected_case"
+    ? "Connected Case"
+    : formatNodeType(datum.type);
+  const title = datum.meta.title || datum.meta.full || datum.label;
+  const reasons = datum.relatedReasons || [];
+  const reasonMarkup = reasons.length
+    ? `<div style="margin-top:0.35rem;color:var(--muted)">Shared via ${escapeHtml(reasons.map(reason => reason.label).join(", "))}</div>`
+    : "";
+
+  tooltip.innerHTML = `<strong>${escapeHtml(`${NODE_CONFIG[datum.type]?.emoji || "●"} ${heading}`)}</strong>${escapeHtml(title)}${reasonMarkup}`;
+  tooltip.style.opacity = "1";
+}
+
+function onNodeLeave() {
+  tooltip.style.opacity = "0";
+}
+
+function onEdgeEnter(event, datum) {
+  const sourceLabel = edgeEndpointLabel(datum.source);
+  const targetLabel = edgeEndpointLabel(datum.target);
+  tooltip.innerHTML = `
+    <strong>${escapeHtml(`↔ ${formatRelationLabel(datum.relation)}`)}</strong>
+    ${escapeHtml(sourceLabel)} → ${escapeHtml(targetLabel)}
+  `;
+  tooltip.style.opacity = "1";
+}
+
+function onEdgeLeave() {
+  tooltip.style.opacity = "0";
+}
+
+document.addEventListener("mousemove", event => {
+  tooltip.style.left = `${event.clientX + 14}px`;
+  tooltip.style.top = `${event.clientY - 30}px`;
+});
+
+function onNodeClick(event, datum) {
+  event.stopPropagation();
+  clearSelection();
+  selectedNode = this;
+  d3.select(this).classed("selected", true);
+  showNodeInfo(datum);
+}
+
+function onEdgeClick(event, datum) {
+  event.stopPropagation();
+  clearSelection();
+  selectedEdge = datum._visibleLine || this;
+  d3.select(selectedEdge).classed("selected", true);
+  showEdgeInfo(datum);
+}
+
+function showNodeInfo(datum) {
+  const cfg = NODE_CONFIG[datum.type] || {};
+  const infoLabel = datum.meta.title || datum.meta.full || datum.label;
+  const summaryRows = [
+    inspectorRow("id", datum.id),
+    inspectorRow("type", datum.type),
+    inspectorRow("label", datum.label),
+    inspectorRow("visual role", datum.visualRole || "graph_node"),
+    inspectorRow("share across cases", Boolean(datum.shareAcrossCases)),
+    inspectorRow("radius", datum.radius),
+    inspectorRow("color", datum.color),
+  ];
+  const metadataRows = Object.entries(datum.meta || {})
+    .filter(([, value]) => value != null && value !== "")
+    .map(([key, value]) => {
+      if (key === "outcome") {
+        return `
+          <div class="info-row">
+            <span>outcome</span>
+            <span><span class="pill ${outcomePillClass(value)}">${escapeHtml(formatOutcome(value))}</span></span>
+          </div>
+        `;
+      }
+      return inspectorRow(key.replace(/_/g, " "), value);
+    });
+
+  const reasonSection = (datum.relatedReasons || []).length
+    ? `
+      <div class="info-subtitle">Connected Via</div>
+      <div class="reason-list">
+        ${datum.relatedReasons.map(reason => `
+          <span class="reason-pill" style="border-color:${reason.color};color:${reason.color};background:${reason.color}1a">
+            ${escapeHtml(formatNodeType(reason.type))}: ${escapeHtml(truncateText(reason.label, 28))}
+          </span>
+        `).join("")}
+      </div>
+    `
+    : "";
+  const storedPayload = {
+    id: datum.id,
+    type: datum.type,
+    label: datum.label,
+    text: datum.text || "",
+    visualRole: datum.visualRole || "graph_node",
+    shareAcrossCases: Boolean(datum.shareAcrossCases),
+    radius: datum.radius,
+    color: datum.color,
+    meta: datum.meta || {},
+    relatedReasons: datum.relatedReasons || []
+  };
+
+  document.getElementById("node-info").innerHTML = `
+    <h3>🔍 Selection Inspector</h3>
+    <div class="info-card">
+      <div class="info-type" style="color:${cfg.color || "#aaa"}">${escapeHtml(formatNodeType(datum.type).toUpperCase())}</div>
+      <div class="info-label">${escapeHtml(infoLabel)}</div>
+      <div class="info-subtitle">Node Fields</div>
+      ${summaryRows.join("")}
+      <div class="info-subtitle">Metadata</div>
+      ${metadataRows.join("") || '<div class="info-row"><span>metadata</span><span>—</span></div>'}
+      ${datum.text ? `<div class="info-subtitle">Stored Text</div><pre class="info-json">${escapeHtml(datum.text)}</pre>` : ""}
+      ${reasonSection}
+      <div class="info-subtitle">Stored Payload</div>
+      <pre class="info-json">${inspectorJsonMarkup(storedPayload)}</pre>
+    </div>
+  `;
+}
+
+function showEdgeInfo(datum) {
+  const source = edgeEndpointPayload(datum.source);
+  const target = edgeEndpointPayload(datum.target);
+  const edgeMeta = datum.meta || {};
+  const edgeMetaRows = Object.entries(edgeMeta)
+    .filter(([, value]) => value != null && value !== "")
+    .map(([key, value]) => inspectorRow(key.replace(/_/g, " "), value));
+  const storedPayload = {
+    source,
+    relation: datum.relation,
+    target,
+    color: datum.color,
+    meta: edgeMeta
+  };
+
+  document.getElementById("node-info").innerHTML = `
+    <h3>🔍 Selection Inspector</h3>
+    <div class="info-card">
+      <div class="info-type" style="color:${escapeHtml(datum.color || "#8b949e")}">EDGE</div>
+      <div class="info-label">${escapeHtml(`${source.label} → ${formatRelationLabel(datum.relation)} → ${target.label}`)}</div>
+      <div class="info-subtitle">Edge Fields</div>
+      ${inspectorRow("relation", datum.relation)}
+      ${inspectorRow("source id", source.id)}
+      ${inspectorRow("source type", source.type || "unknown")}
+      ${inspectorRow("source label", source.label)}
+      ${inspectorRow("target id", target.id)}
+      ${inspectorRow("target type", target.type || "unknown")}
+      ${inspectorRow("target label", target.label)}
+      ${inspectorRow("color", datum.color)}
+      <div class="info-subtitle">Metadata</div>
+      ${edgeMetaRows.join("") || '<div class="info-row"><span>metadata</span><span>—</span></div>'}
+      <div class="info-subtitle">Stored Payload</div>
+      <pre class="info-json">${inspectorJsonMarkup(storedPayload)}</pre>
+    </div>
+  `;
+}
+
+function updateStats(nodes, links, caseData, connections) {
+  const statsEl = document.getElementById("graph-stats");
+  const sharedRoutes = connections.reduce((count, connection) => count + connection.reasons.length, 0);
+  const outcome =
+    caseData.outcome === "appellant_won" ? "🟢 Appellant Won" :
+    caseData.outcome === "appellant_lost" || caseData.outcome === "respondent_won" ? "🔴 Appellant Lost" :
+    caseData.outcome === "postponed_or_procedural" ? "⚪ Procedural" :
+    `⚪ ${escapeHtml(formatOutcome(caseData.outcome))}`;
+
+  statsEl.innerHTML = `
+    <div class="stat-chip">Nodes <strong>${nodes.length}</strong></div>
+    <div class="stat-chip">Edges <strong>${links.length}</strong></div>
+    <div class="stat-chip">Case pool <strong>${CASES_DATA.length}</strong></div>
+    <div class="stat-chip">Connected cases <strong>${connections.length}</strong></div>
+    <div class="stat-chip">Shared routes <strong>${sharedRoutes}</strong></div>
+    <div class="stat-chip">${outcome}</div>
+  `;
+}
+
+document.getElementById("zoom-in").onclick = () => {
+  svgEl.transition().call(zoom.scaleBy, 1.4);
+};
+
+document.getElementById("zoom-out").onclick = () => {
+  svgEl.transition().call(zoom.scaleBy, 0.7);
+};
+
+document.getElementById("zoom-fit").onclick = () => {
+  svgEl.transition().call(zoom.transform, d3.zoomIdentity);
+};
+
+function setActiveCase(index) {
+  if (index < 0 || index >= CASES_DATA.length) return;
+  activeCase = index;
+  document.querySelectorAll(".case-card").forEach(element => {
+    element.classList.toggle("active", Number(element.dataset.caseIndex) === index);
+  });
+  document.getElementById("loading").style.display = "flex";
+  document.getElementById("loading").style.opacity = "1";
+  renderGraph(CASES_DATA[index]);
+}
+
+function setActiveCaseById(caseId) {
+  const index = CASES_DATA.findIndex(caseData => caseData.id === caseId);
+  if (index >= 0) setActiveCase(index);
+}
+
+function getCatalogSummaryText(visibleCount) {
+  const connected = [...CASE_CONNECTION_COUNTS.values()].filter(count => count > 0).length;
+  const isolated = CASES_DATA.length - connected;
+  const countPrefix = visibleCount < CASES_DATA.length
+    ? `${visibleCount} shown of ${CASES_DATA.length} · `
+    : `${CASES_DATA.length} cases loaded · `;
+  if (CATALOG_META?.notes) {
+    return `${countPrefix}${connected} connected · ${isolated} isolated · exact training graph export`;
+  }
+  if (CATALOG_META) {
+    return `${countPrefix}${connected} connected · ${isolated} isolated · filter: ${CATALOG_META.filter_substring || "all"}`;
+  }
+  return `${countPrefix}${connected} connected · ${isolated} isolated`;
+}
+
+function matchesCaseSearch(caseData, query) {
+  if (!query) return true;
+  if (caseData.search_text) {
+    return String(caseData.search_text).toLowerCase().includes(query);
+  }
+  const haystack = [
+    caseData.title,
+    caseData.id,
+    caseData.date,
+    caseData.split,
+    caseData.raw_label,
+    ...getCaseValues(caseData, "petitioners", ["petitioner"]),
+    ...getCaseValues(caseData, "respondents", ["respondent"]),
+    ...getCaseValues(caseData, "courts", ["court"]),
+    ...getCaseValues(caseData, "judges", ["judge"]),
+    ...getCaseValues(caseData, "petitioner_lawyers", ["petitioner_lawyer"]),
+    ...getCaseValues(caseData, "defence_lawyers", ["defence_lawyer"]),
+    ...getCaseValues(caseData, "lawyers", ["lawyer"]),
+    ...getCaseValues(caseData, "statutes"),
+    ...getCaseValues(caseData, "provisions"),
+    ...getCaseValues(caseData, "precedents"),
+    ...getCaseValues(caseData, "orgs"),
+    ...getCaseValues(caseData, "gpes"),
+    ...getCaseValues(caseData, "dates"),
+    ...getCaseValues(caseData, "case_numbers"),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return haystack.includes(query);
+}
+
+function renderCaseList() {
+  const container = document.getElementById("case-list");
+  container.innerHTML = "";
+
+  if (!CASES_DATA.length) {
+    document.getElementById("catalog-summary").textContent = "No cases loaded.";
+    container.innerHTML = `<div class="placeholder-text compact">No case catalog is available.</div>`;
+    return;
+  }
+
+  const matchingCases = CASES_DATA
+    .map((caseData, index) => ({ caseData, index }))
+    .filter(({ caseData }) => matchesCaseSearch(caseData, caseSearchQuery));
+
+  document.getElementById("catalog-summary").textContent = getCatalogSummaryText(matchingCases.length);
+
+  if (!matchingCases.length) {
+    container.innerHTML = `<div class="placeholder-text compact">No loaded cases match this filter.</div>`;
+    return;
+  }
+
+  matchingCases.forEach(({ caseData, index }) => {
+    const connectionCount = CASE_CONNECTION_COUNTS.get(caseData.id) || 0;
+    const div = document.createElement("div");
+    div.className = `case-card${index === activeCase ? " active" : ""}`;
+    div.dataset.caseIndex = String(index);
+    const splitPill = caseData.split
+      ? `<span class="pill pill-blue">${escapeHtml(caseData.split)}</span>`
+      : "";
+    div.innerHTML = `
+      <div class="case-card-title">${escapeHtml(caseData.title)}</div>
+      <div class="case-card-meta">
+        <span class="pill pill-blue">${escapeHtml(caseData.date || "undated")}</span>
+        ${splitPill}
+        <span class="pill ${outcomePillClass(caseData.outcome)}">${escapeHtml(formatOutcome(caseData.outcome))}</span>
+        <span class="pill pill-yellow">${connectionCount} linked case${connectionCount === 1 ? "" : "s"}</span>
+      </div>
+    `;
+    div.onclick = () => setActiveCase(index);
+    container.appendChild(div);
+  });
+}
+
+function renderConnectedCases(focusCase, connections) {
+  const container = document.getElementById("connected-cases");
+  if (!connections.length) {
+    container.innerHTML = `<div class="placeholder-text compact">No other loaded cases share the filtered graph nodes for this case.</div>`;
+    return;
+  }
+
+  const visibleConnections = connections.slice(0, 60);
+  const hiddenConnections = Math.max(0, connections.length - visibleConnections.length);
+
+  container.innerHTML = `
+    <div class="related-list">
+      ${hiddenConnections > 0 ? `<div class="mini-note">Showing the top ${visibleConnections.length} related cases out of ${connections.length}. The graph itself stays exact to the local training subgraph; the full cross-case neighborhood is summarized here.</div>` : ""}
+      ${visibleConnections.map(connection => {
+        const related = connection.caseData;
+        const reasons = connection.reasons.map(reason => `
+          <span class="reason-pill" style="border-color:${reason.color};color:${reason.color};background:${reason.color}1a" title="${escapeHtml(reason.label)}">
+            ${escapeHtml(formatNodeType(reason.type))}
+          </span>
+        `).join("");
+
+        return `
+          <div class="related-card" data-case-id="${escapeHtml(related.id)}">
+            <div class="related-title">${escapeHtml(related.title)}</div>
+            <div class="related-meta">
+              <span class="pill pill-blue">${escapeHtml(related.date)}</span>
+              ${related.split ? `<span class="pill pill-blue">${escapeHtml(related.split)}</span>` : ""}
+              <span class="pill ${outcomePillClass(related.outcome)}">${escapeHtml(formatOutcome(related.outcome))}</span>
+              <span class="pill pill-orange">${connection.reasons.length} shared node${connection.reasons.length === 1 ? "" : "s"}</span>
+            </div>
+            <div class="reason-list">${reasons}</div>
+            <div class="mini-note">Click to focus this case. Shared reasons listed here are exact shared training nodes, not synthetic case-to-case edges.</div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  container.querySelectorAll(".related-card").forEach(card => {
+    card.onclick = () => setActiveCaseById(card.dataset.caseId);
+  });
+}
+
+function renderLegend() {
+  const container = document.getElementById("legend");
+  container.innerHTML = "";
+  Object.entries(NODE_CONFIG).forEach(([type, cfg]) => {
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.innerHTML = `<div class="legend-dot" style="background:${cfg.color}"></div><span>${escapeHtml(cfg.label)}</span>`;
+    container.appendChild(item);
+  });
+}
+
+document.getElementById("case-search").addEventListener("input", event => {
+  caseSearchQuery = String(event.target.value || "").trim().toLowerCase();
+  renderCaseList();
+});
+
+rebuildCaseIndexes();
+renderCaseList();
+renderLegend();
+document.getElementById("node-info").innerHTML = defaultInspectorMarkup();
+if (CASES_DATA.length) setActiveCase(0);
+</script>
+</body>
+</html>

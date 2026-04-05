@@ -1,0 +1,126 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1042dbc42e6e4861a33d91ce76fee539_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The Court by order dated 05.10.2015 directed not to recover the penalty imposed."
+    },
+    {
+      "annotation_id": "59e17ea15eee47ec94eaa1512b889fab_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of the non representation, the interim order deserves to be vacated."
+    },
+    {
+      "annotation_id": "6dc680ec5d554f30ab210f048adaf5a6_19",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, interim order dated 05.10.2015 is vacated."
+    },
+    {
+      "annotation_id": "47c1bd97151b4c98a66fb7af89e74a18_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "2. Even after final chance, there is no representation on behalf of the petitioner."
+    },
+    {
+      "annotation_id": "3059a6a30714480c9af5578b06ef5acf_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "3. Accordingly, petition is dismissed for non- prosecution."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1813,
+      "facts": 76,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 20,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "97a0f3dd14dd46e89793a2ad2ffe00ec_5",
+        "entity_text": "S. L. SRINIVASA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "97a0f3dd14dd46e89793a2ad2ffe00ec_5",
+        "entity_text": "LAKSHMAIAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "7d67cf504ff94853b2117fded9e73033_6",
+        "entity_text": "MANJU SUBBAIAH M.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "672ab497bd934616ab071bd88596be3a_9",
+        "entity_text": "AMBEDKAR VEEDHI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "6b2d441f452441dabb657af26741132e_10",
+        "entity_text": "S.H. RAGHAVENDRA",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "1a47627e909046d1b2a335751726568a_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In support of said contention,\nreliance is placed on the decision of this Court in Criminal Application (APL) No.1395/2023 - Shankarlal Chandulal Tanwani .vrs. State of Rgd.\nOrder 0202apl188.24 Maharashtra and another decided on 15.01.2024."
+    },
+    {
+      "annotation_id": "cf35c1cee6224879b522a293fb64b54e_23",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "In view of above, issue notice to non- applicants, returnable on 15.03.2024."
+    },
+    {
+      "annotation_id": "693a4ed642344697bbff8aa7f8df5b04_25",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. In the meanwhile, though the prosecution may continue with their investigation, but, charge sheet should not be filed without obtaining prior permission of this Court."
+    },
+    {
+      "annotation_id": "2a98168813d840008c9a7ec82db328da_26",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "7. Also in the meanwhile, in view of earlier decision of this Court and considering the peculiar facts,\nno coercive steps be taken against the applicant till the returnable date."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 882,
+      "facts": 420,
+      "arguments": 160
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 26,
+    "ignored_annotations": 4,
+    "ignored_entities": []
+  }
+}

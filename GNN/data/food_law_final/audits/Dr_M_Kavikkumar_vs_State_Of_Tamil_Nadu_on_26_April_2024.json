@@ -1,0 +1,140 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6871732e16304803b50cc43ab9824dea_10",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "This Writ Petition is filed for a direction to the second respondent to consider the request for transfer made by the petitioners by their applications in the light of the letter issued by the second respondent, dated 15.06.2022 and G.O.Ms."
+    },
+    {
+      "annotation_id": "25ba80836ef64e14b15e3311f71efe7f_12",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The same have not been considered and hence this Writ Petition.\n3."
+    },
+    {
+      "annotation_id": "7d401e5754ec414da522c046189971a1_14",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The learned Additional Government Pleader for the respondents submits that the request transfer, if any, will be considered as per the request transfer https://www.mhc.tn.gov.in/judis seniority as and when the exercise of considering the ge"
+    },
+    {
+      "annotation_id": "8fd841f89ab54481b98e58b2ce6ef4f5_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, this Writ Petition is disposed of with a direction to the respondents to consider the applications of the petitioners for request transfer in the manner known to law and in accordance with their transfer policy as and when the "
+    },
+    {
+      "annotation_id": "c791cc3f5db5498b95db02a45b4421d5_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\nThere shall be no order as to costs."
+    },
+    {
+      "annotation_id": "f53347bed65345c5800f57705dddefac_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc",
+        "explicit_leakage_phrase"
+      ],
+      "matched_phrases": [
+        {
+          "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+          "matched_text": "Consequently, connected miscellaneous petition is closed",
+          "start": 0,
+          "end": 56
+        }
+      ],
+      "text_preview": "Consequently, connected miscellaneous petition is closed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [
+    {
+      "pattern": "\\bconsequently,\\s+connected\\s+miscellaneous\\s+petition\\s+is\\s+closed\\b",
+      "matched_text": "Consequently, connected miscellaneous petition is closed",
+      "start": 957,
+      "end": 1013
+    }
+  ],
+  "suspicious_annotation_count": 6,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts"
+    },
+    "retained_lengths": {
+      "preamble": 1271,
+      "facts": 187,
+      "arguments": 0
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 17,
+    "ignored_annotations": 6,
+    "ignored_entities": [
+      {
+        "annotation_id": "730fed171f9e42579da5b94e582ddffc_4",
+        "entity_text": "Teynampet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "d3428cfad66e4e26b9a00c5780a9a687_21",
+        "entity_text": "Anna Salai",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

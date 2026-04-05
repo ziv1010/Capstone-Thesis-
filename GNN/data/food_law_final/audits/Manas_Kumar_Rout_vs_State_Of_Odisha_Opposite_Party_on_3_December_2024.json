@@ -1,0 +1,137 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "d42e307f13694adda4f0ad9c1217777c_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. It is forthcoming from the charge-sheet dated 01.12.2024 submitted by the Investigating Officer that, Saroj Kumar Mishra and Ajit Kumar Jena are the owners of the manufacturing unit at Jagatpur, wherein, the preparation of adulterated mi"
+    },
+    {
+      "annotation_id": "ff5b38af85cc420a9b66ed48827631ab_15",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "For which, instead of rejecting the bail application of the petitioner, it is felt proper to allow him (petitioner) to go on bail with stringent conditions looking to the interest of the prosecution."
+    },
+    {
+      "annotation_id": "00b250b2d8a545c286f185169abebf74_16",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "8. Therefore, the bail application of the petitioner is allowed."
+    },
+    {
+      "annotation_id": "618a8285da754cfe8cdedef72744defa_17",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n9. He (petitioner) is allowed to go on bail on furnishing bail bond of Rs.50,000/-(rupees fifty thousand) with two solvent sureties each for the like amount to the satisfaction of the learned court in seisin over the matter with conditions"
+    },
+    {
+      "annotation_id": "0113ba68000d41f2a59ed804cc59091c_18",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Accordingly, the bail application of the petitioner is disposed of finally."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 5,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 969,
+      "facts": 0,
+      "arguments": 1260
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 16,
+    "ignored_annotations": 5,
+    "ignored_entities": [
+      {
+        "annotation_id": "62ba619fb3ea44eab87ad6de5b782856_11",
+        "entity_text": "Rupak Kumar Mohapatra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "62ba619fb3ea44eab87ad6de5b782856_11",
+        "entity_text": "Saroj Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "62ba619fb3ea44eab87ad6de5b782856_11",
+        "entity_text": "Ajit Kumar Jena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c621b7d42a1e494d99435751b3709872_12",
+        "entity_text": "Saroj Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c621b7d42a1e494d99435751b3709872_12",
+        "entity_text": "Ajit Kumar Jena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c621b7d42a1e494d99435751b3709872_12",
+        "entity_text": "Saroj Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "c621b7d42a1e494d99435751b3709872_12",
+        "entity_text": "Ajit Kumar Jena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "1c713540142c43a4a63dd89ee2996e7a_20",
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

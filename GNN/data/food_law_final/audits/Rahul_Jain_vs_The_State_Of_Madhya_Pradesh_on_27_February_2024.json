@@ -1,0 +1,87 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "8d20c3a268334b5d9cdb088eeaceec7e_12",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "STA"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Unless and until it is prima facie established by the applicant that the article which was seized from his possession was purchased by him from the manufacturer in the same condition in which it was seized."
+    },
+    {
+      "annotation_id": "48c1fd4d068543159cf0ab018611febb_13",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The industry whose name is mentioned, cannot be prosecuted in absence of any prima facie sufficient material to indicate the criminal liability of the so called manufacturer."
+    },
+    {
+      "annotation_id": "c0aa825702bb4a2596a2912a52c1531a_14",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "6. Under these circumstances, this Court is of the considered opinion that the Trial Court did not commit any mistake by rejecting the application."
+    },
+    {
+      "annotation_id": "eabf1dfbad5644498f96a8966a75786e_15",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The application fails and is hereby dismissed."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 4,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 801,
+      "facts": 142,
+      "arguments": 184
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 13,
+    "ignored_annotations": 4,
+    "ignored_entities": [
+      {
+        "annotation_id": "b8704d216c5a4e1a9d7ba7045ccab30a_4",
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}

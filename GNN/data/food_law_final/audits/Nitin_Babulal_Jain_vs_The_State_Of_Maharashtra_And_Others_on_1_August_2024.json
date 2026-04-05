@@ -1,0 +1,97 @@
+{
+  "fields_dropped": [
+    "case_outcome_label",
+    "case_outcome_score",
+    "llm_case_outcome",
+    "raw_result.summary.decision"
+  ],
+  "annotations_dropped": [
+    {
+      "annotation_id": "6a83c77bab4f417c8292cceb48837655_19",
+      "summary_section": "ANALYSIS",
+      "labels": [
+        "RATIO"
+      ],
+      "reasons": [
+        "forbidden_section:ANALYSIS"
+      ],
+      "matched_phrases": [],
+      "text_preview": "The applicant is owner of the grocery shop from where the prohibited Gutkha Pan Masala is seized."
+    },
+    {
+      "annotation_id": "e2493bf6b2b14c9bb7a15d30c9f5dd92_21",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "Considering the allegations against the applicant, his custodial interrogation is not required as the prohibited articles have been seized, hence, I pass the following order :-\n ORDER (i) The application is allowed."
+    },
+    {
+      "annotation_id": "657a1cbce07f4f76aad6f89c6cb1889c_22",
+      "summary_section": "decision",
+      "labels": [
+        "RPC"
+      ],
+      "reasons": [
+        "forbidden_section:decision",
+        "forbidden_labels:RPC",
+        "suspicious_label:rpc"
+      ],
+      "matched_phrases": [],
+      "text_preview": "\n(ii) The interim anticipatory bail granted to the applicant vide order dated 12.03.2024 stands confirmed on the same terms and conditions."
+    }
+  ],
+  "decision_text_removed": true,
+  "decision_leakage_matches": [],
+  "suspicious_annotation_count": 3,
+  "retained_texts": {
+    "masked_matches": {},
+    "sources": {
+      "preamble": "raw_result.summary.PREAMBLE",
+      "facts": "raw_result.summary.facts",
+      "arguments": "raw_result.summary.arguments"
+    },
+    "retained_lengths": {
+      "preamble": 489,
+      "facts": 509,
+      "arguments": 339
+    }
+  },
+  "entity_extraction": {
+    "retained_annotations": 21,
+    "ignored_annotations": 3,
+    "ignored_entities": [
+      {
+        "annotation_id": "92065eb094a94b83a75d486c2c753d26_8",
+        "entity_text": "Vimal Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "cf349a1db23d4979926121cf177d04ab_10",
+        "entity_text": "Vimal Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "165f7ca5d3ca4faeb9337dea29135ac6_14",
+        "entity_text": "Gutkha Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "24d26e2c3c294ae792f352c53c710976_16",
+        "entity_text": "Gutkha Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "annotation_id": "df35a57dc75b47f4a7d6a57c1966f766_20",
+        "entity_text": "Gutkha Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  }
+}
