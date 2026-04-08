@@ -35,6 +35,13 @@ except ImportError:  # pragma: no cover - optional dependency
 
 
 DEFAULT_MODEL_ID = "mistralai/Mistral-Small-24B-Instruct-2501"
+WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_LOCAL_MODEL_CACHE_DIR = (
+    WORKSPACE_ROOT
+    / "hf_cache"
+    / "hub"
+    / f"models--{DEFAULT_MODEL_ID.replace('/', '--')}"
+)
 DEFAULT_INPUT_DIR = Path(
     "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/OpenNyai/outputs/current_output/combined"
 )
@@ -79,6 +86,51 @@ Return JSON only with this schema:
   "short_explanation": "one or two short sentences"
 }
 """
+
+
+def resolve_local_model_source(model_id: str) -> str:
+    candidate = Path(model_id).expanduser()
+    snapshot_dir = resolve_hf_cache_snapshot(candidate)
+    if snapshot_dir is not None:
+        return str(snapshot_dir)
+
+    if model_id == DEFAULT_MODEL_ID:
+        snapshot_dir = resolve_hf_cache_snapshot(DEFAULT_LOCAL_MODEL_CACHE_DIR)
+        if snapshot_dir is not None:
+            return str(snapshot_dir)
+
+    return model_id
+
+
+def resolve_hf_cache_snapshot(cache_dir: Path) -> Path | None:
+    if not cache_dir.is_dir():
+        return None
+
+    if (cache_dir / "config.json").is_file():
+        return cache_dir
+
+    snapshots_dir = cache_dir / "snapshots"
+    if not snapshots_dir.is_dir():
+        return None
+
+    ref_path = cache_dir / "refs" / "main"
+    if ref_path.is_file():
+        revision = ref_path.read_text(encoding="utf-8").strip()
+        if revision:
+            snapshot_dir = snapshots_dir / revision
+            if (snapshot_dir / "config.json").is_file():
+                return snapshot_dir
+
+    snapshot_candidates = sorted(
+        (path for path in snapshots_dir.iterdir() if path.is_dir()),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )
+    for snapshot_dir in snapshot_candidates:
+        if (snapshot_dir / "config.json").is_file():
+            return snapshot_dir
+
+    return None
 
 
 def parse_args() -> argparse.Namespace:
@@ -368,14 +420,20 @@ class LocalVLLMClassifier:
             ) from exc
 
         self.model_id = model_id
+        self.model_source = resolve_local_model_source(model_id)
+        if self.model_source != model_id:
+            print(f"Resolved model_id '{model_id}' to local snapshot '{self.model_source}'.")
+
+        local_files_only = Path(self.model_source).exists()
         self.tokenizer = AutoTokenizer.from_pretrained(
-            model_id,
+            self.model_source,
             token=hf_token,
             trust_remote_code=trust_remote_code,
+            local_files_only=local_files_only,
         )
         self.llm = LLM(
-            model=model_id,
-            tokenizer=model_id,
+            model=self.model_source,
+            tokenizer=self.model_source,
             tokenizer_mode=tokenizer_mode,
             tensor_parallel_size=tensor_parallel_size,
             dtype=dtype,

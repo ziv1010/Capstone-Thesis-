@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import email
 import importlib
 import inspect
@@ -13,6 +14,7 @@ import sys
 import tempfile
 import urllib.parse
 import urllib.request
+import uuid
 import zipfile
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -35,6 +37,231 @@ from .validators import normalize_summary_length, validate_gpu_request, validate
 MODEL_WHEEL_FALLBACK_URLS = {
     "en_legal_ner_trf": "https://huggingface.co/opennyaiorg/en_legal_ner_trf/resolve/main/en_legal_ner_trf-any-py3-none-any.whl",
 }
+
+_FALLBACK_SENTENCE_NLP = None
+
+
+def _get_fallback_sentence_nlp():
+    """Create a tiny sentencizer-only spaCy pipeline for boundary recovery."""
+    global _FALLBACK_SENTENCE_NLP
+    if _FALLBACK_SENTENCE_NLP is None:
+        import spacy
+
+        nlp = spacy.blank("en")
+        nlp.add_pipe("sentencizer")
+        _FALLBACK_SENTENCE_NLP = nlp
+    return _FALLBACK_SENTENCE_NLP
+
+
+def _fallback_sentence_spans(text: str) -> List[Tuple[int, int, str]]:
+    """Recover sentence spans from raw text when upstream docs lose boundaries."""
+    if not text.strip():
+        return []
+
+    doc = _get_fallback_sentence_nlp()(text)
+    spans = [(sent.start_char, sent.end_char, sent.text) for sent in doc.sents if sent.text.strip()]
+    if spans:
+        return spans
+
+    stripped = text.strip()
+    if not stripped:
+        return []
+    start = text.find(stripped)
+    return [(start, start + len(stripped), stripped)]
+
+
+def patch_opennyai_ner_sentence_boundary_fallback(logger: logging.Logger) -> None:
+    """Patch OpenNyAI NER sentence grouping to recover from missing doc.sents."""
+    from opennyai.ner.ner_utils import get_json_from_spacy_doc
+    from opennyai.pipeline import Pipeline as OpenNyAIPipeline
+
+    current = OpenNyAIPipeline.__postprocess_ner_to_sentence_level__
+    if getattr(current, "_opennyai_sentence_boundary_patch", False):
+        return
+
+    def _patched_postprocess(doc):
+        output_id = "LegalNER_" + doc.user_data["doc_id"]
+        final_output = get_json_from_spacy_doc(doc)
+        output = {
+            "id": output_id,
+            "annotations": [],
+            "data": {
+                "text": doc.text,
+                "original_text": doc.user_data["original_text"],
+                "preamble_end_char_offset": doc.user_data["preamble_end_char_offset"],
+            },
+        }
+
+        try:
+            sentence_spans = [
+                (sent.start_char, sent.end_char, sent.text)
+                for sent in doc.sents
+                if sent.text.strip()
+            ]
+        except ValueError:
+            logger.warning(
+                "OpenNyAI NER output lost sentence boundaries for %s; using sentencizer fallback.",
+                doc.user_data.get("doc_id", "<unknown>"),
+            )
+            sentence_spans = _fallback_sentence_spans(doc.text)
+
+        if not sentence_spans and doc.text.strip():
+            sentence_spans = _fallback_sentence_spans(doc.text)
+
+        for start_char, end_char, sent_text in sentence_spans:
+            temp = copy.deepcopy(
+                {
+                    "id": uuid.uuid4().hex,
+                    "start": start_char,
+                    "end": end_char,
+                    "text": sent_text,
+                    "entities": [],
+                }
+            )
+            for entity in final_output["annotations"]:
+                if entity["start"] >= start_char and entity["end"] <= end_char:
+                    temp["entities"].append(entity)
+            output["annotations"].append(temp)
+
+        return output
+
+    _patched_postprocess._opennyai_sentence_boundary_patch = True
+    OpenNyAIPipeline.__postprocess_ner_to_sentence_level__ = staticmethod(_patched_postprocess)
+    logger.info("Patched OpenNyAI NER sentence grouping with a sentencizer fallback.")
+
+
+def patch_opennyai_rhetorical_role_tempdir_conflicts(logger: logging.Logger) -> None:
+    """Patch OpenNyAI RR temp-file handling so concurrent runs stop colliding."""
+    import json as rr_json
+    import os as rr_os
+    import shutil as rr_shutil
+    import warnings as rr_warnings
+
+    import spacy
+
+    import opennyai.rhetorical_roles.infer_data_prep as infer_data_prep_module
+    import opennyai.rhetorical_roles.rhetorical_roles as rhetorical_roles_module
+
+    predictor_cls = rhetorical_roles_module.RhetoricalRolePredictor
+    if getattr(predictor_cls.__call__, "_opennyai_rr_tempdir_patch", False):
+        return
+
+    original_preprocess = predictor_cls.preprocess
+
+    def _patched_split_into_sentences_tokenize_write(
+        data,
+        custom_processed_data_path,
+        hsln_format_txt_dirpath="datasets/pubmed-20k",
+        verbose=False,
+    ):
+        if not rr_os.path.exists(hsln_format_txt_dirpath):
+            rr_os.makedirs(hsln_format_txt_dirpath)
+
+        output_json = []
+        filename_sent_boundries = {}
+        if verbose:
+            infer_data_prep_module.msg.info("Preprocessing rhetorical role model input!!!")
+
+        for data_dict in tqdm(data, disable=not verbose):
+            doc_id = data_dict["file_id"]
+            preamble_doc = data_dict["preamble_doc"]
+            judgment_doc = data_dict["judgement_doc"]
+
+            if filename_sent_boundries.get(doc_id) is not None:
+                continue
+
+            nlp_doc = spacy.tokens.Doc.from_docs([preamble_doc, judgment_doc])
+            doc_txt = nlp_doc.text
+            try:
+                sentence_boundries = [(sent.start_char, sent.end_char) for sent in nlp_doc.sents]
+            except ValueError:
+                logger.warning(
+                    "OpenNyAI RR preprocessing lost sentence boundaries for %s; using sentencizer fallback.",
+                    doc_id,
+                )
+                sentence_boundries = [(start, end) for start, end, _ in _fallback_sentence_spans(doc_txt)]
+
+            revised_sentence_boundries = infer_data_prep_module.attach_short_sentence_boundries_to_next(
+                sentence_boundries,
+                doc_txt,
+            )
+
+            adjudicated_doc = {
+                "id": doc_id,
+                "data": {
+                    "preamble_text": preamble_doc.text,
+                    "judgement_text": judgment_doc.text,
+                    "text": doc_txt,
+                },
+                "annotations": [],
+            }
+
+            filename_sent_boundries[doc_id] = {"sentence_span": []}
+            for sentence_boundry in revised_sentence_boundries:
+                sentence_txt = doc_txt[sentence_boundry[0] : sentence_boundry[1]]
+                if sentence_txt.strip() == "":
+                    continue
+                sentence_txt = sentence_txt.replace("\r", "")
+                adjudicated_doc["annotations"].append(
+                    {
+                        "start": sentence_boundry[0],
+                        "end": sentence_boundry[1],
+                        "text": sentence_txt,
+                        "labels": [],
+                    }
+                )
+
+            output_json.append(adjudicated_doc)
+
+        with open(custom_processed_data_path, "w+", encoding="utf-8") as handle:
+            rr_json.dump(output_json, handle)
+
+    def _patched_call(self, data):
+        with rr_warnings.catch_warnings():
+            rr_warnings.simplefilter("ignore")
+            temp_root = rr_os.path.join(self.CACHE_DIR, "temp_hsln")
+            rr_os.makedirs(temp_root, exist_ok=True)
+            self.hsln_format_txt_dirpath = tempfile.mkdtemp(prefix="pubmed-20k-", dir=temp_root)
+            try:
+                task = original_preprocess(self, data)
+                folds = task.get_folds()
+                test_batches = folds[0].test
+                labels_dict = rhetorical_roles_module.infer_model(
+                    self.model,
+                    test_batches,
+                    self.device,
+                    task,
+                    verbose=self.__verbose__,
+                )
+                filename_sent_boundries = rr_json.load(
+                    open(rr_os.path.join(self.hsln_format_txt_dirpath, "sentece_boundries.json"), encoding="utf-8")
+                )
+
+                for doc_name, predicted_labels in zip(labels_dict["doc_names"], labels_dict["docwise_y_predicted"]):
+                    filename_sent_boundries[doc_name]["pred_labels"] = predicted_labels
+
+                with open(rr_os.path.join(self.hsln_format_txt_dirpath, "input_to_hsln.json"), "r", encoding="utf-8") as handle:
+                    model_input = rr_json.load(handle)
+
+                for file in model_input:
+                    file_id = str(file["id"])
+                    pred_id = labels_dict["doc_names"].index(file_id)
+                    pred_labels = labels_dict["docwise_y_predicted"]
+                    annotations = file["annotations"]
+                    for index, label in enumerate(annotations):
+                        label["labels"] = [pred_labels[pred_id][index]]
+                        label["id"] = uuid.uuid4().hex + "_" + str(index)
+                    file["id"] = "RhetoricalRole_" + file_id
+
+                return model_input
+            finally:
+                rr_shutil.rmtree(self.hsln_format_txt_dirpath, ignore_errors=True)
+
+    _patched_call._opennyai_rr_tempdir_patch = True
+    infer_data_prep_module.split_into_sentences_tokenize_write = _patched_split_into_sentences_tokenize_write
+    rhetorical_roles_module.split_into_sentences_tokenize_write = _patched_split_into_sentences_tokenize_write
+    predictor_cls.__call__ = _patched_call
+    logger.info("Patched OpenNyAI RR temp files to use per-call isolated work directories.")
 
 
 def patch_opennyai_summarizer_device_mismatch(logger: logging.Logger) -> None:
@@ -357,6 +584,8 @@ def _run_pipeline_for_documents(
         return {"failed_records": failed_records, "succeeded_file_ids": succeeded_file_ids}
 
     Data, Pipeline = import_opennyai_api()
+    patch_opennyai_ner_sentence_boundary_fallback(logger)
+    patch_opennyai_rhetorical_role_tempdir_conflicts(logger)
     patch_opennyai_summarizer_device_mismatch(logger)
 
     logger.info("Initialising OpenNyAI Data and Pipeline objects.")
