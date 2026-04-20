@@ -1,0 +1,453 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx} % Added to prevent tables from overflowing the margins
+
+\definecolor{todo}{RGB}{180, 0, 0}
+\newcommand{\todo}[1]{\textcolor{todo}{\textit{[TO DO: #1]}}}
+
+\title{\textbf{Heterogeneous Graph Neural Networks for Indian Legal Judgment Prediction}\\
+\large Thesis Progress Notes}
+\author{Ziv Baretto}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{Abstract}
+
+This thesis develops a heterogeneous graph neural network (HGT) framework for predicting the binary outcome of Indian legal judgments — whether the petitioner's appeal is allowed or dismissed. Raw case documents, sourced from IndiaKanoon and processed through the OpenNyAI NLP pipeline, are transformed into structured heterogeneous graphs in which nodes represent legal entities (judges, lawyers, statutes, precedents, parties) and text sections (preamble, facts, petitioner arguments, respondent arguments), and edges encode the relational structure of legal reasoning. Node features are produced by the multilingual sentence encoder BAAI/bge-m3.
+
+Five domain-specific datasets are constructed covering family/matrimonial, financial fraud, land/property, motor accidents, and sexual offences cases, comprising approximately 14{,}000--15{,}000 cases each, along with a combined cross-domain dataset of 73{,}809 cases. Stratified 5-fold cross-validation is used throughout. Domain-specific HGT models achieve test accuracy of 0.775--0.832 and ROC-AUC of 0.840--0.895 depending on the legal domain. Ablation studies isolate the contributions of: (i) semantic text embeddings over random hashing (+1.8\% accuracy), (ii) graph structure over text-only representations (+0.8\%), and (iii) cross-case legal citation sharing via shared statute and precedent nodes (negligible gain). Cross-domain pooling consistently degrades performance relative to domain-specific models, suggesting that legal outcome prediction is domain-sensitive.
+
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{The Legal Document}
+
+\subsection{Document source and structure}
+
+Each case in the dataset corresponds to a \textbf{single consolidated JSON file}, not a collection of documents. These files are sourced from IndiaKanoon, which provides the full judgment text as a single document — the final written opinion issued by the court at the conclusion of the case. This document typically covers the entire arc of the case: who filed, what was argued, what precedents were cited, and the judge's decision and reasoning.
+
+The JSON files follow the naming convention:\\
+\texttt{\{case\_title\}\_\_\{date\}.json}\\
+and are organised by legal domain under the \texttt{Timeline\_Maker/} directory.
+
+\textbf{Top-level JSON fields present in every case file:}
+\begin{itemize}[noitemsep]
+  \item \texttt{file\_id} — unique case identifier
+  \item \texttt{sentences} — array of sentence objects, each with: sentence text, character offsets, \texttt{rhetorical\_role} (see below), and an \texttt{entities} array of NER spans
+  \item \texttt{rr\_by\_role} — count of sentences per rhetorical role across the document
+  \item \texttt{ner\_by\_label} — count of named entities by type
+  \item \texttt{preamble\_end\_\allowbreak char\_offset} — character position where the preamble section ends
+  \item \texttt{opennyai\_summary} — extracted section texts keyed by role (PREAMBLE, facts, arguments, issue, ANALYSIS, decision)
+  \item \texttt{case\_outcome\_score} — integer label: $-1$ (dismissed/loss), $0$ (procedural), $+1$ (allowed/win)
+  \item \texttt{case\_outcome\_label} — string version of the outcome
+  \item \texttt{llm\_case\_outcome} — Mistral-derived outcome extraction including \texttt{decision\_text} and \texttt{rpc\_texts}
+  \item \texttt{rr\_available} — boolean flag for rhetorical role availability
+\end{itemize}
+
+\subsection{How IndiaKanoon consolidates the document}
+
+IndiaKanoon provides the final written judgment as published by the court. This is already a consolidated document — courts in India write a single judgment that narrates the procedural history, summarises both sides' arguments, references evidence and precedents, and concludes with the decision and reasoning. The sentence-level rhetorical role annotation (PREAMBLE, FAC, ARG\_PETITIONER, etc.) is applied \textit{post-hoc} by the OpenNyAI pipeline (\texttt{Fixed\_GPU\_\allowbreak OpenNyai/}), not by IndiaKanoon itself.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Case Structure, Graph Sections, and Timestamps}
+
+\subsection{Generic components of a legal case file}
+
+The judgment documents contain the following logical components, which map to rhetorical roles assigned sentence-by-sentence by the OpenNyAI RR model:
+
+\begin{center}
+% Switched to tabularx to prevent text overflow in the columns
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.5cm}}
+\toprule
+\textbf{Component} & \textbf{Rhetorical Role(s)} & \textbf{Treatment} \\
+\midrule
+Case header / parties / court & PREAMBLE & Used \\
+Facts of the case & FAC & Used \\
+Petitioner's arguments & ARG\_PETITIONER & Used \\
+Respondent's arguments & ARG\_RESPONDENT & Used \\
+Prior relied judgments & PRE\_RELIED, PRE\_NOT\_RELIED, STA & Used \\
+Legal analysis by judge & ANALYSIS & \textbf{Dropped} (leakage risk) \\
+Issue framing & ISSUE & \textbf{Dropped} \\
+Judge's ratio / decision reasoning & RATIO, RLC, RPC & \textbf{Dropped} (leakage risk) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The ANALYSIS, RATIO, RLC, and RPC roles are dropped because they reveal the judge's reasoning and decision, which would constitute label leakage into the input features.
+
+\subsection{Sections used for graph building}
+
+The graph is built from the following node types (from \texttt{config.yaml}, \texttt{include\_node\_types}):
+
+\textbf{Text section nodes:} \texttt{preamble}, \texttt{facts}, \texttt{arguments}, \texttt{petitioner\_\allowbreak arguments}, \texttt{respondent\_\allowbreak arguments}, \texttt{other\_lawyer\_\allowbreak arguments}
+
+\textbf{Entity nodes:} \texttt{petitioner}, \texttt{respondent}, \texttt{court}, \texttt{judge}, \texttt{petitioner\_lawyer}, \texttt{defence\_lawyer}, \texttt{lawyer}, \texttt{statute}, \texttt{provision}, \texttt{precedent}
+
+\textbf{Explicitly excluded entity types:} \texttt{org}, \texttt{gpe}, \texttt{date}, \texttt{case\_number} (defined in \texttt{reasoning\_graph\_policy.py} as \texttt{FORBIDDEN\_NODE\_TYPES}).
+
+The case node itself (\texttt{case}) is the root hub, connected to all text section nodes and entity nodes via typed directed edges (e.g., \texttt{has\_preamble}, \texttt{decided\_by\_bench}, \texttt{cites\_statute}).
+
+\subsection{Sections used for prediction}
+
+The \texttt{case} node's feature vector — which is what the final classifier operates on — is built from the concatenated text of \texttt{preamble + facts + arguments} (configured via \texttt{case\_text\_sections} in \texttt{config.yaml}). After HGT message-passing aggregates information from all neighbouring nodes, the updated \texttt{case} node embedding is passed to the MLP classifier.
+
+\subsection{Timestamp handling}
+
+Timestamps appear in the pipeline in two limited ways:
+\begin{enumerate}[noitemsep]
+  \item \textbf{Case year extraction}: A \texttt{case\_year} field is extracted from DATE entities in the preamble and stored in case metadata. It is used as a scalar feature in the model.
+  \item \textbf{Temporal citation gating}: When building cross-case shared statute and precedent nodes, citation edges are only added if the cited statute/precedent predates the citing case ($\text{precedent\_year} < \text{case\_year}$, $\text{statute\_year} \leq \text{case\_year}$). This is implemented in \texttt{case\_star\_builder.py} via \texttt{\_time\_safe()}.
+  \item \textbf{Temporal train/test split}: The dataset supports a \texttt{year}-based split mode (in \texttt{src/training/dataset.py}) where cases are ordered chronologically, but all production runs use random stratified splits.
+\end{enumerate}
+
+The sentence-level timestamps (hearing dates, filing dates, intermediate proceedings) are \textbf{not modelled}. The document is treated as a single snapshot — the final judgment — not as a time-series of proceedings.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Verification of Neural Representations}
+
+Neural representations are verified through two complementary methods: the standard supervised evaluation protocol and a post-hoc embedding space analysis implemented in \texttt{section\_GNN/embedding\_analysis/}.
+
+\subsection{Standard evaluation metrics}
+
+Implemented in \texttt{src/training/metrics.py} and \texttt{src/training/evaluate.py}:
+\begin{itemize}[noitemsep]
+  \item Accuracy, Macro F1, Micro F1 (mean and std across 5 folds)
+  \item Per-class precision, recall, F1, and support
+  \item ROC-AUC and PR-AUC
+  \item Confusion matrix (saved as \texttt{confusion\_matrix\_test.png})
+  \item Training history plot (loss and F1 over epochs)
+  \item Per-case predictions CSV: \texttt{predictions.csv} with columns \texttt{case\_id, split, target\_label, pred\_label, confidence}
+\end{itemize}
+
+\textbf{Encoder comparison}: An encoder comparison experiment exists at \texttt{experiments/multi\_embed\_test/} covering BAAI/bge-m3, InLegalBERT, InCaseLawBERT, E5-large-v2, and random hashing. Results for the hashing vs.\ BGE-M3 comparison on the cross-bucket text-only graph are reported in Section~\ref{sec:experiments}.
+
+\subsection{Embedding space analysis}
+
+An embedding space analysis pipeline (\texttt{embedding\_analysis/}) was implemented and run on the trained cross-bucket HGT model (fold 0, 70{,}460 cases). The pipeline extracts two embedding stages for every case node:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Pre-GNN} (\texttt{pre\_gnn}): the raw 1036-dimensional input feature vector fed to the model — a concatenation of the BAAI/bge-m3 sentence embedding of the case text sections and 12 scalar features (judge count, statute count, case year, etc.). This vector has not yet seen any graph message-passing.
+  \item \textbf{Post-GNN} (\texttt{post\_gnn}): the 64-dimensional \texttt{hidden["case"]} vector produced by the two-layer HGT after aggregating information from all neighbouring nodes (statutes, precedents, judges, lawyers, arguments).
+\end{itemize}
+
+\subsubsection{Probing classifier}
+
+A logistic regression probing classifier (\texttt{probing\_classifier.py}) was trained on each embedding stage using the fold-0 train/test split (49{,}322 train / 10{,}569 test). Results:
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Embedding stage} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{Binary F1} & \textbf{Dim} \\
+\midrule
+Majority baseline & 0.6088 & 0.3784 & --- & --- \\
+Pre-GNN (BGE-M3 + scalars) & 0.7442 & 0.7365 & 0.7815 & 1036 \\
+Post-GNN (HGT output) & 0.7998 & 0.7955 & 0.8252 & 64 \\
+\midrule
+\textit{Full HGT kfold aggregate} & \textit{0.7854} & \textit{0.7779} & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Key finding}: GNN message-passing adds $\mathbf{+5.56}$\textbf{\% accuracy} and $\mathbf{+0.059}$ \textbf{macro F1} over the raw BGE-M3 features alone. This is the cleanest possible ablation of the GNN's contribution: the same features, the same labels, the same split — only the question of whether graph structure has been applied differs. The result confirms that the HGT layers do more than just compress the input; they aggregate genuinely useful relational context from entity and text-section neighbours.
+
+Additionally, the pre-GNN probing accuracy of 74.4\% (well above the 60.9\% majority baseline) confirms that BAAI/bge-m3 encodes legally meaningful semantic structure in the raw text embeddings prior to any graph processing.
+
+\subsubsection{t-SNE visualisation}
+
+t-SNE projections (5{,}000 randomly sampled cases, perplexity 30, 1{,}000 iterations) were computed for both embedding stages and saved as:
+
+\begin{itemize}[noitemsep]
+  \item \texttt{cross\_bucket\_fold00\_tsne\_post\_by\_label.png} — post-GNN, coloured by outcome (allowed vs.\ dismissed)
+  \item \texttt{cross\_bucket\_fold00\_tsne\_post\_by\_domain.png} — post-GNN, coloured by legal domain
+  \item \texttt{cross\_bucket\_fold00\_tsne\_pre\_by\_label.png} — pre-GNN, coloured by outcome
+  \item \texttt{cross\_bucket\_fold00\_tsne\_pre\_by\_domain.png} — pre-GNN, coloured by domain
+\end{itemize}
+
+Output directory: \texttt{outputs/timed\_bucket\_runs/cross\_bucket\_total\_dataset/\allowbreak embedding\_analysis/}.
+
+\subsubsection{Interpretation}
+
+The three-stage accuracy progression (majority 60.9\% $\to$ pre-GNN 74.4\% $\to$ post-GNN 80.0\%) provides direct evidence for two separate claims:
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{Semantic embeddings matter}: BGE-M3 alone gives $+13.5$ pp over the majority baseline without any graph processing.
+  \item \textbf{Graph message-passing matters}: HGT aggregation over entity/text nodes gives a further $+5.56$ pp beyond what the text embeddings alone achieve.
+\end{enumerate}
+
+These numbers align consistently with the ablation study results in Section~\ref{sec:experiments}: hashing $\to$ BGE-M3 gives $+1.8\%$ in the full kfold setting, and text-only $\to$ full graph gives $+0.8\%$. The probing classifier, operating on a single fold with a weaker linear classifier, reveals a larger raw signal because it bypasses the noise introduced by cross-case heterogeneity in the full kfold setting.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Production runs — domain-specific models}
+
+Five domain-specific full pipeline runs (preprocess $\to$ graph build $\to$ 5-fold CV) were completed, plus one cross-domain run:
+
+\begin{center}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Domain} & \textbf{N cases} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{ROC-AUC} & \textbf{std} \\
+\midrule
+Motor accidents & 14{,}698 & 0.832 & 0.796 & 0.890 & 0.005 \\
+Family/matrimonial & 14{,}563 & 0.817 & 0.799 & 0.895 & 0.007 \\
+Land/property & 14{,}052 & 0.817 & 0.796 & 0.873 & 0.003 \\
+Sexual offences & 14{,}597 & 0.779 & 0.753 & 0.840 & 0.006 \\
+Financial fraud & 14{,}616 & 0.775 & 0.764 & 0.847 & 0.008 \\
+\midrule
+Cross-domain (all 5) & 70{,}460 & 0.785 & 0.779 & 0.869 & 0.001 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textit{Model architecture for all single-domain runs: HGT, hidden\_dim=128, num\_layers=3, num\_heads=4. Cross-domain run used hidden\_dim=64, num\_layers=2 (reduced due to GPU memory constraints with the larger graph).}
+
+\subsection{Ablation studies — family/matrimonial domain}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Ablation} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{ROC-AUC} & \textbf{std} \\
+\midrule
+Full graph (cross-case sharing) & 0.8169 & 0.7991 & 0.8945 & 0.007 \\
+No cross-case sharing & 0.8176 & 0.7966 & 0.8920 & 0.008 \\
+Text-only (no entity nodes) & 0.8136 & 0.7944 & 0.8910 & 0.005 \\
+Depth 1 (1 message-passing layer) & 0.8115 & 0.7925 & 0.8904 & 0.004 \\
+Depth 2 & 0.8173 & 0.7965 & 0.8929 & 0.005 \\
+Depth 3 & 0.8155 & 0.7978 & 0.8934 & 0.009 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Findings:}
+\begin{itemize}[noitemsep]
+  \item Cross-case sharing of statute/precedent nodes adds negligible gain ($<0.1\%$). Temporal gating is theoretically sound but practically neutral, likely because cited statutes are already encoded in argument text.
+  \item Removing all entity nodes (text-only) costs $\sim$0.33\% accuracy and 0.0035 AUC. Entity structure provides a small consistent benefit.
+  \item Depth 2 is the optimal number of message-passing layers. Depth 1 is insufficient; depth 3 adds noise without gain.
+\end{itemize}
+
+\subsection{Ablation studies — cross-domain dataset}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Configuration} & \textbf{Accuracy} & \textbf{Macro F1} & \textbf{ROC-AUC} & \textbf{std} \\
+\midrule
+Full graph, BGE-M3 (h64, l2) & 0.7854 & 0.7785 & 0.8694 & 0.0012 \\
+Text-only, BGE-M3 (h64, l2) & 0.7776 & 0.7702 & 0.8597 & 0.0074 \\
+Text-only, Hashing (h64, l2) & 0.7673 & 0.7594 & 0.8509 & 0.0088 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Findings:}
+\begin{itemize}[noitemsep]
+  \item BGE-M3 vs.\ random hashing: $+1.8\%$ accuracy, $+0.019$ ROC-AUC. This is the direct contribution of semantic language understanding.
+  \item Graph structure (full vs.\ text-only, both BGE-M3): $+0.8\%$ accuracy, $+0.010$ ROC-AUC.
+  \item The three contributions stack additively: hashing baseline (0.767) $\to$ +semantic embeddings (0.778) $\to$ +graph structure (0.785).
+  \item Cross-domain pooling (0.785) is worse than the best single-domain model (motor: 0.832), confirming that legal outcome prediction is domain-sensitive.
+\end{itemize}
+
+\subsection{Hierarchical encoding ablation}
+\label{sec:hier_enc}
+
+\subsubsection*{The problem}
+
+BAAI/bge-m3 has a hard 512-token ($\approx$1{,}800 character) input limit. Any text longer than that is silently truncated — so if a facts section is 6{,}000 characters, the last $\approx$4{,}200 characters are never seen by the encoder. Facts and argument sections in Indian judgments regularly exceed this limit.
+
+\subsubsection*{What hierarchical encoding does}
+
+The scheme is implemented in \texttt{src/utils/text\_encoder.py}:
+
+\begin{enumerate}[noitemsep]
+  \item If a text is $\leq$1{,}800 chars $\to$ encode normally (no change).
+  \item If a text is $>$1{,}800 chars $\to$ split into overlapping chunks of 1{,}800 chars each (200-char overlap, with sentence-boundary alignment where possible).
+  \item Each chunk is encoded independently by bge-m3, producing one 1{,}024-dim vector per chunk.
+  \item The chunk vectors are \textbf{mean-pooled} into a single 1{,}024-dim vector.
+\end{enumerate}
+
+So instead of ``read the first 1{,}800 chars, throw away the rest,'' it reads the whole document in windows and averages the representations.
+
+New graphs were built for all six datasets with \texttt{hierarchical\_chunk\_chars: 1800} and \texttt{hierarchical\_chunk\_overlap\_chars: 200}. The resulting cache keys are distinct from the baseline caches, so no old data was overwritten. Five-fold CV was re-run under the identical architecture and hyperparameters as the corresponding baselines.
+
+\begin{center}
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Domain} & \multicolumn{2}{c}{\textbf{Baseline}} & \multicolumn{2}{c}{\textbf{Hierarchical enc.}} & \multicolumn{2}{c}{\textbf{$\Delta$}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+ & Acc. & F1 & Acc. & F1 & $\Delta$ Acc. & $\Delta$ F1 \\
+\midrule
+Family/matrimonial & 0.8169 & 0.7991 & 0.8213 & 0.8036 & $+0.44$pp & $+0.45$pp \\
+Financial fraud    & 0.7754 & 0.7639 & 0.7715 & 0.7610 & $-0.39$pp & $-0.29$pp \\
+Land/property      & 0.8171 & 0.7963 & 0.8133 & 0.7931 & $-0.38$pp & $-0.32$pp \\
+Motor accidents    & 0.8319 & 0.7956 & 0.8287 & 0.7951 & $-0.32$pp & $-0.05$pp \\
+Sexual offences    & 0.7791 & 0.7526 & 0.7779 & 0.7559 & $-0.12$pp & $+0.33$pp \\
+\midrule
+Cross-domain       & 0.7854 & 0.7785 & 0.7828 & 0.7771 & $-0.26$pp & $-0.14$pp \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Findings:} Hierarchical encoding produces mixed results within the noise floor of the 5-fold standard deviations (all deltas $<0.5$ pp, well within the $\pm$0.005--0.009 fold std). No domain shows a statistically meaningful improvement. Two observations explain this:
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{Important information is front-loaded.} Indian judgments begin with the preamble (parties, court, judges) and early fact narrative — the most predictive content. BGE-M3 truncation at 1{,}800 chars already captures this signal; the tail of long documents adds mostly ancillary detail.
+  \item \textbf{Mean pooling loses sequential order.} Chunking followed by mean-pooling treats all chunks equally. Legal arguments often build progressively, so averaging across chunks may dilute the most discriminative late-document material.
+\end{enumerate}
+
+The hierarchical encoding scheme is retained as a configurable option (\texttt{hierarchical\_chunk\_chars: 0} to disable), but the standard truncation-based encoding is used for all primary reported results.
+
+\subsubsection*{Possible improvements to the encoding scheme}
+
+Three directions could address the limitations identified above:
+
+\begin{enumerate}[noitemsep]
+  \item \textbf{Weighted chunk pooling.} Replace uniform mean-pooling with a position-decay weighting, e.g.\ $w_i = 1/(1+i)$, so the first chunk (preamble and opening facts, which is most predictive) contributes more than later chunks. This preserves the front-loading property of legal judgments with minimal implementation complexity.
+
+  \item \textbf{Cross-chunk attention.} Rather than pooling chunk embeddings directly, pass the sequence of chunk vectors through a small transformer (1--2 layers). This allows the model to learn which chunks are most relevant and preserves ordering information that mean-pooling destroys — important when legal arguments build progressively across the document.
+
+  \item \textbf{Section-separated encoding.} Instead of concatenating preamble, facts, and arguments into one long string before encoding, encode each section independently and concatenate the resulting embeddings. The case node feature would expand from 1{,}024-dim to 3$\times$1{,}024\,=\,3{,}072-dim, which is manageable. This preserves rhetorical section boundaries — information that is lost when sections are concatenated — and maps naturally onto the existing graph structure where preamble, facts, and argument nodes are already separate.
+\end{enumerate}
+
+\subsection{What we expected vs.\ what we found}
+
+\begin{center}
+% Switched to tabularx for exact text-width fitting
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Expected} & \textbf{Found} \\
+\midrule
+Cross-case citation sharing would improve performance by connecting related cases through common statutes/precedents. &
+Negligible effect. Cited legal texts are already encoded in argument embeddings, so structural sharing provides no additional signal. \\
+\addlinespace
+Deeper GNN (3 layers) would outperform shallower (1-2 layers). &
+Depth 2 is optimal. Three hops propagate noise; one hop is insufficient to aggregate entity context. \\
+\addlinespace
+Cross-domain training on all 5 legal domains would improve generalisation. &
+Cross-domain training hurts accuracy relative to domain-specific models. Legal reasoning is domain-specific. \\
+\addlinespace
+Graph structure would add substantial value over raw text features. &
+Entity graph adds a modest but consistent +0.33--0.8\% gain. The dominant signal is in the pre-trained text embeddings. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Explainability and Visibility}
+
+\subsection{What currently exists}
+
+The following diagnostic outputs are produced by the training pipeline:
+\begin{itemize}[noitemsep]
+  \item \textbf{Confusion matrix} per run, saved as \texttt{confusion\_matrix\_test.png}
+  \item \textbf{Training history} (loss and F1 per epoch) saved as a plot
+  \item \textbf{Per-case predictions CSV} with \texttt{case\_id, target\_label, pred\_label, confidence} — this enables post-hoc error analysis on specific cases
+  \item \textbf{Per-class metrics} in \texttt{kfold\_summary.json}: precision, recall, F1, support for both classes across all folds
+  \item \textbf{Graph debug samples} in \texttt{graph\_debug\_samples.\allowbreak reasoning\_focused.json}: node/edge counts per case type for 3 sampled cases
+\end{itemize}
+
+The per-class analysis already reveals a consistent pattern: the dismissed class (class $-1$, minority) has substantially lower F1 (0.716--0.740) than the allowed class (class $+1$, F1 0.803--0.817), across all domains and configurations.
+
+\subsection{Attention and gradient saliency analysis}
+
+Two complementary attention analyses are implemented in \texttt{embedding\_analysis/attention\_analysis.py} and run on the cross-bucket fold-0 model.
+
+\textbf{HGT p\_rel (type-level attention priors).}
+HGTConv stores a learned scalar weight \texttt{p\_rel[edge\_type]} of shape $(1, \text{heads})$ per relation type per layer. This acts as a relation-type prior on the attention softmax — independently of node content. The five edge types with the highest mean $|$\texttt{p\_rel}$|$ across layers are:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Edge type} & \textbf{Mean $|$p\_rel$|$} \\
+\midrule
+defence\_lawyer $\to$ case & 1.027 \\
+court $\to$ case           & 1.025 \\
+lawyer $\to$ case          & 1.024 \\
+respondent\_arguments $\to$ case & 1.022 \\
+arguments $\to$ case       & 1.022 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The p\_rel values are all close to 1.0 (the initialisation value), indicating the model has learned a relatively uniform prior across edge types rather than strongly up-weighting any single relation. This is consistent with the small gap ($<0.5\%$) between full-graph and text-only ablation results.
+
+\textbf{Gradient saliency per node type.}
+Gradient-based saliency measures how sensitive the correct-class logit is to perturbations of each node type's input features. The top node types by mean squared gradient (averaged over 500 test cases) are:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Node type} & \textbf{Saliency (normalised)} \\
+\midrule
+case (text sections) & 1.000 \\
+arguments            & 0.101 \\
+other\_lawyer\_arguments & 0.081 \\
+respondent\_arguments & 0.043 \\
+facts                & 0.032 \\
+defence\_lawyer      & 0.029 \\
+judge                & 0.018 \\
+petitioner\_arguments & 0.013 \\
+statute / precedent  & $<$0.002 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The case node's own features (a concatenation of the BGE-M3 text embedding of preamble+facts+arguments and 12 scalar features) account for the dominant signal. Argument nodes are the most salient non-case nodes. Statute and precedent nodes contribute negligible gradient signal — consistent with the finding that cross-case citation sharing adds no measurable accuracy gain.
+
+\subsection{Per-characteristic error analysis}
+
+\texttt{error\_analysis.py} joins the fold-0 \texttt{predictions.csv} (14{,}092 test cases, overall accuracy 0.787) with the graph metadata to identify systematic failure modes:
+
+\textbf{By legal domain:}
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Domain} & \textbf{Accuracy} & \textbf{n} \\
+\midrule
+Motor accidents  & 0.821 & 2{,}982 \\
+Family/matrimonial & 0.802 & 2{,}867 \\
+Land/property    & 0.778 & 2{,}643 \\
+Sexual offences  & 0.777 & 2{,}787 \\
+Financial fraud  & 0.754 & 2{,}813 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The 6.7 pp accuracy spread across domains in the cross-domain model mirrors the spread seen in domain-specific models (77.5–83.2\%), confirming that legal reasoning patterns are domain-specific even within a single trained model.
+
+\textbf{By statute count} — cases with 7–10 cited statutes have accuracy 0.686 vs.\ 0.799 for cases with 0 cited statutes. Statute-heavy cases are substantially harder to classify; this is the strongest structural predictor of error found.
+
+\textbf{By case length (facts section)} — accuracy falls monotonically from 0.807 (shortest quintile) to 0.747 (longest quintile). Longer cases present more complex factual narratives that the model resolves less reliably.
+
+\textbf{By judge count} — accuracy drops slightly from 0.789 (1 judge) to 0.759 (5+ judges). Multi-bench decisions tend to involve more contentious cases.
+
+\subsection{SHAP / embedding dimension importance}
+
+\texttt{shap\_analysis.py} applies a logistic regression explainer to the 64-dimensional post-GNN embeddings (the same classifier used in Section~\ref{sec:experiments}). In the absence of the \texttt{shap} library in the current environment, the analysis uses absolute logistic regression coefficients as an attribution proxy — a valid approach because the underlying model is linear.
+
+The analysis identifies which of the 64 GNN output dimensions carry the most predictive weight for the binary outcome classification. The top dimensions (by $|$coefficient$|$) can be inspected in \texttt{cross\_bucket\_fold00\_shap\_bar.png} and \texttt{cross\_bucket\_fold00\_shap\_summary.json} under \texttt{outputs/\allowbreak timed\_bucket\_runs/\allowbreak cross\_bucket\_total\_dataset/\allowbreak embedding\_analysis/}. Full SHAP \texttt{LinearExplainer} support is available once the \texttt{shap} package is installed (\texttt{pip install shap}), which will additionally produce beeswarm plots mapping each dimension's push toward ``allowed'' vs ``dismissed''.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Predicting Reasons Beyond Binary Outcome}
+
+\subsection{Current scope}
+
+The system predicts only the binary outcome: allowed ($+1$) vs.\ dismissed ($-1$). Procedural outcomes (score $0$) are mapped to dismissed ($-1$) during preprocessing. The RPC (Ratio, Principle, Conclusion), RATIO, RLC, and ANALYSIS sentence roles are explicitly dropped before any model input to prevent leakage of judicial reasoning.
+
+The \texttt{case\_outcome\_score} field in the JSON, set by Mistral via \texttt{llm\_case\_outcome}, is the sole prediction target. The \texttt{decision\_text} and \texttt{rpc\_texts} fields in the JSON contain the extracted judicial reasoning but are \textbf{never used as model input or target}.
+
+\subsection{What would be needed for reason prediction}
+
+\todo{Reason/rationale prediction is not implemented. The raw material does exist in the JSON: \texttt{rpc\_texts} contains the Ratio-Principle-Conclusion sentences from the judgment. A possible extension is a multi-task model that jointly predicts (a) the binary outcome and (b) a soft relevance score or label over cited statutes and precedents. This would require: (1) defining a labelling scheme for ``relevant'' vs ``irrelevant'' cited statutes, (2) adding a per-node auxiliary loss on statute/precedent nodes during training, and (3) treating the problem as multi-task learning (shared GNN trunk, separate heads for outcome and reason). This would constitute a significant additional research contribution.}
+
+\end{document}

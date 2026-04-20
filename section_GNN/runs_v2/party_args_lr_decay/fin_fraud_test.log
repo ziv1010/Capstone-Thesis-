@@ -1,0 +1,158 @@
+nohup: ignoring input
+=== Step 1: Building graph ===
+2026-04-19 00:20:01 | INFO | build_graph_v2 | Loaded 13973 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed/cleaned_cases
+2026-04-19 00:20:40 | INFO | build_graph_v2 | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 244849 texts
+Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [01:43<2:16:55, 103.99s/it]Chunks:   2%|▎         | 2/80 [01:51<1:01:17, 47.15s/it] Chunks:   4%|▍         | 3/80 [01:53<33:56, 26.45s/it]  Chunks:   5%|▌         | 4/80 [01:54<21:09, 16.70s/it]Chunks:   6%|▋         | 5/80 [01:56<14:09, 11.32s/it]Chunks:   8%|▊         | 6/80 [01:58<09:58,  8.09s/it]Chunks:   9%|▉         | 7/80 [02:00<07:18,  6.01s/it]Chunks:  10%|█         | 8/80 [02:02<05:35,  4.66s/it]Chunks:  11%|█▏        | 9/80 [02:02<04:01,  3.40s/it]Chunks:  12%|█▎        | 10/80 [02:03<03:10,  2.73s/it]Chunks:  14%|█▍        | 11/80 [02:04<02:24,  2.09s/it]Chunks:  15%|█▌        | 12/80 [02:36<12:45, 11.25s/it]Chunks:  16%|█▋        | 13/80 [02:44<11:17, 10.12s/it]Chunks:  18%|█▊        | 14/80 [03:01<13:26, 12.21s/it]Chunks:  19%|█▉        | 15/80 [03:22<16:08, 14.91s/it]Chunks:  20%|██        | 16/80 [03:22<11:13, 10.53s/it]Chunks:  21%|██▏       | 17/80 [03:24<08:11,  7.80s/it]Chunks:  22%|██▎       | 18/80 [03:24<05:49,  5.64s/it]Chunks:  24%|██▍       | 19/80 [03:26<04:23,  4.32s/it]Chunks:  25%|██▌       | 20/80 [03:26<03:11,  3.20s/it]Chunks:  26%|██▋       | 21/80 [03:27<02:34,  2.62s/it]Chunks:  28%|██▊       | 22/80 [03:28<01:56,  2.00s/it]Chunks:  29%|██▉       | 23/80 [03:29<01:41,  1.78s/it]Chunks:  30%|███       | 24/80 [03:30<01:19,  1.42s/it]Chunks:  31%|███▏      | 25/80 [03:31<01:15,  1.38s/it]Chunks:  32%|███▎      | 26/80 [03:32<01:01,  1.15s/it]Chunks:  34%|███▍      | 27/80 [03:33<01:01,  1.16s/it]Chunks:  35%|███▌      | 28/80 [03:34<00:51,  1.00it/s]Chunks:  36%|███▋      | 29/80 [03:35<00:54,  1.06s/it]Chunks:  38%|███▊      | 30/80 [03:35<00:45,  1.09it/s]Chunks:  39%|███▉      | 31/80 [03:37<00:53,  1.09s/it]Chunks:  40%|████      | 32/80 [03:37<00:42,  1.13it/s]Chunks:  41%|████▏     | 33/80 [03:39<00:48,  1.04s/it]Chunks:  42%|████▎     | 34/80 [03:50<03:08,  4.09s/it]Chunks:  44%|████▍     | 35/80 [03:52<02:32,  3.38s/it]Chunks:  45%|████▌     | 36/80 [03:53<02:07,  2.91s/it]Chunks:  46%|████▋     | 37/80 [03:55<01:50,  2.57s/it]Chunks:  48%|████▊     | 38/80 [03:56<01:28,  2.10s/it]Chunks:  49%|████▉     | 39/80 [03:57<01:10,  1.72s/it]Chunks:  50%|█████     | 40/80 [03:58<01:00,  1.51s/it]Chunks:  51%|█████▏    | 41/80 [03:59<00:49,  1.28s/it]Chunks:  52%|█████▎    | 42/80 [04:09<02:29,  3.92s/it]Chunks:  54%|█████▍    | 43/80 [04:11<02:03,  3.34s/it]Chunks:  55%|█████▌    | 44/80 [04:15<02:13,  3.71s/it]Chunks:  56%|█████▋    | 45/80 [04:25<03:15,  5.59s/it]Chunks:  57%|█████▊    | 46/80 [04:29<02:49,  4.97s/it]Chunks:  59%|█████▉    | 47/80 [04:49<05:16,  9.58s/it]Chunks:  60%|██████    | 48/80 [04:55<04:27,  8.35s/it]Chunks:  61%|██████▏   | 49/80 [04:56<03:16,  6.33s/it]Chunks:  62%|██████▎   | 50/80 [04:59<02:32,  5.09s/it]Chunks:  64%|██████▍   | 51/80 [04:59<01:44,  3.61s/it]Chunks:  65%|██████▌   | 52/80 [05:01<01:29,  3.18s/it]Chunks:  66%|██████▋   | 53/80 [05:01<01:01,  2.29s/it]Chunks:  68%|██████▊   | 54/80 [05:02<00:45,  1.74s/it]Chunks:  69%|██████▉   | 55/80 [05:03<00:44,  1.77s/it]Chunks:  71%|███████▏  | 57/80 [05:04<00:23,  1.04s/it]Chunks:  72%|███████▎  | 58/80 [05:04<00:17,  1.24it/s]Chunks:  74%|███████▍  | 59/80 [05:06<00:22,  1.08s/it]Chunks:  75%|███████▌  | 60/80 [05:06<00:16,  1.20it/s]Chunks:  76%|███████▋  | 61/80 [05:06<00:12,  1.47it/s]Chunks:  79%|███████▉  | 63/80 [05:08<00:12,  1.32it/s]Chunks:  81%|████████▏ | 65/80 [05:08<00:07,  1.92it/s]Chunks:  84%|████████▍ | 67/80 [05:10<00:08,  1.55it/s]Chunks:  86%|████████▋ | 69/80 [05:10<00:05,  2.07it/s]Chunks:  89%|████████▉ | 71/80 [05:12<00:05,  1.71it/s]Chunks:  91%|█████████▏| 73/80 [05:14<00:04,  1.43it/s]Chunks:  92%|█████████▎| 74/80 [05:15<00:04,  1.23it/s]Chunks:  94%|█████████▍| 75/80 [05:20<00:08,  1.72s/it]Chunks:  95%|█████████▌| 76/80 [05:26<00:10,  2.63s/it]Chunks:  96%|█████████▋| 77/80 [05:31<00:09,  3.13s/it]Chunks:  98%|█████████▊| 78/80 [05:35<00:06,  3.42s/it]Chunks:  99%|█████████▉| 79/80 [05:35<00:02,  2.62s/it]Chunks: 100%|██████████| 80/80 [05:44<00:00,  4.21s/it]Chunks: 100%|██████████| 80/80 [05:44<00:00,  4.30s/it]
+2026-04-19 00:27:25 | INFO | build_graph_v2 | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/embeddings_cache/all_nodes_908342bdd453c6b6ab45.npz shape=(244849, 1024)
+2026-04-19 00:27:27 | INFO | build_graph_v2 | Prepared 13973 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-19 00:27:29 | INFO | build_graph_v2 | Graph saved to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt
+2026-04-19 00:27:30 | INFO | build_graph_v2 | Done.
+/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+=== Step 2: 5-fold CV ===
+[kfold_v2] env=thesis_work  run=fin_fraud_party_args_lr_decay_kfold  k=5
+[kfold_v2] Launching 5 folds in parallel on GPUs 0-4 ...
+[kfold_v2] Fold 0 -> GPU 0  (pid 3812792)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_party_args_lr_decay_kfold_fold_0.log
+[kfold_v2] Fold 1 -> GPU 1  (pid 3812794)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_party_args_lr_decay_kfold_fold_1.log
+[kfold_v2] Fold 2 -> GPU 2  (pid 3812796)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_party_args_lr_decay_kfold_fold_2.log
+[kfold_v2] Fold 3 -> GPU 3  (pid 3812798)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_party_args_lr_decay_kfold_fold_3.log
+[kfold_v2] Fold 4 -> GPU 4  (pid 3812800)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_party_args_lr_decay_kfold_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-19 00:27:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt …
+2026-04-19 00:27:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt …
+2026-04-19 00:27:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt …
+2026-04-19 00:27:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt …
+2026-04-19 00:27:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_party_args.reasoning_focused.pt …
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | ── Fold 2/5 | train=11178  test=2795  seed=43
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | ── Fold 1/5 | train=11178  test=2795  seed=42
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | ── Fold 3/5 | train=11178  test=2795  seed=44
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | ── Fold 4/5 | train=11179  test=2794  seed=45
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:27:37 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | ── Fold 5/5 | train=11179  test=2794  seed=46
+2026-04-19 00:27:46 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7011 train_macro_f1=0.5676 val_macro_f1=0.5747 best_val_macro_f1=0.5747 patience_counter=0 lr=0.001000
+2026-04-19 00:27:49 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7015 train_macro_f1=0.2818 val_macro_f1=0.2890 best_val_macro_f1=0.2890 patience_counter=0 lr=0.001000
+2026-04-19 00:27:57 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7408 train_macro_f1=0.3807 val_macro_f1=0.3862 best_val_macro_f1=0.3862 patience_counter=0 lr=0.001000
+2026-04-19 00:27:58 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7222 train_macro_f1=0.2843 val_macro_f1=0.2671 best_val_macro_f1=0.2671 patience_counter=0 lr=0.001000
+2026-04-19 00:27:59 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7080 train_macro_f1=0.3779 val_macro_f1=0.3732 best_val_macro_f1=0.3732 patience_counter=0 lr=0.001000
+2026-04-19 00:28:41 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6388 train_macro_f1=0.6522 val_macro_f1=0.6396 best_val_macro_f1=0.6581 patience_counter=1 lr=0.001000
+2026-04-19 00:28:44 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6772 train_macro_f1=0.6087 val_macro_f1=0.5901 best_val_macro_f1=0.5901 patience_counter=0 lr=0.001000
+2026-04-19 00:28:44 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6777 train_macro_f1=0.5520 val_macro_f1=0.5336 best_val_macro_f1=0.5565 patience_counter=2 lr=0.001000
+2026-04-19 00:28:44 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6817 train_macro_f1=0.5510 val_macro_f1=0.5409 best_val_macro_f1=0.6132 patience_counter=2 lr=0.001000
+2026-04-19 00:28:50 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6809 train_macro_f1=0.6180 val_macro_f1=0.5994 best_val_macro_f1=0.5994 patience_counter=0 lr=0.001000
+2026-04-19 00:29:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.6264 train_macro_f1=0.6746 val_macro_f1=0.6482 best_val_macro_f1=0.6482 patience_counter=0 lr=0.001000
+2026-04-19 00:29:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.5901 train_macro_f1=0.6788 val_macro_f1=0.6786 best_val_macro_f1=0.6908 patience_counter=1 lr=0.001000
+2026-04-19 00:29:49 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.6440 train_macro_f1=0.6457 val_macro_f1=0.6336 best_val_macro_f1=0.6336 patience_counter=0 lr=0.001000
+2026-04-19 00:29:49 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.6283 train_macro_f1=0.6709 val_macro_f1=0.6476 best_val_macro_f1=0.6686 patience_counter=1 lr=0.001000
+2026-04-19 00:29:50 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.6400 train_macro_f1=0.6563 val_macro_f1=0.6135 best_val_macro_f1=0.6135 patience_counter=0 lr=0.001000
+2026-04-19 00:30:44 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5834 train_macro_f1=0.7101 val_macro_f1=0.6737 best_val_macro_f1=0.6737 patience_counter=0 lr=0.001000
+2026-04-19 00:30:46 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5544 train_macro_f1=0.7287 val_macro_f1=0.7257 best_val_macro_f1=0.7257 patience_counter=0 lr=0.001000
+2026-04-19 00:30:46 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.6031 train_macro_f1=0.6843 val_macro_f1=0.6585 best_val_macro_f1=0.6640 patience_counter=1 lr=0.001000
+2026-04-19 00:30:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5862 train_macro_f1=0.7026 val_macro_f1=0.6918 best_val_macro_f1=0.6918 patience_counter=0 lr=0.001000
+2026-04-19 00:30:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5932 train_macro_f1=0.7047 val_macro_f1=0.6821 best_val_macro_f1=0.6821 patience_counter=0 lr=0.001000
+2026-04-19 00:31:42 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.5392 train_macro_f1=0.7398 val_macro_f1=0.7086 best_val_macro_f1=0.7086 patience_counter=0 lr=0.001000
+2026-04-19 00:31:42 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.5140 train_macro_f1=0.7587 val_macro_f1=0.7505 best_val_macro_f1=0.7561 patience_counter=2 lr=0.001000
+2026-04-19 00:31:43 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.5393 train_macro_f1=0.7227 val_macro_f1=0.7008 best_val_macro_f1=0.7089 patience_counter=1 lr=0.001000
+2026-04-19 00:31:44 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.5599 train_macro_f1=0.7201 val_macro_f1=0.7048 best_val_macro_f1=0.7048 patience_counter=0 lr=0.001000
+2026-04-19 00:31:45 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.5494 train_macro_f1=0.7274 val_macro_f1=0.7261 best_val_macro_f1=0.7261 patience_counter=0 lr=0.001000
+2026-04-19 00:32:24 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4891 train_macro_f1=0.7596 val_macro_f1=0.7134 best_val_macro_f1=0.7194 patience_counter=2 lr=0.001000
+2026-04-19 00:32:24 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4807 train_macro_f1=0.7807 val_macro_f1=0.7507 best_val_macro_f1=0.7561 patience_counter=7 lr=0.001000
+2026-04-19 00:32:24 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.5001 train_macro_f1=0.7622 val_macro_f1=0.7234 best_val_macro_f1=0.7248 patience_counter=1 lr=0.001000
+2026-04-19 00:32:25 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.5177 train_macro_f1=0.7550 val_macro_f1=0.7280 best_val_macro_f1=0.7280 patience_counter=0 lr=0.001000
+2026-04-19 00:32:33 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.5064 train_macro_f1=0.7405 val_macro_f1=0.7178 best_val_macro_f1=0.7377 patience_counter=2 lr=0.001000
+2026-04-19 00:32:45 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.4565 train_macro_f1=0.7705 val_macro_f1=0.7091 best_val_macro_f1=0.7244 patience_counter=1 lr=0.001000
+2026-04-19 00:32:45 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.4413 train_macro_f1=0.8106 val_macro_f1=0.7665 best_val_macro_f1=0.7665 patience_counter=0 lr=0.001000
+2026-04-19 00:32:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.4771 train_macro_f1=0.7883 val_macro_f1=0.7327 best_val_macro_f1=0.7327 patience_counter=0 lr=0.001000
+2026-04-19 00:32:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.4767 train_macro_f1=0.7554 val_macro_f1=0.7101 best_val_macro_f1=0.7375 patience_counter=2 lr=0.001000
+2026-04-19 00:32:51 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.4693 train_macro_f1=0.7857 val_macro_f1=0.7333 best_val_macro_f1=0.7406 patience_counter=4 lr=0.001000
+2026-04-19 00:33:02 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3971 train_macro_f1=0.8314 val_macro_f1=0.7660 best_val_macro_f1=0.7665 patience_counter=5 lr=0.001000
+2026-04-19 00:33:02 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.4186 train_macro_f1=0.8191 val_macro_f1=0.7368 best_val_macro_f1=0.7419 patience_counter=1 lr=0.001000
+2026-04-19 00:33:04 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.4291 train_macro_f1=0.7936 val_macro_f1=0.7358 best_val_macro_f1=0.7389 patience_counter=1 lr=0.001000
+2026-04-19 00:33:05 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.4454 train_macro_f1=0.8042 val_macro_f1=0.7466 best_val_macro_f1=0.7490 patience_counter=3 lr=0.001000
+2026-04-19 00:33:15 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=35
+2026-04-19 00:33:15 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.4381 train_macro_f1=0.8073 val_macro_f1=0.7322 best_val_macro_f1=0.7406 patience_counter=9 lr=0.000500
+2026-04-19 00:33:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3661 train_macro_f1=0.8650 val_macro_f1=0.7730 best_val_macro_f1=0.7730 patience_counter=0 lr=0.001000
+2026-04-19 00:33:50 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3691 train_macro_f1=0.8523 val_macro_f1=0.7524 best_val_macro_f1=0.7572 patience_counter=3 lr=0.001000
+2026-04-19 00:33:50 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3968 train_macro_f1=0.8344 val_macro_f1=0.7520 best_val_macro_f1=0.7520 patience_counter=0 lr=0.001000
+2026-04-19 00:33:52 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3881 train_macro_f1=0.8391 val_macro_f1=0.7582 best_val_macro_f1=0.7658 patience_counter=1 lr=0.001000
+2026-04-19 00:33:54 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3981 train_macro_f1=0.8231 val_macro_f1=0.7309 best_val_macro_f1=0.7406 patience_counter=14 lr=0.000500
+2026-04-19 00:34:06 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3233 train_macro_f1=0.8937 val_macro_f1=0.7687 best_val_macro_f1=0.7730 patience_counter=5 lr=0.001000
+2026-04-19 00:34:08 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3178 train_macro_f1=0.8790 val_macro_f1=0.7484 best_val_macro_f1=0.7593 patience_counter=3 lr=0.001000
+2026-04-19 00:34:08 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3370 train_macro_f1=0.8623 val_macro_f1=0.7574 best_val_macro_f1=0.7598 patience_counter=1 lr=0.001000
+2026-04-19 00:34:08 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=44
+2026-04-19 00:34:09 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3358 train_macro_f1=0.8636 val_macro_f1=0.7549 best_val_macro_f1=0.7660 patience_counter=1 lr=0.001000
+2026-04-19 00:34:12 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3769 train_macro_f1=0.8399 val_macro_f1=0.7401 best_val_macro_f1=0.7406 patience_counter=19 lr=0.000250
+2026-04-19 00:34:15 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Early stopping at epoch=46 best_epoch=26
+2026-04-19 00:34:16 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 3 done | test_acc=0.7381  test_macro_f1=0.7273
+2026-04-19 00:34:16 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 2 complete. Run remaining folds then --aggregate-only.
+2026-04-19 00:34:19 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=49
+2026-04-19 00:34:23 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2448 train_macro_f1=0.9096 val_macro_f1=0.7699 best_val_macro_f1=0.7730 patience_counter=10 lr=0.000500
+2026-04-19 00:34:25 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2762 train_macro_f1=0.8953 val_macro_f1=0.7533 best_val_macro_f1=0.7593 patience_counter=8 lr=0.001000
+2026-04-19 00:34:25 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.3135 train_macro_f1=0.8774 val_macro_f1=0.7465 best_val_macro_f1=0.7598 patience_counter=6 lr=0.001000
+2026-04-19 00:34:26 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.3040 train_macro_f1=0.8795 val_macro_f1=0.7571 best_val_macro_f1=0.7660 patience_counter=6 lr=0.001000
+2026-04-19 00:34:28 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=51
+2026-04-19 00:34:36 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=53
+2026-04-19 00:34:40 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2080 train_macro_f1=0.9347 val_macro_f1=0.7763 best_val_macro_f1=0.7763 patience_counter=0 lr=0.000500
+2026-04-19 00:34:42 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2572 train_macro_f1=0.9153 val_macro_f1=0.7404 best_val_macro_f1=0.7593 patience_counter=13 lr=0.000500
+2026-04-19 00:34:42 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2722 train_macro_f1=0.8861 val_macro_f1=0.7495 best_val_macro_f1=0.7642 patience_counter=2 lr=0.001000
+2026-04-19 00:34:43 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2373 train_macro_f1=0.8993 val_macro_f1=0.7528 best_val_macro_f1=0.7715 patience_counter=1 lr=0.000500
+2026-04-19 00:34:57 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.1646 train_macro_f1=0.9503 val_macro_f1=0.7628 best_val_macro_f1=0.7763 patience_counter=5 lr=0.000500
+2026-04-19 00:34:58 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=60
+2026-04-19 00:34:58 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.2098 train_macro_f1=0.9234 val_macro_f1=0.7436 best_val_macro_f1=0.7593 patience_counter=18 lr=0.000250
+2026-04-19 00:34:59 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.2206 train_macro_f1=0.9293 val_macro_f1=0.7650 best_val_macro_f1=0.7730 patience_counter=4 lr=0.001000
+2026-04-19 00:35:00 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.2145 train_macro_f1=0.9333 val_macro_f1=0.7753 best_val_macro_f1=0.7753 patience_counter=0 lr=0.000500
+2026-04-19 00:35:05 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Early stopping at epoch=62 best_epoch=42
+2026-04-19 00:35:06 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 1 done | test_acc=0.7767  test_macro_f1=0.7598
+2026-04-19 00:35:06 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 0 complete. Run remaining folds then --aggregate-only.
+[kfold_v2] Fold 0 complete.
+2026-04-19 00:35:10 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=64
+2026-04-19 00:35:14 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1173 train_macro_f1=0.9713 val_macro_f1=0.7673 best_val_macro_f1=0.7763 patience_counter=10 lr=0.000250
+2026-04-19 00:35:16 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=65
+2026-04-19 00:35:16 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1942 train_macro_f1=0.8723 val_macro_f1=0.7333 best_val_macro_f1=0.7730 patience_counter=9 lr=0.000500
+2026-04-19 00:35:17 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1673 train_macro_f1=0.9547 val_macro_f1=0.7687 best_val_macro_f1=0.7765 patience_counter=4 lr=0.000500
+2026-04-19 00:35:31 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.0926 train_macro_f1=0.9814 val_macro_f1=0.7591 best_val_macro_f1=0.7763 patience_counter=15 lr=0.000250
+2026-04-19 00:35:33 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.1474 train_macro_f1=0.9243 val_macro_f1=0.7578 best_val_macro_f1=0.7730 patience_counter=14 lr=0.000500
+2026-04-19 00:35:34 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=70
+2026-04-19 00:35:34 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.1241 train_macro_f1=0.9708 val_macro_f1=0.7655 best_val_macro_f1=0.7765 patience_counter=9 lr=0.000250
+2026-04-19 00:35:41 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000250 → 0.000125 at epoch=73
+2026-04-19 00:35:47 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=74
+2026-04-19 00:35:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.0705 train_macro_f1=0.9872 val_macro_f1=0.7639 best_val_macro_f1=0.7763 patience_counter=20 lr=0.000125
+2026-04-19 00:35:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Early stopping at epoch=75 best_epoch=55
+2026-04-19 00:35:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 2 done | test_acc=0.7828  test_macro_f1=0.7715
+2026-04-19 00:35:48 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 1 complete. Run remaining folds then --aggregate-only.
+[kfold_v2] Fold 1 complete.
+[kfold_v2] Fold 2 complete.
+2026-04-19 00:35:50 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.1374 train_macro_f1=0.9652 val_macro_f1=0.7611 best_val_macro_f1=0.7730 patience_counter=19 lr=0.000250
+2026-04-19 00:35:52 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.0956 train_macro_f1=0.9791 val_macro_f1=0.7702 best_val_macro_f1=0.7765 patience_counter=14 lr=0.000250
+2026-04-19 00:35:54 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Early stopping at epoch=76 best_epoch=56
+2026-04-19 00:35:54 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 4 done | test_acc=0.7681  test_macro_f1=0.7579
+2026-04-19 00:35:54 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 3 complete. Run remaining folds then --aggregate-only.
+[kfold_v2] Fold 3 complete.
+2026-04-19 00:36:05 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | LR decayed: 0.000250 → 0.000125 at epoch=79
+2026-04-19 00:36:09 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | epoch=80/90 train_loss=0.0735 train_macro_f1=0.9862 val_macro_f1=0.7700 best_val_macro_f1=0.7765 patience_counter=19 lr=0.000125
+2026-04-19 00:36:12 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Early stopping at epoch=81 best_epoch=61
+2026-04-19 00:36:12 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 5 done | test_acc=0.7820  test_macro_f1=0.7693
+2026-04-19 00:36:12 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Fold 4 complete. Run remaining folds then --aggregate-only.
+[kfold_v2] Fold 4 complete.
+[kfold_v2] All folds done. Aggregating ...
+2026-04-19 00:36:17 | INFO | kfold_cv_v2_fin_fraud_party_args_lr_decay_kfold | Aggregate (5/5) | acc=0.7696±0.0166  macro_f1=0.7572±0.0158
+[kfold_v2] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/models/fin_fraud_party_args_lr_decay_kfold/kfold/kfold_summary.json

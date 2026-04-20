@@ -1,0 +1,291 @@
+\chapter{Graph Exploration and Descriptive Analysis}
+\label{ch:graph-explore}
+
+Before using the heterogeneous legal graph for prediction, it is essential to verify that the constructed graph actually encodes meaningful legal structure. This chapter presents a comprehensive exploration of the graph topology: node and edge distributions, entity composition, centrality metrics, cross-domain sharing patterns, and interactive visualisations. The findings in this chapter both validate the graph construction pipeline and provide qualitative insights that inform the design of the prediction model in Chapter~7.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Why Explore the Graph Before Prediction?}
+\label{sec:explore-why}
+
+Graph exploration serves three purposes:
+
+\begin{enumerate}
+    \item \textbf{Validation.} Does the graph faithfully represent known legal relationships? If ``Section 498A'' (dowry cruelty) is not the most central provision in the Family \& Matrimonial bucket, something went wrong in NER or normalisation.
+    \item \textbf{Justification.} Does the graph contain enough structural signal to warrant a GNN over a simpler text classifier? If entity nodes are sparse and disconnected, graph-based prediction may not improve over flat baselines.
+    \item \textbf{Hypothesis generation.} Which cross-domain bridges are strongest? Which statutes bridge all five buckets? Does the connectivity score distribution suggest that semantically similar cases cluster together in the graph?
+\end{enumerate}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Basic Graph Statistics by Domain}
+\label{sec:basic-stats}
+
+Table~\ref{tab:per-domain-stats} recaps the per-domain graph statistics from the separate within-bucket builds used for the descriptive analysis.
+
+\begin{table}[H]
+\centering
+\caption{Per-domain graph statistics.}
+\label{tab:per-domain-stats}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Domain} & \textbf{Cases} & \textbf{Nodes} & \textbf{Edges} & \textbf{Density\textsuperscript{*}} \\
+\midrule
+Family \& Matrimonial  & 15,307 &  97,150 &  3,660,068 & 37.7 \\
+Financial Fraud        & 14,616 & 113,240 &  7,869,952 & 69.5 \\
+Land \& Property       & 14,052 & 126,962 &  9,210,612 & 72.5 \\
+Motor Accidents        & 15,237 & 125,234 &  7,165,461 & 57.2 \\
+Sexual Offences        & 14,597 & 106,662 &  7,123,225 & 66.8 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\parbox{0.9\textwidth}{\footnotesize \textsuperscript{*}Density is measured as average edges per node (edges/nodes), not the traditional $|E|/(|V|(|V|-1))$ which would be negligible at this scale.}
+\end{table}
+
+Land \& Property exhibits the highest density (72.5 edges per node), driven by the heavy citation of land acquisition statutes and constitutional provisions. Family \& Matrimonial is the least dense (37.7), reflecting more self-contained case structures with fewer cross-case citation paths.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Entity Composition Across Buckets}
+\label{sec:entity-composition}
+
+Figure~\ref{fig:entity-totals} shows the total count of each entity type across all five domain buckets.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{entity_type_totals_full.png}
+\caption{Entity type totals aggregated across all domain buckets.}
+\label{fig:entity-totals}
+\end{figure}
+
+The dominance of \texttt{precedent} (255,148), \texttt{respondent} (192,147), and \texttt{petitioner} (171,084) nodes is notable. Precedent nodes are plentiful because Indian judgments routinely cite prior case law — sometimes dozens of precedents in a single judgment. Party nodes are numerous because they are stored case-locally (see Section~\ref{sec:shared-local}).
+
+The relatively modest count of \texttt{judge} nodes (11,360) reflects the reality that a smaller pool of judges handles a large volume of cases, making judges natural high-degree hub nodes.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Hub Entities and Shared Authorities}
+\label{sec:hubs}
+
+The top-degree hub nodes reveal the most referenced legal authorities in the corpus. Table~\ref{tab:top-hubs} shows the top 10 entities by degree.
+
+\begin{table}[H]
+\centering
+\caption{Top 10 hub entities by degree in the global graph.}
+\label{tab:top-hubs}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Entity} & \textbf{Type} & \textbf{Degree} & \textbf{Buckets} \\
+\midrule
+IPC                               & Statute   & 29,602 & 5 \\
+Cr.P.C.                           & Statute   & 18,704 & 5 \\
+Supreme Court                     & Court     & 17,294 & 5 \\
+Apex Court                        & Court     & 14,242 & 5 \\
+Indian Penal Code                 & Statute   & 12,009 & 5 \\
+High Court of Judicature at Allahabad & Court & 8,833  & 5 \\
+Section 482                       & Provision & 8,732  & 5 \\
+506                               & Provision & 8,258  & 5 \\
+I.P.C.                            & Statute   & 7,051  & 5 \\
+420                               & Provision & 6,285  & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The IPC (Indian Penal Code) is the single most connected node in the entire graph (degree 29,602), reflecting its role as the foundational criminal statute cited across all five domains. The Supreme Court and its alias ``Apex Court'' together account for over 31,000 edges, underscoring the centrality of Supreme Court precedent in Indian adjudication.
+
+Notably, ``IPC'' and ``Indian Penal Code'' appear as separate nodes despite referring to the same statute — a known limitation of the conservative string-based normalisation strategy. Future work could introduce fuzzy deduplication to address this.
+
+The per-bucket PageRank leaders show domain-specific patterns. Table~\ref{tab:pagerank-by-bucket} presents the top entity by PageRank for each bucket.
+
+\begin{table}[H]
+\centering
+\caption{Top entity by PageRank in each domain bucket.}
+\label{tab:pagerank-by-bucket}
+\begin{tabular}{@{}llr@{}}
+\toprule
+\textbf{Bucket} & \textbf{Top Entity} & \textbf{PageRank} \\
+\midrule
+Family \& Matrimonial  & IPC [Statute]                    & 0.0203 \\
+Financial Fraud        & IPC [Statute]                    & 0.0154 \\
+Land \& Property       & Supreme Court [Court]            & 0.0065 \\
+Motor Accidents        & Supreme Court [Court]            & 0.0115 \\
+Sexual Offences        & IPC [Statute]                    & 0.0167 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In criminal-leaning buckets (Family, Fraud, Sexual Offences), the IPC dominates. In civil/regulatory buckets (Land, Motor), the Supreme Court emerges as the most influential node, reflecting the importance of judicial precedent in compensation and acquisition disputes.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Cross-Bucket Bridge Analysis}
+\label{sec:cross-bridge}
+
+A key question for cross-domain prediction is: \emph{how much structural information flows between domain buckets?} Shared entity nodes that appear in multiple buckets act as \emph{bridge nodes}, creating paths between cases in different legal domains.
+
+Figure~\ref{fig:cross-bucket-bridges} visualises the cross-bucket bridge structure.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{cross_bucket_bridges.png}
+\caption{Cross-bucket bridge analysis showing entities that connect multiple domain buckets.}
+\label{fig:cross-bucket-bridges}
+\end{figure}
+
+The IPC bridges all five buckets heavily: 9,176 family/matrimonial cases, 8,118 financial fraud cases, 9,107 sexual offence cases, 3,095 motor accident cases, and even 106 land/property cases cite it. The Constitutional Court system (Supreme Court, Apex Court) provides the most balanced bridges, with substantial presence in every domain.
+
+\subsection{Bridge Strength Ranking}
+
+Figure~\ref{fig:top-by-bridge} shows the top entities ranked by their bridge coverage (number of buckets connected).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{cross_bucket_top_by_bridge.png}
+\caption{Top entities ranked by number of buckets bridged.}
+\label{fig:top-by-bridge}
+\end{figure}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Centrality Analysis}
+\label{sec:centrality}
+
+We compute multiple centrality metrics on the global graph to characterise the role of different entities:
+
+\begin{itemize}
+    \item \textbf{Degree centrality.} Measures the raw connectivity of a node. The IPC has the highest degree centrality (degree = 29,602), followed by Cr.P.C. (18,704) and the Supreme Court (17,294).
+    \item \textbf{PageRank.} Captures the ``importance'' of a node through the recursive influence of its neighbours. Figure~\ref{fig:top-by-pagerank} shows the top entities by cross-bucket PageRank.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{cross_bucket_top_by_pagerank.png}
+\caption{Top entities by PageRank across all five domain buckets.}
+\label{fig:top-by-pagerank}
+\end{figure}
+
+\subsection{PageRank by Entity Type}
+
+Figures~\ref{fig:pr-statute} and \ref{fig:pr-court} present the top entities by PageRank for statutes and courts — the two entity types with the highest structural influence. Per-entity-type breakdowns for provisions, judges, and lawyers are provided in Appendix~F.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{cross_bucket_type_statute_pagerank.png}
+\caption{Top statutes by PageRank across domain buckets.}
+\label{fig:pr-statute}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{cross_bucket_type_court_pagerank.png}
+\caption{Top courts by PageRank across domain buckets.}
+\label{fig:pr-court}
+\end{figure}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Connectivity of Cases}
+\label{sec:connectivity}
+
+The \emph{connectivity score} of a case measures how well-connected it is to other cases through shared entity nodes. A highly connected case has many shared statutes, courts, and precedents linking it to the rest of the graph, enabling richer message passing during GNN inference.
+
+Figure~\ref{fig:connectivity-dist} shows the distribution of connectivity scores across the corpus.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{connectivity_score_distributions.png}
+\caption{Distribution of case connectivity scores across domain buckets.}
+\label{fig:connectivity-dist}
+\end{figure}
+
+A right-skewed distribution is expected: most cases have moderate connectivity through common statutes and courts, while a smaller number of heavily-cited or procedurally complex cases achieve very high connectivity scores.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Cross-Domain Entity Sharing}
+\label{sec:entity-sharing}
+
+Figure~\ref{fig:entity-heatmap} presents the entity sharing heatmap between all pairs of domain buckets.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{entity_sharing_heatmap.png}
+\caption{Heatmap of shared entities between all pairs of domain buckets.}
+\label{fig:entity-heatmap}
+\end{figure}
+
+The heatmap reveals that the strongest entity sharing occurs between the three criminal-leaning buckets (Family \& Matrimonial, Financial Fraud, and Sexual Offences), all of which heavily cite the IPC, Cr.P.C., and generic criminal provisions. Land \& Property and Motor Accidents share fewer entities with the criminal buckets but connect strongly through the Supreme Court and constitutional provisions.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Visualisation of the Legal Graph}
+\label{sec:visualisation}
+
+To provide an intuitive understanding of the graph structure, we generate both within-bucket and cross-bucket network visualisations.
+
+\subsection{Cross-Bucket Network}
+
+Figure~\ref{fig:network-by-bucket} shows the cross-bucket network coloured by domain bucket, revealing the dense interconnection between criminal domains.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{cross_bucket_network_by_bucket.png}
+\caption{Cross-bucket entity network coloured by domain bucket.}
+\label{fig:network-by-bucket}
+\end{figure}
+
+Figure~\ref{fig:network-by-type} shows the same network coloured by entity type, highlighting the structural role of statutes and courts as bridge nodes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{cross_bucket_network_by_type.png}
+\caption{Cross-bucket entity network coloured by entity type.}
+\label{fig:network-by-type}
+\end{figure}
+
+\subsection{Within-Bucket Networks}
+
+Figure~\ref{fig:within-contrast} contrasts the internal network structure of two representative domains: Family \& Matrimonial (the sparsest, 37.7 edges/node) and Land \& Property (the densest, 72.5 edges/node). The remaining three within-bucket network visualisations are included in Appendix~F.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{within_family_matrimonial_timed_mistral_network.png}
+    \caption{Family \& Matrimonial (sparse)}
+    \label{fig:within-family}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{within_land_property_timed_mistral_network.png}
+    \caption{Land \& Property (dense)}
+    \label{fig:within-land}
+\end{subfigure}
+\caption{Within-bucket entity networks: sparse vs dense domain comparison.}
+\label{fig:within-contrast}
+\end{figure}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Interpretation of Graph Structure}
+\label{sec:interpretation}
+
+The graph exploration reveals several structural properties with direct implications for prediction:
+
+\begin{enumerate}
+    \item \textbf{Rich cross-case connectivity.} The majority of cases are connected to the global graph through shared statutes, courts, and provisions. This validates the use of a transductive GNN architecture (Section~\ref{sec:shared-local}), which propagates information across train, validation, and test cases through shared entity neighbourhoods.
+
+    \item \textbf{Domain-specific legal fingerprints.} Each bucket has a distinctive entity composition: Section~498A dominates Family \& Matrimonial, Section~420 dominates Financial Fraud, the Motor Vehicles Act dominates Motor Accidents, and POCSO dominates Sexual Offences. These domain-specific fingerprints suggest that entity composition alone may carry predictive signal.
+
+    \item \textbf{Strong cross-domain bridges.} The IPC, Cr.P.C., Supreme Court, and Constitution of India bridge all five domains, creating information pathways that enable transfer learning across legal categories. This supports the cross-bucket training setup where a single GNN is trained on all domains simultaneously.
+
+    \item \textbf{Hub-spoke topology.} The graph exhibits a classic hub-spoke topology where a small number of high-degree entities (IPC: 29,602 edges) connect to thousands of cases, while the majority of entities are mentioned in only a handful of cases. This topology is well-suited to HGT-style attention mechanisms that learn to weight messages differently based on the source and target node types.
+
+    \item \textbf{Variable density across domains.} Land \& Property produces the densest subgraph by far (72.5 edges/node), while Family \& Matrimonial is the sparsest (37.7). This density variation may explain domain-specific differences in GNN performance and suggests that domain-aware message-passing could be beneficial.
+\end{enumerate}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Chapter Summary}
+\label{sec:ch6-summary}
+
+This chapter conducted a thorough exploration of the heterogeneous legal graph prior to prediction:
+
+\begin{itemize}
+    \item The graph contains 880,176 nodes and 1,977,295 edges with an average degree of 4.5 and a max degree of 29,602 (IPC).
+    \item Entity composition analysis confirms domain-specific patterns (Section~498A for matrimonial, Section~420 for fraud, Motor Vehicles Act for accidents, POCSO for sexual offences).
+    \item Cross-bucket bridge analysis shows that the IPC, Cr.P.C., Supreme Court, and Constitution of India provide dense connectivity across all five domains.
+    \item Centrality analysis identifies statutes and courts as structurally dominant, with judges contributing moderate PageRank.
+    \item Entity sharing heatmaps reveal strongest overlap between criminal-leaning buckets and weaker but non-trivial links to civil domains.
+    \item Network visualisations confirm a hub-spoke topology with domain-specific clusters bridged by universal legal authorities.
+\end{itemize}
+
+These findings demonstrate that the graph encodes rich, meaningful legal structure and provides a strong foundation for graph-based prediction in Chapter~7.

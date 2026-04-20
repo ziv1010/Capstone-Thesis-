@@ -1,0 +1,343 @@
+\chapter{Data Collection, Preprocessing, and Information Extraction}
+\label{ch:data}
+
+This chapter describes the end-to-end pipeline for constructing the dataset used in all subsequent modelling experiments. Starting from raw Indian court judgments, we detail each stage: corpus assembly, domain bucketing, named entity recognition, rhetorical role classification, outcome labelling via a large language model, temporal merging of multi-hearing cases, and final corpus construction with rigorous leakage prevention.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Data Source and Corpus Collection}
+\label{sec:data-source}
+
+% Left blank intentionally — to be filled with details on the source of judgments,
+% case types, and how the initial buckets were assembled.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Domain Buckets / Legal Categories}
+\label{sec:domain-buckets}
+
+To capture meaningful variation across Indian legal practice, the raw judgments are partitioned into five thematic \emph{domain buckets}, each representing a distinct area of law with its own statutes, terminology, and judicial reasoning patterns:
+
+\begin{enumerate}
+    \item \textbf{Family \& Matrimonial} — Cases relating to domestic violence (Section~498A IPC), dowry, divorce, child custody, and maintenance. This bucket is dominated by statutes such as the Indian Penal Code (IPC), Code of Criminal Procedure (Cr.P.C.), and the Dowry Prohibition Act.
+    \item \textbf{Financial Fraud} — Cases involving cheating (Section~420 IPC), forgery (Sections~467, 468, 471 IPC), criminal breach of trust (Section~406 IPC), and related economic offences. The Prevention of Corruption Act features prominently in this domain.
+    \item \textbf{Land \& Property} — Disputes over land acquisition, compensation under the Land Acquisition Act 1894 and the Right to Fair Compensation Act 2013, property title, and revenue matters. This is the only bucket where civil procedure (CPC) and constitutional writ jurisdiction (Article~226) play a major role.
+    \item \textbf{Motor Accidents} — Claims under the Motor Vehicles Act 1988 for accident compensation, involving tribunals, insurance companies, and structured damage assessment.
+    \item \textbf{Sexual Offences} — Cases under Sections~376, 363, 366 IPC and the Protection of Children from Sexual Offences (POCSO) Act 2012. This bucket carries the highest rate of multi-hearing case documents.
+\end{enumerate}
+
+The choice of these five domains ensures diversity across criminal, civil, quasi-criminal, and tribunal-based proceedings while maintaining sufficient within-domain homogeneity for meaningful graph-based modelling.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Challenges in Raw Legal Data}
+\label{sec:challenges}
+
+Indian court judgments present several well-documented challenges for automated processing:
+
+\begin{itemize}
+    \item \textbf{Noise and inconsistent formatting.} Judgments are published without a standardised template. Page headers, footers, party descriptions, and case metadata may appear inline or be completely absent.
+    \item \textbf{Duplicate and near-duplicate files.} A single case may appear more than once on the same date due to re-publication or data-crawling artefacts.
+    \item \textbf{Multi-hearing documents.} Many cases have interim orders, adjournments, and bail hearings recorded as separate documents on different dates. These must be identified, ordered chronologically, and merged to obtain a complete case record (see Section~\ref{sec:merge}).
+    \item \textbf{Inconsistent case naming.} Variations in party names, abbreviations (e.g., ``S/o'' vs ``Son Of''), and transliterations make it difficult to link related documents.
+    \item \textbf{Long text.} Individual judgments can exceed 50,000 tokens, requiring truncation or section-level summarisation for downstream models.
+    \item \textbf{Mixed languages.} While the corpus targets English-language judgments, Hindi phrases, Urdu transliterations, and regional terms frequently appear, complicating NLP extraction.
+\end{itemize}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Named Entity Recognition}
+\label{sec:ner}
+
+Named Entity Recognition (NER) is the first information extraction step applied to each judgment. We use the \textbf{OpenNyAI NER model}, a domain-specific transformer-based model fine-tuned on Indian legal text, which identifies the following entity types:
+
+\begin{table}[H]
+\centering
+\caption{Entity types extracted by the OpenNyAI NER model.}
+\label{tab:entity-types}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Entity Type} & \textbf{Description} \\
+\midrule
+\textsc{Petitioner}   & Appellant / petitioner name \\
+\textsc{Respondent}    & Opposing party / State \\
+\textsc{Court}         & Court or tribunal name \\
+\textsc{Judge}         & Presiding judge(s) on the bench \\
+\textsc{Lawyer}        & Counsel appearing for either side \\
+\textsc{Statute}       & Name of an Act or Code (e.g., ``IPC'', ``Motor Vehicles Act, 1988'') \\
+\textsc{Provision}     & Specific section or article (e.g., ``Section 498A'', ``Article 226'') \\
+\textsc{Precedent}     & Previously decided case cited as authority \\
+\textsc{Case\_Number}  & Docket / case filing number \\
+\textsc{Date}          & Dates mentioned in the judgment \\
+\textsc{ORG}           & Organisations (police stations, hospitals, banks) \\
+\textsc{GPE}           & Geo-political entities (cities, states, districts) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each extracted entity mention is tagged with its character-level span offsets and the rhetorical section in which it appears. This section-level provenance is critical for the graph construction stage, where entities found in \emph{arguments} are treated differently from those in the \emph{preamble} (see Chapter~\ref{ch:graph}).
+
+\subsection{Lawyer Side Inference}
+
+A notable extension to vanilla NER is the \emph{lawyer side inference} heuristic. The OpenNyAI model labels all counsel uniformly as \textsc{Lawyer}; however, for the graph schema we require a distinction between petitioner's counsel and respondent's counsel. A context-window classifier inspects the 300 characters preceding and 150 characters following each lawyer mention, searching for side-specific signals (Table~\ref{tab:lawyer-signals}).
+
+\begin{table}[H]
+\centering
+\caption{Signal phrases used for lawyer side inference.}
+\label{tab:lawyer-signals}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Side} & \textbf{Example signals} \\
+\midrule
+Petitioner & ``for appellant'', ``for petitioner'', ``counsel for petitioner'' \\
+Respondent / Defence & ``for respondent'', ``for the state'', ``public prosecutor'', ``A.G.A.'' \\
+Unknown & ``learned counsel'', ``senior counsel'', ``submitted that'' \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Rhetorical Role Classification}
+\label{sec:rrc}
+
+Rhetorical Role Classification (RRC) assigns a functional label to each sentence in a judgment, describing its purpose within the legal reasoning chain. The taxonomy used by the OpenNyAI pipeline segments the judgment into the following roles:
+
+\begin{table}[H]
+\centering
+\caption{Rhetorical role taxonomy applied to court judgments.}
+\label{tab:rr-roles}
+\begin{tabular}{@{}lp{9cm}@{}}
+\toprule
+\textbf{Role} & \textbf{Description} \\
+\midrule
+\textsc{Preamble}   & Case header — court name, bench, parties, docket number \\
+\textsc{Facts}      & Factual narrative as presented by the parties or the court \\
+\textsc{Arguments}  & Submissions and legal contentions of counsel \\
+\textsc{Analysis}   & Court's own reasoning, evaluation of evidence \\
+\textsc{Decision}   & Operative order — the final ruling \\
+\textsc{Issue}      & Legal questions framed for determination \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+RRC is critical for this thesis for two reasons. First, it enables the extraction of \emph{pre-judgment text} by retaining only \textsc{Preamble}, \textsc{Facts}, and \textsc{Arguments} while discarding \textsc{Decision}, \textsc{Analysis}, and \textsc{Issue} — a necessary condition for leakage-free prediction (Section~\ref{sec:leakage}). Second, it powers the \emph{section-separated} graph variant (Chapter~\ref{ch:graph}), where argument text is further split into petitioner arguments, respondent arguments, and other lawyer arguments based on combined RRC and lawyer-side detection.
+
+Figure~\ref{fig:rr-breakdown} shows the distribution of rhetorical roles across the corpus.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{rhetorical_role_breakdown_full.png}
+\caption{Distribution of rhetorical roles across all five domain buckets.}
+\label{fig:rr-breakdown}
+\end{figure}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Outcome Labelling}
+\label{sec:outcome}
+
+The target variable for legal judgment prediction is the \emph{case outcome from the appellant/petitioner's perspective}. Since raw judgments do not carry a structured outcome field, we use an LLM-based labelling pipeline built on \textbf{Mistral-24B} to automatically extract and classify outcomes.
+
+\subsection{Label Schema}
+
+The labelling pipeline assigns each case one of three labels:
+
+\begin{table}[H]
+\centering
+\caption{Case outcome label schema.}
+\label{tab:outcome-labels}
+\begin{tabular}{@{}clp{8cm}@{}}
+\toprule
+\textbf{Numeric} & \textbf{Label} & \textbf{Meaning} \\
+\midrule
+$+1$ & \texttt{appellant\_won} & Petition/appeal allowed, bail granted, conviction set aside, compensation awarded \\
+$0$  & \texttt{postponed\_or\_procedural} & Matter adjourned, remanded, still pending \\
+$-1$ & \texttt{appellant\_lost} & Petition dismissed, appeal rejected, bail denied \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Mistral model reads the full judgment text and produces a JSON response containing: (i) a short natural-language explanation of the outcome, (ii) a categorical label, and (iii) a confidence score. Each labelled case retains the raw model response for auditability.
+
+\subsection{Outcome Distribution}
+
+Figure~\ref{fig:outcome-dist} shows the distribution of outcome labels across all five domain buckets. The majority of cases fall into the \texttt{appellant\_won} category, reflecting the composition of reported judgments in the Indian legal information system.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{outcome_distribution_full.png}
+\caption{Distribution of case outcome labels across domain buckets.}
+\label{fig:outcome-dist}
+\end{figure}
+
+Figure~\ref{fig:labelling-coverage} shows the labelling coverage — the proportion of cases for which the Mistral model was able to produce a valid label with sufficient confidence.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{labelling_coverage_full.png}
+\caption{Outcome labelling coverage across domain buckets.}
+\label{fig:labelling-coverage}
+\end{figure}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Merging the Same Case Across Time}
+\label{sec:merge}
+
+A single legal case may generate multiple documents over its lifecycle — interim orders, bail hearings, adjournments, and final disposition — each published as a separate file. Treating these as independent data points introduces duplicate entities, inconsistent labels, and inflated corpus counts. This section describes the case merger pipeline used to consolidate multi-hearing documents into a single, chronologically-ordered case record.
+
+\subsection{Problem Definition}
+
+Case files follow a naming convention of the form:
+
+\begin{center}
+\texttt{<Case Name> on <DD\_Month\_YYYY>.json}
+\end{center}
+
+Files belonging to the same underlying case share the same case name prefix but differ in their hearing date suffix. The merger must: (i)~detect all files belonging to the same case, (ii)~order them chronologically, (iii)~check if earlier hearings are already contained verbatim in the latest document, and (iv)~if not, concatenate earlier hearing text into the final document with properly adjusted entity offsets.
+
+\subsection{Containment Check}
+
+Before merging, the pipeline checks whether the text of each earlier hearing is already present in the latest (final) judgment. This is done using a sampling-based containment test with the following logic:
+
+\begin{enumerate}
+    \item If the older document is longer than $1.05\times$ the latest document, it \emph{cannot} be contained — return \texttt{False}.
+    \item Strip the first 10\% of the older text (boilerplate header).
+    \item Sample 20 non-overlapping chunks of 150 characters each, evenly distributed across the body.
+    \item If $\geq 60\%$ of sampled chunks appear verbatim in the latest text, the older hearing is considered ``contained'' and need not be appended.
+\end{enumerate}
+
+\subsection{Full Merge Procedure}
+
+For cases where earlier hearings are \emph{not} contained, the merger constructs a unified document:
+
+\begin{itemize}
+    \item Text from all hearings is concatenated in chronological order, with labelled separators (e.g., \texttt{[HEARING: 15\_July\_2024 --- filename.json]}).
+    \item Entity annotation offsets (character start/end positions) are shifted by the cumulative text length to maintain alignment with the merged text.
+    \item Summaries from all hearings are merged with date-prefixed keys to avoid collisions.
+    \item A hearing timeline is embedded in the output JSON, recording each hearing's date, outcome label, text length, and whether it was the final decision.
+    \item The outcome label and score from the \emph{latest} hearing are used as the ground truth.
+\end{itemize}
+
+\subsection{Merge Statistics}
+
+Table~\ref{tab:merge-stats} presents the merger statistics across all five domain buckets.
+
+\begin{table}[H]
+\centering
+\caption{Case merger statistics by domain bucket.}
+\label{tab:merge-stats}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Bucket} & \textbf{Input} & \textbf{Final} & \textbf{Folded} & \textbf{Appended} & \textbf{Contained} \\
+\midrule
+Family \& Matrimonial  & 15,800 & 15,306 & 493 & 490 & 3 \\
+Financial Fraud        & 15,014 & 14,615 & 399 & 396 & 3 \\
+Land \& Property       & 14,324 & 14,051 & 251 & 242 & 9 \\
+Motor Accidents        & 15,271 & 15,236 &  32 &  30 & 2 \\
+Sexual Offences        & 15,532 & 14,596 & 936 & 932 & 4 \\
+\midrule
+\textbf{Total}         & \textbf{75,941} & \textbf{73,804} & \textbf{2,111} & \textbf{2,090} & \textbf{21} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In total, \textbf{2,111 older hearing files} were folded into their corresponding final case documents. Of these, 2,090 required text appending (their content was \emph{not} already present in the latest file), while only 21 were already fully contained. The Sexual Offences bucket exhibited the highest merge rate (6.0\% of files), consistent with the multi-hearing nature of criminal trials in this domain.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Final Corpus Construction}
+\label{sec:final-corpus}
+
+After merging, the per-domain case files are assembled into a unified cross-bucket dataset via hard-linking. Table~\ref{tab:final-corpus} presents the final corpus composition.
+
+\begin{table}[H]
+\centering
+\caption{Final corpus composition by domain bucket (post-merge).}
+\label{tab:final-corpus}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Domain Bucket} & \textbf{Case Files} \\
+\midrule
+Family \& Matrimonial  & 15,307 \\
+Financial Fraud        & 14,616 \\
+Land \& Property       & 14,052 \\
+Motor Accidents        & 15,237 \\
+Sexual Offences        & 14,597 \\
+\midrule
+\textbf{Total}         & \textbf{73,809} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each case file is a JSON document containing: (i)~sentence-level annotations with entity spans and rhetorical role labels, (ii)~a structured summary with preamble, facts, arguments, and (where present) decision text, and (iii)~the Mistral-assigned outcome label, score, and raw response.
+
+The cross-bucket dataset is materialized by prefixing each file with its bucket name (e.g., \texttt{family\_matrimonial\_timed\_mistral\_\_<case>.json}), enabling bucket-level filtering at any downstream stage.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Data Quality and Coverage}
+\label{sec:quality}
+
+Several quality dimensions are monitored throughout the pipeline:
+
+\begin{itemize}
+    \item \textbf{Label coverage.} The Mistral labelling pipeline successfully assigns an outcome label to the vast majority of cases. Figure~\ref{fig:labelling-coverage} (shown previously) reports per-bucket coverage rates.
+    \item \textbf{Entity extraction quality.} NER performance is bounded by the OpenNyAI model's accuracy on Indian legal text. Known failure modes include fragmented statute names (e.g., ``IPC'', ``I.P.C.'', and ``Indian Penal Code'' as separate entities for the same statute) and missed entity boundaries in long sentences.
+    \item \textbf{Rhetorical role noise.} The RRC model occasionally mis-classifies argument text as analysis or vice versa. This is mitigated during graph construction by conservatively excluding both \textsc{Analysis} and \textsc{Issue} sections from retained pre-judgment text.
+    \item \textbf{Entity duplication.} Normalisation during graph construction (Chapter~\ref{ch:graph}) addresses surface-form variants by lowercasing, stripping honorifics, and applying statute-specific rewrites (e.g., ``Cr.P.C.'' $\to$ ``code of criminal procedure'').
+\end{itemize}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Leakage Prevention Strategy}
+\label{sec:leakage}
+
+Preventing information leakage is \textbf{critical} for pre-judgment prediction. If features encoding the court's final decision — the very target we are predicting — are available to the model at training or inference time, performance metrics become meaningless. The pipeline enforces leakage prevention at three levels:
+
+\subsection{Field-Level Exclusions}
+
+The following top-level JSON fields are \emph{unconditionally dropped} during preprocessing:
+
+\begin{itemize}
+    \item \texttt{case\_outcome\_label}, \texttt{case\_outcome\_score}, \texttt{llm\_case\_outcome}
+    \item \texttt{decision\_text}, \texttt{rpc\_texts}
+    \item \texttt{short\_explanation}, \texttt{raw\_model\_response}
+    \item \texttt{raw\_result.summary.decision}
+    \item \texttt{raw\_result.summary.ANALYSIS}, \texttt{raw\_result.summary.issue}
+\end{itemize}
+
+\subsection{Annotation-Level Filtering}
+
+Individual sentence-level annotations are dropped if they meet any of the following conditions:
+
+\begin{itemize}
+    \item The \texttt{summary\_section} field is \texttt{decision}, \texttt{ANALYSIS}, or \texttt{issue}.
+    \item The annotation carries a forbidden label: \textsc{RPC} (Ratio of the decision — Petitioner Court) or \textsc{RLC} (Ratio of the decision — Legal Court).
+    \item Any label in the annotation matches suspicious terms: ``decision'', ``disposition'', ``operative'', ``order''.
+    \item The annotation text contains an explicit leakage phrase (see below).
+\end{itemize}
+
+\subsection{Regex-Based Phrase Masking}
+
+Even within retained \textsc{Preamble}, \textsc{Facts}, and \textsc{Arguments} sections, outcome-bearing phrases occasionally leak in (e.g., counsel quoting an anticipated outcome). The pipeline compiles a set of regex patterns and replaces matches with a \texttt{[LEAKAGE\_MASK]} token. The masked phrases include:
+
+\begin{itemize}
+    \item ``petition stands disposed of'', ``writ petition disposed of''
+    \item ``appeal is allowed'', ``appeal allowed'', ``petition allowed''
+    \item ``appeal dismissed'', ``petition dismissed''
+    \item ``set aside'', ``quashed'', ``liberty granted''
+    \item ``matter remanded''
+\end{itemize}
+
+\subsection{Per-Case Audit Trail}
+
+Every processed case is accompanied by a dedicated audit JSON recording: fields dropped, annotations dropped (with reasons), decision text removal confirmation, leakage phrases matched, and retained text lengths. This enables post-hoc verification that no outcome information survives into the model's feature space.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Chapter Summary}
+\label{sec:ch4-summary}
+
+This chapter described the construction of a 73,809-case corpus covering five domains of Indian law. Key contributions include:
+
+\begin{enumerate}
+    \item A domain-bucketed corpus spanning family/matrimonial, financial fraud, land/property, motor accidents, and sexual offence cases.
+    \item Automated NER with 12 entity types, augmented by a side-inference heuristic for lawyer entities.
+    \item Rhetorical role classification enabling section-aware text extraction.
+    \item LLM-based outcome labelling using Mistral-24B with a three-class schema.
+    \item A case merger pipeline that consolidates 2,111 multi-hearing documents using a sampling-based containment test.
+    \item A multi-layered leakage prevention strategy with field-level, annotation-level, and phrase-level controls, each audited per case.
+\end{enumerate}
+
+The cleaned, merged, and labelled corpus forms the input to the heterogeneous knowledge graph construction pipeline described in Chapter~\ref{ch:graph}.

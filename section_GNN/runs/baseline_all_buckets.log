@@ -1,0 +1,847 @@
+nohup: ignoring input
+=== Running family_matrimonial_timed_mistral as family_matrimonial_kfold_baseline ===
+============================================================
+Pipeline: family_matrimonial_timed_mistral
+  env=thesis_work  run=family_matrimonial_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 20:23:46 | INFO | build_reasoning_graph | Loaded 14563 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/processed/cleaned_cases
+2026-04-18 20:24:14 | INFO | build_reasoning_graph | Loaded embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/embeddings_cache/all_nodes_67bd2d4eb4c0dc5226c7.npz shape=(229509, 1024)
+2026-04-18 20:24:15 | INFO | build_reasoning_graph | Prepared 14563 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 20:24:20 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=family_matrimonial_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3459056)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3459058)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3459060)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3459062)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3459064)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 20:24:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:24:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:24:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:24:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:24:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | ── Fold 3/5 | train=11650  test=2913  seed=44
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | ── Fold 1/5 | train=11650  test=2913  seed=42
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | ── Fold 5/5 | train=11651  test=2912  seed=46
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:24:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | ── Fold 2/5 | train=11650  test=2913  seed=43
+2026-04-18 20:24:26 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-18 20:24:26 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:24:26 | INFO | kfold_cv_family_matrimonial_kfold_baseline | ── Fold 4/5 | train=11651  test=2912  seed=45
+2026-04-18 20:24:34 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=1/60 train_loss=0.7459 train_macro_f1=0.4025 val_macro_f1=0.4038 best_val_macro_f1=0.4038 patience_counter=0
+2026-04-18 20:24:36 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=1/60 train_loss=0.6989 train_macro_f1=0.2759 val_macro_f1=0.2698 best_val_macro_f1=0.2698 patience_counter=0
+2026-04-18 20:24:40 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=1/60 train_loss=0.7217 train_macro_f1=0.2528 val_macro_f1=0.2622 best_val_macro_f1=0.2622 patience_counter=0
+2026-04-18 20:24:44 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=1/60 train_loss=0.7080 train_macro_f1=0.4047 val_macro_f1=0.4050 best_val_macro_f1=0.4050 patience_counter=0
+2026-04-18 20:24:45 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=1/60 train_loss=0.6965 train_macro_f1=0.6677 val_macro_f1=0.6632 best_val_macro_f1=0.6632 patience_counter=0
+2026-04-18 20:25:12 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=5/60 train_loss=0.6572 train_macro_f1=0.6456 val_macro_f1=0.6459 best_val_macro_f1=0.6647 patience_counter=2
+2026-04-18 20:25:12 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=5/60 train_loss=0.6244 train_macro_f1=0.6587 val_macro_f1=0.6582 best_val_macro_f1=0.6684 patience_counter=1
+2026-04-18 20:25:13 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=5/60 train_loss=0.6638 train_macro_f1=0.6498 val_macro_f1=0.6266 best_val_macro_f1=0.6526 patience_counter=2
+2026-04-18 20:25:14 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=5/60 train_loss=0.6493 train_macro_f1=0.6839 val_macro_f1=0.6639 best_val_macro_f1=0.6639 patience_counter=0
+2026-04-18 20:25:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=5/60 train_loss=0.5975 train_macro_f1=0.6992 val_macro_f1=0.7014 best_val_macro_f1=0.7014 patience_counter=0
+2026-04-18 20:25:28 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=10/60 train_loss=0.5855 train_macro_f1=0.6984 val_macro_f1=0.7021 best_val_macro_f1=0.7021 patience_counter=0
+2026-04-18 20:25:29 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=10/60 train_loss=0.5530 train_macro_f1=0.7272 val_macro_f1=0.7220 best_val_macro_f1=0.7220 patience_counter=0
+2026-04-18 20:25:30 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=10/60 train_loss=0.6009 train_macro_f1=0.6964 val_macro_f1=0.6734 best_val_macro_f1=0.6734 patience_counter=0
+2026-04-18 20:25:31 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=10/60 train_loss=0.5800 train_macro_f1=0.7142 val_macro_f1=0.7005 best_val_macro_f1=0.7005 patience_counter=0
+2026-04-18 20:25:33 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=10/60 train_loss=0.5299 train_macro_f1=0.7467 val_macro_f1=0.7480 best_val_macro_f1=0.7480 patience_counter=0
+2026-04-18 20:25:46 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=15/60 train_loss=0.5232 train_macro_f1=0.7339 val_macro_f1=0.7328 best_val_macro_f1=0.7441 patience_counter=1
+2026-04-18 20:25:46 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=15/60 train_loss=0.4945 train_macro_f1=0.7363 val_macro_f1=0.7261 best_val_macro_f1=0.7388 patience_counter=1
+2026-04-18 20:25:47 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=15/60 train_loss=0.5403 train_macro_f1=0.7242 val_macro_f1=0.7097 best_val_macro_f1=0.7172 patience_counter=1
+2026-04-18 20:25:47 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=15/60 train_loss=0.5120 train_macro_f1=0.7423 val_macro_f1=0.7437 best_val_macro_f1=0.7541 patience_counter=1
+2026-04-18 20:25:49 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=15/60 train_loss=0.4747 train_macro_f1=0.7393 val_macro_f1=0.7273 best_val_macro_f1=0.7591 patience_counter=2
+2026-04-18 20:26:02 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=20/60 train_loss=0.4670 train_macro_f1=0.7576 val_macro_f1=0.7603 best_val_macro_f1=0.7703 patience_counter=1
+2026-04-18 20:26:03 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=20/60 train_loss=0.4518 train_macro_f1=0.7754 val_macro_f1=0.7622 best_val_macro_f1=0.7622 patience_counter=0
+2026-04-18 20:26:03 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=20/60 train_loss=0.4905 train_macro_f1=0.7556 val_macro_f1=0.7457 best_val_macro_f1=0.7457 patience_counter=0
+2026-04-18 20:26:04 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=20/60 train_loss=0.4613 train_macro_f1=0.7673 val_macro_f1=0.7707 best_val_macro_f1=0.7707 patience_counter=0
+2026-04-18 20:26:06 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=20/60 train_loss=0.4406 train_macro_f1=0.7862 val_macro_f1=0.7796 best_val_macro_f1=0.7796 patience_counter=0
+2026-04-18 20:26:18 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=25/60 train_loss=0.4319 train_macro_f1=0.7881 val_macro_f1=0.7582 best_val_macro_f1=0.7826 patience_counter=1
+2026-04-18 20:26:19 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=25/60 train_loss=0.4135 train_macro_f1=0.7903 val_macro_f1=0.7639 best_val_macro_f1=0.7639 patience_counter=0
+2026-04-18 20:26:20 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=25/60 train_loss=0.4443 train_macro_f1=0.7721 val_macro_f1=0.7623 best_val_macro_f1=0.7623 patience_counter=0
+2026-04-18 20:26:20 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=25/60 train_loss=0.4214 train_macro_f1=0.7878 val_macro_f1=0.7846 best_val_macro_f1=0.7846 patience_counter=0
+2026-04-18 20:26:22 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=25/60 train_loss=0.3989 train_macro_f1=0.7918 val_macro_f1=0.7796 best_val_macro_f1=0.8024 patience_counter=1
+2026-04-18 20:26:34 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=30/60 train_loss=0.3851 train_macro_f1=0.8175 val_macro_f1=0.7894 best_val_macro_f1=0.7894 patience_counter=0
+2026-04-18 20:26:36 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=30/60 train_loss=0.3695 train_macro_f1=0.8105 val_macro_f1=0.7761 best_val_macro_f1=0.7903 patience_counter=2
+2026-04-18 20:26:36 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=30/60 train_loss=0.4030 train_macro_f1=0.7871 val_macro_f1=0.7509 best_val_macro_f1=0.7673 patience_counter=1
+2026-04-18 20:26:37 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=30/60 train_loss=0.3792 train_macro_f1=0.8171 val_macro_f1=0.7872 best_val_macro_f1=0.7877 patience_counter=1
+2026-04-18 20:26:38 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=30/60 train_loss=0.3683 train_macro_f1=0.8051 val_macro_f1=0.7927 best_val_macro_f1=0.8024 patience_counter=6
+2026-04-18 20:26:51 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=35/60 train_loss=0.3498 train_macro_f1=0.8431 val_macro_f1=0.7921 best_val_macro_f1=0.7938 patience_counter=2
+2026-04-18 20:26:52 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=35/60 train_loss=0.3339 train_macro_f1=0.8110 val_macro_f1=0.7681 best_val_macro_f1=0.7913 patience_counter=1
+2026-04-18 20:26:53 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=35/60 train_loss=0.3643 train_macro_f1=0.8318 val_macro_f1=0.7852 best_val_macro_f1=0.7852 patience_counter=0
+2026-04-18 20:26:53 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=35/60 train_loss=0.3430 train_macro_f1=0.8406 val_macro_f1=0.7957 best_val_macro_f1=0.7957 patience_counter=0
+2026-04-18 20:26:55 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=35/60 train_loss=0.3185 train_macro_f1=0.8587 val_macro_f1=0.7999 best_val_macro_f1=0.8045 patience_counter=1
+2026-04-18 20:27:07 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=40/60 train_loss=0.3306 train_macro_f1=0.8671 val_macro_f1=0.8114 best_val_macro_f1=0.8114 patience_counter=0
+2026-04-18 20:27:09 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=40/60 train_loss=0.3014 train_macro_f1=0.8623 val_macro_f1=0.7952 best_val_macro_f1=0.7952 patience_counter=0
+2026-04-18 20:27:09 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=40/60 train_loss=0.3269 train_macro_f1=0.8057 val_macro_f1=0.7625 best_val_macro_f1=0.7903 patience_counter=2
+2026-04-18 20:27:09 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=40/60 train_loss=0.3100 train_macro_f1=0.8609 val_macro_f1=0.8059 best_val_macro_f1=0.8059 patience_counter=0
+2026-04-18 20:27:11 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=40/60 train_loss=0.2902 train_macro_f1=0.8725 val_macro_f1=0.8126 best_val_macro_f1=0.8126 patience_counter=0
+2026-04-18 20:27:24 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=45/60 train_loss=0.2953 train_macro_f1=0.8685 val_macro_f1=0.7974 best_val_macro_f1=0.8174 patience_counter=1
+2026-04-18 20:27:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=45/60 train_loss=0.2665 train_macro_f1=0.8889 val_macro_f1=0.8041 best_val_macro_f1=0.8054 patience_counter=1
+2026-04-18 20:27:25 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=45/60 train_loss=0.3162 train_macro_f1=0.8613 val_macro_f1=0.7867 best_val_macro_f1=0.7962 patience_counter=3
+2026-04-18 20:27:26 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=45/60 train_loss=0.2672 train_macro_f1=0.8722 val_macro_f1=0.8004 best_val_macro_f1=0.8075 patience_counter=2
+2026-04-18 20:27:28 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=45/60 train_loss=0.2584 train_macro_f1=0.8850 val_macro_f1=0.8025 best_val_macro_f1=0.8149 patience_counter=2
+2026-04-18 20:27:40 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=50/60 train_loss=0.2429 train_macro_f1=0.9042 val_macro_f1=0.8117 best_val_macro_f1=0.8174 patience_counter=6
+2026-04-18 20:27:41 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=50/60 train_loss=0.2136 train_macro_f1=0.9159 val_macro_f1=0.8090 best_val_macro_f1=0.8110 patience_counter=1
+2026-04-18 20:27:42 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=50/60 train_loss=0.2756 train_macro_f1=0.8860 val_macro_f1=0.7961 best_val_macro_f1=0.7975 patience_counter=1
+2026-04-18 20:27:42 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=50/60 train_loss=0.2365 train_macro_f1=0.8784 val_macro_f1=0.8001 best_val_macro_f1=0.8121 patience_counter=1
+2026-04-18 20:27:44 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=50/60 train_loss=0.2006 train_macro_f1=0.9239 val_macro_f1=0.8011 best_val_macro_f1=0.8149 patience_counter=7
+2026-04-18 20:27:56 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=55/60 train_loss=0.2123 train_macro_f1=0.9263 val_macro_f1=0.8174 best_val_macro_f1=0.8203 patience_counter=2
+2026-04-18 20:27:58 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=55/60 train_loss=0.1795 train_macro_f1=0.9397 val_macro_f1=0.8081 best_val_macro_f1=0.8119 patience_counter=1
+2026-04-18 20:27:58 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=55/60 train_loss=0.2277 train_macro_f1=0.9120 val_macro_f1=0.7979 best_val_macro_f1=0.7979 patience_counter=0
+2026-04-18 20:27:59 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=55/60 train_loss=0.1941 train_macro_f1=0.9123 val_macro_f1=0.7995 best_val_macro_f1=0.8139 patience_counter=1
+2026-04-18 20:28:00 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=55/60 train_loss=0.1816 train_macro_f1=0.9472 val_macro_f1=0.8046 best_val_macro_f1=0.8149 patience_counter=12
+2026-04-18 20:28:10 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Early stopping at epoch=58 best_epoch=43
+2026-04-18 20:28:10 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 2 done | test_acc=0.8043  test_macro_f1=0.7913
+2026-04-18 20:28:10 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:28:12 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=60/60 train_loss=0.1674 train_macro_f1=0.9415 val_macro_f1=0.8165 best_val_macro_f1=0.8203 patience_counter=7
+2026-04-18 20:28:13 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 3 done | test_acc=0.8222  test_macro_f1=0.8018
+2026-04-18 20:28:13 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:28:14 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=60/60 train_loss=0.1427 train_macro_f1=0.9578 val_macro_f1=0.8045 best_val_macro_f1=0.8165 patience_counter=4
+2026-04-18 20:28:14 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 1 done | test_acc=0.8050  test_macro_f1=0.7925
+2026-04-18 20:28:14 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:28:14 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=60/60 train_loss=0.1766 train_macro_f1=0.9252 val_macro_f1=0.7953 best_val_macro_f1=0.8078 patience_counter=1
+2026-04-18 20:28:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | epoch=60/60 train_loss=0.1836 train_macro_f1=0.9257 val_macro_f1=0.7981 best_val_macro_f1=0.8139 patience_counter=6
+2026-04-18 20:28:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 5 done | test_acc=0.8238  test_macro_f1=0.8053
+2026-04-18 20:28:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 0 complete.
+[03_kfold] Fold 1 complete.
+[03_kfold] Fold 2 complete.
+2026-04-18 20:28:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 4 done | test_acc=0.8221  test_macro_f1=0.7981
+2026-04-18 20:28:15 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 20:28:20 | INFO | kfold_cv_family_matrimonial_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.8155±0.0089  macro_f1=0.7978±0.0053
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/models/family_matrimonial_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.
+=== Running fin_fraud_timed_mistral as fin_fraud_kfold_baseline ===
+============================================================
+Pipeline: fin_fraud_timed_mistral
+  env=thesis_work  run=fin_fraud_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 20:28:33 | INFO | build_reasoning_graph | Loaded 13973 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed/cleaned_cases
+2026-04-18 20:29:11 | INFO | build_reasoning_graph | Loaded embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/embeddings_cache/all_nodes_6c6b2500e023888246e8.npz shape=(244849, 1024)
+2026-04-18 20:29:13 | INFO | build_reasoning_graph | Prepared 13973 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 20:29:16 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=fin_fraud_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3469390)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3469392)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3469394)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3469396)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3469398)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/logs/fin_fraud_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 20:29:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:29:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:29:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:29:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:29:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_global_graph_fin_fraud_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | ── Fold 2/5 | train=11178  test=2795  seed=43
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | ── Fold 1/5 | train=11178  test=2795  seed=42
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:29:22 | INFO | kfold_cv_fin_fraud_kfold_baseline | ── Fold 3/5 | train=11178  test=2795  seed=44
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | ── Fold 4/5 | train=11179  test=2794  seed=45
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | Graph loaded | n_cases=13973 | labels=['-1', '1']
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:29:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | ── Fold 5/5 | train=11179  test=2794  seed=46
+2026-04-18 20:29:27 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=1/60 train_loss=0.7018 train_macro_f1=0.5777 val_macro_f1=0.5771 best_val_macro_f1=0.5771 patience_counter=0
+2026-04-18 20:29:29 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=1/60 train_loss=0.7016 train_macro_f1=0.2818 val_macro_f1=0.2890 best_val_macro_f1=0.2890 patience_counter=0
+2026-04-18 20:29:29 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=1/60 train_loss=0.7414 train_macro_f1=0.3807 val_macro_f1=0.3862 best_val_macro_f1=0.3862 patience_counter=0
+2026-04-18 20:29:31 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=1/60 train_loss=0.7081 train_macro_f1=0.3779 val_macro_f1=0.3732 best_val_macro_f1=0.3732 patience_counter=0
+2026-04-18 20:29:31 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=1/60 train_loss=0.7217 train_macro_f1=0.2843 val_macro_f1=0.2671 best_val_macro_f1=0.2671 patience_counter=0
+2026-04-18 20:29:50 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=5/60 train_loss=0.6390 train_macro_f1=0.6604 val_macro_f1=0.6522 best_val_macro_f1=0.6522 patience_counter=0
+2026-04-18 20:29:58 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=5/60 train_loss=0.6777 train_macro_f1=0.5756 val_macro_f1=0.5639 best_val_macro_f1=0.5793 patience_counter=2
+2026-04-18 20:30:00 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=5/60 train_loss=0.6776 train_macro_f1=0.6131 val_macro_f1=0.5889 best_val_macro_f1=0.5889 patience_counter=0
+2026-04-18 20:30:00 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=5/60 train_loss=0.6832 train_macro_f1=0.5802 val_macro_f1=0.5720 best_val_macro_f1=0.5720 patience_counter=0
+2026-04-18 20:30:02 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=5/60 train_loss=0.6821 train_macro_f1=0.5366 val_macro_f1=0.5263 best_val_macro_f1=0.6122 patience_counter=2
+2026-04-18 20:30:51 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=10/60 train_loss=0.5890 train_macro_f1=0.6826 val_macro_f1=0.6817 best_val_macro_f1=0.6878 patience_counter=2
+2026-04-18 20:30:55 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=10/60 train_loss=0.6411 train_macro_f1=0.6665 val_macro_f1=0.6301 best_val_macro_f1=0.6301 patience_counter=0
+2026-04-18 20:31:02 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=10/60 train_loss=0.6247 train_macro_f1=0.6767 val_macro_f1=0.6482 best_val_macro_f1=0.6482 patience_counter=0
+2026-04-18 20:31:05 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=10/60 train_loss=0.6263 train_macro_f1=0.6698 val_macro_f1=0.6528 best_val_macro_f1=0.6618 patience_counter=4
+2026-04-18 20:31:08 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=10/60 train_loss=0.6454 train_macro_f1=0.6485 val_macro_f1=0.6470 best_val_macro_f1=0.6470 patience_counter=0
+2026-04-18 20:31:43 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=15/60 train_loss=0.5521 train_macro_f1=0.7288 val_macro_f1=0.7370 best_val_macro_f1=0.7370 patience_counter=0
+2026-04-18 20:31:45 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=15/60 train_loss=0.5937 train_macro_f1=0.7050 val_macro_f1=0.6797 best_val_macro_f1=0.6797 patience_counter=0
+2026-04-18 20:31:47 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=15/60 train_loss=0.5828 train_macro_f1=0.7139 val_macro_f1=0.6835 best_val_macro_f1=0.6835 patience_counter=0
+2026-04-18 20:31:49 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=15/60 train_loss=0.5838 train_macro_f1=0.7080 val_macro_f1=0.6964 best_val_macro_f1=0.6964 patience_counter=0
+2026-04-18 20:31:50 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=15/60 train_loss=0.6027 train_macro_f1=0.6882 val_macro_f1=0.6845 best_val_macro_f1=0.6845 patience_counter=0
+2026-04-18 20:32:31 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=20/60 train_loss=0.5155 train_macro_f1=0.7593 val_macro_f1=0.7545 best_val_macro_f1=0.7545 patience_counter=0
+2026-04-18 20:32:37 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=20/60 train_loss=0.5431 train_macro_f1=0.7323 val_macro_f1=0.6937 best_val_macro_f1=0.7071 patience_counter=1
+2026-04-18 20:32:38 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=20/60 train_loss=0.5384 train_macro_f1=0.7420 val_macro_f1=0.7063 best_val_macro_f1=0.7063 patience_counter=0
+2026-04-18 20:32:39 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=20/60 train_loss=0.5428 train_macro_f1=0.7366 val_macro_f1=0.7244 best_val_macro_f1=0.7249 patience_counter=1
+2026-04-18 20:32:42 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=20/60 train_loss=0.5615 train_macro_f1=0.7251 val_macro_f1=0.7048 best_val_macro_f1=0.7048 patience_counter=0
+2026-04-18 20:33:09 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=25/60 train_loss=0.4876 train_macro_f1=0.7876 val_macro_f1=0.7667 best_val_macro_f1=0.7667 patience_counter=0
+2026-04-18 20:33:14 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=25/60 train_loss=0.5065 train_macro_f1=0.7528 val_macro_f1=0.7116 best_val_macro_f1=0.7243 patience_counter=1
+2026-04-18 20:33:15 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=25/60 train_loss=0.5115 train_macro_f1=0.7621 val_macro_f1=0.7346 best_val_macro_f1=0.7421 patience_counter=2
+2026-04-18 20:33:15 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=25/60 train_loss=0.4915 train_macro_f1=0.7618 val_macro_f1=0.7127 best_val_macro_f1=0.7163 patience_counter=4
+2026-04-18 20:33:16 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=25/60 train_loss=0.5075 train_macro_f1=0.7576 val_macro_f1=0.7292 best_val_macro_f1=0.7292 patience_counter=0
+2026-04-18 20:33:26 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=30/60 train_loss=0.4401 train_macro_f1=0.7834 val_macro_f1=0.7342 best_val_macro_f1=0.7667 patience_counter=5
+2026-04-18 20:33:31 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=30/60 train_loss=0.4730 train_macro_f1=0.7874 val_macro_f1=0.7270 best_val_macro_f1=0.7304 patience_counter=2
+2026-04-18 20:33:32 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=30/60 train_loss=0.4770 train_macro_f1=0.7782 val_macro_f1=0.7291 best_val_macro_f1=0.7464 patience_counter=1
+2026-04-18 20:33:32 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=30/60 train_loss=0.4599 train_macro_f1=0.7808 val_macro_f1=0.7096 best_val_macro_f1=0.7252 patience_counter=4
+2026-04-18 20:33:33 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=30/60 train_loss=0.4909 train_macro_f1=0.7469 val_macro_f1=0.7095 best_val_macro_f1=0.7308 patience_counter=3
+2026-04-18 20:34:07 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=35/60 train_loss=0.3846 train_macro_f1=0.8340 val_macro_f1=0.7708 best_val_macro_f1=0.7708 patience_counter=1
+2026-04-18 20:34:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=35/60 train_loss=0.4314 train_macro_f1=0.7953 val_macro_f1=0.7333 best_val_macro_f1=0.7408 patience_counter=1
+2026-04-18 20:34:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=35/60 train_loss=0.4283 train_macro_f1=0.8060 val_macro_f1=0.7428 best_val_macro_f1=0.7464 patience_counter=6
+2026-04-18 20:34:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=35/60 train_loss=0.4191 train_macro_f1=0.8201 val_macro_f1=0.7319 best_val_macro_f1=0.7477 patience_counter=1
+2026-04-18 20:34:21 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=35/60 train_loss=0.4608 train_macro_f1=0.7979 val_macro_f1=0.7527 best_val_macro_f1=0.7527 patience_counter=0
+2026-04-18 20:34:54 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=40/60 train_loss=0.3611 train_macro_f1=0.8618 val_macro_f1=0.7715 best_val_macro_f1=0.7741 patience_counter=2
+2026-04-18 20:34:57 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=40/60 train_loss=0.3927 train_macro_f1=0.8208 val_macro_f1=0.7398 best_val_macro_f1=0.7549 patience_counter=4
+2026-04-18 20:34:57 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=40/60 train_loss=0.3951 train_macro_f1=0.8351 val_macro_f1=0.7465 best_val_macro_f1=0.7465 patience_counter=0
+2026-04-18 20:35:09 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=40/60 train_loss=0.4155 train_macro_f1=0.8286 val_macro_f1=0.7591 best_val_macro_f1=0.7591 patience_counter=0
+2026-04-18 20:35:11 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=40/60 train_loss=0.3679 train_macro_f1=0.8483 val_macro_f1=0.7528 best_val_macro_f1=0.7528 patience_counter=0
+2026-04-18 20:35:40 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=45/60 train_loss=0.3190 train_macro_f1=0.8702 val_macro_f1=0.7631 best_val_macro_f1=0.7741 patience_counter=7
+2026-04-18 20:35:50 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=45/60 train_loss=0.3479 train_macro_f1=0.8615 val_macro_f1=0.7523 best_val_macro_f1=0.7523 patience_counter=0
+2026-04-18 20:35:50 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=45/60 train_loss=0.3608 train_macro_f1=0.8161 val_macro_f1=0.7373 best_val_macro_f1=0.7598 patience_counter=3
+2026-04-18 20:36:01 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=45/60 train_loss=0.3613 train_macro_f1=0.8541 val_macro_f1=0.7499 best_val_macro_f1=0.7591 patience_counter=5
+2026-04-18 20:36:04 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=45/60 train_loss=0.3321 train_macro_f1=0.8709 val_macro_f1=0.7481 best_val_macro_f1=0.7577 patience_counter=3
+2026-04-18 20:36:16 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=50/60 train_loss=0.2872 train_macro_f1=0.9073 val_macro_f1=0.7682 best_val_macro_f1=0.7741 patience_counter=12
+2026-04-18 20:36:17 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=50/60 train_loss=0.2876 train_macro_f1=0.8771 val_macro_f1=0.7416 best_val_macro_f1=0.7612 patience_counter=2
+2026-04-18 20:36:17 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=50/60 train_loss=0.2911 train_macro_f1=0.8825 val_macro_f1=0.7593 best_val_macro_f1=0.7671 patience_counter=4
+2026-04-18 20:36:20 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=50/60 train_loss=0.3097 train_macro_f1=0.8783 val_macro_f1=0.7594 best_val_macro_f1=0.7620 patience_counter=1
+2026-04-18 20:36:23 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=50/60 train_loss=0.2808 train_macro_f1=0.8853 val_macro_f1=0.7421 best_val_macro_f1=0.7577 patience_counter=8
+2026-04-18 20:36:27 | INFO | kfold_cv_fin_fraud_kfold_baseline | Early stopping at epoch=53 best_epoch=38
+2026-04-18 20:36:27 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 2 done | test_acc=0.7707  test_macro_f1=0.7595
+2026-04-18 20:36:27 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:36:35 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=55/60 train_loss=0.2454 train_macro_f1=0.8944 val_macro_f1=0.7439 best_val_macro_f1=0.7612 patience_counter=7
+2026-04-18 20:36:36 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=55/60 train_loss=0.2875 train_macro_f1=0.9026 val_macro_f1=0.7594 best_val_macro_f1=0.7671 patience_counter=9
+2026-04-18 20:36:39 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=55/60 train_loss=0.2673 train_macro_f1=0.9031 val_macro_f1=0.7622 best_val_macro_f1=0.7725 patience_counter=2
+2026-04-18 20:36:40 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=55/60 train_loss=0.2659 train_macro_f1=0.8973 val_macro_f1=0.7394 best_val_macro_f1=0.7577 patience_counter=13
+2026-04-18 20:36:53 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=60/60 train_loss=0.1965 train_macro_f1=0.9204 val_macro_f1=0.7444 best_val_macro_f1=0.7629 patience_counter=1
+2026-04-18 20:36:53 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 3 done | test_acc=0.7857  test_macro_f1=0.7728
+2026-04-18 20:36:53 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:36:53 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=60/60 train_loss=0.2155 train_macro_f1=0.9096 val_macro_f1=0.7578 best_val_macro_f1=0.7699 patience_counter=1
+2026-04-18 20:36:54 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 4 done | test_acc=0.7659  test_macro_f1=0.7514
+2026-04-18 20:36:54 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:36:56 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=60/60 train_loss=0.2508 train_macro_f1=0.9190 val_macro_f1=0.7589 best_val_macro_f1=0.7725 patience_counter=7
+2026-04-18 20:36:57 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 5 done | test_acc=0.7763  test_macro_f1=0.7685
+2026-04-18 20:36:57 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:36:57 | INFO | kfold_cv_fin_fraud_kfold_baseline | epoch=60/60 train_loss=0.2191 train_macro_f1=0.9291 val_macro_f1=0.7418 best_val_macro_f1=0.7630 patience_counter=4
+2026-04-18 20:36:58 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 1 done | test_acc=0.7846  test_macro_f1=0.7674
+2026-04-18 20:36:58 | INFO | kfold_cv_fin_fraud_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 0 complete.
+[03_kfold] Fold 1 complete.
+[03_kfold] Fold 2 complete.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 20:37:02 | INFO | kfold_cv_fin_fraud_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.7766±0.0077  macro_f1=0.7639±0.0076
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/models/fin_fraud_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.
+=== Running land_property_timed_mistral as land_property_kfold_baseline ===
+============================================================
+Pipeline: land_property_timed_mistral
+  env=thesis_work  run=land_property_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 20:37:18 | INFO | build_reasoning_graph | Loaded 13307 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/processed/cleaned_cases
+2026-04-18 20:38:11 | INFO | build_reasoning_graph | Loaded embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/embeddings_cache/all_nodes_83f08dc7ebebe8227058.npz shape=(356315, 1024)
+2026-04-18 20:38:13 | INFO | build_reasoning_graph | Prepared 13307 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 20:38:18 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=land_property_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3484991)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/logs/land_property_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3484993)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/logs/land_property_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3484995)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/logs/land_property_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3484997)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/logs/land_property_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3484999)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/logs/land_property_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 20:38:23 | INFO | kfold_cv_land_property_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:38:23 | INFO | kfold_cv_land_property_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:38:23 | INFO | kfold_cv_land_property_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:38:23 | INFO | kfold_cv_land_property_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:38:23 | INFO | kfold_cv_land_property_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_global_graph_land_property_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | Graph loaded | n_cases=13307 | labels=['-1', '1']
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | ── Fold 3/5 | train=10646  test=2661  seed=44
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | Graph loaded | n_cases=13307 | labels=['-1', '1']
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:38:24 | INFO | kfold_cv_land_property_kfold_baseline | ── Fold 2/5 | train=10645  test=2662  seed=43
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Graph loaded | n_cases=13307 | labels=['-1', '1']
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | ── Fold 4/5 | train=10646  test=2661  seed=45
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Graph loaded | n_cases=13307 | labels=['-1', '1']
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | ── Fold 5/5 | train=10646  test=2661  seed=46
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Graph loaded | n_cases=13307 | labels=['-1', '1']
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:38:25 | INFO | kfold_cv_land_property_kfold_baseline | ── Fold 1/5 | train=10645  test=2662  seed=42
+2026-04-18 20:38:34 | INFO | kfold_cv_land_property_kfold_baseline | epoch=1/60 train_loss=0.7309 train_macro_f1=0.2745 val_macro_f1=0.2701 best_val_macro_f1=0.2701 patience_counter=0
+2026-04-18 20:38:34 | INFO | kfold_cv_land_property_kfold_baseline | epoch=1/60 train_loss=0.6981 train_macro_f1=0.5843 val_macro_f1=0.5826 best_val_macro_f1=0.5826 patience_counter=0
+2026-04-18 20:38:37 | INFO | kfold_cv_land_property_kfold_baseline | epoch=1/60 train_loss=0.7024 train_macro_f1=0.2735 val_macro_f1=0.2549 best_val_macro_f1=0.2549 patience_counter=0
+2026-04-18 20:38:41 | INFO | kfold_cv_land_property_kfold_baseline | epoch=1/60 train_loss=0.7025 train_macro_f1=0.3917 val_macro_f1=0.3955 best_val_macro_f1=0.3955 patience_counter=0
+2026-04-18 20:38:44 | INFO | kfold_cv_land_property_kfold_baseline | epoch=1/60 train_loss=0.7240 train_macro_f1=0.3891 val_macro_f1=0.3785 best_val_macro_f1=0.3785 patience_counter=0
+2026-04-18 20:39:09 | INFO | kfold_cv_land_property_kfold_baseline | epoch=5/60 train_loss=0.6733 train_macro_f1=0.6017 val_macro_f1=0.5961 best_val_macro_f1=0.6177 patience_counter=2
+2026-04-18 20:39:09 | INFO | kfold_cv_land_property_kfold_baseline | epoch=5/60 train_loss=0.6317 train_macro_f1=0.6480 val_macro_f1=0.6391 best_val_macro_f1=0.6391 patience_counter=0
+2026-04-18 20:39:10 | INFO | kfold_cv_land_property_kfold_baseline | epoch=5/60 train_loss=0.6461 train_macro_f1=0.6438 val_macro_f1=0.6314 best_val_macro_f1=0.6314 patience_counter=0
+2026-04-18 20:39:12 | INFO | kfold_cv_land_property_kfold_baseline | epoch=5/60 train_loss=0.6637 train_macro_f1=0.6141 val_macro_f1=0.6181 best_val_macro_f1=0.6181 patience_counter=0
+2026-04-18 20:39:16 | INFO | kfold_cv_land_property_kfold_baseline | epoch=5/60 train_loss=0.6715 train_macro_f1=0.5638 val_macro_f1=0.5793 best_val_macro_f1=0.6299 patience_counter=2
+2026-04-18 20:39:41 | INFO | kfold_cv_land_property_kfold_baseline | epoch=10/60 train_loss=0.6328 train_macro_f1=0.6490 val_macro_f1=0.6342 best_val_macro_f1=0.6379 patience_counter=4
+2026-04-18 20:39:43 | INFO | kfold_cv_land_property_kfold_baseline | epoch=10/60 train_loss=0.5779 train_macro_f1=0.6908 val_macro_f1=0.6761 best_val_macro_f1=0.6791 patience_counter=1
+2026-04-18 20:39:45 | INFO | kfold_cv_land_property_kfold_baseline | epoch=10/60 train_loss=0.6203 train_macro_f1=0.6449 val_macro_f1=0.6498 best_val_macro_f1=0.6502 patience_counter=3
+2026-04-18 20:39:45 | INFO | kfold_cv_land_property_kfold_baseline | epoch=10/60 train_loss=0.5959 train_macro_f1=0.6690 val_macro_f1=0.6362 best_val_macro_f1=0.6463 patience_counter=2
+2026-04-18 20:39:46 | INFO | kfold_cv_land_property_kfold_baseline | epoch=10/60 train_loss=0.6244 train_macro_f1=0.6483 val_macro_f1=0.6471 best_val_macro_f1=0.6471 patience_counter=0
+2026-04-18 20:40:19 | INFO | kfold_cv_land_property_kfold_baseline | epoch=15/60 train_loss=0.5870 train_macro_f1=0.6742 val_macro_f1=0.6606 best_val_macro_f1=0.6606 patience_counter=0
+2026-04-18 20:40:24 | INFO | kfold_cv_land_property_kfold_baseline | epoch=15/60 train_loss=0.5281 train_macro_f1=0.7475 val_macro_f1=0.7197 best_val_macro_f1=0.7197 patience_counter=0
+2026-04-18 20:40:24 | INFO | kfold_cv_land_property_kfold_baseline | epoch=15/60 train_loss=0.5714 train_macro_f1=0.6919 val_macro_f1=0.6891 best_val_macro_f1=0.6891 patience_counter=0
+2026-04-18 20:40:25 | INFO | kfold_cv_land_property_kfold_baseline | epoch=15/60 train_loss=0.5428 train_macro_f1=0.7274 val_macro_f1=0.7070 best_val_macro_f1=0.7070 patience_counter=0
+2026-04-18 20:40:25 | INFO | kfold_cv_land_property_kfold_baseline | epoch=15/60 train_loss=0.5776 train_macro_f1=0.6794 val_macro_f1=0.6592 best_val_macro_f1=0.6592 patience_counter=0
+2026-04-18 20:40:43 | INFO | kfold_cv_land_property_kfold_baseline | epoch=20/60 train_loss=0.5374 train_macro_f1=0.7145 val_macro_f1=0.6908 best_val_macro_f1=0.7090 patience_counter=1
+2026-04-18 20:40:47 | INFO | kfold_cv_land_property_kfold_baseline | epoch=20/60 train_loss=0.4752 train_macro_f1=0.7774 val_macro_f1=0.7389 best_val_macro_f1=0.7389 patience_counter=0
+2026-04-18 20:40:47 | INFO | kfold_cv_land_property_kfold_baseline | epoch=20/60 train_loss=0.5244 train_macro_f1=0.7444 val_macro_f1=0.7582 best_val_macro_f1=0.7582 patience_counter=0
+2026-04-18 20:40:48 | INFO | kfold_cv_land_property_kfold_baseline | epoch=20/60 train_loss=0.4949 train_macro_f1=0.7618 val_macro_f1=0.7390 best_val_macro_f1=0.7390 patience_counter=0
+2026-04-18 20:40:48 | INFO | kfold_cv_land_property_kfold_baseline | epoch=20/60 train_loss=0.5279 train_macro_f1=0.7405 val_macro_f1=0.7047 best_val_macro_f1=0.7047 patience_counter=0
+2026-04-18 20:41:06 | INFO | kfold_cv_land_property_kfold_baseline | epoch=25/60 train_loss=0.4907 train_macro_f1=0.7451 val_macro_f1=0.7266 best_val_macro_f1=0.7427 patience_counter=1
+2026-04-18 20:41:10 | INFO | kfold_cv_land_property_kfold_baseline | epoch=25/60 train_loss=0.4251 train_macro_f1=0.7902 val_macro_f1=0.7253 best_val_macro_f1=0.7389 patience_counter=5
+2026-04-18 20:41:10 | INFO | kfold_cv_land_property_kfold_baseline | epoch=25/60 train_loss=0.5006 train_macro_f1=0.7669 val_macro_f1=0.7626 best_val_macro_f1=0.7716 patience_counter=3
+2026-04-18 20:41:11 | INFO | kfold_cv_land_property_kfold_baseline | epoch=25/60 train_loss=0.4467 train_macro_f1=0.7933 val_macro_f1=0.7467 best_val_macro_f1=0.7467 patience_counter=0
+2026-04-18 20:41:11 | INFO | kfold_cv_land_property_kfold_baseline | epoch=25/60 train_loss=0.4784 train_macro_f1=0.7717 val_macro_f1=0.7279 best_val_macro_f1=0.7279 patience_counter=0
+2026-04-18 20:41:29 | INFO | kfold_cv_land_property_kfold_baseline | epoch=30/60 train_loss=0.4578 train_macro_f1=0.7820 val_macro_f1=0.7420 best_val_macro_f1=0.7607 patience_counter=1
+2026-04-18 20:41:32 | INFO | kfold_cv_land_property_kfold_baseline | epoch=30/60 train_loss=0.3783 train_macro_f1=0.8445 val_macro_f1=0.7603 best_val_macro_f1=0.7603 patience_counter=0
+2026-04-18 20:41:33 | INFO | kfold_cv_land_property_kfold_baseline | epoch=30/60 train_loss=0.4371 train_macro_f1=0.8012 val_macro_f1=0.7864 best_val_macro_f1=0.7864 patience_counter=0
+2026-04-18 20:41:34 | INFO | kfold_cv_land_property_kfold_baseline | epoch=30/60 train_loss=0.3917 train_macro_f1=0.8115 val_macro_f1=0.7344 best_val_macro_f1=0.7628 patience_counter=2
+2026-04-18 20:41:34 | INFO | kfold_cv_land_property_kfold_baseline | epoch=30/60 train_loss=0.4511 train_macro_f1=0.7895 val_macro_f1=0.7175 best_val_macro_f1=0.7477 patience_counter=1
+2026-04-18 20:41:52 | INFO | kfold_cv_land_property_kfold_baseline | epoch=35/60 train_loss=0.4112 train_macro_f1=0.8372 val_macro_f1=0.7760 best_val_macro_f1=0.7760 patience_counter=0
+2026-04-18 20:41:55 | INFO | kfold_cv_land_property_kfold_baseline | epoch=35/60 train_loss=0.3366 train_macro_f1=0.8776 val_macro_f1=0.7749 best_val_macro_f1=0.7749 patience_counter=0
+2026-04-18 20:41:56 | INFO | kfold_cv_land_property_kfold_baseline | epoch=35/60 train_loss=0.3941 train_macro_f1=0.8066 val_macro_f1=0.7690 best_val_macro_f1=0.7864 patience_counter=5
+2026-04-18 20:41:57 | INFO | kfold_cv_land_property_kfold_baseline | epoch=35/60 train_loss=0.3405 train_macro_f1=0.8263 val_macro_f1=0.7222 best_val_macro_f1=0.7756 patience_counter=4
+2026-04-18 20:41:57 | INFO | kfold_cv_land_property_kfold_baseline | epoch=35/60 train_loss=0.4079 train_macro_f1=0.8348 val_macro_f1=0.7482 best_val_macro_f1=0.7555 patience_counter=2
+2026-04-18 20:42:15 | INFO | kfold_cv_land_property_kfold_baseline | epoch=40/60 train_loss=0.3484 train_macro_f1=0.8356 val_macro_f1=0.7462 best_val_macro_f1=0.7822 patience_counter=1
+2026-04-18 20:42:19 | INFO | kfold_cv_land_property_kfold_baseline | epoch=40/60 train_loss=0.2612 train_macro_f1=0.9086 val_macro_f1=0.7760 best_val_macro_f1=0.7850 patience_counter=4
+2026-04-18 20:42:19 | INFO | kfold_cv_land_property_kfold_baseline | epoch=40/60 train_loss=0.3361 train_macro_f1=0.8739 val_macro_f1=0.7955 best_val_macro_f1=0.7955 patience_counter=0
+2026-04-18 20:42:20 | INFO | kfold_cv_land_property_kfold_baseline | epoch=40/60 train_loss=0.3119 train_macro_f1=0.8899 val_macro_f1=0.7748 best_val_macro_f1=0.7827 patience_counter=1
+2026-04-18 20:42:21 | INFO | kfold_cv_land_property_kfold_baseline | epoch=40/60 train_loss=0.3516 train_macro_f1=0.8418 val_macro_f1=0.7510 best_val_macro_f1=0.7701 patience_counter=1
+2026-04-18 20:42:38 | INFO | kfold_cv_land_property_kfold_baseline | epoch=45/60 train_loss=0.2955 train_macro_f1=0.8867 val_macro_f1=0.7690 best_val_macro_f1=0.7822 patience_counter=6
+2026-04-18 20:42:41 | INFO | kfold_cv_land_property_kfold_baseline | epoch=45/60 train_loss=0.2039 train_macro_f1=0.9403 val_macro_f1=0.7870 best_val_macro_f1=0.7897 patience_counter=4
+2026-04-18 20:42:42 | INFO | kfold_cv_land_property_kfold_baseline | epoch=45/60 train_loss=0.2781 train_macro_f1=0.9028 val_macro_f1=0.8122 best_val_macro_f1=0.8122 patience_counter=0
+2026-04-18 20:42:43 | INFO | kfold_cv_land_property_kfold_baseline | epoch=45/60 train_loss=0.2659 train_macro_f1=0.9066 val_macro_f1=0.7861 best_val_macro_f1=0.7861 patience_counter=0
+2026-04-18 20:42:44 | INFO | kfold_cv_land_property_kfold_baseline | epoch=45/60 train_loss=0.3178 train_macro_f1=0.8588 val_macro_f1=0.7538 best_val_macro_f1=0.7820 patience_counter=1
+2026-04-18 20:43:01 | INFO | kfold_cv_land_property_kfold_baseline | epoch=50/60 train_loss=0.2414 train_macro_f1=0.9205 val_macro_f1=0.7810 best_val_macro_f1=0.7892 patience_counter=1
+2026-04-18 20:43:04 | INFO | kfold_cv_land_property_kfold_baseline | epoch=50/60 train_loss=0.1702 train_macro_f1=0.9615 val_macro_f1=0.7911 best_val_macro_f1=0.7929 patience_counter=4
+2026-04-18 20:43:05 | INFO | kfold_cv_land_property_kfold_baseline | epoch=50/60 train_loss=0.2278 train_macro_f1=0.9216 val_macro_f1=0.8039 best_val_macro_f1=0.8122 patience_counter=5
+2026-04-18 20:43:06 | INFO | kfold_cv_land_property_kfold_baseline | epoch=50/60 train_loss=0.1918 train_macro_f1=0.9055 val_macro_f1=0.7617 best_val_macro_f1=0.7897 patience_counter=2
+2026-04-18 20:43:07 | INFO | kfold_cv_land_property_kfold_baseline | epoch=50/60 train_loss=0.2422 train_macro_f1=0.9196 val_macro_f1=0.7772 best_val_macro_f1=0.7820 patience_counter=6
+2026-04-18 20:43:24 | INFO | kfold_cv_land_property_kfold_baseline | epoch=55/60 train_loss=0.1789 train_macro_f1=0.9404 val_macro_f1=0.7910 best_val_macro_f1=0.7910 patience_counter=0
+2026-04-18 20:43:27 | INFO | kfold_cv_land_property_kfold_baseline | epoch=55/60 train_loss=0.0887 train_macro_f1=0.9762 val_macro_f1=0.7797 best_val_macro_f1=0.7974 patience_counter=4
+2026-04-18 20:43:28 | INFO | kfold_cv_land_property_kfold_baseline | epoch=55/60 train_loss=0.1699 train_macro_f1=0.9456 val_macro_f1=0.8017 best_val_macro_f1=0.8177 patience_counter=3
+2026-04-18 20:43:29 | INFO | kfold_cv_land_property_kfold_baseline | epoch=55/60 train_loss=0.1424 train_macro_f1=0.9585 val_macro_f1=0.7905 best_val_macro_f1=0.7968 patience_counter=4
+2026-04-18 20:43:29 | INFO | kfold_cv_land_property_kfold_baseline | epoch=55/60 train_loss=0.1812 train_macro_f1=0.9405 val_macro_f1=0.7841 best_val_macro_f1=0.7841 patience_counter=0
+2026-04-18 20:43:47 | INFO | kfold_cv_land_property_kfold_baseline | epoch=60/60 train_loss=0.1399 train_macro_f1=0.9608 val_macro_f1=0.7935 best_val_macro_f1=0.7935 patience_counter=0
+2026-04-18 20:43:48 | INFO | kfold_cv_land_property_kfold_baseline | Fold 3 done | test_acc=0.8196  test_macro_f1=0.7971
+2026-04-18 20:43:48 | INFO | kfold_cv_land_property_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:43:50 | INFO | kfold_cv_land_property_kfold_baseline | epoch=60/60 train_loss=0.0592 train_macro_f1=0.9915 val_macro_f1=0.7944 best_val_macro_f1=0.7974 patience_counter=9
+2026-04-18 20:43:51 | INFO | kfold_cv_land_property_kfold_baseline | epoch=60/60 train_loss=0.2064 train_macro_f1=0.9513 val_macro_f1=0.8137 best_val_macro_f1=0.8177 patience_counter=8
+2026-04-18 20:43:51 | INFO | kfold_cv_land_property_kfold_baseline | Fold 2 done | test_acc=0.8223  test_macro_f1=0.8057
+2026-04-18 20:43:51 | INFO | kfold_cv_land_property_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:43:51 | INFO | kfold_cv_land_property_kfold_baseline | Fold 1 done | test_acc=0.8099  test_macro_f1=0.7924
+2026-04-18 20:43:51 | INFO | kfold_cv_land_property_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:43:52 | INFO | kfold_cv_land_property_kfold_baseline | epoch=60/60 train_loss=0.0925 train_macro_f1=0.9747 val_macro_f1=0.7891 best_val_macro_f1=0.7973 patience_counter=3
+[03_kfold] Fold 0 complete.
+[03_kfold] Fold 1 complete.
+[03_kfold] Fold 2 complete.
+2026-04-18 20:43:52 | INFO | kfold_cv_land_property_kfold_baseline | epoch=60/60 train_loss=0.2792 train_macro_f1=0.9269 val_macro_f1=0.7853 best_val_macro_f1=0.7940 patience_counter=3
+2026-04-18 20:43:52 | INFO | kfold_cv_land_property_kfold_baseline | Fold 4 done | test_acc=0.8155  test_macro_f1=0.7943
+2026-04-18 20:43:52 | INFO | kfold_cv_land_property_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 20:43:53 | INFO | kfold_cv_land_property_kfold_baseline | Fold 5 done | test_acc=0.8106  test_macro_f1=0.7870
+2026-04-18 20:43:53 | INFO | kfold_cv_land_property_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 20:43:58 | INFO | kfold_cv_land_property_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.8156±0.0049  macro_f1=0.7953±0.0061
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/models/land_property_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.
+=== Running motor_accidents_timed_mistral as motor_accidents_kfold_baseline ===
+============================================================
+Pipeline: motor_accidents_timed_mistral
+  env=thesis_work  run=motor_accidents_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 20:44:08 | INFO | build_reasoning_graph | Loaded 14697 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/processed/cleaned_cases
+2026-04-18 20:45:06 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 296764 texts
+Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:58<1:17:14, 58.67s/it]Chunks:   2%|▎         | 2/80 [01:00<33:07, 25.47s/it]  Chunks:   4%|▍         | 3/80 [01:03<19:02, 14.84s/it]Chunks:   5%|▌         | 4/80 [01:05<12:29,  9.86s/it]Chunks:   6%|▋         | 5/80 [01:07<08:53,  7.12s/it]Chunks:   8%|▊         | 6/80 [01:09<06:44,  5.47s/it]Chunks:   9%|▉         | 7/80 [01:12<05:22,  4.41s/it]Chunks:  10%|█         | 8/80 [01:14<04:29,  3.74s/it]Chunks:  11%|█▏        | 9/80 [01:16<03:52,  3.27s/it]Chunks:  12%|█▎        | 10/80 [01:18<03:26,  2.95s/it]Chunks:  14%|█▍        | 11/80 [01:40<10:04,  8.76s/it]Chunks:  15%|█▌        | 12/80 [02:18<19:59, 17.64s/it]Chunks:  16%|█▋        | 13/80 [02:43<22:04, 19.76s/it]Chunks:  18%|█▊        | 14/80 [03:23<28:35, 25.99s/it]Chunks:  19%|█▉        | 15/80 [03:25<20:23, 18.82s/it]Chunks:  20%|██        | 16/80 [03:28<14:50, 13.91s/it]Chunks:  21%|██▏       | 17/80 [03:30<10:53, 10.37s/it]Chunks:  22%|██▎       | 18/80 [03:32<08:10,  7.91s/it]Chunks:  24%|██▍       | 19/80 [03:34<06:17,  6.19s/it]Chunks:  25%|██▌       | 20/80 [03:37<04:59,  5.00s/it]Chunks:  26%|██▋       | 21/80 [03:39<04:06,  4.18s/it]Chunks:  28%|██▊       | 22/80 [03:41<03:27,  3.58s/it]Chunks:  29%|██▉       | 23/80 [03:42<02:41,  2.84s/it]Chunks:  30%|███       | 24/80 [03:43<02:10,  2.34s/it]Chunks:  31%|███▏      | 25/80 [03:44<01:47,  1.95s/it]Chunks:  32%|███▎      | 26/80 [03:46<01:33,  1.73s/it]Chunks:  34%|███▍      | 27/80 [03:47<01:20,  1.53s/it]Chunks:  35%|███▌      | 28/80 [03:48<01:14,  1.44s/it]Chunks:  36%|███▋      | 29/80 [03:49<01:05,  1.29s/it]Chunks:  38%|███▊      | 30/80 [04:08<05:28,  6.56s/it]Chunks:  39%|███▉      | 31/80 [04:26<08:10, 10.02s/it]Chunks:  40%|████      | 32/80 [04:28<06:07,  7.66s/it]Chunks:  41%|████▏     | 33/80 [04:30<04:43,  6.02s/it]Chunks:  42%|████▎     | 34/80 [04:32<03:44,  4.88s/it]Chunks:  44%|████▍     | 35/80 [04:35<03:02,  4.06s/it]Chunks:  45%|████▌     | 36/80 [04:37<02:34,  3.50s/it]Chunks:  46%|████▋     | 37/80 [04:38<01:55,  2.67s/it]Chunks:  48%|████▊     | 38/80 [04:39<01:37,  2.32s/it]Chunks:  49%|████▉     | 39/80 [04:40<01:18,  1.92s/it]Chunks:  50%|█████     | 40/80 [04:41<01:09,  1.74s/it]Chunks:  51%|█████▏    | 41/80 [05:10<06:23,  9.82s/it]Chunks:  52%|█████▎    | 42/80 [05:17<05:39,  8.92s/it]Chunks:  54%|█████▍    | 43/80 [05:32<06:39, 10.81s/it]Chunks:  55%|█████▌    | 44/80 [05:41<06:07, 10.20s/it]Chunks:  56%|█████▋    | 45/80 [05:44<04:43,  8.10s/it]Chunks:  57%|█████▊    | 46/80 [05:48<03:50,  6.78s/it]Chunks:  59%|█████▉    | 47/80 [05:49<02:49,  5.14s/it]Chunks:  60%|██████    | 48/80 [05:52<02:21,  4.43s/it]Chunks:  61%|██████▏   | 49/80 [05:55<02:01,  3.91s/it]Chunks:  62%|██████▎   | 50/80 [05:55<01:23,  2.78s/it]Chunks:  64%|██████▍   | 51/80 [05:57<01:19,  2.76s/it]Chunks:  65%|██████▌   | 52/80 [05:57<00:55,  1.97s/it]Chunks:  66%|██████▋   | 53/80 [05:59<00:46,  1.73s/it]Chunks:  68%|██████▊   | 54/80 [06:00<00:39,  1.53s/it]Chunks:  69%|██████▉   | 55/80 [06:00<00:31,  1.25s/it]Chunks:  70%|███████   | 56/80 [06:00<00:21,  1.10it/s]Chunks:  71%|███████▏  | 57/80 [06:02<00:22,  1.00it/s]Chunks:  72%|███████▎  | 58/80 [06:03<00:21,  1.01it/s]Chunks:  74%|███████▍  | 59/80 [06:03<00:18,  1.14it/s]Chunks:  76%|███████▋  | 61/80 [06:04<00:13,  1.43it/s]Chunks:  78%|███████▊  | 62/80 [06:05<00:13,  1.34it/s]Chunks:  79%|███████▉  | 63/80 [06:06<00:12,  1.34it/s]Chunks:  80%|████████  | 64/80 [06:06<00:09,  1.75it/s]Chunks:  81%|████████▏ | 65/80 [06:07<00:09,  1.53it/s]Chunks:  82%|████████▎ | 66/80 [06:08<00:09,  1.43it/s]Chunks:  84%|████████▍ | 67/80 [06:08<00:09,  1.41it/s]Chunks:  85%|████████▌ | 68/80 [06:09<00:06,  1.80it/s]Chunks:  86%|████████▋ | 69/80 [06:09<00:07,  1.54it/s]Chunks:  88%|████████▊ | 70/80 [06:10<00:06,  1.43it/s]Chunks:  89%|████████▉ | 71/80 [06:11<00:06,  1.42it/s]Chunks:  90%|█████████ | 72/80 [06:11<00:04,  1.81it/s]Chunks:  91%|█████████▏| 73/80 [06:12<00:04,  1.72it/s]Chunks:  92%|█████████▎| 74/80 [06:14<00:05,  1.09it/s]Chunks:  94%|█████████▍| 75/80 [06:23<00:17,  3.41s/it]Chunks:  95%|█████████▌| 76/80 [06:30<00:17,  4.48s/it]Chunks:  96%|█████████▋| 77/80 [06:34<00:13,  4.49s/it]Chunks:  98%|█████████▊| 78/80 [06:37<00:07,  3.88s/it]Chunks:  99%|█████████▉| 79/80 [06:38<00:03,  3.01s/it]Chunks: 100%|██████████| 80/80 [07:04<00:00, 10.02s/it]Chunks: 100%|██████████| 80/80 [07:04<00:00,  5.31s/it]
+2026-04-18 20:53:32 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/embeddings_cache/all_nodes_cf37de69d39cdf552c61.npz shape=(296764, 1024)
+2026-04-18 20:53:35 | INFO | build_reasoning_graph | Prepared 14697 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 20:53:39 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt
+/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=motor_accidents_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3512214)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/logs/motor_accidents_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3512216)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/logs/motor_accidents_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3512218)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/logs/motor_accidents_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3512220)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/logs/motor_accidents_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3512222)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/logs/motor_accidents_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 20:53:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:53:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:53:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:53:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:53:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_global_graph_motor_accidents_timed_mistral.reasoning_focused.pt …
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Graph loaded | n_cases=14697 | labels=['-1', '1']
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | ── Fold 1/5 | train=11757  test=2940  seed=42
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Graph loaded | n_cases=14697 | labels=['-1', '1']
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | ── Fold 5/5 | train=11758  test=2939  seed=46
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Graph loaded | n_cases=14697 | labels=['-1', '1']
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | ── Fold 2/5 | train=11757  test=2940  seed=43
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Graph loaded | n_cases=14697 | labels=['-1', '1']
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | ── Fold 3/5 | train=11758  test=2939  seed=44
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Graph loaded | n_cases=14697 | labels=['-1', '1']
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 20:53:46 | INFO | kfold_cv_motor_accidents_kfold_baseline | ── Fold 4/5 | train=11758  test=2939  seed=45
+2026-04-18 20:53:55 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=1/60 train_loss=0.7008 train_macro_f1=0.2147 val_macro_f1=0.1945 best_val_macro_f1=0.1945 patience_counter=0
+2026-04-18 20:53:56 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=1/60 train_loss=0.7279 train_macro_f1=0.2090 val_macro_f1=0.2151 best_val_macro_f1=0.2151 patience_counter=0
+2026-04-18 20:54:04 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=1/60 train_loss=0.7012 train_macro_f1=0.4233 val_macro_f1=0.4318 best_val_macro_f1=0.4318 patience_counter=0
+2026-04-18 20:54:06 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=1/60 train_loss=0.7249 train_macro_f1=0.4254 val_macro_f1=0.4192 best_val_macro_f1=0.4192 patience_counter=0
+2026-04-18 20:54:09 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=1/60 train_loss=0.6931 train_macro_f1=0.5966 val_macro_f1=0.5654 best_val_macro_f1=0.5654 patience_counter=0
+2026-04-18 20:54:45 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=5/60 train_loss=0.6717 train_macro_f1=0.6273 val_macro_f1=0.6307 best_val_macro_f1=0.6307 patience_counter=0
+2026-04-18 20:54:48 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=5/60 train_loss=0.6807 train_macro_f1=0.5795 val_macro_f1=0.5560 best_val_macro_f1=0.5972 patience_counter=2
+2026-04-18 20:54:49 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=5/60 train_loss=0.6790 train_macro_f1=0.4698 val_macro_f1=0.4572 best_val_macro_f1=0.4799 patience_counter=3
+2026-04-18 20:54:49 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=5/60 train_loss=0.6797 train_macro_f1=0.5583 val_macro_f1=0.5457 best_val_macro_f1=0.6379 patience_counter=2
+2026-04-18 20:55:00 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=5/60 train_loss=0.6059 train_macro_f1=0.6911 val_macro_f1=0.6765 best_val_macro_f1=0.6765 patience_counter=0
+2026-04-18 20:55:14 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=10/60 train_loss=0.5860 train_macro_f1=0.7008 val_macro_f1=0.6730 best_val_macro_f1=0.6816 patience_counter=1
+2026-04-18 20:55:14 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=10/60 train_loss=0.6281 train_macro_f1=0.6757 val_macro_f1=0.6710 best_val_macro_f1=0.6710 patience_counter=0
+2026-04-18 20:55:15 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=10/60 train_loss=0.6056 train_macro_f1=0.6607 val_macro_f1=0.6349 best_val_macro_f1=0.6696 patience_counter=2
+2026-04-18 20:55:18 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=10/60 train_loss=0.6077 train_macro_f1=0.6874 val_macro_f1=0.6865 best_val_macro_f1=0.6865 patience_counter=0
+2026-04-18 20:55:29 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=10/60 train_loss=0.5343 train_macro_f1=0.7354 val_macro_f1=0.7270 best_val_macro_f1=0.7270 patience_counter=0
+2026-04-18 20:56:09 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=15/60 train_loss=0.5034 train_macro_f1=0.7343 val_macro_f1=0.6942 best_val_macro_f1=0.7111 patience_counter=2
+2026-04-18 20:56:10 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=15/60 train_loss=0.5383 train_macro_f1=0.7227 val_macro_f1=0.7188 best_val_macro_f1=0.7188 patience_counter=0
+2026-04-18 20:56:13 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=15/60 train_loss=0.5280 train_macro_f1=0.7288 val_macro_f1=0.7365 best_val_macro_f1=0.7365 patience_counter=0
+2026-04-18 20:56:14 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=15/60 train_loss=0.5131 train_macro_f1=0.7348 val_macro_f1=0.7445 best_val_macro_f1=0.7445 patience_counter=0
+2026-04-18 20:56:15 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=15/60 train_loss=0.4665 train_macro_f1=0.7387 val_macro_f1=0.7232 best_val_macro_f1=0.7361 patience_counter=1
+2026-04-18 20:56:30 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=20/60 train_loss=0.4558 train_macro_f1=0.7574 val_macro_f1=0.7301 best_val_macro_f1=0.7402 patience_counter=1
+2026-04-18 20:56:30 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=20/60 train_loss=0.4821 train_macro_f1=0.7449 val_macro_f1=0.7391 best_val_macro_f1=0.7391 patience_counter=0
+2026-04-18 20:56:33 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=20/60 train_loss=0.4723 train_macro_f1=0.7650 val_macro_f1=0.7571 best_val_macro_f1=0.7571 patience_counter=0
+2026-04-18 20:56:34 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=20/60 train_loss=0.4602 train_macro_f1=0.7691 val_macro_f1=0.7632 best_val_macro_f1=0.7663 patience_counter=1
+2026-04-18 20:56:35 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=20/60 train_loss=0.4331 train_macro_f1=0.7655 val_macro_f1=0.7427 best_val_macro_f1=0.7468 patience_counter=2
+2026-04-18 20:57:02 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=25/60 train_loss=0.4131 train_macro_f1=0.7881 val_macro_f1=0.7464 best_val_macro_f1=0.7550 patience_counter=1
+2026-04-18 20:57:03 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=25/60 train_loss=0.4389 train_macro_f1=0.7722 val_macro_f1=0.7480 best_val_macro_f1=0.7484 patience_counter=1
+2026-04-18 20:57:03 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=25/60 train_loss=0.4263 train_macro_f1=0.7885 val_macro_f1=0.7670 best_val_macro_f1=0.7670 patience_counter=0
+2026-04-18 20:57:04 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=25/60 train_loss=0.4189 train_macro_f1=0.7778 val_macro_f1=0.7726 best_val_macro_f1=0.7766 patience_counter=2
+2026-04-18 20:57:08 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=25/60 train_loss=0.3984 train_macro_f1=0.8023 val_macro_f1=0.7639 best_val_macro_f1=0.7639 patience_counter=0
+2026-04-18 20:57:22 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=30/60 train_loss=0.3863 train_macro_f1=0.8019 val_macro_f1=0.7514 best_val_macro_f1=0.7737 patience_counter=1
+2026-04-18 20:57:23 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=30/60 train_loss=0.4024 train_macro_f1=0.7814 val_macro_f1=0.7493 best_val_macro_f1=0.7571 patience_counter=1
+2026-04-18 20:57:25 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=30/60 train_loss=0.3872 train_macro_f1=0.7872 val_macro_f1=0.7543 best_val_macro_f1=0.7715 patience_counter=4
+2026-04-18 20:57:29 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=30/60 train_loss=0.3931 train_macro_f1=0.7935 val_macro_f1=0.7825 best_val_macro_f1=0.7924 patience_counter=1
+2026-04-18 20:57:33 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=30/60 train_loss=0.3627 train_macro_f1=0.7958 val_macro_f1=0.7623 best_val_macro_f1=0.7666 patience_counter=1
+2026-04-18 20:58:15 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=35/60 train_loss=0.3400 train_macro_f1=0.8372 val_macro_f1=0.7750 best_val_macro_f1=0.7771 patience_counter=3
+2026-04-18 20:58:15 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=35/60 train_loss=0.3697 train_macro_f1=0.8119 val_macro_f1=0.7627 best_val_macro_f1=0.7631 patience_counter=1
+2026-04-18 20:58:19 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=35/60 train_loss=0.3590 train_macro_f1=0.8247 val_macro_f1=0.8024 best_val_macro_f1=0.8024 patience_counter=0
+2026-04-18 20:58:19 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=35/60 train_loss=0.3532 train_macro_f1=0.8013 val_macro_f1=0.7535 best_val_macro_f1=0.7856 patience_counter=1
+2026-04-18 20:58:22 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=35/60 train_loss=0.3300 train_macro_f1=0.8069 val_macro_f1=0.7605 best_val_macro_f1=0.7809 patience_counter=1
+2026-04-18 20:58:47 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=40/60 train_loss=0.3352 train_macro_f1=0.8378 val_macro_f1=0.7792 best_val_macro_f1=0.7792 patience_counter=0
+2026-04-18 20:58:47 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=40/60 train_loss=0.3098 train_macro_f1=0.8551 val_macro_f1=0.7826 best_val_macro_f1=0.7866 patience_counter=3
+2026-04-18 20:58:59 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=40/60 train_loss=0.3256 train_macro_f1=0.8428 val_macro_f1=0.8143 best_val_macro_f1=0.8143 patience_counter=0
+2026-04-18 20:59:04 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=40/60 train_loss=0.3268 train_macro_f1=0.7985 val_macro_f1=0.7435 best_val_macro_f1=0.7964 patience_counter=1
+2026-04-18 20:59:06 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=40/60 train_loss=0.2886 train_macro_f1=0.8106 val_macro_f1=0.7435 best_val_macro_f1=0.7811 patience_counter=3
+2026-04-18 20:59:55 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=45/60 train_loss=0.2891 train_macro_f1=0.8696 val_macro_f1=0.7874 best_val_macro_f1=0.7874 patience_counter=0
+2026-04-18 20:59:56 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=45/60 train_loss=0.2902 train_macro_f1=0.8627 val_macro_f1=0.7736 best_val_macro_f1=0.7792 patience_counter=5
+2026-04-18 20:59:57 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=45/60 train_loss=0.2862 train_macro_f1=0.8568 val_macro_f1=0.8098 best_val_macro_f1=0.8143 patience_counter=5
+2026-04-18 21:00:00 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=45/60 train_loss=0.2678 train_macro_f1=0.8599 val_macro_f1=0.7688 best_val_macro_f1=0.7819 patience_counter=1
+2026-04-18 21:00:01 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=45/60 train_loss=0.3016 train_macro_f1=0.8667 val_macro_f1=0.7949 best_val_macro_f1=0.7964 patience_counter=6
+2026-04-18 21:00:22 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=50/60 train_loss=0.2636 train_macro_f1=0.8111 val_macro_f1=0.7238 best_val_macro_f1=0.7907 patience_counter=2
+2026-04-18 21:00:28 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=50/60 train_loss=0.2975 train_macro_f1=0.8698 val_macro_f1=0.7892 best_val_macro_f1=0.7892 patience_counter=0
+2026-04-18 21:00:30 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=50/60 train_loss=0.2823 train_macro_f1=0.8067 val_macro_f1=0.7502 best_val_macro_f1=0.8143 patience_counter=10
+2026-04-18 21:00:32 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=50/60 train_loss=0.2179 train_macro_f1=0.8887 val_macro_f1=0.7702 best_val_macro_f1=0.7819 patience_counter=6
+2026-04-18 21:00:33 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=50/60 train_loss=0.2658 train_macro_f1=0.8675 val_macro_f1=0.7761 best_val_macro_f1=0.7972 patience_counter=4
+2026-04-18 21:00:47 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=55/60 train_loss=0.2622 train_macro_f1=0.8735 val_macro_f1=0.7611 best_val_macro_f1=0.7907 patience_counter=7
+2026-04-18 21:00:48 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=55/60 train_loss=0.2423 train_macro_f1=0.8905 val_macro_f1=0.7725 best_val_macro_f1=0.7934 patience_counter=3
+2026-04-18 21:00:50 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=55/60 train_loss=0.2790 train_macro_f1=0.8640 val_macro_f1=0.8007 best_val_macro_f1=0.8143 patience_counter=15
+2026-04-18 21:00:50 | INFO | kfold_cv_motor_accidents_kfold_baseline | Early stopping at epoch=55 best_epoch=40
+2026-04-18 21:00:51 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 3 done | test_acc=0.8295  test_macro_f1=0.7938
+2026-04-18 21:00:51 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:00:51 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=55/60 train_loss=0.1936 train_macro_f1=0.8747 val_macro_f1=0.7670 best_val_macro_f1=0.7838 patience_counter=1
+2026-04-18 21:00:52 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=55/60 train_loss=0.2174 train_macro_f1=0.9022 val_macro_f1=0.7874 best_val_macro_f1=0.7972 patience_counter=9
+2026-04-18 21:01:07 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=60/60 train_loss=0.2167 train_macro_f1=0.9004 val_macro_f1=0.7892 best_val_macro_f1=0.7907 patience_counter=12
+2026-04-18 21:01:07 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 1 done | test_acc=0.8306  test_macro_f1=0.7840
+2026-04-18 21:01:07 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:01:07 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=60/60 train_loss=0.2164 train_macro_f1=0.8906 val_macro_f1=0.7923 best_val_macro_f1=0.7934 patience_counter=8
+2026-04-18 21:01:08 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 5 done | test_acc=0.8227  test_macro_f1=0.7918
+2026-04-18 21:01:08 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 0 complete.
+2026-04-18 21:01:11 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=60/60 train_loss=0.1884 train_macro_f1=0.9251 val_macro_f1=0.7728 best_val_macro_f1=0.7838 patience_counter=6
+2026-04-18 21:01:12 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 2 done | test_acc=0.8340  test_macro_f1=0.8015
+2026-04-18 21:01:12 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:01:12 | INFO | kfold_cv_motor_accidents_kfold_baseline | epoch=60/60 train_loss=0.2050 train_macro_f1=0.9157 val_macro_f1=0.7875 best_val_macro_f1=0.7972 patience_counter=14
+2026-04-18 21:01:13 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 4 done | test_acc=0.8336  test_macro_f1=0.8007
+2026-04-18 21:01:13 | INFO | kfold_cv_motor_accidents_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 1 complete.
+[03_kfold] Fold 2 complete.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 21:01:17 | INFO | kfold_cv_motor_accidents_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.8301±0.0041  macro_f1=0.7944±0.0064
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/models/motor_accidents_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.
+=== Running sexual_offences_timed_mistral as sexual_offences_kfold_baseline ===
+============================================================
+Pipeline: sexual_offences_timed_mistral
+  env=thesis_work  run=sexual_offences_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 21:01:26 | INFO | build_reasoning_graph | Loaded 13920 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/processed/cleaned_cases
+2026-04-18 21:01:58 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 224168 texts
+Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [01:18<1:43:25, 78.55s/it]Chunks:   2%|▎         | 2/80 [01:21<44:23, 34.15s/it]  Chunks:   4%|▍         | 3/80 [01:23<24:45, 19.29s/it]Chunks:   5%|▌         | 4/80 [01:24<15:36, 12.32s/it]Chunks:   6%|▋         | 5/80 [01:26<10:34,  8.45s/it]Chunks:   8%|▊         | 6/80 [01:28<07:33,  6.13s/it]Chunks:   9%|▉         | 7/80 [01:29<05:39,  4.66s/it]Chunks:  10%|█         | 8/80 [01:31<04:25,  3.68s/it]Chunks:  11%|█▏        | 9/80 [01:33<03:38,  3.07s/it]Chunks:  12%|█▎        | 10/80 [01:34<03:03,  2.63s/it]Chunks:  14%|█▍        | 11/80 [01:37<03:09,  2.74s/it]Chunks:  15%|█▌        | 12/80 [01:46<05:06,  4.51s/it]Chunks:  16%|█▋        | 13/80 [02:00<08:20,  7.47s/it]Chunks:  18%|█▊        | 14/80 [02:13<09:59,  9.08s/it]Chunks:  19%|█▉        | 15/80 [02:17<08:07,  7.50s/it]Chunks:  20%|██        | 16/80 [02:18<06:05,  5.72s/it]Chunks:  21%|██▏       | 17/80 [02:20<04:42,  4.48s/it]Chunks:  22%|██▎       | 18/80 [02:21<03:42,  3.59s/it]Chunks:  24%|██▍       | 19/80 [02:21<02:35,  2.55s/it]Chunks:  25%|██▌       | 20/80 [02:23<02:09,  2.15s/it]Chunks:  26%|██▋       | 21/80 [02:23<01:35,  1.62s/it]Chunks:  28%|██▊       | 22/80 [02:23<01:07,  1.17s/it]Chunks:  29%|██▉       | 23/80 [02:25<01:09,  1.22s/it]Chunks:  30%|███       | 24/80 [02:25<00:52,  1.06it/s]Chunks:  31%|███▏      | 25/80 [02:25<00:38,  1.45it/s]Chunks:  32%|███▎      | 26/80 [02:26<00:49,  1.10it/s]Chunks:  34%|███▍      | 27/80 [02:27<00:38,  1.36it/s]Chunks:  35%|███▌      | 28/80 [02:27<00:28,  1.84it/s]Chunks:  36%|███▋      | 29/80 [02:28<00:40,  1.26it/s]Chunks:  38%|███▊      | 30/80 [02:28<00:32,  1.54it/s]Chunks:  40%|████      | 32/80 [02:30<00:33,  1.45it/s]Chunks:  41%|████▏     | 33/80 [02:30<00:28,  1.67it/s]Chunks:  44%|████▍     | 35/80 [02:32<00:28,  1.60it/s]Chunks:  45%|████▌     | 36/80 [02:41<01:52,  2.56s/it]Chunks:  46%|████▋     | 37/80 [02:42<01:40,  2.33s/it]Chunks:  48%|████▊     | 38/80 [02:44<01:30,  2.15s/it]Chunks:  49%|████▉     | 39/80 [02:46<01:22,  2.01s/it]Chunks:  50%|█████     | 40/80 [02:47<01:16,  1.91s/it]Chunks:  51%|█████▏    | 41/80 [02:48<01:04,  1.66s/it]Chunks:  52%|█████▎    | 42/80 [02:49<00:51,  1.35s/it]Chunks:  54%|█████▍    | 43/80 [02:56<01:47,  2.91s/it]Chunks:  55%|█████▌    | 44/80 [03:00<02:02,  3.40s/it]Chunks:  56%|█████▋    | 45/80 [03:05<02:17,  3.92s/it]Chunks:  57%|█████▊    | 46/80 [03:32<06:01, 10.63s/it]Chunks:  59%|█████▉    | 47/80 [03:34<04:28,  8.14s/it]Chunks:  60%|██████    | 48/80 [03:36<03:17,  6.17s/it]Chunks:  61%|██████▏   | 49/80 [03:37<02:22,  4.61s/it]Chunks:  62%|██████▎   | 50/80 [03:38<01:50,  3.69s/it]Chunks:  64%|██████▍   | 51/80 [03:39<01:22,  2.84s/it]Chunks:  65%|██████▌   | 52/80 [03:40<01:05,  2.33s/it]Chunks:  66%|██████▋   | 53/80 [03:41<00:52,  1.96s/it]Chunks:  68%|██████▊   | 54/80 [03:42<00:43,  1.68s/it]Chunks:  69%|██████▉   | 55/80 [03:43<00:37,  1.51s/it]Chunks:  70%|███████   | 56/80 [03:44<00:32,  1.33s/it]Chunks:  71%|███████▏  | 57/80 [03:45<00:29,  1.30s/it]Chunks:  72%|███████▎  | 58/80 [03:46<00:25,  1.16s/it]Chunks:  74%|███████▍  | 59/80 [03:47<00:22,  1.06s/it]Chunks:  75%|███████▌  | 60/80 [03:48<00:18,  1.09it/s]Chunks:  76%|███████▋  | 61/80 [03:48<00:16,  1.18it/s]Chunks:  78%|███████▊  | 62/80 [03:49<00:14,  1.21it/s]Chunks:  79%|███████▉  | 63/80 [03:49<00:10,  1.61it/s]Chunks:  80%|████████  | 64/80 [03:50<00:08,  1.97it/s]Chunks:  81%|████████▏ | 65/80 [03:50<00:08,  1.75it/s]Chunks:  82%|████████▎ | 66/80 [03:51<00:08,  1.56it/s]Chunks:  84%|████████▍ | 67/80 [03:51<00:06,  2.01it/s]Chunks:  85%|████████▌ | 68/80 [03:51<00:04,  2.51it/s]Chunks:  86%|████████▋ | 69/80 [03:52<00:05,  2.05it/s]Chunks:  88%|████████▊ | 70/80 [03:53<00:05,  1.69it/s]Chunks:  89%|████████▉ | 71/80 [03:53<00:03,  2.26it/s]Chunks:  90%|█████████ | 72/80 [03:53<00:02,  2.73it/s]Chunks:  91%|█████████▏| 73/80 [03:55<00:05,  1.21it/s]Chunks:  92%|█████████▎| 74/80 [03:55<00:04,  1.47it/s]Chunks:  94%|█████████▍| 75/80 [03:56<00:03,  1.59it/s]Chunks:  95%|█████████▌| 76/80 [03:58<00:03,  1.03it/s]Chunks:  96%|█████████▋| 77/80 [04:09<00:11,  3.97s/it]Chunks:  98%|█████████▊| 78/80 [04:09<00:05,  2.84s/it]Chunks:  99%|█████████▉| 79/80 [04:15<00:03,  3.92s/it]Chunks: 100%|██████████| 80/80 [04:21<00:00,  4.50s/it]Chunks: 100%|██████████| 80/80 [04:21<00:00,  3.27s/it]
+2026-04-18 21:07:18 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/embeddings_cache/all_nodes_a4e1991aa7d6dd95e425.npz shape=(224168, 1024)
+2026-04-18 21:07:20 | INFO | build_reasoning_graph | Prepared 13920 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 21:07:24 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt
+/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=sexual_offences_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3537266)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/logs/sexual_offences_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3537268)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/logs/sexual_offences_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3537270)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/logs/sexual_offences_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3537272)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/logs/sexual_offences_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3537274)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/logs/sexual_offences_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 21:07:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt …
+2026-04-18 21:07:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt …
+2026-04-18 21:07:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt …
+2026-04-18 21:07:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt …
+2026-04-18 21:07:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_global_graph_sexual_offences_timed_mistral.reasoning_focused.pt …
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Graph loaded | n_cases=13920 | labels=['-1', '1']
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | ── Fold 1/5 | train=11136  test=2784  seed=42
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Graph loaded | n_cases=13920 | labels=['-1', '1']
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | ── Fold 4/5 | train=11136  test=2784  seed=45
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Graph loaded | n_cases=13920 | labels=['-1', '1']
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | ── Fold 5/5 | train=11136  test=2784  seed=46
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Graph loaded | n_cases=13920 | labels=['-1', '1']
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:07:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | ── Fold 3/5 | train=11136  test=2784  seed=44
+2026-04-18 21:07:31 | INFO | kfold_cv_sexual_offences_kfold_baseline | Graph loaded | n_cases=13920 | labels=['-1', '1']
+2026-04-18 21:07:31 | INFO | kfold_cv_sexual_offences_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:07:31 | INFO | kfold_cv_sexual_offences_kfold_baseline | ── Fold 2/5 | train=11136  test=2784  seed=43
+2026-04-18 21:07:44 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=1/60 train_loss=0.7011 train_macro_f1=0.2604 val_macro_f1=0.2550 best_val_macro_f1=0.2550 patience_counter=0
+2026-04-18 21:07:44 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=1/60 train_loss=0.7081 train_macro_f1=0.4020 val_macro_f1=0.3998 best_val_macro_f1=0.3998 patience_counter=0
+2026-04-18 21:07:49 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=1/60 train_loss=0.7281 train_macro_f1=0.2537 val_macro_f1=0.2678 best_val_macro_f1=0.2678 patience_counter=0
+2026-04-18 21:07:56 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=1/60 train_loss=0.7380 train_macro_f1=0.4021 val_macro_f1=0.3939 best_val_macro_f1=0.3939 patience_counter=0
+2026-04-18 21:07:56 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=1/60 train_loss=0.6991 train_macro_f1=0.6182 val_macro_f1=0.6310 best_val_macro_f1=0.6310 patience_counter=0
+2026-04-18 21:08:26 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=5/60 train_loss=0.6623 train_macro_f1=0.6342 val_macro_f1=0.6477 best_val_macro_f1=0.6477 patience_counter=0
+2026-04-18 21:08:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=5/60 train_loss=0.6705 train_macro_f1=0.6421 val_macro_f1=0.6238 best_val_macro_f1=0.6238 patience_counter=0
+2026-04-18 21:08:39 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=5/60 train_loss=0.6777 train_macro_f1=0.5770 val_macro_f1=0.5801 best_val_macro_f1=0.5975 patience_counter=2
+2026-04-18 21:08:42 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=5/60 train_loss=0.6712 train_macro_f1=0.6230 val_macro_f1=0.6386 best_val_macro_f1=0.6386 patience_counter=0
+2026-04-18 21:08:42 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=5/60 train_loss=0.6370 train_macro_f1=0.6511 val_macro_f1=0.6832 best_val_macro_f1=0.6832 patience_counter=0
+2026-04-18 21:08:58 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=10/60 train_loss=0.6256 train_macro_f1=0.6642 val_macro_f1=0.6359 best_val_macro_f1=0.6445 patience_counter=2
+2026-04-18 21:08:59 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=10/60 train_loss=0.6183 train_macro_f1=0.6590 val_macro_f1=0.6587 best_val_macro_f1=0.6691 patience_counter=1
+2026-04-18 21:09:01 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=10/60 train_loss=0.6372 train_macro_f1=0.6559 val_macro_f1=0.6540 best_val_macro_f1=0.6540 patience_counter=0
+2026-04-18 21:09:02 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=10/60 train_loss=0.6319 train_macro_f1=0.6552 val_macro_f1=0.6694 best_val_macro_f1=0.6735 patience_counter=2
+2026-04-18 21:09:03 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=10/60 train_loss=0.6007 train_macro_f1=0.6742 val_macro_f1=0.6757 best_val_macro_f1=0.6932 patience_counter=1
+2026-04-18 21:09:14 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=15/60 train_loss=0.5993 train_macro_f1=0.6839 val_macro_f1=0.6736 best_val_macro_f1=0.6736 patience_counter=0
+2026-04-18 21:09:15 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=15/60 train_loss=0.5915 train_macro_f1=0.6785 val_macro_f1=0.6689 best_val_macro_f1=0.6691 patience_counter=6
+2026-04-18 21:09:17 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=15/60 train_loss=0.6115 train_macro_f1=0.6730 val_macro_f1=0.6754 best_val_macro_f1=0.6754 patience_counter=0
+2026-04-18 21:09:18 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=15/60 train_loss=0.6038 train_macro_f1=0.6770 val_macro_f1=0.6745 best_val_macro_f1=0.6799 patience_counter=4
+2026-04-18 21:09:19 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=15/60 train_loss=0.5579 train_macro_f1=0.7132 val_macro_f1=0.7179 best_val_macro_f1=0.7179 patience_counter=0
+2026-04-18 21:09:30 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=20/60 train_loss=0.5615 train_macro_f1=0.7137 val_macro_f1=0.7032 best_val_macro_f1=0.7047 patience_counter=1
+2026-04-18 21:09:31 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=20/60 train_loss=0.5494 train_macro_f1=0.7005 val_macro_f1=0.7007 best_val_macro_f1=0.7225 patience_counter=1
+2026-04-18 21:09:33 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=20/60 train_loss=0.5828 train_macro_f1=0.6923 val_macro_f1=0.6634 best_val_macro_f1=0.6754 patience_counter=5
+2026-04-18 21:09:35 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=20/60 train_loss=0.5620 train_macro_f1=0.7155 val_macro_f1=0.7134 best_val_macro_f1=0.7134 patience_counter=0
+2026-04-18 21:09:35 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=20/60 train_loss=0.5285 train_macro_f1=0.7525 val_macro_f1=0.7413 best_val_macro_f1=0.7413 patience_counter=0
+2026-04-18 21:09:46 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=25/60 train_loss=0.5047 train_macro_f1=0.7480 val_macro_f1=0.7210 best_val_macro_f1=0.7210 patience_counter=0
+2026-04-18 21:09:47 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=25/60 train_loss=0.4985 train_macro_f1=0.7484 val_macro_f1=0.7346 best_val_macro_f1=0.7357 patience_counter=4
+2026-04-18 21:09:49 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=25/60 train_loss=0.5320 train_macro_f1=0.7273 val_macro_f1=0.6901 best_val_macro_f1=0.6901 patience_counter=0
+2026-04-18 21:09:51 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=25/60 train_loss=0.5209 train_macro_f1=0.7410 val_macro_f1=0.7230 best_val_macro_f1=0.7230 patience_counter=0
+2026-04-18 21:09:51 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=25/60 train_loss=0.4616 train_macro_f1=0.7804 val_macro_f1=0.7383 best_val_macro_f1=0.7535 patience_counter=1
+2026-04-18 21:10:03 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=30/60 train_loss=0.4568 train_macro_f1=0.7635 val_macro_f1=0.7303 best_val_macro_f1=0.7400 patience_counter=1
+2026-04-18 21:10:03 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=30/60 train_loss=0.4593 train_macro_f1=0.7101 val_macro_f1=0.6733 best_val_macro_f1=0.7553 patience_counter=2
+2026-04-18 21:10:05 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=30/60 train_loss=0.4953 train_macro_f1=0.7460 val_macro_f1=0.6998 best_val_macro_f1=0.7217 patience_counter=1
+2026-04-18 21:10:07 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=30/60 train_loss=0.4393 train_macro_f1=0.7983 val_macro_f1=0.7484 best_val_macro_f1=0.7535 patience_counter=6
+2026-04-18 21:10:07 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=30/60 train_loss=0.4820 train_macro_f1=0.7518 val_macro_f1=0.7272 best_val_macro_f1=0.7329 patience_counter=1
+2026-04-18 21:10:19 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=35/60 train_loss=0.4145 train_macro_f1=0.7828 val_macro_f1=0.7343 best_val_macro_f1=0.7457 patience_counter=1
+2026-04-18 21:10:19 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=35/60 train_loss=0.4509 train_macro_f1=0.7767 val_macro_f1=0.7413 best_val_macro_f1=0.7611 patience_counter=2
+2026-04-18 21:10:21 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=35/60 train_loss=0.4521 train_macro_f1=0.7910 val_macro_f1=0.7268 best_val_macro_f1=0.7275 patience_counter=3
+2026-04-18 21:10:23 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=35/60 train_loss=0.3964 train_macro_f1=0.8345 val_macro_f1=0.7533 best_val_macro_f1=0.7570 patience_counter=2
+2026-04-18 21:10:24 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=35/60 train_loss=0.4389 train_macro_f1=0.7973 val_macro_f1=0.7346 best_val_macro_f1=0.7377 patience_counter=3
+2026-04-18 21:10:35 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=40/60 train_loss=0.3803 train_macro_f1=0.8025 val_macro_f1=0.7260 best_val_macro_f1=0.7555 patience_counter=3
+2026-04-18 21:10:36 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=40/60 train_loss=0.4008 train_macro_f1=0.8226 val_macro_f1=0.7734 best_val_macro_f1=0.7748 patience_counter=4
+2026-04-18 21:10:38 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=40/60 train_loss=0.4121 train_macro_f1=0.7909 val_macro_f1=0.7201 best_val_macro_f1=0.7457 patience_counter=1
+2026-04-18 21:10:40 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=40/60 train_loss=0.3322 train_macro_f1=0.8375 val_macro_f1=0.7456 best_val_macro_f1=0.7668 patience_counter=1
+2026-04-18 21:10:41 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=40/60 train_loss=0.3872 train_macro_f1=0.8153 val_macro_f1=0.7318 best_val_macro_f1=0.7441 patience_counter=2
+2026-04-18 21:10:51 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=45/60 train_loss=0.3282 train_macro_f1=0.8620 val_macro_f1=0.7663 best_val_macro_f1=0.7703 patience_counter=3
+2026-04-18 21:10:52 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=45/60 train_loss=0.3585 train_macro_f1=0.8278 val_macro_f1=0.7603 best_val_macro_f1=0.7847 patience_counter=4
+2026-04-18 21:10:54 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=45/60 train_loss=0.3612 train_macro_f1=0.8438 val_macro_f1=0.7543 best_val_macro_f1=0.7585 patience_counter=1
+2026-04-18 21:10:56 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=45/60 train_loss=0.2917 train_macro_f1=0.8560 val_macro_f1=0.7468 best_val_macro_f1=0.7668 patience_counter=6
+2026-04-18 21:10:57 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=45/60 train_loss=0.3388 train_macro_f1=0.8352 val_macro_f1=0.7386 best_val_macro_f1=0.7578 patience_counter=2
+2026-04-18 21:11:07 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=50/60 train_loss=0.2772 train_macro_f1=0.8914 val_macro_f1=0.7713 best_val_macro_f1=0.7713 patience_counter=0
+2026-04-18 21:11:08 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=50/60 train_loss=0.3102 train_macro_f1=0.8811 val_macro_f1=0.7805 best_val_macro_f1=0.7847 patience_counter=9
+2026-04-18 21:11:10 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=50/60 train_loss=0.3132 train_macro_f1=0.8743 val_macro_f1=0.7525 best_val_macro_f1=0.7585 patience_counter=6
+2026-04-18 21:11:12 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=50/60 train_loss=0.2504 train_macro_f1=0.8870 val_macro_f1=0.7537 best_val_macro_f1=0.7668 patience_counter=11
+2026-04-18 21:11:13 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=50/60 train_loss=0.3401 train_macro_f1=0.8644 val_macro_f1=0.7505 best_val_macro_f1=0.7578 patience_counter=7
+2026-04-18 21:11:23 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=55/60 train_loss=0.2279 train_macro_f1=0.9127 val_macro_f1=0.7681 best_val_macro_f1=0.7713 patience_counter=5
+2026-04-18 21:11:24 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=55/60 train_loss=0.2465 train_macro_f1=0.9129 val_macro_f1=0.7685 best_val_macro_f1=0.7847 patience_counter=14
+2026-04-18 21:11:25 | INFO | kfold_cv_sexual_offences_kfold_baseline | Early stopping at epoch=54 best_epoch=39
+2026-04-18 21:11:25 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 2 done | test_acc=0.7654  test_macro_f1=0.7435
+2026-04-18 21:11:25 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:11:26 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=55/60 train_loss=0.2639 train_macro_f1=0.8948 val_macro_f1=0.7549 best_val_macro_f1=0.7585 patience_counter=11
+2026-04-18 21:11:27 | INFO | kfold_cv_sexual_offences_kfold_baseline | Early stopping at epoch=56 best_epoch=41
+2026-04-18 21:11:27 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 1 done | test_acc=0.7751  test_macro_f1=0.7540
+2026-04-18 21:11:27 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 0 complete.
+[03_kfold] Fold 1 complete.
+2026-04-18 21:11:29 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=55/60 train_loss=0.2866 train_macro_f1=0.8872 val_macro_f1=0.7590 best_val_macro_f1=0.7590 patience_counter=0
+2026-04-18 21:11:39 | INFO | kfold_cv_sexual_offences_kfold_baseline | Early stopping at epoch=59 best_epoch=44
+2026-04-18 21:11:39 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 5 done | test_acc=0.7665  test_macro_f1=0.7442
+2026-04-18 21:11:39 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:11:39 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=60/60 train_loss=0.2093 train_macro_f1=0.9370 val_macro_f1=0.7620 best_val_macro_f1=0.7717 patience_counter=3
+2026-04-18 21:11:40 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 4 done | test_acc=0.7759  test_macro_f1=0.7483
+2026-04-18 21:11:40 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:11:45 | INFO | kfold_cv_sexual_offences_kfold_baseline | epoch=60/60 train_loss=0.2484 train_macro_f1=0.9165 val_macro_f1=0.7583 best_val_macro_f1=0.7590 patience_counter=5
+2026-04-18 21:11:46 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 3 done | test_acc=0.7726  test_macro_f1=0.7569
+2026-04-18 21:11:46 | INFO | kfold_cv_sexual_offences_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 2 complete.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 21:11:50 | INFO | kfold_cv_sexual_offences_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.7711±0.0043  macro_f1=0.7494±0.0053
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/models/sexual_offences_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.
+=== Running cross_bucket_total_dataset as cross_bucket_total_dataset_kfold_baseline ===
+============================================================
+Pipeline: cross_bucket_total_dataset
+  env=thesis_work  run=cross_bucket_total_dataset_kfold_baseline  k=5  build_gpus=0,1,2,3,4,5,6,7
+  skip_preprocess=true  skip_build=false
+============================================================
+
+>>> Step 2/3: Building graph
+[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
+2026-04-18 21:12:38 | INFO | build_reasoning_graph | Loaded 70460 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/processed/cleaned_cases
+2026-04-18 21:16:22 | INFO | build_reasoning_graph | Loaded embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/embeddings_cache/all_nodes_4e7783ff2b37e34a09ef.npz shape=(1328245, 1024)
+2026-04-18 21:16:57 | INFO | build_reasoning_graph | Prepared 70460 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-18 21:17:21 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt
+[02_build_graph] Done.
+
+>>> Step 3/3: K-fold cross-validation
+[03_kfold] env=thesis_work  run=cross_bucket_total_dataset_kfold_baseline  k=5
+[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
+[03_kfold] Fold 0 -> GPU 0  (pid 3553482)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_total_dataset_kfold_baseline_fold_0.log
+[03_kfold] Fold 1 -> GPU 1  (pid 3553484)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_total_dataset_kfold_baseline_fold_1.log
+[03_kfold] Fold 2 -> GPU 2  (pid 3553486)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_total_dataset_kfold_baseline_fold_2.log
+[03_kfold] Fold 3 -> GPU 3  (pid 3553488)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_total_dataset_kfold_baseline_fold_3.log
+[03_kfold] Fold 4 -> GPU 4  (pid 3553490)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_total_dataset_kfold_baseline_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-18 21:17:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
+2026-04-18 21:17:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
+2026-04-18 21:17:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
+2026-04-18 21:17:29 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
+2026-04-18 21:17:29 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Graph loaded | n_cases=70460 | labels=['-1', '1']
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | ── Fold 2/5 | train=56368  test=14092  seed=43
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Graph loaded | n_cases=70460 | labels=['-1', '1']
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | ── Fold 3/5 | train=56368  test=14092  seed=44
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Graph loaded | n_cases=70460 | labels=['-1', '1']
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:17:34 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | ── Fold 1/5 | train=56368  test=14092  seed=42
+2026-04-18 21:17:35 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Graph loaded | n_cases=70460 | labels=['-1', '1']
+2026-04-18 21:17:35 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:17:35 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | ── Fold 4/5 | train=56368  test=14092  seed=45
+2026-04-18 21:17:36 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Graph loaded | n_cases=70460 | labels=['-1', '1']
+2026-04-18 21:17:36 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-18 21:17:36 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | ── Fold 5/5 | train=56368  test=14092  seed=46
+2026-04-18 21:17:48 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=1/60 train_loss=0.7023 train_macro_f1=0.2809 val_macro_f1=0.2847 best_val_macro_f1=0.2847 patience_counter=0
+2026-04-18 21:17:48 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=1/60 train_loss=0.7078 train_macro_f1=0.2831 val_macro_f1=0.2779 best_val_macro_f1=0.2779 patience_counter=0
+2026-04-18 21:17:50 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=1/60 train_loss=0.7382 train_macro_f1=0.4257 val_macro_f1=0.4175 best_val_macro_f1=0.4175 patience_counter=0
+2026-04-18 21:17:51 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=1/60 train_loss=0.7130 train_macro_f1=0.3857 val_macro_f1=0.3855 best_val_macro_f1=0.3855 patience_counter=0
+2026-04-18 21:17:51 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=1/60 train_loss=0.7019 train_macro_f1=0.3859 val_macro_f1=0.3879 best_val_macro_f1=0.3879 patience_counter=0
+2026-04-18 21:18:12 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=5/60 train_loss=0.6748 train_macro_f1=0.6478 val_macro_f1=0.6497 best_val_macro_f1=0.6497 patience_counter=0
+2026-04-18 21:18:12 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=5/60 train_loss=0.6709 train_macro_f1=0.6600 val_macro_f1=0.6585 best_val_macro_f1=0.6585 patience_counter=0
+2026-04-18 21:18:15 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=5/60 train_loss=0.6846 train_macro_f1=0.6355 val_macro_f1=0.6414 best_val_macro_f1=0.6414 patience_counter=0
+2026-04-18 21:18:15 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=5/60 train_loss=0.6722 train_macro_f1=0.6527 val_macro_f1=0.6558 best_val_macro_f1=0.6558 patience_counter=0
+2026-04-18 21:18:15 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=5/60 train_loss=0.6749 train_macro_f1=0.5891 val_macro_f1=0.5825 best_val_macro_f1=0.6381 patience_counter=2
+2026-04-18 21:18:42 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=10/60 train_loss=0.6278 train_macro_f1=0.6743 val_macro_f1=0.6723 best_val_macro_f1=0.6723 patience_counter=0
+2026-04-18 21:18:43 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=10/60 train_loss=0.6245 train_macro_f1=0.6752 val_macro_f1=0.6716 best_val_macro_f1=0.6716 patience_counter=0
+2026-04-18 21:18:46 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=10/60 train_loss=0.6574 train_macro_f1=0.6611 val_macro_f1=0.6757 best_val_macro_f1=0.6757 patience_counter=0
+2026-04-18 21:18:46 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=10/60 train_loss=0.6219 train_macro_f1=0.6758 val_macro_f1=0.6772 best_val_macro_f1=0.6772 patience_counter=0
+2026-04-18 21:18:46 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=10/60 train_loss=0.6291 train_macro_f1=0.6720 val_macro_f1=0.6657 best_val_macro_f1=0.6657 patience_counter=0
+2026-04-18 21:19:13 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=15/60 train_loss=0.5973 train_macro_f1=0.6935 val_macro_f1=0.6886 best_val_macro_f1=0.6886 patience_counter=0
+2026-04-18 21:19:13 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=15/60 train_loss=0.5942 train_macro_f1=0.6990 val_macro_f1=0.6921 best_val_macro_f1=0.6921 patience_counter=0
+2026-04-18 21:19:16 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=15/60 train_loss=0.6242 train_macro_f1=0.6712 val_macro_f1=0.6789 best_val_macro_f1=0.6790 patience_counter=3
+2026-04-18 21:19:16 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=15/60 train_loss=0.6010 train_macro_f1=0.6913 val_macro_f1=0.6844 best_val_macro_f1=0.6844 patience_counter=0
+2026-04-18 21:19:16 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=15/60 train_loss=0.5911 train_macro_f1=0.6985 val_macro_f1=0.7020 best_val_macro_f1=0.7020 patience_counter=0
+2026-04-18 21:19:43 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=20/60 train_loss=0.5738 train_macro_f1=0.7113 val_macro_f1=0.7119 best_val_macro_f1=0.7119 patience_counter=0
+2026-04-18 21:19:43 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=20/60 train_loss=0.5665 train_macro_f1=0.7165 val_macro_f1=0.7089 best_val_macro_f1=0.7089 patience_counter=0
+2026-04-18 21:19:46 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=20/60 train_loss=0.5993 train_macro_f1=0.6933 val_macro_f1=0.7019 best_val_macro_f1=0.7019 patience_counter=0
+2026-04-18 21:19:47 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=20/60 train_loss=0.5616 train_macro_f1=0.7171 val_macro_f1=0.7159 best_val_macro_f1=0.7159 patience_counter=0
+2026-04-18 21:19:47 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=20/60 train_loss=0.5768 train_macro_f1=0.7120 val_macro_f1=0.6999 best_val_macro_f1=0.6999 patience_counter=0
+2026-04-18 21:20:13 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=25/60 train_loss=0.5454 train_macro_f1=0.7329 val_macro_f1=0.7252 best_val_macro_f1=0.7252 patience_counter=0
+2026-04-18 21:20:14 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=25/60 train_loss=0.5363 train_macro_f1=0.7407 val_macro_f1=0.7337 best_val_macro_f1=0.7337 patience_counter=0
+2026-04-18 21:20:17 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=25/60 train_loss=0.5725 train_macro_f1=0.7090 val_macro_f1=0.7138 best_val_macro_f1=0.7142 patience_counter=1
+2026-04-18 21:20:17 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=25/60 train_loss=0.5340 train_macro_f1=0.7363 val_macro_f1=0.7356 best_val_macro_f1=0.7356 patience_counter=0
+2026-04-18 21:20:17 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=25/60 train_loss=0.5468 train_macro_f1=0.7307 val_macro_f1=0.7157 best_val_macro_f1=0.7193 patience_counter=1
+2026-04-18 21:20:44 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=30/60 train_loss=0.5211 train_macro_f1=0.7473 val_macro_f1=0.7407 best_val_macro_f1=0.7407 patience_counter=0
+2026-04-18 21:20:44 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=30/60 train_loss=0.5169 train_macro_f1=0.7486 val_macro_f1=0.7429 best_val_macro_f1=0.7429 patience_counter=0
+2026-04-18 21:20:47 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=30/60 train_loss=0.5424 train_macro_f1=0.7283 val_macro_f1=0.7332 best_val_macro_f1=0.7372 patience_counter=1
+2026-04-18 21:20:48 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=30/60 train_loss=0.5139 train_macro_f1=0.7500 val_macro_f1=0.7470 best_val_macro_f1=0.7493 patience_counter=2
+2026-04-18 21:20:48 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=30/60 train_loss=0.5190 train_macro_f1=0.7455 val_macro_f1=0.7372 best_val_macro_f1=0.7373 patience_counter=2
+2026-04-18 21:21:14 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=35/60 train_loss=0.4989 train_macro_f1=0.7441 val_macro_f1=0.7415 best_val_macro_f1=0.7488 patience_counter=2
+2026-04-18 21:21:14 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=35/60 train_loss=0.4978 train_macro_f1=0.7503 val_macro_f1=0.7385 best_val_macro_f1=0.7526 patience_counter=1
+2026-04-18 21:21:18 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=35/60 train_loss=0.5158 train_macro_f1=0.7378 val_macro_f1=0.7434 best_val_macro_f1=0.7434 patience_counter=0
+2026-04-18 21:21:19 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=35/60 train_loss=0.4957 train_macro_f1=0.7580 val_macro_f1=0.7509 best_val_macro_f1=0.7509 patience_counter=0
+2026-04-18 21:21:19 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=35/60 train_loss=0.4919 train_macro_f1=0.7469 val_macro_f1=0.7433 best_val_macro_f1=0.7530 patience_counter=1
+2026-04-18 21:21:44 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=40/60 train_loss=0.4848 train_macro_f1=0.7685 val_macro_f1=0.7606 best_val_macro_f1=0.7606 patience_counter=0
+2026-04-18 21:21:45 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=40/60 train_loss=0.4783 train_macro_f1=0.7668 val_macro_f1=0.7589 best_val_macro_f1=0.7589 patience_counter=0
+2026-04-18 21:21:49 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=40/60 train_loss=0.4947 train_macro_f1=0.7454 val_macro_f1=0.7454 best_val_macro_f1=0.7508 patience_counter=2
+2026-04-18 21:21:49 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=40/60 train_loss=0.4794 train_macro_f1=0.7547 val_macro_f1=0.7381 best_val_macro_f1=0.7548 patience_counter=2
+2026-04-18 21:21:49 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=40/60 train_loss=0.4735 train_macro_f1=0.7680 val_macro_f1=0.7604 best_val_macro_f1=0.7604 patience_counter=0
+2026-04-18 21:22:15 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=45/60 train_loss=0.4677 train_macro_f1=0.7665 val_macro_f1=0.7645 best_val_macro_f1=0.7675 patience_counter=1
+2026-04-18 21:22:15 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=45/60 train_loss=0.4630 train_macro_f1=0.7777 val_macro_f1=0.7679 best_val_macro_f1=0.7679 patience_counter=0
+2026-04-18 21:22:19 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=45/60 train_loss=0.4784 train_macro_f1=0.7621 val_macro_f1=0.7549 best_val_macro_f1=0.7603 patience_counter=1
+2026-04-18 21:22:19 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=45/60 train_loss=0.4578 train_macro_f1=0.7778 val_macro_f1=0.7707 best_val_macro_f1=0.7707 patience_counter=0
+2026-04-18 21:22:19 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=45/60 train_loss=0.4627 train_macro_f1=0.7751 val_macro_f1=0.7612 best_val_macro_f1=0.7612 patience_counter=0
+2026-04-18 21:22:45 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=50/60 train_loss=0.4506 train_macro_f1=0.7834 val_macro_f1=0.7754 best_val_macro_f1=0.7754 patience_counter=0
+2026-04-18 21:22:45 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=50/60 train_loss=0.4474 train_macro_f1=0.7873 val_macro_f1=0.7735 best_val_macro_f1=0.7735 patience_counter=0
+2026-04-18 21:22:49 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=50/60 train_loss=0.4595 train_macro_f1=0.7747 val_macro_f1=0.7651 best_val_macro_f1=0.7651 patience_counter=1
+2026-04-18 21:22:50 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=50/60 train_loss=0.4438 train_macro_f1=0.7869 val_macro_f1=0.7801 best_val_macro_f1=0.7801 patience_counter=0
+2026-04-18 21:22:50 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=50/60 train_loss=0.4472 train_macro_f1=0.7748 val_macro_f1=0.7522 best_val_macro_f1=0.7644 patience_counter=2
+2026-04-18 21:23:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=55/60 train_loss=0.4357 train_macro_f1=0.7962 val_macro_f1=0.7805 best_val_macro_f1=0.7805 patience_counter=0
+2026-04-18 21:23:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=55/60 train_loss=0.4347 train_macro_f1=0.7946 val_macro_f1=0.7825 best_val_macro_f1=0.7825 patience_counter=0
+2026-04-18 21:23:28 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=55/60 train_loss=0.4427 train_macro_f1=0.7853 val_macro_f1=0.7732 best_val_macro_f1=0.7732 patience_counter=0
+2026-04-18 21:23:33 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=55/60 train_loss=0.4348 train_macro_f1=0.7819 val_macro_f1=0.7577 best_val_macro_f1=0.7717 patience_counter=1
+2026-04-18 21:23:33 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=55/60 train_loss=0.4274 train_macro_f1=0.7971 val_macro_f1=0.7815 best_val_macro_f1=0.7815 patience_counter=0
+2026-04-18 21:24:20 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=60/60 train_loss=0.4158 train_macro_f1=0.7982 val_macro_f1=0.7748 best_val_macro_f1=0.7858 patience_counter=2
+2026-04-18 21:24:21 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 1 done | test_acc=0.7870  test_macro_f1=0.7800
+2026-04-18 21:24:21 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:24:24 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=60/60 train_loss=0.4272 train_macro_f1=0.7973 val_macro_f1=0.7774 best_val_macro_f1=0.7774 patience_counter=0
+[03_kfold] Fold 0 complete.
+2026-04-18 21:24:25 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 4 done | test_acc=0.7835  test_macro_f1=0.7781
+2026-04-18 21:24:25 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:24:25 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=60/60 train_loss=0.4203 train_macro_f1=0.8010 val_macro_f1=0.7849 best_val_macro_f1=0.7851 patience_counter=3
+2026-04-18 21:24:26 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=60/60 train_loss=0.4203 train_macro_f1=0.7885 val_macro_f1=0.7626 best_val_macro_f1=0.7795 patience_counter=1
+2026-04-18 21:24:26 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 3 done | test_acc=0.7848  test_macro_f1=0.7765
+2026-04-18 21:24:26 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:24:26 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | epoch=60/60 train_loss=0.4133 train_macro_f1=0.8053 val_macro_f1=0.7855 best_val_macro_f1=0.7855 patience_counter=0
+2026-04-18 21:24:27 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 5 done | test_acc=0.7857  test_macro_f1=0.7791
+2026-04-18 21:24:27 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
+2026-04-18 21:24:27 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 2 done | test_acc=0.7859  test_macro_f1=0.7787
+2026-04-18 21:24:27 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
+[03_kfold] Fold 1 complete.
+[03_kfold] Fold 2 complete.
+[03_kfold] Fold 3 complete.
+[03_kfold] Fold 4 complete.
+[03_kfold] All folds done. Aggregating ...
+2026-04-18 21:24:33 | INFO | kfold_cv_cross_bucket_total_dataset_kfold_baseline | Aggregate (5/5 folds) | accuracy=0.7854±0.0012  macro_f1=0.7785±0.0012
+[03_kfold] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/cross_bucket_total_dataset_kfold_baseline/kfold/kfold_summary.json
+
+Pipeline complete.

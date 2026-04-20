@@ -1,0 +1,318 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{array}
+
+\definecolor{futureblue}{RGB}{0,82,204}
+\newcommand{\futurework}[1]{\textcolor{futureblue}{\textit{How to solve/integrate: #1}}}
+
+\title{\textbf{Thesis Progress Notes (Code-Verified)}}
+\author{Ziv Baretto}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Note:} Every statement below is based only on the local code and saved outputs I checked in \path{Fixed_GPU_OpenNyai}, \path{Timeline_Maker}, \path{GRAPH_VISUALISER}, and \path{section_GNN}. Where the repo does not yet implement something, I state that explicitly and add a blue integration note.
+
+\section*{Abstract}
+
+The implemented pipeline converts legal case JSONs into reasoning-focused heterogeneous graphs for outcome prediction. In the data-building stage, \path{Timeline_Maker/merge_cases_v2.py} can group multiple dated JSON files belonging to the same case, deduplicate same-date copies, and produce one merged case document while preserving hearing-level provenance such as \texttt{\_hearing\_timeline}, \texttt{\_section\_offsets}, and sentence-level hearing metadata. In the preprocessing stage, sentence-level OpenNyAI outputs are converted into leakage-safe text sections and normalized legal entities using the fixed-open pipeline in \path{section_GNN/experiments/fixed_open_pipeline/preprocess_fixed_open.py}. The graph builder in \path{section_GNN/final_graph/updated_graph} keeps pre-judgment sections such as \texttt{preamble}, \texttt{facts}, and argument sections, constructs text and entity nodes, and applies temporal gating to statute/provision/precedent citation edges using \texttt{case\_year}. The training code predicts legal outcome from the final \texttt{case} node embedding and evaluates it with saved fold metrics, confusion matrices, and prediction files. Completed outputs include five domain-specific 5-fold runs, a 70{,}460-case cross-bucket 5-fold run, family-domain ablations, cross-bucket text-only and hashing ablations, a fixed-open encoder benchmark, a fixed-open dataset-size sweep, and a separate 3-way outcome experiment. In the saved summaries, the cross-bucket full run reaches accuracy \(0.7854\) and macro-F1 \(0.7785\), the best domain-specific macro-F1 is \(0.7991\) on family/matrimonial, and the fixed-open encoder benchmark shows BGE-M3 as the best average encoder among the tested variants.
+
+\section*{1. What legal document are we processing?}
+
+In the codebase, a case can appear either as a single JSON file or as multiple dated JSON files. The clearest evidence is in \path{DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/merge_cases_v2.py}.
+
+\begin{itemize}[noitemsep]
+\item Files are expected in the format \texttt{Case Name on DD Month, YYYY.json}.
+\item Same-date duplicates are resolved by keeping the file with the most sentences.
+\item Multi-date case files are sorted from oldest to latest and merged into one \texttt{\_MERGED.json}.
+\item The merged output preserves provenance through \texttt{\_merged\_from}, \texttt{\_hearing\_timeline}, \texttt{\_section\_offsets}, and sentence-level fields \texttt{\_hearing\_date}, \texttt{\_hearing\_file}, and \texttt{\_hearing\_offset}.
+\item The latest document supplies the final stored outcome fields: \texttt{case\_outcome\_label}, \texttt{case\_outcome\_score}, and \texttt{llm\_case\_outcome}.
+\item Earlier hearings are only appended when their text is not already contained in the latest file.
+\end{itemize}
+
+So, in our pipeline, we do \textbf{not} rely on a single guaranteed consolidated document at source. We may start from multiple dated documents for one case and build one merged case document ourselves when needed.
+
+I did \textbf{not} find code or saved documentation here that explains how IndiaKanoon itself constructs or consolidates its document pages. That part is therefore not answered by this repo.
+
+\futurework{If you want this thesis to answer the IndiaKanoon part, add a short separate data-source note based on direct source inspection: collect a few IndiaKanoon examples for the same case across dates, compare page structure, and document whether the site exposes hearing-level snapshots or only a final compiled page.}
+
+\section*{2. Generic case components, graph sections, prediction sections, and timestamps}
+
+\subsection*{What components are visible in the current pipeline?}
+
+The pipeline does not define a manual case-file schema such as ``filed details / evidence / decision'' directly. Instead, it works from sentence-level rhetorical roles. In \path{section_GNN/experiments/fixed_open_pipeline/preprocess_fixed_open.py} and the corresponding README, the important roles are:
+
+\begin{itemize}[noitemsep]
+\item \texttt{PREAMBLE}
+\item \texttt{FAC}
+\item \texttt{ARG\_PETITIONER}
+\item \texttt{ARG\_RESPONDENT}
+\item \texttt{PRE\_RELIED}, \texttt{PRE\_NOT\_RELIED}, \texttt{STA}
+\item \texttt{ANALYSIS}, \texttt{ISSUE}, \texttt{RATIO}, \texttt{RLC}, \texttt{RPC}, \texttt{NONE}
+\end{itemize}
+
+From these roles, the current preprocessing builds the following leakage-safe sections:
+
+\begin{itemize}[noitemsep]
+\item \texttt{preamble}
+\item \texttt{facts}
+\item \texttt{arguments}
+\item \texttt{petitioner\_arguments}
+\item \texttt{respondent\_arguments}
+\item \texttt{other\_lawyer\_arguments}
+\end{itemize}
+
+There is \textbf{no separate explicit evidence section} in the current section builder. There is also no dedicated prediction target for ``reason given for decision'' in the current code.
+
+\subsection*{Which sections are used for graph building?}
+
+The reasoning-focused graph policy in \path{section_GNN/final_graph/updated_graph/reasoning_graph_policy.py} and the schema in \path{section_GNN/src/graph/schema.py} show that graph construction uses:
+
+\begin{itemize}[noitemsep]
+\item Text nodes: \texttt{preamble}, \texttt{facts}, \texttt{arguments}, \texttt{petitioner\_arguments}, \texttt{respondent\_arguments}, \texttt{other\_lawyer\_arguments}
+\item Entity nodes: \texttt{petitioner}, \texttt{respondent}, \texttt{court}, \texttt{judge}, \texttt{petitioner\_lawyer}, \texttt{defence\_lawyer}, \texttt{lawyer}, \texttt{statute}, \texttt{provision}, \texttt{precedent}
+\end{itemize}
+
+The policy explicitly excludes \texttt{org}, \texttt{gpe}, \texttt{date}, and \texttt{case\_number} from the reasoning-focused graph.
+
+\subsection*{How are those sections extracted from the case documents?}
+
+The extraction is sentence-based:
+
+\begin{itemize}[noitemsep]
+\item \texttt{PREAMBLE} sentences, and optionally the text before \texttt{preamble\_end\_char\_offset}, become \texttt{preamble}
+\item \texttt{FAC} sentences become \texttt{facts}
+\item \texttt{ARG\_PETITIONER} becomes \texttt{petitioner\_arguments} and also contributes to \texttt{arguments}
+\item \texttt{ARG\_RESPONDENT} becomes \texttt{respondent\_arguments} and also contributes to \texttt{arguments}
+\item \texttt{PRE\_RELIED}, \texttt{PRE\_NOT\_RELIED}, and \texttt{STA} become \texttt{other\_lawyer\_arguments} and also contribute to \texttt{arguments}
+\end{itemize}
+
+The following roles are dropped conservatively to avoid leakage into the prediction input: \texttt{ANALYSIS}, \texttt{ISSUE}, \texttt{NONE}, \texttt{RATIO}, \texttt{RLC}, and \texttt{RPC}.
+
+\subsection*{Which sections are used for prediction?}
+
+For the main binary runs, prediction uses \texttt{case\_outcome\_score} as the label field. In the cross-bucket config at \path{section_GNN/runs/cross_bucket_total_dataset/config.yaml}, labels are mapped as:
+
+\begin{itemize}[noitemsep]
+\item \texttt{-1} \(\rightarrow\) \texttt{-1}
+\item \texttt{0} \(\rightarrow\) \texttt{-1}
+\item \texttt{1} \(\rightarrow\) \texttt{1}
+\end{itemize}
+
+The classifier predicts from the final \texttt{case} node embedding. The initial text stored on the \texttt{case} node is the concatenation of:
+
+\begin{itemize}[noitemsep]
+\item \texttt{preamble}
+\item \texttt{facts}
+\item \texttt{arguments}
+\end{itemize}
+
+This is implemented in \path{section_GNN/final_graph/updated_graph/case_star_builder.py}. The role-specific argument nodes and entity nodes influence the \texttt{case} node through message passing, but the decision/reasoning sections themselves are not given to the model as input.
+
+\subsection*{Are we maintaining timestamps anywhere?}
+
+Yes, but only partially.
+
+\begin{itemize}[noitemsep]
+\item In the merged source JSONs, \path{merge_cases_v2.py} preserves full hearing-level provenance and ordering.
+\item In model preprocessing, the only temporal value clearly extracted as metadata is \texttt{case\_year}, derived from DATE entities in \path{section_GNN/src/preprocessing/extract.py}.
+\item In graph building, \texttt{case\_year} is used for temporal gating of citation edges: precedents must predate the case, and statutes/provisions must not be newer than the case.
+\end{itemize}
+
+I did \textbf{not} find any use of full hearing timelines, hearing durations, or sentence-level hearing order as model features in \path{section_GNN}. So the current model is \textbf{not} a time-series model over \(T_1 \ldots T_n\); it uses a single leakage-cleaned case snapshot, plus coarse \texttt{case\_year}.
+
+\futurework{To model true procedural time, carry \texttt{\_hearing\_timeline} from the merged JSONs into cleaned-case metadata, derive features such as hearing count, case duration, and gap statistics, and then add them either as scalar case features or as explicit hearing nodes with temporal edges.}
+
+\section*{3. How are we verifying the neural representations created for the case files?}
+
+Current verification is \textbf{indirect}, through downstream prediction quality rather than a separate representation-analysis stage.
+
+In \path{section_GNN/src/training/train.py}, the training function returns:
+
+\begin{itemize}[noitemsep]
+\item split metrics for train/validation/test
+\item \texttt{predictions\_df}
+\item logits and probabilities
+\item \texttt{case\_embeddings}
+\end{itemize}
+
+In \path{section_GNN/src/training/metrics.py}, evaluation computes:
+
+\begin{itemize}[noitemsep]
+\item accuracy
+\item macro-F1 and micro-F1
+\item confusion matrix
+\item classification report
+\item per-class precision, recall, F1, support
+\item ROC-AUC and PR-AUC for binary tasks
+\end{itemize}
+
+So, as of the checked code and outputs, neural representations are being verified by whether they support accurate legal-outcome classification, not by a dedicated embedding-space study.
+
+I did \textbf{not} find an implemented analysis such as t-SNE/UMAP plots, nearest-neighbour case retrieval, probing classifiers on embeddings, or calibration/cluster checks for the saved \texttt{case\_embeddings}.
+
+\futurework{Use the saved \texttt{case\_embeddings} from \path{train.py} to build a separate representation-analysis notebook or script: export embeddings with labels/domain IDs, run t-SNE or UMAP, inspect nearest neighbours, and train a lightweight probe to test whether domain, label, or citation structure is recoverable from the learned vectors.}
+
+\section*{4. What experiments have we done? What were they trying to test? What are we seeing?}
+
+\subsection*{What the experiment design is testing}
+
+Based on the experiment names, configs, and saved summaries, the completed experiments are testing:
+
+\begin{itemize}[noitemsep]
+\item whether performance changes across legal domains
+\item whether cross-bucket pooling helps
+\item whether cross-case graph sharing helps
+\item whether non-text graph structure helps compared with text-only variants
+\item whether GNN depth matters
+\item whether the text encoder matters when graph/training are held fixed
+\item whether increasing training data helps in the fixed-open setup
+\item whether the task can be extended from binary to 3-way outcome prediction
+\end{itemize}
+
+\subsection*{Completed main 5-fold binary runs}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Run} & \textbf{Accuracy Mean} & \textbf{Macro-F1 Mean} \\
+\midrule
+Family/matrimonial & 0.8169 & 0.7991 \\
+Financial fraud & 0.7754 & 0.7639 \\
+Land/property & 0.8171 & 0.7963 \\
+Motor accidents & 0.8319 & 0.7956 \\
+Sexual offences & 0.7791 & 0.7526 \\
+Cross-bucket total dataset & 0.7854 & 0.7785 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For the cross-bucket run, the log at \path{section_GNN/runs/cross_bucket_total_dataset/run_full.log} shows \(73{,}809\) raw files were preprocessed, \(70{,}460\) cleaned cases were written, and \(3{,}349\) files were skipped because labels were missing or unmapped.
+
+\subsection*{Family-domain ablations}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{Accuracy Mean} & \textbf{Macro-F1 Mean} \\
+\midrule
+Full model & 0.8169 & 0.7991 \\
+No cross-case sharing & 0.8176 & 0.7966 \\
+Text-only & 0.8136 & 0.7944 \\
+Depth 1 & 0.8115 & 0.7925 \\
+Depth 2 & 0.8173 & 0.7965 \\
+Depth 3 & 0.8155 & 0.7978 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+What we are seeing from these saved outputs:
+
+\begin{itemize}[noitemsep]
+\item removing cross-case sharing changes results only slightly in this domain
+\item text-only is slightly below the full model
+\item one GNN layer is clearly weaker than the 2-layer and 3-layer variants
+\item the differences among full, no-cross-case, depth-2, and depth-3 are real but small
+\end{itemize}
+
+\subsection*{Cross-bucket ablations}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{Accuracy Mean} & \textbf{Macro-F1 Mean} \\
+\midrule
+Full cross-bucket & 0.7854 & 0.7785 \\
+Text-only (variant 1) & 0.7918 & 0.7843 \\
+Text-only (variant 2) & 0.7776 & 0.7702 \\
+Text-only + hashing & 0.7673 & 0.7594 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The important point here is that the saved outputs do \textbf{not} show a single monotonic result in favor of graph structure on the cross-bucket setting. Text-only remains competitive, and one text-only variant is slightly above the full cross-bucket run. What is very clear, however, is that semantic text encoding is better than hashing in this setup.
+
+\subsection*{Controlled encoder benchmark on the fixed-open financial-fraud setup}
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Encoder} & \textbf{Val Macro-F1} & \textbf{Test Macro-F1} \\
+\midrule
+Hashing & 0.7427 \(\pm\) 0.0067 & 0.7401 \(\pm\) 0.0077 \\
+BGE-M3 & 0.7662 \(\pm\) 0.0059 & 0.7513 \(\pm\) 0.0138 \\
+InLegalBERT & 0.7412 \(\pm\) 0.0075 & 0.7345 \(\pm\) 0.0016 \\
+Legal Longformer & 0.7378 \(\pm\) 0.0037 & 0.7177 \(\pm\) 0.0042 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This experiment keeps the graph pipeline fixed and changes only the text encoder. The consistency report in \path{outputs/fin_fraud_labelled_reasoning/multi_embed_test/summary/consistency_checks.json} confirms that split assignments, node counts, relation mappings, and case-split counts are the same across encoder variants. The checked output shows BGE-M3 as the best average encoder among the tested variants.
+
+\subsection*{Other completed experiments with saved outputs}
+
+\begin{itemize}[noitemsep]
+\item \textbf{Fixed-open dataset-size sweep:} train sizes \(2500\), \(5000\), and ``all remaining'' were run. Test macro-F1 rises only slightly from \(0.4776\) to \(0.4905\) in the saved summary, so that setup is currently much weaker than the timed-bucket runs.
+\item \textbf{3-way outcome experiment:} \path{outputs/augmented_jsons_3way/models/augmented_jsons_3way_reasoning_focused/metrics.json} reports test accuracy \(0.7437\) and macro-F1 \(0.7245\) for labels \(\{-1, 0, 1\}\). This is an outcome-class experiment, not a reason-prediction experiment.
+\end{itemize}
+
+\section*{5. Do we have explainability or visibility into the process?}
+
+\subsection*{What currently exists}
+
+Yes, but mostly at the graph-structure and prediction-output level.
+
+\begin{itemize}[noitemsep]
+\item \path{GRAPH_VISUALISER/app.py} provides interactive graph views, including a hub network and case-connection exploration.
+\item \path{GRAPH_VISUALISER/entity_analysis/analyse.py} computes degree centrality, weighted degree, PageRank, optional betweenness, bridge-entity statistics, and outcome win-rate / mean-score summaries for entities.
+\item \path{section_GNN/src/training/train.py} saves \texttt{predictions.csv} with per-case predictions and confidence.
+\item \path{section_GNN/final_graph/updated_graph/pipeline.py} stores per-case debug samples including retained text plus node and edge counts.
+\item \path{GRAPH_VISUALISER/outputs/stats.json} shows that graph-level descriptive statistics are being produced, such as total nodes, total edges, average degree, maximum degree, and top hubs.
+\end{itemize}
+
+\subsection*{What does not yet exist}
+
+I did \textbf{not} find an implemented analysis that answers:
+
+\begin{itemize}[noitemsep]
+\item whether the model fails more on long-duration cases
+\item whether the model fails more on graphs with many nodes or many citations
+\item whether certain courts, buckets, or graph shapes are harder than others
+\item which specific edge types or node types receive the most useful model attention during prediction
+\end{itemize}
+
+So the honest answer is: \textbf{we have visibility into the constructed graph and final predictions, but we do not yet have a finished failure-analysis layer that explains success/failure by time duration, node count, or similar characteristics.}
+
+\futurework{Join \texttt{predictions.csv} with per-case graph summaries from the reasoning-graph metadata and with hearing metadata from the merged JSONs. Then report error rate by node count, edge count, citation count, hearing count, and case duration. If you want model-level explainability, extend the HGT path to expose attention weights by relation type and summarize them alongside the error analysis.}
+
+\section*{6. Are we predicting only the decision? Can we predict the reasons also?}
+
+For the main thesis pipeline, the answer is \textbf{yes, we are currently predicting only the decision label}. In the main binary runs, that label is derived from \texttt{case\_outcome\_score} and mapped to \(\{-1, 1\}\). There is also a separate saved 3-way setup over \(\{-1, 0, 1\}\), but that is still outcome prediction, not reason prediction.
+
+The current preprocessing explicitly removes direct decision/reasoning content from the model input. In \path{section_GNN/src/graph/schema.py}, forbidden top-level fields include:
+
+\begin{itemize}[noitemsep]
+\item \texttt{case\_outcome\_label}
+\item \texttt{case\_outcome\_score}
+\item \texttt{llm\_case\_outcome}
+\item \texttt{decision\_text}
+\item \texttt{rpc\_texts}
+\end{itemize}
+
+And in the fixed-open preprocessing, the roles \texttt{ANALYSIS}, \texttt{RATIO}, \texttt{RLC}, and \texttt{RPC} are dropped before graph construction. So the current codebase does \textbf{not} train a reason predictor.
+
+I also did \textbf{not} find any implemented co-training or multi-task setup for reasons in the checked folders.
+
+\futurework{If you want to predict reasons, first create reason targets from an explicit taxonomy. One practical route is to normalize \texttt{rpc\_texts} or sentence-level \texttt{RATIO}/\texttt{RPC}/\texttt{ANALYSIS} spans into categories, then train either a multi-label classifier or a second prediction head jointly with the outcome head. Without a reason label schema, the current binary classifier cannot be extended into reason prediction in a controlled way.}
+
+\end{document}

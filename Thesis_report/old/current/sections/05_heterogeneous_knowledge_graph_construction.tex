@@ -1,0 +1,328 @@
+\chapter{Heterogeneous Knowledge Graph Construction}
+\label{ch:graph}
+
+This chapter describes the design and construction of the heterogeneous legal knowledge graph that forms the backbone of the prediction pipeline. Each case is first transformed into a local \emph{case star graph} connecting the case node to its entities and text sections. These local stars are then merged through shared entity nodes into a single \emph{global authority graph} that captures cross-case legal relationships.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Motivation for Graph Construction}
+\label{sec:graph-motivation}
+
+A flat, tabular representation of legal cases — where each row contains case text and metadata — discards the rich relational structure inherent in legal reasoning. Consider that:
+
+\begin{itemize}
+    \item Multiple cases may cite the \emph{same statute} (e.g., Section~498A IPC), and the outcome patterns associated with that statute carry predictive information.
+    \item A \emph{judge} who has presided over hundreds of similar bail applications brings a sentencing tendency that is not captured in any single case's text.
+    \item \emph{Precedent citations} create explicit reasoning chains: if Case~A cites Case~B, the outcome of B is likely to influence the arguments and decision in A.
+    \item \emph{Lawyers} who routinely appear in a domain carry a track record that flat features cannot represent.
+\end{itemize}
+
+A heterogeneous graph naturally encodes these multi-type relationships, enabling a Graph Neural Network (GNN) to learn representations that aggregate not just a case's own features, but the structural context of its legal neighbourhood. This is fundamentally different from text-only classification, where each case is processed in isolation.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Graph Schema Design}
+\label{sec:schema}
+
+The graph schema defines the node types and edge types that constitute the heterogeneous legal graph. The design principle is to include every entity type that carries pre-judgment information while excluding anything that encodes the outcome.
+
+\subsection{Node Types}
+
+Table~\ref{tab:node-types} lists all node types in the graph schema.
+
+\begin{table}[H]
+\centering
+\caption{Node types in the heterogeneous legal knowledge graph.}
+\label{tab:node-types}
+\begin{tabular}{@{}llp{7.5cm}@{}}
+\toprule
+\textbf{Category} & \textbf{Node Type} & \textbf{Description} \\
+\midrule
+\multirow{1}{*}{Core}
+& \texttt{case} & Central node; one per case. Carries text from preamble, facts, and arguments concatenated. \\
+\midrule
+\multirow{6}{*}{Text}
+& \texttt{preamble} & Case header text (court, bench, parties, docket). \\
+& \texttt{facts} & Factual narrative as presented to the court. \\
+& \texttt{arguments} & Combined submissions of all counsel. \\
+& \texttt{petitioner\_arguments} & Arguments attributed to petitioner's counsel. \\
+& \texttt{respondent\_arguments} & Arguments attributed to respondent's counsel. \\
+& \texttt{other\_lawyer\_arguments} & Arguments not attributable to a specific side. \\
+\midrule
+\multirow{10}{*}{Entity}
+& \texttt{petitioner} & Appellant / petitioner party. \\
+& \texttt{respondent} & Opposing party / State. \\
+& \texttt{court} & Court or tribunal hearing the case. \\
+& \texttt{judge} & Presiding judge(s). \\
+& \texttt{petitioner\_lawyer} & Counsel for the petitioner / appellant. \\
+& \texttt{defence\_lawyer} & Counsel for the respondent / State. \\
+& \texttt{lawyer} & Counsel with unresolved side. \\
+& \texttt{statute} & Legislative act or code. \\
+& \texttt{provision} & Specific section / article of a statute. \\
+& \texttt{precedent} & Previously decided case cited as authority. \\
+\midrule
+\multirow{4}{*}{Context}
+& \texttt{org} & Organisations (police stations, hospitals, banks). \\
+& \texttt{gpe} & Geo-political entities (cities, states). \\
+& \texttt{date} & Dates mentioned in the judgment. \\
+& \texttt{case\_number} & Docket / filing numbers. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Crucially, there is \textbf{no \texttt{decision} node}. The \textsc{Decision} and \textsc{Analysis} sections are excluded through the leakage prevention strategy described in Section~\ref{sec:leakage}.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Edge Types and Legal Semantics}
+\label{sec:edges}
+
+Each edge in the graph carries a typed relation that captures a specific legal semantic. Table~\ref{tab:edge-types} defines the full edge vocabulary.
+
+\begin{table}[H]
+\centering
+\caption{Edge types and their legal semantics.}
+\label{tab:edge-types}
+\begin{tabular}{@{}lllp{5cm}@{}}
+\toprule
+\textbf{Source} & \textbf{Relation} & \textbf{Target} & \textbf{Meaning} \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Structural edges (case $\to$ text sections)}} \\
+case & has\_preamble & preamble & Case is introduced by this preamble \\
+case & has\_facts & facts & Factual narrative of the case \\
+case & has\_arguments & arguments & Combined legal arguments \\
+case & has\_petitioner\_arguments & petitioner\_args & Petitioner's counsel submissions \\
+case & has\_respondent\_arguments & respondent\_args & Defence counsel submissions \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Party and authority edges}} \\
+case & has\_petitioner & petitioner & Party who filed the case \\
+case & has\_respondent & respondent & Opposing party \\
+case & heard\_in & court & Court of adjudication \\
+case & decided\_by\_bench & judge & Presiding judge \\
+case & has\_petitioner\_lawyer & pet.\ lawyer & Counsel for petitioner \\
+case & has\_defence\_lawyer & def.\ lawyer & Counsel for respondent \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Citation edges (arguments $\to$ legal authorities)}} \\
+arguments & cites\_statute & statute & Argument cites this statute \\
+arguments & cites\_provision & provision & Argument cites this provision \\
+arguments & cites\_precedent & precedent & Argument cites this case \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Hierarchical edges}} \\
+provision & belongs\_to\_statute & statute & Section belongs to parent Act \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Bridging edges (shorten hop distance)}} \\
+provision & used\_in\_arguments & arguments & Provision discussed in arguments \\
+statute & used\_in\_arguments & arguments & Statute discussed in arguments \\
+petitioner & is\_party\_in\_arguments & arguments & Party referenced in arguments \\
+respondent & is\_party\_in\_arguments & arguments & Party referenced in arguments \\
+judge & presided\_arguments & arguments & Judge directed the hearing \\
+pet.\ lawyer & citation & arguments & Lawyer made citations \\
+def.\ lawyer & citation & arguments & Lawyer made citations \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bridging edges serve to reduce the hop distance between entity nodes and the arguments text node, ensuring that two hops of GNN message passing can propagate information from statutes and parties through arguments to the case node.
+
+All edges are made \emph{bidirectional} during PyTorch Geometric conversion using the \texttt{ToUndirected} transform, so that information flows in both directions during message passing.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Shared vs Local Entities}
+\label{sec:shared-local}
+
+A fundamental design choice in the graph construction is whether an entity node is \emph{shared across cases} (global) or \emph{local to a single case}:
+
+\begin{itemize}
+    \item \textbf{Shared (global) entities.} Entities of types \texttt{court}, \texttt{judge}, \texttt{lawyer}, \texttt{statute}, \texttt{provision}, \texttt{precedent}, \texttt{org}, \texttt{gpe}, \texttt{date}, and \texttt{case\_number} are shared by default. If two cases cite ``Section 498A IPC'', they connect to the \emph{same} provision node, creating a path between them through the graph.
+    \item \textbf{Local entities.} \texttt{petitioner} and \texttt{respondent} nodes remain case-local by default because party name resolution across cases is inherently noisy — ``State of Maharashtra'' vs ``State'' vs ``Respondent'' may or may not refer to the same party.
+\end{itemize}
+
+Shared entity nodes serve as \emph{bridge nodes}, connecting multiple cases into a single connected graph. The node key for a shared entity follows the format \texttt{<entity\_type>::<canonical\_name>}, while local nodes use \texttt{case::<case\_id>::<entity\_type>::<canonical\_name>}.
+
+This distinction is central to the ablation experiments (Chapter~7): the \emph{no cross-case sharing} variant converts all shared entities to case-local, isolating each case's subgraph and measuring the predictive value of cross-case structural information.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Feature Construction for Nodes}
+\label{sec:features}
+
+Each node in the graph carries a feature vector composed of two components:
+
+\subsection{Text Embeddings}
+
+All node texts are encoded using a \textbf{Sentence Transformers} model, producing a dense embedding vector. The text content varies by node type:
+
+\begin{itemize}
+    \item \textbf{Case nodes:} Concatenation of preamble, facts, and arguments text.
+    \item \textbf{Text nodes:} The text content of the respective section.
+    \item \textbf{Entity nodes:} The canonical name of the entity (e.g., ``section 498a'', ``supreme court'').
+\end{itemize}
+
+A hashing-based fallback encoder is available for development and ablation runs where transformer encoding would be prohibitively slow.
+
+\subsection{Scalar Metadata Features}
+
+In addition to text embeddings, each node carries a scalar feature vector capturing structured metadata:
+
+\begin{table}[H]
+\centering
+\caption{Scalar features by node category.}
+\label{tab:scalar-features}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Category} & \textbf{Features} \\
+\midrule
+Case nodes & Respondent count, judge count, lawyer count, statute count, provision count, precedent count, preamble length, facts length, arguments length, case year, petition type known (binary), petition type hash \\
+\midrule
+Entity nodes & Mention count, first seen in preamble / facts / arguments (binary indicators), seen in arguments, seen in preamble, local case frequency, global case frequency, degree, is shared node \\
+\midrule
+Text nodes & Text length, section type indicators (preamble / facts / arguments), cited statute count, cited provision count, cited precedent count, petitioner lawyer count, defence lawyer count, party counts, judge count \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All scalar values are normalized to $[0, 1]$ using fixed scaling: counts are capped at 100 and divided, lengths are capped at 5,000 and divided, and years are linearly mapped from the range $[1900, 2100]$.
+
+The final feature vector for each node is the concatenation of the text embedding and the scalar vector: $\mathbf{x} = [\mathbf{e}_{\text{text}} \| \mathbf{s}_{\text{scalar}}]$.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Graph Preprocessing and Filtering}
+\label{sec:graph-preprocessing}
+
+\subsection{Entity Normalisation}
+
+Entity names undergo string-based normalisation before graph node construction to reduce fragmentation:
+
+\begin{itemize}
+    \item \textbf{All types:} Lowercasing and whitespace normalisation.
+    \item \textbf{Judge / Lawyer:} Removal of honorifics (``Hon'ble'', ``Justice'', ``Shri'', ``Smt.'', ``Dr.'').
+    \item \textbf{Court:} Canonical rewrites (``High Court of Judicature at'' $\to$ ``High Court at''; stripping ``The'').
+    \item \textbf{Statute / Provision:} Abbreviation expansion (``Sec.'' $\to$ ``Section'', ``U/S'' $\to$ ``Under Section'', ``Cr.P.C.'' $\to$ ``Code of Criminal Procedure'').
+    \item \textbf{Most types:} Punctuation removal (except for provision, case number, and date types where punctuation or special characters are semantically meaningful).
+\end{itemize}
+
+\subsection{Provision–Statute Linking}
+
+When a provision mention includes a parent statute (e.g., ``Section 498A of IPC''), the normalisation stage splits the string and creates a \texttt{belongs\_to\_statute} edge connecting the provision node to its parent statute node. If the statute node does not already exist from direct mentions, a synthetic statute node is created.
+
+\subsection{Deduplication}
+
+Within each case's local star graph, duplicate entity nodes (same type and canonical name) are merged into a single node with an accumulated mention count. Across cases, entity deduplication happens naturally through the shared-node keying scheme.
+
+\subsection{Graph Quality Checks}
+
+Before feature construction, the pipeline performs automated quality assertions:
+
+\begin{itemize}
+    \item No case node may contain forbidden metadata keys (\texttt{decision}, \texttt{llm\_case\_outcome}, \texttt{case\_outcome\_label}, \texttt{rpc}).
+    \item No text node (preamble, facts, arguments) may contain any of the compiled leakage phrases.
+\end{itemize}
+
+If any assertion fails, the pipeline raises an error and does not proceed to training, ensuring that a leaky graph is never trained on.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Final Graph Statistics}
+\label{sec:graph-stats}
+
+Table~\ref{tab:graph-stats-global} presents the overall graph statistics after merging all five domain buckets into a single heterogeneous graph.
+
+\begin{table}[H]
+\centering
+\caption{Global heterogeneous graph statistics.}
+\label{tab:graph-stats-global}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total nodes        & 880,176 \\
+Total edges        & 1,977,295 \\
+Average degree     & 4.493 \\
+Maximum degree     & 29,602 \\
+Number of case nodes & 72,735 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:node-type-counts} shows the breakdown of nodes by type, revealing the dominance of precedent and party nodes.
+
+\begin{table}[H]
+\centering
+\caption{Node counts by type in the global graph.}
+\label{tab:node-type-counts}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Node Type} & \textbf{Count} \\
+\midrule
+case          & 72,735 \\
+precedent     & 255,148 \\
+respondent    & 192,147 \\
+petitioner    & 171,084 \\
+lawyer        & 73,645 \\
+provision     & 43,504 \\
+court         & 38,799 \\
+statute       & 21,754 \\
+judge         & 11,360 \\
+\midrule
+\textbf{Total} & \textbf{880,176} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The large number of precedent nodes (255,148) reflects the citation-intensive nature of Indian judicial writing. Petitioner and respondent nodes are numerous because they are case-local, each case creating its own party nodes.
+
+Table~\ref{tab:bucket-case-counts} shows the distribution of case nodes across the five domain buckets.
+
+\begin{table}[H]
+\centering
+\caption{Case node counts by domain bucket.}
+\label{tab:bucket-case-counts}
+\begin{tabular}{@{}lr@{}}
+\toprule
+\textbf{Domain Bucket} & \textbf{Cases} \\
+\midrule
+Family \& Matrimonial  & 15,064 \\
+Motor Accidents        & 15,086 \\
+Sexual Offences        & 14,596 \\
+Financial Fraud        & 14,009 \\
+Land \& Property       & 13,980 \\
+\midrule
+\textbf{Total}         & \textbf{72,735} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Note that the final case count (72,735) is slightly lower than the raw corpus count (73,809) due to cases excluded during preprocessing — for example, cases with no valid outcome label or those with insufficient text content.
+
+Table~\ref{tab:per-bucket-graph} presents the per-bucket graph statistics from separate within-bucket graph builds used during the per-domain analysis.
+
+\begin{table}[H]
+\centering
+\caption{Per-bucket graph statistics (separate builds for graph analysis).}
+\label{tab:per-bucket-graph}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Bucket} & \textbf{Cases} & \textbf{Nodes} & \textbf{Edges} \\
+\midrule
+Family \& Matrimonial  & 15,307 &  97,150 &  3,660,068 \\
+Land \& Property       & 14,052 & 126,962 &  9,210,612 \\
+Motor Accidents        & 15,237 & 125,234 &  7,165,461 \\
+Sexual Offences        & 14,597 & 106,662 &  7,123,225 \\
+Financial Fraud        & 14,616 & 113,240 &  7,869,952 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Land \& Property generates the densest graph (9.2M edges) despite having the fewest cases, driven by extensive citation of land acquisition statutes and constitutional provisions.
+
+%% ──────────────────────────────────────────────────────────────────────────────
+\section{Chapter Summary}
+\label{sec:ch5-summary}
+
+This chapter presented the heterogeneous knowledge graph representation of the legal case corpus. Key contributions include:
+
+\begin{enumerate}
+    \item A principled graph schema with 20+ node types covering cases, text sections, legal entities, and contextual mentions — with no decision-related nodes.
+    \item A rich edge vocabulary spanning structural, citation, hierarchical, and bridging relations, specifically designed to reduce hop distance for GNN message passing.
+    \item A clear separation between shared (global) and local entity nodes, with shared nodes serving as cross-case bridge points.
+    \item Composite feature vectors combining transformer-based text embeddings with normalised scalar metadata.
+    \item Conservative string-based entity normalisation with provision--statute linking.
+    \item Automated graph quality checks that guarantee no leakage survives into the final graph.
+\end{enumerate}
+
+The resulting graph contains 880,176 nodes and 1,977,295 edges connecting 72,735 case nodes across five legal domains. Chapter~\ref{ch:graph-explore} explores this graph's structure before it is used for prediction.

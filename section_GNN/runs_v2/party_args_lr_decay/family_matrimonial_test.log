@@ -1,0 +1,165 @@
+nohup: ignoring input
+=== Step 1: Building graph ===
+2026-04-19 00:02:32 | INFO | build_graph_v2 | Loaded 14563 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/processed/cleaned_cases
+2026-04-19 00:03:17 | INFO | build_graph_v2 | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 229509 texts
+Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [01:14<1:37:51, 74.32s/it]Chunks:   2%|▎         | 2/80 [01:18<42:57, 33.05s/it]  Chunks:   4%|▍         | 3/80 [01:20<24:00, 18.71s/it]Chunks:   5%|▌         | 4/80 [01:21<15:11, 11.99s/it]Chunks:   6%|▋         | 5/80 [01:23<10:23,  8.31s/it]Chunks:   8%|▊         | 6/80 [01:25<07:27,  6.05s/it]Chunks:   9%|▉         | 7/80 [01:25<05:06,  4.20s/it]Chunks:  10%|█         | 8/80 [01:27<03:57,  3.30s/it]Chunks:  11%|█▏        | 9/80 [01:27<02:48,  2.37s/it]Chunks:  12%|█▎        | 10/80 [01:28<02:25,  2.07s/it]Chunks:  14%|█▍        | 11/80 [01:29<01:46,  1.54s/it]Chunks:  15%|█▌        | 12/80 [01:30<01:43,  1.53s/it]Chunks:  16%|█▋        | 13/80 [01:30<01:17,  1.16s/it]Chunks:  18%|█▊        | 14/80 [01:59<10:32,  9.58s/it]Chunks:  19%|█▉        | 15/80 [02:19<13:32, 12.50s/it]Chunks:  20%|██        | 16/80 [02:28<12:12, 11.44s/it]Chunks:  21%|██▏       | 17/80 [02:33<10:12,  9.72s/it]Chunks:  22%|██▎       | 18/80 [02:35<07:32,  7.30s/it]Chunks:  24%|██▍       | 19/80 [02:37<05:39,  5.56s/it]Chunks:  25%|██▌       | 20/80 [02:37<03:56,  3.95s/it]Chunks:  26%|██▋       | 21/80 [02:37<02:54,  2.96s/it]Chunks:  28%|██▊       | 22/80 [02:38<02:16,  2.35s/it]Chunks:  29%|██▉       | 23/80 [02:39<01:38,  1.72s/it]Chunks:  30%|███       | 24/80 [02:39<01:18,  1.40s/it]Chunks:  31%|███▏      | 25/80 [02:40<01:04,  1.17s/it]Chunks:  32%|███▎      | 26/80 [02:40<00:49,  1.09it/s]Chunks:  34%|███▍      | 27/80 [02:40<00:37,  1.41it/s]Chunks:  35%|███▌      | 28/80 [02:41<00:35,  1.45it/s]Chunks:  36%|███▋      | 29/80 [02:42<00:36,  1.40it/s]Chunks:  38%|███▊      | 30/80 [02:42<00:28,  1.77it/s]Chunks:  39%|███▉      | 31/80 [02:42<00:23,  2.11it/s]Chunks:  40%|████      | 32/80 [02:43<00:25,  1.89it/s]Chunks:  41%|████▏     | 33/80 [02:44<00:27,  1.70it/s]Chunks:  42%|████▎     | 34/80 [02:44<00:21,  2.12it/s]Chunks:  44%|████▍     | 35/80 [02:44<00:18,  2.39it/s]Chunks:  45%|████▌     | 36/80 [02:45<00:21,  2.07it/s]Chunks:  46%|████▋     | 37/80 [02:45<00:19,  2.20it/s]Chunks:  48%|████▊     | 38/80 [02:46<00:17,  2.33it/s]Chunks:  49%|████▉     | 39/80 [02:46<00:14,  2.81it/s]Chunks:  50%|█████     | 40/80 [02:47<00:28,  1.40it/s]Chunks:  51%|█████▏    | 41/80 [02:48<00:21,  1.82it/s]Chunks:  52%|█████▎    | 42/80 [02:49<00:33,  1.15it/s]Chunks:  54%|█████▍    | 43/80 [02:49<00:24,  1.52it/s]Chunks:  55%|█████▌    | 44/80 [02:51<00:33,  1.07it/s]Chunks:  56%|█████▋    | 45/80 [02:51<00:24,  1.41it/s]Chunks:  57%|█████▊    | 46/80 [02:54<00:41,  1.23s/it]Chunks:  59%|█████▉    | 47/80 [03:09<03:05,  5.61s/it]Chunks:  60%|██████    | 48/80 [03:13<02:44,  5.13s/it]Chunks:  61%|██████▏   | 49/80 [03:24<03:27,  6.70s/it]Chunks:  62%|██████▎   | 50/80 [03:24<02:22,  4.74s/it]Chunks:  64%|██████▍   | 51/80 [03:28<02:13,  4.62s/it]Chunks:  65%|██████▌   | 52/80 [03:35<02:26,  5.24s/it]Chunks:  66%|██████▋   | 53/80 [03:38<02:05,  4.64s/it]Chunks:  68%|██████▊   | 54/80 [03:40<01:40,  3.88s/it]Chunks:  69%|██████▉   | 55/80 [03:42<01:23,  3.36s/it]Chunks:  70%|███████   | 56/80 [03:43<00:57,  2.41s/it]Chunks:  72%|███████▎  | 58/80 [03:45<00:38,  1.77s/it]Chunks:  74%|███████▍  | 59/80 [03:45<00:28,  1.36s/it]Chunks:  75%|███████▌  | 60/80 [03:45<00:20,  1.04s/it]Chunks:  76%|███████▋  | 61/80 [03:46<00:20,  1.09s/it]Chunks:  78%|███████▊  | 62/80 [03:47<00:17,  1.03it/s]Chunks:  80%|████████  | 64/80 [03:47<00:09,  1.61it/s]Chunks:  81%|████████▏ | 65/80 [03:48<00:10,  1.45it/s]Chunks:  82%|████████▎ | 66/80 [03:48<00:08,  1.64it/s]Chunks:  84%|████████▍ | 67/80 [03:49<00:06,  1.93it/s]Chunks:  88%|████████▊ | 70/80 [03:49<00:03,  3.17it/s]Chunks:  89%|████████▉ | 71/80 [03:50<00:03,  2.28it/s]Chunks:  90%|█████████ | 72/80 [03:50<00:03,  2.39it/s]Chunks:  91%|█████████▏| 73/80 [03:51<00:02,  2.70it/s]Chunks:  94%|█████████▍| 75/80 [03:51<00:01,  4.09it/s]Chunks:  95%|█████████▌| 76/80 [03:53<00:03,  1.27it/s]Chunks:  96%|█████████▋| 77/80 [03:55<00:03,  1.04s/it]Chunks:  98%|█████████▊| 78/80 [03:59<00:03,  1.74s/it]Chunks:  99%|█████████▉| 79/80 [04:06<00:03,  3.26s/it]Chunks: 100%|██████████| 80/80 [04:22<00:00,  6.77s/it]Chunks: 100%|██████████| 80/80 [04:22<00:00,  3.28s/it]
+2026-04-19 00:08:38 | INFO | build_graph_v2 | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/embeddings_cache/all_nodes_1ec90e30ecd35ceb605c.npz shape=(229509, 1024)
+2026-04-19 00:08:40 | INFO | build_graph_v2 | Prepared 14563 cases for reasoning-focused graph mode=binary and dropped 0 cases
+2026-04-19 00:08:42 | INFO | build_graph_v2 | Graph saved to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt
+2026-04-19 00:08:43 | INFO | build_graph_v2 | Done.
+/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+=== Step 2: 5-fold CV ===
+[kfold_v2] env=thesis_work  run=family_matrimonial_party_args_lr_decay_kfold  k=5
+[kfold_v2] Launching 5 folds in parallel on GPUs 0-4 ...
+[kfold_v2] Fold 0 -> GPU 0  (pid 3786105)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_party_args_lr_decay_kfold_fold_0.log
+[kfold_v2] Fold 1 -> GPU 1  (pid 3786107)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_party_args_lr_decay_kfold_fold_1.log
+[kfold_v2] Fold 2 -> GPU 2  (pid 3786109)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_party_args_lr_decay_kfold_fold_2.log
+[kfold_v2] Fold 3 -> GPU 3  (pid 3786111)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_party_args_lr_decay_kfold_fold_3.log
+[kfold_v2] Fold 4 -> GPU 4  (pid 3786113)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/logs/family_matrimonial_party_args_lr_decay_kfold_fold_4.log
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+2026-04-19 00:08:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt …
+2026-04-19 00:08:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt …
+2026-04-19 00:08:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt …
+2026-04-19 00:08:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt …
+2026-04-19 00:08:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Loading graph from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt …
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | ── Fold 1/5 | train=11650  test=2913  seed=42
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | ── Fold 2/5 | train=11650  test=2913  seed=43
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | ── Fold 3/5 | train=11650  test=2913  seed=44
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | ── Fold 5/5 | train=11651  test=2912  seed=46
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Graph loaded | n_cases=14563 | labels=['-1', '1']
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
+2026-04-19 00:08:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | ── Fold 4/5 | train=11651  test=2912  seed=45
+2026-04-19 00:09:02 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.6989 train_macro_f1=0.2635 val_macro_f1=0.2619 best_val_macro_f1=0.2619 patience_counter=0 lr=0.001000
+2026-04-19 00:09:03 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.6962 train_macro_f1=0.6693 val_macro_f1=0.6656 best_val_macro_f1=0.6656 patience_counter=0 lr=0.001000
+2026-04-19 00:09:11 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7222 train_macro_f1=0.2528 val_macro_f1=0.2622 best_val_macro_f1=0.2622 patience_counter=0 lr=0.001000
+2026-04-19 00:09:11 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7454 train_macro_f1=0.4026 val_macro_f1=0.4038 best_val_macro_f1=0.4038 patience_counter=0 lr=0.001000
+2026-04-19 00:09:11 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=1/90 train_loss=0.7082 train_macro_f1=0.4062 val_macro_f1=0.4077 best_val_macro_f1=0.4077 patience_counter=0 lr=0.001000
+2026-04-19 00:09:36 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6266 train_macro_f1=0.6672 val_macro_f1=0.6576 best_val_macro_f1=0.6675 patience_counter=1 lr=0.001000
+2026-04-19 00:09:37 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.5942 train_macro_f1=0.7035 val_macro_f1=0.7047 best_val_macro_f1=0.7047 patience_counter=0 lr=0.001000
+2026-04-19 00:09:41 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6578 train_macro_f1=0.6476 val_macro_f1=0.6521 best_val_macro_f1=0.6894 patience_counter=2 lr=0.001000
+2026-04-19 00:09:42 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6639 train_macro_f1=0.6491 val_macro_f1=0.6216 best_val_macro_f1=0.6499 patience_counter=2 lr=0.001000
+2026-04-19 00:09:48 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=5/90 train_loss=0.6491 train_macro_f1=0.6860 val_macro_f1=0.6671 best_val_macro_f1=0.6671 patience_counter=0 lr=0.001000
+2026-04-19 00:10:26 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.5290 train_macro_f1=0.7430 val_macro_f1=0.7456 best_val_macro_f1=0.7456 patience_counter=0 lr=0.001000
+2026-04-19 00:10:26 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.5529 train_macro_f1=0.7289 val_macro_f1=0.7225 best_val_macro_f1=0.7225 patience_counter=0 lr=0.001000
+2026-04-19 00:10:26 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.6001 train_macro_f1=0.7011 val_macro_f1=0.6794 best_val_macro_f1=0.6794 patience_counter=0 lr=0.001000
+2026-04-19 00:10:27 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.5872 train_macro_f1=0.6991 val_macro_f1=0.7015 best_val_macro_f1=0.7015 patience_counter=0 lr=0.001000
+2026-04-19 00:10:28 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=10/90 train_loss=0.5796 train_macro_f1=0.7136 val_macro_f1=0.7018 best_val_macro_f1=0.7018 patience_counter=0 lr=0.001000
+2026-04-19 00:11:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.4732 train_macro_f1=0.7438 val_macro_f1=0.7313 best_val_macro_f1=0.7613 patience_counter=2 lr=0.001000
+2026-04-19 00:11:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.4949 train_macro_f1=0.7322 val_macro_f1=0.7169 best_val_macro_f1=0.7417 patience_counter=1 lr=0.001000
+2026-04-19 00:11:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5381 train_macro_f1=0.7242 val_macro_f1=0.7070 best_val_macro_f1=0.7159 patience_counter=1 lr=0.001000
+2026-04-19 00:11:01 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5257 train_macro_f1=0.7395 val_macro_f1=0.7352 best_val_macro_f1=0.7431 patience_counter=1 lr=0.001000
+2026-04-19 00:11:02 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=15/90 train_loss=0.5120 train_macro_f1=0.7418 val_macro_f1=0.7451 best_val_macro_f1=0.7503 patience_counter=1 lr=0.001000
+2026-04-19 00:11:39 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.4529 train_macro_f1=0.7768 val_macro_f1=0.7601 best_val_macro_f1=0.7601 patience_counter=0 lr=0.001000
+2026-04-19 00:11:40 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.4355 train_macro_f1=0.7879 val_macro_f1=0.7834 best_val_macro_f1=0.7834 patience_counter=0 lr=0.001000
+2026-04-19 00:11:40 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.4896 train_macro_f1=0.7529 val_macro_f1=0.7379 best_val_macro_f1=0.7379 patience_counter=0 lr=0.001000
+2026-04-19 00:11:43 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.4632 train_macro_f1=0.7729 val_macro_f1=0.7745 best_val_macro_f1=0.7745 patience_counter=0 lr=0.001000
+2026-04-19 00:11:45 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=20/90 train_loss=0.4708 train_macro_f1=0.7690 val_macro_f1=0.7749 best_val_macro_f1=0.7749 patience_counter=0 lr=0.001000
+2026-04-19 00:11:59 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4113 train_macro_f1=0.7729 val_macro_f1=0.7473 best_val_macro_f1=0.7696 patience_counter=2 lr=0.001000
+2026-04-19 00:12:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.3951 train_macro_f1=0.8009 val_macro_f1=0.7886 best_val_macro_f1=0.7955 patience_counter=2 lr=0.001000
+2026-04-19 00:12:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4443 train_macro_f1=0.7759 val_macro_f1=0.7596 best_val_macro_f1=0.7596 patience_counter=0 lr=0.001000
+2026-04-19 00:12:01 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4187 train_macro_f1=0.7940 val_macro_f1=0.7829 best_val_macro_f1=0.7855 patience_counter=1 lr=0.001000
+2026-04-19 00:12:02 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=25/90 train_loss=0.4361 train_macro_f1=0.7930 val_macro_f1=0.7797 best_val_macro_f1=0.7797 patience_counter=0 lr=0.001000
+2026-04-19 00:12:15 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.3809 train_macro_f1=0.7907 val_macro_f1=0.7542 best_val_macro_f1=0.7818 patience_counter=1 lr=0.001000
+2026-04-19 00:12:16 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.3586 train_macro_f1=0.8071 val_macro_f1=0.7864 best_val_macro_f1=0.8040 patience_counter=1 lr=0.001000
+2026-04-19 00:12:16 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.3998 train_macro_f1=0.8056 val_macro_f1=0.7756 best_val_macro_f1=0.7756 patience_counter=0 lr=0.001000
+2026-04-19 00:12:18 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.3881 train_macro_f1=0.8091 val_macro_f1=0.7890 best_val_macro_f1=0.7890 patience_counter=0 lr=0.001000
+2026-04-19 00:12:18 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=30/90 train_loss=0.3840 train_macro_f1=0.8054 val_macro_f1=0.7701 best_val_macro_f1=0.7797 patience_counter=5 lr=0.001000
+2026-04-19 00:12:32 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3463 train_macro_f1=0.8284 val_macro_f1=0.7825 best_val_macro_f1=0.7919 patience_counter=1 lr=0.001000
+2026-04-19 00:12:33 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3134 train_macro_f1=0.8636 val_macro_f1=0.8124 best_val_macro_f1=0.8124 patience_counter=0 lr=0.001000
+2026-04-19 00:12:33 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3794 train_macro_f1=0.8106 val_macro_f1=0.7568 best_val_macro_f1=0.7780 patience_counter=3 lr=0.001000
+2026-04-19 00:12:34 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3449 train_macro_f1=0.8393 val_macro_f1=0.7836 best_val_macro_f1=0.7890 patience_counter=5 lr=0.001000
+2026-04-19 00:12:35 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=35/90 train_loss=0.3497 train_macro_f1=0.8195 val_macro_f1=0.7735 best_val_macro_f1=0.7956 patience_counter=4 lr=0.001000
+2026-04-19 00:12:48 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3022 train_macro_f1=0.8646 val_macro_f1=0.7965 best_val_macro_f1=0.7965 patience_counter=0 lr=0.001000
+2026-04-19 00:12:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.2799 train_macro_f1=0.8796 val_macro_f1=0.8069 best_val_macro_f1=0.8152 patience_counter=1 lr=0.001000
+2026-04-19 00:12:49 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3318 train_macro_f1=0.8496 val_macro_f1=0.7970 best_val_macro_f1=0.7970 patience_counter=0 lr=0.001000
+2026-04-19 00:12:51 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3124 train_macro_f1=0.8636 val_macro_f1=0.8065 best_val_macro_f1=0.8065 patience_counter=0 lr=0.001000
+2026-04-19 00:12:51 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=40/90 train_loss=0.3164 train_macro_f1=0.8510 val_macro_f1=0.7878 best_val_macro_f1=0.8147 patience_counter=1 lr=0.001000
+2026-04-19 00:13:05 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.2561 train_macro_f1=0.8913 val_macro_f1=0.8020 best_val_macro_f1=0.8020 patience_counter=3 lr=0.001000
+2026-04-19 00:13:05 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.2618 train_macro_f1=0.9073 val_macro_f1=0.8110 best_val_macro_f1=0.8152 patience_counter=6 lr=0.001000
+2026-04-19 00:13:06 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3036 train_macro_f1=0.8567 val_macro_f1=0.7867 best_val_macro_f1=0.7970 patience_counter=5 lr=0.001000
+2026-04-19 00:13:07 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.2768 train_macro_f1=0.8872 val_macro_f1=0.8066 best_val_macro_f1=0.8068 patience_counter=2 lr=0.001000
+2026-04-19 00:13:08 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=45/90 train_loss=0.3126 train_macro_f1=0.8380 val_macro_f1=0.7707 best_val_macro_f1=0.8182 patience_counter=1 lr=0.001000
+2026-04-19 00:13:15 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=48
+2026-04-19 00:13:19 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=49
+2026-04-19 00:13:21 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2367 train_macro_f1=0.9135 val_macro_f1=0.8091 best_val_macro_f1=0.8091 patience_counter=0 lr=0.001000
+2026-04-19 00:13:22 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2016 train_macro_f1=0.9057 val_macro_f1=0.8109 best_val_macro_f1=0.8152 patience_counter=11 lr=0.000500
+2026-04-19 00:13:22 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2776 train_macro_f1=0.8836 val_macro_f1=0.7948 best_val_macro_f1=0.7970 patience_counter=10 lr=0.000500
+2026-04-19 00:13:23 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2226 train_macro_f1=0.8896 val_macro_f1=0.7987 best_val_macro_f1=0.8139 patience_counter=2 lr=0.001000
+2026-04-19 00:13:24 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=50/90 train_loss=0.2650 train_macro_f1=0.8993 val_macro_f1=0.8251 best_val_macro_f1=0.8251 patience_counter=0 lr=0.001000
+2026-04-19 00:13:38 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.1762 train_macro_f1=0.9242 val_macro_f1=0.8122 best_val_macro_f1=0.8122 patience_counter=0 lr=0.001000
+2026-04-19 00:13:38 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.1750 train_macro_f1=0.9266 val_macro_f1=0.8092 best_val_macro_f1=0.8152 patience_counter=16 lr=0.000500
+2026-04-19 00:13:38 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2374 train_macro_f1=0.8892 val_macro_f1=0.7905 best_val_macro_f1=0.7970 patience_counter=15 lr=0.000500
+2026-04-19 00:13:40 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.1819 train_macro_f1=0.9079 val_macro_f1=0.7882 best_val_macro_f1=0.8139 patience_counter=7 lr=0.001000
+2026-04-19 00:13:41 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=55/90 train_loss=0.2167 train_macro_f1=0.9205 val_macro_f1=0.8102 best_val_macro_f1=0.8251 patience_counter=5 lr=0.001000
+2026-04-19 00:13:45 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=57
+2026-04-19 00:13:46 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=57
+2026-04-19 00:13:52 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Early stopping at epoch=59 best_epoch=39
+2026-04-19 00:13:52 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 2 done | test_acc=0.8033  test_macro_f1=0.7891
+2026-04-19 00:13:52 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 1 complete. Run remaining folds then --aggregate-only.
+2026-04-19 00:13:54 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=59
+2026-04-19 00:13:54 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.1539 train_macro_f1=0.9313 val_macro_f1=0.8070 best_val_macro_f1=0.8122 patience_counter=5 lr=0.001000
+2026-04-19 00:13:55 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.2081 train_macro_f1=0.9069 val_macro_f1=0.7938 best_val_macro_f1=0.8000 patience_counter=3 lr=0.000500
+2026-04-19 00:13:56 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.1539 train_macro_f1=0.9418 val_macro_f1=0.8042 best_val_macro_f1=0.8150 patience_counter=1 lr=0.000500
+2026-04-19 00:13:57 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=60/90 train_loss=0.1657 train_macro_f1=0.9421 val_macro_f1=0.8158 best_val_macro_f1=0.8251 patience_counter=10 lr=0.000500
+2026-04-19 00:14:07 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.001000 → 0.000500 at epoch=64
+2026-04-19 00:14:11 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1267 train_macro_f1=0.9635 val_macro_f1=0.8040 best_val_macro_f1=0.8122 patience_counter=10 lr=0.000500
+2026-04-19 00:14:11 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1771 train_macro_f1=0.9340 val_macro_f1=0.7971 best_val_macro_f1=0.8000 patience_counter=8 lr=0.000500
+2026-04-19 00:14:12 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1285 train_macro_f1=0.9560 val_macro_f1=0.7998 best_val_macro_f1=0.8167 patience_counter=4 lr=0.000500
+2026-04-19 00:14:13 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=65/90 train_loss=0.1337 train_macro_f1=0.9561 val_macro_f1=0.8222 best_val_macro_f1=0.8251 patience_counter=15 lr=0.000500
+2026-04-19 00:14:14 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=66
+2026-04-19 00:14:23 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=68
+2026-04-19 00:14:27 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.0968 train_macro_f1=0.9726 val_macro_f1=0.8100 best_val_macro_f1=0.8154 patience_counter=3 lr=0.000500
+2026-04-19 00:14:27 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.1555 train_macro_f1=0.9431 val_macro_f1=0.7952 best_val_macro_f1=0.8000 patience_counter=13 lr=0.000250
+2026-04-19 00:14:29 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=70
+2026-04-19 00:14:29 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.1045 train_macro_f1=0.9676 val_macro_f1=0.8068 best_val_macro_f1=0.8167 patience_counter=9 lr=0.000250
+2026-04-19 00:14:30 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=70/90 train_loss=0.1058 train_macro_f1=0.9649 val_macro_f1=0.8190 best_val_macro_f1=0.8251 patience_counter=20 lr=0.000250
+2026-04-19 00:14:30 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Early stopping at epoch=70 best_epoch=50
+2026-04-19 00:14:30 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 3 done | test_acc=0.8194  test_macro_f1=0.8032
+2026-04-19 00:14:30 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 2 complete. Run remaining folds then --aggregate-only.
+2026-04-19 00:14:43 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.0730 train_macro_f1=0.9778 val_macro_f1=0.8036 best_val_macro_f1=0.8154 patience_counter=8 lr=0.000500
+2026-04-19 00:14:44 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000250 → 0.000125 at epoch=75
+2026-04-19 00:14:44 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.1337 train_macro_f1=0.9523 val_macro_f1=0.7933 best_val_macro_f1=0.8000 patience_counter=18 lr=0.000125
+2026-04-19 00:14:45 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=75/90 train_loss=0.0911 train_macro_f1=0.9699 val_macro_f1=0.8053 best_val_macro_f1=0.8167 patience_counter=14 lr=0.000250
+2026-04-19 00:14:47 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000500 → 0.000250 at epoch=76
+2026-04-19 00:14:50 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Early stopping at epoch=77 best_epoch=57
+2026-04-19 00:14:51 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 5 done | test_acc=0.8177  test_macro_f1=0.8015
+2026-04-19 00:14:51 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 4 complete. Run remaining folds then --aggregate-only.
+2026-04-19 00:14:58 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000250 → 0.000125 at epoch=79
+2026-04-19 00:15:00 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=80/90 train_loss=0.0594 train_macro_f1=0.9848 val_macro_f1=0.8032 best_val_macro_f1=0.8154 patience_counter=13 lr=0.000250
+2026-04-19 00:15:01 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=80/90 train_loss=0.0765 train_macro_f1=0.9771 val_macro_f1=0.8056 best_val_macro_f1=0.8167 patience_counter=19 lr=0.000125
+2026-04-19 00:15:04 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Early stopping at epoch=81 best_epoch=61
+2026-04-19 00:15:05 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 4 done | test_acc=0.8245  test_macro_f1=0.8045
+2026-04-19 00:15:05 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 3 complete. Run remaining folds then --aggregate-only.
+2026-04-19 00:15:16 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | LR decayed: 0.000250 → 0.000125 at epoch=85
+2026-04-19 00:15:16 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | epoch=85/90 train_loss=0.0468 train_macro_f1=0.9876 val_macro_f1=0.7983 best_val_macro_f1=0.8154 patience_counter=18 lr=0.000125
+2026-04-19 00:15:22 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Early stopping at epoch=87 best_epoch=67
+2026-04-19 00:15:23 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 1 done | test_acc=0.8150  test_macro_f1=0.7983
+2026-04-19 00:15:23 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Fold 0 complete. Run remaining folds then --aggregate-only.
+[kfold_v2] Fold 0 complete.
+[kfold_v2] Fold 1 complete.
+[kfold_v2] Fold 2 complete.
+[kfold_v2] Fold 3 complete.
+[kfold_v2] Fold 4 complete.
+[kfold_v2] All folds done. Aggregating ...
+2026-04-19 00:15:27 | INFO | kfold_cv_v2_family_matrimonial_party_args_lr_decay_kfold | Aggregate (5/5) | acc=0.8160±0.0071  macro_f1=0.7993±0.0055
+[kfold_v2] Done. Summary -> /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/models/family_matrimonial_party_args_lr_decay_kfold/kfold/kfold_summary.json

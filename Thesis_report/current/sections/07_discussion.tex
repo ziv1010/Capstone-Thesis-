@@ -1,0 +1,236 @@
+\chapter{Discussion}
+\label{chap:discussion}
+
+\section{Summary of Findings}
+
+The work pursued a single operational question: can a heterogeneous
+knowledge graph, built from Indian court judgments and filtered to be
+structurally leakage-safe, support an outcome-prediction model whose
+accuracy is attributable to legal reasoning rather than to identity or
+decision shortcuts? The chapters above produced four findings that,
+taken together, answer that question affirmatively but with
+important qualifications.
+
+\paragraph{The pipeline produces a legally coherent corpus.} Across all
+five legal-domain buckets, the top-PageRank entities recovered by
+OpenNyAI NER and the canonicalisation stage are exactly the statutes,
+provisions, and courts a lawyer would expect: IPC and CrPC in criminal
+matters, the Motor Vehicles Act~1988 and Section~166 in motor-accident
+matters, the Land Acquisition Act~1894 and the Constitution of India
+in land-property matters, and the POCSO Act in sexual-offences matters
+(Chapter~\ref{chap:graph_exploration}). The corpus is
+\emph{legally faithful}, not merely statistically clean.
+
+{\color{blue}Equally important, the reasoning-focused pruning introduced
+in Chapter~\ref{chap:kg} does not collapse the graph into something too
+thin to learn from. Removing \textsc{GPE}/\textsc{Org}/\textsc{Date}
+nodes and forbidding shortcut edges from local identity proxies to the
+case representation still leaves a large, connected, and legally
+meaningful structure. That is a substantive design result in its own
+right: the leakage controls are restrictive without being destructive.\par}
+
+\paragraph{The graph is hub-dominated and cross-domain.} The $880$k-node
+cross-bucket graph is organised around a small set of super-hubs --
+IPC, CrPC, the Supreme Court, the Apex Court -- each of which bridges
+all five legal domains. The four IPC/CrPC-driven buckets share a
+significant fraction of entities with each other; land-property
+partially detaches via its own statutory backbone. The cross-domain
+transfer setting this thesis studies is, by construction, the right
+setting for this graph.
+
+\paragraph{The HGT model learns cross-case structural signal.} A
+probing classifier trained on the $64$-dimensional post-GNN case
+embedding reaches $0.800$ accuracy on the cross-bucket test set,
+compared to $0.744$ for the pre-GNN raw features. The $+5.6$-point
+gain at fixed probing capacity isolates the HGT's contribution from
+the underlying \texttt{bge-m3} text features. The best end-to-end
+configuration (\texttt{party\_args\_lr\_decay}) reaches
+$0.803$ accuracy, $0.795$ macro-F1, and $0.885$ ROC-AUC on the pooled
+five-domain test set.
+
+{\color{blue}The updated ablations also clarify \emph{what kind} of
+gain this is. The graph does help, but not primarily by replacing text
+with a pure hub-traversal signal: \texttt{text\_only} remains strong,
+\texttt{no\_cross\_case} is close to baseline on the pooled task, and
+the t-SNE and probing analyses show that message passing mainly
+reorganises the already-strong text representation into a more
+outcome-informative case embedding. In this regime, the graph's
+contribution is best described as structured aggregation of legal
+context, with cross-case shared authorities providing a secondary,
+domain-dependent benefit rather than the entire predictive signal.\par}
+
+\paragraph{The model does not rely on identity shortcuts.} The
+\texttt{no\_names} ablation -- which strips party, lawyer, and judge
+name content -- matches or slightly improves over the baseline on
+every bucket. The t-SNE geometry of the \texttt{no\_names} embedding
+is qualitatively indistinguishable from the baseline's, and its
+probing accuracy is within $0.2$ points of the baseline probe. The
+leakage-prevention strategy of
+Section~\ref{sec:leakage_prevention} -- field-level removal,
+rhetorical-role filtering, phrase-level masking, temporal gating on
+shared entities, and keeping identity nodes local -- is both
+necessary (without RR filtering the model could read the decision
+verbatim) and sufficient (with all gates in place, removing identity
+features is a no-op).
+
+{\color{blue}The updated error analysis sharpens that conclusion. The
+remaining difficult cases are not those where names have been removed;
+they are the cases with the densest statute neighbourhoods and the
+longest factual narratives. That same pattern appears in the baseline
+and \texttt{no\_names} variants. The residual errors therefore look
+more like failures on doctrinally crowded or document-heavy judgments
+than failures caused by withholding identity information.\par}
+
+{\color{blue}Taken together, the evidence for resisting identity-based
+leakage shortcuts is now multi-layered rather than resting on a single
+ablation. At the schema level, courts, judges, and lawyers are kept
+local and shortcut edges from identity proxies are forbidden; at the
+text level, rhetorical-role and phrase filtering remove direct decision
+leakage; at the model level, \texttt{no\_names} matches baseline; and
+at the representation level, probing, t-SNE, saliency, and error
+analysis all point to the same conclusion: the learned signal is driven
+primarily by legal text structure and shared authority nodes, not by
+recoverable person- or bench-specific identity cues.\par}
+
+\section{Limitations}
+
+Several limitations bound the interpretation of these results.
+
+\paragraph{Transductive evaluation assumes entity overlap at test
+time.} Every result in Chapter~\ref{chap:results} is produced under
+the transductive protocol, i.e.\ the full graph (including test
+cases' entity neighbourhoods) is visible during training. This
+matches the realistic deployment setting (a new judgment is appended
+to an existing graph built from the same canonical vocabulary), but
+it does not directly measure inductive generalisation to cases that
+cite entirely unseen statutes, precedents, or courts. An inductive
+split -- the hardest version, in which a whole calendar year or a
+whole court is held out -- is the natural follow-on experiment; the
+per-year error analysis already suggests older cases are harder,
+which is a prior on how that split would behave.
+
+\paragraph{Outcome labels are LLM-generated.} The win/loss labels are
+produced by prompting a Mistral model on the OpenNyAI-produced summary
+of each case. The labels are therefore noisy with respect to the
+ground-truth disposition, and the noise is not uniform across
+buckets: sexual-offences and financial-fraud matters often produce
+multi-part dispositions that do not map cleanly onto a binary
+win/loss axis. The fact that these are also the two worst-performing
+buckets is at least partially a label-noise effect rather than a
+modelling failure. A multi-label or ordinal target is produced by the
+same pipeline and is an obvious next experiment.
+
+\paragraph{RPC/RLC filtering is a lower bound on leakage, not a
+guarantee.} The leakage-safety story combines a deterministic filter
+(rhetorical-role labels, field names, leakage phrases) with a
+structural argument (shared-entity types are law, not identity).
+Neither is complete: an RR classifier can mis-label a decisive
+sentence, a leakage phrase list is never exhaustive, and a sufficiently
+expressive GNN could in principle reconstruct a decisive fragment
+from non-decisive neighbours. The \texttt{no\_names} result is
+evidence against one specific leakage mode (party identity) but not
+against all leakage modes. A manual audit of high-confidence correct
+predictions -- sampled across buckets and rhetorical-role density --
+is the next concrete step.
+
+\paragraph{The ablation ordering is stable but the margins are
+small.} The best configuration beats the baseline by $+1.7$ points of
+accuracy on the pooled dataset; most other variants are within
+$\pm 1$ point. The 5-fold error bars are of the same order, which
+means that while the \emph{qualitative} findings (text dominates,
+identity is removable, motor-accidents is easiest) are robust, the
+\emph{quantitative} ordering of the close ablations should be
+reported as a cluster of comparable configurations rather than a
+strict ranking.
+
+{\color{blue}\paragraph{The pooled optimum is not the universal optimum.}
+The new per-dataset best-variant table in Chapter~\ref{chap:results}
+shows that the strongest global configuration is not the best choice in
+every domain: family-matrimonial, motor-accidents, and
+sexual-offences each favour different ablations under accuracy or
+macro-F1. This means the pooled cross-bucket score should be read as a
+useful compromise over heterogeneous graph geometries, not as evidence
+that one architectural setting is intrinsically best for all legal
+subdomains.}
+
+\section{Future Work}
+
+Several directions follow naturally from the findings and limitations
+above, in rough order of expected payoff.
+
+\paragraph{1.\ Inductive and temporal splits.} The transductive
+protocol is the easier regime; a calendar-year hold-out (train on
+pre-2020, test on post-2020) and a court hold-out (train on all but
+one High Court, test on that one) would measure inductive
+generalisation directly. The connectivity-score machinery in
+Chapter~\ref{chap:graph_exploration} already provides the right
+diagnostic for these splits: a well-generalising model should remain
+competitive on the hold-out distribution's low-connectivity tail.
+
+\paragraph{2.\ Multi-label and ordinal outcome targets.} The Mistral
+labelling pipeline produces a multi-label variant alongside the
+single-label \texttt{win}/\texttt{loss} target used in this thesis.
+Moving the classifier head to a multi-label sigmoid (or to an ordinal
+regression over the $[-1,+1]$ score) would (i) absorb the
+disposition ambiguity currently pushed into the binary target and
+(ii) enable disposition-specific error analysis (e.g.\ \emph{remanded}
+cases separately from \emph{dismissed} cases), which the present
+evaluation cannot distinguish.
+
+\paragraph{3.\ Attention-guided interpretability.} The per-relation
+attention and per-node-type saliency analyses in
+Chapter~\ref{chap:results} produce rankings but not per-case
+explanations. A natural extension is to attach, to each correct
+prediction, the top-$k$ neighbour nodes contributing the most to the
+case-node hidden state, and have a domain expert check whether those
+neighbours are legally defensible as reasons. This is where the
+thesis's insistence on reasoning-focused edges and shared statute
+nodes pays off: the explanations are exactly the objects a lawyer
+would expect to see cited.
+
+\paragraph{4.\ Scaling the bucket inventory.} Five legal domains is
+a deliberate scope; the pipeline is bucket-agnostic by construction,
+and adding new domains (tax, labour, consumer) would expand the
+cross-domain spine and, through shared IPC/CrPC hubs, improve signal
+on the existing buckets as well. The main engineering cost is the
+per-bucket Mistral labelling pass; the rest of the pipeline scales
+without modification.
+
+\paragraph{5.\ Stronger identity-leakage audits.} The \texttt{no\_names}
+ablation is a single, coarse leakage probe. Finer probes -- a
+judge-hold-out split to measure judge-identity leakage directly; a
+court-hold-out split to measure court-identity leakage; and a
+text-similarity-based nearest-neighbour attack to detect cases whose
+neighbours in the graph also share rare token n-grams -- would
+tighten the leakage-safety claim from ``no evidence of identity
+shortcuts'' to ``identity shortcuts are quantitatively bounded''.
+
+{\color{blue}\paragraph{6.\ Connectivity- and difficulty-aware modelling.}
+Two empirical regularities now point to a targeted next step. First,
+the pooled best ablation is not the best ablation inside every bucket.
+Second, the hardest held-out cases are the ones with long factual
+narratives or dense statute neighbourhoods. A natural extension is
+therefore a model that allocates capacity conditionally -- for example,
+using richer hierarchical text encoding for document-heavy cases,
+stronger graph propagation for high-connectivity cases, or a
+domain-adaptive head once the bucket geometry is known. That would turn
+the descriptive error analysis of Chapter~\ref{chap:results} into an
+explicit modelling strategy.}
+
+\medskip
+
+Taken together, these findings and directions support a narrow and
+defensible thesis: legal outcome prediction over Indian court
+judgments \emph{is} improvable by a heterogeneous, cross-case graph
+representation; the improvement is modest but measurable; it survives
+an aggressive identity-leakage audit; and it is explained by genuine
+cross-case structural signal rather than by the pathological
+shortcuts that have made prior work in this space hard to trust.
+
+{\color{blue}More strongly, the combination of schema design,
+leakage-filtered text construction, locality constraints on identity
+nodes, and post-hoc ablation evidence shows that this framework does
+not merely claim to avoid identity shortcuts; it operationally resists
+them while remaining predictive. That is the main methodological
+contribution of the thesis, not just a side condition on the
+experimental setup.}

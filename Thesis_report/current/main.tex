@@ -1,0 +1,35 @@
+\documentclass[12pt]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, backgrounds}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{xcolor}
+
+\title{Thesis Title}
+\author{Author Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\input{sections/abstract}
+\clearpage
+\tableofcontents
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_system_overview_and_data_pipeline}
+\input{sections/04_heterogeneous_knowledge_graph_construction}
+\input{sections/05_graph_exploration_and_structural_insights}
+\input{sections/06_prediction_model_and_results}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\end{document}
