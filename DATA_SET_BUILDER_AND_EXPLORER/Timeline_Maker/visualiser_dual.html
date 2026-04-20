@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dual-Bucket Case Merger Visualiser</title>
+<style>
+:root {
+  --bg:#0f1117; --surface:#1a1d27; --surface2:#22263a; --border:#2e3250;
+  --text:#e2e8f0; --muted:#64748b;
+  /* bucket colours */
+  --fam:#f59e0b;   --fam-dim:#2d1f00; --fam-border:#4a3300; --fam-soft:#fef3c7;
+  --fin:#22d3ee;   --fin-dim:#002a30; --fin-border:#004a50; --fin-soft:#cffafe;
+  /* status */
+  --green:#34d399; --blue:#60a5fa; --purple:#c084fc; --orange:#fb923c;
+  --red:#f87171;   --yellow:#fbbf24;
+  /* cross-link */
+  --cross:#ff6bff; --cross-dim:#2a0030; --cross-border:#6b006b;
+  /* section slots */
+  --s0:#fbbf24; --s1:#60a5fa; --s2:#c084fc; --s3:#fb923c; --s4:#34d399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;overflow:hidden;height:100vh;display:flex;flex-direction:column}
+
+/* ── header ── */
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 18px;display:flex;align-items:center;gap:14px;flex-shrink:0}
+header h1{font-size:15px;font-weight:700}
+.bucket-legend{display:flex;gap:10px;margin-left:auto;align-items:center}
+.bl{display:flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;border-radius:20px;padding:3px 11px;border:1px solid}
+.bl-fam{background:var(--fam-dim);color:var(--fam);border-color:var(--fam-border)}
+.bl-fin{background:var(--fin-dim);color:var(--fin);border-color:var(--fin-border)}
+.bl-cross{background:var(--cross-dim);color:var(--cross);border-color:var(--cross-border)}
+.bl-dot{width:8px;height:8px;border-radius:50%}
+
+/* ── stats bar ── */
+.stats-bar{display:flex;gap:6px;flex-wrap:wrap;padding:8px 18px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;align-items:center}
+.stat{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:5px 11px;text-align:center;min-width:80px}
+.stat .n{font-size:16px;font-weight:700}.stat .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.divider{width:1px;height:28px;background:var(--border);margin:0 4px}
+
+/* ── body ── */
+.body{display:flex;flex:1;overflow:hidden}
+
+/* ── left panel ── */
+.left{width:420px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden}
+.controls{padding:9px 11px;border-bottom:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.controls input{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 11px;font-size:12px;width:100%;outline:none}
+.controls input:focus{border-color:var(--blue)}
+.filter-row{display:flex;gap:4px;flex-wrap:wrap}
+.fb{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:2px 9px;font-size:11px;cursor:pointer;transition:.12s}
+.fb:hover{color:var(--text)}.fb.active{color:#fff}
+.fb-all.active{background:#3b4a8a;border-color:#3b4a8a}
+.fb-fam.active{background:var(--fam);border-color:var(--fam);color:#000}
+.fb-fin.active{background:var(--fin);border-color:var(--fin);color:#000}
+.fb-cross.active{background:var(--cross);border-color:var(--cross);color:#000}
+.fb-merged.active{background:#1a3060;border-color:#1a3060}
+.case-list{flex:1;overflow-y:auto;padding:8px}
+.case-list::-webkit-scrollbar{width:4px}.case-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* ── case item ── */
+.ci{padding:8px 10px;border-radius:7px;border:2px solid transparent;cursor:pointer;margin-bottom:5px;transition:.12s;background:var(--surface);position:relative}
+.ci:hover{background:var(--surface2)}
+.ci.active{background:var(--surface2)}
+.ci.hidden{display:none}
+/* bucket tints */
+.ci[data-bucket="fam"]{border-left:3px solid var(--fam)}
+.ci[data-bucket="fam"].active{border-color:var(--fam);background:var(--fam-dim)}
+.ci[data-bucket="fin"]{border-left:3px solid var(--fin)}
+.ci[data-bucket="fin"].active{border-color:var(--fin);background:var(--fin-dim)}
+.ci[data-bucket="cross"]{border-left:3px solid var(--cross);border-right:3px solid var(--cross)}
+.ci[data-bucket="cross"].active{border-color:var(--cross);background:var(--cross-dim)}
+.ci-top{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.ci-bkt{font-size:9px;font-weight:700;border-radius:20px;padding:1px 6px;white-space:nowrap;flex-shrink:0;letter-spacing:.04em;text-transform:uppercase}
+.bkt-fam{background:var(--fam-dim);color:var(--fam);border:1px solid var(--fam-border)}
+.bkt-fin{background:var(--fin-dim);color:var(--fin);border:1px solid var(--fin-border)}
+.bkt-cross{background:var(--cross-dim);color:var(--cross);border:1px solid var(--cross-border)}
+.ci-name{font-size:11.5px;font-weight:600;line-height:1.4;flex:1;word-break:break-word}
+.ci-pill{font-size:10px;font-weight:600;border-radius:20px;padding:2px 7px;white-space:nowrap;flex-shrink:0}
+.pill-merged{background:#1a2a4a;color:var(--blue)}.pill-ok{background:#14412e;color:var(--green)}.pill-deduped{background:#3d2e0d;color:var(--yellow)}
+.ci-tl{display:flex;align-items:center;flex-wrap:wrap;row-gap:3px}
+.tl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tl-lbl{font-size:10px;border-radius:3px;padding:1px 5px;margin-left:2px}
+.tl-lbl.latest{background:#1a2240;color:var(--blue)}.tl-lbl.appended{background:#3d2e0d;color:var(--yellow)}.tl-lbl.contained{background:#14412e;color:var(--green)}.tl-lbl.plain{background:var(--surface2);color:var(--muted)}
+.tl-arr{color:var(--border);font-size:10px;padding:0 2px}
+
+/* ── right panel ── */
+.right{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.right-placeholder{flex:1;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-direction:column;gap:8px}
+.right-placeholder .big{font-size:40px}
+.detail{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.detail-header{padding:11px 18px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.detail-header h2{font-size:13px;font-weight:700;word-break:break-word;line-height:1.5}
+.dmeta{display:flex;gap:7px;margin-top:5px;flex-wrap:wrap;align-items:center}
+.tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;padding:0 18px}
+.tab{padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:.12s;white-space:nowrap}
+.tab:hover{color:var(--text)}.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-content{flex:1;overflow:hidden;display:none}.tab-content.active{display:flex;flex-direction:column}
+.overview{padding:16px;overflow-y:auto;flex:1}
+.ov-section{margin-bottom:16px}
+.ov-section h3{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:7px;font-weight:600}
+.file-row{display:flex;align-items:flex-start;gap:8px;padding:6px 9px;border-radius:6px;background:var(--surface2);margin-bottom:4px;font-size:11.5px;word-break:break-all;border:1px solid var(--border)}
+.fd{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.badge{font-size:10px;font-weight:600;border-radius:20px;padding:2px 7px;display:inline-block;white-space:nowrap}
+.badge-blue{background:#1e3a5f;color:var(--blue)}.badge-green{background:#14412e;color:var(--green)}.badge-yellow{background:#3d2e0d;color:var(--yellow)}
+.note-box{font-size:12px;color:var(--muted);background:var(--surface2);border-radius:7px;padding:9px 12px;line-height:1.7;border:1px solid var(--border)}
+.note-box strong{color:var(--text)}
+.cross-box{font-size:12px;background:var(--cross-dim);border-radius:7px;padding:9px 12px;line-height:1.7;border:1px solid var(--cross-border);color:var(--cross)}
+.cross-box strong{color:#fff}
+.text-viewer{flex:1;overflow-y:auto}
+.text-viewer::-webkit-scrollbar{width:6px}.text-viewer::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.loading{padding:40px;text-align:center;color:var(--muted);font-size:13px}
+.error-msg{padding:18px;color:var(--red);font-size:12px;line-height:1.7}
+.sec-block{border-bottom:1px solid var(--border)}
+.sec-hdr{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;padding:7px 18px;font-size:11.5px;font-weight:600;border-bottom:1px solid}
+.sec-text{font-family:'JetBrains Mono','Fira Code',Consolas,monospace;font-size:11px;line-height:1.75;padding:14px 18px 20px;white-space:pre-wrap;word-break:break-word;color:#cdd6f4}
+.s0 .sec-hdr{background:#1e1a00;color:var(--s0);border-color:#3a3200}.s0 .sec-text{background:#0d0b00}
+.s1 .sec-hdr{background:#001429;color:var(--s1);border-color:#002a52}.s1 .sec-text{background:#000d1a}
+.s2 .sec-hdr{background:#1a0d2e;color:var(--s2);border-color:#320d52}.s2 .sec-text{background:#100822}
+.s3 .sec-hdr{background:#1e1000;color:var(--s3);border-color:#3d2200}.s3 .sec-text{background:#0f0800}
+.s4 .sec-hdr{background:#002918;color:var(--s4);border-color:#00522e}.s4 .sec-text{background:#001510}
+.json-viewer{flex:1;overflow-y:auto;padding:16px 18px;font-family:'JetBrains Mono','Fira Code',Consolas,monospace;font-size:11px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.json-viewer::-webkit-scrollbar{width:6px}.json-viewer::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.jk{color:#89b4fa}.js{color:#a6e3a1}.jn{color:#fab387}.jb{color:#cba6f7}
+.legend{display:flex;gap:10px;flex-wrap:wrap;padding:7px 18px;border-bottom:1px solid var(--border);background:var(--surface2);flex-shrink:0}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px}
+.legend-dot{width:9px;height:9px;border-radius:50%}
+.cross-badge{display:inline-flex;align-items:center;gap:4px;background:var(--cross-dim);border:1px solid var(--cross-border);color:var(--cross);border-radius:20px;padding:2px 8px;font-size:10px;font-weight:700}
+.sort-row{display:flex;gap:4px;align-items:center}
+.sort-row label{font-size:11px;color:var(--muted)}
+.sort-row select{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:2px 6px;font-size:11px;outline:none}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>⚖ Dual-Bucket Legal Case Visualiser</h1>
+  </div>
+  <div class="bucket-legend">
+    <div class="bl bl-fam"><div class="bl-dot" style="background:var(--fam)"></div>Family / Matrimonial</div>
+    <div class="bl bl-fin"><div class="bl-dot" style="background:var(--fin)"></div>Financial Fraud</div>
+    <div class="bl bl-cross"><div class="bl-dot" style="background:var(--cross)"></div>Cross-bucket match</div>
+  </div>
+</header>
+<div class="stats-bar" id="statsBar"></div>
+<div class="body">
+  <div class="left">
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search case name…" oninput="applyFilters()">
+      <div class="filter-row">
+        <button class="fb fb-all active" onclick="setFilter('all',this)">All</button>
+        <button class="fb fb-fam" onclick="setFilter('fam',this)">🟡 Family</button>
+        <button class="fb fb-fin" onclick="setFilter('fin',this)">🔵 Fin Fraud</button>
+        <button class="fb fb-cross" onclick="setFilter('cross',this)">⚡ Cross-match</button>
+        <button class="fb fb-merged" onclick="setFilter('merged',this)">Merged only</button>
+      </div>
+      <div class="sort-row">
+        <label>Sort:</label>
+        <select id="sortSel" onchange="rebuildList()">
+          <option value="bucket">Bucket then name</option>
+          <option value="name">Name A→Z</option>
+          <option value="cross">Cross-matches first</option>
+          <option value="dates">Most hearings first</option>
+        </select>
+      </div>
+    </div>
+    <div class="case-list" id="caseList"></div>
+  </div>
+  <div class="right" id="rightPanel">
+    <div class="right-placeholder">
+      <div class="big">⚖</div>
+      <div>Select a case to inspect</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">Cross-bucket matches are highlighted in <span style="color:var(--cross)">purple</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// Load both report.json files dynamically
+// ─────────────────────────────────────────────
+const BUCKETS = {
+  fam: { label:'Family / Matrimonial', dir:'family_matrimonial_timed/', color:'var(--fam)' },
+  fin: { label:'Financial Fraud',      dir:'output_merged_fin_fraud/',          color:'var(--fin)' }
+};
+
+let CASES = [];   // unified array built after both fetches
+let crossSet = new Set(); // normalised case names appearing in both buckets
+
+async function loadReport(bucket){
+  const url = BUCKETS[bucket].dir + 'report.json';
+  const r = await fetch(url);
+  if(!r.ok) throw new Error(`Cannot load ${url}: ${r.statusText}`);
+  return r.json();
+}
+
+function normName(n){ return n.toLowerCase().replace(/[^a-z0-9]/g,''); }
+
+function buildUnified(reports){
+  const famReport = reports.fam;
+  const finReport = reports.fin;
+
+  // build name→normalised maps per bucket
+  const famNames = new Set();
+  const finNames = new Set();
+
+  const extractNames = (report, nameSet) => {
+    (report.multi_date_cases||[]).forEach(c => nameSet.add(normName(c.case)));
+    (report.same_date_duplicates||[]).forEach(c => nameSet.add(normName(c.case)));
+  };
+  extractNames(famReport, famNames);
+  extractNames(finReport, finNames);
+
+  crossSet = new Set([...famNames].filter(n => finNames.has(n)));
+
+  const all = [];
+
+  const push = (rawCase, bucket, kind) => {
+    const nm = humanCase(rawCase.case||rawCase.case||'');
+    const isCross = crossSet.has(normName(rawCase.case||''));
+    all.push({ kind, bucket: isCross ? 'cross' : bucket, bucketActual: bucket, name: nm, raw: rawCase,
+               dateCount: (rawCase.dates||[rawCase.date]).filter(Boolean).length });
+  };
+
+  (famReport.multi_date_cases||[]).forEach(c => push(c,'fam', c.appended_from&&c.appended_from.length>0?'merged':'ok'));
+  (famReport.same_date_duplicates||[]).forEach(c => push(c,'fam','deduped'));
+  (finReport.multi_date_cases||[]).forEach(c => push(c,'fin', c.appended_from&&c.appended_from.length>0?'merged':'ok'));
+  (finReport.same_date_duplicates||[]).forEach(c => push(c,'fin','deduped'));
+
+  CASES = all;
+  return { famReport, finReport };
+}
+
+function renderStats(reports){
+  const { famReport, finReport } = reports;
+  const cross = crossSet.size;
+  const famMulti = (famReport.multi_date_cases||[]).length;
+  const finMulti = (finReport.multi_date_cases||[]).length;
+  const famMerged = (famReport.multi_date_cases||[]).filter(m=>m.appended_from&&m.appended_from.length>0).length;
+  const finMerged = (finReport.multi_date_cases||[]).filter(m=>m.appended_from&&m.appended_from.length>0).length;
+
+  document.getElementById('statsBar').innerHTML =`
+    <div class="stat"><div class="n" style="color:var(--fam)">${(famReport.total_files||0)}</div><div class="l">Fam files</div></div>
+    <div class="stat"><div class="n" style="color:var(--fin)">${(finReport.total_files||0)}</div><div class="l">Fin files</div></div>
+    <div class="divider"></div>
+    <div class="stat"><div class="n" style="color:var(--fam)">${famMulti}</div><div class="l">Fam multi-date</div></div>
+    <div class="stat"><div class="n" style="color:var(--fam)">${famMerged}</div><div class="l">Fam merged</div></div>
+    <div class="divider"></div>
+    <div class="stat"><div class="n" style="color:var(--fin)">${finMulti}</div><div class="l">Fin multi-date</div></div>
+    <div class="stat"><div class="n" style="color:var(--fin)">${finMerged}</div><div class="l">Fin merged</div></div>
+    <div class="divider"></div>
+    <div class="stat"><div class="n" style="color:var(--cross)">${cross}</div><div class="l">Cross-matches</div></div>
+  `;
+}
+
+// ─────────────────────────────────────────────
+// List rendering
+// ─────────────────────────────────────────────
+function fmt(d){ const[day,m,y]=d.split('_'); return `${day} ${m.slice(0,3)} ${y}`; }
+function humanCase(r){ return r.replace(/_/g,' '); }
+function splitVs(n){ const i=n.toLowerCase().indexOf(' vs '); return i<0?[n,null]:[n.slice(0,i),n.slice(i+4)]; }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+let activeFilter='all';
+
+function sortedCases(){
+  const mode = document.getElementById('sortSel').value;
+  const arr = [...CASES];
+  if(mode==='name') arr.sort((a,b)=>a.name.localeCompare(b.name));
+  else if(mode==='cross') arr.sort((a,b)=>(b.bucket==='cross')-(a.bucket==='cross') || a.name.localeCompare(b.name));
+  else if(mode==='dates') arr.sort((a,b)=>b.dateCount-a.dateCount || a.name.localeCompare(b.name));
+  else arr.sort((a,b)=>(a.bucketActual==='fam'?0:1)-(b.bucketActual==='fam'?0:1) || a.name.localeCompare(b.name));
+  return arr;
+}
+
+function rebuildList(){ renderCaseList(); applyFilters(); }
+
+function renderCaseList(){
+  const list = document.getElementById('caseList');
+  const sorted = sortedCases();
+  let html='';
+  for(let i=0;i<sorted.length;i++){
+    const item=sorted[i];
+    const[pet,res]=splitVs(item.name);
+    const isCross=item.bucket==='cross';
+    const bktLabel = isCross ? '⚡ Cross' : item.bucketActual==='fam'?'🟡 Family':'🔵 Fin';
+    const bktCls   = isCross ? 'bkt-cross' : item.bucketActual==='fam'?'bkt-fam':'bkt-fin';
+    const pillCls  = {merged:'pill-merged',ok:'pill-ok',deduped:'pill-deduped'}[item.kind];
+    const pillText = {merged:'Merged',ok:'Contained',deduped:'Deduped'}[item.kind];
+    const icon     = {merged:'🔗',ok:'✓',deduped:'⊕'}[item.kind];
+    let tlHtml='';
+    if(item.kind==='merged'||item.kind==='ok'){
+      const mc=item.raw;
+      const nodes=(mc.dates||[]).map((d,di)=>{
+        const isLatest=di===mc.dates.length-1;
+        const cp=mc.containment_per_file?mc.containment_per_file.find(c=>c.date===d):null;
+        const wasApp=mc.appended_from&&mc.appended_from.some(f=>f.includes(d));
+        let cls='plain',dotC='var(--muted)';
+        if(isLatest){cls='latest';dotC='var(--blue)';}
+        else if(wasApp){cls='appended';dotC='var(--yellow)';}
+        else if(cp&&cp.contained_in_latest){cls='contained';dotC='var(--green)';}
+        return `<div style="display:flex;align-items:center"><div class="tl-dot" style="background:${dotC}"></div><div class="tl-lbl ${cls}" style="margin-left:2px">${fmt(d)}</div></div>`;
+      });
+      tlHtml=`<div class="ci-tl">${nodes.join('<span class="tl-arr">→</span>')}</div>`;
+    } else {
+      tlHtml=`<div style="font-size:10px;color:var(--muted)">${fmt(item.raw.date)} · ${item.raw.files.length} duplicates</div>`;
+    }
+    const filterBucket = isCross ? 'cross' : item.bucketActual;
+    html+=`<div class="ci" data-idx="${i}" data-bucket="${filterBucket}" data-kind="${item.kind}" data-name="${item.name.toLowerCase()}" onclick="selectCase(${i})">
+      <div class="ci-top"><span style="font-size:13px">${icon}</span><div class="ci-name">${pet}${res?`<span style="color:var(--muted);font-weight:400"> vs </span>${res}`:''}</div><span class="ci-bkt ${bktCls}">${bktLabel}</span><span class="ci-pill ${pillCls}">${pillText}</span></div>
+      ${tlHtml}
+    </div>`;
+  }
+  list.innerHTML=html;
+  // store sorted order for selectCase
+  list._order = sorted;
+}
+
+function setFilter(f,btn){
+  activeFilter=f;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function applyFilters(){
+  const q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.ci').forEach(el=>{
+    let bucketOk=true;
+    if(activeFilter==='fam') bucketOk=(el.dataset.bucket==='fam'||el.dataset.bucket==='cross');
+    else if(activeFilter==='fin') bucketOk=(el.dataset.bucket==='fin'||el.dataset.bucket==='cross');
+    else if(activeFilter==='cross') bucketOk=(el.dataset.bucket==='cross');
+    else if(activeFilter==='merged') bucketOk=(el.dataset.kind==='merged');
+    const nameOk=!q||el.dataset.name.includes(q);
+    el.classList.toggle('hidden',!(bucketOk&&nameOk));
+  });
+}
+
+// ─────────────────────────────────────────────
+// Case detail (right panel)
+// ─────────────────────────────────────────────
+function selectCase(listIdx){
+  document.querySelectorAll('.ci').forEach(el=>el.classList.toggle('active',+el.dataset.idx===listIdx));
+  const list=document.getElementById('caseList');
+  const item=(list._order||CASES)[listIdx];
+  renderRight(item);
+}
+
+function renderRight(item){
+  const mc=item.raw;
+  const outFile=mc.output||'';
+  const isMerged=item.kind==='merged';
+  const isDeduped=item.kind==='deduped';
+  const isCross=item.bucket==='cross';
+  const textLabel=isMerged?'Merged Text':'Case Text';
+  const bucketDir=BUCKETS[item.bucketActual].dir;
+
+  let legendHtml='';
+  if(isMerged&&mc.dates){
+    const SC=['var(--s0)','var(--s1)','var(--s2)','var(--s3)','var(--s4)'];
+    legendHtml='<div class="legend">';
+    for(let i=0;i<mc.dates.length;i++){
+      const isLast=i===mc.dates.length-1;
+      const col=SC[i%5];
+      legendHtml+=`<div class="legend-item"><div class="legend-dot" style="background:${col}"></div><span>${isLast?'Final':'Earlier'} (${fmt(mc.dates[i])})</span></div>`;
+    }
+    legendHtml+='</div>';
+  }
+
+  const pillMap={merged:'pill-merged',ok:'pill-ok',deduped:'pill-deduped'};
+  const labelMap={merged:'Merged',ok:'Already contained',deduped:'Deduped'};
+  const bktColor=BUCKETS[item.bucketActual].color;
+  const bktLabel=BUCKETS[item.bucketActual].label;
+
+  let crossNote='';
+  if(isCross){
+    crossNote=`<div class="cross-box" style="margin-bottom:12px"><strong>⚡ Cross-bucket match</strong> — This case name appears in <em>both</em> the Family/Matrimonial and Financial Fraud datasets. It may represent the same underlying case processed through different pipelines, or a coincidental name collision.</div>`;
+  }
+
+  document.getElementById('rightPanel').innerHTML=`
+    <div class="detail">
+      <div class="detail-header">
+        <h2>${item.name}</h2>
+        <div class="dmeta">
+          <span style="font-size:11px;font-weight:700;color:${bktColor}">${bktLabel}</span>
+          ${isCross?'<span class="cross-badge">⚡ Cross-match</span>':''}
+          <span class="ci-pill ${pillMap[item.kind]}">${labelMap[item.kind]}</span>
+          ${outFile?`<span style="font-size:11px;color:var(--muted)">→ ${outFile}</span>`:''}
+        </div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('overview',this)">Overview</div>
+        <div class="tab" onclick="switchTab('text',this)">${textLabel}</div>
+        <div class="tab" onclick="switchTab('json',this)">Raw JSON</div>
+      </div>
+      ${legendHtml}
+      <div class="tab-content active" id="tc-overview"><div class="overview">${crossNote}${buildOverview(item)}</div></div>
+      <div class="tab-content" id="tc-text"><div class="text-viewer" id="tvContent"><div class="loading">Click "${textLabel}" tab to load…</div></div></div>
+      <div class="tab-content" id="tc-json"><div class="json-viewer" id="jvContent"><div class="loading">Click "Raw JSON" to load…</div></div></div>
+    </div>`;
+
+  const rp=document.getElementById('rightPanel');
+  rp.dataset.outFile=outFile;
+  rp.dataset.bucketDir=bucketDir;
+  rp.dataset.loaded='';
+}
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const tc=document.getElementById('tc-'+name);
+  if(tc) tc.classList.add('active');
+  const rp=document.getElementById('rightPanel');
+  const outFile=rp.dataset.outFile;
+  const bucketDir=rp.dataset.bucketDir||'';
+  const loaded=rp.dataset.loaded||'';
+  if(name==='text'&&!loaded.includes('t')){rp.dataset.loaded+=',t';loadText(bucketDir,outFile);}
+  if(name==='json'&&!loaded.includes('j')){rp.dataset.loaded+=',j';loadJson(bucketDir,outFile);}
+}
+
+function buildOverview(item){
+  const mc=item.raw;
+  let html='';
+  if(item.kind==='merged'||item.kind==='ok'){
+    html+='<div class="ov-section"><h3>Hearing timeline</h3>';
+    for(let i=0;i<mc.files.length;i++){
+      const d=mc.dates[i];const f=mc.files[i];
+      const isLatest=i===mc.files.length-1;
+      const cp=mc.containment_per_file?mc.containment_per_file.find(c=>c.date===d):null;
+      const wasApp=mc.appended_from&&mc.appended_from.includes(f);
+      const isContained=cp&&cp.contained_in_latest;
+      let dotC='var(--muted)',badge='';
+      if(isLatest){dotC='var(--blue)';badge='<span class="badge badge-blue" style="margin-left:auto">final</span>';}
+      else if(wasApp){dotC='var(--yellow)';badge='<span class="badge badge-yellow" style="margin-left:auto">appended</span>';}
+      else if(isContained){dotC='var(--green)';badge='<span class="badge badge-green" style="margin-left:auto">contained in latest</span>';}
+      html+=`<div class="file-row"><div class="fd" style="background:${dotC}"></div>
+        <div style="flex:1"><div style="font-size:12px;font-weight:600">${fmt(d)}</div><div style="font-size:11px;color:var(--muted);margin-top:1px">${f}</div></div>${badge}</div>`;
+    }
+    html+='</div>';
+    const note=item.kind==='merged'
+      ?`<strong>Action:</strong> ${mc.appended_from.length} earlier file(s) prepended. Open <em>Merged Text</em> to see colour-coded sections.`
+      :`<strong>No action needed:</strong> Latest file already contained all earlier hearing content.`;
+    html+=`<div class="ov-section"><h3>Merge note</h3><div class="note-box">${note}</div></div>`;
+  } else {
+    html+='<div class="ov-section"><h3>Duplicate files (same date)</h3>';
+    for(const f of mc.files){
+      const kept=f===mc.kept;
+      html+=`<div class="file-row"><div class="fd" style="background:${kept?'var(--yellow)':'var(--muted)'}"></div>
+        <span style="${kept?'color:var(--yellow)':''};flex:1">${f}</span>
+        ${kept?'<span class="badge badge-yellow" style="margin-left:8px;flex-shrink:0">kept</span>':''}</div>`;
+    }
+    html+=`</div><div class="ov-section"><div class="note-box"><strong>Action taken:</strong> Kept the file with the longest text.</div></div>`;
+  }
+  return html;
+}
+
+async function loadText(bucketDir,outFile){
+  const el=document.getElementById('tvContent');
+  if(!el)return;
+  if(!outFile){el.innerHTML='<div class="loading">No output file.</div>';return;}
+  el.innerHTML='<div class="loading">Loading…</div>';
+  try{
+    const res=await fetch(bucketDir+encodeURIComponent(outFile).replace(/%20/g,' '));
+    if(!res.ok) throw new Error(res.statusText);
+    const data=await res.json();
+    const text=data?.raw_result?.data?.text||'(no text field found)';
+    const sectionOffsets=data?._section_offsets||[];
+    el.innerHTML=buildColoredText(text,sectionOffsets);
+  }catch(e){
+    el.innerHTML=`<div class="error-msg">Could not load: ${esc(e.message)}<br><br><small>Serve from <code>Timeline_Maker/</code>:<br><code>python3 -m http.server 8080</code><br>then open <code>http://localhost:8080/visualiser_dual.html</code></small></div>`;
+  }
+}
+
+function buildColoredText(text,sectionOffsets){
+  const SEP=/\n\n={80}\n\[(?:HEARING|FINAL DECISION): (.+?) — (.+?)\]\n={80}\n\n/g;
+  const parts=[];const labels=[];
+  let last=0,m;
+  while((m=SEP.exec(text))!==null){parts.push(text.slice(last,m.index));labels.push({date:m[1],fname:m[2]});last=m.index+m[0].length;}
+  parts.push(text.slice(last));
+  if(parts.length===1) return `<div class="sec-block s4"><div class="sec-hdr">Case text</div><div class="sec-text">${esc(parts[0])}</div></div>`;
+  const offsets=sectionOffsets||[];
+  let html='';
+  for(let i=0;i<parts.length;i++){
+    const isLatest=i===parts.length-1;
+    const si=i%5;
+    let hdr;
+    if(isLatest){
+      const lbl=i>0?labels[i-1]:null;
+      const dateStr=lbl?lbl.date:(offsets[i]?offsets[i].date:'');
+      hdr=`<span style="background:var(--blue);color:#fff;padding:1px 8px;border-radius:4px;font-size:11px;margin-right:6px">FINAL/LATEST</span>`+(dateStr?`<span style="font-weight:400;font-size:11px;color:rgba(255,255,255,.6)">${esc(dateStr.replace(/_/g,' '))}</span>`:'');
+    } else if(i===0){
+      const dateStr=offsets[0]?offsets[0].date:'';
+      hdr=`<span style="font-size:10px;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:4px;margin-right:6px">EARLIEST HEARING</span>`+(dateStr?`<span style="font-weight:400;font-size:11px;color:var(--muted)">${esc(dateStr.replace(/_/g,' '))}</span>`:'');
+    } else {
+      const lbl=labels[i-1];
+      hdr=`<span style="font-size:10px;background:rgba(255,255,255,.07);padding:1px 7px;border-radius:4px;margin-right:6px">HEARING ${i+1} OF ${parts.length}</span>`+`<span style="font-weight:400;font-size:11px;color:var(--muted)">${esc(lbl.date.replace(/_/g,' '))} — ${esc(lbl.fname)}</span>`;
+    }
+    html+=`<div class="sec-block s${si}"><div class="sec-hdr">${hdr}</div><div class="sec-text">${esc(parts[i])}</div></div>`;
+  }
+  return html;
+}
+
+async function loadJson(bucketDir,outFile){
+  const el=document.getElementById('jvContent');
+  if(!el)return;
+  if(!outFile){el.innerHTML='<div class="loading">No file.</div>';return;}
+  el.innerHTML='<div class="loading">Loading…</div>';
+  try{
+    const res=await fetch(bucketDir+encodeURIComponent(outFile).replace(/%20/g,' '));
+    if(!res.ok) throw new Error(res.statusText);
+    const data=await res.json();
+    el.innerHTML=syntaxHL(JSON.stringify(data,null,2));
+  }catch(e){
+    el.innerHTML=`<div class="error-msg">Could not load: ${esc(e.message)}</div>`;
+  }
+}
+
+function syntaxHL(json){
+  return esc(json).replace(/(\"(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*\"(\s*:)?|\b(?:true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,m=>{
+    if(/^"/.test(m)) return /:$/.test(m)?`<span class="jk">${m}</span>`:`<span class="js">${m}</span>`;
+    if(/true|false|null/.test(m)) return `<span class="jb">${m}</span>`;
+    return `<span class="jn">${m}</span>`;
+  });
+}
+
+// ─────────────────────────────────────────────
+// Bootstrap
+// ─────────────────────────────────────────────
+(async ()=>{
+  try{
+    const [famReport, finReport] = await Promise.all([loadReport('fam'), loadReport('fin')]);
+    const reports = buildUnified({fam:famReport, fin:finReport});
+    renderStats({famReport, finReport});
+    rebuildList();
+    // auto-select first cross-match or first merged
+    const list=document.getElementById('caseList');
+    const first=(list._order||CASES).findIndex(c=>c.bucket==='cross')||
+                 (list._order||CASES).findIndex(c=>c.kind==='merged');
+    if(first>=0) selectCase(first);
+  }catch(err){
+    document.getElementById('caseList').innerHTML=`<div style="padding:16px;color:var(--red);font-size:12px;line-height:1.7">
+      <strong>Cannot load report files.</strong><br><br>
+      Serve this page via HTTP from the <code>Timeline_Maker/</code> directory:<br><br>
+      <code style="background:var(--surface2);padding:4px 8px;border-radius:4px;display:inline-block">
+        cd /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker<br>
+        python3 -m http.server 8080
+      </code><br><br>
+      Then open: <code>http://localhost:8080/visualiser_dual.html</code><br><br>
+      Error: ${esc(err.message)}
+    </div>`;
+    document.getElementById('statsBar').innerHTML='<span style="color:var(--red);font-size:12px;padding:4px 8px">⚠ Reports not loaded — see left panel for instructions</span>';
+  }
+})();
+</script>
+</body>
+</html>
