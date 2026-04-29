@@ -1,0 +1,195 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2757,
+      "facts": 5870,
+      "arguments": 15127,
+      "petitioner_arguments": 1898,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13228
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 21,
+      "PRE_RELIED": 50,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "NONE": 22,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 197,
+    "ignored_sentences": 66,
+    "ignored_entities": [
+      {
+        "sentence_id": 1,
+        "entity_text": "Vinod Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Manoj Gyanchandani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rahul Gyanchandani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rohit Gyanchandani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "MOTA CHHOTU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "MAST MAZAA SADA CHAACH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "MAST MAZA MASALA JEERA CHAACH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "MAST MAZAA CHATPATI CHAACH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "MAST MAZAA SADA CHAACH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "MAST MAZA MASALA JEERA CHAACH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "MOTA CHOTU/",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "SADA CHACHH GADA MAZA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "MAST MAZA SADA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "MAST MAZA CHATPATI CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "MAST MAZA MASALA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "MAZA JEERA MASALA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "MOTA CHHOTU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "MOTA CHHOTU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "MAST MAZA JEERA MASALA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "MOTA CHHOTU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "SADA CHACHH GADA MAZA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "MAST MAZA SADA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "MAST MAZA CHATPATI CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "MAST MAZA MASALA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "MAST MAZA JEERA MASALA CHACHH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "MOTA CHHOTU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Anup Masala Chach",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Ved Prakash Garg",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 228,
+        "entity_text": "Robert Hryniak",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 21,
+    "PRE_RELIED": 50,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "NONE": 22,
+    "RPC": 9
+  }
+}

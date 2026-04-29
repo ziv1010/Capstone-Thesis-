@@ -1,0 +1,165 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 411,
+          "end": 418
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 53,
+          "end": 60
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 653,
+          "end": 662
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 272,
+          "end": 279
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 17,
+          "end": 26
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 411,
+          "end": 418
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 53,
+          "end": 60
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 653,
+          "end": 662
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 272,
+          "end": 279
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 17,
+          "end": 26
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 6196,
+      "facts": 1225,
+      "arguments": 30472,
+      "petitioner_arguments": 163,
+      "respondent_arguments": 320,
+      "other_lawyer_arguments": 29987
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 2,
+      "FAC": 4,
+      "PRE_RELIED": 103,
+      "STA": 29
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 96,
+      "NONE": 4,
+      "RATIO": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 191,
+    "ignored_sentences": 107,
+    "ignored_entities": [
+      {
+        "sentence_id": 44,
+        "entity_text": "PAVAN V.V.R.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Ram Kishan Bajaj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "R.P. Neyatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Sheoratan Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Anil Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Anil Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 2,
+    "FAC": 4,
+    "PRE_RELIED": 103,
+    "STA": 29
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 96,
+    "NONE": 4,
+    "RATIO": 2,
+    "RPC": 5
+  }
+}

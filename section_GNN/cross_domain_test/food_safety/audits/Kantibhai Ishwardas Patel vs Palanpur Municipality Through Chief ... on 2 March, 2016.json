@@ -1,0 +1,171 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 500,
+          "end": 509
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 488,
+          "end": 495
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 500,
+          "end": 509
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 488,
+          "end": 495
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 58,
+      "facts": 3040,
+      "arguments": 526,
+      "petitioner_arguments": 526,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "FAC": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 12,
+      "NONE": 13,
+      "RATIO": 1,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 443,
+    "ignored_sentences": 37,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "ORAL JUDGMENT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Chirag Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Rajendra Singh Verma2",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Brij  Mohan Singh Chopra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 269,
+        "entity_text": "Chirag Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Baikuntha Nath Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 390,
+        "entity_text": "J.M.Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 392,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 396,
+        "entity_text": "Valiben Jethabhai Bhanji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 417,
+        "entity_text": "Doshi Fatechan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 421,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "FAC": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 12,
+    "NONE": 13,
+    "RATIO": 1,
+    "RPC": 11
+  }
+}

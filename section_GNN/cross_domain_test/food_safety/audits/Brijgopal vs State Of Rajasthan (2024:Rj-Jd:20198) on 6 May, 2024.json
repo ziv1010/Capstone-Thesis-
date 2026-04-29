@@ -1,0 +1,105 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 166,
+          "end": 175
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 154,
+          "end": 161
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 166,
+          "end": 175
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 154,
+          "end": 161
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 48,
+          "end": 57
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 48,
+          "end": 57
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1018,
+      "facts": 1417,
+      "arguments": 3145,
+      "petitioner_arguments": 1120,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2024
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "FAC": 6,
+      "PRE_RELIED": 6,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 7,
+      "NONE": 4,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 38,
+    "ignored_sentences": 15,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "Nirala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "FAC": 6,
+    "PRE_RELIED": 6,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 7,
+    "NONE": 4,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

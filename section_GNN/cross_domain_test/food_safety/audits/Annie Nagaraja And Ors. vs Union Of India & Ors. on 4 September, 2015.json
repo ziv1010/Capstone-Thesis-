@@ -1,0 +1,162 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 69,
+      "facts": 1820,
+      "arguments": 24071,
+      "petitioner_arguments": 14811,
+      "respondent_arguments": 515,
+      "other_lawyer_arguments": 8743
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 42,
+      "ARG_RESPONDENT": 1,
+      "FAC": 5,
+      "PRE_RELIED": 43,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 76,
+      "NONE": 35,
+      "RATIO": 4,
+      "RLC": 6,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 112,
+    "ignored_sentences": 128,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Pallavi Shali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "URMILA BHAT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Meenakshi Lekhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Pall  Shali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "PRITIKA B. SHARMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Pall  Shali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "MANISHA GHATGE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Pall  Shali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "CDR. SONAL DRAVID",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Babita Punia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Babita Punia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Meenakshi Lekhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Babita Punia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Babita Punia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "J Mendez",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Mendez",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Mendez",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Kofi Annan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 42,
+    "ARG_RESPONDENT": 1,
+    "FAC": 5,
+    "PRE_RELIED": 43,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 76,
+    "NONE": 35,
+    "RATIO": 4,
+    "RLC": 6,
+    "RPC": 7
+  }
+}

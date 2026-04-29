@@ -1,0 +1,140 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 525,
+      "facts": 2056,
+      "arguments": 7011,
+      "petitioner_arguments": 4294,
+      "respondent_arguments": 840,
+      "other_lawyer_arguments": 1875
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 2,
+      "FAC": 7,
+      "PRE_RELIED": 6,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 16,
+      "NONE": 5,
+      "RATIO": 8,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 32,
+    "ignored_sentences": 32,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Sumit Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Sammy Dhiman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Mandeep Dhiman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Sudhir Kumar Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Mukesh Gautam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Karan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Ravi Kaushal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Kushal Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Mandi Gobindgarh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sammy Dhiman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Avtarjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Komal Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Avtarjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Komal Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Avtarjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Komal Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Sammy Dhiman",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 2,
+    "FAC": 7,
+    "PRE_RELIED": 6,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 16,
+    "NONE": 5,
+    "RATIO": 8,
+    "RPC": 3
+  }
+}

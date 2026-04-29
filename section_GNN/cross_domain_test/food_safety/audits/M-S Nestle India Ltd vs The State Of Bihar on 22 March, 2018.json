@@ -1,0 +1,118 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 579,
+          "end": 586
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 579,
+          "end": 586
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 209,
+          "end": 216
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 209,
+          "end": 216
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 83,
+      "facts": 0,
+      "arguments": 2953,
+      "petitioner_arguments": 2213,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 739
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "PRE_RELIED": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 2,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 17,
+    "ignored_sentences": 9,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "P.S. Raherhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "S. Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "C.B.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Badri Saw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Narayan Saw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Badri Saw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "P.K.\nSinha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Krishna Lal Sah",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "PRE_RELIED": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 2,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

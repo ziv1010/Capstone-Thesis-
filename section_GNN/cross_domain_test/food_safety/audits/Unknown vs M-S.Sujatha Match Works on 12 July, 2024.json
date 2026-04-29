@@ -1,0 +1,77 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 441,
+      "facts": 2321,
+      "arguments": 31379,
+      "petitioner_arguments": 15086,
+      "respondent_arguments": 5069,
+      "other_lawyer_arguments": 11222
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 77,
+      "ARG_RESPONDENT": 27,
+      "FAC": 9,
+      "PRE_RELIED": 40,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 168,
+      "ISSUE": 17,
+      "NONE": 50,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 216,
+    "ignored_sentences": 242,
+    "ignored_entities": [
+      {
+        "sentence_id": 260,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Agarbathis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Benzoin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Sambrani",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 77,
+    "ARG_RESPONDENT": 27,
+    "FAC": 9,
+    "PRE_RELIED": 40,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 168,
+    "ISSUE": 17,
+    "NONE": 50,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

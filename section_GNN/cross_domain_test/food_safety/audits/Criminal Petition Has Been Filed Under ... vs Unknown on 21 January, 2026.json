@@ -1,0 +1,122 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 145,
+          "end": 154
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 145,
+          "end": 154
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 155,
+      "facts": 2620,
+      "arguments": 23544,
+      "petitioner_arguments": 7743,
+      "respondent_arguments": 2510,
+      "other_lawyer_arguments": 13289
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 43,
+      "ARG_RESPONDENT": 14,
+      "FAC": 4,
+      "PRE_RELIED": 64
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 43,
+      "ISSUE": 1,
+      "NONE": 10,
+      "RATIO": 3,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 125,
+    "ignored_sentences": 58,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Venkateswara Swamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "P.Murali Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "K.S.Murthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "K.S.Murthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "P.S.P.Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "P.S.P.Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Srivari Laddu Prasadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "P.S.P.Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Pinki",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Pinki",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 43,
+    "ARG_RESPONDENT": 14,
+    "FAC": 4,
+    "PRE_RELIED": 64
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 43,
+    "ISSUE": 1,
+    "NONE": 10,
+    "RATIO": 3,
+    "RPC": 1
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1687,
+      "facts": 8172,
+      "arguments": 7324,
+      "petitioner_arguments": 625,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 6698
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 28,
+      "PRE_RELIED": 21,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 28,
+      "ISSUE": 1,
+      "NONE": 22,
+      "RATIO": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 149,
+    "ignored_sentences": 56,
+    "ignored_entities": [
+      {
+        "sentence_id": 59,
+        "entity_text": "Mohini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Prag Chawla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 28,
+    "PRE_RELIED": 21,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 28,
+    "ISSUE": 1,
+    "NONE": 22,
+    "RATIO": 1,
+    "RPC": 4
+  }
+}

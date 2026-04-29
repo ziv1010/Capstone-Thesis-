@@ -1,0 +1,73 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 63,
+          "end": 72
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 119,
+      "facts": 2774,
+      "arguments": 446,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 446
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 19,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "NONE": 3,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 33,
+    "ignored_sentences": 19,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Kiran G.\nKiran G. Jahagirdar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Jahagirdar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "ORAL JUDGMENT:-",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 19,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "NONE": 3,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

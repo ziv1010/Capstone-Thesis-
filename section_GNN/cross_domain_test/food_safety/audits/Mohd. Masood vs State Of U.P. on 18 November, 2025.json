@@ -1,0 +1,55 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 388,
+      "facts": 395,
+      "arguments": 265,
+      "petitioner_arguments": 265,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 12,
+    "ignored_sentences": 7,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Munne",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Munne",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 4
+  }
+}

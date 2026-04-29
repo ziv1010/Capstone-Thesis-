@@ -108,14 +108,18 @@ def main() -> None:
     print(f"[node_imp] n_cases={data['case'].y.shape[0]}  n_test={n_test}  labels={label_names}")
 
     # ── Load model ────────────────────────────────────────────────────────────
+    state = torch.load(model_path, map_location=device, weights_only=True)
+    hidden_dim = int(state["input_projections.case.weight"].shape[0])
+    num_layers = sum(1 for k in state if k.startswith("layer_norms.") and k.endswith(".case.weight"))
+    model_cfg  = {**cfg.get("model", {}), "hidden_dim": hidden_dim, "num_layers": num_layers}
+
     input_dims = {nt: int(data[nt].x.shape[1]) for nt in data.node_types}
     model = HeteroLegalOutcomeGNN(
         metadata   = data.metadata(),
         input_dims = input_dims,
         out_dim    = num_classes,
-        cfg        = cfg.get("model", {}),
+        cfg        = model_cfg,
     ).to(device)
-    state = torch.load(model_path, map_location=device, weights_only=True)
     model.load_state_dict(state)
     model.eval()
     print(f"[node_imp] hidden_dim={model.hidden_dim}  num_layers={model.num_layers}")

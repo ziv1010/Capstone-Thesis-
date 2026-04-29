@@ -1,0 +1,88 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 96,
+          "end": 103
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 199,
+      "facts": 5816,
+      "arguments": 929,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 929
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 37,
+      "PRE_RELIED": 1,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 12,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 45,
+    "ignored_sentences": 20,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Langer Garam Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Langer Garam Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Langer Garam Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Langer Garam Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Langer Garam Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 37,
+    "PRE_RELIED": 1,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 12,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

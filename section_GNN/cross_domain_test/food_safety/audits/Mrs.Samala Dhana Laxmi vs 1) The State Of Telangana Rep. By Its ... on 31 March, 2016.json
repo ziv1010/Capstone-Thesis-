@@ -1,0 +1,335 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 417,
+      "facts": 9959,
+      "arguments": 27436,
+      "petitioner_arguments": 2796,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 24639
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 18,
+      "PRE_RELIED": 53,
+      "STA": 25
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 77,
+      "NONE": 71,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 218,
+    "ignored_sentences": 150,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Vedula Venkataramana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Kurti Bhaskara Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Samala Hari Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Vedula Venkataramana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Munagala Yadamma4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Rekha3",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Rekha3",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Haradhan Saha22",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Ram Manohar Lohia27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Arun Ghosh9",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Ram Manohar Lohia27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Madhu Limaye34",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Ram Manohar Lohia27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Madhu Limaye34",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Pushkar Mukherjee36",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Arun Ghosh9",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 233,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 240,
+        "entity_text": "Kanuji S. Zala7",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "V. Laxmanna6",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "D.M. Nagaraja8",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Munagala Yadamma4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Ganesh Traders44",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 276,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 291,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Pushkar Mukherjee36",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 302,
+        "entity_text": "C. Anita13",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "Ram Manohar Lohia27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 307,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 307,
+        "entity_text": "Kanuji S. Zala7",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 323,
+        "entity_text": "Khudiram Das24",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 324,
+        "entity_text": "M. Ahamedkutty26",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Ram Manohar Lohia27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Pushkar Mukherjee36",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 344,
+        "entity_text": "Mohd. Yousuf Rather57",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 344,
+        "entity_text": "Shibban Lal Saxena59",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 344,
+        "entity_text": "Pushkar Mukherjee36",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 350,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 18,
+    "PRE_RELIED": 53,
+    "STA": 25
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 77,
+    "NONE": 71,
+    "RPC": 2
+  }
+}

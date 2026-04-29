@@ -1,0 +1,167 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1805,
+      "facts": 11410,
+      "arguments": 1219,
+      "petitioner_arguments": 1219,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 64
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 25,
+      "NONE": 1,
+      "RATIO": 5,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 76,
+    "ignored_sentences": 32,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "J.P. Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Yogesh Pratap",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Vinod Kumar Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Madhvan Brand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Yogesh Pratap",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Vinod Kumar Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Vinod Kumar Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "J.P. Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "J.P. Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Lachman Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Lachman Das Proprietor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Surender Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "FI Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Sh Yogesh Pratap",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "FA J.P. Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Yogesh Pratap",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "FI Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Dinesh Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Dinesh Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Vinod Kumar Bansal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "S.S. Gokul Krishnan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 64
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 25,
+    "NONE": 1,
+    "RATIO": 5,
+    "RPC": 1
+  }
+}

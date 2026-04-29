@@ -1,0 +1,95 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 843,
+      "facts": 1284,
+      "arguments": 1288,
+      "petitioner_arguments": 893,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 394
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "FAC": 14,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 1,
+      "NONE": 8,
+      "RATIO": 5,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 35,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "PRASANNA P SALGAONKAR SALGAONKAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Anil Gavte",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Shoeb Ansari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Shahanawaj Ansari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Hidayat Udekari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Anil Dhepe",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "FAC": 14,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 1,
+    "NONE": 8,
+    "RATIO": 5,
+    "RPC": 9
+  }
+}

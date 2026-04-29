@@ -1,0 +1,117 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 96,
+      "facts": 4262,
+      "arguments": 2373,
+      "petitioner_arguments": 748,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1624
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 28,
+      "PRE_RELIED": 7,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 21,
+      "NONE": 2,
+      "RATIO": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 57,
+    "ignored_sentences": 32,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Shantilal Adani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Rajesh S. Adani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Shantiall Adani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Suryaja Bungalow",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "V. P. Gangane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "ORAL JUDGMENT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "S. P. Nandanwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Laxman Wamanrao Wankar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Raag Vanaspati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Raag Vanaspati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Vanaspati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Keki Bomi Dadiseth",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Charandas Vallabhdas Mariwala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 28,
+    "PRE_RELIED": 7,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 21,
+    "NONE": 2,
+    "RATIO": 4,
+    "RPC": 5
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 87,
+          "end": 96
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 87,
+          "end": 96
+        }
+      ],
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 1166,
+          "end": 1173
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2779,
+      "facts": 4286,
+      "arguments": 37389,
+      "petitioner_arguments": 12467,
+      "respondent_arguments": 1969,
+      "other_lawyer_arguments": 22951
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 54,
+      "ARG_RESPONDENT": 10,
+      "FAC": 15,
+      "PRE_RELIED": 73,
+      "STA": 10
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 123,
+      "NONE": 34,
+      "RATIO": 11,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 235,
+    "ignored_sentences": 177,
+    "ignored_entities": [
+      {
+        "sentence_id": 97,
+        "entity_text": "Covid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Covid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "V. P. Joy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Ganesh Chathurthi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Durga Pooja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "V P Joy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 248,
+        "entity_text": "Kollam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 311,
+        "entity_text": "Kanwar Yatra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 354,
+        "entity_text": "T. B. Hood",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 54,
+    "ARG_RESPONDENT": 10,
+    "FAC": 15,
+    "PRE_RELIED": 73,
+    "STA": 10
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 123,
+    "NONE": 34,
+    "RATIO": 11,
+    "RPC": 9
+  }
+}

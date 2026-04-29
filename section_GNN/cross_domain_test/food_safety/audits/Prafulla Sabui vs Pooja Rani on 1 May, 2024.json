@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 633,
+      "facts": 4791,
+      "arguments": 15284,
+      "petitioner_arguments": 4476,
+      "respondent_arguments": 3552,
+      "other_lawyer_arguments": 7254
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 12,
+      "FAC": 28,
+      "PRE_RELIED": 37
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 23,
+      "NONE": 11,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 87,
+    "ignored_sentences": 42,
+    "ignored_entities": [
+      {
+        "sentence_id": 20,
+        "entity_text": "Robin Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Rajesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Ashish Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ashish Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ashish Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Ashish Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Jasbir Kaur",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 12,
+    "FAC": 28,
+    "PRE_RELIED": 37
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 23,
+    "NONE": 11,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

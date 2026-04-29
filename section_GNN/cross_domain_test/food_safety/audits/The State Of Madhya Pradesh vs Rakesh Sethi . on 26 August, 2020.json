@@ -1,0 +1,141 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 76,
+          "end": 83
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 412,
+      "facts": 1627,
+      "arguments": 34847,
+      "petitioner_arguments": 12590,
+      "respondent_arguments": 222,
+      "other_lawyer_arguments": 22033
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 58,
+      "ARG_RESPONDENT": 2,
+      "FAC": 8,
+      "PRE_RELIED": 37,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 114,
+      "NONE": 5,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 128,
+    "ignored_sentences": 125,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Saurabh Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Vikramjit Banerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 208,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 223,
+        "entity_text": "Jaintia Hill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "Jaintia Hill",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 58,
+    "ARG_RESPONDENT": 2,
+    "FAC": 8,
+    "PRE_RELIED": 37,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 114,
+    "NONE": 5,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

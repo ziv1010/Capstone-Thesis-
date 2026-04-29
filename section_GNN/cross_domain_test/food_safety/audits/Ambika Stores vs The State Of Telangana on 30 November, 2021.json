@@ -1,0 +1,162 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1166,
+      "facts": 489,
+      "arguments": 59262,
+      "petitioner_arguments": 28920,
+      "respondent_arguments": 1468,
+      "other_lawyer_arguments": 28872
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 109,
+      "ARG_RESPONDENT": 6,
+      "FAC": 1,
+      "PRE_RELIED": 34,
+      "STA": 32
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 102,
+      "NONE": 13,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 185,
+    "ignored_sentences": 121,
+    "ignored_entities": [
+      {
+        "sentence_id": 37,
+        "entity_text": "COTPA 2003",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 195,
+        "entity_text": "Khedan Lal and Sons",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Indira Jaisingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Anay Kumar Banerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "S.Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "Laxmikant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Bhangde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 109,
+    "ARG_RESPONDENT": 6,
+    "FAC": 1,
+    "PRE_RELIED": 34,
+    "STA": 32
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 102,
+    "NONE": 13,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

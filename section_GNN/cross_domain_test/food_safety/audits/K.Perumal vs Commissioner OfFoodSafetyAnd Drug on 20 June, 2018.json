@@ -1,0 +1,52 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 388,
+      "facts": 2004,
+      "arguments": 1280,
+      "petitioner_arguments": 1280,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 3,
+      "NONE": 8,
+      "RATIO": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 17,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Tapioca Sago",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 3,
+    "NONE": 8,
+    "RATIO": 1,
+    "RPC": 4
+  }
+}

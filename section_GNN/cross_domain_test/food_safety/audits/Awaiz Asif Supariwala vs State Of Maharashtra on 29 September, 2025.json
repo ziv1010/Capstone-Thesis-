@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 34,
+          "end": 49
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 691,
+      "facts": 1727,
+      "arguments": 992,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 451,
+      "other_lawyer_arguments": 540
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 4,
+      "FAC": 14,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 10,
+      "NONE": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 28,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 15,
+        "entity_text": "Vimal Pan Masala Gutka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 4,
+    "FAC": 14,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 10,
+    "NONE": 1,
+    "RPC": 5
+  }
+}

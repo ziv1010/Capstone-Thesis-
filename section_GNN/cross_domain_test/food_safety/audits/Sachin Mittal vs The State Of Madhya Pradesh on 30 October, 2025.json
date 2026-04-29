@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 271,
+          "end": 278
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 33,
+          "end": 40
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 271,
+          "end": 278
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 33,
+          "end": 40
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 428,
+      "facts": 4367,
+      "arguments": 4096,
+      "petitioner_arguments": 2471,
+      "respondent_arguments": 1118,
+      "other_lawyer_arguments": 505
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 11,
+      "ARG_RESPONDENT": 5,
+      "FAC": 11,
+      "PRE_RELIED": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 17,
+      "NONE": 2,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 31,
+    "ignored_sentences": 25,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Rekha Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Sunil Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Rekha Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Anil Pratap Singh Parishar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Ramnivas Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Sunil Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Sunil Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Sunil Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Rekha Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sunil Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Vinay",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 11,
+    "ARG_RESPONDENT": 5,
+    "FAC": 11,
+    "PRE_RELIED": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 17,
+    "NONE": 2,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

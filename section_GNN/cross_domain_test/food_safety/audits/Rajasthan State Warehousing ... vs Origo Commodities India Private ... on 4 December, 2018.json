@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 279,
+      "facts": 1368,
+      "arguments": 45734,
+      "petitioner_arguments": 32666,
+      "respondent_arguments": 1012,
+      "other_lawyer_arguments": 12054
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 166,
+      "ARG_RESPONDENT": 2,
+      "FAC": 11,
+      "PRE_RELIED": 48,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 202,
+      "NONE": 3,
+      "RATIO": 3,
+      "RLC": 10,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 274,
+    "ignored_sentences": 224,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Rakesh Purohit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Rakesh Purohit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Karan Tibrewal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Rachit Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "R.K. Mathur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Aditya Mathur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sushil Sehgal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sanjay Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Shubham Ligistics",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Origo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "R.K. Mathur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "Sushil Sehgal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Shree Shubham Logistic",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 257,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 166,
+    "ARG_RESPONDENT": 2,
+    "FAC": 11,
+    "PRE_RELIED": 48,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 202,
+    "NONE": 3,
+    "RATIO": 3,
+    "RLC": 10,
+    "RPC": 6
+  }
+}

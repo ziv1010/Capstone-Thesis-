@@ -5,13 +5,14 @@ graph_stats.py — Comprehensive per-bucket and cross-bucket graph statistics.
 Loads graph_full.pkl and computes:
   • Per-bucket: case/entity counts, degree stats, top hubs, entity diversity
   • Cross-bucket: entity sharing matrix, bridge analysis, shared-entity overlap
-  • Centrality: degree (all nodes), PageRank (all nodes),
-                approximate betweenness (entity-only subgraph, k-sample)
+  • Centrality: degree (all nodes), PageRank (all nodes)
+                (approximate betweenness disabled by default — too slow on this graph)
   • Saves stats JSON + thesis-ready PDF/PNG plots to outputs/graph_stats/
 
 Usage:
   python graph_stats.py [--config config.yaml] [--out outputs/graph_stats]
-                        [--betweenness-k 300]   # samples for approx betweenness
+                        [--with-betweenness]        # enable approx betweenness (slow)
+                        [--betweenness-k 300]       # samples for approx betweenness
 """
 from __future__ import annotations
 
@@ -530,6 +531,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config",        default="config.yaml")
     parser.add_argument("--out",           default="outputs/graph_stats")
+    parser.add_argument("--with-betweenness", action="store_true",
+                        help="Compute approximate betweenness (slow on large graphs)")
     parser.add_argument("--betweenness-k", type=int, default=300,
                         help="Number of pivot samples for approx betweenness")
     args = parser.parse_args()
@@ -558,7 +561,11 @@ def main():
 
     # ── centrality ────────────────────────────────────────────────────────────
     pr = compute_pagerank(G)
-    bc = compute_approx_betweenness(G, entity_nodes, k=args.betweenness_k)
+    if args.with_betweenness:
+        bc = compute_approx_betweenness(G, entity_nodes, k=args.betweenness_k)
+    else:
+        tick("Skipping approx betweenness (pass --with-betweenness to enable)")
+        bc = {}
 
     # ── save summary JSON ────────────────────────────────────────────────────
     tick("Saving stats JSON")
@@ -579,7 +586,7 @@ def main():
         "top_pagerank_statute":   top_nodes(G, pr,  "statute", 20),
         "top_pagerank_precedent": top_nodes(G, pr,  "precedent", 20),
         "top_pagerank_judge":     top_nodes(G, pr,  "judge", 20),
-        "top_betweenness":        top_nodes(G, bc,  None, 30),
+        "top_betweenness":        top_nodes(G, bc,  None, 30) if bc else [],
         "top_degree_entities": {
             ntype: sorted(
                 [{"node": n, "label": G.nodes[n].get("label","")[:60],
@@ -605,7 +612,8 @@ def main():
     plot_top_pagerank(G, pr, out_dir)
     plot_top_pagerank_by_type(G, pr, out_dir)
     plot_pagerank_vs_degree(G, pr, entity_nodes, out_dir)
-    plot_top_betweenness(G, bc, out_dir)
+    if bc:
+        plot_top_betweenness(G, bc, out_dir)
 
     print(f"\nDone — outputs in {out_dir}/")
 

@@ -424,10 +424,36 @@ def collect_completed_sources_for_resume(
 # Input text extraction
 # ---------------------------------------------------------------------------
 
-def collect_input_texts(combined_payload: dict[str, Any]) -> dict[str, Any]:
-    raw_result    = combined_payload.get("raw_result", {})
-    decision_text = str(raw_result.get("summary", {}).get("decision", "")).strip()
+def collect_input_texts(payload: dict[str, Any]) -> dict[str, Any]:
+    """Extract decision text and RPC sentences from an enriched JSON document.
 
+    Supports two formats:
+      1. Enriched format (add_case_outcome_labels_from_enriched pipeline):
+             payload["opennyai_summary"]["decision"]
+             payload["sentences"][*]["rhetorical_role"] == "RPC"
+      2. Combined format (add_case_outcome_labels_mistral pipeline):
+             payload["raw_result"]["summary"]["decision"]
+             payload["raw_result"]["annotations"][*]["labels"] contains "RPC"
+    """
+    # ── Format 1: enriched (opennyai_summary + sentences) ──
+    summary_mapping = payload.get("opennyai_summary")
+    if isinstance(summary_mapping, dict) and summary_mapping:
+        decision_text = str(summary_mapping.get("decision", "")).strip()
+        rpc_texts: list[str] = []
+        for sentence in payload.get("sentences", []):
+            if not isinstance(sentence, dict):
+                continue
+            role = str(sentence.get("rhetorical_role") or "").strip().upper()
+            if role != "RPC":
+                continue
+            text = str(sentence.get("text", "")).strip()
+            if text:
+                rpc_texts.append(text)
+        return {"decision_text": decision_text, "rpc_texts": rpc_texts}
+
+    # ── Format 2: combined (raw_result) ──
+    raw_result    = payload.get("raw_result", {})
+    decision_text = str(raw_result.get("summary", {}).get("decision", "")).strip()
     rpc_texts = []
     for annotation in raw_result.get("annotations", []):
         labels = annotation.get("labels", [])
@@ -436,10 +462,7 @@ def collect_input_texts(combined_payload: dict[str, Any]) -> dict[str, Any]:
             if text:
                 rpc_texts.append(text)
 
-    return {
-        "decision_text": decision_text,
-        "rpc_texts": rpc_texts,
-    }
+    return {"decision_text": decision_text, "rpc_texts": rpc_texts}
 
 
 def build_user_prompt(*, file_id: str, decision_text: str, rpc_texts: list[str]) -> str:
@@ -809,7 +832,7 @@ def main() -> int:
     if args.overwrite and args.resume:
         raise ValueError("--overwrite and --resume cannot be used together.")
 
-    if not args.dry_run and not args.hf_token:
+    if not args.dry_run and args.backend == "remote_hf" and not args.hf_token:
         raise EnvironmentError(
             "Missing Hugging Face token. Set HF_TOKEN or HUGGINGFACEHUB_API_TOKEN."
         )

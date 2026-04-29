@@ -1,0 +1,72 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 187,
+      "facts": 2837,
+      "arguments": 1293,
+      "petitioner_arguments": 1293,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 13
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 14,
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 19,
+    "ignored_sentences": 20,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Prajavani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Rontala Suguna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Gurukuntla Vijaya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Rontala Suguna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Dalith Bandhu",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 13
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 14,
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 3
+  }
+}

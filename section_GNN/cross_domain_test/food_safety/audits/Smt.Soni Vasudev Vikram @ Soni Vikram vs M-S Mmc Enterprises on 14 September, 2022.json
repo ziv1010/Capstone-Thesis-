@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 585,
+      "facts": 10966,
+      "arguments": 4812,
+      "petitioner_arguments": 1174,
+      "respondent_arguments": 2499,
+      "other_lawyer_arguments": 1137
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 12,
+      "FAC": 69,
+      "PRE_RELIED": 5,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 123,
+      "ISSUE": 16,
+      "NONE": 72,
+      "RATIO": 1,
+      "RPC": 16
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 105,
+    "ignored_sentences": 228,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Mahipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Chethan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Mahipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Ghewarchand Parekh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Sobha Indraprastha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Chetan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Sajjanraj Raysoni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Ashok Vattika",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Ashok Vattika",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 12,
+    "FAC": 69,
+    "PRE_RELIED": 5,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 123,
+    "ISSUE": 16,
+    "NONE": 72,
+    "RATIO": 1,
+    "RPC": 16
+  }
+}

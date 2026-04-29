@@ -1,0 +1,278 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 236,
+          "end": 243
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 304,
+          "end": 311
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 625,
+          "end": 632
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 236,
+          "end": 243
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 304,
+          "end": 311
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 625,
+          "end": 632
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 309,
+      "facts": 173,
+      "arguments": 41621,
+      "petitioner_arguments": 7404,
+      "respondent_arguments": 1429,
+      "other_lawyer_arguments": 32786
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 28,
+      "ARG_RESPONDENT": 4,
+      "FAC": 1,
+      "PRE_RELIED": 57,
+      "STA": 47
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 151,
+      "ISSUE": 2,
+      "NONE": 14,
+      "RATIO": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 215,
+    "ignored_sentences": 177,
+    "ignored_entities": [
+      {
+        "sentence_id": 31,
+        "entity_text": "Yamin Naeem Mohammad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Lalbara",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Billari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Mohammad Jamshed Sakir Mohammad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Sohna Ram Aneja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Vimal Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Vimal Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Jarda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "M. G. Bhangde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Digambar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Ghodawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "Venugopal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Suresh Lohiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Suresh Lohiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Tej Bahadur Dube",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Suresh Lohiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 305,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "Raju Laxman Pachapure",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 321,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 326,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 336,
+        "entity_text": "Digambar Rodji Wankhede",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Anand Ramdhani Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Nilesh Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 358,
+        "entity_text": "Anand Ramdhani Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "Anand Ramdhani Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 361,
+        "entity_text": "Nilesh Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 362,
+        "entity_text": "Anand Ramdhani Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Nilesh Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 364,
+        "entity_text": "Anand Ramdhani Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 28,
+    "ARG_RESPONDENT": 4,
+    "FAC": 1,
+    "PRE_RELIED": 57,
+    "STA": 47
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 151,
+    "ISSUE": 2,
+    "NONE": 14,
+    "RATIO": 2,
+    "RPC": 8
+  }
+}

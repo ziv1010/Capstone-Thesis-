@@ -1,0 +1,435 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 19,
+          "end": 28
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 19,
+          "end": 28
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 82,
+      "facts": 19107,
+      "arguments": 38619,
+      "petitioner_arguments": 258,
+      "respondent_arguments": 404,
+      "other_lawyer_arguments": 37955
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 2,
+      "FAC": 140,
+      "PRE_RELIED": 211
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 66,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 357,
+    "ignored_sentences": 75,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Kuchupillai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Clive S. Grant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Jon A. Van Heerden",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "N. K. Shukla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Nandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Nandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Nandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Kuchupillai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Ranbir Kumar Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "C.M. Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Anasrarca",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "C.M. Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Anarsarca",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Kandhari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Kusum Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Kusum Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Kusum Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "R.K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Davies",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Fraser",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Russell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "McNair Jo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Roe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Woolley",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 266,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 273,
+        "entity_text": "Atkin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "Porter",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Andrews",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Jacob Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Bolam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "Scarman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 324,
+        "entity_text": "Bolam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 330,
+        "entity_text": "Jacob Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Jacob Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 355,
+        "entity_text": "Sobita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Sir Lawrence Jenkins",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "Laxman Balkrishna Joshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Jackson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Powell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 377,
+        "entity_text": "Whitehouse",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "Jacob Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "Ratanlal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "Dhirajlal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 2,
+    "FAC": 140,
+    "PRE_RELIED": 211
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 66,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

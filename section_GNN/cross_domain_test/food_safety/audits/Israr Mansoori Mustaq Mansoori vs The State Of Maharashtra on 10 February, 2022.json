@@ -1,0 +1,97 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 569,
+      "facts": 0,
+      "arguments": 4744,
+      "petitioner_arguments": 2542,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2201
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 25,
+    "ignored_sentences": 21,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Ajim Wahid Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Akram Shabbir Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Ajim Wahid Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Akram Shabbir Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Joseph Kurian Philip Jose",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Anand Ramdhari Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Vasim Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Joseph Kuruian Philip Jose",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

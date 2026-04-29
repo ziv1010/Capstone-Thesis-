@@ -1,0 +1,110 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 282,
+          "end": 291
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 282,
+          "end": 291
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 146,
+          "end": 153
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 146,
+          "end": 153
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1906,
+      "facts": 12628,
+      "arguments": 16434,
+      "petitioner_arguments": 12978,
+      "respondent_arguments": 3455,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 36,
+      "ARG_RESPONDENT": 12,
+      "FAC": 56
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 45,
+      "ISSUE": 1,
+      "NONE": 9,
+      "RATIO": 5,
+      "RLC": 10,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 113,
+    "ignored_sentences": 74,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Hari Chnad Sadhu Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Hari Chand Sadhu Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "O.P. Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "K.K. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Hari Chand",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 36,
+    "ARG_RESPONDENT": 12,
+    "FAC": 56
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 45,
+    "ISSUE": 1,
+    "NONE": 9,
+    "RATIO": 5,
+    "RLC": 10,
+    "RPC": 4
+  }
+}

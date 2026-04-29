@@ -1,0 +1,114 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 176,
+          "end": 183
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 92,
+          "end": 99
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 176,
+          "end": 183
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 92,
+          "end": 99
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 419,
+      "facts": 4527,
+      "arguments": 15974,
+      "petitioner_arguments": 8789,
+      "respondent_arguments": 1109,
+      "other_lawyer_arguments": 6074
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 35,
+      "ARG_RESPONDENT": 3,
+      "FAC": 29,
+      "PRE_RELIED": 6,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 39,
+      "NONE": 8,
+      "RATIO": 2,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 90,
+    "ignored_sentences": 60,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "J. Sagar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Kalpna K. Raval",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Kalpana K. Raval",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "D.K. Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Kalpna K. Raval",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 35,
+    "ARG_RESPONDENT": 3,
+    "FAC": 29,
+    "PRE_RELIED": 6,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 39,
+    "NONE": 8,
+    "RATIO": 2,
+    "RPC": 11
+  }
+}

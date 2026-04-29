@@ -1,0 +1,75 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 831,
+      "facts": 3836,
+      "arguments": 17153,
+      "petitioner_arguments": 161,
+      "respondent_arguments": 127,
+      "other_lawyer_arguments": 16863
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 1,
+      "FAC": 34,
+      "PRE_RELIED": 65,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 120,
+      "ISSUE": 11,
+      "NONE": 11,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 104,
+    "ignored_sentences": 160,
+    "ignored_entities": [
+      {
+        "sentence_id": 19,
+        "entity_text": "Hemant Upadhyay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Ram Charan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "A. P. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 1,
+    "FAC": 34,
+    "PRE_RELIED": 65,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 120,
+    "ISSUE": 11,
+    "NONE": 11,
+    "RPC": 18
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 620,
+      "facts": 1393,
+      "arguments": 14160,
+      "petitioner_arguments": 2344,
+      "respondent_arguments": 415,
+      "other_lawyer_arguments": 11399
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 3,
+      "FAC": 18,
+      "PRE_NOT_RELIED": 2,
+      "PRE_RELIED": 30,
+      "STA": 13
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 92,
+      "NONE": 7,
+      "RATIO": 4,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 88,
+    "ignored_sentences": 105,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Nesarikar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Santosh Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Vasim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Vasim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Vinod Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "E. Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Anbazhagan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "E. Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 3,
+    "FAC": 18,
+    "PRE_NOT_RELIED": 2,
+    "PRE_RELIED": 30,
+    "STA": 13
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 92,
+    "NONE": 7,
+    "RATIO": 4,
+    "RPC": 2
+  }
+}

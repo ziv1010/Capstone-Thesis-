@@ -1,0 +1,83 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 528,
+      "facts": 1393,
+      "arguments": 17144,
+      "petitioner_arguments": 2313,
+      "respondent_arguments": 3988,
+      "other_lawyer_arguments": 10841
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 18,
+      "FAC": 4,
+      "PRE_RELIED": 64
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 165,
+      "NONE": 2,
+      "RATIO": 7,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 103,
+    "ignored_sentences": 178,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "ISIS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Harjit Masih",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "ISIS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Harjit Masih",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "ISIS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Hoffman",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 18,
+    "FAC": 4,
+    "PRE_RELIED": 64
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 165,
+    "NONE": 2,
+    "RATIO": 7,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "domain": "food_safety",
+  "model": "cross_bucket_party_args_lr_decay_kfold",
+  "gpus_used": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+  ],
+  "n_folds_evaluated": 5,
+  "food_safety_dir": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety",
+  "graph_cache": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/graph_cache/case_star_global_graph_food_safety_cross_domain.reasoning_focused.pt",
+  "per_fold": [
+    {
+      "fold": "fold_00",
+      "gpu": "0",
+      "n_cases": 11769,
+      "accuracy": 0.612201546435551,
+      "macro_f1": 0.6112671660243767,
+      "micro_f1": 0.612201546435551,
+      "roc_auc": 0.6742924104498301
+    },
+    {
+      "fold": "fold_01",
+      "gpu": "1",
+      "n_cases": 11769,
+      "accuracy": 0.6083779420511514,
+      "macro_f1": 0.5999320235847759,
+      "micro_f1": 0.6083779420511514,
+      "roc_auc": 0.7084869372469726
+    },
+    {
+      "fold": "fold_02",
+      "gpu": "2",
+      "n_cases": 11769,
+      "accuracy": 0.613136205285071,
+      "macro_f1": 0.6106417711697644,
+      "micro_f1": 0.613136205285071,
+      "roc_auc": 0.6624722168751482
+    },
+    {
+      "fold": "fold_03",
+      "gpu": "3",
+      "n_cases": 11769,
+      "accuracy": 0.6057439034752315,
+      "macro_f1": 0.5982535084737304,
+      "micro_f1": 0.6057439034752315,
+      "roc_auc": 0.6584643650946425
+    },
+    {
+      "fold": "fold_04",
+      "gpu": "4",
+      "n_cases": 11769,
+      "accuracy": 0.599796074432832,
+      "macro_f1": 0.5966767913674266,
+      "micro_f1": 0.599796074432832,
+      "roc_auc": 0.6706774473764513
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.6078511343359674,
+    "accuracy_std": 0.00539583169413151,
+    "macro_f1_mean": 0.6033542521240148,
+    "macro_f1_std": 0.007036331721024402,
+    "micro_f1_mean": 0.6078511343359674,
+    "micro_f1_std": 0.00539583169413151,
+    "roc_auc_mean": 0.6748786754086089,
+    "roc_auc_std": 0.019817032344688748
+  }
+}

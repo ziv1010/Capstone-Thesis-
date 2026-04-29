@@ -1,0 +1,243 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1771,
+      "facts": 3418,
+      "arguments": 2591,
+      "petitioner_arguments": 1230,
+      "respondent_arguments": 984,
+      "other_lawyer_arguments": 375
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "ARG_RESPONDENT": 6,
+      "FAC": 25,
+      "PRE_RELIED": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 118,
+      "ISSUE": 3,
+      "NONE": 9,
+      "RPC": 33
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 90,
+    "ignored_sentences": 163,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "GITA DEVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "SUNIL KUMAR YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "KHUSHBU KUMARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "KIRAN KUMARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "TULSI KUMAR YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "SHAHDEV YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "MASUDAN YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "TUSELYA DEVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "SHAHDEV YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "RAMABHOVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "PRAKASH M H",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "RAMABHOVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "SMT GITA DEVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "SUNIL KUMAR YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "KHUSHBU KUMARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "KIRAN KUMARI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "TULSI KUMAR YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "MURARI YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "SHAHDEV YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "MASUDAN YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "SMT TUSELYA DEVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "SHAHDEV YADAV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "PRAKASH M H",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "RAMABHOVI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "HAROHALLI HOBLI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "KANAKAPURA TALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Murari Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Murari Yadav2",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "A.M.Venkatesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Prakash M.H.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "ARG_RESPONDENT": 6,
+    "FAC": 25,
+    "PRE_RELIED": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 118,
+    "ISSUE": 3,
+    "NONE": 9,
+    "RPC": 33
+  }
+}

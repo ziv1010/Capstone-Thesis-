@@ -1,0 +1,110 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 89,
+      "facts": 811,
+      "arguments": 3593,
+      "petitioner_arguments": 3415,
+      "respondent_arguments": 177,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "ARG_RESPONDENT": 1,
+      "FAC": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 6,
+      "NONE": 10,
+      "RATIO": 2,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 108,
+    "ignored_sentences": 33,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "D.Anand Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Subba Rao Athukuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Harinadhababu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Madhava Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Akuthta Laxmaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Subba Rao Athukuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Harinadhababu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Madhava Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Akuthta Laxmaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Y. Bala Murali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "in Hanmakonda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "ARG_RESPONDENT": 1,
+    "FAC": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 6,
+    "NONE": 10,
+    "RATIO": 2,
+    "RPC": 15
+  }
+}

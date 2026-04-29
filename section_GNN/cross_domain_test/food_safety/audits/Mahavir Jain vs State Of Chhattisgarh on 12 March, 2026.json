@@ -1,0 +1,110 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 667,
+      "facts": 9792,
+      "arguments": 1359,
+      "petitioner_arguments": 1359,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "FAC": 48
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RATIO": 1,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 66,
+    "ignored_sentences": 12,
+    "ignored_entities": [
+      {
+        "sentence_id": 23,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Budhmal Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Mungeli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Mungeli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Lalit Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "FAC": 48
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RATIO": 1,
+    "RPC": 7
+  }
+}

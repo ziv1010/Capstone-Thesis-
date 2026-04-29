@@ -1,0 +1,52 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 206,
+      "facts": 0,
+      "arguments": 380,
+      "petitioner_arguments": 302,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 77
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 3,
+      "NONE": 6,
+      "RLC": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 6,
+    "ignored_sentences": 18,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Moti Lal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 3,
+    "NONE": 6,
+    "RLC": 2,
+    "RPC": 7
+  }
+}

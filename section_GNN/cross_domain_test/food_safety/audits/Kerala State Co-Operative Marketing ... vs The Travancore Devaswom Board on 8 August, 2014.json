@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 763,
+      "facts": 1472,
+      "arguments": 1681,
+      "petitioner_arguments": 1681,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "FAC": 3
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 3,
+      "RATIO": 1,
+      "RLC": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 21,
+    "ignored_sentences": 7,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Millu Dandapani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "V.Krishna Menon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "FAC": 3
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 3,
+    "RATIO": 1,
+    "RLC": 2,
+    "RPC": 1
+  }
+}

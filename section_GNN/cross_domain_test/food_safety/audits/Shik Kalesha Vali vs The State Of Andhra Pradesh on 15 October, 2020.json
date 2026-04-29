@@ -1,0 +1,61 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 322,
+          "end": 329
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 322,
+          "end": 329
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 152,
+      "facts": 602,
+      "arguments": 1084,
+      "petitioner_arguments": 1084,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 4
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 5,
+      "RATIO": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 10,
+    "ignored_sentences": 9,
+    "ignored_entities": []
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 4
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 5,
+    "RATIO": 1,
+    "RPC": 3
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 42,
+          "end": 51
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 381,
+          "end": 390
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 42,
+          "end": 51
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 381,
+          "end": 390
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 373,
+      "facts": 718,
+      "arguments": 18280,
+      "petitioner_arguments": 3866,
+      "respondent_arguments": 804,
+      "other_lawyer_arguments": 13608
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 2,
+      "FAC": 4,
+      "PRE_RELIED": 55
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 6,
+      "RATIO": 2,
+      "RLC": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 84,
+    "ignored_sentences": 49,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "JIRGA JHAVERI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "HIREN R SHARMA(3322",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "ANIL P JAGANI(6729",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "ORAL JUDGMENT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Anil Jagani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Mallikarjun Kodagali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 2,
+    "FAC": 4,
+    "PRE_RELIED": 55
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 6,
+    "RATIO": 2,
+    "RLC": 2,
+    "RPC": 5
+  }
+}

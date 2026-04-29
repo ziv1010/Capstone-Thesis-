@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 977,
+          "end": 986
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 977,
+          "end": 986
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 250,
+      "facts": 0,
+      "arguments": 1755,
+      "petitioner_arguments": 1755,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RATIO": 5,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 8,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "R. Sowmya Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "S. Mujib Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RATIO": 5,
+    "RPC": 7
+  }
+}

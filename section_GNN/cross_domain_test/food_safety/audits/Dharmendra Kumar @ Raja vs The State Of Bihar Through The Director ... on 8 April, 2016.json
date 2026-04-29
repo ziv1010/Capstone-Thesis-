@@ -1,0 +1,130 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 466,
+          "end": 473
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 466,
+          "end": 473
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 175,
+          "end": 182
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 378,
+          "end": 385
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 119,
+          "end": 126
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 175,
+          "end": 182
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 378,
+          "end": 385
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 119,
+          "end": 126
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1169,
+      "facts": 1367,
+      "arguments": 20707,
+      "petitioner_arguments": 1955,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 18751
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "FAC": 3,
+      "PRE_RELIED": 35,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 58,
+      "NONE": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 72,
+    "ignored_sentences": 61,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Paan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Zarda",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Prabhat Ranjans",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Bhajanlal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "FAC": 3,
+    "PRE_RELIED": 35,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 58,
+    "NONE": 2,
+    "RPC": 1
+  }
+}

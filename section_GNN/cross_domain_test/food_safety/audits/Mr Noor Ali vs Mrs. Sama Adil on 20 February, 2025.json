@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "Set Aside",
+          "start": 469,
+          "end": 478
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2256,
+      "facts": 2339,
+      "arguments": 11781,
+      "petitioner_arguments": 5610,
+      "respondent_arguments": 2492,
+      "other_lawyer_arguments": 3677
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 21,
+      "ARG_RESPONDENT": 14,
+      "FAC": 9,
+      "PRE_RELIED": 12,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 33,
+      "NONE": 5,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 67,
+    "ignored_sentences": 45,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Savitha Seetharam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 21,
+    "ARG_RESPONDENT": 14,
+    "FAC": 9,
+    "PRE_RELIED": 12,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 33,
+    "NONE": 5,
+    "RPC": 7
+  }
+}

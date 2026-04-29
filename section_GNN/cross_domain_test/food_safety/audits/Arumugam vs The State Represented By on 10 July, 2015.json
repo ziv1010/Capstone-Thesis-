@@ -1,0 +1,106 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 313,
+          "end": 322
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 313,
+          "end": 322
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 423,
+      "facts": 2072,
+      "arguments": 23063,
+      "petitioner_arguments": 11716,
+      "respondent_arguments": 1660,
+      "other_lawyer_arguments": 9685
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 55,
+      "ARG_RESPONDENT": 6,
+      "FAC": 13,
+      "PRE_RELIED": 26,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 89,
+      "ISSUE": 1,
+      "NONE": 10,
+      "RATIO": 6,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 109,
+    "ignored_sentences": 113,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "B. Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "B.Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 55,
+    "ARG_RESPONDENT": 6,
+    "FAC": 13,
+    "PRE_RELIED": 26,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 89,
+    "ISSUE": 1,
+    "NONE": 10,
+    "RATIO": 6,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

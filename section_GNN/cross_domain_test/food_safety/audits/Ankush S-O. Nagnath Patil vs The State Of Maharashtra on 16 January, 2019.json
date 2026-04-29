@@ -1,0 +1,65 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 387,
+      "facts": 733,
+      "arguments": 1126,
+      "petitioner_arguments": 901,
+      "respondent_arguments": 224,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 2,
+      "FAC": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 4,
+      "RATIO": 2,
+      "RLC": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 24,
+    "ignored_sentences": 13,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 2,
+    "FAC": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 4,
+    "RATIO": 2,
+    "RLC": 3,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 195,
+      "facts": 3253,
+      "arguments": 6313,
+      "petitioner_arguments": 2376,
+      "respondent_arguments": 1426,
+      "other_lawyer_arguments": 2509
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 7,
+      "FAC": 18,
+      "PRE_RELIED": 6,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 69,
+      "ISSUE": 5,
+      "NONE": 44,
+      "RATIO": 4,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 95,
+    "ignored_sentences": 133,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Raju Bhai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Paramjeet Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Satwant Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Rajesh Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Ashok Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Gurucharan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Thomas Jacob Hilfiger",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "TOMMY HILFIGER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "TOMMY HILFIGER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Thomas Jacob Hilfiger",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Tommy Hilfiger",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Tommy 1195244",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Tommy 838265",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Hilfiger Freedom",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Tommy 660204",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Pending Naturals",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Tommy 2208027",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Tommy 725528",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Tommy 726014",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Tommy 964904",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Tommy 2208028",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Tommy 528965",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Tommy 465058",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Tommy 964905",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Tommy 465059",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Tommy 465060",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Tommy 528968",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "TOMMY HILFIGER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "TOMMY HILFIGER",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 7,
+    "FAC": 18,
+    "PRE_RELIED": 6,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 69,
+    "ISSUE": 5,
+    "NONE": 44,
+    "RATIO": 4,
+    "RPC": 11
+  }
+}

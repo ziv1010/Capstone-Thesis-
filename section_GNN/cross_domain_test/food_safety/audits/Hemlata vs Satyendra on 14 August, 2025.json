@@ -1,0 +1,129 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 61,
+          "end": 70
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 61,
+          "end": 70
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 39,
+      "facts": 2544,
+      "arguments": 10665,
+      "petitioner_arguments": 1587,
+      "respondent_arguments": 1624,
+      "other_lawyer_arguments": 7508
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 14,
+      "FAC": 15,
+      "PRE_RELIED": 26,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 93,
+      "ISSUE": 4,
+      "NONE": 12,
+      "RATIO": 4,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 83,
+    "ignored_sentences": 123,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Diksha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Arnav Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "PURSHOTTAM PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "PURSHOTTAM PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Pawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Pawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "PURSHOTTAM PURSHOTTAM PATHAK PATHAK",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 14,
+    "FAC": 15,
+    "PRE_RELIED": 26,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 93,
+    "ISSUE": 4,
+    "NONE": 12,
+    "RATIO": 4,
+    "RPC": 10
+  }
+}

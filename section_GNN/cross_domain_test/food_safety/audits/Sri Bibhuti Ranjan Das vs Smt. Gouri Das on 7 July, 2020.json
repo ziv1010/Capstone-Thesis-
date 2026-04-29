@@ -1,0 +1,209 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1067,
+      "facts": 8859,
+      "arguments": 21039,
+      "petitioner_arguments": 3397,
+      "respondent_arguments": 1487,
+      "other_lawyer_arguments": 16153
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "ARG_RESPONDENT": 9,
+      "FAC": 57,
+      "PRE_RELIED": 64,
+      "STA": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 58,
+      "ISSUE": 2,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 8,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 165,
+    "ignored_sentences": 76,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "R. Chakraborty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Sukumar Malakar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Sanju Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "R. Chakraborty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Charkbaoty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Chakraborty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Sabitri Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Papiya Acharjee",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Debbamra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Chanmuniya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "Madhava Menon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Badshah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 195,
+        "entity_text": "Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "R. Charkraborty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Badshah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "Benjamin N. Cardozo",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "ARG_RESPONDENT": 9,
+    "FAC": 57,
+    "PRE_RELIED": 64,
+    "STA": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 58,
+    "ISSUE": 2,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 8,
+    "RPC": 3
+  }
+}

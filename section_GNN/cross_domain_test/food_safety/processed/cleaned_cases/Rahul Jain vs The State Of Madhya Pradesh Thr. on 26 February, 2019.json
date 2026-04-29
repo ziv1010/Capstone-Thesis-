@@ -1,0 +1,157 @@
+{
+  "case_id": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019",
+  "file_name": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019.json",
+  "file_id": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019.json",
+  "raw_label": "1",
+  "texts": {
+    "preamble": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019 1 High Court Of Madhya Pradesh Crr No.1075/2019 (Rahul Jain Vs The State of M.P.) Gwalior, Dated : 26.02.2019",
+    "facts": "During the trial, the petitioner was on bail. He did not misuse the [LEAKAGE_MASK] to him.",
+    "arguments": "Learned counsel for the petitioner submits that the petitioner has been falsely implicated in the matter.",
+    "petitioner_arguments": "Learned counsel for the petitioner submits that the petitioner has been falsely implicated in the matter.",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 0,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 2,
+    "court_count": 1,
+    "preamble_length": 177,
+    "facts_length": 90,
+    "arguments_length": 105,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [
+      "high court of madhya pradesh crr no10752019"
+    ],
+    "judge_names": [],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "1",
+    "source_decision_label": "1"
+  },
+  "entities": [
+    {
+      "entity_type": "court",
+      "raw_name": "High Court Of Madhya Pradesh Crr No.1075/2019",
+      "canonical_name": "high court of madhya pradesh crr no10752019",
+      "mentions": [
+        {
+          "entity_type": "court",
+          "raw_text": "High Court Of Madhya Pradesh Crr No.1075/2019",
+          "canonical_text": "high court of madhya pradesh crr no10752019",
+          "section": "PREAMBLE",
+          "annotation_id": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019:sentence_2:entity_0",
+          "start": 73,
+          "end": 119
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "precedent",
+      "raw_name": "Rahul Jain vs The State Of Madhya Pradesh",
+      "canonical_name": "rahul jain vs the state of madhya pradesh",
+      "mentions": [
+        {
+          "entity_type": "precedent",
+          "raw_text": "Rahul Jain vs The State Of Madhya Pradesh",
+          "canonical_text": "rahul jain vs the state of madhya pradesh",
+          "section": "PREAMBLE",
+          "annotation_id": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019:sentence_1:entity_0",
+          "start": 0,
+          "end": 41
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "precedent",
+      "raw_name": "Rahul Jain Vs The State of M.P.) Gwalior",
+      "canonical_name": "rahul jain vs the state of mp gwalior",
+      "mentions": [
+        {
+          "entity_type": "precedent",
+          "raw_text": "Rahul Jain Vs The State of M.P.) Gwalior",
+          "canonical_text": "rahul jain vs the state of mp gwalior",
+          "section": "PREAMBLE",
+          "annotation_id": "Rahul Jain vs The State Of Madhya Pradesh Thr. on 26 February, 2019:sentence_2:entity_1",
+          "start": 122,
+          "end": 162
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset",
+        "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+        "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+        "facts": "sentence_roles:FAC"
+      },
+      "masked_matches": {
+        "facts": [
+          {
+            "pattern": "\\bliberty\\s+granted\\b",
+            "matched_text": "liberty granted",
+            "start": 22,
+            "end": 37
+          }
+        ]
+      },
+      "retained_lengths": {
+        "preamble": 177,
+        "facts": 90,
+        "arguments": 105,
+        "petitioner_arguments": 105,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {
+        "ARG_PETITIONER": 1,
+        "FAC": 2
+      },
+      "dropped_sentence_role_counts": {
+        "NONE": 12,
+        "RLC": 1,
+        "RPC": 4
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 5,
+      "ignored_sentences": 17,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "FAC": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 12,
+      "RLC": 1,
+      "RPC": 4
+    }
+  }
+}

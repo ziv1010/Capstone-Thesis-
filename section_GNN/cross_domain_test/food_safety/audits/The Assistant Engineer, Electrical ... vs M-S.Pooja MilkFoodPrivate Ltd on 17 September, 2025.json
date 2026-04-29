@@ -1,0 +1,145 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2027,
+      "facts": 969,
+      "arguments": 20962,
+      "petitioner_arguments": 4966,
+      "respondent_arguments": 250,
+      "other_lawyer_arguments": 15744
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 22,
+      "ARG_RESPONDENT": 1,
+      "FAC": 6,
+      "PRE_RELIED": 60,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 115,
+      "NONE": 6,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 100,
+    "ignored_sentences": 127,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Mekha Manoj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "ADV SRI.RIJI RAJENDRAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "C.K. Karunakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "C.K. Karunakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Gram Sabhas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Immacolata Caruso",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Tiziana Vitolo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Anil Hira",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "David Huxtable",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Alexandre Leger",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Cummins",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Phillips",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Tennyson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 143,
+        "entity_text": "Ashish Hira",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Daljit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Ashwini K Swain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Mudit Narain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "A.K.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 22,
+    "ARG_RESPONDENT": 1,
+    "FAC": 6,
+    "PRE_RELIED": 60,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 115,
+    "NONE": 6,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

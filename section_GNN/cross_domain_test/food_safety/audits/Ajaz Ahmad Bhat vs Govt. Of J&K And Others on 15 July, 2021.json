@@ -1,0 +1,110 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 59,
+      "facts": 1665,
+      "arguments": 38126,
+      "petitioner_arguments": 245,
+      "respondent_arguments": 2646,
+      "other_lawyer_arguments": 35233
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 13,
+      "FAC": 9,
+      "PRE_RELIED": 134,
+      "STA": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 131,
+      "NONE": 6,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 178,
+    "ignored_sentences": 139,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Ajaz Ahmad Bhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Aijaz Ahmad Bhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Mohammad Subhan Bhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sopore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Abdul Rashid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Thomas Jefferson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Sophocles",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "Nabila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "detenu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Nabila",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 13,
+    "FAC": 9,
+    "PRE_RELIED": 134,
+    "STA": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 131,
+    "NONE": 6,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

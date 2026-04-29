@@ -1,0 +1,70 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 308,
+      "facts": 1263,
+      "arguments": 1496,
+      "petitioner_arguments": 1496,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "FAC": 8
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 5,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 23,
+    "ignored_sentences": 14,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "R.A. Jaiswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "S.S. Chapalgaonkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "G.O. Wattamwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Jaiswal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Wattamwar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "FAC": 8
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RATIO": 5,
+    "RPC": 7
+  }
+}

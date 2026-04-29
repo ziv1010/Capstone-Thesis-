@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 21,
+          "end": 30
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 21,
+          "end": 30
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 243,
+      "facts": 6569,
+      "arguments": 4769,
+      "petitioner_arguments": 486,
+      "respondent_arguments": 880,
+      "other_lawyer_arguments": 3401
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 5,
+      "FAC": 41,
+      "PRE_RELIED": 8,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 54,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 64,
+    "ignored_sentences": 63,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Jagan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Mahipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Dev Vrat Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Pandav Nager",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Mahipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Shyam Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "M. K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Laddoo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "FI Shyam Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Rakesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Besan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Rakesh",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 5,
+    "FAC": 41,
+    "PRE_RELIED": 8,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 54,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

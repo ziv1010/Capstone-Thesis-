@@ -1,0 +1,54 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 239,
+      "facts": 226,
+      "arguments": 3145,
+      "petitioner_arguments": 1498,
+      "respondent_arguments": 267,
+      "other_lawyer_arguments": 1378
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 2,
+      "FAC": 2,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 19,
+      "NONE": 2,
+      "RATIO": 4,
+      "RLC": 5,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 18,
+    "ignored_sentences": 36,
+    "ignored_entities": []
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 2,
+    "FAC": 2,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 19,
+    "NONE": 2,
+    "RATIO": 4,
+    "RLC": 5,
+    "RPC": 6
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 143,
+          "end": 150
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 143,
+          "end": 150
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 417,
+          "end": 424
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 417,
+          "end": 424
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 307,
+      "facts": 1217,
+      "arguments": 18022,
+      "petitioner_arguments": 2793,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 15228
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 6,
+      "PRE_RELIED": 21,
+      "STA": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 54,
+      "ISSUE": 3,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 69,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "P.Vikram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "R.Siva Sai Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 6,
+    "PRE_RELIED": 21,
+    "STA": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 54,
+    "ISSUE": 3,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 8
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "respondent_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 90,
+          "end": 99
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 90,
+          "end": 99
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 262,
+      "facts": 5603,
+      "arguments": 3992,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 1039,
+      "other_lawyer_arguments": 2952
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 5,
+      "FAC": 21,
+      "PRE_RELIED": 7,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 49,
+      "NONE": 11,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 50,
+    "ignored_sentences": 68,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Gurjeet Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Gurjeet Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Deepti Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 5,
+    "FAC": 21,
+    "PRE_RELIED": 7,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 49,
+    "NONE": 11,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

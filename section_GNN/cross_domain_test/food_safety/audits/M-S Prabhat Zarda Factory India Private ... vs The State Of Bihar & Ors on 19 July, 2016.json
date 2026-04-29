@@ -1,0 +1,226 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 289,
+          "end": 296
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 289,
+          "end": 296
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 3471,
+      "facts": 379,
+      "arguments": 60142,
+      "petitioner_arguments": 10610,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 49531
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 34,
+      "FAC": 2,
+      "PRE_RELIED": 144,
+      "STA": 51
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 177,
+      "ISSUE": 4,
+      "NONE": 9,
+      "RATIO": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 260,
+    "ignored_sentences": 193,
+    "ignored_entities": [
+      {
+        "sentence_id": 31,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Pan  Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Olga  Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "K. Sabanayagam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "K.\n Sabanayagam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "Suman Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Suman  Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Godawat  Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 276,
+        "entity_text": "Sutherland",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 322,
+        "entity_text": "Ramanathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 327,
+        "entity_text": "Himat Lal Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 329,
+        "entity_text": "Himat Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 404,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 408,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 412,
+        "entity_text": "D. Bhuvan Mohan Patnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 415,
+        "entity_text": "D Bhuban Patnaik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 34,
+    "FAC": 2,
+    "PRE_RELIED": 144,
+    "STA": 51
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 177,
+    "ISSUE": 4,
+    "NONE": 9,
+    "RATIO": 2,
+    "RPC": 1
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1077,
+      "facts": 5029,
+      "arguments": 8706,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8706
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 32,
+      "PRE_RELIED": 32,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 101,
+      "ISSUE": 4,
+      "NONE": 26,
+      "RATIO": 3,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 80,
+    "ignored_sentences": 143,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Priyanka Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Priyanka Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Usha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Ruby",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Priti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Seema",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Pinki Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Adarsh@Arjun,",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Kapil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Radhika",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Shahil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Bhoop Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Chand Hut chowk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Priyanka Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Priyanka Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Seema",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Priti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Usha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Piniki Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Arjun",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Kapil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Radhika",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Shahil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Charu by Charu gupta gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Charu gupta gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 32,
+    "PRE_RELIED": 32,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 101,
+    "ISSUE": 4,
+    "NONE": 26,
+    "RATIO": 3,
+    "RPC": 9
+  }
+}

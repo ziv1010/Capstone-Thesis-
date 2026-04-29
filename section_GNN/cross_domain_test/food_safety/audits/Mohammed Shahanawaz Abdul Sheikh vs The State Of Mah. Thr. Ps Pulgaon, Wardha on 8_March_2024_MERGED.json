@@ -1,0 +1,87 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 750,
+      "facts": 1786,
+      "arguments": 3232,
+      "petitioner_arguments": 1938,
+      "respondent_arguments": 1293,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 7,
+      "FAC": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 14,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 1,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 36,
+    "ignored_sentences": 31,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Prashant Shivraj Lohar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Prem Ahuja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Fiyaz",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Fiyaz",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Prashant Shivraj Lohar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Prem Ahuja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Fiyaz",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 7,
+    "FAC": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 14,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 1,
+    "RPC": 8
+  }
+}

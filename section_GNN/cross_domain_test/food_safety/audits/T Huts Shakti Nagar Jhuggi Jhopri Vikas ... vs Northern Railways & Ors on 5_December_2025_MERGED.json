@@ -1,0 +1,84 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 232,
+      "facts": 1316,
+      "arguments": 1060,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1060
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 7,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 10,
+      "NONE": 22,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 17,
+    "ignored_sentences": 46,
+    "ignored_entities": [
+      {
+        "sentence_id": 32,
+        "entity_text": "Renu Prajapati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Om Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Swati Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "K  Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Prince Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Nishant Gautam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Kavya Shukla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 7,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 10,
+    "NONE": 22,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 11
+  }
+}

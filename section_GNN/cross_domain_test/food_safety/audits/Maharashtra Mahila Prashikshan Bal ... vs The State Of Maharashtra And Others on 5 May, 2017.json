@@ -1,0 +1,134 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 110,
+          "end": 119
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 98,
+          "end": 105
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 110,
+          "end": 119
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 98,
+          "end": 105
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2151,
+      "facts": 1797,
+      "arguments": 13146,
+      "petitioner_arguments": 7231,
+      "respondent_arguments": 928,
+      "other_lawyer_arguments": 4985
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 45,
+      "ARG_RESPONDENT": 7,
+      "FAC": 13,
+      "STA": 15
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 89,
+      "NONE": 3,
+      "RATIO": 2,
+      "RLC": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 97,
+    "ignored_sentences": 104,
+    "ignored_entities": [
+      {
+        "sentence_id": 18,
+        "entity_text": "Bal Sadans",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Balak Ashram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Anathalay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Balgruha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "S. T. Veer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Balgruha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Balgruhas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Balgruha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Balgruhas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Balgruhas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 45,
+    "ARG_RESPONDENT": 7,
+    "FAC": 13,
+    "STA": 15
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 89,
+    "NONE": 3,
+    "RATIO": 2,
+    "RLC": 2,
+    "RPC": 8
+  }
+}

@@ -1,0 +1,664 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 602,
+      "facts": 102390,
+      "arguments": 10864,
+      "petitioner_arguments": 10864,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 59,
+      "FAC": 449
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 881,
+      "NONE": 327,
+      "RATIO": 6,
+      "RLC": 6,
+      "RPC": 111
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 697,
+    "ignored_sentences": 1331,
+    "ignored_entities": [
+      {
+        "sentence_id": 15,
+        "entity_text": "Pravash Kumar Majhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Majhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Atanu Kumar Samanta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Vir Vikram Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Bhubaneswar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Cuttack",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Dattatraya Bhausaheb Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Patra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Manoj Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Avijit Pattnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Poma Tudu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Poma Tudu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Poma Tudu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Poma Tudu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Shiv Toppo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Nodal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "SARILANI PANKODHAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "LAGILANI PUMPSET",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "MUKULA DRAIN SAHA KUDHA KUDHA ALIA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "C.M.C.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "NUABAZAR RA TALADANDA CANAL RASTA BIPARJYASTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Khilari Rishikesh Dnyandeo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 256,
+        "entity_text": "Goutam Kumar Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 271,
+        "entity_text": "Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "MRUTYU PARE AIG KU CHITHI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Umakant Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 384,
+        "entity_text": "Khilari Rishikesh Dnyandeo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 442,
+        "entity_text": "Soumya Ranjan Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 443,
+        "entity_text": "Soumya Ranjan Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 443,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 443,
+        "entity_text": "Santosh Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 444,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 446,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 603,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 609,
+        "entity_text": "Sweta Kumar Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 640,
+        "entity_text": "Bhubaneswar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 644,
+        "entity_text": "Puja Pandal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 652,
+        "entity_text": "Cuttack District",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 652,
+        "entity_text": "Dattatraya Bhausaheb Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 658,
+        "entity_text": "Shibo Toppo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 665,
+        "entity_text": "Khilari Rishikesh Dnyandeo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 668,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 800,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 806,
+        "entity_text": "Pooja Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 808,
+        "entity_text": "Aswathy S.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 817,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 822,
+        "entity_text": "Soumya Ranjan Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 826,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 850,
+        "entity_text": "Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 851,
+        "entity_text": "Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 852,
+        "entity_text": "Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 855,
+        "entity_text": "Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 919,
+        "entity_text": "Amarjit Pattanaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 985,
+        "entity_text": "Khilari Rishikesh Dnyandeo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1105,
+        "entity_text": "Aswathy S.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1117,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1119,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1120,
+        "entity_text": "Pravakar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1120,
+        "entity_text": "Sishu Bhawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1120,
+        "entity_text": "Sishu Bhawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1121,
+        "entity_text": "Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1121,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1123,
+        "entity_text": "Aswathy S.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1124,
+        "entity_text": "Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1124,
+        "entity_text": "Sishu Bhawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1124,
+        "entity_text": "Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1129,
+        "entity_text": "Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1137,
+        "entity_text": "Goutam Kumar Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1138,
+        "entity_text": "Goutam Kumar Satapathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1155,
+        "entity_text": "Md. Shahbaz",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1156,
+        "entity_text": "Shahbaz",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1192,
+        "entity_text": "Rashmita Priyadarshini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1197,
+        "entity_text": "Maa Cuttack Chandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1221,
+        "entity_text": "Goutam Kumar Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1224,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1244,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1245,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1249,
+        "entity_text": "Satpathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1272,
+        "entity_text": "Soumik Spandan Tripathy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1283,
+        "entity_text": "Balchandran Menon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1286,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1293,
+        "entity_text": "Baragadia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1294,
+        "entity_text": "Jajpur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1315,
+        "entity_text": "Jayanta Kumar Dora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1315,
+        "entity_text": "Reena Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1318,
+        "entity_text": "Puja Pandals",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1459,
+        "entity_text": "Jubuli Charan Behera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1472,
+        "entity_text": "Avijit Patnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1476,
+        "entity_text": "Behera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1477,
+        "entity_text": "Behera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1479,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1481,
+        "entity_text": "Behera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1495,
+        "entity_text": "Shibo Toppo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1495,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1498,
+        "entity_text": "Avijit Patnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1498,
+        "entity_text": "MASAKU DASA LAKHYA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1513,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1515,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1517,
+        "entity_text": "B.B. Choudhury",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1517,
+        "entity_text": "Satyabrata Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1524,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1532,
+        "entity_text": "Bharat Kumar Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1567,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1571,
+        "entity_text": "Avijit Patnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1595,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1602,
+        "entity_text": "Shibo Toppo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1602,
+        "entity_text": "Jiban Ballav Jena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1602,
+        "entity_text": "Debiprasad Kar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1602,
+        "entity_text": "Priyabrata Samantray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1691,
+        "entity_text": "B.N. Udgata",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1704,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1768,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1787,
+        "entity_text": "Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1789,
+        "entity_text": "IIT Bhubaneswar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1969,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 1973,
+        "entity_text": "Debasis Nayak",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 59,
+    "FAC": 449
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 881,
+    "NONE": 327,
+    "RATIO": 6,
+    "RLC": 6,
+    "RPC": 111
+  }
+}

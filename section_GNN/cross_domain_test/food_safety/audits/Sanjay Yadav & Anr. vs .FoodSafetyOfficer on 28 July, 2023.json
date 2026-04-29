@@ -1,0 +1,103 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 706,
+      "facts": 713,
+      "arguments": 4330,
+      "petitioner_arguments": 575,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3754
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 2,
+      "PRE_NOT_RELIED": 2,
+      "PRE_RELIED": 6,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 15,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 18,
+    "ignored_sentences": 28,
+    "ignored_entities": [
+      {
+        "sentence_id": 17,
+        "entity_text": "Rahul Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Adalat Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "K.M.Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "K.M.Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Adalat Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Subramanium Sethuraman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Subramanium Sethuraman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Bhushan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Subramanium Sethuraman",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 2,
+    "PRE_NOT_RELIED": 2,
+    "PRE_RELIED": 6,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 15,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 191,
+          "end": 198
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 191,
+          "end": 198
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 689,
+      "facts": 8056,
+      "arguments": 19290,
+      "petitioner_arguments": 7683,
+      "respondent_arguments": 2052,
+      "other_lawyer_arguments": 9553
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 39,
+      "ARG_RESPONDENT": 9,
+      "FAC": 34,
+      "PRE_RELIED": 17,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 136,
+      "NONE": 7,
+      "RATIO": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 192,
+    "ignored_sentences": 148,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Rajesh Bohra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Dhananjay Shrivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Rajesh Bohra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Dhananjay Shrivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Rajesh Bohra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Dhananjay Shrivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Rajesh Bohra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Dhananjay Shrivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Murali Ganesan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "A.K. Bhatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 306,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 39,
+    "ARG_RESPONDENT": 9,
+    "FAC": 34,
+    "PRE_RELIED": 17,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 136,
+    "NONE": 7,
+    "RATIO": 2,
+    "RPC": 3
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 538,
+      "facts": 1493,
+      "arguments": 2216,
+      "petitioner_arguments": 245,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1970
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "FAC": 7,
+      "STA": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 20,
+      "ISSUE": 2,
+      "NONE": 52,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 273,
+    "ignored_sentences": 82,
+    "ignored_entities": [
+      {
+        "sentence_id": 55,
+        "entity_text": "Meraj Qani-06",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "11.patta Zarda-4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "1.Gutka Sachets",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Sagar Pan Masala-69",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "R.R.Pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Vimal Pan masala-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Ganaesh pandarpur-45",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Chota Bai Jardha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Raj Niwas-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Joda Bai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Vimal Jardha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "JK Zardha Tobacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Vimal Pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "1.vimal Pan masala-17",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "5.Mahababa Zafrani Zarda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "7.Sagar Pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 143,
+        "entity_text": "Raj Niwas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Ramannapet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Mahabubnagar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "1.Golden Zarda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 177,
+        "entity_text": "vijaya Durga",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "2.Pan Bahar pan masala-14",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "3.Rajinigandha-2",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Vimal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Sagar Pan masala-163",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "8.Maha baba Zarda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "5.RR Pan Masala-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "6.RR Khaini-1",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "Meeraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "8.Vimal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "A-Zarda Bag",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "3.Raj Ratan Qiwam-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Ratna Tobacco-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 238,
+        "entity_text": "5.Chaini Khaini-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 238,
+        "entity_text": "Nampally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "13.Raja Tambaku-1",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 273,
+        "entity_text": "Suryapet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "5.Zafrani Zarda-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "8.Banarsi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "11.Sagar pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 283,
+        "entity_text": "Medchal-Malkajgiri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 289,
+        "entity_text": "Vimal Pan masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "FAC": 7,
+    "STA": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 20,
+    "ISSUE": 2,
+    "NONE": 52,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

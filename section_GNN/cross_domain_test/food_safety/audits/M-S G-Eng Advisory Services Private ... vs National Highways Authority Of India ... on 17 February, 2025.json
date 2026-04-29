@@ -1,0 +1,122 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 423,
+          "end": 430
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 423,
+          "end": 430
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 926,
+      "facts": 14338,
+      "arguments": 13253,
+      "petitioner_arguments": 11378,
+      "respondent_arguments": 1240,
+      "other_lawyer_arguments": 633
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 41,
+      "ARG_RESPONDENT": 3,
+      "FAC": 57,
+      "PRE_RELIED": 1,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 87,
+      "NONE": 9,
+      "RATIO": 4,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 109,
+    "ignored_sentences": 104,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Sanjay Bhasin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Prashant Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Prashant Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "PIU, Bareilly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Prashant Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Sanjay Bhasin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Bhasin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Sanjay Bahsin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Prashant Chandra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 41,
+    "ARG_RESPONDENT": 3,
+    "FAC": 57,
+    "PRE_RELIED": 1,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 87,
+    "NONE": 9,
+    "RATIO": 4,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 482,
+      "facts": 5040,
+      "arguments": 20183,
+      "petitioner_arguments": 2492,
+      "respondent_arguments": 678,
+      "other_lawyer_arguments": 17011
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 5,
+      "FAC": 40,
+      "PRE_RELIED": 58,
+      "STA": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 148,
+      "ISSUE": 4,
+      "NONE": 19,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 201,
+    "ignored_sentences": 192,
+    "ignored_entities": [
+      {
+        "sentence_id": 28,
+        "entity_text": "Ashok Kumar Jasrpuria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "L.B.S. Marg. Bhandup",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "T. Arunkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Divi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Divi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Ajay Chauhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Ravi Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Naidu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Mukul Rohatgi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Hatisingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Bachhittar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Dwivedi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 5,
+    "FAC": 40,
+    "PRE_RELIED": 58,
+    "STA": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 148,
+    "ISSUE": 4,
+    "NONE": 19,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 18
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 100,
+          "end": 109
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 100,
+          "end": 109
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1129,
+      "facts": 2372,
+      "arguments": 32177,
+      "petitioner_arguments": 2208,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 29968
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 23,
+      "PRE_RELIED": 116,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 75,
+      "ISSUE": 2,
+      "NONE": 10,
+      "RATIO": 4,
+      "RLC": 2,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 181,
+    "ignored_sentences": 99,
+    "ignored_entities": [
+      {
+        "sentence_id": 22,
+        "entity_text": "Chet Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Vinay Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Rohit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Stroud",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 177,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Simonds",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Pankaj Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 263,
+        "entity_text": "Ram Avtar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Vihaan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Prabir",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 23,
+    "PRE_RELIED": 116,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 75,
+    "ISSUE": 2,
+    "NONE": 10,
+    "RATIO": 4,
+    "RLC": 2,
+    "RPC": 6
+  }
+}

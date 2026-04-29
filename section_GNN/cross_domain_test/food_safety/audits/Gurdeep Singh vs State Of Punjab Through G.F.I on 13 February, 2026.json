@@ -1,0 +1,89 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 219,
+          "end": 226
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 141,
+          "end": 148
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 219,
+          "end": 226
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 141,
+          "end": 148
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 944,
+      "facts": 2087,
+      "arguments": 8797,
+      "petitioner_arguments": 3263,
+      "respondent_arguments": 428,
+      "other_lawyer_arguments": 5104
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 2,
+      "FAC": 11,
+      "PRE_RELIED": 15
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 48,
+    "ignored_sentences": 21,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Ashok Guru",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 2,
+    "FAC": 11,
+    "PRE_RELIED": 15
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

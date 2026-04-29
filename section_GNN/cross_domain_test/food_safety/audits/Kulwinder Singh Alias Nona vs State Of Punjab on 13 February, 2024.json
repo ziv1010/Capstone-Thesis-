@@ -1,0 +1,136 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 507,
+      "facts": 6272,
+      "arguments": 12069,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 12069
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 24,
+      "PRE_RELIED": 20,
+      "STA": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 69,
+      "NONE": 8,
+      "RATIO": 1,
+      "RLC": 3,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 65,
+    "ignored_sentences": 91,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Jaspal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Jaspal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Ashwani Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Lakhbir Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Lakhbir Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "P. Ramachandra Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Surinder Singh @ Shingara Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Tule Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Dalip Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Tofan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "K.A. Najeeb",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Pawan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Harpal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Mahaboob Alam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Ram Samujh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Rajesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Lokesh Chadha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 24,
+    "PRE_RELIED": 20,
+    "STA": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 69,
+    "NONE": 8,
+    "RATIO": 1,
+    "RLC": 3,
+    "RPC": 10
+  }
+}

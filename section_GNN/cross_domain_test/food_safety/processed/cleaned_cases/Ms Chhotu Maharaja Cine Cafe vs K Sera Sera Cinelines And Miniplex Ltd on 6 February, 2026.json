@@ -1,0 +1,114 @@
+{
+  "case_id": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026",
+  "file_name": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026.json",
+  "file_id": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026.json",
+  "raw_label": "1",
+  "texts": {
+    "preamble": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd",
+    "facts": "",
+    "arguments": "",
+    "petitioner_arguments": "",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 1,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 0,
+    "court_count": 0,
+    "preamble_length": 70,
+    "facts_length": 0,
+    "arguments_length": 0,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [],
+    "judge_names": [],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "1",
+    "source_decision_label": "1"
+  },
+  "entities": [
+    {
+      "entity_type": "petitioner",
+      "raw_name": "Chhotu Maharaja Cine Cafe",
+      "canonical_name": "chhotu maharaja cine cafe",
+      "mentions": [
+        {
+          "entity_type": "petitioner",
+          "raw_text": "Chhotu Maharaja Cine Cafe",
+          "canonical_text": "chhotu maharaja cine cafe",
+          "section": "PREAMBLE",
+          "annotation_id": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026:sentence_1:entity_0",
+          "start": 3,
+          "end": 28
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "respondent",
+      "raw_name": "K Sera Sera Cinelines And Miniplex Ltd",
+      "canonical_name": "k sera sera cinelines and miniplex ltd",
+      "mentions": [
+        {
+          "entity_type": "respondent",
+          "raw_text": "K Sera Sera Cinelines And Miniplex Ltd",
+          "canonical_text": "k sera sera cinelines and miniplex ltd",
+          "section": "PREAMBLE",
+          "annotation_id": "Ms Chhotu Maharaja Cine Cafe vs K Sera Sera Cinelines And Miniplex Ltd on 6 February, 2026:sentence_1:entity_1",
+          "start": 32,
+          "end": 70
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 70,
+        "facts": 0,
+        "arguments": 0,
+        "petitioner_arguments": 0,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {},
+      "dropped_sentence_role_counts": {
+        "NONE": 14,
+        "RPC": 8
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 1,
+      "ignored_sentences": 22,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {},
+    "dropped_sentence_role_counts": {
+      "NONE": 14,
+      "RPC": 8
+    }
+  }
+}

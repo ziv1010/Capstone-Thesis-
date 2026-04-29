@@ -1,0 +1,139 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 755,
+      "facts": 0,
+      "arguments": 28024,
+      "petitioner_arguments": 925,
+      "respondent_arguments": 381,
+      "other_lawyer_arguments": 26716
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 1,
+      "PRE_RELIED": 15,
+      "STA": 56
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 119,
+      "ISSUE": 3,
+      "NONE": 7,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 183,
+    "ignored_sentences": 135,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Ramalingam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Y.Bala Murali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Gajanand Chakravarthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Ravanaboina Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Veerjala Praveen Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Balakisti Srinivas Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Nanda Kishore Amarchand Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "S.Satyanarayana Murthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "G.Ravi Chandra Sekhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "M.R.Boggula Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Maheshwaram PS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Rachakonda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Khammam gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Amber  Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Sangareddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "CSL",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 1,
+    "PRE_RELIED": 15,
+    "STA": 56
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 119,
+    "ISSUE": 3,
+    "NONE": 7,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

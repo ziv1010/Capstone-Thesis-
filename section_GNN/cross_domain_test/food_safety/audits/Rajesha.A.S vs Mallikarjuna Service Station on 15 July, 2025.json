@@ -1,0 +1,115 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 148,
+      "facts": 7761,
+      "arguments": 4266,
+      "petitioner_arguments": 961,
+      "respondent_arguments": 1528,
+      "other_lawyer_arguments": 1775
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 10,
+      "FAC": 46,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 174,
+      "ISSUE": 2,
+      "NONE": 38,
+      "RATIO": 1,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 93,
+    "ignored_sentences": 230,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Rajesha A",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Shivaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Baby Deepthi Rajesha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Rajesha A S",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Chandrashekar N K",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "M N Nandini Urs",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Mahalakshmi Chambers",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Rajesha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Rajesha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Pushpalatha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 262,
+        "entity_text": "Rajesha",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 10,
+    "FAC": 46,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 174,
+    "ISSUE": 2,
+    "NONE": 38,
+    "RATIO": 1,
+    "RPC": 15
+  }
+}

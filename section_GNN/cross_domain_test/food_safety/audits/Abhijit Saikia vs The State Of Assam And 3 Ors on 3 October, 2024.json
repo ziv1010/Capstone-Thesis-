@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 424,
+          "end": 431
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 424,
+          "end": 431
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 664,
+      "facts": 4030,
+      "arguments": 5860,
+      "petitioner_arguments": 3806,
+      "respondent_arguments": 879,
+      "other_lawyer_arguments": 1173
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 3,
+      "FAC": 16,
+      "PRE_RELIED": 2,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 41,
+      "NONE": 8,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 44,
+    "ignored_sentences": 53,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "MS N SAIKIA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "A R BHUYAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "R K PRADHAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "A K SAIKIA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "P TALUKDAR(R-4),MR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "R MEDHI(R-4),MR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "P J BARMAN(R-4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "A. R. Bhuyan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Shimultapu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "IC Shimultapu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Sikder Jahidur Islam V.O. Narayanpur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Abhijit Saikia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 3,
+    "FAC": 16,
+    "PRE_RELIED": 2,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 41,
+    "NONE": 8,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

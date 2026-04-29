@@ -1,0 +1,271 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 54,
+          "end": 63
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 52,
+          "end": 61
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 52,
+          "end": 61
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 396,
+      "facts": 23195,
+      "arguments": 6919,
+      "petitioner_arguments": 4353,
+      "respondent_arguments": 642,
+      "other_lawyer_arguments": 1922
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 32,
+      "ARG_RESPONDENT": 4,
+      "FAC": 204,
+      "PRE_RELIED": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 47,
+      "NONE": 51,
+      "RATIO": 10,
+      "RLC": 3,
+      "RPC": 27
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 256,
+    "ignored_sentences": 138,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "HC Hari Kishan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "HC Hari Kishan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sanjay",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "HC Hari Kishan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Ustara",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Surender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Surender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Kali Mata Mandir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Shashi Kiran Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "HC Hari Krishan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "HC Jai Bhagwan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "HC Vinod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Ct. Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "HC Sanjay",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "HC Jai Bhagwan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Rajender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Satbir Singh Lamba",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Rohit Gahlot",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Surender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Suresh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Rohit Gahlot",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Shashi Kiran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Rohit Gahlot",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "Kalandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Ved Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 189,
+        "entity_text": "HC Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Rohit Gahlot",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Prince",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Kiran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 248,
+        "entity_text": "HC Hari Kishan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Sanjay",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 255,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "HC Hari Kishan",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 32,
+    "ARG_RESPONDENT": 4,
+    "FAC": 204,
+    "PRE_RELIED": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 47,
+    "NONE": 51,
+    "RATIO": 10,
+    "RLC": 3,
+    "RPC": 27
+  }
+}

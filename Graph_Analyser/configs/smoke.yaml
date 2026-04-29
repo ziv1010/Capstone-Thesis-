@@ -1,0 +1,42 @@
+section_gnn_root: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN
+graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/family_matrimonial_timed_mistral/graph_cache/case_star_global_graph_family_matrimonial_party_args.reasoning_focused.pt
+checkpoint_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/models/with_preamble_family_matrimonial_party_args_lr_decay_kfold/kfold/fold_00
+
+model:
+  architecture: hgt
+  hidden_dim: 128
+  num_layers: 3
+  num_heads: 4
+  dropout: 0.2
+  mlp_hidden_dim: 128
+
+output_root: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Graph_Analyser/outputs_smoke
+
+faiss:
+  top_k_similar_cases: 3
+  metric: cosine
+
+explainer:
+  epochs: 3
+  lr: 3.0e-3
+  coeff_size: 0.01
+  coeff_ent: 1.0e-4
+  temperature_start: 5.0
+  temperature_end: 1.0
+  max_train_cases_per_epoch: 128
+  hidden_dim: 64
+
+extraction:
+  top_k_statutes: 5
+  top_k_provisions: 5
+  top_k_precedents: 5
+  top_k_arguments: 3
+  top_n_test_cases: 3
+
+llm:
+  model_path: /scratch/ziv_baretto/Thesis_Ziv/hf_cache/hub/models--mistralai--Mistral-Small-24B-Instruct-2501/snapshots/9527884be6e5616bdd54de542f9ae13384489724
+  max_new_tokens: 500
+  temperature: 0.2
+  top_p: 0.9
+  gpu_memory_utilization: 0.85
+  dtype: bfloat16

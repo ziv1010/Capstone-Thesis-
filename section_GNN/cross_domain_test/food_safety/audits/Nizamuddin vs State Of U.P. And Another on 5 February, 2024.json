@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 391,
+      "facts": 1451,
+      "arguments": 2982,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 489,
+      "other_lawyer_arguments": 2492
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 2,
+      "FAC": 8,
+      "PRE_RELIED": 5,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 4,
+      "NONE": 2,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 23,
+    "ignored_sentences": 10,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Saleem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Akbar Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Mukhtar Ansari",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 2,
+    "FAC": 8,
+    "PRE_RELIED": 5,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 4,
+    "NONE": 2,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

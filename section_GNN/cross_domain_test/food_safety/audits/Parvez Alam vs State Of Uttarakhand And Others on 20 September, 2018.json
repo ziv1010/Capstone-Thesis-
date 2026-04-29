@@ -1,0 +1,63 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 550,
+      "facts": 273,
+      "arguments": 5199,
+      "petitioner_arguments": 901,
+      "respondent_arguments": 656,
+      "other_lawyer_arguments": 3640
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 5,
+      "FAC": 2,
+      "PRE_RELIED": 3,
+      "STA": 15
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 40,
+      "NONE": 8,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 32,
+    "ignored_sentences": 55,
+    "ignored_entities": [
+      {
+        "sentence_id": 35,
+        "entity_text": "Dharmendra Barthwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Dharmendra Barthwal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 5,
+    "FAC": 2,
+    "PRE_RELIED": 3,
+    "STA": 15
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 40,
+    "NONE": 8,
+    "RPC": 7
+  }
+}

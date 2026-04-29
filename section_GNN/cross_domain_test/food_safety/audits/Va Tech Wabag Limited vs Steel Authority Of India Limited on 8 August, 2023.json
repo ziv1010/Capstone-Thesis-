@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 107,
+          "end": 114
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 107,
+          "end": 114
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 378,
+      "facts": 8819,
+      "arguments": 13276,
+      "petitioner_arguments": 2639,
+      "respondent_arguments": 1895,
+      "other_lawyer_arguments": 8740
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 8,
+      "FAC": 33,
+      "PRE_RELIED": 48
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 59,
+      "NONE": 6,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 111,
+    "ignored_sentences": 71,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "S.P. Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Soumya Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "O. Parida",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "G.N. Parida",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "A. Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "S.P. Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Soumya Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Bhabani Shankar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "S.P. Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Soumya Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "B.S. Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "B.S. Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Franz Schubert",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 8,
+    "FAC": 33,
+    "PRE_RELIED": 48
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 59,
+    "NONE": 6,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 4
+  }
+}

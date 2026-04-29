@@ -1,0 +1,224 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 152,
+          "end": 161
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 152,
+          "end": 161
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 66,
+      "facts": 2955,
+      "arguments": 58720,
+      "petitioner_arguments": 19717,
+      "respondent_arguments": 229,
+      "other_lawyer_arguments": 38772
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 102,
+      "ARG_RESPONDENT": 1,
+      "FAC": 16,
+      "PRE_RELIED": 170
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 153,
+      "ISSUE": 2,
+      "NONE": 6,
+      "RATIO": 4,
+      "RLC": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 307,
+    "ignored_sentences": 168,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Ram Naresh Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Kamal Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Gautam Dhamija",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Virendra Rawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "B. Aloor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Aishwarya Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Aishwarya Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Beatson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Matthews",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Elliott",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Parker",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Grahame Aldous",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "John Alder",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Scarman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Roskill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Grahame Aldous",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "John Alder",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Scaman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Roskili",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 307,
+        "entity_text": "Shankarsan Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 328,
+        "entity_text": "Shankarsan Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "M. Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Jai Singh Dalal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Shankarsan Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 356,
+        "entity_text": "M. Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 356,
+        "entity_text": "Jai Singh Dalal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 102,
+    "ARG_RESPONDENT": 1,
+    "FAC": 16,
+    "PRE_RELIED": 170
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 153,
+    "ISSUE": 2,
+    "NONE": 6,
+    "RATIO": 4,
+    "RLC": 2,
+    "RPC": 1
+  }
+}

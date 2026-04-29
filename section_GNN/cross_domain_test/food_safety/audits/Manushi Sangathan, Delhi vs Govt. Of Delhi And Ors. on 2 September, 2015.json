@@ -1,0 +1,194 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 72,
+      "facts": 5077,
+      "arguments": 9600,
+      "petitioner_arguments": 3988,
+      "respondent_arguments": 1631,
+      "other_lawyer_arguments": 3979
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 8,
+      "FAC": 29,
+      "PRE_RELIED": 17,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 41,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 20,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 92,
+    "ignored_sentences": 71,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "S.Ravindra Bhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Sanjiv Ralli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Ankit Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Madhu Tewatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Arun Birbal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Anupam Varma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Nikhil Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Raghav Chadha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Anuj Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Naushad Ahmad Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Ranbir. S. Chillar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "A.K. Gautam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Meera Bhatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Ravinder Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Jai Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Udai Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Rajender Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Sudhir Nandrajog",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Ram Lila",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 8,
+    "FAC": 29,
+    "PRE_RELIED": 17,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 41,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 20,
+    "RPC": 4
+  }
+}

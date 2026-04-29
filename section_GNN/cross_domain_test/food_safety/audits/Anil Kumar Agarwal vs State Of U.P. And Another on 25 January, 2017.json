@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 467,
+      "facts": 915,
+      "arguments": 13462,
+      "petitioner_arguments": 2222,
+      "respondent_arguments": 1213,
+      "other_lawyer_arguments": 10025
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 7,
+      "FAC": 7,
+      "PRE_RELIED": 28,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 69,
+      "ISSUE": 2,
+      "NONE": 4,
+      "RLC": 11,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 55,
+    "ignored_sentences": 88,
+    "ignored_entities": [
+      {
+        "sentence_id": 24,
+        "entity_text": "Ashok Kumar Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Ashok Kumar Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Ved Prakash Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Subhash Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Subhash Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Parmeshwar Mandal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Bhavuben Dineshbhai Makwana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Ashok Kumar Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Ved Prakash Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Ashok Kumar Srivastava",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 7,
+    "FAC": 7,
+    "PRE_RELIED": 28,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 69,
+    "ISSUE": 2,
+    "NONE": 4,
+    "RLC": 11,
+    "RPC": 2
+  }
+}

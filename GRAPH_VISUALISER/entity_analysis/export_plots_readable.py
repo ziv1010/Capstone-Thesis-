@@ -21,11 +21,11 @@ FIG_DIR    = os.path.join(OUT_DIR, "figures_readable")
 os.makedirs(FIG_DIR, exist_ok=True)
 
 BUCKET_LABELS = {
-    "family_matrimonial_timed_mistral": "Family & Matrimonial",
-    "land_property_timed_mistral":      "Land & Property",
-    "motor_accidents_timed_mistral":    "Motor Accidents",
-    "sexual_offences_timed_mistral":    "Sexual Offences",
-    "fin_fraud_timed_mistral":          "Financial Fraud",
+    "family_matrimonial": "Family & Matrimonial",
+    "land_property":      "Land & Property",
+    "motor_accidents":    "Motor Accidents",
+    "sexual_offences":    "Sexual Offences",
+    "fin_fraud":          "Financial Fraud",
 }
 
 TYPE_COLOURS = {
@@ -39,12 +39,12 @@ TYPE_COLOURS = {
 }
 
 BUCKET_COLOURS = {
-    "family_matrimonial_timed_mistral": "#e63946",
-    "land_property_timed_mistral":      "#2a9d8f",
-    "motor_accidents_timed_mistral":    "#e9c46a",
-    "sexual_offences_timed_mistral":    "#a8dadc",
-    "fin_fraud_timed_mistral":          "#457b9d",
-    "unknown":                          "#adb5bd",
+    "family_matrimonial": "#9B59B6",
+    "land_property":      "#1ABC9C",
+    "motor_accidents":    "#F39C12",
+    "sexual_offences":    "#3498DB",
+    "fin_fraud":          "#E74C3C",
+    "unknown":            "#adb5bd",
 }
 
 # ── readability settings ───────────────────────────────────────────────────────

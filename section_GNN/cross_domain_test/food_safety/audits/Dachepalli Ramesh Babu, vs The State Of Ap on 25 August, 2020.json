@@ -1,0 +1,94 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 103,
+          "end": 110
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 25,
+          "end": 32
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "Quashed",
+          "start": 786,
+          "end": 793
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "Quashed",
+          "start": 1332,
+          "end": 1339
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "Quashed",
+          "start": 786,
+          "end": 793
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "Quashed",
+          "start": 1332,
+          "end": 1339
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 205,
+      "facts": 2529,
+      "arguments": 2389,
+      "petitioner_arguments": 295,
+      "respondent_arguments": 2093,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 3,
+      "FAC": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 23,
+      "ISSUE": 2,
+      "NONE": 4,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 18,
+    "ignored_sentences": 34,
+    "ignored_entities": []
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 3,
+    "FAC": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 23,
+    "ISSUE": 2,
+    "NONE": 4,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

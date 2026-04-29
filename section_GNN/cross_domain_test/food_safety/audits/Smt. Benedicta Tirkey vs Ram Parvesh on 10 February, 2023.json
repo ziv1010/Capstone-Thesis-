@@ -1,0 +1,73 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1113,
+      "facts": 3081,
+      "arguments": 7496,
+      "petitioner_arguments": 77,
+      "respondent_arguments": 600,
+      "other_lawyer_arguments": 6817
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 4,
+      "FAC": 27,
+      "PRE_RELIED": 28
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 130,
+      "ISSUE": 3,
+      "NONE": 9,
+      "RPC": 13
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 66,
+    "ignored_sentences": 155,
+    "ignored_entities": [
+      {
+        "sentence_id": 31,
+        "entity_text": "Tirupati Ranjan Shukla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Kanhiya Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 4,
+    "FAC": 27,
+    "PRE_RELIED": 28
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 130,
+    "ISSUE": 3,
+    "NONE": 9,
+    "RPC": 13
+  }
+}

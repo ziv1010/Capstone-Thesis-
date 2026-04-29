@@ -1,0 +1,157 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 536,
+      "facts": 4864,
+      "arguments": 9562,
+      "petitioner_arguments": 3234,
+      "respondent_arguments": 6327,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 34,
+      "FAC": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 31,
+      "ISSUE": 5,
+      "NONE": 14,
+      "RATIO": 3,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 63,
+    "ignored_sentences": 59,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Lokesh R.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Zakaria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Zakaria P.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "S. Abdul Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Saheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Sadiq Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Zakaria",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 34,
+    "FAC": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 31,
+    "ISSUE": 5,
+    "NONE": 14,
+    "RATIO": 3,
+    "RPC": 6
+  }
+}

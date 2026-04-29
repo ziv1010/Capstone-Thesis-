@@ -1,0 +1,215 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 249,
+      "facts": 8517,
+      "arguments": 6278,
+      "petitioner_arguments": 2818,
+      "respondent_arguments": 1096,
+      "other_lawyer_arguments": 2362
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 2,
+      "FAC": 33,
+      "PRE_RELIED": 2,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 16,
+      "NONE": 14,
+      "RATIO": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 85,
+    "ignored_sentences": 39,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "A.K.G. DEVADAS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "O.GOPALAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "A.K.G.BHAVAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "P.O.THRITHALA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SRI.P.JAYARAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SRI.K.R.PAUL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "SRI.V.M.KRISHNAKUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "RIYAL DEVASSY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "KRISHNANKUTTY NAIR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "ADV SRI.BABU S. NAIR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "P. MOHAMMED ALI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "O.MUHAMMED MASTER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "ABDUL SATHAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "MOHAMMED KUTTY HAJI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "SRI.A.HAROON RASHEED",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Abdul Sathar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Shajahan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 2,
+    "FAC": 33,
+    "PRE_RELIED": 2,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 16,
+    "NONE": 14,
+    "RATIO": 4,
+    "RPC": 5
+  }
+}

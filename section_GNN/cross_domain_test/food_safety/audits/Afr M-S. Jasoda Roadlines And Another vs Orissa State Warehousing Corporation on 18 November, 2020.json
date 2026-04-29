@@ -1,0 +1,178 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 144,
+          "end": 153
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 84,
+          "end": 91
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 181,
+          "end": 190
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 144,
+          "end": 153
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 84,
+          "end": 91
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 181,
+          "end": 190
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 407,
+      "facts": 7573,
+      "arguments": 21094,
+      "petitioner_arguments": 11750,
+      "respondent_arguments": 1974,
+      "other_lawyer_arguments": 7368
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 46,
+      "ARG_RESPONDENT": 6,
+      "FAC": 34,
+      "PRE_RELIED": 29,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 57,
+      "NONE": 14,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 127,
+    "ignored_sentences": 90,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "D. Mohapatra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "J.M. Barik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "D. Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "S.K. Sahu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "R.C.\n Pattnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "S.K. Mulia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "A. Katapali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Bijay Kumar Dash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "D. Mohapatra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Kendpali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "A.K. Panigrahi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Rukmanibai Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "D. Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Rukmanibai Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Har Shankar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Sudhir Kumar Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 46,
+    "ARG_RESPONDENT": 6,
+    "FAC": 34,
+    "PRE_RELIED": 29,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 57,
+    "NONE": 14,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 17
+  }
+}

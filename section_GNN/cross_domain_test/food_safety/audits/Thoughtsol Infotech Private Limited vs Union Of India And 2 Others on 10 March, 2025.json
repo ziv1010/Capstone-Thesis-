@@ -1,0 +1,147 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 172,
+          "end": 181
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 172,
+          "end": 181
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 325,
+      "facts": 3616,
+      "arguments": 35197,
+      "petitioner_arguments": 9089,
+      "respondent_arguments": 3609,
+      "other_lawyer_arguments": 22497
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 44,
+      "ARG_RESPONDENT": 17,
+      "FAC": 21,
+      "PRE_RELIED": 92,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 310,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 182,
+    "ignored_sentences": 320,
+    "ignored_entities": [
+      {
+        "sentence_id": 27,
+        "entity_text": "J.S.I. Deepak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "J. Sai Deepak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Sushant Chandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "S.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Amit Saxena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Wilson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Rahul Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Amit Saxena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 241,
+        "entity_text": "Wilson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 241,
+        "entity_text": "Rahul Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "Gannon Dunkerley",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 276,
+        "entity_text": "Gannon Dunkerley",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 303,
+        "entity_text": "Sterling",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 303,
+        "entity_text": "Wilson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 303,
+        "entity_text": "Rahul Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 44,
+    "ARG_RESPONDENT": 17,
+    "FAC": 21,
+    "PRE_RELIED": 92,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 310,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

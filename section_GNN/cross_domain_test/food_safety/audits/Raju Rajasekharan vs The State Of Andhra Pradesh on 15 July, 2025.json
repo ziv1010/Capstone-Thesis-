@@ -1,0 +1,119 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 404,
+      "facts": 2473,
+      "arguments": 5663,
+      "petitioner_arguments": 5663,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 31,
+      "FAC": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 31,
+      "ISSUE": 2,
+      "NONE": 23,
+      "RATIO": 2,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 92,
+    "ignored_sentences": 68,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "1.RAJU RAJASEKHARAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "RAAJ KUDIL PILLAIYARNATTHAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "DINDIGUL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "TAMIL NADU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Venkateswara Swamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "P. Murali Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "P. Murali KrIShna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "O. Manohar Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Pertain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "P.S.P. Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "SI'gnifiCantly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "ln Gal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Manette",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Charles Dicken",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 31,
+    "FAC": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 31,
+    "ISSUE": 2,
+    "NONE": 23,
+    "RATIO": 2,
+    "RPC": 10
+  }
+}

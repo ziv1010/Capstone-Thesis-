@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 88,
+      "facts": 1046,
+      "arguments": 1514,
+      "petitioner_arguments": 1514,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "FAC": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 12,
+      "NONE": 8,
+      "RATIO": 5,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 25,
+    "ignored_sentences": 27,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Inbarasu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "D.Saikumaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "S.Vinoth Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "FAC": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 12,
+    "NONE": 8,
+    "RATIO": 5,
+    "RPC": 2
+  }
+}

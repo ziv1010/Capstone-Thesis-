@@ -1,0 +1,1858 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 45,
+      "facts": 58576,
+      "arguments": 6610,
+      "petitioner_arguments": 376,
+      "respondent_arguments": 1974,
+      "other_lawyer_arguments": 4258
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 10,
+      "FAC": 403,
+      "PRE_RELIED": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 138,
+      "NONE": 9,
+      "RATIO": 5,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 458,
+    "ignored_sentences": 156,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Sukhbeer Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Mahesh Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Dilshad Ahmed @ DK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Sagir Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Dinesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Dilshad Ahmed @ DK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Sagir Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Dilshad Ahmed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Sagir Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Sagir Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "AKASH JAIN  JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Shobha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Shobha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Sagir Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Sonu Sardar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Sayyed Noman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Guddu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Deepak @ Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Dilshad AKASH Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Irshad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Salim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Sabzi Mandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Naushad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Irshad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Sonu Sardar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Sonu Sardar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Wajid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Aamin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Guddu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Deepak Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Haji Rashid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "AKASH AKASH JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Haji Rashid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Bajaj Pulsar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Naim Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Abrar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Sabir",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Asitesh Bajwa",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Aruna Asaf Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Dilshad @ DK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Jejunum",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Jejunum",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Amit Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Niranj Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "Sanjay Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Dinesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Rampal Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Arun Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Dharamvir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "Sanjay Saxena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "HC Sanjeev",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Sandeep",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "HC Sanjeev",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "HC Sanjeev",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Sanjay Saxena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Kiran Pal Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 203,
+        "entity_text": "Malkhana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Jamatalashi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 206,
+        "entity_text": "Arun",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 206,
+        "entity_text": "Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 208,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "PHQ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Satender",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Satender",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "Pawan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Dharamveer",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 222,
+        "entity_text": "Sonu Kaushik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 223,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 223,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Pawan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 231,
+        "entity_text": "Satender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Birender",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Naushad Haider",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "HC Sonu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Dinesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 247,
+        "entity_text": "AKASH AKASH JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 252,
+        "entity_text": "Ct. Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 254,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 257,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Arun Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Ct. Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 262,
+        "entity_text": "Dinesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 262,
+        "entity_text": "Virender",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 264,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "AKASH JAIN  JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 270,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "AKASH JAIN AKASH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Subzi Mandi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "Sagir Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "Dilshad Ahmad @ DK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Sagir Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Naushad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Irshad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Dilshad Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 282,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 284,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 284,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 285,
+        "entity_text": "Naushad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Naushad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 289,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 290,
+        "entity_text": "Dilshad Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 290,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 290,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 290,
+        "entity_text": "Dilshad Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 291,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 292,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 292,
+        "entity_text": "Pulsar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "Sabir Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Dilshad Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "Virender",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 303,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "Dinesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 306,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 309,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 309,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 321,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 324,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 324,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 325,
+        "entity_text": "Yamuna Khadar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 331,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Anita Chhari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Shakeel Ahmed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 338,
+        "entity_text": "Mintu Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "V. R. Anand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Jitender Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "R. Sathiyasundaram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "J. P. Nahar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 343,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 348,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 350,
+        "entity_text": "Raseed Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 350,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 354,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 355,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 355,
+        "entity_text": "AKASH JAIN  JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 361,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 362,
+        "entity_text": "Rameez",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 362,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Khureji Khas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 364,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 365,
+        "entity_text": "Nadeem Khan @ Mullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 366,
+        "entity_text": "Nadeem Khan @\nMullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 371,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 371,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Sabir",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Sagir Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Naushad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Irshad Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 375,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 376,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 378,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 379,
+        "entity_text": "Nasreen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 379,
+        "entity_text": "Sabir",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 379,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 385,
+        "entity_text": "Kajal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 386,
+        "entity_text": "Nadeem Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 387,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 414,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 415,
+        "entity_text": "Sabir",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 418,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 418,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 423,
+        "entity_text": "Mulla Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 426,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 434,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 434,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 440,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 441,
+        "entity_text": "Hazi Allauddin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Mulla Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Saleem Parchun",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Joney",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 467,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 467,
+        "entity_text": "Dilshad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 498,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 498,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 506,
+        "entity_text": "AKASH Digitally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 506,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 514,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 516,
+        "entity_text": "Alderson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 517,
+        "entity_text": "AKASH JAIN JAIN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 10,
+    "FAC": 403,
+    "PRE_RELIED": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 138,
+    "NONE": 9,
+    "RATIO": 5,
+    "RPC": 4
+  }
+}

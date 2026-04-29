@@ -1,0 +1,220 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 340,
+      "facts": 4822,
+      "arguments": 15793,
+      "petitioner_arguments": 1533,
+      "respondent_arguments": 593,
+      "other_lawyer_arguments": 13665
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 3,
+      "FAC": 20,
+      "PRE_RELIED": 74
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 109,
+      "NONE": 5,
+      "RATIO": 4,
+      "RLC": 10,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 107,
+    "ignored_sentences": 130,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "R.N. Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Rampal Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Ashok Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "R.N.\nTyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Sanjeev Sood",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Mukesh Kumar Behal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Siddharth Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Vikas Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Tyagi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "MacDermott",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Bhagat Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Sambasivam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Tarachand Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Bhagat Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Sambasivam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Devendra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Devendra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Sheoratan Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Sheoratan Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Anil Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 3,
+    "FAC": 20,
+    "PRE_RELIED": 74
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 109,
+    "NONE": 5,
+    "RATIO": 4,
+    "RLC": 10,
+    "RPC": 2
+  }
+}

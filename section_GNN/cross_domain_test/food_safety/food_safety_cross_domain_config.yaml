@@ -1,0 +1,165 @@
+data:
+  file_glob: '*.json'
+  limit: null
+  sample_case_ids: []
+features:
+  case_scalar_names:
+  - respondent_count
+  - judge_count
+  - lawyer_count
+  - statute_count
+  - provision_count
+  - precedent_count
+  - preamble_length
+  - facts_length
+  - arguments_length
+  - case_year
+  - petition_type_known
+  - petition_type_hash
+  entity_scalar_names:
+  - mention_count
+  - first_seen_preamble
+  - first_seen_facts
+  - first_seen_arguments
+  - seen_in_arguments
+  - seen_in_preamble
+  - local_case_frequency
+  - degree
+  - global_case_frequency
+  - is_shared_node
+  fallback_text_encoder:
+    backend: hashing
+    dim: 384
+  text_encoder:
+    backend: sentence_transformers
+    batch_size: 8
+    device: cuda
+    max_length: 512
+    model_name: BAAI/bge-m3
+    multi_process: true
+graph:
+  build_mode: full_star_global
+  cache_name: case_star_global_graph_food_safety_cross_domain.reasoning_focused.pt
+  case_text_sections:
+  - preamble
+  - facts
+  - arguments
+  debug_sample_size: 1
+  include_node_types:
+  - case
+  - preamble
+  - facts
+  - arguments
+  - petitioner_arguments
+  - respondent_arguments
+  - other_lawyer_arguments
+  - petitioner
+  - respondent
+  - court
+  - judge
+  - petitioner_lawyer
+  - defence_lawyer
+  - lawyer
+  - statute
+  - provision
+  - precedent
+  include_sections:
+  - preamble
+  - facts
+  - arguments
+  - petitioner_arguments
+  - respondent_arguments
+  - other_lawyer_arguments
+  share_party_nodes: false
+  shareable_node_types: []
+  use_to_undirected: true
+labels:
+  binary_map:
+    '-1': '-1'
+    '1': '1'
+  class_order_binary:
+  - '-1'
+  - '1'
+  drop_procedural: false
+  task_mode: binary
+model:
+  architecture: hgt
+  dropout: 0.25
+  hidden_dim: 64
+  mlp_hidden_dim: 128
+  num_heads: 4
+  num_layers: 2
+paths:
+  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/audits
+  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed/cleaned_cases
+  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/embeddings_cache
+  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/graph_cache
+  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed/normalized_entities
+  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/outputs
+  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed
+  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety
+preprocessing:
+  dropped_sentence_roles:
+  - ANALYSIS
+  - ISSUE
+  - NONE
+  - RATIO
+  - RLC
+  - RPC
+  facts_roles:
+  - FAC
+  label_field: case_outcome_score
+  label_value_map:
+    '-1': '-1'
+    '0': '-1'
+    '1': '1'
+  leakage_phrases:
+  - petition stands disposed of
+  - writ petition stands disposed of
+  - appeal is allowed
+  - appeal allowed
+  - petition is allowed
+  - petition allowed
+  - appeal dismissed
+  - petition dismissed
+  - writ petition dismissed
+  - matter remanded
+  - set aside
+  - quashed
+  - liberty granted
+  - tribunal shall entertain
+  - consequently, connected miscellaneous petition is closed
+  - without rejecting it on the ground of limitation
+  mask_token: '[LEAKAGE_MASK]'
+  other_argument_roles:
+  - PRE_RELIED
+  - PRE_NOT_RELIED
+  - STA
+  petitioner_argument_roles:
+  - ARG_PETITIONER
+  preamble_roles:
+  - PREAMBLE
+  respondent_argument_roles:
+  - ARG_RESPONDENT
+  skip_missing_or_unmapped_labels: true
+  use_preamble_end_offset: true
+project:
+  name: cross_domain_food_safety
+  seed: 42
+splits:
+  mode: random
+  random_state: 42
+  stratify: true
+  test_size: 0.15
+  train_size: 0.7
+  val_size: 0.15
+training:
+  class_weight: balanced
+  early_stopping_patience: 15
+  epochs: 60
+  log_every: 5
+  lr: 0.001
+  repeat_runs: 1
+  seed_stride: 1
+  use_early_stopping: true
+  weight_decay: 1.0e-05

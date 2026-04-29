@@ -1,0 +1,72 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 166,
+          "end": 175
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 166,
+          "end": 175
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1211,
+      "facts": 544,
+      "arguments": 1197,
+      "petitioner_arguments": 1018,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 178
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "FAC": 5,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 8,
+      "NONE": 10,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 22,
+    "ignored_sentences": 25,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "A.Albert James",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "FAC": 5,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 8,
+    "NONE": 10,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

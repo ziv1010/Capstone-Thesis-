@@ -1,0 +1,105 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 45,
+      "facts": 2200,
+      "arguments": 2860,
+      "petitioner_arguments": 1831,
+      "respondent_arguments": 736,
+      "other_lawyer_arguments": 291
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 2,
+      "FAC": 11,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 7,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 4,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 30,
+    "ignored_sentences": 21,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "ANANDABHAVANAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "VAIKOM TALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "KOTTAYAM TALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SMT. N. NOBY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "T.V. ANIYAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "ANANDABHAVANAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "CHEMMANATHUKARA P.O",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "VAIKOM TALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "KOTTAYAM TALUK",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Aiswarya Nallenna",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 2,
+    "FAC": 11,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 7,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 4,
+    "RPC": 2
+  }
+}

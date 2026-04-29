@@ -1,0 +1,141 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 206,
+          "end": 215
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 206,
+          "end": 215
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 480,
+      "facts": 6728,
+      "arguments": 54509,
+      "petitioner_arguments": 7201,
+      "respondent_arguments": 5113,
+      "other_lawyer_arguments": 42193
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 36,
+      "ARG_RESPONDENT": 27,
+      "FAC": 32,
+      "PRE_RELIED": 172,
+      "STA": 34
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 193,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 9,
+      "RLC": 2,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 308,
+    "ignored_sentences": 224,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Rajeev Vishwakarma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "A.S. Rathor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Sanghi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Liverpool",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 271,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 355,
+        "entity_text": "Rahul Shukla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 386,
+        "entity_text": "MacDermott",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 387,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 388,
+        "entity_text": "Preston Jones",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 36,
+    "ARG_RESPONDENT": 27,
+    "FAC": 32,
+    "PRE_RELIED": 172,
+    "STA": 34
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 193,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 9,
+    "RLC": 2,
+    "RPC": 14
+  }
+}

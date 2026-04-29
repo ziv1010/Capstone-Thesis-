@@ -1,0 +1,132 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 113,
+          "end": 122
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 113,
+          "end": 122
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 148,
+          "end": 155
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 148,
+          "end": 155
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 550,
+      "facts": 0,
+      "arguments": 17410,
+      "petitioner_arguments": 3374,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 14035
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "PRE_RELIED": 45,
+      "STA": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 42,
+      "NONE": 1,
+      "RATIO": 2,
+      "RLC": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 74,
+    "ignored_sentences": 53,
+    "ignored_entities": [
+      {
+        "sentence_id": 20,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "George Bernard Shaw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Hoskot",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "PRE_RELIED": 45,
+    "STA": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 42,
+    "NONE": 1,
+    "RATIO": 2,
+    "RLC": 3,
+    "RPC": 5
+  }
+}

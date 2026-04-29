@@ -1,0 +1,89 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 260,
+          "end": 267
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 260,
+          "end": 267
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2298,
+      "facts": 776,
+      "arguments": 5427,
+      "petitioner_arguments": 2872,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2554
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "FAC": 8,
+      "PRE_RELIED": 1,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 20,
+      "NONE": 19,
+      "RATIO": 5,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 69,
+    "ignored_sentences": 47,
+    "ignored_entities": [
+      {
+        "sentence_id": 32,
+        "entity_text": "M.N.A.M.Sajiullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Pudukkottai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Pachiappa Chettiar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "FAC": 8,
+    "PRE_RELIED": 1,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 20,
+    "NONE": 19,
+    "RATIO": 5,
+    "RPC": 3
+  }
+}

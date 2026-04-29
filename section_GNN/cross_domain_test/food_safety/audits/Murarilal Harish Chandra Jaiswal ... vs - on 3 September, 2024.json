@@ -1,0 +1,131 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 163,
+          "end": 170
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 135,
+          "end": 142
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 163,
+          "end": 170
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 135,
+          "end": 142
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1186,
+      "facts": 3734,
+      "arguments": 11512,
+      "petitioner_arguments": 3712,
+      "respondent_arguments": 456,
+      "other_lawyer_arguments": 7342
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 20,
+      "ARG_RESPONDENT": 2,
+      "FAC": 23,
+      "PRE_RELIED": 17,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 60,
+      "NONE": 7,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 72,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Senthilkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Sivasamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Senthilkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "P.Kumerasan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Hans Chaap",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "J. Anbazhagan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "A.Prabaharan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "J.Anbazhagan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 20,
+    "ARG_RESPONDENT": 2,
+    "FAC": 23,
+    "PRE_RELIED": 17,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 60,
+    "NONE": 7,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 4
+  }
+}

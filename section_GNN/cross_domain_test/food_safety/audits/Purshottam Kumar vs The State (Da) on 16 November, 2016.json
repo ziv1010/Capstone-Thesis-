@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 417,
+      "facts": 2075,
+      "arguments": 3360,
+      "petitioner_arguments": 456,
+      "respondent_arguments": 558,
+      "other_lawyer_arguments": 2344
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 2,
+      "FAC": 18,
+      "PRE_RELIED": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "NONE": 18,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 34,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "D. V. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Sushil Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Arhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "T. Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Campbell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Martin",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 2,
+    "FAC": 18,
+    "PRE_RELIED": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "NONE": 18,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 14
+  }
+}

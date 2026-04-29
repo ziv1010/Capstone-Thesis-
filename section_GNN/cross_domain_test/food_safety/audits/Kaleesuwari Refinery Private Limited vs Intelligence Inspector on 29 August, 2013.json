@@ -1,0 +1,59 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 303,
+      "facts": 1383,
+      "arguments": 0,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 10
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 29,
+    "ignored_sentences": 6,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "GEORGE THOMAS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "ADVS.SRI.V.V.ASOKAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "SRI.P.RAHUL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "SOBHA ANNAMMA EAPEN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 10
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RPC": 4
+  }
+}

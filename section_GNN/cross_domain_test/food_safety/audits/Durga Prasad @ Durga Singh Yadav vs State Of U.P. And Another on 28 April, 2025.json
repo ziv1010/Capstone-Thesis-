@@ -1,0 +1,114 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 255,
+      "facts": 1838,
+      "arguments": 2066,
+      "petitioner_arguments": 2066,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 13
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 2,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 8,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 31,
+    "ignored_sentences": 22,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Durga Prasad @ Durga Singh Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Sushil Kumar Dubey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Sushil Kumar Dubey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Ajay Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "R.B. Pal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "R.B. Pal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Hari Mohan Verma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Ram Kishun",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Ravi Vajpayee",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Kishun",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Ravi Vajpayee",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Ram Kishun",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Durga Prasad",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 13
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 2,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 8,
+    "RPC": 7
+  }
+}

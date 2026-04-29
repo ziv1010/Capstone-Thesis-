@@ -1,0 +1,57 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 59,
+      "facts": 267,
+      "arguments": 339,
+      "petitioner_arguments": 339,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 6,
+      "RATIO": 2,
+      "RLC": 4,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 6,
+    "ignored_sentences": 15,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Sunil Kumar Awasthi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Sunil Kumar Awasthi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 6,
+    "RATIO": 2,
+    "RLC": 4,
+    "RPC": 3
+  }
+}

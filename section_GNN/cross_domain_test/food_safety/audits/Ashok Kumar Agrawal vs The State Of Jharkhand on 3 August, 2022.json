@@ -1,0 +1,96 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 34,
+          "end": 43
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 34,
+          "end": 43
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 387,
+      "facts": 0,
+      "arguments": 1239,
+      "petitioner_arguments": 1001,
+      "respondent_arguments": 237,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 3,
+      "NONE": 1,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 11,
+    "ignored_sentences": 11,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Kalyan Roy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "P.D. Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Arhar Dal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Chana Sattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Arhar Dal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Kalyan Roy",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 3,
+    "NONE": 1,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 4
+  }
+}

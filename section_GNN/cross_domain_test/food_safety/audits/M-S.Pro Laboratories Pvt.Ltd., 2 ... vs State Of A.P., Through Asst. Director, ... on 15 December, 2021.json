@@ -1,0 +1,77 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 537,
+          "end": 544
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 537,
+          "end": 544
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 225,
+      "facts": 5098,
+      "arguments": 3782,
+      "petitioner_arguments": 1511,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2270
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "FAC": 28,
+      "PRE_RELIED": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 7,
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 42,
+    "ignored_sentences": 11,
+    "ignored_entities": [
+      {
+        "sentence_id": 32,
+        "entity_text": "M.V. Srinivasa Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Seelam Koti Reddy",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "FAC": 28,
+    "PRE_RELIED": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 7,
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

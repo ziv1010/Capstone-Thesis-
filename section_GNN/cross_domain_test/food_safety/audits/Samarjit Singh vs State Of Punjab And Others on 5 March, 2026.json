@@ -1,0 +1,84 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 876,
+      "facts": 10815,
+      "arguments": 27292,
+      "petitioner_arguments": 8764,
+      "respondent_arguments": 2790,
+      "other_lawyer_arguments": 15736
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 35,
+      "ARG_RESPONDENT": 17,
+      "FAC": 49,
+      "PRE_RELIED": 49,
+      "STA": 13
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 113,
+      "ISSUE": 2,
+      "NONE": 6,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 189,
+    "ignored_sentences": 135,
+    "ignored_entities": [
+      {
+        "sentence_id": 21,
+        "entity_text": "Balraj Singh Sidhu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Surinder Garg",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Vikas Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "H.S. Bedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 269,
+        "entity_text": "Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 35,
+    "ARG_RESPONDENT": 17,
+    "FAC": 49,
+    "PRE_RELIED": 49,
+    "STA": 13
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 113,
+    "ISSUE": 2,
+    "NONE": 6,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 8
+  }
+}

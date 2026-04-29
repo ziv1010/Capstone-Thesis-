@@ -1,0 +1,74 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 551,
+          "end": 558
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 78,
+      "facts": 1365,
+      "arguments": 734,
+      "petitioner_arguments": 734,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 4
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 11,
+    "ignored_sentences": 5,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Saurabh Srivastava Bench",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Lakshman Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Ajay Sengar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Ajay Sengar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 4
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RATIO": 2,
+    "RPC": 1
+  }
+}

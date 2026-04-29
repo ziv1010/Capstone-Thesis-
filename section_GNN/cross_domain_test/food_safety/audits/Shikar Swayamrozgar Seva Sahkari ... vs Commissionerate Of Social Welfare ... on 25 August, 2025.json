@@ -1,0 +1,119 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1517,
+      "facts": 2870,
+      "arguments": 5837,
+      "petitioner_arguments": 1801,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4035
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "FAC": 16,
+      "PRE_RELIED": 15,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 125,
+      "ISSUE": 3,
+      "NONE": 8,
+      "RATIO": 9,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 70,
+    "ignored_sentences": 148,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Ramchandra Dundapa Kamble",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Sangram Chinappa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Ruta Koli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "M.M. Kondekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Suresh T. Mane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Ramesh Golait",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "G.R. Raghuwanshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Ashutosh M. Kulkarni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Sarthak Diwan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Vaibhav Gaikwad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Kulkarni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Hemant Ashar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Jasbhai Motibhai Desai",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "FAC": 16,
+    "PRE_RELIED": 15,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 125,
+    "ISSUE": 3,
+    "NONE": 8,
+    "RATIO": 9,
+    "RPC": 3
+  }
+}

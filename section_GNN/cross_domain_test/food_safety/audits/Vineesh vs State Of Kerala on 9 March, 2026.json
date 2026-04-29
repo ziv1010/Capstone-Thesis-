@@ -1,0 +1,247 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 43,
+      "facts": 489,
+      "arguments": 10521,
+      "petitioner_arguments": 3672,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 6848
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "FAC": 2,
+      "PRE_RELIED": 19,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 78,
+      "NONE": 20,
+      "RATIO": 4,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 86,
+    "ignored_sentences": 113,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "SRI.M.DEVESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "SRI.M.ANUROOP",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "SHRI.MURSHID ALI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "HAMZA A",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "ALUNGAL HO",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "KADANANGADI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "THIRUNAVAYA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "ADVS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "SHRI.NEERAJ KRISHNA KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "SMT.ABHIRAMI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "MUHAMMEDKOYA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "EDAPPOTHIL VEEDU",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "SRI.JAMSHEED HAFIZ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Mohammed Noufal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Mohammed Salih",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Sirajudheen K.K",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "M. C. Ashi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Mohammed Noufal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Mohammed Salih",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Sirajudheen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Kanwar Pal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Jayant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Sayyed Hassan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Sayyed Hassan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Shihad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Mohammed Noufal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Mohammed Noufal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Mohammed Salih",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Sirajudheen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Mohammed Noufal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Sayyed Hassan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Kanwar Pal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Jayant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Sujith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Shihad",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "FAC": 2,
+    "PRE_RELIED": 19,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 78,
+    "NONE": 20,
+    "RATIO": 4,
+    "RPC": 11
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 58,
+      "facts": 4109,
+      "arguments": 14800,
+      "petitioner_arguments": 1380,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13419
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "FAC": 28,
+      "PRE_RELIED": 41,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 27,
+      "NONE": 21,
+      "RATIO": 6,
+      "RLC": 17,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 147,
+    "ignored_sentences": 78,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "G.Jayachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "4.Chinna Odunkan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "5.Selvam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "6.Manokaran",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "7.Manikandan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "10.Sekar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "11.Ponnaiah",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "12.Rajendran",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "13.Ranganathan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "14.Ramar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "15.Sakkarai Murthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Balachandra Bose @ Ulaganambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Mookkan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Mookkan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "A.C.Asai Thambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Balachandra Bose @ Ulaganambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Balachandra Bose @ Ulaganambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Balachandra Bose @ Ulaganambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Murugesan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Mookan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Murugesan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Mookan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Murugesan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Mookan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "P.Rathinam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Melavalavu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Balachandra Bose @ Ulaganambi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "P.Rathinam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "M.G.Ramachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Bharat Ratna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Puratchi Thalaivar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "M.G. Ramachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Epuru Sudhakar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Thiru P.Rathinam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Epuru Sudhakar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Epuru Sudhakar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 194,
+        "entity_text": "Ramar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "FAC": 28,
+    "PRE_RELIED": 41,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 27,
+    "NONE": 21,
+    "RATIO": 6,
+    "RLC": 17,
+    "RPC": 7
+  }
+}

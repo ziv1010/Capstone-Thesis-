@@ -1,0 +1,180 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 150,
+      "facts": 1884,
+      "arguments": 4898,
+      "petitioner_arguments": 3921,
+      "respondent_arguments": 976,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 20,
+      "ARG_RESPONDENT": 4,
+      "FAC": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 6,
+      "NONE": 2,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 39,
+    "ignored_sentences": 13,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Sankalp Kochar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Shahnawaz Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Aishwarya Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "G.S. Thakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Raju alias Rajesh Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Somesh Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sandeep Vamne",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rukhsar Bano",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Toofan Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Mangilal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sharad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sheikh Firoz",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sandeep",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rukhsar Bano",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Ayushi Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Archana",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Ravi Chandele",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Devi Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sangeeta Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Rafiq Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Pradeep Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Rafiq Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sachin Kmar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Abhishek",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Ayushi",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 20,
+    "ARG_RESPONDENT": 4,
+    "FAC": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 6,
+    "NONE": 2,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

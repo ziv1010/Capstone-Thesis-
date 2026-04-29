@@ -1,0 +1,241 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 485,
+      "facts": 6591,
+      "arguments": 54260,
+      "petitioner_arguments": 23612,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 30664
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 90,
+      "FAC": 30,
+      "PRE_RELIED": 142,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 132,
+      "ISSUE": 3,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 9,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 297,
+    "ignored_sentences": 157,
+    "ignored_entities": [
+      {
+        "sentence_id": 42,
+        "entity_text": "Mohan Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "S. N. Mookherjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Satyam Infoway",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "S. N. Mookherjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Mohan Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 143,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Philips",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Apollo Tyres",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Coleman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Coleman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Coleman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 207,
+        "entity_text": "Richardson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Richardson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Richardson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Kestos",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 247,
+        "entity_text": "Lego",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "Kirkbi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 271,
+        "entity_text": "Saidman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 272,
+        "entity_text": "Perry J. Saidman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 285,
+        "entity_text": "Kirkbi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 330,
+        "entity_text": "Kerly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "Christopher Wadlow",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Lakshmikant V. Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 365,
+        "entity_text": "S. Syed Mohideen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 368,
+        "entity_text": "Oliver",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 369,
+        "entity_text": "Oliver",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 369,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 385,
+        "entity_text": "Kerly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 401,
+        "entity_text": "Mohan Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 405,
+        "entity_text": "Mohan Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 444,
+        "entity_text": "Cello Plast",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 90,
+    "FAC": 30,
+    "PRE_RELIED": 142,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 132,
+    "ISSUE": 3,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 9,
+    "RPC": 5
+  }
+}

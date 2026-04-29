@@ -1,0 +1,406 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 70,
+          "end": 77
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 70,
+          "end": 77
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 681,
+      "facts": 9852,
+      "arguments": 36526,
+      "petitioner_arguments": 10894,
+      "respondent_arguments": 2150,
+      "other_lawyer_arguments": 23528
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 51,
+      "ARG_RESPONDENT": 10,
+      "FAC": 47,
+      "PRE_RELIED": 57,
+      "STA": 37
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 112,
+      "ISSUE": 1,
+      "NONE": 16,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 294,
+    "ignored_sentences": 141,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Arulmighu Dhandayuthapani Swamy Thirukoil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Chola",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Pandia",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Srirangam Ranganathaswamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Chola",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Pandyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Cholas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Cheras",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Pallavas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Madurai Nayaks",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Vasantha Mandapam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Pandya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Vijayanagar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Ganesha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Trichy Srirangam Kaveri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Murugan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Murugan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Deivayanai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Indiran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Arulmighu Kasi Viswanatha Swamy Temple",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Harikesari Parakkirama Pandian",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Shiva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Shiva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Shiva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Shiva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Ramanathaswamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Shiva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Sita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Rama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Vishnu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Vishnu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Andal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Periazhwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Vishnu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Andal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Ranganatha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Andal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Meenakshi Sundareswarar Koil Kadaikarargal Sangam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Arulmighu Dhandayuthapani Swamy Thirukoil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Arulmighu Nellaiappar Arultharum Gandhimathi Ambal Temple",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Uchi Pilliyar Kovil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Nandi Kovil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Arulmighu Viswanatha Swamy Thirukkovil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Arulmighu Subramaniya Swamy Thirukovil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Meenakshi Sundareswarar Koil Kadaikarargal Sangam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Amman Sannathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Veeravasantharayer Mandapam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Veeravasantharayer Mandapam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Amman Sannathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Kunnathur Chambaiyan Chathiram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": ".H.Arumugham",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "Anuppu Mantapam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 335,
+        "entity_text": "P.R.Ganapathy Iyer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Wilberforce",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Woolf",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Bingham",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Garner",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Craig",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "de Smith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "Wade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 359,
+        "entity_text": "D.H. Clark",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 384,
+        "entity_text": "Wilberforce",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 51,
+    "ARG_RESPONDENT": 10,
+    "FAC": 47,
+    "PRE_RELIED": 57,
+    "STA": 37
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 112,
+    "ISSUE": 1,
+    "NONE": 16,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 9
+  }
+}

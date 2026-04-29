@@ -1,0 +1,115 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 635,
+      "facts": 10751,
+      "arguments": 14323,
+      "petitioner_arguments": 2241,
+      "respondent_arguments": 2807,
+      "other_lawyer_arguments": 9273
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 10,
+      "FAC": 48,
+      "PRE_RELIED": 30,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 83,
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 115,
+    "ignored_sentences": 103,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Jitendra Shankar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Aaron Daniel Abrahim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Ankush Salgaonkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Ankush Salgaonkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Ankush Salgaonkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Ankush Salgaonkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Sharad Ughade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Sabban",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Javed Khalid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 10,
+    "FAC": 48,
+    "PRE_RELIED": 30,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 83,
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 17
+  }
+}

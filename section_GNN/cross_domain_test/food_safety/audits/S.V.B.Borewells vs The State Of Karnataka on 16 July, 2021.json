@@ -1,0 +1,153 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 5602,
+      "facts": 1751,
+      "arguments": 17719,
+      "petitioner_arguments": 7930,
+      "respondent_arguments": 1300,
+      "other_lawyer_arguments": 8487
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 49,
+      "ARG_RESPONDENT": 9,
+      "FAC": 8,
+      "PRE_RELIED": 46
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 75,
+      "NONE": 5,
+      "RATIO": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 190,
+    "ignored_sentences": 83,
+    "ignored_entities": [
+      {
+        "sentence_id": 47,
+        "entity_text": "VEERABASAPPA V NEREGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "JALAVARDINI BOREWELLS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "S.G. GUNJ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "BHIMAPPA BIDANAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "SRINAND A PACHHAPURE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "VIKAS SOUDHA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "AMBEDKAR BEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "KARNATAKA MAHARSHI VALMIKI SCHEDULED TRIBE DEVELOPMENT CORPORATION LTD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "AMBEDKAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "VISHVESHWARIAH MINI TOWER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "AMBEDKAR BEEDHI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "KARNATAKA MAHARSHI VALMIKI SCHEDULED TRIBE DEVELOPMENT  CORPORATION LTD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "SHIVAPRABHU. S. HIREMATH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Kaveri Neeravari Nigam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "H.V. Harish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Udaya Holla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 194,
+        "entity_text": "Karnataka Kaveri Neeravari Nigam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 49,
+    "ARG_RESPONDENT": 9,
+    "FAC": 8,
+    "PRE_RELIED": 46
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 75,
+    "NONE": 5,
+    "RATIO": 1,
+    "RPC": 2
+  }
+}

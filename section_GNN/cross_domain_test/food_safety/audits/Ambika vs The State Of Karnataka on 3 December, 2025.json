@@ -1,0 +1,95 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 174,
+          "end": 181
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 174,
+          "end": 181
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2079,
+      "facts": 3212,
+      "arguments": 1714,
+      "petitioner_arguments": 1289,
+      "respondent_arguments": 424,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "ARG_RESPONDENT": 2,
+      "FAC": 18
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 15,
+      "RATIO": 5,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 35,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "HC-KAR CORAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Mohd. Shafi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Javed Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Ajmat Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Prema Bai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Javed Khan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "ARG_RESPONDENT": 2,
+    "FAC": 18
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 15,
+    "RATIO": 5,
+    "RPC": 3
+  }
+}

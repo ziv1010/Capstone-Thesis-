@@ -1,0 +1,70 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 56,
+      "facts": 980,
+      "arguments": 591,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 591
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 6,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 22,
+    "ignored_sentences": 11,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "P.V.Kunhikrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "JOSEPH VADAKKEPADAVIL HOUSE MARANGATTUPALLY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "ADVS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "SHRI.SUNNY JOSEPH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "GRACIOUS KURIAKOSE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 6,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

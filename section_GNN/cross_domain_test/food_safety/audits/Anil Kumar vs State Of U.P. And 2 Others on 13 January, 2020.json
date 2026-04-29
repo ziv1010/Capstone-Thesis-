@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 314,
+      "facts": 1830,
+      "arguments": 1926,
+      "petitioner_arguments": 1926,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "FAC": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 4,
+      "NONE": 5,
+      "RATIO": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 16,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Niraj Tiwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Dohra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Dohra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "FAC": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 4,
+    "NONE": 5,
+    "RATIO": 2,
+    "RPC": 5
+  }
+}

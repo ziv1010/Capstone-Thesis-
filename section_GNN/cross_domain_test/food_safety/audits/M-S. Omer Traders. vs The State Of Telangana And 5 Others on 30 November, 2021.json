@@ -1,0 +1,197 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1184,
+      "facts": 489,
+      "arguments": 60928,
+      "petitioner_arguments": 30368,
+      "respondent_arguments": 822,
+      "other_lawyer_arguments": 29736
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 121,
+      "ARG_RESPONDENT": 4,
+      "FAC": 1,
+      "PRE_RELIED": 43,
+      "STA": 35
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 96,
+      "NONE": 16,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 208,
+    "ignored_sentences": 118,
+    "ignored_entities": [
+      {
+        "sentence_id": 38,
+        "entity_text": "COTPA 2003",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Jha P",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Jacob B",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Khedan Lal and Sons",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Indira Jaisingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Anay Kumar Banerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "S.Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 264,
+        "entity_text": "Laxmikant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 284,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Bhangde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 121,
+    "ARG_RESPONDENT": 4,
+    "FAC": 1,
+    "PRE_RELIED": 43,
+    "STA": 35
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 96,
+    "NONE": 16,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

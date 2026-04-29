@@ -1,0 +1,349 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1183,
+      "facts": 2534,
+      "arguments": 53007,
+      "petitioner_arguments": 17598,
+      "respondent_arguments": 973,
+      "other_lawyer_arguments": 34434
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 74,
+      "ARG_RESPONDENT": 4,
+      "FAC": 12,
+      "PRE_RELIED": 59,
+      "STA": 49
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 156,
+      "ISSUE": 1,
+      "NONE": 22,
+      "RATIO": 3,
+      "RLC": 4,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 204,
+    "ignored_sentences": 195,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Vikramsinh Nivrutti Bhosale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Chhakadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Shankarpat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Vikramsinh Nivrutti Bhosale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Nothin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Shyam Divan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Anand Grover",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Sidharth Luthra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Krishnan Venugopal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "V.\nGiri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Tushar Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Kapil Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Mukul Rohatgi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Rakesh Dwivedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Jallikattu:-",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Salmond",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 177,
+        "entity_text": "Maneka Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 230,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "A.\nNagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "S.S. Bola",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Madan Mohan Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Mafatlal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "S.T. Sadiq",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "A.R. Antulay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 250,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 252,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 268,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 299,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 303,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 327,
+        "entity_text": "N.R. Nair",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 345,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 345,
+        "entity_text": "Jallikattu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 74,
+    "ARG_RESPONDENT": 4,
+    "FAC": 12,
+    "PRE_RELIED": 59,
+    "STA": 49
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 156,
+    "ISSUE": 1,
+    "NONE": 22,
+    "RATIO": 3,
+    "RLC": 4,
+    "RPC": 9
+  }
+}

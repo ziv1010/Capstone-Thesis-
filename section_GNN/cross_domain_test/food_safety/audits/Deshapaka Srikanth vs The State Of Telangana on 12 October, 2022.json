@@ -1,0 +1,91 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 358,
+          "end": 365
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 358,
+          "end": 365
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 267,
+      "facts": 276,
+      "arguments": 3456,
+      "petitioner_arguments": 813,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2642
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 3,
+      "PRE_RELIED": 4,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 24,
+      "NONE": 5,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 43,
+    "ignored_sentences": 39,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Blue Bull",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "RR Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "RR Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "CMR Pan Masala-",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 3,
+    "PRE_RELIED": 4,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 24,
+    "NONE": 5,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

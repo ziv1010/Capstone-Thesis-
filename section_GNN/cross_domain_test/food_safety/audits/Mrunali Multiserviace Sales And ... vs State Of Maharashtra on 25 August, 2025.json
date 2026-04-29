@@ -1,0 +1,94 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 994,
+      "facts": 2851,
+      "arguments": 4798,
+      "petitioner_arguments": 1801,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2996
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "FAC": 15,
+      "PRE_RELIED": 12,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 128,
+      "ISSUE": 3,
+      "NONE": 10,
+      "RATIO": 11,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 64,
+    "ignored_sentences": 154,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Sangram Chinappa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "M.M. Pabale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "G.R. Raghuwanshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Ashutosh M. Kulkarni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Sarthak Diwan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Vaibhav Gaikwad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Kulkarni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Hemant Ashar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "FAC": 15,
+    "PRE_RELIED": 12,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 128,
+    "ISSUE": 3,
+    "NONE": 10,
+    "RATIO": 11,
+    "RPC": 2
+  }
+}

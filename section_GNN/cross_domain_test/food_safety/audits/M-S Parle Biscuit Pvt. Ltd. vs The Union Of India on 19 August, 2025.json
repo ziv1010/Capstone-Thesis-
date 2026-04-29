@@ -1,0 +1,92 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 191,
+          "end": 198
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 191,
+          "end": 198
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1198,
+      "facts": 7957,
+      "arguments": 20105,
+      "petitioner_arguments": 7605,
+      "respondent_arguments": 2195,
+      "other_lawyer_arguments": 10303
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 40,
+      "ARG_RESPONDENT": 10,
+      "FAC": 36,
+      "PRE_RELIED": 18,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 120,
+      "NONE": 4,
+      "RATIO": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 186,
+    "ignored_sentences": 129,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Murali Ganesan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "A.K. Bhatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 40,
+    "ARG_RESPONDENT": 10,
+    "FAC": 36,
+    "PRE_RELIED": 18,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 120,
+    "NONE": 4,
+    "RATIO": 2,
+    "RPC": 3
+  }
+}

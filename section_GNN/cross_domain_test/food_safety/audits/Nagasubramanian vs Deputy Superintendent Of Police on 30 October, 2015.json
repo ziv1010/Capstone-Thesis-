@@ -1,0 +1,85 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 284,
+          "end": 293
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 992,
+      "facts": 4842,
+      "arguments": 8848,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8848
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 35,
+      "PRE_RELIED": 7,
+      "STA": 23
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 39,
+      "ISSUE": 3,
+      "NONE": 6,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 75,
+    "ignored_sentences": 54,
+    "ignored_entities": [
+      {
+        "sentence_id": 18,
+        "entity_text": "Arunachalam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sudalaimadan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Arunachalam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "S.Esakki",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Esakki",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 35,
+    "PRE_RELIED": 7,
+    "STA": 23
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 39,
+    "ISSUE": 3,
+    "NONE": 6,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

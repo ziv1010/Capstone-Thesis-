@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 918,
+          "end": 925
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 918,
+          "end": 925
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 1057,
+          "end": 1064
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 1057,
+          "end": 1064
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 360,
+      "facts": 0,
+      "arguments": 6413,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 1072,
+      "other_lawyer_arguments": 5340
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "PRE_RELIED": 4,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "NONE": 1,
+      "RATIO": 5,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 14,
+    "ignored_sentences": 19,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Gaurav Dhawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "PRE_RELIED": 4,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "NONE": 1,
+    "RATIO": 5,
+    "RPC": 2
+  }
+}

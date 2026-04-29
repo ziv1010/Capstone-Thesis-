@@ -1,0 +1,70 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 651,
+      "facts": 415,
+      "arguments": 35056,
+      "petitioner_arguments": 11547,
+      "respondent_arguments": 2544,
+      "other_lawyer_arguments": 20963
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 46,
+      "ARG_RESPONDENT": 10,
+      "FAC": 2,
+      "PRE_RELIED": 9,
+      "STA": 34
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 59,
+      "NONE": 3,
+      "RATIO": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 102,
+    "ignored_sentences": 69,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Hookah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Narinder S Chadha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Hookah",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 46,
+    "ARG_RESPONDENT": 10,
+    "FAC": 2,
+    "PRE_RELIED": 9,
+    "STA": 34
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 59,
+    "NONE": 3,
+    "RATIO": 1,
+    "RPC": 6
+  }
+}

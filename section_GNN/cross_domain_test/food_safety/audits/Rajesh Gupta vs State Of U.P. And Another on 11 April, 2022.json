@@ -1,0 +1,79 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 142,
+          "end": 149
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 177,
+          "end": 186
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 375,
+      "facts": 3296,
+      "arguments": 2296,
+      "petitioner_arguments": 1105,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1190
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 19,
+      "PRE_RELIED": 1,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 13,
+      "NONE": 2,
+      "RATIO": 2,
+      "RLC": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 32,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Mankamal Deshi Gutakha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 19,
+    "PRE_RELIED": 1,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 13,
+    "NONE": 2,
+    "RATIO": 2,
+    "RLC": 3,
+    "RPC": 3
+  }
+}

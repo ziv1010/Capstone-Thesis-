@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 329,
+      "facts": 1984,
+      "arguments": 2992,
+      "petitioner_arguments": 2992,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "FAC": 9
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 21,
+    "ignored_sentences": 6,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "J.S. Saneta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Muni Ram Steno",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Kali Ram Food",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "V.K.\nMalhotra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Seth Pal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Kali Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Seth Pal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "FAC": 9
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 4887,
+      "facts": 1667,
+      "arguments": 18818,
+      "petitioner_arguments": 11001,
+      "respondent_arguments": 307,
+      "other_lawyer_arguments": 7508
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 43,
+      "ARG_RESPONDENT": 1,
+      "FAC": 8,
+      "PRE_RELIED": 30,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 114,
+    "ignored_sentences": 48,
+    "ignored_entities": [
+      {
+        "sentence_id": 29,
+        "entity_text": "HIMACHAL  PRADESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "ANGREZ KAPOOR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Prabhat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Jyoti K.K.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Jyoti K.K.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Jyoti K.K.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Zahoor Ahmad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 43,
+    "ARG_RESPONDENT": 1,
+    "FAC": 8,
+    "PRE_RELIED": 30,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 4,
+    "RPC": 5
+  }
+}

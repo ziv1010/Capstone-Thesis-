@@ -469,6 +469,11 @@ def main() -> None:
     logger = configure_logger("preprocess_fixed_open", log_dir=log_dir)
 
     files = list_json_files(input_dir, pattern=str(cfg.get("data", {}).get("file_glob", "*.json")))
+    files = [
+        path
+        for path in files
+        if path.name != "report.json" and not path.name.endswith("__report.json")
+    ]
     if args.limit is not None:
         files = files[: args.limit]
     logger.info("Preprocessing %d FIXED_OPEN files from %s", len(files), input_dir)

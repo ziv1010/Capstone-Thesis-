@@ -1,0 +1,113 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 748,
+      "facts": 17022,
+      "arguments": 23909,
+      "petitioner_arguments": 2660,
+      "respondent_arguments": 16704,
+      "other_lawyer_arguments": 4543
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 77,
+      "FAC": 78,
+      "PRE_RELIED": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 205,
+      "NONE": 16,
+      "RATIO": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 208,
+    "ignored_sentences": 228,
+    "ignored_entities": [
+      {
+        "sentence_id": 69,
+        "entity_text": "Noida",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Elon Musk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Jidosha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Kabushiki Kaisha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Nikola Tesla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "S.K. Sachdeva",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "Toyota Jidosha Kabushiki Kaisha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 316,
+        "entity_text": "Nikola Tesla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 316,
+        "entity_text": "Nikola Tesla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 390,
+        "entity_text": "Nikola Tesla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 390,
+        "entity_text": "Nikola Tesla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 394,
+        "entity_text": "Mohd. Shakir",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 77,
+    "FAC": 78,
+    "PRE_RELIED": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 205,
+    "NONE": 16,
+    "RATIO": 2,
+    "RPC": 5
+  }
+}

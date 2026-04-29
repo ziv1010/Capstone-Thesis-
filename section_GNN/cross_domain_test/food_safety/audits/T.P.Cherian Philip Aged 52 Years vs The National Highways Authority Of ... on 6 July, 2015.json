@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1649,
+      "facts": 4206,
+      "arguments": 11977,
+      "petitioner_arguments": 1481,
+      "respondent_arguments": 965,
+      "other_lawyer_arguments": 9529
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 5,
+      "FAC": 27,
+      "PRE_RELIED": 14,
+      "STA": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 57,
+      "ISSUE": 3,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 71,
+    "ignored_entities": [
+      {
+        "sentence_id": 58,
+        "entity_text": "Sodan Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 5,
+    "FAC": 27,
+    "PRE_RELIED": 14,
+    "STA": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 57,
+    "ISSUE": 3,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

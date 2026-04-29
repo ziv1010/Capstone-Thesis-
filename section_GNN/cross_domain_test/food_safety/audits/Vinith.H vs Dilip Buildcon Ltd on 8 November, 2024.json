@@ -1,0 +1,93 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 483,
+      "facts": 5568,
+      "arguments": 3526,
+      "petitioner_arguments": 1036,
+      "respondent_arguments": 2157,
+      "other_lawyer_arguments": 331
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 16,
+      "FAC": 28,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 149,
+      "ISSUE": 4,
+      "NONE": 30,
+      "RPC": 27
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 69,
+    "ignored_sentences": 210,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Sumithra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Yashwanth",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Munikrishna Murthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Yashavanth. M. E",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Yashwanth. M",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Nagaraj. B. N",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Nagaraj. B. N",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Nagaraj. B. N",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 16,
+    "FAC": 28,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 149,
+    "ISSUE": 4,
+    "NONE": 30,
+    "RPC": 27
+  }
+}

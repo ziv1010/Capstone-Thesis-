@@ -1,0 +1,202 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 758,
+          "end": 767
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 758,
+          "end": 767
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 594,
+          "end": 603
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 413,
+          "end": 422
+        },
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 496,
+          "end": 513
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 221,
+          "end": 230
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 594,
+          "end": 603
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 413,
+          "end": 422
+        },
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 496,
+          "end": 513
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 221,
+          "end": 230
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 360,
+      "facts": 5248,
+      "arguments": 22090,
+      "petitioner_arguments": 5832,
+      "respondent_arguments": 1647,
+      "other_lawyer_arguments": 14609
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 3,
+      "FAC": 21,
+      "PRE_RELIED": 68,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 55,
+      "NONE": 20,
+      "RLC": 7,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 110,
+    "ignored_sentences": 91,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Manoj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Sushil Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Narendra Hooda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Malay Kumar Gangulys",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Ningammas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Tandale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Kemp",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Kemp",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Scarman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "McGregor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Devlin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Kunal Sahas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 3,
+    "FAC": 21,
+    "PRE_RELIED": 68,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 55,
+    "NONE": 20,
+    "RLC": 7,
+    "RPC": 9
+  }
+}

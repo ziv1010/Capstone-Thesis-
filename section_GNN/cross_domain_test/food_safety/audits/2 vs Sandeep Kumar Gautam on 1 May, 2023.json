@@ -1,0 +1,163 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1607,
+      "facts": 4977,
+      "arguments": 16749,
+      "petitioner_arguments": 894,
+      "respondent_arguments": 1231,
+      "other_lawyer_arguments": 14622
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 7,
+      "FAC": 42,
+      "PRE_RELIED": 77
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 166,
+      "ISSUE": 1,
+      "NONE": 16,
+      "RPC": 32
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 152,
+    "ignored_sentences": 215,
+    "ignored_entities": [
+      {
+        "sentence_id": 23,
+        "entity_text": "Shahrukh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Irshad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Abid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Shahrukh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Abid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Mohd. Tanzeem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Mohd. Tanzeen Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Shahrukh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Insha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Inshad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Sarla Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 228,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 263,
+        "entity_text": "A. P. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Nazir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Nazir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 293,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 7,
+    "FAC": 42,
+    "PRE_RELIED": 77
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 166,
+    "ISSUE": 1,
+    "NONE": 16,
+    "RPC": 32
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 104,
+          "end": 113
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 104,
+          "end": 113
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 151,
+          "end": 158
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 510,
+          "end": 519
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 25,
+          "end": 34
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 151,
+          "end": 158
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 510,
+          "end": 519
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 25,
+          "end": 34
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 538,
+      "facts": 402,
+      "arguments": 32124,
+      "petitioner_arguments": 2993,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 29130
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 1,
+      "PRE_RELIED": 41,
+      "STA": 45
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 62,
+      "NONE": 5,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 102,
+    "ignored_sentences": 74,
+    "ignored_entities": [
+      {
+        "sentence_id": 20,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "George Bernard Shaw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 1,
+    "PRE_RELIED": 41,
+    "STA": 45
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 62,
+    "NONE": 5,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 514,
+      "facts": 12077,
+      "arguments": 34957,
+      "petitioner_arguments": 11027,
+      "respondent_arguments": 5074,
+      "other_lawyer_arguments": 18854
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 38,
+      "ARG_RESPONDENT": 20,
+      "FAC": 63,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 48,
+      "STA": 19
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 187,
+      "ISSUE": 27,
+      "NONE": 90,
+      "RATIO": 6,
+      "RLC": 1,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 222,
+    "ignored_sentences": 318,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "K.A.Sathwik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "B.Nirmala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Sowmya @ Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Cessna 180 VT-EQU Aircraft",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Murali Manohar Joshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Ananthakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Eshwarappa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "R.Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Soundraya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Ashwatha Narayana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "R.Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Gopalan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Joy Phillip",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Kartha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Aravind Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "K.S.Amarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "Ramesh Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "Joy Phillip",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Soundarya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Tej Shoe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 318,
+        "entity_text": "Tej Shoe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 383,
+        "entity_text": "S.S. Rathore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 399,
+        "entity_text": "Wadhwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "Wadhwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 440,
+        "entity_text": "Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 455,
+        "entity_text": "Goswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 456,
+        "entity_text": "Goswami",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 38,
+    "ARG_RESPONDENT": 20,
+    "FAC": 63,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 48,
+    "STA": 19
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 187,
+    "ISSUE": 27,
+    "NONE": 90,
+    "RATIO": 6,
+    "RLC": 1,
+    "RPC": 7
+  }
+}

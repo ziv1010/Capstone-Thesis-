@@ -1,0 +1,85 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 882,
+      "facts": 3601,
+      "arguments": 10378,
+      "petitioner_arguments": 1370,
+      "respondent_arguments": 849,
+      "other_lawyer_arguments": 8157
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 7,
+      "FAC": 28,
+      "PRE_RELIED": 33,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 87,
+      "ISSUE": 3,
+      "NONE": 10,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 85,
+    "ignored_sentences": 114,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Ahmer Wasif",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 183,
+        "entity_text": "Rajan Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 7,
+    "FAC": 28,
+    "PRE_RELIED": 33,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 87,
+    "ISSUE": 3,
+    "NONE": 10,
+    "RPC": 14
+  }
+}

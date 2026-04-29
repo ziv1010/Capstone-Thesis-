@@ -1,0 +1,407 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 288,
+      "facts": 2991,
+      "arguments": 2957,
+      "petitioner_arguments": 1818,
+      "respondent_arguments": 404,
+      "other_lawyer_arguments": 733
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 2,
+      "FAC": 14,
+      "PRE_RELIED": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 83,
+      "ISSUE": 3,
+      "NONE": 5,
+      "RATIO": 2,
+      "RLC": 8,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 132,
+    "ignored_sentences": 113,
+    "ignored_entities": [
+      {
+        "sentence_id": 1,
+        "entity_text": "Manjula",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "B.S. UMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "SMT. MANJULA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "LATE GANESH.R  AGED",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "KUM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "SUSHMITHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "NAGAMMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "RAMAIAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "B.S. UMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "SMT. MANJULA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "SUSHMITHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "G.A.RAMAIAH REDDY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "B. CHANDRASHEKARAIAH ADV",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "B.S. UMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "MASTER MANOJ.C",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "NINGAMMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "CHNDRAPPA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "G.A.RAMAIAH REDDY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "LAKKASANDRA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "SMT. MANJULA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "SHWETHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "KUM.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "SUSHMITHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "MASTER PRASANNA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "SMT. NAGAMMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "RAMAIAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "ANITHA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "RAMAIAH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "CHANDRASHEKARAIAH B.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "B.S. UMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "SMT. MANJULA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "SHWETHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "SUSHMITHA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "MASTER PRASANNA.G",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "NATURAL GUARDIAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "G.A. RAMAIAH REDDY  MAJOR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "B.S. UMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "G.A. RAMAIAH REDDY  MAJOR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Manjula",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Nagamma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Anitha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Manjula",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Manoj C",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Nagamma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Mater Manoj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Channena Agrahara",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Ganesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "Ramaiah",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 2,
+    "FAC": 14,
+    "PRE_RELIED": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 83,
+    "ISSUE": 3,
+    "NONE": 5,
+    "RATIO": 2,
+    "RLC": 8,
+    "RPC": 12
+  }
+}

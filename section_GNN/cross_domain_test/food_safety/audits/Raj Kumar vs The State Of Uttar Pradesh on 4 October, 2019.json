@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 466,
+      "facts": 903,
+      "arguments": 9298,
+      "petitioner_arguments": 2601,
+      "respondent_arguments": 333,
+      "other_lawyer_arguments": 6362
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 2,
+      "FAC": 8,
+      "PRE_RELIED": 30,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 29,
+      "NONE": 4,
+      "RATIO": 2,
+      "RLC": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 62,
+    "ignored_sentences": 42,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Deepak Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Deepak Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Karunan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Karunans",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Ujagar Singhs",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Ram Kumars",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Ram Kumars",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Ujagar Singhs",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Ujagar Singhs",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Santosh Kumars",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 2,
+    "FAC": 8,
+    "PRE_RELIED": 30,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 29,
+    "NONE": 4,
+    "RATIO": 2,
+    "RLC": 3,
+    "RPC": 4
+  }
+}

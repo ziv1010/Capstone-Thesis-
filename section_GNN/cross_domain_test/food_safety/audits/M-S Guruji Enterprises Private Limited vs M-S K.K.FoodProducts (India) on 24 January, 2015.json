@@ -1,0 +1,272 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 725,
+      "facts": 5208,
+      "arguments": 29013,
+      "petitioner_arguments": 14875,
+      "respondent_arguments": 11128,
+      "other_lawyer_arguments": 3008
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 71,
+      "ARG_RESPONDENT": 59,
+      "FAC": 29,
+      "PRE_RELIED": 12,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 246,
+      "ISSUE": 3,
+      "NONE": 10,
+      "RATIO": 3,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 178,
+    "ignored_sentences": 270,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Bal Mukand Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Itrafarosh Vaidyaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Jagdish Prasadji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Pundit Hajariprasad Dwiwedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Rahul Sankrityayan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Vimal Mitra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Harivansrai Bacchan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Shyamnarayan Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Mahadevi Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Jagdish Prasadji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Jagdish Prasadji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Pundit Hajariprasad Dwiwedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Kesharaia Thandai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Badam Sharbat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rose Sharbat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Khus Sharbat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Orange Crush",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Pineapple Crush",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Guruji Thandai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Orange",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Litchi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Litchi Squash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Mango Panna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Lemon Squash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Guruji Jeera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Brahmi Badam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Keshar Chandan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Jai Guru ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Kaushal Kishore Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "SiddhGuruji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "Deepak Kumar Sinha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Kaushal Kishore Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Sidh Guruji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Kesaria Thandai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 337,
+        "entity_text": "pramaan patra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 348,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 356,
+        "entity_text": "Kaushal Kishore Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 358,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 394,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 395,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 71,
+    "ARG_RESPONDENT": 59,
+    "FAC": 29,
+    "PRE_RELIED": 12,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 246,
+    "ISSUE": 3,
+    "NONE": 10,
+    "RATIO": 3,
+    "RPC": 8
+  }
+}

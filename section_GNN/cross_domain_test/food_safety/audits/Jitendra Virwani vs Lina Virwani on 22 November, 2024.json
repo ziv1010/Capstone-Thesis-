@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 500,
+      "facts": 2880,
+      "arguments": 17023,
+      "petitioner_arguments": 10784,
+      "respondent_arguments": 5394,
+      "other_lawyer_arguments": 843
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 50,
+      "ARG_RESPONDENT": 18,
+      "FAC": 17,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 109,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 94,
+    "ignored_sentences": 122,
+    "ignored_entities": [
+      {
+        "sentence_id": 26,
+        "entity_text": "K.G. Raghavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Lakshmy Iyengar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "VIRWANI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Natalie Virwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Microsoft",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Fidelity",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Yahoo",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 50,
+    "ARG_RESPONDENT": 18,
+    "FAC": 17,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 109,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

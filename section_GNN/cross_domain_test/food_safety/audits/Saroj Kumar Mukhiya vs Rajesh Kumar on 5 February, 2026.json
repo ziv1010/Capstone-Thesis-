@@ -1,0 +1,104 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1107,
+      "facts": 4026,
+      "arguments": 4207,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4207
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 39,
+      "PRE_RELIED": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 99,
+      "ISSUE": 5,
+      "NONE": 12,
+      "RATIO": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 68,
+    "ignored_sentences": 126,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Naveen Kumar Ray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Naveen Kumar Ray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Naveen Kumar Ray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Saroj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Naveen Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Saroj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Naveen Kumar Ray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Naveen Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Naveen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 39,
+    "PRE_RELIED": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 99,
+    "ISSUE": 5,
+    "NONE": 12,
+    "RATIO": 5,
+    "RPC": 5
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 155,
+          "end": 164
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 203,
+          "end": 210
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 155,
+          "end": 164
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 203,
+          "end": 210
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1156,
+      "facts": 12833,
+      "arguments": 19805,
+      "petitioner_arguments": 2072,
+      "respondent_arguments": 1392,
+      "other_lawyer_arguments": 16339
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 4,
+      "FAC": 66,
+      "PRE_RELIED": 68,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 135,
+      "NONE": 7,
+      "RATIO": 3,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 158,
+    "ignored_sentences": 146,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Satish Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Satish Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "B. P. Saroha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "R. C. Verma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Mahesh Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "S. Shankar lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "S. N. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Satish Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Satish Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "R. C. Verma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "B. P. Saroha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Satish Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "B. P. Saroha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "R. C. Verma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "B. P. Saroha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Sh Tara Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "M. C. Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Vijay Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Vijay Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Ashok Bakshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "R. C. Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "B.\nP. Saroha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Pradeep Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Kanshi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 4,
+    "FAC": 66,
+    "PRE_RELIED": 68,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 135,
+    "NONE": 7,
+    "RATIO": 3,
+    "RPC": 1
+  }
+}

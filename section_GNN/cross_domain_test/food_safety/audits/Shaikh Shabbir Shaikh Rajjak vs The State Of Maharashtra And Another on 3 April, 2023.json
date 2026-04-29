@@ -1,0 +1,99 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_roles:PREAMBLE",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 4683,
+      "facts": 1202,
+      "arguments": 2002,
+      "petitioner_arguments": 1758,
+      "respondent_arguments": 243,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 3,
+      "FAC": 6,
+      "PREAMBLE": 30
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 12,
+      "NONE": 2,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 51,
+    "ignored_sentences": 19,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Dyneshwar Madhavrao Munde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Jahagirdar Zahid Mir Murtuza Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Satej S. Jadhav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Shrikant G. Kawade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Sanjay @ Pintu Nagnath Yelapure",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Prathiraj A. Dhakane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "S.V. Wakale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Mohd. Aseem Mohd. Abdul Kaleem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Vinod Chhabu Tonde",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 3,
+    "FAC": 6,
+    "PREAMBLE": 30
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 12,
+    "NONE": 2,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

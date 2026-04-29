@@ -1,0 +1,501 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 184,
+          "end": 193
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 184,
+          "end": 193
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 45,
+      "facts": 9462,
+      "arguments": 20290,
+      "petitioner_arguments": 12926,
+      "respondent_arguments": 2106,
+      "other_lawyer_arguments": 5256
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 41,
+      "ARG_RESPONDENT": 10,
+      "FAC": 54,
+      "PRE_RELIED": 21,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 260,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 4,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 141,
+    "ignored_sentences": 277,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "P.D.Kode Bench",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "B.P.Jakhade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Geeta Mulekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Dilip Tibile",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Raj Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Vinod Satav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Rajkapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Bhaurao Patil",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Mahadeo Shripati Mane",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Ashwini - Kedar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Sonali",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Balwant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Khani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Ranjit Chavan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "panch Neminath",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Satish Balwant Salunke",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Mahendra Phalke",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Pravin Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Panch Sachidanand Bandodkar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Kondiram Pavle",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "M.A.Shaikh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Sonali",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "B.P.Jakhade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Sonali",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Geeta Mulekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Shubhangi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Ashwini",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Kedar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Bachhan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Machhi Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "Rameshwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Lalit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 325,
+        "entity_text": "Kundan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 365,
+        "entity_text": "Bachan Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 41,
+    "ARG_RESPONDENT": 10,
+    "FAC": 54,
+    "PRE_RELIED": 21,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 260,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 4,
+    "RPC": 7
+  }
+}

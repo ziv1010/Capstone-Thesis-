@@ -1,0 +1,154 @@
+{
+  "file_id": "Unknown vs The Learned Counsel Appearing For The on 26 February, 2020",
+  "chunk": "",
+  "rr_available": true,
+  "preamble_end_char_offset": 287,
+  "sentences": [
+    {
+      "sentence_id": 1,
+      "text": "Unknown vs The Learned Counsel Appearing For The on 26\nFebruary, 2020",
+      "rhetorical_role": "PREAMBLE",
+      "start": 0,
+      "end": 70,
+      "entities": [],
+      "in_summary": true,
+      "summary_section": "PREAMBLE"
+    },
+    {
+      "sentence_id": 2,
+      "text": "Author: Sanjay Kumar Dwivedi\nBench: Sanjay Kumar Dwivedi\n .\n In The High Court Of Jharkhand, Ranchi\n W.P.(C) No.6150 of 2014\n ---\n---\nCoram : Hon'Ble Mr. Justice Sanjay Kumar Dwivedi\n---\n7/ Dated : 26th February, 2020",
+      "rhetorical_role": "PREAMBLE",
+      "start": 70,
+      "end": 287,
+      "entities": [
+        {
+          "text": "Sanjay Kumar Dwivedi",
+          "label": "JUDGE",
+          "start": 78,
+          "end": 98
+        },
+        {
+          "text": "Sanjay Kumar Dwivedi",
+          "label": "JUDGE",
+          "start": 106,
+          "end": 126
+        },
+        {
+          "text": "High Court Of Jharkhand, Ranchi",
+          "label": "COURT",
+          "start": 138,
+          "end": 169
+        },
+        {
+          "text": "Sanjay Kumar Dwivedi",
+          "label": "JUDGE",
+          "start": 232,
+          "end": 252
+        }
+      ],
+      "in_summary": true,
+      "summary_section": "PREAMBLE"
+    },
+    {
+      "sentence_id": 3,
+      "text": "The learned counsel appearing for the respondent State submits that he will examine the Food Safety & Standards Act, 2006 and will assist the Court on the next date of listing.",
+      "rhetorical_role": "NONE",
+      "start": 288,
+      "end": 465,
+      "entities": [
+        {
+          "text": "Food Safety & Standards Act, 2006",
+          "label": "STATUTE",
+          "start": 377,
+          "end": 410
+        }
+      ],
+      "in_summary": false
+    },
+    {
+      "sentence_id": 4,
+      "text": "Post this matter in the week commencing on 16.03.2020.",
+      "rhetorical_role": "RPC",
+      "start": 466,
+      "end": 521,
+      "entities": [
+        {
+          "text": "16.03.2020",
+          "label": "DATE",
+          "start": 510,
+          "end": 520
+        }
+      ],
+      "in_summary": true,
+      "summary_section": "decision",
+      "summary_sent_score": 0.04975809529423714
+    },
+    {
+      "sentence_id": 5,
+      "text": "(Sanjay Kumar Dwivedi, J.) SI/,\nUnknown vs The Learned Counsel Appearing For The on 26 February, 2020 Indian Kanoon - http://indiankanoon.org/doc/4400298/\n1",
+      "rhetorical_role": "NONE",
+      "start": 522,
+      "end": 679,
+      "entities": [
+        {
+          "text": "Sanjay Kumar Dwivedi",
+          "label": "JUDGE",
+          "start": 524,
+          "end": 544
+        },
+        {
+          "text": "26 February, 2020",
+          "label": "DATE",
+          "start": 607,
+          "end": 624
+        }
+      ],
+      "in_summary": false
+    }
+  ],
+  "ner_by_label": {
+    "JUDGE": 4,
+    "DATE": 2,
+    "COURT": 1,
+    "STATUTE": 1
+  },
+  "rr_by_role": {
+    "PREAMBLE": 2,
+    "NONE": 2,
+    "RPC": 1
+  },
+  "opennyai_summary": {
+    "PREAMBLE": "Unknown vs The Learned Counsel Appearing For The on 26\nFebruary, 2020\nAuthor: Sanjay Kumar Dwivedi\nBench: Sanjay Kumar Dwivedi\n .\n In The High Court Of Jharkhand, Ranchi\n W.P.(C) No.6150 of 2014\n ---\n---\nCoram : Hon'Ble Mr. Justice Sanjay Kumar Dwivedi\n---\n7/ Dated : 26th February, 2020\n",
+    "decision": "Post this matter in the week commencing on 16.03.2020.\n"
+  },
+  "summary_status": "ok",
+  "summary_error": null,
+  "case_outcome_label": "postponed_or_procedural",
+  "case_outcome_score": 0,
+  "llm_case_outcome": {
+    "backend": "local_vllm",
+    "model_id": "/scratch/ziv_baretto/Thesis_Ziv/hf_cache/hub/models--mistralai--Mistral-Small-24B-Instruct-2501/snapshots/9527884be6e5616bdd54de542f9ae13384489724",
+    "provider": "local_gpu",
+    "method": "cross_validation_8q",
+    "decision_text": "Post this matter in the week commencing on 16.03.2020.",
+    "rpc_texts": [
+      "Post this matter in the week commencing on 16.03.2020."
+    ],
+    "crossval_answers": {
+      "q1": 0,
+      "q2": 0,
+      "q3": 0,
+      "q4": 0,
+      "q5": 0,
+      "q6": 0,
+      "q7": 1,
+      "q8": 1
+    },
+    "win_score": 0,
+    "loss_score": 0,
+    "neutral_score": 2,
+    "crossval_label": "NEUTRAL",
+    "crossval_confidence": 1.0,
+    "raw_model_response": "```json\n{\n  \"q1\": 0,\n  \"q2\": 0,\n  \"q3\": 0,\n  \"q4\": 0,\n  \"q5\": 0,\n  \"q6\": 0,\n  \"q7\": 1,\n  \"q8\": 1\n}\n```"
+  }
+}

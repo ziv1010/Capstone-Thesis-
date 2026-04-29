@@ -1,0 +1,166 @@
+{
+  "case_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018",
+  "file_name": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018.json",
+  "file_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018.json",
+  "raw_label": "1",
+  "texts": {
+    "preamble": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018 The High Court Of Madhya Pradesh Crr-7-2018 (Dr. Deepak Jain Vs The State Of Madhya Pradesh) 3 Jabalpur, Dated : 30-01-2018",
+    "facts": "",
+    "arguments": "Learned counsel for the applicant submitted that the trial Court as well as the appellate Court without appreciating the evidence wrongly convicted the applicant for the aforesaid offence. Learned counsel further submitted that he was on bail during trial and the hearing of this revision will take long time.",
+    "petitioner_arguments": "Learned counsel for the applicant submitted that the trial Court as well as the appellate Court without appreciating the evidence wrongly convicted the applicant for the aforesaid offence. Learned counsel further submitted that he was on bail during trial and the hearing of this revision will take long time.",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 1,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 1,
+    "court_count": 1,
+    "preamble_length": 190,
+    "facts_length": 0,
+    "arguments_length": 309,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [
+      "high court of madhya pradesh crr72018"
+    ],
+    "judge_names": [],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "1",
+    "source_decision_label": "1"
+  },
+  "entities": [
+    {
+      "entity_type": "court",
+      "raw_name": "High Court Of Madhya Pradesh Crr-7-2018",
+      "canonical_name": "high court of madhya pradesh crr72018",
+      "mentions": [
+        {
+          "entity_type": "court",
+          "raw_text": "High Court Of Madhya Pradesh Crr-7-2018",
+          "canonical_text": "high court of madhya pradesh crr72018",
+          "section": "PREAMBLE",
+          "annotation_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018:sentence_1:entity_2",
+          "start": 72,
+          "end": 112
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "petitioner",
+      "raw_name": "Deepak Jain",
+      "canonical_name": "deepak jain",
+      "mentions": [
+        {
+          "entity_type": "petitioner",
+          "raw_text": "Deepak Jain",
+          "canonical_text": "deepak jain",
+          "section": "PREAMBLE",
+          "annotation_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018:sentence_1:entity_0",
+          "start": 4,
+          "end": 15
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "precedent",
+      "raw_name": "Deepak Jain Vs The State Of Madhya Pradesh) 3 Jabalpur",
+      "canonical_name": "deepak jain vs the state of madhya pradesh 3 jabalpur",
+      "mentions": [
+        {
+          "entity_type": "precedent",
+          "raw_text": "Deepak Jain Vs The State Of Madhya Pradesh) 3 Jabalpur",
+          "canonical_text": "deepak jain vs the state of madhya pradesh 3 jabalpur",
+          "section": "PREAMBLE",
+          "annotation_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018:sentence_1:entity_3",
+          "start": 119,
+          "end": 175
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "respondent",
+      "raw_name": "State Of Madhya Pradesh",
+      "canonical_name": "state of madhya pradesh",
+      "mentions": [
+        {
+          "entity_type": "respondent",
+          "raw_text": "State Of Madhya Pradesh",
+          "canonical_text": "state of madhya pradesh",
+          "section": "PREAMBLE",
+          "annotation_id": "Dr. Deepak Jain vs The State Of Madhya Pradesh on 30 January, 2018:sentence_1:entity_1",
+          "start": 23,
+          "end": 46
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset",
+        "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+        "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 190,
+        "facts": 0,
+        "arguments": 309,
+        "petitioner_arguments": 309,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {
+        "ARG_PETITIONER": 2
+      },
+      "dropped_sentence_role_counts": {
+        "NONE": 7,
+        "RLC": 2,
+        "RPC": 3
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 3,
+      "ignored_sentences": 12,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 7,
+      "RLC": 2,
+      "RPC": 3
+    }
+  }
+}

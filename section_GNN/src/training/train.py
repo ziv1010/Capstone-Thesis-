@@ -181,6 +181,7 @@ def train_model(
             "pred_index": predictions_np.tolist(),
             "pred_label": [label_names[idx] for idx in predictions_np.tolist()],
             "confidence": probabilities_np.max(axis=1).tolist(),
+            "proba_allowed": probabilities_np[:, 1].tolist() if probabilities_np.shape[1] > 1 else None,
         }
     )
 

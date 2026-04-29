@@ -1,0 +1,102 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 75,
+          "end": 84
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 496,
+      "facts": 1839,
+      "arguments": 3377,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3377
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 8,
+      "PRE_RELIED": 8,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 47,
+      "ISSUE": 2,
+      "NONE": 8,
+      "RATIO": 3,
+      "RLC": 3,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 27,
+    "ignored_sentences": 70,
+    "ignored_entities": [
+      {
+        "sentence_id": 19,
+        "entity_text": "J.B. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Subhash Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Satya Pal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Mallikarjun Kodagali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Satya Pal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Mallikarjun Kodagali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Mallikarjun Kodagali",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 8,
+    "PRE_RELIED": 8,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 47,
+    "ISSUE": 2,
+    "NONE": 8,
+    "RATIO": 3,
+    "RLC": 3,
+    "RPC": 7
+  }
+}

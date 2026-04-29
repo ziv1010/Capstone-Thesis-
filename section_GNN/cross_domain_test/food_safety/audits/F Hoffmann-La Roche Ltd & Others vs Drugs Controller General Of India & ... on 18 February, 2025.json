@@ -1,0 +1,125 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 236,
+          "end": 253
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 222,
+          "end": 231
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 96,
+      "facts": 9232,
+      "arguments": 15835,
+      "petitioner_arguments": 3215,
+      "respondent_arguments": 2166,
+      "other_lawyer_arguments": 10452
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 11,
+      "FAC": 45,
+      "PRE_RELIED": 23,
+      "STA": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 182,
+      "NONE": 12,
+      "RLC": 18,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 117,
+    "ignored_sentences": 214,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Abhishek Tewari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "DHARMENDER SINGH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Godiyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Darpan Wadhwa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "M.L. Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "M.L. Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Reliance",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Reliance",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Cadila",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 230,
+        "entity_text": "Sai Deepak",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 11,
+    "FAC": 45,
+    "PRE_RELIED": 23,
+    "STA": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 182,
+    "NONE": 12,
+    "RLC": 18,
+    "RPC": 2
+  }
+}

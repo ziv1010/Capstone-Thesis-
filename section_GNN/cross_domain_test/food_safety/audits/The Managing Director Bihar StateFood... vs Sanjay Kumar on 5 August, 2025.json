@@ -1,0 +1,136 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 4125,
+      "facts": 5816,
+      "arguments": 12826,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 172,
+      "other_lawyer_arguments": 12653
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "FAC": 34,
+      "PRE_RELIED": 55,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 90,
+      "ISSUE": 5,
+      "NONE": 34,
+      "RATIO": 2,
+      "RLC": 14,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 107,
+    "ignored_sentences": 162,
+    "ignored_entities": [
+      {
+        "sentence_id": 82,
+        "entity_text": "Shahnawaz Ahmed Niyazi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Md.\nNiyazuddin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Abhishek Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Abhishek Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Shiv Prasahan Ray",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Ranjit Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Amit Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Ranjit Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Ayyasamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Ayyasamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Ayyasamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Gary B.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Gary B. Born",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Rashid Raza",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "Ayyasamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 248,
+        "entity_text": "P. Ramanatha Aiyar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "FAC": 34,
+    "PRE_RELIED": 55,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 90,
+    "ISSUE": 5,
+    "NONE": 34,
+    "RATIO": 2,
+    "RLC": 14,
+    "RPC": 17
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 47,
+          "end": 56
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 41,
+          "end": 50
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 41,
+          "end": 50
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 569,
+      "facts": 11399,
+      "arguments": 10690,
+      "petitioner_arguments": 3206,
+      "respondent_arguments": 1612,
+      "other_lawyer_arguments": 5870
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 9,
+      "FAC": 80,
+      "STA": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 254,
+      "ISSUE": 9,
+      "NONE": 18,
+      "RATIO": 2,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 131,
+    "ignored_sentences": 298,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Keshava.G.",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 9,
+    "FAC": 80,
+    "STA": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 254,
+    "ISSUE": 9,
+    "NONE": 18,
+    "RATIO": 2,
+    "RPC": 15
+  }
+}

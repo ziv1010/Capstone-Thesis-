@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 138,
+      "facts": 2733,
+      "arguments": 3596,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3596
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 15,
+      "PRE_RELIED": 16,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 225,
+      "NONE": 8,
+      "RLC": 9,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 35,
+    "ignored_sentences": 247,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Anjali Sinha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "A.S. Choudhury",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Anjali Sinha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Anjali Sinha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 15,
+    "PRE_RELIED": 16,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 225,
+    "NONE": 8,
+    "RLC": 9,
+    "RPC": 5
+  }
+}

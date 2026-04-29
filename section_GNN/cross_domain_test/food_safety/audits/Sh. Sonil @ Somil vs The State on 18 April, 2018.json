@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 907,
+      "facts": 7257,
+      "arguments": 1408,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1408
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 44,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 69,
+      "NONE": 15,
+      "RATIO": 3,
+      "RLC": 6,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 74,
+    "ignored_sentences": 102,
+    "ignored_entities": [
+      {
+        "sentence_id": 70,
+        "entity_text": "R.S. Balakrishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Muthukrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "R.S. Balakrishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Muthukrishnan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 44,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 69,
+    "NONE": 15,
+    "RATIO": 3,
+    "RLC": 6,
+    "RPC": 9
+  }
+}

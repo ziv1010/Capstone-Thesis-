@@ -1,0 +1,65 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 403,
+      "facts": 898,
+      "arguments": 6229,
+      "petitioner_arguments": 1689,
+      "respondent_arguments": 1134,
+      "other_lawyer_arguments": 3404
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 5,
+      "FAC": 6,
+      "PRE_RELIED": 1,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 68,
+      "NONE": 13,
+      "RATIO": 2,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 40,
+    "ignored_sentences": 89,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Arnnapurna Padhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Balgopal Padhan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 5,
+    "FAC": 6,
+    "PRE_RELIED": 1,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 68,
+    "NONE": 13,
+    "RATIO": 2,
+    "RPC": 6
+  }
+}

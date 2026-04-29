@@ -1,0 +1,105 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 47,
+          "end": 56
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 47,
+          "end": 56
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 227,
+          "end": 236
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 227,
+          "end": 236
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 790,
+      "facts": 3199,
+      "arguments": 30248,
+      "petitioner_arguments": 6488,
+      "respondent_arguments": 1312,
+      "other_lawyer_arguments": 22446
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 29,
+      "ARG_RESPONDENT": 5,
+      "FAC": 17,
+      "PRE_RELIED": 110,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 75,
+      "ISSUE": 2,
+      "NONE": 3,
+      "RATIO": 3,
+      "RLC": 3,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 170,
+    "ignored_sentences": 95,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Farooq Abdullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sheikh Abdullah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 198,
+        "entity_text": "Jasbir Kaur",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 29,
+    "ARG_RESPONDENT": 5,
+    "FAC": 17,
+    "PRE_RELIED": 110,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 75,
+    "ISSUE": 2,
+    "NONE": 3,
+    "RATIO": 3,
+    "RLC": 3,
+    "RPC": 9
+  }
+}

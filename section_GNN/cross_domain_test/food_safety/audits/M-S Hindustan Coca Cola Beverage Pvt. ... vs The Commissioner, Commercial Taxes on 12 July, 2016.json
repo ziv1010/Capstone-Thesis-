@@ -1,0 +1,106 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 190,
+          "end": 199
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 190,
+          "end": 199
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 458,
+      "facts": 1277,
+      "arguments": 13608,
+      "petitioner_arguments": 4941,
+      "respondent_arguments": 963,
+      "other_lawyer_arguments": 7702
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 20,
+      "ARG_RESPONDENT": 4,
+      "FAC": 8,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 6,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 75,
+      "NONE": 1,
+      "RATIO": 3,
+      "RLC": 7,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 49,
+    "ignored_sentences": 90,
+    "ignored_entities": [
+      {
+        "sentence_id": 30,
+        "entity_text": "Jagatjit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Jagatjit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Jagatjit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Jagatjit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Jagatjit",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 20,
+    "ARG_RESPONDENT": 4,
+    "FAC": 8,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 6,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 75,
+    "NONE": 1,
+    "RATIO": 3,
+    "RLC": 7,
+    "RPC": 4
+  }
+}

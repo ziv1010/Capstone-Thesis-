@@ -1,0 +1,311 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 155,
+          "end": 164
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 309,
+          "end": 316
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 155,
+          "end": 164
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 309,
+          "end": 316
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 66,
+          "end": 73
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 32,
+          "end": 41
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 15,
+          "end": 24
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 248,
+          "end": 257
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 66,
+          "end": 73
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 32,
+          "end": 41
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 15,
+          "end": 24
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 248,
+          "end": 257
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2522,
+      "facts": 9835,
+      "arguments": 21575,
+      "petitioner_arguments": 3514,
+      "respondent_arguments": 1556,
+      "other_lawyer_arguments": 16503
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 8,
+      "FAC": 46,
+      "PRE_RELIED": 76
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 135,
+      "ISSUE": 1,
+      "NONE": 9,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 159,
+    "ignored_sentences": 154,
+    "ignored_entities": [
+      {
+        "sentence_id": 94,
+        "entity_text": "satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Kuruba Nagaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Ali Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "K.Janardhana Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "B. Nagendra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Nagaraj K.Ratan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Chandrashekhar R.Naik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Uday S. Achari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Nagaraj K.Ratan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Chandrashekhar R.Naik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Uday S.Achari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Nagaraj K.Ratan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Shyam Raj Singh @ Shyam Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "B.S.\nPraveen Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "B.Nagendra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Kuruba Nagaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Alikhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "K.Mahesh Kumar @ Karapudi Mahesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "Karapudi Mahesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Satish Krishna Sail",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Swastik Nagaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "K.V.N. Govindraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Swastik Nagaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "K.V.N. Govindraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Swastik Nagaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Sunil Bharti Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Mehmood Ul Rehman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "Afroz Mohammed Hasanfatta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Afroz Mohammed Hasanfatta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "PRADEEP S. WODEYAR",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 8,
+    "FAC": 46,
+    "PRE_RELIED": 76
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 135,
+    "ISSUE": 1,
+    "NONE": 9,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

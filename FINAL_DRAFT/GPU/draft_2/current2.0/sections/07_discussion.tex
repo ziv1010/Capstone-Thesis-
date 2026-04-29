@@ -1,0 +1,168 @@
+\chapter{Discussion}
+\label{chap:discussion}
+
+\section{Summary of Findings}
+
+The thesis pursued a single operational question: can a heterogeneous
+knowledge graph built from Indian court judgments, filtered to be
+structurally leakage-safe, support an outcome-prediction model whose
+accuracy is attributable to legal reasoning rather than to identity or
+decision shortcuts? The chapters above answer that affirmatively but
+with important qualifications.
+
+The pipeline produces a legally coherent corpus: the top-PageRank
+entities recovered per bucket are exactly the statutes, provisions,
+and courts a practitioner would expect, and the leakage-focused
+pruning of Chapter~\ref{chap:kg} (dropping auxiliary NER types,
+forbidding shortcut edges from identity proxies, keeping courts and
+counsel local) is restrictive without being destructive: the resulting
+graph is large, connected, and hub-dominated, with IPC, CrPC, and the
+apex courts bridging all five legal domains.
+
+The HGT learns cross-case structural signal that is not reducible to
+its text features. The post-GNN probing classifier outperforms the
+pre-GNN baseline at fixed capacity with a $16\times$ smaller
+representation, and the t-SNE geometry shows that message passing
+reorganises an already-strong text representation into a more
+outcome-informative case embedding rather than replacing text with a
+pure hub-traversal signal. The graph's contribution is best described
+as structured aggregation of legal context, with cross-case shared
+authorities providing a secondary, domain-dependent benefit.
+
+The model resists identity shortcuts at four independent levels.
+At the schema level, courts, judges, and lawyers are local and
+shortcut edges from identity proxies are forbidden; at the text level,
+rhetorical-role and phrase filtering remove direct decision leakage;
+at the model level, the \texttt{no\_names} ablation matches the
+baseline on every bucket; and at the representation level, probing,
+saliency, and error analysis converge on the same conclusion. The
+remaining difficult cases are the doctrinally crowded and document-heavy
+judgments, not the de-identified ones.
+
+Predictions are auditable case by case. The \path{Graph_Analyser}
+pipeline of Chapter~\ref{chap:explainability} surfaces, for any test
+case, the statutes, provisions, precedents, and argument spans the
+frozen model relied on, and verbalises the bundle through a
+Mistral-Small narrative. The same machinery exposes a structural
+signature of confident error: the selected evidence can make the
+predicted label look legally plausible while missing distinguishing
+facts that explain the true outcome.
+
+The cross-bucket representation also transfers, partially, to a fully
+unseen legal domain. Evaluated zero-shot on
+$11{,}769$ food-safety judgments
+(Section~\ref{sec:cross_domain_food_safety}) the model is strictly
+above the majority-class baseline with low across-fold variance,
+which is evidence that the trained HGT carries a partially
+domain-general legal-reasoning prior rather than memorising the
+training domains' statutory hubs. The $\sim\!20$-point gap to
+in-domain performance is substantial and bounds the strength of the
+claim.
+
+\section{Limitations}
+
+\paragraph{Transductive evaluation.} The main Chapter~\ref{chap:results}
+numbers are produced under a transductive protocol, in which the full
+graph, including test cases' entity neighbourhoods, is visible
+during training. This matches a realistic deployment setting (a new
+judgment is appended to an existing canonical vocabulary), and the
+food-safety experiment partially relaxes it by evaluating on an
+entirely unseen legal domain. What the present evaluation does not
+measure is finer-grained inductive generalisation within a familiar
+domain, a calendar-year or court hold-out, where most entities are
+known but the specific case neighbourhood is new. The per-year error
+pattern suggests older cases are harder, which is a prior on how such
+a split would behave.
+
+\paragraph{LLM-generated outcome labels.} The win/loss labels are
+produced by prompting Mistral on the OpenNyAI summary of each case
+and are therefore noisy with respect to the underlying disposition.
+The noise is not uniform: sexual-offences and financial-fraud matters
+often have multi-part dispositions that do not map cleanly onto a
+binary axis, and these are also the two worst-performing buckets,
+at least partly a label-noise effect rather than a modelling
+failure.
+
+\paragraph{Leakage filtering is a lower bound, not a guarantee.} The
+deterministic filters (rhetorical-role labels, field names, leakage
+phrases) plus the structural argument (shared-entity types are law,
+not identity) are neither complete: an RR classifier can mis-label a
+decisive sentence, the phrase list is never exhaustive, and a
+sufficiently expressive GNN could in principle reconstruct a decisive
+fragment from non-decisive neighbours. The \texttt{no\_names} result
+addresses one specific leakage mode, not all of them.
+
+\paragraph{Small ablation margins and non-universal pooled optimum.}
+The best configuration beats the baseline by $+1.7$ accuracy points
+on the pooled dataset, with 5-fold error bars of similar magnitude,
+so close ablations should be read as a cluster of comparable
+configurations rather than a strict ranking. The per-dataset best
+variant also differs by domain: family-matrimonial, motor-accidents,
+and sexual-offences favour different ablations under accuracy or
+macro-F1, so the pooled cross-bucket score is a useful compromise
+over heterogeneous graph geometries rather than evidence that one
+architectural setting is intrinsically best everywhere.
+
+\section{Future Work}
+
+Four directions follow most directly from the findings and
+limitations above.
+
+\paragraph{Stronger generalisation and leakage audits.} The natural
+next experiments are inductive splits that the present transductive
+protocol cannot evaluate: a calendar-year hold-out (e.g.\ train
+pre-2020, test post-2020) and a court hold-out (train on all but one
+High Court). The same hold-out machinery doubles as a sharper
+leakage probe, a judge-hold-out and a court-hold-out would tighten
+the identity-leakage claim from ``no evidence of shortcuts'' to
+``shortcuts are quantitatively bounded''. The connectivity-score
+diagnostic of Chapter~\ref{chap:graph_exploration} is the natural
+metric for these splits.
+
+\paragraph{Richer outcome targets.} The Mistral labeller already
+produces a multi-label variant alongside the binary
+\texttt{win}/\texttt{loss} target used here. Moving the classifier
+head to a multi-label sigmoid or an ordinal regression over the
+$[-1, +1]$ score would absorb the disposition ambiguity that
+currently inflates label noise on sexual-offences and financial-fraud
+matters and would enable disposition-specific error analysis
+(\emph{remanded} versus \emph{dismissed}).
+
+\paragraph{Cross-domain transfer and domain-adaptive heads.} The
+food-safety experiment shows the cross-bucket HGT is a usable
+zero-shot base on an unseen domain but also quantifies the
+$\sim\!20$-point in-domain/out-of-domain gap. Two complementary
+follow-ons map onto that finding: (i) light-weight fine-tuning of
+the classifier head (with an optional \textsc{Case}-node adapter) on
+a modest labelled target-domain sample, to measure how quickly the
+gap closes, and (ii) a domain-conditioned head that reads a domain
+embedding alongside the post-GNN case embedding so that one unified
+model can be evaluated across training and held-out domains without
+per-domain retraining. Scaling the bucket inventory to additional
+domains (tax, labour, consumer) is a related engineering exercise
+that the pipeline already supports.
+
+\paragraph{Expert-in-the-loop validation of case-level explanations.}
+The \path{Graph_Analyser} pipeline already emits, for any case, the
+ranked statutes, provisions, precedents, and argument spans the frozen
+HGT relied on. Sampling
+predictions across confidence and difficulty strata and putting the
+resulting evidence bundles in front of a legal expert would test
+(i) whether the surfaced authorities are legally defensible reasons
+for the predicted outcome, (ii) whether the selected argument evidence
+captures the legally decisive facts, and (iii) whether confident-wrong
+cases correspond to a coherent class of distinguishing-fact omissions.
+That turns the explainer from an
+internal diagnostic into an auditable artefact and is the cleanest
+path from offline evaluation to a deployable review tool.
+
+\medskip
+
+Taken together, the contributions of this thesis are a
+leakage-safe construction pipeline for legal knowledge graphs, an
+HGT-based prediction model whose accuracy survives an aggressive
+identity-leakage audit, a case-level interpretability pipeline that
+exposes both correct reasoning and a structural signature of confident
+error, and a zero-shot evaluation on a fully unseen legal domain that
+quantifies the cross-domain transferability of the learned
+representation.

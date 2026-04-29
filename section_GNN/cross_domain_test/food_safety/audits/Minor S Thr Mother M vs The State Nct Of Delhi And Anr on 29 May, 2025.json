@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 319,
+      "facts": 7423,
+      "arguments": 18514,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 527,
+      "other_lawyer_arguments": 17986
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "FAC": 37,
+      "PRE_RELIED": 37,
+      "STA": 27
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 213,
+      "NONE": 6,
+      "RATIO": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 109,
+    "ignored_sentences": 223,
+    "ignored_entities": [
+      {
+        "sentence_id": 27,
+        "entity_text": "Yogita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Satya Ranjan Swain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "FAC": 37,
+    "PRE_RELIED": 37,
+    "STA": 27
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 213,
+    "NONE": 6,
+    "RATIO": 1,
+    "RPC": 3
+  }
+}

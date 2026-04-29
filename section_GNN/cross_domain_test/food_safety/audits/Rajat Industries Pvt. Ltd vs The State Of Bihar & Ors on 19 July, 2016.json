@@ -1,0 +1,264 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 289,
+          "end": 296
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 289,
+          "end": 296
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 478,
+      "facts": 379,
+      "arguments": 61933,
+      "petitioner_arguments": 10386,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 51546
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 35,
+      "FAC": 2,
+      "PRE_RELIED": 163,
+      "STA": 40
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 155,
+      "ISSUE": 4,
+      "NONE": 7,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 280,
+    "ignored_sentences": 167,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Rajesh Kumar Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Syed Arif Reza",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Jitendra Kumar Chaurasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Megh Nath Chourasia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "S. D. Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "P.N. Shahi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Brisketu Sharan Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Pan  Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Olga Tellis",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "K. Sabanayagam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "K.\n Sabanayagam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 176,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Suman Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Suman  Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Godawat  Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 217,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Ramanathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "Himat Lal Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 322,
+        "entity_text": "Himat Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 398,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 399,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 402,
+        "entity_text": "Ram Jawaya Kapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 406,
+        "entity_text": "D. Bhuvan Mohan Patnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 409,
+        "entity_text": "D Bhuban Patnaik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 35,
+    "FAC": 2,
+    "PRE_RELIED": 163,
+    "STA": 40
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 155,
+    "ISSUE": 4,
+    "NONE": 7,
+    "RPC": 1
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 527,
+          "end": 534
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 535,
+          "end": 542
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 527,
+          "end": 534
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 535,
+          "end": 542
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 537,
+      "facts": 1510,
+      "arguments": 3405,
+      "petitioner_arguments": 1089,
+      "respondent_arguments": 950,
+      "other_lawyer_arguments": 1364
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 2,
+      "FAC": 3,
+      "PRE_RELIED": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 8,
+      "NONE": 4,
+      "RATIO": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 16,
+    "ignored_sentences": 17,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "K. Srinivasa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Girishbhai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Ghisa Ram",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 2,
+    "FAC": 3,
+    "PRE_RELIED": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 8,
+    "NONE": 4,
+    "RATIO": 1,
+    "RPC": 4
+  }
+}

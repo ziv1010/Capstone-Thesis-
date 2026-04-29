@@ -1,0 +1,105 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 143,
+          "end": 150
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 143,
+          "end": 150
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 417,
+          "end": 424
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 417,
+          "end": 424
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 295,
+      "facts": 1084,
+      "arguments": 20709,
+      "petitioner_arguments": 3650,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 17058
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "FAC": 5,
+      "PRE_RELIED": 22,
+      "STA": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 55,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 71,
+    "ignored_sentences": 72,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Raja Kaini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "P.Vikram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "R.Siva Sai Swaroop",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "FAC": 5,
+    "PRE_RELIED": 22,
+    "STA": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 55,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 8
+  }
+}

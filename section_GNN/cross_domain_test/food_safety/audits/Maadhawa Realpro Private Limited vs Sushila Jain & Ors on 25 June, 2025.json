@@ -1,0 +1,63 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 813,
+      "facts": 1441,
+      "arguments": 12543,
+      "petitioner_arguments": 6084,
+      "respondent_arguments": 5477,
+      "other_lawyer_arguments": 980
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 31,
+      "ARG_RESPONDENT": 26,
+      "FAC": 9,
+      "PRE_RELIED": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 41,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 81,
+    "ignored_sentences": 60,
+    "ignored_entities": [
+      {
+        "sentence_id": 51,
+        "entity_text": "Suresh Kumar Agarwalla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Suresh Kumar Agarwalla",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 31,
+    "ARG_RESPONDENT": 26,
+    "FAC": 9,
+    "PRE_RELIED": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 41,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 14
+  }
+}

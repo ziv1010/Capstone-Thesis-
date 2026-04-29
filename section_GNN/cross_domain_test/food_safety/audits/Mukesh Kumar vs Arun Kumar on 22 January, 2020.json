@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1149,
+      "facts": 5542,
+      "arguments": 4237,
+      "petitioner_arguments": 252,
+      "respondent_arguments": 546,
+      "other_lawyer_arguments": 3437
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 3,
+      "FAC": 37,
+      "PRE_RELIED": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 70,
+      "ISSUE": 5,
+      "NONE": 15,
+      "RATIO": 2,
+      "RPC": 31
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 56,
+    "ignored_sentences": 123,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Shilpi Kushwaha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Naresh Chandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Guru Govind Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Arun Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 3,
+    "FAC": 37,
+    "PRE_RELIED": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 70,
+    "ISSUE": 5,
+    "NONE": 15,
+    "RATIO": 2,
+    "RPC": 31
+  }
+}

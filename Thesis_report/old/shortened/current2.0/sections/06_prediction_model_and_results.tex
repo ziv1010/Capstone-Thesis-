@@ -1,0 +1,221 @@
+\chapter{Prediction Model and Results}
+\label{chap:results}
+
+\section{Why a Heterogeneous Graph Transformer?}
+
+Chapter~\ref{chap:graph_exploration} made two demands of the model. The graph has \emph{many node types} carrying different semantics --- a \textsc{Statute} is not a \textsc{Case}, and message passing with a shared weight matrix would force them into the same geometry. The graph also has \emph{many edge types}, and the structural role of an edge depends on its type: \texttt{cites\_statute}, \texttt{heard\_in}, and \texttt{belongs\_to\_statute} should not share aggregation weights.
+
+HGT satisfies both: per-node-type projections, per-edge-type messages, and multi-head attention over heterogeneous neighbourhoods. Compared to RGCN and HAN, HGT learns relation importance via attention rather than a fixed per-relation weight, which matters here because the predictive weight of \texttt{arguments\,$\to$\,cites\_statute\,$\to$\,statute} differs from \texttt{case\,$\to$\,heard\_in\,$\to$\,court}.
+
+\section{Model Architecture}
+
+\paragraph{Input projection.} Every node type is mapped to a common hidden dimension by a per-type linear layer, plus a learnable type embedding ($\mathcal{N}(0,0.02^2)$). This preserves input heterogeneity (1024-dim \texttt{bge-m3} for text nodes; concatenated scalar features for entity nodes) while giving message passing a uniform geometry.
+
+\paragraph{Stacked HGT layers.} Two \texttt{HGTConv} layers with four attention heads and hidden dimension $128$, each wrapped in a residual connection with per-node-type \texttt{LayerNorm}, dropout ($p=0.2$), and ReLU. Two layers is deliberate: the diameter from a \textsc{Case} to a shared \textsc{Statute} is two hops (case $\to$ arguments $\to$ statute).
+
+\paragraph{Classifier head.} The final \textsc{Case} representation is fed to a two-layer MLP producing binary outcome logits.
+
+\paragraph{Training.} AdamW (lr $1\!\times\!10^{-3}$, weight decay $1\!\times\!10^{-5}$), cross-entropy with balanced class weights, 60 epochs with best-validation-F1 early stopping (patience 10). The loss runs on the full transductive graph; only case-node indices are masked into train/val/test partitions. The \texttt{party\_args\_lr\_decay} variant additionally applies layer-wise LR decay to the party-and-argument sub-module, the best-performing configuration.
+
+\section{Experimental Setup}
+
+\paragraph{Transductive protocol.} Training is transductive: the full graph (including test cases' text nodes and entity neighbourhoods) is visible, but test cases' \emph{labels} are withheld via a case-node mask. This matches deployment (a new judgment arrives and its graph is built using the same canonical entities) and lets shared hubs like \textsc{IPC} carry information across the split.
+
+\paragraph{5-fold CV.} Cases are partitioned into 5 stratified folds (seeds 42--46). Each fold: $72\%$ train, $8\%$ validation, $20\%$ test. Validation drives early stopping; the test fold is evaluated once per fold with the best validation checkpoint. Reported numbers are the mean and sample standard deviation across folds.
+
+\paragraph{Evaluation settings.} Six per experiment: one cross-bucket setting pooling all five domains (72k cases), and five per-bucket settings.
+
+\paragraph{Metrics.} Primary: macro-F1 (robust to mild imbalance). Secondary: accuracy, ROC-AUC.
+
+\section{Ablation Variants}
+
+Seven ablations, each a targeted structural or featural removal:
+
+\begin{itemize}
+  \item \texttt{case\_node\_minimised} --- strip the \textsc{Case} node so all case-specific information must flow through neighbours.
+  \item \texttt{no\_names} --- remove party, lawyer, and judge name content from features; keeps connectivity.
+  \item \texttt{no\_cross\_case} --- disable sharing of \textsc{Statute}, \textsc{Provision}, \textsc{Precedent}; every case is an isolated star.
+  \item \texttt{text\_only} --- remove entity nodes entirely; case-plus-text-only hierarchy.
+  \item \texttt{hierarchical\_enc} --- mean-pool overlapping chunks for long text nodes rather than hard-truncate.
+  \item \texttt{section\_sep\_enc} --- encode each rhetorical-role section with a distinct head so features live in disjoint subspaces.
+  \item \texttt{party\_args\_lr\_decay} --- layer-wise LR decay on the party-and-argument sub-module so it remains closer to its initialisation.
+\end{itemize}
+
+\section{Baseline Comparisons}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lccc}
+    \toprule
+    Configuration & Setting & Accuracy & Macro-F1 \\
+    \midrule
+    Majority-class baseline & Fold-0 reference & 0.609 & 0.378 \\
+    Raw-feature logistic regression & Fold-0 reference & 0.744 & 0.736 \\
+    HGT baseline & 5-fold cross-bucket mean & $0.7811\pm0.0055$ & $0.7759\pm0.0043$ \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Reference baselines for the pooled cross-bucket task. The HGT row is the full 5-fold cross-bucket baseline.}
+  \label{tab:baseline_references}
+\end{table}
+
+A plain majority predictor is inadequate; even a strong non-graph reference on raw features reaches only $0.744$ accuracy. The full HGT improves that by roughly three-and-a-half points in accuracy and four points in macro-F1 --- enough to justify the heterogeneous graph as more than decorative representation.
+
+\section{Cross-Bucket Results}
+\label{sec:main_results}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lccc}
+    \toprule
+    Configuration & Accuracy & Macro-F1 & ROC-AUC \\
+    \midrule
+    HGT baseline                      & $0.7811\pm0.0055$ & $0.7759\pm0.0043$ & $0.8674$ \\
+    + \texttt{section\_sep\_enc}      & $0.7892\pm0.0093$ & $0.7831\pm0.0086$ & $0.8712$ \\
+    + \texttt{no\_names}              & $0.7866\pm0.0072$ & $0.7797\pm0.0066$ & $0.8665$ \\
+    + \texttt{no\_cross\_case}        & $0.7837\pm0.0047$ & $0.7767\pm0.0032$ & $0.8658$ \\
+    + \texttt{hierarchical\_enc}      & $0.7811\pm0.0033$ & $0.7754\pm0.0026$ & $0.8655$ \\
+    + \texttt{text\_only}             & $0.7732\pm0.0063$ & $0.7671\pm0.0052$ & $0.8561$ \\
+    + \texttt{case\_node\_minimised}  & $0.7755\pm0.0030$ & $0.7697\pm0.0023$ & $0.8560$ \\
+    \midrule
+    + \textbf{\texttt{party\_args\_lr\_decay}} & $\mathbf{0.8020\pm0.0036}$ &
+      $\mathbf{0.7959\pm0.0028}$ & $\mathbf{0.8831}$ \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Cross-bucket 5-fold CV results. \texttt{party\_args\_lr\_decay} is the best configuration.}
+  \label{tab:cross_bucket_results}
+\end{table}
+
+Three observations anchor the rest of the chapter.
+
+\paragraph{The pooled winner is clear.} \texttt{party\_args\_lr\_decay} reaches $0.8020$ accuracy and $0.7959$ macro-F1 --- a non-trivial improvement over baseline, consistent across folds.
+
+\paragraph{Cross-case sharing does something, but less than expected.} \texttt{no\_cross\_case} scores within noise of baseline ($0.7837$ vs.\ $0.7811$). This does not mean cross-case edges are useless --- the hub structure of Chapter~\ref{chap:graph_exploration} carries genuine signal --- but in the transductive pooled regime, text features are strong enough that removing explicit cross-case paths is largely compensated by within-case structure.
+
+\paragraph{Identity removal does not hurt.} \texttt{no\_names}, which strips party, lawyer, and judge names from features, scores $0.7866$ --- slightly above baseline. The model is not relying on identity to predict the outcome, the operational answer to the leakage concern raised in Section~\ref{sec:leakage_prevention}.
+
+\section{Per-Domain Results}
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lccc}
+    \toprule
+    Bucket & Accuracy & Macro-F1 & ROC-AUC \\
+    \midrule
+    Family \& Matrimonial & $0.8217\pm0.0079$ & $0.8042\pm0.0088$ & $0.8923$ \\
+    Financial Fraud      & $0.7683\pm0.0093$ & $0.7577\pm0.0103$ & $0.8406$ \\
+    Land \& Property     & $0.8083\pm0.0050$ & $0.7916\pm0.0060$ & $0.8645$ \\
+    Motor Accidents      & $0.8420\pm0.0043$ & $0.8147\pm0.0052$ & $0.9010$ \\
+    Sexual Offences      & $0.7752\pm0.0071$ & $0.7538\pm0.0067$ & $0.8442$ \\
+    \midrule
+    \textbf{Cross-bucket pooled} & $0.7811\pm0.0055$ & $0.7759\pm0.0043$ & $0.8674$ \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Per-domain HGT baseline 5-fold CV results.}
+  \label{tab:per_domain}
+\end{table}
+
+The difficulty ordering is stable across all ablations: \emph{Motor Accidents} $>$ \emph{Land \& Property} $\approx$ \emph{Family \& Matrimonial} $>$ \emph{Financial Fraud} $>$ \emph{Sexual Offences}. This tracks two structural properties from Chapter~\ref{chap:graph_exploration}: motor-accidents cases concentrate on a small provision set, producing repetitive high-connectivity sub-graphs the GNN generalises easily; sexual-offences and financial-fraud carry the largest summary-level outcome ambiguity (frequent remands and partial dispositions complicate the binary target).
+
+The cross-bucket pooled task is harder than the average per-domain task ($0.7811$ vs.\ $0.803$ mean): pooling exposes the model to cross-domain distribution shift each single-domain model can avoid. \texttt{party\_args\_lr\_decay} closes most of this gap.
+
+\begin{table}[H]
+  \centering
+  \scriptsize
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lcccc}
+    \toprule
+    Dataset & Best acc.\ variant & Acc. & Best macro-F1 variant & Macro-F1 \\
+    \midrule
+    Cross-bucket pooled & \texttt{party\_args\_lr\_decay} & 0.802 & \texttt{party\_args\_lr\_decay} & 0.796 \\
+    Family \& Matrimonial & \texttt{hierarchical\_enc} & 0.828 & \texttt{section\_sep\_enc} & 0.808 \\
+    Financial Fraud & \texttt{section\_sep\_enc} & 0.772 & \texttt{section\_sep\_enc} & 0.763 \\
+    Land \& Property & \texttt{no\_cross\_case} & 0.811 & \texttt{no\_names} & 0.796 \\
+    Motor Accidents & \texttt{no\_names} & 0.846 & \texttt{no\_names} & 0.819 \\
+    Sexual Offences & \texttt{party\_args\_lr\_decay} & 0.781 & \texttt{party\_args\_lr\_decay} & 0.760 \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Best variant by dataset. The pooled winner is not uniformly dominant once the graph is restricted to a single domain.}
+  \label{tab:best_variant_by_dataset}
+\end{table}
+
+\section{Ablation Findings}
+\label{sec:ablation_findings}
+
+\begin{table}[H]
+  \centering
+  \scriptsize
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lccccc}
+    \toprule
+    Ablation & Family \& Mat. & Fin.\ Fraud & Land \& Prop. & Motor & Sex.\ Off. \\
+    \midrule
+    baseline          & 0.822 & 0.768 & 0.808 & 0.842 & 0.775 \\
+    case\_node\_min.  & 0.820 & 0.768 & 0.801 & 0.842 & 0.775 \\
+    no\_names         & 0.825 & 0.770 & 0.810 & 0.846 & 0.774 \\
+    no\_cross\_case   & 0.825 & 0.769 & 0.811 & 0.842 & 0.775 \\
+    text\_only        & 0.821 & 0.764 & 0.806 & 0.825 & 0.773 \\
+    hierarchical\_enc & 0.828 & 0.767 & 0.803 & 0.844 & 0.778 \\
+    section\_sep\_enc & 0.827 & 0.772 & 0.810 & 0.843 & 0.775 \\
+    party\_args\_lr\_decay & 0.825 & 0.771 & 0.810 & 0.841 & 0.781 \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Per-domain accuracy across ablations (5-fold mean).}
+  \label{tab:ablation_per_domain}
+\end{table}
+
+\begin{enumerate}
+  \item \textbf{Text dominates.} \texttt{text\_only} is within $0.01$ accuracy of baseline on every bucket --- the bulk of the signal is carried by \texttt{bge-m3} embeddings on text nodes, with entity nodes contributing a smaller, bucket-dependent boost.
+  \item \textbf{Names are removable.} \texttt{no\_names} matches or slightly beats baseline. This is the operational leakage check: removing party and judge identities neither helps nor hurts --- the signature of a model not using them as a shortcut.
+  \item \textbf{Cross-case sharing matters most where authorities carry information.} \texttt{no\_cross\_case} matches baseline on the pooled dataset but degrades slightly on financial-fraud and sexual-offences, where statute and precedent sharing carry the most information per case.
+  \item \textbf{Section separation and chunking help modestly and unevenly.} \texttt{section\_sep\_enc} and \texttt{hierarchical\_enc} improve most on long-arguments domains (family-matrimonial, sexual-offences); they do not help motor-accidents, where texts are short.
+  \item \textbf{\texttt{party\_args\_lr\_decay} is the best pooled configuration} ($+2.1$ acc, $+2.0$ macro-F1 over baseline), suggesting that stabilising the party-and-argument sub-module prevents over-fitting to per-bucket surface cues while still benefiting from its signal.
+\end{enumerate}
+
+\section{Out-of-Domain Evaluation: Food Safety}
+\label{sec:cross_domain_food_safety}
+
+Every result so far is drawn from the same five domains the model was trained on. A stricter question is whether the learned reasoning structure transfers to a \emph{legal domain it has never seen}: unfamiliar statutes, unfamiliar argument vocabulary, a different outcome prior. If cross-bucket accuracy were driven by memorising domain-specific hubs, performance on an unseen domain would collapse to majority class; anything materially above baseline is evidence that the model encodes domain-general legal-reasoning signal.
+
+\paragraph{Approach.} 11{,}769 food-safety judgments --- governed primarily by the Food Safety and Standards Act~2006 and the Prevention of Food Adulteration Act~1954, none represented in any training bucket --- are pulled from the same Indian-Kanoon ingest pipeline and run through the identical preprocessing, NER, and outcome-labelling stages. The food-safety graph is built with the same reasoning-focused schema and \texttt{bge-m3} encoder. Each of the five trained \texttt{party\_args\_lr\_decay} fold checkpoints is loaded unchanged and evaluated once on the full graph; no fine-tuning. Reported numbers are mean and sample SD across the five checkpoints.
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lcccc}
+    \toprule
+    Setting & $N$ & Accuracy & Macro-F1 & ROC-AUC \\
+    \midrule
+    Majority-class baseline (food-safety) & 11{,}769 & $0.543$ & -- & -- \\
+    Cross-bucket train $\to$ food-safety  & 11{,}769 & $0.6079\pm0.0054$ & $0.6034\pm0.0070$ & $0.6749\pm0.0198$ \\
+    \midrule
+    \emph{In-domain reference}: cross-bucket 5-fold CV
+      & 72{,}735 & $0.8020\pm0.0036$ & $0.7959\pm0.0028$ & $0.8831$ \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Out-of-domain evaluation on food-safety judgments without fine-tuning. Accuracy is $+6.5$ points above majority; ROC-AUC is $0.67$.}
+  \label{tab:cross_domain_food_safety}
+\end{table}
+
+Every fold is strictly above majority ($0.599$--$0.613$ vs.\ $0.543$), with ROC-AUC of $0.675$ substantially above chance. Across-fold SD is small ($\pm 0.005$), ruling out a lucky checkpoint.
+
+The in-domain reference shows a $\sim$20-point accuracy gap, so this remains a genuine out-of-domain regime. The interesting claim is not that the model transfers strongly, but that the transferred signal is non-trivial and stable: some portion relies on cross-domain legal-reasoning structure (argument-to-outcome mappings, petitioner/respondent dynamics, procedural markers) rather than memorising specific statutes. The confusion matrix supports this: precision for \emph{petitioner-wins} is $0.690$ (the model is conservative on an unfamiliar domain), and recall for \emph{petitioner-loses} is $0.724$ (loss patterns recognised more reliably than win patterns).
+
+The take-away is that the cross-bucket HGT can be used as a \emph{zero-shot base model} for unseen Indian legal domains and will perform meaningfully above chance without fine-tuning, but closing the 20-point gap requires exposing the model to the target domain.
+
+\vspace{0.5em}
+\noindent The remaining open questions --- \emph{what} the learned representation encodes, \emph{which} graph components drive decisions, \emph{where} the model breaks, and \emph{why} a specific prediction is what it is --- are the subject of Chapter~\ref{chap:explainability}.
+
+\endinput

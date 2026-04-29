@@ -1,0 +1,68 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 939,
+      "facts": 828,
+      "arguments": 8335,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8335
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 7,
+      "PRE_RELIED": 70,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 89,
+      "ISSUE": 2,
+      "NONE": 13,
+      "RATIO": 3,
+      "RLC": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 84,
+    "ignored_sentences": 117,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Kramonnati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Kramonnati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Kusum Deshmukh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 7,
+    "PRE_RELIED": 70,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 89,
+    "ISSUE": 2,
+    "NONE": 13,
+    "RATIO": 3,
+    "RLC": 5,
+    "RPC": 5
+  }
+}

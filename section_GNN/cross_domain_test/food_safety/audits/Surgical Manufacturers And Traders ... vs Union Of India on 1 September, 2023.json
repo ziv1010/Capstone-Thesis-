@@ -1,0 +1,139 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 313,
+      "facts": 16402,
+      "arguments": 4034,
+      "petitioner_arguments": 2182,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1851
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 76,
+      "PRE_RELIED": 6,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 184,
+      "ISSUE": 2,
+      "NONE": 12,
+      "RATIO": 10,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 113,
+    "ignored_sentences": 213,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Kajal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Kirtiman Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Shreya V. Mehra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Du  Nandini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Kajal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Vikram Jetly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Shreya Jetly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Niti Aayog",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Niti Aayog",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Niti Aayog",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Adit Pujari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Jetly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Jetly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Jetly",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 76,
+    "PRE_RELIED": 6,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 184,
+    "ISSUE": 2,
+    "NONE": 12,
+    "RATIO": 10,
+    "RPC": 5
+  }
+}

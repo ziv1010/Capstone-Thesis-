@@ -1,0 +1,186 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 714,
+          "end": 721
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 714,
+          "end": 721
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 440,
+      "facts": 1229,
+      "arguments": 33872,
+      "petitioner_arguments": 6352,
+      "respondent_arguments": 2671,
+      "other_lawyer_arguments": 24847
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "ARG_RESPONDENT": 9,
+      "FAC": 6,
+      "PRE_RELIED": 72,
+      "STA": 20
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 213,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 7,
+      "RLC": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 124,
+    "ignored_sentences": 229,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Arvind Datar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Harish Salve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Parag S. Tripathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Datar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Datar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "K.K. Venugopal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Jatin Thukral",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "Datar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Salve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Tripathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 230,
+        "entity_text": "Pinky Anand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Maxwell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 247,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 254,
+        "entity_text": "Nalinakhya Bysack[12",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 255,
+        "entity_text": "Halsbury",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 258,
+        "entity_text": "Russell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "Surjit Singh Kalra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "Datar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "ARG_RESPONDENT": 9,
+    "FAC": 6,
+    "PRE_RELIED": 72,
+    "STA": 20
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 213,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 7,
+    "RLC": 2,
+    "RPC": 1
+  }
+}

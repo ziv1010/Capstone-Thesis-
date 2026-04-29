@@ -1,0 +1,102 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 699,
+          "end": 706
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 699,
+          "end": 706
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 858,
+      "facts": 3209,
+      "arguments": 17161,
+      "petitioner_arguments": 11119,
+      "respondent_arguments": 391,
+      "other_lawyer_arguments": 5649
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 42,
+      "ARG_RESPONDENT": 3,
+      "FAC": 12,
+      "PRE_RELIED": 21,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 90,
+      "NONE": 8,
+      "RATIO": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 95,
+    "ignored_sentences": 108,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Deepak Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "ld. Senir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Gopi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Chint Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Chint Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Himachal High",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 42,
+    "ARG_RESPONDENT": 3,
+    "FAC": 12,
+    "PRE_RELIED": 21,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 90,
+    "NONE": 8,
+    "RATIO": 5,
+    "RPC": 5
+  }
+}

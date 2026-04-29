@@ -1,0 +1,412 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 46,
+      "facts": 29162,
+      "arguments": 7025,
+      "petitioner_arguments": 3384,
+      "respondent_arguments": 857,
+      "other_lawyer_arguments": 2782
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "ARG_RESPONDENT": 5,
+      "FAC": 211,
+      "PRE_RELIED": 18
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 256,
+      "ISSUE": 2,
+      "NONE": 8,
+      "RATIO": 2,
+      "RLC": 10,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 268,
+    "ignored_sentences": 289,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Dipankar Datta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Aadith Ramadorais",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "sonsAadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Arjun Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Arjun",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Arjun",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Aadith Rajson Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Arjun",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Anne",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Sally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 268,
+        "entity_text": "InReach",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 305,
+        "entity_text": "Adith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 316,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 318,
+        "entity_text": "Aadith Ramadorais",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 323,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 324,
+        "entity_text": "Aadith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 326,
+        "entity_text": "Adith Ramadorais",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 327,
+        "entity_text": "Adith Ramadorai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "V. Mohana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 355,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Liz Mathew",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 388,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Aadiths",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Aadiths",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 458,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 460,
+        "entity_text": "Aadith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 462,
+        "entity_text": "Aadiths",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "ARG_RESPONDENT": 5,
+    "FAC": 211,
+    "PRE_RELIED": 18
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 256,
+    "ISSUE": 2,
+    "NONE": 8,
+    "RATIO": 2,
+    "RLC": 10,
+    "RPC": 11
+  }
+}

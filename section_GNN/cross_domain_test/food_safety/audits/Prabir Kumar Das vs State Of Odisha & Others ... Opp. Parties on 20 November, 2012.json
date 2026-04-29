@@ -1,0 +1,139 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1109,
+      "facts": 11737,
+      "arguments": 12818,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 363,
+      "other_lawyer_arguments": 12454
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 2,
+      "FAC": 68,
+      "PRE_RELIED": 59,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "ISSUE": 2,
+      "NONE": 10,
+      "RLC": 4,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 148,
+    "ignored_sentences": 55,
+    "ignored_entities": [
+      {
+        "sentence_id": 39,
+        "entity_text": "Sarva Sikshya Abhiyan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Ashok Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Helper",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Winfield",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Atkin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Macmillan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Pearce",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Borstal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Borstal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Borstal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Borstal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Hakim Seikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Hakim Seikh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 2,
+    "FAC": 68,
+    "PRE_RELIED": 59,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "ISSUE": 2,
+    "NONE": 10,
+    "RLC": 4,
+    "RPC": 4
+  }
+}

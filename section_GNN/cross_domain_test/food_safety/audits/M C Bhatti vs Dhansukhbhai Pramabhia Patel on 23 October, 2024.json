@@ -1,0 +1,257 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 419,
+          "end": 428
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 336,
+          "end": 343
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 213,
+          "end": 222
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 201,
+          "end": 208
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 419,
+          "end": 428
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 336,
+          "end": 343
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 213,
+          "end": 222
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 201,
+          "end": 208
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 607,
+          "end": 616
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 595,
+          "end": 602
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 367,
+          "end": 376
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 355,
+          "end": 362
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 607,
+          "end": 616
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 595,
+          "end": 602
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 367,
+          "end": 376
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 355,
+          "end": 362
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1288,
+      "facts": 2859,
+      "arguments": 28858,
+      "petitioner_arguments": 5598,
+      "respondent_arguments": 1588,
+      "other_lawyer_arguments": 21670
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 4,
+      "FAC": 11,
+      "PRE_RELIED": 60,
+      "STA": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 53,
+      "ISSUE": 1,
+      "NONE": 11,
+      "RATIO": 2,
+      "RLC": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 118,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Kaushal Pandya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Kaushal Pandya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Pandya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Pandya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Utpal Panchal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Utpal Panchal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Craies",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "M.J. Jadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Jadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Joshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Rajesh NEUTRAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 4,
+    "FAC": 11,
+    "PRE_RELIED": 60,
+    "STA": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 53,
+    "ISSUE": 1,
+    "NONE": 11,
+    "RATIO": 2,
+    "RLC": 3,
+    "RPC": 3
+  }
+}

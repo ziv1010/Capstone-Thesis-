@@ -1,0 +1,342 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 462,
+      "facts": 10481,
+      "arguments": 23406,
+      "petitioner_arguments": 9135,
+      "respondent_arguments": 2271,
+      "other_lawyer_arguments": 11998
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 46,
+      "ARG_RESPONDENT": 10,
+      "FAC": 62,
+      "PRE_RELIED": 39,
+      "STA": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 413,
+      "NONE": 90,
+      "RATIO": 1,
+      "RLC": 52,
+      "RPC": 57
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 416,
+    "ignored_sentences": 613,
+    "ignored_entities": [
+      {
+        "sentence_id": 208,
+        "entity_text": "M. Burger",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 208,
+        "entity_text": "J. Wentz",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Wewerinke-Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "J.H. Knox",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "D.R. Boyd",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "M. Wewerinke-Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 302,
+        "entity_text": "J Setzer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 302,
+        "entity_text": "R Byrnes",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "41 D Bodansky",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 316,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 492,
+        "entity_text": "I. Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 512,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 523,
+        "entity_text": "Rajput",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 527,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 528,
+        "entity_text": "Martin Goodman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 529,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 529,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 529,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 532,
+        "entity_text": "Jambheshwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 532,
+        "entity_text": "Jambhoji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 532,
+        "entity_text": "Amrita Devi Bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 532,
+        "entity_text": "Radheshyam Bishnoi4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 536,
+        "entity_text": "Stephen Crane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 537,
+        "entity_text": "Radheshyam Bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 537,
+        "entity_text": "Indias",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 537,
+        "entity_text": "radheshyam-bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 539,
+        "entity_text": "Rajasthans Godawan Smarak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 540,
+        "entity_text": "rajasthans",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 541,
+        "entity_text": "Bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 541,
+        "entity_text": "Martin Goodman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 541,
+        "entity_text": "Bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 541,
+        "entity_text": "Radheshyam Bishnoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 548,
+        "entity_text": "Golden Toad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 645,
+        "entity_text": "Ashok Kumar Rajpur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 645,
+        "entity_text": "PC Garg",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 748,
+        "entity_text": "Vikas Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 749,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 750,
+        "entity_text": "Aishwarya Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 754,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 756,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 757,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 761,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 762,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 764,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 765,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 765,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 771,
+        "entity_text": "Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 774,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 788,
+        "entity_text": "Maninder Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 790,
+        "entity_text": "Maninder Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 791,
+        "entity_text": "Maninder Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 794,
+        "entity_text": "Vishrov Mukerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 795,
+        "entity_text": "Mukerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 796,
+        "entity_text": "Mukerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 824,
+        "entity_text": "Godawan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 859,
+        "entity_text": "Prashanto Chandra Sen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 859,
+        "entity_text": "Divan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 46,
+    "ARG_RESPONDENT": 10,
+    "FAC": 62,
+    "PRE_RELIED": 39,
+    "STA": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 413,
+    "NONE": 90,
+    "RATIO": 1,
+    "RLC": 52,
+    "RPC": 57
+  }
+}

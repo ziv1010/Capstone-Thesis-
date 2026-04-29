@@ -1,0 +1,79 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 594,
+      "facts": 15553,
+      "arguments": 2803,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 2091,
+      "other_lawyer_arguments": 711
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 10,
+      "FAC": 59,
+      "PRE_RELIED": 1,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 198,
+      "ISSUE": 9,
+      "NONE": 18,
+      "RLC": 6,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 241,
+    "ignored_entities": [
+      {
+        "sentence_id": 35,
+        "entity_text": "Bhartiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Sh M Joseph",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Sh Krishan Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Ajay Arora",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Rajeev Saksena",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 10,
+    "FAC": 59,
+    "PRE_RELIED": 1,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 198,
+    "ISSUE": 9,
+    "NONE": 18,
+    "RLC": 6,
+    "RPC": 10
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 245,
+          "end": 254
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 245,
+          "end": 254
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1484,
+      "facts": 5953,
+      "arguments": 34359,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 34359
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 44,
+      "PRE_RELIED": 151,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 225,
+      "ISSUE": 15,
+      "NONE": 27,
+      "RATIO": 1,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 218,
+    "ignored_sentences": 277,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Mukesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Rita Chaddha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Manoj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Rita Chaddha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Zedex Nishan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 292,
+        "entity_text": "Arvind Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 311,
+        "entity_text": "Govind Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Jagdish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Anant10",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 347,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 351,
+        "entity_text": "McGregor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 375,
+        "entity_text": "Pappu Deo Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "Pappu Deo Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "K. Suresh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 401,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 422,
+        "entity_text": "A. P. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 448,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 44,
+    "PRE_RELIED": 151,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 225,
+    "ISSUE": 15,
+    "NONE": 27,
+    "RATIO": 1,
+    "RPC": 9
+  }
+}

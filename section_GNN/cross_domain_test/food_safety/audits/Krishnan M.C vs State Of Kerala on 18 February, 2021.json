@@ -1,0 +1,218 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 65,
+          "end": 72
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 250,
+          "end": 257
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 65,
+          "end": 72
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 250,
+          "end": 257
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1407,
+      "facts": 1292,
+      "arguments": 51857,
+      "petitioner_arguments": 10356,
+      "respondent_arguments": 1405,
+      "other_lawyer_arguments": 40094
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 50,
+      "ARG_RESPONDENT": 5,
+      "FAC": 7,
+      "PRE_RELIED": 159,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 240,
+      "NONE": 15,
+      "RATIO": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 250,
+    "ignored_sentences": 260,
+    "ignored_entities": [
+      {
+        "sentence_id": 17,
+        "entity_text": "Sulthan Bathery",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Girish kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Rajappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Joshy George",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Sasidharan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Gireesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Joshy George",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Gireesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Sudhakaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Rajappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 203,
+        "entity_text": "Rajappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "Ramsaran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Jaisinghani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 272,
+        "entity_text": "Joshy George",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 272,
+        "entity_text": "Harikrishnan R",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "Santhosh T.A.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Girish Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Sasidharan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Harikrishnan R",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 345,
+        "entity_text": "Santhosh T.A.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 345,
+        "entity_text": "Thana Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 351,
+        "entity_text": "Thana Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 50,
+    "ARG_RESPONDENT": 5,
+    "FAC": 7,
+    "PRE_RELIED": 159,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 240,
+    "NONE": 15,
+    "RATIO": 2,
+    "RPC": 3
+  }
+}

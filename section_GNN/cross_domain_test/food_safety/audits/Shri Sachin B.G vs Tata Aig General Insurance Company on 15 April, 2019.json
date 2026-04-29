@@ -1,0 +1,55 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1094,
+      "facts": 2543,
+      "arguments": 1650,
+      "petitioner_arguments": 795,
+      "respondent_arguments": 854,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 5,
+      "FAC": 18
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 61,
+      "ISSUE": 3,
+      "NONE": 24,
+      "RPC": 20
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 41,
+    "ignored_sentences": 108,
+    "ignored_entities": [
+      {
+        "sentence_id": 40,
+        "entity_text": "Aruju S.Pakash",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 5,
+    "FAC": 18
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 61,
+    "ISSUE": 3,
+    "NONE": 24,
+    "RPC": 20
+  }
+}

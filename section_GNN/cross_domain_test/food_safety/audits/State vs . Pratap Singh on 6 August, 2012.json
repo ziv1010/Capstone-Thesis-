@@ -1,0 +1,164 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 330,
+      "facts": 5358,
+      "arguments": 4893,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4893
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 40,
+      "PRE_RELIED": 19,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 29,
+      "NONE": 1,
+      "RATIO": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 71,
+    "ignored_sentences": 38,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "V. D. Pande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Shiv Narayan Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "V.K. Jha",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Shiv Narayan Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Ramesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Hari Parkash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Shiv Narayan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "HC Rajender Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Balraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Ghevra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "V.D. Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Shiv Narain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "V. D Pandey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Shiv Narayan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Hari Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Hari Prakash",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Shiv Narayan Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Clerk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Lindsell",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 40,
+    "PRE_RELIED": 19,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 29,
+    "NONE": 1,
+    "RATIO": 3,
+    "RPC": 5
+  }
+}

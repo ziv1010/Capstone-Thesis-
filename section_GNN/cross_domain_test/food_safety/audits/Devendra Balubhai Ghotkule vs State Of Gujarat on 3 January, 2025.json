@@ -1,0 +1,124 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 867,
+      "facts": 1454,
+      "arguments": 27544,
+      "petitioner_arguments": 8589,
+      "respondent_arguments": 2089,
+      "other_lawyer_arguments": 16864
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 45,
+      "ARG_RESPONDENT": 10,
+      "FAC": 6,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 7,
+      "STA": 39
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 29,
+      "NONE": 6,
+      "RATIO": 3,
+      "RLC": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 128,
+    "ignored_sentences": 42,
+    "ignored_entities": [
+      {
+        "sentence_id": 32,
+        "entity_text": "J.M.F.C.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Valsad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Panjarapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Nisarg Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Panjrapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Panjrapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Panjrapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Gitaben B. Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "pinjarapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Panjarapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Pinjarapole",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Laxminarayan Modi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "A. Nagaraja",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 45,
+    "ARG_RESPONDENT": 10,
+    "FAC": 6,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 7,
+    "STA": 39
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 29,
+    "NONE": 6,
+    "RATIO": 3,
+    "RLC": 2,
+    "RPC": 2
+  }
+}

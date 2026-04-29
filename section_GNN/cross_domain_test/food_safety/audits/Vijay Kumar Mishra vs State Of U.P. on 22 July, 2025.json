@@ -1,0 +1,232 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 507,
+      "facts": 4616,
+      "arguments": 37601,
+      "petitioner_arguments": 3391,
+      "respondent_arguments": 948,
+      "other_lawyer_arguments": 33260
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 4,
+      "FAC": 22,
+      "PRE_RELIED": 85,
+      "STA": 27
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 31,
+      "NONE": 2,
+      "RATIO": 6,
+      "RLC": 2,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 157,
+    "ignored_sentences": 59,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Shiv Shanker Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Vakalatnama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Pramod Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Abhimanyu Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Ajay Kumar Mishra alias Pappu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Ramkripal Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Abhimanyu Prasad Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Harish Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Jnardhan Prasad Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Vimla Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "A.P. Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "A.P. Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "S.N.S. Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "S.N.S.\nYadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Harish Kumar Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Pramod Kumar Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Vijay Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Virendra Pratap Dubey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "A.P. Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "S.N.S. Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "I.O. Pannal Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Vrishketu Rai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Harish Kumar Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Pramod Kumar Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Vijay Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Virendra Pratap Dubey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Taufiq Hussain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Bahubali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Vikram Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 4,
+    "FAC": 22,
+    "PRE_RELIED": 85,
+    "STA": 27
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 31,
+    "NONE": 2,
+    "RATIO": 6,
+    "RLC": 2,
+    "RPC": 18
+  }
+}

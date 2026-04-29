@@ -16,15 +16,15 @@ import networkx as nx
 
 # ── config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker"
+BASE_DIR = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3"
 OUT_DIR  = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GRAPH_VISUALISER/entity_analysis/outputs"
 
 BUCKETS = [
-    "family_matrimonial_timed_mistral",
-    "land_property_timed_mistral",
-    "motor_accidents_timed_mistral",
-    "sexual_offences_timed_mistral",
-    "fin_fraud_timed_mistral",
+    "family_matrimonial",
+    "land_property",
+    "motor_accidents",
+    "sexual_offences",
+    "fin_fraud",
 ]
 
 # Entity types that carry legal signal (exclude DATE, OTHER_PERSON as too noisy)
@@ -283,8 +283,8 @@ def run_within_bucket():
 def run_cross_bucket():
     print("\n═══ CROSS-BUCKET ANALYSIS ═══\n")
 
-    # use the pre-merged cross_bucket_total_dataset directory
-    cross_dir = f"{BASE_DIR}/cross_bucket_total_dataset"
+    # use the pre-merged combined dataset directory
+    cross_dir = f"{BASE_DIR}/combined_dataset_without_food_safety"
     files = sorted(glob.glob(f"{cross_dir}/*.json"))
     if MAX_FILES:
         files = files[:MAX_FILES * len(BUCKETS)]

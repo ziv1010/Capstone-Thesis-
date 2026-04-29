@@ -1,0 +1,158 @@
+project:
+  name: multi_hearing_stage_test
+  seed: 42
+
+paths:
+  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/input_jsons
+  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed
+  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/cleaned_cases
+  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/normalized_entities
+  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/embeddings_cache
+  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/graph_cache
+  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/audits
+  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/outputs
+
+data:
+  file_glob: "*.json"
+  limit: null
+  sample_case_ids: []
+
+preprocessing:
+  label_field: case_outcome_score
+  label_value_map:
+    "-1": "-1"
+    "0": "-1"
+    "1": "1"
+  skip_missing_or_unmapped_labels: true
+  use_preamble_end_offset: true
+  preamble_roles: [PREAMBLE]
+  facts_roles: [FAC]
+  petitioner_argument_roles: [ARG_PETITIONER]
+  respondent_argument_roles: [ARG_RESPONDENT]
+  other_argument_roles: [PRE_RELIED, PRE_NOT_RELIED, STA]
+  dropped_sentence_roles: [ANALYSIS, ISSUE, NONE, RATIO, RLC, RPC]
+  mask_token: "[LEAKAGE_MASK]"
+  leakage_phrases:
+    - petition stands disposed of
+    - writ petition stands disposed of
+    - appeal is allowed
+    - appeal allowed
+    - petition is allowed
+    - petition allowed
+    - appeal dismissed
+    - petition dismissed
+    - writ petition dismissed
+    - matter remanded
+    - set aside
+    - quashed
+    - liberty granted
+    - tribunal shall entertain
+    - consequently, connected miscellaneous petition is closed
+    - without rejecting it on the ground of limitation
+
+graph:
+  build_mode: full_star_global
+  use_to_undirected: true
+  include_sections:
+    - preamble
+    - facts
+    - arguments
+    - petitioner_arguments
+    - respondent_arguments
+    - other_lawyer_arguments
+  case_text_sections:
+    - facts
+    - arguments
+    - petitioner_arguments
+    - respondent_arguments
+  include_node_types:
+    - case
+    - preamble
+    - facts
+    - arguments
+    - petitioner_arguments
+    - respondent_arguments
+    - other_lawyer_arguments
+    - petitioner
+    - respondent
+    - court
+    - judge
+    - petitioner_lawyer
+    - defence_lawyer
+    - lawyer
+    - statute
+    - provision
+    - precedent
+  shareable_node_types: []
+  share_party_nodes: false
+  cache_name: stage_test_graph.reasoning_focused.pt
+  debug_sample_size: 0
+
+features:
+  text_encoder:
+    backend: sentence_transformers
+    model_name: BAAI/bge-m3
+    batch_size: 32
+    max_length: 512
+    device: cuda
+    multi_process: true
+  fallback_text_encoder:
+    backend: hashing
+    dim: 384
+  case_scalar_names:
+    - respondent_count
+    - judge_count
+    - lawyer_count
+    - statute_count
+    - provision_count
+    - precedent_count
+    - preamble_length
+    - facts_length
+    - arguments_length
+    - case_year
+    - petition_type_known
+    - petition_type_hash
+  entity_scalar_names:
+    - mention_count
+    - first_seen_preamble
+    - first_seen_facts
+    - first_seen_arguments
+    - seen_in_arguments
+    - seen_in_preamble
+    - local_case_frequency
+    - degree
+    - global_case_frequency
+    - is_shared_node
+
+labels:
+  task_mode: binary
+  drop_procedural: false
+  binary_map:
+    "-1": "-1"
+    "1": "1"
+  class_order_binary:
+    - "-1"
+    - "1"
+
+# Splits are irrelevant for inference-only use; all cases will be evaluated.
+splits:
+  mode: random
+  train_size: 0.7
+  val_size: 0.15
+  test_size: 0.15
+  stratify: true
+  random_state: 42
+
+# Paths to the trained model the test cases will be evaluated against.
+inference:
+  trained_model_run_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/cross_bucket_party_args_lr_decay_kfold/kfold
+  trained_graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_party_args.reasoning_focused.pt
+  folds_to_use: [0, 1, 2, 3, 4]
+  ensemble: mean_proba
+  model:
+    architecture: hgt
+    hidden_dim: 64
+    num_layers: 2
+    num_heads: 4
+    dropout: 0.25
+    mlp_hidden_dim: 128

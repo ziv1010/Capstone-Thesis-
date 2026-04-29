@@ -1,0 +1,262 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1333,
+      "facts": 14949,
+      "arguments": 15768,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 307,
+      "other_lawyer_arguments": 15460
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 2,
+      "FAC": 102,
+      "PRE_RELIED": 38,
+      "STA": 28
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 199,
+      "ISSUE": 2,
+      "NONE": 5,
+      "RPC": 22
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 190,
+    "ignored_sentences": 228,
+    "ignored_entities": [
+      {
+        "sentence_id": 15,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Pradip Chavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Birendra Saraf",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Gauri Joglekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Meraki",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Anupama Sardana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sheeja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Denzil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "A.B. Kamble",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "R. Salunkhe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Mohini Puri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Mohini Puri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Pradip Chavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Mohini Puri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "J.P. Jadwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "J. P.\nJadwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Chavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Mohini Puri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Chavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Chavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Gauri Joglekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Manoj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 343,
+        "entity_text": "Sayali Sawant",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 2,
+    "FAC": 102,
+    "PRE_RELIED": 38,
+    "STA": 28
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 199,
+    "ISSUE": 2,
+    "NONE": 5,
+    "RPC": 22
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 588,
+      "facts": 7847,
+      "arguments": 10101,
+      "petitioner_arguments": 4002,
+      "respondent_arguments": 2799,
+      "other_lawyer_arguments": 3298
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 10,
+      "FAC": 49,
+      "PRE_RELIED": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 520,
+      "ISSUE": 2,
+      "NONE": 6,
+      "RATIO": 3,
+      "RLC": 20,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 87,
+    "ignored_sentences": 553,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "Amar Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "UGC Bidhi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "UGC Baldev Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Brij Bhushan Kaul",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Radha Puri",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Amar Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Shashi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Jag Pravesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Ishwar Chander",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Usha Bansal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Brij Bhushan Kaul",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Gargi Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Gargi Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "T.R. Malhotra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 378,
+        "entity_text": "Tirloki Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 378,
+        "entity_text": "Brij Bhushan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 378,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 10,
+    "FAC": 49,
+    "PRE_RELIED": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 520,
+    "ISSUE": 2,
+    "NONE": 6,
+    "RATIO": 3,
+    "RLC": 20,
+    "RPC": 2
+  }
+}

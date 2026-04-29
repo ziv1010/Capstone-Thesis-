@@ -1,0 +1,152 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 356,
+      "facts": 2975,
+      "arguments": 36342,
+      "petitioner_arguments": 3729,
+      "respondent_arguments": 693,
+      "other_lawyer_arguments": 31918
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 20,
+      "ARG_RESPONDENT": 3,
+      "FAC": 13,
+      "PRE_RELIED": 76,
+      "STA": 29
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 38,
+      "NONE": 1,
+      "RATIO": 5,
+      "RLC": 4,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 143,
+    "ignored_sentences": 66,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Vansharaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Tulsi Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Sharda Prasad Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Rajesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Vanshraj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Vanshraj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Sharda Prasad Mishra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Gangaram Chandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Vanshraj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Arvind Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Kuldeep Narain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Vanshraj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Gangaram Chandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Vikram Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 20,
+    "ARG_RESPONDENT": 3,
+    "FAC": 13,
+    "PRE_RELIED": 76,
+    "STA": 29
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 38,
+    "NONE": 1,
+    "RATIO": 5,
+    "RLC": 4,
+    "RPC": 18
+  }
+}

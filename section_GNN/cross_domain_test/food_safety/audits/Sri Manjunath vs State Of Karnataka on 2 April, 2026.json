@@ -1,0 +1,70 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 98,
+      "facts": 1503,
+      "arguments": 1174,
+      "petitioner_arguments": 622,
+      "respondent_arguments": 551,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 5,
+      "FAC": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 1,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 27,
+    "ignored_sentences": 10,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "K.MUNIYAPPA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "RAJENDRA V G.,ADVOCATE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "NARAYANA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "SMT.ASNA KOUSE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 5,
+    "FAC": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 1,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

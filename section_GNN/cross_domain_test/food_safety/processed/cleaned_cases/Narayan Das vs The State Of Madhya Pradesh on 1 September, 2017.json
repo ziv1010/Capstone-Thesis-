@@ -1,0 +1,137 @@
+{
+  "case_id": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017",
+  "file_name": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017.json",
+  "file_id": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017.json",
+  "raw_label": "1",
+  "texts": {
+    "preamble": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017 1 Crr.851/2017 Narayan Das Vs. State of M.P.",
+    "facts": "",
+    "arguments": "",
+    "petitioner_arguments": "",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 0,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 2,
+    "court_count": 0,
+    "preamble_length": 108,
+    "facts_length": 0,
+    "arguments_length": 0,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [],
+    "judge_names": [],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "1",
+    "source_decision_label": "1"
+  },
+  "entities": [
+    {
+      "entity_type": "date",
+      "raw_name": "1 September,",
+      "canonical_name": "1 september,",
+      "mentions": [
+        {
+          "entity_type": "date",
+          "raw_text": "1 September,",
+          "canonical_text": "1 september,",
+          "section": "PREAMBLE",
+          "annotation_id": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017:sentence_1:entity_1",
+          "start": 46,
+          "end": 59
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "precedent",
+      "raw_name": "Narayan Das Vs. State of M.P.",
+      "canonical_name": "narayan das vs state of mp",
+      "mentions": [
+        {
+          "entity_type": "precedent",
+          "raw_text": "Narayan Das Vs. State of M.P.",
+          "canonical_text": "narayan das vs state of mp",
+          "section": "PREAMBLE",
+          "annotation_id": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017:sentence_1:entity_2",
+          "start": 82,
+          "end": 111
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "precedent",
+      "raw_name": "Narayan Das vs The State Of Madhya Pradesh",
+      "canonical_name": "narayan das vs the state of madhya pradesh",
+      "mentions": [
+        {
+          "entity_type": "precedent",
+          "raw_text": "Narayan Das vs The State Of Madhya Pradesh",
+          "canonical_text": "narayan das vs the state of madhya pradesh",
+          "section": "PREAMBLE",
+          "annotation_id": "Narayan Das vs The State Of Madhya Pradesh on 1 September, 2017:sentence_1:entity_0",
+          "start": 0,
+          "end": 42
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 108,
+        "facts": 0,
+        "arguments": 0,
+        "petitioner_arguments": 0,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {},
+      "dropped_sentence_role_counts": {
+        "NONE": 12,
+        "RLC": 1,
+        "RPC": 4
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 1,
+      "ignored_sentences": 17,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {},
+    "dropped_sentence_role_counts": {
+      "NONE": 12,
+      "RLC": 1,
+      "RPC": 4
+    }
+  }
+}

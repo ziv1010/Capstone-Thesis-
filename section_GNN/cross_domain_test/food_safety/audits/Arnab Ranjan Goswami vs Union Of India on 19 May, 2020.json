@@ -1,0 +1,431 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 452,
+      "facts": 4102,
+      "arguments": 45432,
+      "petitioner_arguments": 18435,
+      "respondent_arguments": 8216,
+      "other_lawyer_arguments": 18779
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 59,
+      "ARG_RESPONDENT": 21,
+      "FAC": 25,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 72,
+      "STA": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 148,
+      "ISSUE": 4,
+      "NONE": 9,
+      "RATIO": 6,
+      "RLC": 2,
+      "RPC": 20
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 211,
+    "ignored_sentences": 189,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Pritam Deshmukh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Suraj Singh Thakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Pankaj Prajapti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "NSUI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Anshuman Shrivastavas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Balram Jakhad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Jaswant Gujar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Fundurdihari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Rajesh Dubey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Anil Kumar Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Hussaini Alam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Anuj Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Kumar Raja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Kapil Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Mukul Rohatgi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Sundaram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Sonia Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Sundaram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Republic Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "S Sundaram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Arnab Goswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Arnab Goswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Jama Masjid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Arnab Goswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Arnab Goswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Harish Salve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Salve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Salve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Tushar Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Kapil Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Kapil Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Abhishek Manu Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 163,
+        "entity_text": "Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "K V Vishwanathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "TT Antony",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Kari Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 189,
+        "entity_text": "Saldanha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Upkar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Ram Lal Narang",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Kari Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Saldanha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "TT Antony",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Kapil Sibal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Yuval Noah Harari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 273,
+        "entity_text": "Dukhishyam Benupani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 276,
+        "entity_text": "K Nandini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "Poochta hai Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "R Bharat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 376,
+        "entity_text": "Suraj Singh Thakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 377,
+        "entity_text": "Pankaj Prajapti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 377,
+        "entity_text": "NSUI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 377,
+        "entity_text": "Anshuman Shrivastavas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 378,
+        "entity_text": "Balram Jakhad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 379,
+        "entity_text": "Jaswant Gujar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "Fundurdihari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "Rajesh Dubey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "Anil Kumar Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "Hussaini Alam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 383,
+        "entity_text": "Anuj Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 384,
+        "entity_text": "Kumar Raja",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 59,
+    "ARG_RESPONDENT": 21,
+    "FAC": 25,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 72,
+    "STA": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 148,
+    "ISSUE": 4,
+    "NONE": 9,
+    "RATIO": 6,
+    "RLC": 2,
+    "RPC": 20
+  }
+}

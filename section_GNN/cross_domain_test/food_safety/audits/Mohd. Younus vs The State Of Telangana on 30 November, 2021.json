@@ -1,0 +1,172 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 132,
+          "end": 139
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1165,
+      "facts": 948,
+      "arguments": 58705,
+      "petitioner_arguments": 29212,
+      "respondent_arguments": 685,
+      "other_lawyer_arguments": 28806
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 115,
+      "ARG_RESPONDENT": 3,
+      "FAC": 2,
+      "PRE_RELIED": 36,
+      "STA": 33
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 92,
+      "NONE": 23,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 201,
+    "ignored_sentences": 122,
+    "ignored_entities": [
+      {
+        "sentence_id": 38,
+        "entity_text": "COTPA 2003",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Younus",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Khedan Lal and Sons",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Indira Jaisingh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 209,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Anay Kumar Banerjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "S.Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "R.Krishnamurthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Laxmikant",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 278,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Bhangde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Godawat Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 115,
+    "ARG_RESPONDENT": 3,
+    "FAC": 2,
+    "PRE_RELIED": 36,
+    "STA": 33
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 92,
+    "NONE": 23,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

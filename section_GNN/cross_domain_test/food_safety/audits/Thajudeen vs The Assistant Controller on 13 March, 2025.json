@@ -1,0 +1,72 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 810,
+      "facts": 915,
+      "arguments": 13150,
+      "petitioner_arguments": 1210,
+      "respondent_arguments": 1131,
+      "other_lawyer_arguments": 10807
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 3,
+      "FAC": 4,
+      "PRE_RELIED": 1,
+      "STA": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 38,
+      "NONE": 1,
+      "RATIO": 3,
+      "RLC": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 43,
+    "ignored_sentences": 52,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Ranjit George",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Renjith George",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "A.Shafeek Kayamkulam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 3,
+    "FAC": 4,
+    "PRE_RELIED": 1,
+    "STA": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 38,
+    "NONE": 1,
+    "RATIO": 3,
+    "RLC": 5,
+    "RPC": 5
+  }
+}

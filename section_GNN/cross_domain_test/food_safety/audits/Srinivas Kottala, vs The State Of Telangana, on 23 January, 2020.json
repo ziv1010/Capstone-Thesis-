@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 169,
+          "end": 178
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 169,
+          "end": 178
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 741,
+      "facts": 1640,
+      "arguments": 10211,
+      "petitioner_arguments": 1321,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8889
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "FAC": 5,
+      "PRE_RELIED": 51
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 17,
+      "NONE": 4,
+      "RATIO": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 72,
+    "ignored_sentences": 31,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Kottala Srinivas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Masaparupu Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Jefferson",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "FAC": 5,
+    "PRE_RELIED": 51
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 17,
+    "NONE": 4,
+    "RATIO": 5,
+    "RPC": 5
+  }
+}

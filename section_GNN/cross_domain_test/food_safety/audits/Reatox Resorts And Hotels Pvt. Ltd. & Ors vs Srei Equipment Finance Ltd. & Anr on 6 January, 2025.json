@@ -1,0 +1,144 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 444,
+      "facts": 2207,
+      "arguments": 38313,
+      "petitioner_arguments": 399,
+      "respondent_arguments": 320,
+      "other_lawyer_arguments": 37592
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 2,
+      "FAC": 10,
+      "PRE_RELIED": 143,
+      "STA": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 166,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 184,
+    "ignored_sentences": 184,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Satadru Lahiri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Soumayjyoti Nandy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Deepankar Jhakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Jyotirmoy Talukder",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Sunil Bharti Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Sunil Bharti Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "N.\nRadhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 283,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 292,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "N.\nRadhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 297,
+        "entity_text": "P. Anand Gajapathi Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "N.\nRadhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 330,
+        "entity_text": "Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 334,
+        "entity_text": "Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 2,
+    "FAC": 10,
+    "PRE_RELIED": 143,
+    "STA": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 166,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 10
+  }
+}

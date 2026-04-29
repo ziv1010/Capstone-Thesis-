@@ -1,0 +1,75 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 358,
+      "facts": 3330,
+      "arguments": 5594,
+      "petitioner_arguments": 3549,
+      "respondent_arguments": 1629,
+      "other_lawyer_arguments": 414
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 7,
+      "FAC": 15,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 41,
+    "ignored_sentences": 42,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "KINDER",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "KINDER JOY",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "FERRERO RONDNOIR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "R.D. Munde",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 7,
+    "FAC": 15,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 2
+  }
+}

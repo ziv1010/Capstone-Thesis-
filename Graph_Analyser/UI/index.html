@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNN Explainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app-container">
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h2>Explainer Cases</h2>
+                <p>Phase 5 Reasoning</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search case ID...">
+            </div>
+            <button type="button" id="analytics-button" class="analytics-button">
+                📊 Dataset Analytics
+            </button>
+            <ul id="case-list">
+                <div class="loading">Loading cases...</div>
+            </ul>
+        </aside>
+
+        <main id="main-content">
+            <div class="max-w-wrapper">
+                <div id="welcome-state" class="state-container">
+                    <div class="welcome-card">
+                        <div class="icon">🔍</div>
+                        <h2>Select a Case</h2>
+                        <p>Explore pipeline outputs, graph-explainer evidence, retrieved analogues, and the final LLM reasoning.</p>
+                    </div>
+                </div>
+
+                <div id="loading-state" class="state-container hidden">
+                    <div id="loading-indicator" class="loader"></div>
+                    <p id="loading-copy" class="loading-copy">Analyzing data...</p>
+                </div>
+
+                <div id="analytics-state" class="hidden">
+                    <header class="detail-header">
+                        <h1>Dataset Analytics</h1>
+                        <p class="detail-toolbar-copy">Aggregated statistics across the full evaluation set and the 100 explained cases.</p>
+                    </header>
+                    <div id="analytics-content" class="analytics-grid">
+                        <div class="loading">Loading analytics...</div>
+                    </div>
+                </div>
+
+                <div id="detail-state" class="hidden">
+                    <header class="detail-header">
+                        <h1 id="detail-case-id">Case ID</h1>
+                        <div class="badges">
+                            <span id="badge-prediction" class="badge">Pred: -</span>
+                            <span id="badge-target" class="badge">Target: -</span>
+                            <span id="badge-confidence" class="badge">Conf: -</span>
+                            <span id="badge-correctness" class="badge">-</span>
+                        </div>
+                    </header>
+
+                    <div class="detail-toolbar">
+                        <div class="detail-tabs" role="tablist" aria-label="Case views">
+                            <button type="button" class="detail-tab active" data-tab="stages" role="tab" aria-selected="true">
+                                Pipeline Stages
+                            </button>
+                            <button type="button" class="detail-tab" data-tab="summary" role="tab" aria-selected="false">
+                                Final Summary
+                            </button>
+                            <button type="button" class="detail-tab" data-tab="graph" role="tab" aria-selected="false">
+                                Connection Graph
+                            </button>
+                        </div>
+                        <p class="detail-toolbar-copy">Step through pipeline stages, read the final narrative, or explore the case's connection graph.</p>
+                    </div>
+
+                    <div id="detail-panel-stages" class="detail-panel">
+                        <div id="pipeline-stages" class="pipeline-list"></div>
+                    </div>
+
+                    <div id="detail-panel-summary" class="detail-panel hidden">
+                        <section class="card summary-card">
+                            <div class="card-header">
+                                <h3>🧠 Final LLM Reasoning</h3>
+                            </div>
+                            <div id="summary-explanation" class="markdown-body"></div>
+                        </section>
+                        <div class="row-grid summary-grid">
+                            <section class="card">
+                                <div class="card-header"><h3>⚖️ Key Precedents</h3></div>
+                                <div id="precedents-list" class="node-list"></div>
+                            </section>
+                            <section class="card">
+                                <div class="card-header"><h3>🔗 Retrieved Cases</h3></div>
+                                <div id="similar-cases-list" class="node-list"></div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div id="detail-panel-graph" class="detail-panel hidden">
+                        <div class="graph-layout">
+                            <section class="card graph-stage-card">
+                                <div class="card-header graph-card-header">
+                                    <div>
+                                        <h3>🧭 Reasoning Graph</h3>
+                                        <p id="graph-description" class="card-subtext">Select a case to see a node-link map of the reasoning evidence.</p>
+                                    </div>
+                                    <div class="graph-legend" id="graph-legend"></div>
+                                </div>
+                                <div id="graph-visualization" class="graph-visualization">
+                                    <div class="graph-empty">Select a case to render the reasoning map.</div>
+                                </div>
+                                <div id="graph-tooltip" class="graph-tooltip hidden"></div>
+                            </section>
+
+                            <div class="graph-side-column">
+                                <section class="card">
+                                    <div class="card-header"><h3>📊 Snapshot</h3></div>
+                                    <div id="graph-stats" class="stat-grid"></div>
+                                </section>
+                                <section class="card">
+                                    <div class="card-header"><h3>📈 Connection Mix</h3></div>
+                                    <div id="graph-breakdown" class="breakdown-list"></div>
+                                </section>
+                                <section class="card">
+                                    <div class="card-header"><h3>✨ Key Signals</h3></div>
+                                    <div id="graph-insights" class="insight-list"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

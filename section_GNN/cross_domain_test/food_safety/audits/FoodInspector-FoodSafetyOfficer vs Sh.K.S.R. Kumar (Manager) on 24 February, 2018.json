@@ -1,0 +1,81 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1098,
+      "facts": 0,
+      "arguments": 2849,
+      "petitioner_arguments": 778,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2070
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "PRE_RELIED": 7,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 5,
+      "NONE": 35,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 95,
+    "ignored_sentences": 61,
+    "ignored_entities": [
+      {
+        "sentence_id": 63,
+        "entity_text": "Channa Dal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Mohinder Virat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Sushil Kumar Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Craies",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "PRE_RELIED": 7,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 5,
+    "NONE": 35,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 15
+  }
+}

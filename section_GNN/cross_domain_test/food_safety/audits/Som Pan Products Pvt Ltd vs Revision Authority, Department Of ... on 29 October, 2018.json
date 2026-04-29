@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 534,
+      "facts": 3002,
+      "arguments": 5740,
+      "petitioner_arguments": 4617,
+      "respondent_arguments": 469,
+      "other_lawyer_arguments": 652
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "ARG_RESPONDENT": 5,
+      "FAC": 12,
+      "PRE_RELIED": 1,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 19,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 39,
+    "ignored_sentences": 27,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Som",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "ARG_RESPONDENT": 5,
+    "FAC": 12,
+    "PRE_RELIED": 1,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 19,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 3
+  }
+}

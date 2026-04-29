@@ -1,0 +1,61 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 217,
+      "facts": 737,
+      "arguments": 3017,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3017
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 5,
+      "PRE_RELIED": 12,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 19,
+      "NONE": 9,
+      "RATIO": 2,
+      "RLC": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 21,
+    "ignored_sentences": 39,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Bhukya Bixapathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Pulya",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 5,
+    "PRE_RELIED": 12,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 19,
+    "NONE": 9,
+    "RATIO": 2,
+    "RLC": 2,
+    "RPC": 7
+  }
+}

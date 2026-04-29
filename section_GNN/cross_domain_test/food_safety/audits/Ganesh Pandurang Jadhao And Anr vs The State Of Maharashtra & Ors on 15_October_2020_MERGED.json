@@ -1,0 +1,335 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 91,
+          "end": 98
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 251,
+          "end": 258
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 199,
+          "end": 206
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 103,
+      "facts": 6472,
+      "arguments": 31108,
+      "petitioner_arguments": 4554,
+      "respondent_arguments": 2075,
+      "other_lawyer_arguments": 24477
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 7,
+      "FAC": 35,
+      "PRE_RELIED": 23,
+      "STA": 53
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 193,
+      "ISSUE": 1,
+      "NONE": 12,
+      "RATIO": 6,
+      "RLC": 11,
+      "RPC": 16
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 270,
+    "ignored_sentences": 239,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "D.B. Thoke",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sujauddin Sk. Khaliluddin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Rameshkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "P.F. Patni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "R.P. Adgoankar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Jamil Ahemad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Manoharrao Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 266,
+        "entity_text": "Vijay Shantilal Chopada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 267,
+        "entity_text": "Pravin Rameshchandra Ajmera",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 268,
+        "entity_text": "Anwar Yusufe Syed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Umesh Malani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "Narendar Tiwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 291,
+        "entity_text": "Parbhani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 297,
+        "entity_text": "Sachin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Jawaharlal Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Mehbood Amirsab Tamboli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "Umesh Malani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "Nisar Hussain altafhussain Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 307,
+        "entity_text": "Nitin Govindra Kenekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "V.W. Hadke",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 310,
+        "entity_text": "Johel Ahemad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 310,
+        "entity_text": "Jamil Ahemad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Umesh Malani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Pravin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "Manoharrao Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "R.F. Totla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "P.F. Patni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "C.R. Deshpande",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "Z.M. Pathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "R.O. Awasarmal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 320,
+        "entity_text": "S.B. Yawalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 329,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 329,
+        "entity_text": "Pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 331,
+        "entity_text": "S K Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 333,
+        "entity_text": "S K Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 377,
+        "entity_text": "Yawalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 380,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 383,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 383,
+        "entity_text": "Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 417,
+        "entity_text": "Sreedharan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 417,
+        "entity_text": "Sreedharan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 426,
+        "entity_text": "Vasim Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 426,
+        "entity_text": "Khurshida Hamid Shaikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 429,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 444,
+        "entity_text": "Shave",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 444,
+        "entity_text": "Ponda",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 7,
+    "FAC": 35,
+    "PRE_RELIED": 23,
+    "STA": 53
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 193,
+    "ISSUE": 1,
+    "NONE": 12,
+    "RATIO": 6,
+    "RLC": 11,
+    "RPC": 16
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 325,
+      "facts": 538,
+      "arguments": 865,
+      "petitioner_arguments": 618,
+      "respondent_arguments": 246,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 1,
+      "FAC": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 8,
+    "ignored_sentences": 9,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Raja Reddy Koneti",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 1,
+    "FAC": 2
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 2
+  }
+}

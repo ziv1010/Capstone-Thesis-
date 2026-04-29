@@ -1,0 +1,51 @@
+section_gnn_root: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN
+
+graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_party_args.reasoning_focused.pt
+
+checkpoint_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/cross_bucket_party_args_lr_decay_kfold/kfold/fold_00
+
+model:
+  architecture: hgt
+  hidden_dim: 64
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.25
+  mlp_hidden_dim: 128
+
+output_root: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Graph_Analyser/outputs
+
+faiss:
+  top_k_similar_cases: 3
+  metric: cosine
+
+explainer:
+  epochs: 30
+  lr: 3.0e-3
+  coeff_size: 0.01
+  coeff_ent: 1.0e-4
+  temperature_start: 5.0
+  temperature_end: 1.0
+  max_train_cases_per_epoch: 512
+  hidden_dim: 64
+
+extraction:
+  top_k_statutes: 5
+  top_k_provisions: 5
+  top_k_precedents: 5
+  top_k_arguments: 4
+  top_k_similar_arg_contexts: 4
+  top_n_test_cases: 99999
+  target_case_text_chars: 1200
+  similar_case_arg_chars: 500
+
+llm:
+  model_path: /scratch/ziv_baretto/Thesis_Ziv/hf_cache/hub/models--mistralai--Mistral-Small-24B-Instruct-2501/snapshots/9527884be6e5616bdd54de542f9ae13384489724
+  max_new_tokens: 1500
+  temperature: 0.2
+  top_p: 0.9
+  gpu_memory_utilization: 0.92
+  dtype: bfloat16
+  # 24B model is ~44 GB; each RTX 6000 Ada is 48 GB. Use tp=2 to split across
+  # 2 GPUs (each holds ~22 GB of weights + large KV cache headroom).
+  tensor_parallel_size: 2
+  max_model_len: 8192

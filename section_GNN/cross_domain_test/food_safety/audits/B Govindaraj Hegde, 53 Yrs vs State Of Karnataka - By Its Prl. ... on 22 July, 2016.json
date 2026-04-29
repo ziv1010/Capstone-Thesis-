@@ -1,0 +1,140 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 255,
+          "end": 262
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 146,
+          "end": 153
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 255,
+          "end": 262
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 146,
+          "end": 153
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2014,
+      "facts": 0,
+      "arguments": 24799,
+      "petitioner_arguments": 12053,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 12745
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 38,
+      "PRE_RELIED": 29,
+      "STA": 25
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 16,
+      "NONE": 8,
+      "RATIO": 5,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 243,
+    "ignored_sentences": 31,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "Weaver",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Subramanium",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Subramanium",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Shashikant Laxman Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 269,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 38,
+    "PRE_RELIED": 29,
+    "STA": 25
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 16,
+    "NONE": 8,
+    "RATIO": 5,
+    "RPC": 2
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 184,
+          "end": 191
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 184,
+          "end": 191
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 134,
+      "facts": 7090,
+      "arguments": 14778,
+      "petitioner_arguments": 9377,
+      "respondent_arguments": 2042,
+      "other_lawyer_arguments": 3357
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 31,
+      "ARG_RESPONDENT": 9,
+      "FAC": 27,
+      "PRE_RELIED": 3,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 36,
+      "NONE": 9,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 82,
+    "ignored_sentences": 58,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Harshit Dhing",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Betamethasone",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Betamethasone",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Tarun Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Pankaj Saxena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Sudhir Singh Chandraul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Indrajeet Singh Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Betamethasone",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Sudhir Kumar Chandraul",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 31,
+    "ARG_RESPONDENT": 9,
+    "FAC": 27,
+    "PRE_RELIED": 3,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 36,
+    "NONE": 9,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 10
+  }
+}

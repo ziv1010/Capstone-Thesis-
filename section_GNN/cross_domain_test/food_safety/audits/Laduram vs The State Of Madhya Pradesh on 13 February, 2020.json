@@ -1,0 +1,104 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 347,
+      "facts": 1556,
+      "arguments": 10897,
+      "petitioner_arguments": 2107,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8789
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "FAC": 9,
+      "PRE_RELIED": 30,
+      "STA": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 15,
+      "ISSUE": 1,
+      "NONE": 25,
+      "RLC": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 74,
+    "ignored_sentences": 43,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Pushyamitra Bhargav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Pushyamitra Bhargava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Pushyamitra Bhargava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Pandit Thakur Dass Bhargava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "K.M. Munshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Alladi Krishnaswamy Ayyar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Ambedkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Pandit Bhargava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Gandhi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "FAC": 9,
+    "PRE_RELIED": 30,
+    "STA": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 15,
+    "ISSUE": 1,
+    "NONE": 25,
+    "RLC": 1,
+    "RPC": 1
+  }
+}

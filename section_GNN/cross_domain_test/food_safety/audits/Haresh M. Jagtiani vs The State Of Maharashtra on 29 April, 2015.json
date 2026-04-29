@@ -1,0 +1,92 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 138,
+          "end": 147
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 138,
+          "end": 147
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 381,
+      "facts": 2577,
+      "arguments": 28696,
+      "petitioner_arguments": 24539,
+      "respondent_arguments": 1072,
+      "other_lawyer_arguments": 3083
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 142,
+      "ARG_RESPONDENT": 5,
+      "FAC": 10,
+      "PRE_RELIED": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 20,
+      "ISSUE": 4,
+      "NONE": 11,
+      "RATIO": 2,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 187,
+    "ignored_sentences": 49,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "Firoz Bharucha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Pratap Nimbalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Hinsa Virodhak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Ramlila Maidan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 142,
+    "ARG_RESPONDENT": 5,
+    "FAC": 10,
+    "PRE_RELIED": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 20,
+    "ISSUE": 4,
+    "NONE": 11,
+    "RATIO": 2,
+    "RPC": 12
+  }
+}

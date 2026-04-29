@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1838,
+      "facts": 2898,
+      "arguments": 36461,
+      "petitioner_arguments": 9164,
+      "respondent_arguments": 2618,
+      "other_lawyer_arguments": 24677
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 36,
+      "ARG_RESPONDENT": 13,
+      "FAC": 11,
+      "PRE_RELIED": 30,
+      "STA": 29
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 199,
+      "NONE": 1,
+      "RATIO": 6,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 146,
+    "ignored_sentences": 212,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Siddharth Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Sanjay Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Amit Seth",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "K. N.\nPalsikar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Suresh Singh Kushwaha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 36,
+    "ARG_RESPONDENT": 13,
+    "FAC": 11,
+    "PRE_RELIED": 30,
+    "STA": 29
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 199,
+    "NONE": 1,
+    "RATIO": 6,
+    "RPC": 6
+  }
+}

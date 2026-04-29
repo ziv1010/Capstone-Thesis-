@@ -1,0 +1,238 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 274,
+      "facts": 9477,
+      "arguments": 3730,
+      "petitioner_arguments": 2011,
+      "respondent_arguments": 547,
+      "other_lawyer_arguments": 1170
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 3,
+      "FAC": 39,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 29,
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 55,
+    "ignored_sentences": 33,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Ram Sewak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Jyoti Prasad Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Ram Sewak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "PAYAL PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Ram Sewak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Bhimesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Pratap Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Ram Sewak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Namkeen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Bade @\nRamhet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "PAYAL PAYAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "PAYAL PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Bhimesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Pratap Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Pratap",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Ram Sevak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Gulab Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Pratap Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Pratap",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Pratap Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Tehrir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Pratap",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Pratap Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "HC Bhimesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Ram Sevak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Bhimesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Ram Sevak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "HC Bhimesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Bhimesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Ram Sevak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Pankaj Bansal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "PAYAL PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Rohit Lohat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "PAYAL PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "RAM Sevak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "PAYAL PAYAL SINGAL SINGAL",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 3,
+    "FAC": 39,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 29,
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

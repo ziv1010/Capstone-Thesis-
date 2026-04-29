@@ -1,0 +1,105 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        }
+      ],
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 147,
+          "end": 154
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 147,
+          "end": 154
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1434,
+      "facts": 2832,
+      "arguments": 10753,
+      "petitioner_arguments": 1571,
+      "respondent_arguments": 866,
+      "other_lawyer_arguments": 8314
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 4,
+      "FAC": 9,
+      "PRE_RELIED": 32,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 45,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 59,
+    "ignored_sentences": 52,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Naveen Kumar Maheshwari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Paramjeet Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Dalip Kaur",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 4,
+    "FAC": 9,
+    "PRE_RELIED": 32,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 45,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

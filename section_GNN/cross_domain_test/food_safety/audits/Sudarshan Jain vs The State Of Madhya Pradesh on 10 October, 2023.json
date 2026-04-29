@@ -1,0 +1,61 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 50,
+          "end": 65
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 50,
+          "end": 65
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 106,
+      "facts": 0,
+      "arguments": 542,
+      "petitioner_arguments": 248,
+      "respondent_arguments": 293,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 4
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RLC": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 10,
+    "ignored_sentences": 9,
+    "ignored_entities": []
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 4
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RLC": 2,
+    "RPC": 3
+  }
+}

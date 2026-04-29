@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 333,
+      "facts": 0,
+      "arguments": 1106,
+      "petitioner_arguments": 474,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 631
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 6,
+      "NONE": 12,
+      "RATIO": 1,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 21,
+    "ignored_sentences": 33,
+    "ignored_entities": [
+      {
+        "sentence_id": 38,
+        "entity_text": "Mohammad. Firoj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Prem Kumar Shukla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Tushar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Taranjeet Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Vechan Thakur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Rajkumar Ward-84",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Israil",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 6,
+    "NONE": 12,
+    "RATIO": 1,
+    "RPC": 14
+  }
+}

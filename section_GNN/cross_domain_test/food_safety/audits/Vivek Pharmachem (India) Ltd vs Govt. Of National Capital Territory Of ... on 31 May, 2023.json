@@ -1,0 +1,164 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 84,
+          "end": 93
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 84,
+          "end": 93
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 223,
+          "end": 232
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 115,
+          "end": 124
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 278,
+          "end": 287
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 180,
+          "end": 189
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 98,
+          "end": 107
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 223,
+          "end": 232
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 115,
+          "end": 124
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 278,
+          "end": 287
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 180,
+          "end": 189
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 823,
+      "facts": 5680,
+      "arguments": 22363,
+      "petitioner_arguments": 5514,
+      "respondent_arguments": 1494,
+      "other_lawyer_arguments": 15370
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 27,
+      "ARG_RESPONDENT": 5,
+      "FAC": 32,
+      "PRE_RELIED": 66
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 86,
+      "NONE": 10,
+      "RATIO": 4,
+      "RLC": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 140,
+    "ignored_sentences": 105,
+    "ignored_entities": [
+      {
+        "sentence_id": 25,
+        "entity_text": "Vivek",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Sarai Kale Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Batch AZT15008",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Vivek",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Russell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Vivek",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 27,
+    "ARG_RESPONDENT": 5,
+    "FAC": 32,
+    "PRE_RELIED": 66
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 86,
+    "NONE": 10,
+    "RATIO": 4,
+    "RLC": 2,
+    "RPC": 3
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1088,
+      "facts": 1400,
+      "arguments": 2393,
+      "petitioner_arguments": 817,
+      "respondent_arguments": 945,
+      "other_lawyer_arguments": 629
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 6,
+      "FAC": 8,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 16,
+      "NONE": 5,
+      "RPC": 19
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 27,
+    "ignored_sentences": 40,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "Vikas Sareen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Gagan Uppal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Naresh Kumar Uppal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 6,
+    "FAC": 8,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 16,
+    "NONE": 5,
+    "RPC": 19
+  }
+}

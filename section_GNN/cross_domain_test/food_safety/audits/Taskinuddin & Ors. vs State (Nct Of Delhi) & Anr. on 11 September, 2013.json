@@ -1,0 +1,259 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 71,
+      "facts": 8859,
+      "arguments": 45327,
+      "petitioner_arguments": 5914,
+      "respondent_arguments": 2533,
+      "other_lawyer_arguments": 36878
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 27,
+      "ARG_RESPONDENT": 11,
+      "FAC": 40,
+      "PRE_RELIED": 187,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 184,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RATIO": 4,
+      "RLC": 6,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 274,
+    "ignored_sentences": 206,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "M. Sufian Siddiqui",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Rakesh  Bhugra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "M. Tabishzia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Amir Siddiqui",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Lalita Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Mohd. Nizamuddin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Rizwan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Shamim Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "Jaipur Golden",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "M.C MEHTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "M.C. Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "M.C. Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Wigmore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Michael Jones",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Fleming",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Michael Jones",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Clerk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Lindsell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "M.C.\nMehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 156,
+        "entity_text": "Uday Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 206,
+        "entity_text": "V. S Arya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 210,
+        "entity_text": "Sarla Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 255,
+        "entity_text": "Sarla Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Jaipur Golden",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Kamla Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 264,
+        "entity_text": "Skattar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 270,
+        "entity_text": "Varinder Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 272,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 309,
+        "entity_text": "Jaipur Golden",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 356,
+        "entity_text": "M.C Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 356,
+        "entity_text": "Jaipur Golden",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Sarla Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 374,
+        "entity_text": "Kamla Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 381,
+        "entity_text": "Kamla Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 469,
+        "entity_text": "Vijay Kumar Mittal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 27,
+    "ARG_RESPONDENT": 11,
+    "FAC": 40,
+    "PRE_RELIED": 187,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 184,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RATIO": 4,
+    "RLC": 6,
+    "RPC": 5
+  }
+}

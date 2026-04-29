@@ -1,0 +1,124 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 256,
+          "end": 265
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 256,
+          "end": 265
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 235,
+      "facts": 3340,
+      "arguments": 18200,
+      "petitioner_arguments": 4274,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13925
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "FAC": 4,
+      "PRE_RELIED": 69
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 19,
+      "NONE": 4,
+      "RATIO": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 96,
+    "ignored_sentences": 33,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "G Sri Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "M. Vedavathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Mandaklanen Subramanyam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Mandalanen Subramanyam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "M.Ramachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Jefferson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Rekha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Hitik Malhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "FAC": 4,
+    "PRE_RELIED": 69
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 19,
+    "NONE": 4,
+    "RATIO": 5,
+    "RPC": 5
+  }
+}

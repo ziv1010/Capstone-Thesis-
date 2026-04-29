@@ -1,0 +1,815 @@
+% \chapter{System Overview and Data Pipeline}
+% \label{chap:pipeline}
+
+% This chapter describes the end-to-end pipeline that turns raw Indian
+% court-judgment text into a labelled, leakage-audited, heterogeneous
+% knowledge graph ready for Graph Neural Network (GNN) training. The
+% pipeline was designed around three practical constraints: (i) the corpus
+% is large and noisy, so every stage is a batch process with explicit
+% caching and auditing; (ii) many of the signals a predictor would want
+% (decisions, dispositions, operative paragraphs) are precisely the signals
+% a legally honest experiment must remove, so leakage prevention has to be
+% baked in rather than bolted on; and (iii) the downstream target is a
+% graph, so text extraction and entity resolution have to produce outputs
+% that can be reified as typed nodes and edges without lossy renormalisation
+% later on.
+
+% \section{System Architecture Overview}
+
+% The system is organised as a six-stage pipeline. Each stage is an
+% independently re-runnable batch process; intermediate artefacts are
+% cached on disk so that an expensive step (OpenNyAI NER on tens of
+% thousands of judgments, or bge-m3 embedding on millions of text spans)
+% never has to be repeated when a later stage changes.
+
+% \begin{figure}[H]
+% \centering
+% \begin{tikzpicture}[
+% node distance=0.45cm and 0.7cm,
+% every node/.style={font=\small},
+% stage/.style={rectangle, rounded corners, draw=black!70, thick,
+% fill=blue!6, minimum width=4.2cm, minimum height=0.95cm,
+% align=center, text width=4.1cm},
+% artefact/.style={rectangle, draw=black!40, dashed, fill=gray!4,
+% minimum width=4.2cm, minimum height=0.7cm, align=center,
+% text width=4.1cm, font=\footnotesize\itshape},
+% arrow/.style={-{Stealth[length=2mm]}, thick}
+% ]
+% \node[stage] (s1) {\textbf{1. Document Collection}\\raw judgment
+% \texttt{.txt} files};
+% \node[artefact, below=of s1] (a1) {per-bucket raw corpora
+% (5 legal domains)};
+% \node[stage, below=of a1] (s2) {\textbf{2. OpenNyAI NER + RR}\\
+% Legal NER, Rhetorical Roles, Summariser};
+% \node[artefact, below=of s2] (a2) {enriched JSON: annotated spans,
+% RR labels, summary};
+% \node[stage, below=of a2] (s3) {\textbf{3. Mistral Outcome
+% Labelling}\\case-level win/loss/neutral + score};
+% \node[artefact, below=of s3] (a3) {\texttt{*\_timed\_mistral}
+% case JSONs};
+% \node[stage, right=3.2cm of s1] (s4) {\textbf{4. Multi-Hearing
+% Merging}\\fold earlier hearings into the final decision};
+% \node[artefact, below=of s4] (a4) {\texttt{*\_MERGED.json} final
+% case records};
+% \node[stage, below=of a4] (s5) {\textbf{5. Leakage-Safe
+% Cleaning}\\drop decision fields, mask phrases, filter RR labels};
+% \node[artefact, below=of s5] (a5) {cleaned
+% \texttt{CleanedCase} objects};
+% \node[stage, below=of a5] (s6) {\textbf{6. Graph Construction +
+% bge-m3 Encoding}\\PyG \texttt{HeteroData} + text embeddings};
+% \node[artefact, below=of s6] (a6) {per-bucket + cross-bucket
+% graph caches};
+% \draw[arrow] (s1) -- (a1);
+% \draw[arrow] (a1) -- (s2);
+% \draw[arrow] (s2) -- (a2);
+% \draw[arrow] (a2) -- (s3);
+% \draw[arrow] (s3) -- (a3);
+% \draw[arrow] (a3.east) -- ++(0.8,0) |- (s4.west);
+% \draw[arrow] (s4) -- (a4);
+% \draw[arrow] (a4) -- (s5);
+% \draw[arrow] (s5) -- (a5);
+% \draw[arrow] (a5) -- (s6);
+% \draw[arrow] (s6) -- (a6);
+% \end{tikzpicture}
+% \caption{The six-stage data pipeline. Solid boxes are processing
+% stages; dashed boxes are cached on-disk artefacts that feed the next
+% stage.}
+% \label{fig:pipeline}
+% \end{figure}
+
+% Stages~1--3 are \emph{textual enrichment}: they turn plain text into a
+% structured JSON record with entities, rhetorical-role spans, and a
+% case-level outcome label. Stage~4 reconciles the fact that a single
+% legal matter often produces multiple hearing documents, so that each
+% final case corresponds to one legal dispute rather than one PDF. Stage~5
+% is a leakage-safety gate: it explicitly removes the fields, sections,
+% and phrases that would let a model trivially recover the outcome.
+% Stage~6 reifies the cleaned records as a typed heterogeneous graph and
+% attaches pre-computed \texttt{bge-m3} text embeddings to every text
+% node. Chapter~\ref{chap:kg} details the schema produced by stage~6.
+
+% \section{Document Collection and Legal Domains}
+
+% \emph{(Document collection methodology -- sources, filters, deduplication
+% -- to be described in a later revision.)}
+
+% The collected corpus is organised into five \textbf{legal domain
+% buckets}, chosen so that each bucket is large enough to train a
+% domain-specific graph and internally coherent in terms of statutory
+% framework, party structure, and typical remedies. The buckets are:
+
+% \begin{itemize}
+% \item \textbf{Family \& Matrimonial} (\texttt{family\_matrimonial\_timed\_mistral}):
+% matrimonial disputes, maintenance, custody, and dowry-related
+% proceedings. Dominated by IPC~498A, Sections~482, 506, and the CrPC.
+% \item \textbf{Financial Fraud} (\texttt{fin\_fraud\_timed\_mistral}):
+% cheating, forgery, dishonour, and economic offences. Dominated by
+% IPC~420, 468, 471.
+% \item \textbf{Land \& Property} (\texttt{land\_property\_timed\_mistral}):
+% land acquisition, title, and property disputes. Dominated by the
+% Land Acquisition Act~1894 and the Constitution of India.
+% \item \textbf{Motor Accidents} (\texttt{motor\_accidents\_timed\_mistral}):
+% compensation claims and related appeals. Dominated by the Motor
+% Vehicles Act~1988 and Section~166.
+% \item \textbf{Sexual Offences} (\texttt{sexual\_offences\_timed\_mistral}):
+% offences against the person, including POCSO matters. Dominated by
+% the IPC, CrPC, and POCSO Act.
+% \end{itemize}
+
+% Every downstream artefact -- entity canonicalisation tables,
+% rhetorical-role annotations, outcome labels, and graph caches -- is
+% produced both per bucket and in a unified \emph{cross-bucket} view.
+% This two-level organisation is what later makes cross-domain transfer
+% and cross-bucket bridge analysis possible
+% (Chapter~\ref{chap:graph_exploration}).
+
+% \section{Named Entity Recognition and Rhetorical Role Classification}
+
+% \subsection{The OpenNyAI Pipeline}
+
+% Textual enrichment is performed with the OpenNyAI legal NLP stack,
+% running locally on GPU. The production configuration uses:
+
+% \begin{itemize}
+% \item \texttt{Legal NER} with
+% \texttt{ner\_model\_name="en\_legal\_ner\_trf"}, sentence-level
+% inference (\texttt{ner\_do\_sentence\_level=True}) and the built-in
+% post-processor (\texttt{ner\_do\_postprocess=True});
+% \item \texttt{Rhetorical\_Role} classification, assigning each
+% sentence a legal discourse label (\textsc{Preamble}, \textsc{Facts},
+% \textsc{Arguments}, \textsc{Ratio}, \textsc{RPC}, etc.);
+% \item \texttt{Summarizer} executed after rhetorical-role
+% classification, which produces the section-structured summary
+% (\textsc{Preamble}, \textsc{facts}, \textsc{arguments}, and a
+% decision block that is later discarded).
+% \end{itemize}
+
+% The environment is pinned (spaCy~3.2.4, pydantic~1.7.4,
+% CUDA-enabled PyTorch and CuPy) and run GPU-only: silent CPU fallback is
+% disabled so that a broken GPU configuration fails fast rather than
+% silently degrading throughput. All model caches are redirected into
+% project-local folders so that re-runs do not contaminate
+% \texttt{\$HOME}. Each input judgment yields a combined JSON with NER
+% annotations, rhetorical-role spans, and the summary.
+
+% \subsection{Entity Types and Their Graph Roles}
+
+% OpenNyAI's legal NER tags span several coarse types; the ones we reify
+% as graph nodes are:
+
+% \begin{itemize}
+% \item \textsc{Statute} and \textsc{Provision} -- statutes (e.g.\ IPC,
+% CrPC, Motor Vehicles Act) and their sections (e.g.\ Section~482).
+% Provisions are additionally linked to their parent statute via a
+% \texttt{belongs\_to\_statute} edge.
+% \item \textsc{Precedent} -- cited case references.
+% \item \textsc{Court} and \textsc{Judge} -- the court the matter is
+% heard in and the presiding bench.
+% \item \textsc{Petitioner}, \textsc{Respondent},
+% \textsc{Petitioner\_Lawyer}, \textsc{Defence\_Lawyer},
+% \textsc{Lawyer} -- typed party and counsel roles. Role assignment
+% uses the section in which the mention first appears (preamble vs.\
+% argument blocks) combined with OpenNyAI's entity labels.
+% \item \textsc{Org}, \textsc{GPE}, \textsc{Date}, \textsc{Case\_Number}
+% -- auxiliary types extracted by NER, retained in the cleaned JSON
+% but excluded from the final reasoning-focused graph
+% (Section~\ref{sec:graph_schema}).
+% \end{itemize}
+
+% Entities are canonicalised per bucket: surface forms are normalised
+% (case, whitespace, punctuation), grouped, and re-projected as
+% \texttt{canonical\_name}. Canonicalisation is what allows the same
+% statute or court to be a \emph{single shared node} across the thousands
+% of cases that mention it, which is the structural property that makes
+% the graph useful for cross-case reasoning.
+
+% \subsection{Rhetorical Role Taxonomy and Leakage-Safe Filtering}
+
+% OpenNyAI's rhetorical-role taxonomy is the hinge on which the
+% leakage-safety story turns. Of the labels produced by the RR model, two
+% are inherently decisive -- \textbf{RPC} (Ratio and Precedent Cited, in
+% practice the court's operative paragraph) and \textbf{RLC} (Ruling by
+% Lower Court). Keeping either of them would let a classifier read the
+% outcome verbatim.
+
+% The cleaning stage therefore treats both labels as
+% \texttt{FORBIDDEN\_ANNOTATION\_LABELS}: any annotation whose label set
+% intersects \{\textsc{RPC}, \textsc{RLC}\} is dropped outright, along
+% with any annotation whose summary section is \textsc{decision} or whose
+% label string contains \texttt{"decision"}, \texttt{"disposition"},
+% \texttt{"operative"}, \texttt{"order"}, or \texttt{"rpc"}. Only the
+% three non-decisive summary fields -- \textsc{Preamble},
+% \textsc{facts}, and \textsc{arguments} -- are retained as text sources
+% for the graph's text nodes. This is the first leakage gate; a second,
+% phrase-level gate is described in Section~\ref{sec:leakage_prevention}.
+
+% \section{Outcome Labelling with Mistral}
+
+% \subsection{Labelling Methodology}
+
+% Case-level outcome labels are produced by prompting a Mistral LLM with
+% the OpenNyAI summary and asking it to return a structured judgement:
+% a label ($\text{win} = +1$, $\text{loss} = -1$, or \textsc{neutral}),
+% a confidence-weighted \texttt{outcome\_score} in $[-1, +1]$, and a short
+% textual explanation. Labelling is done from the \emph{summaries
+% produced by OpenNyAI}, not from the raw judgment text, so that the
+% label generator sees the same content the downstream model would see
+% if no leakage cleaning were applied -- which then forces us to remove
+% the decision-bearing portions of that summary before training. The
+% resulting artefacts are the \texttt{*\_timed\_mistral} buckets used
+% throughout the rest of the thesis.
+
+% Both single-label and multi-label variants are produced
+% (\texttt{add\_case\_outcome\_labels\_mistral.py} and
+% \texttt{add\_multi\_label\_outcome\_from\_enriched.py}). This work uses
+% the single-label variant as the prediction target; the multi-label
+% variant is kept as a diagnostic artefact.
+
+% \subsection{Coverage and Label Distribution}
+
+% Labelling coverage and the resulting win/loss/neutral distribution are
+% summarised in Figures~\ref{fig:labelling_coverage}
+% and~\ref{fig:outcome_distribution}. Coverage is near-complete across
+% all five buckets; the class distribution is moderately imbalanced
+% (roughly $60\%$ \textsc{win} to $40\%$ \textsc{loss} on the pooled
+% cross-bucket dataset), which motivates the use of macro-F1 alongside
+% accuracy as a primary metric in Chapter~\ref{chap:results}.
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.92\textwidth]{figures/labelling_coverage_full.png}
+% \caption{Mistral labelling coverage per bucket.}
+% \label{fig:labelling_coverage}
+% \end{figure}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.92\textwidth]{figures/outcome_distribution_full.png}
+% \caption{Outcome label distribution per bucket.}
+% \label{fig:outcome_distribution}
+% \end{figure}
+
+% \section{Multi-Hearing Merging}
+% \label{sec:multi_hearing_merging}
+
+% \subsection{The Problem}
+
+% A single legal matter frequently produces more than one judgment
+% document: interim orders, remands, partial disposals, and the final
+% decision may all be published as separate PDFs with distinct
+% Indian-Kanoon-style filenames that nonetheless refer to the same case.
+% If these hearing files are fed into the graph independently, three
+% things go wrong:
+
+% \begin{enumerate}
+% \item duplicate \textsc{Case} nodes for what is actually one dispute
+% inflate the node count and double-count outcomes;
+% \item the outcome label of the final hearing is not propagated to the
+% earlier hearings, so the training signal is noisy; and
+% \item cross-case structural signals (shared parties, statutes, and
+% counsel across hearings) are double-counted as if they were
+% independent observations.
+% \end{enumerate}
+
+% \subsection{Merge Strategy}
+
+% The merging pipeline lives under
+% \texttt{Thesis\_FINAL\_DATA/TIMELINE} and
+% \texttt{DATA\_SET\_BUILDER\_AND\_EXPLORER/Timeline\_Maker}. Per bucket,
+% filenames are parsed into a \texttt{(title,\ hearing\_date)} tuple; the
+% latest hearing becomes the \emph{final} case, and every older hearing
+% with the same title is \emph{folded} into that final case's JSON. The
+% fold step either appends the older document's text under a
+% \texttt{prior\_hearings} block (when the final document does not
+% already contain that text) or is skipped when the final document
+% already subsumes it. Every merge is logged in a per-bucket
+% \texttt{report.json} so the operation is auditable and reversible.
+
+% The scale of the fold is non-trivial but concentrated:
+
+% \begin{table}[H]
+% \centering
+% \small
+% \begin{tabular}{lrrrrr}
+% \toprule
+% Bucket & Inputs & Final cases & Folded in & Appended & Already contained \\
+% \midrule
+% Family \& Matrimonial & 15{,}800 & 15{,}306 & 493 & 490 & 3 \\
+% Financial Fraud & 15{,}014 & 14{,}615 & 399 & 396 & 3 \\
+% Land \& Property & 14{,}324 & 14{,}051 & 251 & 242 & 9 \\
+% Motor Accidents & 15{,}271 & 15{,}236 & 32 & 30 & 2 \\
+% Sexual Offences & 15{,}532 & 14{,}596 & 936 & 932 & 4 \\
+% \midrule
+% \textbf{Total} & \textbf{75{,}941} & \textbf{73{,}804} & \textbf{2{,}111}
+% & \textbf{2{,}090} & \textbf{21} \\
+% \bottomrule
+% \end{tabular}
+% \caption{Multi-hearing merge statistics. 2{,}111 older hearing
+% documents across the five buckets were folded into 2{,}090 merged
+% final-case JSONs; the remaining 21 were already fully contained in
+% the final hearing.}
+% \label{tab:merge_stats}
+% \end{table}
+
+% Sexual-offences matters fold most aggressively, which is consistent with
+% their tendency to generate multiple remand and bail-stage orders before
+% a final judgment; motor-accidents matters fold least, because the
+% compensation process terminates in one tribunal order more often than
+% it does in the other buckets.
+
+% \section{Technology Stack}
+
+% The pipeline is entirely Python-based. NER, RR, and summarisation run
+% on top of \texttt{opennyai} with spaCy~3.2.4 and CUDA-enabled PyTorch
+% and CuPy, provisioned via the pinned micromamba environment
+% \texttt{fixed\_gpu\_opennyai\_final}. Outcome labelling uses a Mistral
+% model invoked through a batched client script. Multi-hearing merging is
+% implemented with \texttt{merge\_cases.py} and \texttt{merge\_cases\_v2.py}
+% under the \texttt{Timeline\_Maker} module. Graph construction is built
+% on \texttt{torch\_geometric}'s \texttt{HeteroData}, with text
+% embeddings produced by the \texttt{BAAI/bge-m3} sentence-transformer
+% model running multi-process on GPU and cached per bucket. Training,
+% ablation, and analysis scripts live under the \texttt{section\_GNN}
+% module.
+
+\chapter{System Overview and Data Pipeline}
+\label{chap:pipeline}
+
+This chapter describes the end-to-end pipeline that turns raw Indian
+court-judgment text into a labelled, leakage-audited, heterogeneous
+knowledge graph ready for Graph Neural Network (GNN) training. The
+pipeline was designed around three practical constraints: (i) the corpus
+is large and noisy, so every stage is a batch process with explicit
+caching and auditing; (ii) many of the signals a predictor would want
+(decisions, dispositions, operative paragraphs) are precisely the signals
+a legally honest experiment must remove, so leakage prevention has to be
+baked in rather than bolted on; and (iii) the downstream target is a
+graph, so text extraction and entity resolution have to produce outputs
+that can be reified as typed nodes and edges without lossy renormalisation
+later on.
+
+\section{System Architecture Overview}
+
+The system is organised as a six-stage pipeline. Each stage is an
+independently re-runnable batch process; intermediate artefacts are
+cached on disk so that an expensive step (OpenNyAI NER on tens of
+thousands of judgments, or bge-m3 embedding on millions of text spans)
+never has to be repeated when a later stage changes.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.45cm and 0.7cm,
+      every node/.style={font=\small},
+      stage/.style={rectangle, rounded corners, draw=black!70, thick,
+        fill=blue!6, minimum width=4.2cm, minimum height=0.95cm,
+        align=center, text width=4.1cm},
+      artefact/.style={rectangle, draw=black!40, dashed, fill=gray!4,
+        minimum width=4.2cm, minimum height=0.7cm, align=center,
+        text width=4.1cm, font=\footnotesize\itshape},
+      arrow/.style={-{Stealth[length=2mm]}, thick}
+    ]
+    \node[stage] (s1) {\textbf{1. Document Collection}\\raw judgment
+      \texttt{.txt} files};
+    \node[artefact, below=of s1] (a1) {per-bucket raw corpora
+      (5 legal domains)};
+    \node[stage, below=of a1] (s2) {\textbf{2. OpenNyAI NER + RR}\\
+      Legal NER, Rhetorical Roles, Summariser};
+    \node[artefact, below=of s2] (a2) {enriched JSON: annotated spans,
+      RR labels, summary};
+    \node[stage, below=of a2] (s3) {\textbf{3. Mistral Outcome
+      Labelling}\\case-level win/loss/neutral + score};
+    \node[artefact, below=of s3] (a3) {case JSONs with
+      outcome labels};
+    \node[stage, right=3.2cm of s1] (s4) {\textbf{4. Multi-Hearing
+      Merging}\\fold earlier hearings into the final decision};
+    \node[artefact, below=of s4] (a4) {final merged case
+      records};
+    \node[stage, below=of a4] (s5) {\textbf{5. Leakage-Safe
+      Cleaning}\\drop decision fields, mask phrases, filter RR labels};
+    \node[artefact, below=of s5] (a5) {cleaned case
+      records};
+    \node[stage, below=of a5] (s6) {\textbf{6. Graph Construction +
+      bge-m3 Encoding}\\PyG \texttt{HeteroData} + text embeddings};
+    \node[artefact, below=of s6] (a6) {per-bucket + cross-bucket
+      graph caches};
+    \draw[arrow] (s1) -- (a1);
+    \draw[arrow] (a1) -- (s2);
+    \draw[arrow] (s2) -- (a2);
+    \draw[arrow] (a2) -- (s3);
+    \draw[arrow] (s3) -- (a3);
+    \draw[arrow] (a3.east) -- ++(0.8,0) |- (s4.west);
+    \draw[arrow] (s4) -- (a4);
+    \draw[arrow] (a4) -- (s5);
+    \draw[arrow] (s5) -- (a5);
+    \draw[arrow] (a5) -- (s6);
+    \draw[arrow] (s6) -- (a6);
+  \end{tikzpicture}
+  \caption{The six-stage data pipeline. Solid boxes are processing
+  stages; dashed boxes are cached on-disk artefacts that feed the next
+  stage.}
+  \label{fig:pipeline}
+\end{figure}
+
+\section{Document Collection and Legal Domains}
+
+\subsection{Local Bucketing and Legal Domains}
+
+Judgments are sourced from Indian Kanoon (\texttt{indiankanoon.org}),
+whose 40-page-per-query truncation is worked around by issuing
+court-month-bounded queries so that each window stays within the
+access limit. Rather than trusting search-engine relevance to define
+the corpus, which would bias the dataset towards heavily-cited
+``landmark'' cases, domain classification is implemented locally as a
+deterministic post-processing step.
+
+After downloading the entire accessible window, each raw PDF underwent text extraction (via PyMuPDF) and was passed through a local filtering script. This script evaluated the text against a rigid set of regular expressions corresponding to required statutory provisions (e.g., ``Section 498A IPC'', ``Motor Vehicles Act'', ``POCSO'') and contextual keyword constraints. Scraped texts that successfully matched a domain's predefined rules were partitioned into the respective local directory buckets.
+
+The collected corpus resulting from this process is organised into five \textbf{legal domain buckets}, chosen so that each bucket is large enough to train a domain-specific graph and internally coherent in terms of statutory framework, party structure, and typical remedies. The buckets are:
+
+\begin{itemize}
+  \item \textbf{Family \& Matrimonial}:
+    matrimonial disputes, maintenance, custody, and dowry-related
+    proceedings. Dominated by IPC~498A, Sections~482, 506, and the CrPC.
+  \item \textbf{Financial Fraud}:
+    cheating, forgery, dishonour, and economic offences. Dominated by
+    IPC~420, 468, 471.
+  \item \textbf{Land \& Property}:
+    land acquisition, title, and property disputes. Dominated by the
+    Land Acquisition Act~1894 and the Constitution of India.
+  \item \textbf{Motor Accidents}:
+    compensation claims and related appeals. Dominated by the Motor
+    Vehicles Act~1988 and Section~166.
+  \item \textbf{Sexual Offences}:
+    offences against the person, including POCSO matters. Dominated by
+    the IPC, CrPC, and POCSO Act.
+\end{itemize}
+
+A key design requirement for domain-bucketed training is that no single
+domain dominates the corpus: a strongly size-imbalanced corpus would
+confound cross-domain accuracy comparisons, attributing performance
+differences to sample-size effects rather than to genuine legal-domain
+structure. Figure~\ref{fig:case_counts} verifies that the five buckets
+are broadly comparable after multi-hearing merging, with all domains
+falling between approximately 14{,}000 and 15{,}000 final cases. The
+near-equal scale means that cross-bucket aggregation is a fair average
+rather than an average skewed by one large domain.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/01_case_counts_full.png}
+  \caption{Final case counts per legal domain bucket after multi-hearing
+  merging. All five buckets are within a 10\% range of each other,
+  confirming that the corpus is balanced at the domain level and that
+  cross-bucket performance comparisons are not confounded by sample-size
+  differences.}
+  \label{fig:case_counts}
+\end{figure}
+
+\section{Named Entity Recognition and Rhetorical Role Classification}
+\label{sec:ner_rr}
+
+Before a judgment can enter the knowledge graph, its raw text must be decomposed
+into typed, structured units: named legal entities tied to precise character
+positions, a discourse-level rhetorical role assigned to each sentence, and a
+section-structured summary that separates the preamble, factual background, party
+arguments, and operative ruling. For this enrichment step we use the OpenNyAI
+legal NLP stack. The rationale is threefold. First, OpenNyAI's NER model was
+trained specifically on Indian court judgments and recognises entity types that
+a general-purpose tagger misses entirely: statutory provisions cited in the Indian
+Parliament style, case precedents in the AIR/SCC citation format, and distinct
+party roles such as \textsc{Petitioner}, \textsc{Respondent}, and
+\textsc{Defence Lawyer}. Second, its rhetorical-role classifier is trained on the
+discourse conventions of Indian High Court judgments, which differ substantially
+from the conventions of news or scientific text. Third, running the stack locally
+on GPU gives full control over caching and reproducibility, which is essential
+when the pipeline may need to be rerun as the graph schema or leakage-cleaning
+rules evolve. The following subsections describe the implementation, the output
+fields produced at each stage, and how those fields feed into graph construction
+and leakage removal.
+
+\subsection{The OpenNyAI Pipeline}
+
+Three OpenNyAI components are run in sequence for every judgment document.
+
+\begin{itemize}
+  \item \textbf{Legal NER} (\path{en_legal_ner_trf}), configured with
+    sentence-level inference and built-in post-processing, tags named
+    entities by type and normalises them to canonical surface forms.
+  \item \textbf{Rhetorical Role Classifier} assigns each sentence one of seven
+    discourse labels reflecting its function within the judgment
+    (\textsc{Preamble}, \textsc{Facts}, \textsc{Arguments}, \textsc{Ratio},
+    \textsc{RPC}, \textsc{RLC}, and \textsc{None}).
+  \item \textbf{Summarizer}, conditioned on the predicted rhetorical roles,
+    produces a section-structured extractive summary with four named blocks:
+    \textsc{Preamble}, \textsc{facts}, \textsc{arguments}, and
+    \textsc{decision}.
+\end{itemize}
+
+The environment is pinned (spaCy~3.2.4, pydantic~1.7.4, CUDA-enabled PyTorch
+and CuPy). Each input judgment produces a
+single combined JSON record that is extended by every subsequent pipeline stage.
+
+The subsections that follow describe the semantic role of the fields these
+components produce, and how they are consumed downstream.
+
+\subsection{Entity Types and Their Graph Roles}
+
+OpenNyAI's legal NER recognises twelve entity types; the subset reified as graph
+nodes in the downstream knowledge graph is:
+
+\begin{sloppypar}
+\begin{itemize}
+  \item \textsc{Statute} and \textsc{Provision}: statutes (e.g.\ the IPC,
+    the CrPC, the Motor Vehicles Act) and their sections (e.g.\ Section~482).
+    Provisions are additionally linked to their parent statute via a
+    \texttt{belongs\_to\_statute} edge.
+  \item \textsc{Precedent}: cited case references.
+  \item \textsc{Court} and \textsc{Judge}: the court the matter is heard in
+    and the presiding bench.
+  \item \textsc{Petitioner}, \textsc{Respondent},
+    \textsc{Petitioner\_Lawyer}, \textsc{Defence\_Lawyer}, \textsc{Lawyer}:
+    typed party and counsel roles. Role assignment uses the section in which
+    the mention first appears (preamble versus argument blocks) combined with
+    OpenNyAI's entity labels.
+  \item \textsc{Org}, \textsc{GPE}, \textsc{Date}, \textsc{Case\_Number}:
+    auxiliary types extracted by NER, retained in the cleaned JSON but excluded
+    from the final reasoning-focused graph (Section~\ref{sec:graph_schema}).
+\end{itemize}
+\end{sloppypar}
+
+Entities are canonicalised per bucket: surface forms are normalised (case,
+whitespace, punctuation), grouped, and re-projected as \texttt{canonical\_name}.
+Canonicalisation allows the same statute or court to appear as a \emph{single
+shared node} across the thousands of cases that mention it, which is the
+structural property that makes the graph useful for cross-case reasoning.
+
+To verify that the extraction stage is producing entity distributions consistent
+with the legal character of each domain, Figure~\ref{fig:entity_type_totals}
+summarises the total entity mention counts by type across the full corpus. The
+figure shows that precedents dominate in absolute volume, confirming that citation
+is the primary relational artefact in Indian court judgments. Party nodes
+(\textsc{Petitioner} and \textsc{Respondent}) are large and roughly equal in
+volume across the corpus as a whole, reflecting the adversarial structure of
+litigation. Statutes and provisions, by contrast, have comparatively lower raw
+mention counts but are the node types that carry the most cross-case structural
+weight: each canonicalised mention is a potential shared edge linking the current
+case to every other case that cites the same authority. This asymmetry between
+volume and structural importance is what motivates treating statutes, provisions,
+and precedents as the shared layer of the graph while keeping party nodes local
+to each case.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/04_entity_type_totals_full.png}
+  \caption{Total entity mention counts by type across the full corpus after
+  NER and canonicalisation. Precedent mentions dominate in volume; statutes
+  and provisions are smaller in count but form the shared-node layer that
+  carries structural weight across cases.}
+  \label{fig:entity_type_totals}
+\end{figure}
+
+\subsection{Rhetorical Role Taxonomy and Leakage-Safe Filtering}
+
+OpenNyAI's rhetorical-role taxonomy is the hinge on which the leakage-safety
+story turns. Of the seven labels produced by the classifier, two are inherently
+decisive: \textbf{RPC} (Ratio and Precedent Cited, in practice the court's
+operative paragraph) and \textbf{RLC} (Ruling by Lower Court). Keeping either
+of them in the training data would let a classifier read the outcome directly
+from the text.
+
+The cleaning stage therefore treats both labels as forbidden annotation labels:
+any annotation whose label set intersects \{\textsc{RPC}, \textsc{RLC}\} is
+dropped outright, along with any annotation whose summary section is
+\textsc{decision} or whose label string contains \texttt{"decision"},
+\texttt{"disposition"}, \texttt{"operative"}, \texttt{"order"}, or
+\texttt{"rpc"}. Only the three non-decisive summary fields (\textsc{Preamble},
+\textsc{facts}, and \textsc{arguments}) are retained as text sources for the
+graph's text nodes. This is the first leakage gate; a second, phrase-level gate
+is described in Section~\ref{sec:leakage_prevention}.
+
+\section{Outcome Labelling with Mistral}
+\label{sec:mistral_labelling}
+
+With judgments enriched by NER and rhetorical-role annotations, the next
+requirement is a case-level outcome label: did the appellant win, lose, or
+receive only a procedural disposition? We produce these labels automatically by
+prompting a Mistral large language model with the section-structured summaries
+that OpenNyAI already generates. This approach has two important properties.
+First, the model is shown only the \textsc{decision} summary block and the
+\textsc{RPC} sentences, which are precisely the portions that the
+leakage-cleaning stage will subsequently remove. The labeller therefore never
+sees the non-decisive preamble, facts, or arguments text that the GNN will train
+on, eliminating any circularity between what gets labelled and what gets learned.
+Second, the section-structured input provides a compact, well-delimited context
+that substantially reduces the chance that the model grounds its judgement on
+spurious signals from the surrounding narrative.
+
+\subsection{Labelling Methodology}
+\label{sec:labelling_methodology}
+
+\paragraph{Labels.}
+Three outcome categories are defined from the perspective of the party seeking
+relief (the appellant, petitioner, or applicant):
+
+\begin{itemize}
+  \item \textbf{\texttt{appellant\_won}} ($\texttt{score} = +1$): relief was
+    granted, the petition or appeal was allowed, bail was granted, a conviction
+    was quashed, or an order was set aside.
+  \item \textbf{\texttt{appellant\_lost}} ($\texttt{score} = -1$): the petition,
+    appeal, or application was dismissed, rejected, or denied; bail was refused;
+    or relief was withheld.
+  \item \textbf{\texttt{postponed\_or\_procedural}} ($\texttt{score} = 0$): the
+    matter was adjourned, notice was issued, a liberty was granted to pursue
+    another remedy, the case was remanded, or the outcome cannot reasonably be
+    treated as a final win or loss.
+\end{itemize}
+
+For each judgment the model also returns a \texttt{confidence} rating
+(\texttt{high}, \texttt{medium}, or \texttt{low}) and a short textual
+explanation, both stored alongside the label for auditing purposes.
+
+\paragraph{Cross-validation design.}
+LLM labels are sensitive to run-to-run sampling variance, particularly on
+procedural dispositions where small wording shifts can flip
+\texttt{postponed\_or\_procedural} into \texttt{appellant\_lost}. To bound that
+noise, a second independent labelling pass was run with a different prompt
+design: instead of a single free-form label the model answers eight binary
+yes/no questions (Table~\ref{tab:crossval_questions}), six directional
+win/loss signals plus a two-question neutrality clause that overrides them
+when fired. The final label is then computed by a deterministic aggregation
+over the binary votes, so the cross-validation pass eliminates the
+free-text generation variance of the first pass.
+
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}L{3.0cm}>{\centering\arraybackslash}p{0.8cm}L{7.2cm}@{}}
+    \toprule
+    Group & ID & Question \\
+    \midrule
+    \textbf{A: Win signals}
+      & Q1 & Did the appellant win the case? \\
+      & Q2 & Was the petition, appeal, or application allowed? \\
+      & Q3 & Did the court rule in favour of the petitioner or appellant? \\[4pt]
+    \textbf{B: Loss signals}
+      & Q4 & Did the respondent win the case? \\
+      & Q5 & Was the petition, appeal, or application dismissed? \\
+      & Q6 & Did the court rule against the appellant? \\[4pt]
+    \shortstack[l]{\textbf{C: Neutrality}\\\textbf{clause}}
+      & Q7 & Was the case adjourned, remanded, or deferred without a final decision? \\
+      & Q8 & Is there no clear final judgment in this case? \\
+    \bottomrule
+  \end{tabular}
+  \caption{The eight binary yes/no questions posed to the model in a single call
+  during the cross-validation pass. Questions Q1--Q6 are the directional win/loss
+  signals; Q7--Q8 form the neutrality clause that overrides the directional
+  evidence when fired.}
+  \label{tab:crossval_questions}
+\end{table}
+
+Aggregation sums the directional answers into
+$S_\text{win} = q_1 + q_2 + q_3$, $S_\text{loss} = q_4 + q_5 + q_6$, and
+$S_\text{neutral} = q_7 + q_8$, with a fixed priority: a non-zero neutrality
+clause yields \texttt{postponed\_or\_procedural}; otherwise the majority
+directional signal wins, ties resolve to procedural, and an all-zero response
+is marked \texttt{unknown} and excluded from training.
+
+\paragraph{Results.}
+Across the 72{,}795 files for which both labels exist, the two passes agree
+on \textbf{84.4\%} of cases (Table~\ref{tab:crossval_agreement}).
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lrrr}
+    \toprule
+    Bucket & Files compared & Matching labels & Agreement rate \\
+    \midrule
+    Family \& Matrimonial & 15{,}017 & 13{,}049 & 86.9\% \\
+    Financial Fraud & 14{,}342 & 12{,}015 & 83.8\% \\
+    Land \& Property & 13{,}512 & 9{,}652 & 71.4\% \\
+    Motor Accidents & 15{,}117 & 13{,}552 & 89.6\% \\
+    Sexual Offences & 14{,}807 & 13{,}143 & 88.8\% \\
+    \midrule
+    \textbf{Total} & \textbf{72{,}795} & \textbf{61{,}411} & \textbf{84.4\%} \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Cross-run label agreement between the original Mistral pass and the
+  binary-question cross-validation pass. Agreement is computed per-file over
+  files present in both runs.}
+  \label{tab:crossval_agreement}
+\end{table}
+
+Disagreement is concentrated on procedural dispositions, which the
+second pass tends to reclassify as \textsc{appellant\_lost}. The effect is
+sharpest in \emph{Land \& Property} (71.4\% agreement), where remands and stay
+orders read as adverse without full context. Label noise is therefore real
+but bounded and disproportionately attached to procedural cases; the
+downstream GNN excludes the \textsc{postponed\_or\_procedural} class and
+trains on the binary \textsc{appellant\_won} vs.\ \textsc{appellant\_lost}
+subset, on which agreement is materially higher.
+
+\subsection{Coverage and Label Distribution}
+
+Labelling coverage is near-complete across all five buckets; the small
+unlabelled fraction consists of cases where Mistral returned a malformed
+response or an explicit \texttt{unknown} verdict, which are excluded from
+training rather than assigned a default label. Figure~\ref{fig:outcome_rate}
+shows the resulting per-bucket win/loss/neutral rates. Motor-accidents is the
+most win-skewed bucket, compensation claims are allowed more often than
+denied at the appellate stage, while financial-fraud and sexual-offences
+sit closest to balanced. The pooled cross-bucket win rate of roughly
+$60\%$ \textsc{win} to $40\%$ \textsc{loss} (on the binary subset, once
+procedural cases are excluded) is what motivates reporting macro-F1 alongside
+accuracy in Chapter~\ref{chap:results}: a constant-win classifier would
+otherwise achieve misleadingly high accuracy while failing systematically on
+the loss class.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\textwidth]{figures/03_outcome_rate_full.png}
+  \caption{Outcome label rates (proportions) per bucket. Motor-accidents is the
+  most appellant-favourable domain; financial-fraud and sexual-offences are
+  closest to balanced.}
+  \label{fig:outcome_rate}
+\end{figure}
+
+\section{Multi-Hearing Merging}
+\label{sec:multi_hearing_merging}
+
+\subsection{The Problem}
+
+A single legal matter frequently produces more than one judgment document:
+interim orders, remands, partial disposals, and the final decision may all be
+published as separate PDFs with distinct Indian-Kanoon-style filenames that
+nonetheless refer to the same case. If these hearing files are fed into the graph
+independently, three things go wrong:
+
+\begin{enumerate}
+  \item duplicate \textsc{Case} nodes for what is actually one dispute inflate
+    the node count and double-count outcomes;
+  \item the outcome label of the final hearing is not propagated to the earlier
+    hearings, so the training signal is noisy; and
+  \item cross-case structural signals (shared parties, statutes, and counsel
+    across hearings) are double-counted as if they were independent observations.
+\end{enumerate}
+
+\subsection{Merge Strategy}
+\label{sec:merge_strategy}
+
+Documents that share both a case title \emph{and} the court-assigned case
+registration number (e.g.\ \texttt{5941/2024}, \texttt{Crm-M-44633-2024})
+extracted from the preamble are grouped as the same proceeding; the outcome
+label of the latest hearing is propagated to the merged record, and earlier
+hearings whose text is already subsumed by the latest one are suppressed.
+Title alone is insufficient because two unrelated litigants can share a name
+(e.g.\ \emph{``Amit Kumar vs State of Bihar''} on different dates can refer
+to entirely separate matters). FIR numbers are deliberately not used as a
+merge key, since the same FIR can give rise to independent proceedings in
+different courts.
+
+The resulting fold is non-trivial but concentrated:
+
+\begin{table}[H]
+  \centering
+  \small
+  \begin{adjustbox}{max width=\textwidth}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Bucket & Inputs & Final cases & Folded in & Appended & Already contained \\
+    \midrule
+    Family \& Matrimonial & 15{,}800 & 15{,}306 & 493 & 490 & 3 \\
+    Financial Fraud & 15{,}014 & 14{,}615 & 399 & 396 & 3 \\
+    Land \& Property & 14{,}324 & 14{,}051 & 251 & 242 & 9 \\
+    Motor Accidents & 15{,}271 & 15{,}236 & 32 & 30 & 2 \\
+    Sexual Offences & 15{,}532 & 14{,}596 & 936 & 932 & 4 \\
+    \midrule
+    \textbf{Total} & \textbf{75{,}941} & \textbf{73{,}804} & \textbf{2{,}111}
+      & \textbf{2{,}090} & \textbf{21} \\
+    \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \caption{Multi-hearing merge statistics. 2{,}111 older hearing documents were
+  folded into 2{,}090 merged final-case JSONs; the remaining 21 were already
+  fully subsumed by the latest hearing text.}
+  \label{tab:merge_stats}
+\end{table}
+
+% Sexual-offences matters fold most aggressively, consistent with their tendency to
+% generate multiple remand and bail-stage orders before a final judgment.
+% Motor-accidents matters fold least, because the compensation process terminates
+% in a single tribunal order more often than it does in the other buckets.
+
+\section{Technology Stack}
+
+The pipeline is Python-based throughout: OpenNyAI for NER, rhetorical
+roles, and summarisation; a batched Mistral client for outcome
+labelling; PyTorch Geometric's \texttt{HeteroData} for graph
+construction; and \path{BAAI/bge-m3} for text embeddings.
+% Pinned
+% environments, exact module paths, and the merge/training script
+% inventory are documented in Appendix~\ref{app:tech_stack}.

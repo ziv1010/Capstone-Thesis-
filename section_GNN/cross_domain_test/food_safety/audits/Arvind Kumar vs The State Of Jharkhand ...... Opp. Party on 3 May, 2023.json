@@ -1,0 +1,120 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 89,
+          "end": 96
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 68,
+          "end": 75
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 183,
+          "end": 190
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 89,
+          "end": 96
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 68,
+          "end": 75
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 68,
+          "end": 75
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 183,
+          "end": 190
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 68,
+          "end": 75
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 577,
+      "facts": 1653,
+      "arguments": 8521,
+      "petitioner_arguments": 4601,
+      "respondent_arguments": 436,
+      "other_lawyer_arguments": 3482
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 3,
+      "FAC": 5,
+      "PRE_RELIED": 3,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 6,
+      "NONE": 5,
+      "RATIO": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 40,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 34,
+        "entity_text": "Prabhu Dayal Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Agrawal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 3,
+    "FAC": 5,
+    "PRE_RELIED": 3,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 6,
+    "NONE": 5,
+    "RATIO": 2,
+    "RPC": 3
+  }
+}

@@ -140,20 +140,26 @@ def _aggregate(run_dir: Path, k: int, run_name: str, graph_cache: str) -> dict:
     f1s = [r["test_macro_f1"] for r in folds]
     mif1s = [r.get("test_micro_f1", 0.0) for r in folds]
 
+    aggregate = {
+        "accuracy_mean": float(np.mean(accs)),
+        "accuracy_std": float(np.std(accs)),
+        "macro_f1_mean": float(np.mean(f1s)),
+        "macro_f1_std": float(np.std(f1s)),
+        "micro_f1_mean": float(np.mean(mif1s)),
+        "micro_f1_std": float(np.std(mif1s)),
+    }
+    aucs = [r["test_roc_auc"] for r in folds if "test_roc_auc" in r]
+    if aucs:
+        aggregate["roc_auc_mean"] = float(np.mean(aucs))
+        aggregate["roc_auc_std"]  = float(np.std(aucs))
+
     summary = {
         "run_name": run_name,
         "k": k,
         "n_folds_completed": len(folds),
         "graph_cache": graph_cache,
         "folds": folds,
-        "aggregate": {
-            "accuracy_mean": float(np.mean(accs)),
-            "accuracy_std": float(np.std(accs)),
-            "macro_f1_mean": float(np.mean(f1s)),
-            "macro_f1_std": float(np.std(f1s)),
-            "micro_f1_mean": float(np.mean(mif1s)),
-            "micro_f1_std": float(np.std(mif1s)),
-        },
+        "aggregate": aggregate,
     }
     return summary
 

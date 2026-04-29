@@ -1,0 +1,121 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 210,
+          "end": 219
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 210,
+          "end": 219
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 462,
+      "facts": 2735,
+      "arguments": 9849,
+      "petitioner_arguments": 1406,
+      "respondent_arguments": 1995,
+      "other_lawyer_arguments": 6446
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 8,
+      "FAC": 7,
+      "PRE_RELIED": 8,
+      "STA": 8
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 49,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 2,
+      "RLC": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 35,
+    "ignored_sentences": 65,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Iswar Chandra Jana",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Ajit Chandra De",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Lokenath Chakraborty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Iswar Chandra Jana",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "GDA Adhir Chandra De",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Lokenath Chakraborti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Iswar Chandra Jana",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Adhir Chandra De",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Lokenath Chakraborti",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 8,
+    "FAC": 7,
+    "PRE_RELIED": 8,
+    "STA": 8
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 49,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 2,
+    "RLC": 2,
+    "RPC": 8
+  }
+}

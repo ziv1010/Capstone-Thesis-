@@ -1,0 +1,96 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 128,
+          "end": 135
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 128,
+          "end": 135
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 47,
+          "end": 54
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 47,
+          "end": 54
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 498,
+      "facts": 719,
+      "arguments": 1257,
+      "petitioner_arguments": 1076,
+      "respondent_arguments": 180,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 2,
+      "FAC": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 27,
+      "NONE": 1,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 25,
+    "ignored_sentences": 32,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Ebrahim Mohamed Kulam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Kulam Mohamed Thamby",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "RUma Devi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 2,
+    "FAC": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 27,
+    "NONE": 1,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

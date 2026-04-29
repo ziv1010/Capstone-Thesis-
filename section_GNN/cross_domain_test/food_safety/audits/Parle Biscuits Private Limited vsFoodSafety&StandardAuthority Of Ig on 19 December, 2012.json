@@ -1,0 +1,121 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 45,
+          "end": 54
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 256,
+      "facts": 6591,
+      "arguments": 6251,
+      "petitioner_arguments": 534,
+      "respondent_arguments": 966,
+      "other_lawyer_arguments": 4749
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 1,
+      "FAC": 38,
+      "PRE_RELIED": 1,
+      "STA": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 126,
+      "ISSUE": 1,
+      "NONE": 1,
+      "RATIO": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 71,
+    "ignored_sentences": 136,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "K.R. Jaipurkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "C.D. Salunkhe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "R.H. Gajria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Parag Vyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "M.S. Bhardwaj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Sandeep K. Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Jaydeep Deo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "S.J. VAZIFDA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Shinde",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 1,
+    "FAC": 38,
+    "PRE_RELIED": 1,
+    "STA": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 126,
+    "ISSUE": 1,
+    "NONE": 1,
+    "RATIO": 3,
+    "RPC": 5
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 305,
+          "end": 312
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 305,
+          "end": 312
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 42,
+          "end": 51
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 42,
+          "end": 51
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 513,
+      "facts": 1048,
+      "arguments": 16136,
+      "petitioner_arguments": 1270,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 14865
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 8,
+      "PRE_RELIED": 56
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 41,
+      "NONE": 7,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 57,
+    "ignored_entities": [
+      {
+        "sentence_id": 22,
+        "entity_text": "Urvesh Prajapati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Mallikarjun Kodagali",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 8,
+    "PRE_RELIED": 56
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 41,
+    "NONE": 7,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

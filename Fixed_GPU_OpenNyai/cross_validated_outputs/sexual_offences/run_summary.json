@@ -1,0 +1,28 @@
+{
+  "input_dir": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/final_outputs/sexual_offences_summary_opennyai/enriched_jsons",
+  "output_dir": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/sexual_offences",
+  "backend": "local_vllm",
+  "model_id": "/scratch/ziv_baretto/Thesis_Ziv/hf_cache/hub/models--mistralai--Mistral-Small-24B-Instruct-2501/snapshots/9527884be6e5616bdd54de542f9ae13384489724",
+  "provider": "local_gpu",
+  "method": "cross_validation_8q",
+  "resume_enabled": true,
+  "resumed_completed_files": 0,
+  "files_attempted_this_run": 15532,
+  "processed_files": 15532,
+  "successful_files": 14807,
+  "dry_run_files": 0,
+  "skipped_files": 674,
+  "error_files": 51,
+  "label_counts": {
+    "appellant_won": 9543,
+    "postponed_or_procedural": 1301,
+    "appellant_lost": 3754,
+    "unknown": 209
+  },
+  "crossval_label_counts": {
+    "LOSS": 3754,
+    "WIN": 9543,
+    "NEUTRAL": 1301,
+    "UNKNOWN": 209
+  }
+}

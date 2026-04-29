@@ -1,0 +1,115 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 118,
+          "end": 127
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 366,
+      "facts": 6031,
+      "arguments": 1300,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1300
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 34,
+      "PRE_RELIED": 4,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 2,
+      "RATIO": 4,
+      "RLC": 6,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 44,
+    "ignored_sentences": 52,
+    "ignored_entities": [
+      {
+        "sentence_id": 22,
+        "entity_text": "M.S. Mathur",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "-Sukhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "C.M.O. Bareilly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "I.S.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Pal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "M.S Mathur",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "M.S Mathur",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Suresh Chandra Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Brij Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "M.S. Mathur",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Suresh Chandra Sharma",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 34,
+    "PRE_RELIED": 4,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 2,
+    "RATIO": 4,
+    "RLC": 6,
+    "RPC": 6
+  }
+}

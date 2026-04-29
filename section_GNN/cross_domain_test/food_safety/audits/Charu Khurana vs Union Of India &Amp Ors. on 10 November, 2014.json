@@ -1,0 +1,185 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 317,
+      "facts": 356,
+      "arguments": 37435,
+      "petitioner_arguments": 7030,
+      "respondent_arguments": 1838,
+      "other_lawyer_arguments": 28565
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 25,
+      "ARG_RESPONDENT": 7,
+      "FAC": 2,
+      "PRE_RELIED": 119,
+      "STA": 20
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 134,
+      "NONE": 15,
+      "RATIO": 8,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 181,
+    "ignored_sentences": 161,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Mary Wollstonecraft",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "John Stuart Mill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Susan B. Anthony",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Ralf Waldo Emerson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Alexa De Tocqueville",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Kofi Annan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Charles Fourier",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "L.N. Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Meenakshi Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "L.N. Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Vishaka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Meenakshi Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Rabindra Nath Tagores",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 176,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Meenakshi Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Vishaka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Maya Devi12",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 194,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 268,
+        "entity_text": "Vishaka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 277,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 304,
+        "entity_text": "Saurabh Chaudri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 311,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 25,
+    "ARG_RESPONDENT": 7,
+    "FAC": 2,
+    "PRE_RELIED": 119,
+    "STA": 20
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 134,
+    "NONE": 15,
+    "RATIO": 8,
+    "RPC": 4
+  }
+}

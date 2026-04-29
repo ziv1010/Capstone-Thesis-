@@ -1,0 +1,73 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 172,
+      "facts": 2727,
+      "arguments": 7756,
+      "petitioner_arguments": 4092,
+      "respondent_arguments": 944,
+      "other_lawyer_arguments": 2718
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 3,
+      "FAC": 9,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 3,
+      "RATIO": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 37,
+    "ignored_sentences": 40,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Arghajit Biswas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Subhajit Biswas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Amiyangsu Kumar Biswas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "P.S. Udharbond",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 3,
+    "FAC": 9,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 3,
+    "RATIO": 1,
+    "RPC": 2
+  }
+}

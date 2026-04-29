@@ -1,0 +1,283 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 84,
+          "end": 91
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 277,
+          "end": 284
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 71,
+          "end": 78
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 108,
+          "end": 115
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 84,
+          "end": 91
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 277,
+          "end": 284
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 71,
+          "end": 78
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 108,
+          "end": 115
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 248,
+          "end": 255
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 60,
+          "end": 67
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 248,
+          "end": 255
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 60,
+          "end": 67
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 352,
+      "facts": 4840,
+      "arguments": 52955,
+      "petitioner_arguments": 16454,
+      "respondent_arguments": 510,
+      "other_lawyer_arguments": 36079
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 89,
+      "ARG_RESPONDENT": 1,
+      "FAC": 17,
+      "PRE_RELIED": 153,
+      "STA": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 228,
+      "ISSUE": 11,
+      "NONE": 7,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 280,
+    "ignored_sentences": 252,
+    "ignored_entities": [
+      {
+        "sentence_id": 47,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Lalita Kumari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "R.A. Nelson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Bakshi Tek Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Rishbud",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 198,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Mubarak Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 227,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Chattar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Bhajan Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 250,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 269,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 287,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 385,
+        "entity_text": "S.P Radhamani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 385,
+        "entity_text": "Anilkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 405,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 415,
+        "entity_text": "Shankaramoorthy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 416,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 457,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 478,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 504,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 527,
+        "entity_text": "Lalita Kumari",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 89,
+    "ARG_RESPONDENT": 1,
+    "FAC": 17,
+    "PRE_RELIED": 153,
+    "STA": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 228,
+    "ISSUE": 11,
+    "NONE": 7,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

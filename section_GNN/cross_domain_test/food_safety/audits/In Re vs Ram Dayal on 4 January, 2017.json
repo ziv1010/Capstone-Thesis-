@@ -1,0 +1,95 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 795,
+      "facts": 7466,
+      "arguments": 4239,
+      "petitioner_arguments": 585,
+      "respondent_arguments": 902,
+      "other_lawyer_arguments": 2750
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 5,
+      "FAC": 43,
+      "PRE_RELIED": 8,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 222,
+      "NONE": 2,
+      "RATIO": 6,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 62,
+    "ignored_sentences": 232,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Suniti Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Ashok Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "M.S.Vats",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Suniti Kumar Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "N.N.Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "M.S.Vats",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Ashok Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Raghuraj",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 5,
+    "FAC": 43,
+    "PRE_RELIED": 8,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 222,
+    "NONE": 2,
+    "RATIO": 6,
+    "RPC": 2
+  }
+}

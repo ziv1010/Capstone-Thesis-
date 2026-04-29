@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 284,
+      "facts": 10790,
+      "arguments": 19326,
+      "petitioner_arguments": 10929,
+      "respondent_arguments": 1134,
+      "other_lawyer_arguments": 7261
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 45,
+      "ARG_RESPONDENT": 4,
+      "FAC": 82,
+      "PRE_RELIED": 12,
+      "STA": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 81,
+      "NONE": 2,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 169,
+    "ignored_sentences": 91,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Bandra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "S.N. Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Besan - Manu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Besan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Hyderabad Breverages",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 45,
+    "ARG_RESPONDENT": 4,
+    "FAC": 82,
+    "PRE_RELIED": 12,
+    "STA": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 81,
+    "NONE": 2,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

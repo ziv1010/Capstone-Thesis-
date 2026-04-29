@@ -1,0 +1,84 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 255,
+      "facts": 5798,
+      "arguments": 11204,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 579,
+      "other_lawyer_arguments": 10624
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 6,
+      "FAC": 36,
+      "PRE_RELIED": 51
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 183,
+      "ISSUE": 13,
+      "NONE": 56,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 22
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 106,
+    "ignored_sentences": 277,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Kishore H.B.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Somwarpete Taluk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Kodagu - 571 236",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sanchan Jainandan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "V. Shrihari Naidu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Rajkumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 6,
+    "FAC": 36,
+    "PRE_RELIED": 51
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 183,
+    "ISSUE": 13,
+    "NONE": 56,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 22
+  }
+}

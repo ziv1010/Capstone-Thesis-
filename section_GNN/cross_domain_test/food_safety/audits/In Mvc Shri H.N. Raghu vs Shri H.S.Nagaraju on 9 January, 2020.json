@@ -1,0 +1,68 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 14064,
+      "facts": 4942,
+      "arguments": 7164,
+      "petitioner_arguments": 1784,
+      "respondent_arguments": 1958,
+      "other_lawyer_arguments": 3420
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 13,
+      "ARG_RESPONDENT": 17,
+      "FAC": 30,
+      "PRE_RELIED": 20
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 80,
+      "ISSUE": 12,
+      "NONE": 61,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 97,
+    "ignored_sentences": 171,
+    "ignored_entities": [
+      {
+        "sentence_id": 27,
+        "entity_text": "Narahari Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Nagabhushan\nK.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Vasundahara",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 13,
+    "ARG_RESPONDENT": 17,
+    "FAC": 30,
+    "PRE_RELIED": 20
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 80,
+    "ISSUE": 12,
+    "NONE": 61,
+    "RPC": 18
+  }
+}

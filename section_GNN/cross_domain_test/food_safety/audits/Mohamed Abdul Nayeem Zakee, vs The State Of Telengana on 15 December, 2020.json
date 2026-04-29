@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 74,
+      "facts": 1881,
+      "arguments": 25882,
+      "petitioner_arguments": 3093,
+      "respondent_arguments": 172,
+      "other_lawyer_arguments": 22615
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 24,
+      "ARG_RESPONDENT": 1,
+      "FAC": 12,
+      "PRE_RELIED": 109,
+      "STA": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 167,
+      "NONE": 6,
+      "RATIO": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 177,
+    "ignored_sentences": 177,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "M A Raheem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Monnet Ispat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Brightman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 264,
+        "entity_text": "Hailsham",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 267,
+        "entity_text": "John Donaldson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 268,
+        "entity_text": "Keith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 271,
+        "entity_text": "Fraser",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "Brightman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "Diplock",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 24,
+    "ARG_RESPONDENT": 1,
+    "FAC": 12,
+    "PRE_RELIED": 109,
+    "STA": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 167,
+    "NONE": 6,
+    "RATIO": 1,
+    "RPC": 3
+  }
+}

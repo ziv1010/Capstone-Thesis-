@@ -1,0 +1,64 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 92,
+          "end": 99
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 865,
+      "facts": 3726,
+      "arguments": 15846,
+      "petitioner_arguments": 8019,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 7826
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 36,
+      "FAC": 19,
+      "PRE_RELIED": 32,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 60,
+      "NONE": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 96,
+    "ignored_sentences": 63,
+    "ignored_entities": [
+      {
+        "sentence_id": 108,
+        "entity_text": "Denning",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 36,
+    "FAC": 19,
+    "PRE_RELIED": 32,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 60,
+    "NONE": 2,
+    "RPC": 1
+  }
+}

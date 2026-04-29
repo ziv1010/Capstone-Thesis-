@@ -1,0 +1,111 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 44,
+          "end": 53
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 44,
+          "end": 53
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 237,
+      "facts": 7748,
+      "arguments": 4508,
+      "petitioner_arguments": 1964,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2543
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "FAC": 23,
+      "PRE_RELIED": 14,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 23,
+      "NONE": 6,
+      "RATIO": 3,
+      "RLC": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 50,
+    "ignored_sentences": 40,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Mohd. Aziz Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Md. Viquar Mehdi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Md.Khaja Pasha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Muskan @ Heena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Muskan @\nHeena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Syeda Uzma Fathima",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Syeda Uzma Fathima",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Shaik Chand",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "FAC": 23,
+    "PRE_RELIED": 14,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 23,
+    "NONE": 6,
+    "RATIO": 3,
+    "RLC": 3,
+    "RPC": 5
+  }
+}

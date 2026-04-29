@@ -1,0 +1,285 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 300,
+          "end": 307
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 300,
+          "end": 307
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 171,
+          "end": 180
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 160,
+          "end": 167
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 102,
+          "end": 109
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 98,
+          "end": 105
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 105,
+          "end": 114
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 340,
+          "end": 347
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 171,
+          "end": 180
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 160,
+          "end": 167
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 102,
+          "end": 109
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 98,
+          "end": 105
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 105,
+          "end": 114
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 340,
+          "end": 347
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 844,
+      "facts": 5503,
+      "arguments": 56355,
+      "petitioner_arguments": 8771,
+      "respondent_arguments": 3731,
+      "other_lawyer_arguments": 43851
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 31,
+      "ARG_RESPONDENT": 18,
+      "FAC": 18,
+      "PRE_RELIED": 164,
+      "STA": 26
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 185,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 269,
+    "ignored_sentences": 200,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "KAMAL KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Geeta Mathur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Puneet Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Mukesh Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Mukesh Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Puneet Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Puneet Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Mukesh Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "S.P. Mani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Sudeep Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Puneet Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Mukesh Kapoor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Puneet Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "S.P. Mani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Sunil Todi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Sudeep Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "S.P. Mani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "K.K. Ahuja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 322,
+        "entity_text": "Anita Malhotra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 331,
+        "entity_text": "Ashok Shewakramani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 334,
+        "entity_text": "Ashok Shewakramani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 349,
+        "entity_text": "J.N. Bhatia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 370,
+        "entity_text": "Kamal Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 374,
+        "entity_text": "Ashoke Mal Bafna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 409,
+        "entity_text": "Pooja Ravinder Devidasani",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 31,
+    "ARG_RESPONDENT": 18,
+    "FAC": 18,
+    "PRE_RELIED": 164,
+    "STA": 26
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 185,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 2,
+    "RPC": 7
+  }
+}

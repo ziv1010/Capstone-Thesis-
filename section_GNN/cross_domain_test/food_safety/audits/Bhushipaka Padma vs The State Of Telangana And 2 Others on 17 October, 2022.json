@@ -1,0 +1,57 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 266,
+      "facts": 145,
+      "arguments": 2848,
+      "petitioner_arguments": 1748,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1099
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 1,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 18,
+      "ISSUE": 1,
+      "NONE": 24,
+      "RATIO": 5,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 22,
+    "ignored_sentences": 53,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Bhushipaka Ganesh @ Ganda",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 1,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 18,
+    "ISSUE": 1,
+    "NONE": 24,
+    "RATIO": 5,
+    "RPC": 5
+  }
+}

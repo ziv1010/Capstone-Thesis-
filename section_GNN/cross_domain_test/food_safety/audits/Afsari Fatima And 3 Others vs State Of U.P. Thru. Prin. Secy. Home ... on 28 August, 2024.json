@@ -1,0 +1,112 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 102,
+          "end": 111
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 102,
+          "end": 111
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 152,
+          "end": 159
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 152,
+          "end": 159
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 564,
+      "facts": 0,
+      "arguments": 15692,
+      "petitioner_arguments": 3671,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 12020
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "PRE_RELIED": 35,
+      "STA": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 54,
+      "NONE": 2,
+      "RATIO": 1,
+      "RLC": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 59,
+    "ignored_sentences": 64,
+    "ignored_entities": [
+      {
+        "sentence_id": 63,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "George Bernard Shaw",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Gopalanachari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Madhu Limaye",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "PRE_RELIED": 35,
+    "STA": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 54,
+    "NONE": 2,
+    "RATIO": 1,
+    "RLC": 2,
+    "RPC": 5
+  }
+}

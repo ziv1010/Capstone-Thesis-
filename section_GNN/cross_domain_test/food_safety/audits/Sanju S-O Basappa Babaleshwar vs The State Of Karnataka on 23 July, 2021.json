@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 72,
+      "facts": 6622,
+      "arguments": 1341,
+      "petitioner_arguments": 517,
+      "respondent_arguments": 823,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 4,
+      "FAC": 27
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 241,
+      "NONE": 1,
+      "RATIO": 3,
+      "RLC": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 45,
+    "ignored_sentences": 250,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Mallesh Teggi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Sanju Babaleshwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Basareddy",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 4,
+    "FAC": 27
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 241,
+    "NONE": 1,
+    "RATIO": 3,
+    "RLC": 3,
+    "RPC": 2
+  }
+}

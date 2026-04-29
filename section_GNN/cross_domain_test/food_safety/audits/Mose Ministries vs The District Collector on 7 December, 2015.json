@@ -1,0 +1,58 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2177,
+      "facts": 10492,
+      "arguments": 474,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 183,
+      "other_lawyer_arguments": 290
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "FAC": 48,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 370,
+      "NONE": 6,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 63,
+    "ignored_sentences": 393,
+    "ignored_entities": [
+      {
+        "sentence_id": 41,
+        "entity_text": "Indira Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Nisha Banu",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "FAC": 48,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 370,
+    "NONE": 6,
+    "RPC": 17
+  }
+}

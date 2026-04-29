@@ -1,0 +1,73 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 430,
+      "facts": 1367,
+      "arguments": 13896,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13896
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 8,
+      "PRE_RELIED": 57,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 13,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 72,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 23,
+        "entity_text": "I.Mulla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Kazmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Din Shah Mulla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Shamsunnissa Begum",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 8,
+    "PRE_RELIED": 57,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 13,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 2
+  }
+}

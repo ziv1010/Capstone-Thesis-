@@ -1,0 +1,177 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 298,
+          "end": 305
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 602,
+          "end": 609
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 298,
+          "end": 305
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 602,
+          "end": 609
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 131,
+          "end": 138
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 243,
+          "end": 250
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 74,
+          "end": 81
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 710,
+          "end": 717
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 352,
+          "end": 359
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 118,
+          "end": 125
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 131,
+          "end": 138
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 243,
+          "end": 250
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 74,
+          "end": 81
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 710,
+          "end": 717
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 352,
+          "end": 359
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 118,
+          "end": 125
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 58,
+      "facts": 800,
+      "arguments": 8849,
+      "petitioner_arguments": 3764,
+      "respondent_arguments": 1941,
+      "other_lawyer_arguments": 3142
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 11,
+      "ARG_RESPONDENT": 5,
+      "FAC": 3,
+      "PRE_RELIED": 1,
+      "STA": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "NONE": 4,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 36,
+    "ignored_sentences": 21,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Praveen Kumar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Syed Imran Ibrahim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 11,
+    "ARG_RESPONDENT": 5,
+    "FAC": 3,
+    "PRE_RELIED": 1,
+    "STA": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "NONE": 4,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

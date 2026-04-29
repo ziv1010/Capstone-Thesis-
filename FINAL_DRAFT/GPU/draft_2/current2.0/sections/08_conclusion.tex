@@ -1,0 +1,66 @@
+\chapter{Conclusion}
+
+This thesis studied Legal Judgment Prediction for Indian court cases as a
+structured prediction problem rather than a plain document-classification
+task. It argued that credible legal prediction requires more than strong
+accuracy numbers: it requires a representation that preserves legally
+meaningful structure while actively resisting leakage from decision-bearing
+text and identity-based shortcuts.
+
+To address this, the thesis introduced an end-to-end pipeline that converts
+raw Indian judgments into leakage-audited, graph-ready case records through
+entity extraction, rhetorical-role segmentation, outcome labelling,
+multi-hearing consolidation, and reasoning-focused graph construction. On
+top of this representation, a Heterogeneous Graph Transformer was used to
+model both the internal structure of each case and the shared legal links
+across cases through statutes, provisions, and precedents.
+
+Across more than 73{,}000 Indian court cases spanning five legal domains,
+the proposed framework achieved strong pooled performance
+($0.8020$ accuracy, $0.7959$ macro-F1, $0.8831$ ROC-AUC under 5-fold
+cross-validation on the best \texttt{party\_args\_lr\_decay}
+configuration) and consistently outperformed text-only reference settings.
+More importantly, the results and ablations suggest that the gains are not
+coming merely from surface-level text patterns, but from cross-case legal
+structure encoded in a controlled and auditable way: a probing classifier
+isolates a $+3.97$-point accuracy gain attributable to graph message passing
+at fixed classifier capacity.
+
+Beyond pooled accuracy, the thesis addressed the two questions a legal
+audience actually cares about: \emph{can individual predictions be
+read}, and \emph{does the model transfer beyond the distribution it was
+trained on}? A four-level interpretability pipeline, representation
+probing, component-level importance, error decomposition, and the
+case-level \path{Graph_Analyser} built around a heterogeneous
+PGExplainer and LLM verbalisation,
+produces grounded, legally named explanations for individual predictions
+and exposes a clean structural signature of the model's confident
+failures: when the prediction is confidently wrong, the selected
+evidence can still form a legally plausible but incomplete explanation
+for the \emph{wrong} label. A zero-shot evaluation on $11{,}769$
+food-safety judgments, a
+legal domain absent from training, reaches $0.608$ accuracy and
+$0.675$ ROC-AUC against a $0.543$ majority baseline without any
+fine-tuning, showing that the cross-bucket HGT learns a partially
+domain-general legal-reasoning prior rather than memorising training
+domains' statutory hubs.
+
+The main contribution of this thesis is therefore methodological. It shows
+that legal outcome prediction over Indian judgments becomes more credible
+when the task is built around leakage-safe data construction, heterogeneous
+graph design, explicit constraints on what information may be shared
+across cases, per-case explainability tied to the same representation the
+model predicts from, and an out-of-domain evaluation that tests whether
+the learned signal is truly about legal reasoning or about corpus
+memorisation. While the improvements are measured rather than dramatic, they
+support a clear conclusion: graph-based legal prediction is most useful when
+it is not only accurate, but also structurally faithful, auditable at the
+case level, and experimentally honest about its transfer behaviour.
+
+Future work can build on this foundation by tightening leakage audits
+further, extending the outcome space beyond binary decisions, designing
+models that adapt to domain-specific difficulty and long factual
+narratives, closing the in-domain/out-of-domain gap through light-weight
+fine-tuning or domain-adaptive heads, and pairing the case-level
+explainer with a legal-expert validation loop to convert it from an
+internal diagnostic into an auditable review tool.

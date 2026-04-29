@@ -1,0 +1,66 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 497,
+      "facts": 1851,
+      "arguments": 7727,
+      "petitioner_arguments": 589,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 7137
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "FAC": 15,
+      "PRE_RELIED": 26,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 24,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 2,
+      "RLC": 4,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 57,
+    "ignored_sentences": 40,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Gurnam Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Joginder Singh's",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "FAC": 15,
+    "PRE_RELIED": 26,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 24,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 2,
+    "RLC": 4,
+    "RPC": 4
+  }
+}

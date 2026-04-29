@@ -1,0 +1,469 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 607,
+      "facts": 21727,
+      "arguments": 8446,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8446
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 149,
+      "PRE_RELIED": 13,
+      "STA": 20
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 81,
+      "NONE": 4,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 188,
+    "ignored_sentences": 90,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Luvkush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Renu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Luvkush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Vikas Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Amit Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Bintu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Ravi Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Sudhir Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Ravi Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "HC Bintu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Mukesh Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Luvkesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Renu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Ramesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Vikas Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Luvkush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Pramod",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Lovekush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Vikas Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Vikas Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Ramesh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "J.B. Kapil",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Renu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Luvkush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Ranvijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Luvkush",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Ranvijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Shailender",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Ashok",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Vikas Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Ajay Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "HC Jaspal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "HC Mahesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 153,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Rashmi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 149,
+    "PRE_RELIED": 13,
+    "STA": 20
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 81,
+    "NONE": 4,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

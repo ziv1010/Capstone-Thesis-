@@ -1,0 +1,169 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 635,
+      "facts": 7820,
+      "arguments": 8901,
+      "petitioner_arguments": 1883,
+      "respondent_arguments": 2858,
+      "other_lawyer_arguments": 4158
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 8,
+      "FAC": 23,
+      "PRE_RELIED": 11,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 21,
+      "ISSUE": 1,
+      "NONE": 32,
+      "RATIO": 2,
+      "RLC": 15,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 67,
+    "ignored_sentences": 86,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Jeet Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "R.P. Meena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Balraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Pyare Mohan Dixit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Radhey Shyam Dixit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Balraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Jeet Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Jeet Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Gian Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Meena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Balraj @ Baldev Raj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "T Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Campbell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Martin B.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "K.K.Manan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Dal Arhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 8,
+    "FAC": 23,
+    "PRE_RELIED": 11,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 21,
+    "ISSUE": 1,
+    "NONE": 32,
+    "RATIO": 2,
+    "RLC": 15,
+    "RPC": 15
+  }
+}

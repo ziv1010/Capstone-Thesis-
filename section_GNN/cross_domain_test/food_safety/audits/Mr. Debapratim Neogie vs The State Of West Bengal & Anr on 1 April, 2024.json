@@ -1,0 +1,201 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 188,
+          "end": 195
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 188,
+          "end": 195
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 400,
+      "facts": 11402,
+      "arguments": 44723,
+      "petitioner_arguments": 2707,
+      "respondent_arguments": 1360,
+      "other_lawyer_arguments": 40654
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 5,
+      "FAC": 47,
+      "PRE_RELIED": 160,
+      "STA": 23
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 165,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 250,
+    "ignored_sentences": 179,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Sandipan Ganguly",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Sourav Chatterjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Manasrita Mukherjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Amitava Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Deb Kumar Sen.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Paschim Bardhaman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Debabrata Neogie",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Subrata Neogie",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Burdwan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Sunil Bharti Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Sunil Bharti Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Aneeta Hada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 273,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 309,
+        "entity_text": "N.\nRadhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 309,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 348,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 358,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "N.\nRadhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 361,
+        "entity_text": "N. Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 361,
+        "entity_text": "P. Anand Gajapathi Raju",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 392,
+        "entity_text": "Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 395,
+        "entity_text": "Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "N.Radhakrishnan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 5,
+    "FAC": 47,
+    "PRE_RELIED": 160,
+    "STA": 23
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 165,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 8
+  }
+}

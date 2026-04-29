@@ -1,0 +1,114 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_roles:PREAMBLE",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 6858,
+      "facts": 1122,
+      "arguments": 16784,
+      "petitioner_arguments": 5219,
+      "respondent_arguments": 1690,
+      "other_lawyer_arguments": 9873
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 30,
+      "ARG_RESPONDENT": 8,
+      "FAC": 5,
+      "PREAMBLE": 65,
+      "PRE_RELIED": 38,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 190,
+      "ISSUE": 2,
+      "NONE": 137,
+      "RATIO": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 152,
+    "ignored_sentences": 339,
+    "ignored_entities": [
+      {
+        "sentence_id": 80,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Gagan Kohli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Parshotam Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 241,
+        "entity_text": "Anganwadi Worker",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 424,
+        "entity_text": "Umadevi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 424,
+        "entity_text": "Umadevi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 431,
+        "entity_text": "Uma Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 433,
+        "entity_text": "S.V. NARAYANAPPA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 433,
+        "entity_text": "R.N.\nNANJUNDAPPA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 433,
+        "entity_text": "B.N. NAGARAJAN",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 30,
+    "ARG_RESPONDENT": 8,
+    "FAC": 5,
+    "PREAMBLE": 65,
+    "PRE_RELIED": 38,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 190,
+    "ISSUE": 2,
+    "NONE": 137,
+    "RATIO": 2,
+    "RPC": 8
+  }
+}

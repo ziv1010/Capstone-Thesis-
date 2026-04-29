@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 455,
+      "facts": 2405,
+      "arguments": 1862,
+      "petitioner_arguments": 1051,
+      "respondent_arguments": 810,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 8,
+      "FAC": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 5,
+      "NONE": 5,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 51,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "Kishor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Gulab Singh Rajawat",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 8,
+    "FAC": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 5,
+    "NONE": 5,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

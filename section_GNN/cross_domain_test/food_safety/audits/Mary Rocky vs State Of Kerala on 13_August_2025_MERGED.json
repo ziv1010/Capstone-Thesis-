@@ -1,0 +1,109 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 174,
+          "end": 181
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 108,
+          "end": 115
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 174,
+          "end": 181
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 108,
+          "end": 115
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1915,
+      "facts": 1813,
+      "arguments": 4996,
+      "petitioner_arguments": 2791,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2204
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "FAC": 7,
+      "PRE_RELIED": 1,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 5,
+      "NONE": 7,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 37,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "VARGHESE SEBASTIAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Sebastian",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "MILLU DANDAPANI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "RAMEEZ NOOH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Millu Dandapani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Sqaud",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "FAC": 7,
+    "PRE_RELIED": 1,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 5,
+    "NONE": 7,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 4691,
+      "facts": 4576,
+      "arguments": 4539,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4539
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 34,
+      "PRE_RELIED": 19
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 72,
+      "ISSUE": 4,
+      "NONE": 34,
+      "RATIO": 2,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 64,
+    "ignored_sentences": 129,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Si Komal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Charu Charu Gupta Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "CHARU CHARU GUPTA GUPTA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 34,
+    "PRE_RELIED": 19
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 72,
+    "ISSUE": 4,
+    "NONE": 34,
+    "RATIO": 2,
+    "RPC": 17
+  }
+}

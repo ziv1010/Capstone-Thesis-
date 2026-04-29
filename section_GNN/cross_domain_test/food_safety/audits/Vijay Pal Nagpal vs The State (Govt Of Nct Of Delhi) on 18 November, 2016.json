@@ -1,0 +1,110 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 568,
+      "facts": 2676,
+      "arguments": 3206,
+      "petitioner_arguments": 837,
+      "respondent_arguments": 226,
+      "other_lawyer_arguments": 2141
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 1,
+      "FAC": 21,
+      "PRE_RELIED": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 21,
+      "NONE": 22,
+      "RATIO": 4,
+      "RLC": 1,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 40,
+    "ignored_sentences": 62,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "B. P.\nSaroha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Ajay Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Vijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Vijender Kumar Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Vijender Kumar Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "T. Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "T. Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Campbell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Martin",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 1,
+    "FAC": 21,
+    "PRE_RELIED": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 21,
+    "NONE": 22,
+    "RATIO": 4,
+    "RLC": 1,
+    "RPC": 14
+  }
+}

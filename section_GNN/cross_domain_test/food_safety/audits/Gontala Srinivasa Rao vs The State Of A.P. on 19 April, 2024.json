@@ -1,0 +1,81 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 386,
+          "end": 395
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 386,
+          "end": 395
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 675,
+      "facts": 2653,
+      "arguments": 4752,
+      "petitioner_arguments": 2292,
+      "respondent_arguments": 2459,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 3,
+      "FAC": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 25,
+      "ISSUE": 1,
+      "NONE": 3,
+      "RATIO": 6,
+      "RLC": 3,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 28,
+    "ignored_sentences": 50,
+    "ignored_entities": [
+      {
+        "sentence_id": 25,
+        "entity_text": "Grandhi Rajkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "S.Dheera Kanishk",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 3,
+    "FAC": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 25,
+    "ISSUE": 1,
+    "NONE": 3,
+    "RATIO": 6,
+    "RLC": 3,
+    "RPC": 12
+  }
+}

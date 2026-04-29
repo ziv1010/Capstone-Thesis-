@@ -1,0 +1,130 @@
+{
+  "case_id": "3S And Our Health Society vs Union Of India on 9 April, 2025",
+  "file_name": "3S And Our Health Society vs Union Of India on 9 April, 2025.json",
+  "file_id": "3S And Our Health Society vs Union Of India on 9 April, 2025",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/3S And Our Health Society vs Union Of India on 9 April, 2025.json",
+  "raw_label": "-1",
+  "texts": {
+    "preamble": "3S And Our Health Society vs Union Of India on 9 April, 2025 1 Item No.37 Court No.11 Section Pil- S U P R E M E C O U R T O F I N D I A Record Of Proceedings Writ Petition(Civil) No.437/2024 3S And Our Health Society Petitioner(s Versus Union Of India & Ors. Respondent(s For Admission Date : 09-04-2025",
+    "facts": "The applicant is also entrusted with the function of ensuring availability of safe and wholesome food fit for human consumption and for dealing with any other matters connected therewith or incidental to food safety. 5. In Para 9 of the reply, it has been stated that around 14000 comments were received in the form of objections, etc. from the public including the stakeholders, etc. 6.",
+    "arguments": "",
+    "petitioner_arguments": "",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 1,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 0,
+    "court_count": 0,
+    "preamble_length": 304,
+    "facts_length": 387,
+    "arguments_length": 0,
+    "case_year": null,
+    "petition_type": "writ petition",
+    "petition_type_hash": 0.5673755317850447,
+    "court_names": [],
+    "judge_names": [],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "-1",
+    "source_decision_label": "-1"
+  },
+  "entities": [
+    {
+      "entity_type": "petitioner",
+      "raw_name": "And Our Health Society",
+      "canonical_name": "and our health society",
+      "mentions": [
+        {
+          "entity_type": "petitioner",
+          "raw_text": "And Our Health Society",
+          "canonical_text": "and our health society",
+          "section": "PREAMBLE",
+          "annotation_id": "3S And Our Health Society vs Union Of India on 9 April, 2025:sentence_2:entity_0",
+          "start": 202,
+          "end": 224
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "respondent",
+      "raw_name": "Union Of India",
+      "canonical_name": "union of india",
+      "mentions": [
+        {
+          "entity_type": "respondent",
+          "raw_text": "Union Of India",
+          "canonical_text": "union of india",
+          "section": "PREAMBLE",
+          "annotation_id": "3S And Our Health Society vs Union Of India on 9 April, 2025:sentence_1:entity_0",
+          "start": 29,
+          "end": 43
+        },
+        {
+          "entity_type": "respondent",
+          "raw_text": "Union Of India",
+          "canonical_text": "union of india",
+          "section": "PREAMBLE",
+          "annotation_id": "3S And Our Health Society vs Union Of India on 9 April, 2025:sentence_2:entity_1",
+          "start": 247,
+          "end": 261
+        }
+      ],
+      "local_case_frequency": 2,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset",
+        "facts": "sentence_roles:FAC"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 304,
+        "facts": 387,
+        "arguments": 0,
+        "petitioner_arguments": 0,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {
+        "FAC": 2
+      },
+      "dropped_sentence_role_counts": {
+        "ANALYSIS": 20,
+        "NONE": 11,
+        "RPC": 6
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 6,
+      "ignored_sentences": 37,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 20,
+      "NONE": 11,
+      "RPC": 6
+    }
+  }
+}

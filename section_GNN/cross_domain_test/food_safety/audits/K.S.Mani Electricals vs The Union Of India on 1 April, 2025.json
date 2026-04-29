@@ -1,0 +1,102 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1481,
+      "facts": 4388,
+      "arguments": 5385,
+      "petitioner_arguments": 3864,
+      "respondent_arguments": 1356,
+      "other_lawyer_arguments": 163
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 21,
+      "ARG_RESPONDENT": 12,
+      "FAC": 25,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 36,
+      "ISSUE": 2,
+      "NONE": 21,
+      "RATIO": 2,
+      "RLC": 6,
+      "RPC": 16
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 136,
+    "ignored_sentences": 83,
+    "ignored_entities": [
+      {
+        "sentence_id": 45,
+        "entity_text": "D.Sowndararajan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Senthil Ragavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "V.Balamurugan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "D.Soundararajan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Manaveli",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Abishekapakkam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Raj Bahavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "J.Senthil Raghavan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "TR Pattinam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 21,
+    "ARG_RESPONDENT": 12,
+    "FAC": 25,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 36,
+    "ISSUE": 2,
+    "NONE": 21,
+    "RATIO": 2,
+    "RLC": 6,
+    "RPC": 16
+  }
+}

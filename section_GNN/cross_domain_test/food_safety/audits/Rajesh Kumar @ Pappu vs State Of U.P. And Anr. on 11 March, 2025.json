@@ -1,0 +1,487 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 82,
+          "end": 91
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 39,
+          "end": 48
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 39,
+          "end": 48
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 318,
+      "facts": 17563,
+      "arguments": 24398,
+      "petitioner_arguments": 2114,
+      "respondent_arguments": 726,
+      "other_lawyer_arguments": 21603
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 11,
+      "ARG_RESPONDENT": 4,
+      "FAC": 152,
+      "PRE_RELIED": 110,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 220,
+      "NONE": 16,
+      "RATIO": 7,
+      "RLC": 15,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 288,
+    "ignored_sentences": 261,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Neeja Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Pratap Singh Jagarnath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Rajesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Shyam Narain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Raja Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Shyam Narain Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Ram Dular",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Jagannath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Ram Dular",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "R.M. Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "C.M.O. Varanasi P.M.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "C.M.O. Vns",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Dhanapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "S.K.Srivastava",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Mohan alias Fazihat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Mohan alias Fazihat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Mohan alias Pazihat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Mohan alias Fazihat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Shyam Narain Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Ram Dular",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Shyam Narain Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Munna Pandey",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "P.N. Tripathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Dashmi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Ram Dularey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 198,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 198,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Raju Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 212,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "Ram Dularey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Shyam Narayan Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Jagannath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "Shyam Narayan Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 218,
+        "entity_text": "Dashmi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Panna Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 224,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 226,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 227,
+        "entity_text": "Ram Dularey",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 227,
+        "entity_text": "Ram Narayan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 227,
+        "entity_text": "Dashmi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "Kamla Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 234,
+        "entity_text": "Shyam Narayan Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Mohan Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Bodha Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Dashmi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Krishna Paksha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 317,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "Denning",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 494,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 500,
+        "entity_text": "Swaran Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 508,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 11,
+    "ARG_RESPONDENT": 4,
+    "FAC": 152,
+    "PRE_RELIED": 110,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 220,
+    "NONE": 16,
+    "RATIO": 7,
+    "RLC": 15,
+    "RPC": 3
+  }
+}

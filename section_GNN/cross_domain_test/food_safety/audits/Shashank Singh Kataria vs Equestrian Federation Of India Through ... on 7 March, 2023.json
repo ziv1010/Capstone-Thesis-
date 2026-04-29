@@ -1,0 +1,129 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1339,
+      "facts": 8769,
+      "arguments": 26556,
+      "petitioner_arguments": 23612,
+      "respondent_arguments": 706,
+      "other_lawyer_arguments": 2236
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 121,
+      "ARG_RESPONDENT": 2,
+      "FAC": 39,
+      "PRE_RELIED": 2,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 216,
+      "ISSUE": 1,
+      "NONE": 16,
+      "RATIO": 4,
+      "RLC": 6,
+      "RPC": 18
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 192,
+    "ignored_sentences": 261,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "YASH NENSEE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Veni Vidi Vici",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Zehan Setalvad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Anush Agarwalla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Ashish Limaye",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Vinayak Khokhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Icaro LB",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Ben Townley",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "John Bedford",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Chirags",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "A LA BONHEUR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "RIENROE ADARE ACROBAT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Balaji Vijay Shankar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 270,
+        "entity_text": "Rahul Mehra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 121,
+    "ARG_RESPONDENT": 2,
+    "FAC": 39,
+    "PRE_RELIED": 2,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 216,
+    "ISSUE": 1,
+    "NONE": 16,
+    "RATIO": 4,
+    "RLC": 6,
+    "RPC": 18
+  }
+}

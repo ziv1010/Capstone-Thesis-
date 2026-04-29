@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 87,
+      "facts": 4549,
+      "arguments": 4649,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4649
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 28,
+      "PRE_RELIED": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 136,
+      "NONE": 1,
+      "RATIO": 4,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 61,
+    "ignored_sentences": 142,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Henri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Henri",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 28,
+    "PRE_RELIED": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 136,
+    "NONE": 1,
+    "RATIO": 4,
+    "RPC": 1
+  }
+}

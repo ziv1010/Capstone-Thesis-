@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 3739,
+      "facts": 1592,
+      "arguments": 3014,
+      "petitioner_arguments": 1147,
+      "respondent_arguments": 842,
+      "other_lawyer_arguments": 1023
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 5,
+      "FAC": 9,
+      "PRE_RELIED": 5,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 96,
+      "ISSUE": 3,
+      "NONE": 1,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 59,
+    "ignored_sentences": 107,
+    "ignored_entities": [
+      {
+        "sentence_id": 38,
+        "entity_text": "Mathai M.Paikeday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Tom K.Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 5,
+    "FAC": 9,
+    "PRE_RELIED": 5,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 96,
+    "ISSUE": 3,
+    "NONE": 1,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

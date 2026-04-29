@@ -1,0 +1,113 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 275,
+          "end": 284
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 263,
+          "end": 270
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 178,
+          "end": 185
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 275,
+          "end": 284
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 263,
+          "end": 270
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 178,
+          "end": 185
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1048,
+      "facts": 759,
+      "arguments": 5281,
+      "petitioner_arguments": 5281,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "FAC": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 10,
+      "NONE": 2,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 25,
+    "ignored_sentences": 17,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Paneer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Sidheshwar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sidheshwar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Sidheshwar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Sidheshwar Sharma",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "FAC": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 10,
+    "NONE": 2,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

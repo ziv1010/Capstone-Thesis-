@@ -1,0 +1,74 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 448,
+          "end": 457
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 448,
+          "end": 457
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 566,
+      "facts": 0,
+      "arguments": 12221,
+      "petitioner_arguments": 2863,
+      "respondent_arguments": 1740,
+      "other_lawyer_arguments": 7616
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 2,
+      "PRE_RELIED": 2,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 12,
+      "NONE": 2,
+      "RATIO": 4,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 25,
+    "ignored_sentences": 19,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Arhar Dal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 2,
+    "PRE_RELIED": 2,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 12,
+    "NONE": 2,
+    "RATIO": 4,
+    "RPC": 1
+  }
+}

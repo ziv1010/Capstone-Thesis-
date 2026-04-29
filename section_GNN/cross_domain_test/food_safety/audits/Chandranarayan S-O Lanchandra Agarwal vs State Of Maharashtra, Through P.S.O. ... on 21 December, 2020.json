@@ -1,0 +1,722 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 258,
+          "end": 265
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 894,
+      "facts": 1469,
+      "arguments": 579,
+      "petitioner_arguments": 179,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 399
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "FAC": 7,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 7,
+      "RATIO": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 433,
+    "ignored_sentences": 14,
+    "ignored_entities": [
+      {
+        "sentence_id": 18,
+        "entity_text": "Lalchandji Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Hotaldas Gurbani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Dinesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Peshuram Pahuja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Motandas Rajpal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Premkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Virumal Nathani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Lalchandji Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Sanjay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Hotaldas Gurbani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Lanchandra Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Ghanshyam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Sitaram Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Usha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Ghanshyam Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Yuvraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Ghanshyam Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Ghanshyam Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Sandeep",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Pralhad Tongale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Premkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Virumal Nathani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Vitthal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Kanoji Bunde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Keshavlal Sangani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Santosh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Shaliram Patkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Jetthanand Lalwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 141,
+        "entity_text": "Lalchandji Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Sayyad Jalil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Sayyad Shafiq",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Manohar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Kisan Panchpore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Lalchand Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Gajanan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "Ashok Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Subhash Chowk",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Murtizapur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Tabrez Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Yunus Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Jagir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Shaikh Sharif",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Shaikh Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Abdul Kadir Quraishi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Abdul Kadir Quraishi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 202,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 203,
+        "entity_text": "Gajanan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 203,
+        "entity_text": "Vishwambhar Mapari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 210,
+        "entity_text": "Sachin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Gajanan Sakhalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "Kailash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 214,
+        "entity_text": "Govindrao Ingale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Amol",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Gajanan Ingale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Sangita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Gajanan Ingale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 228,
+        "entity_text": "Shekhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "Dineshchandra Padia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "Nilesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 244,
+        "entity_text": "Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 250,
+        "entity_text": "Keshavlal Sangani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "Wahid Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "Jahangir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Jethanand Lalwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Chaman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Sitaram Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 262,
+        "entity_text": "Prakash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 263,
+        "entity_text": "Jethanand Lalwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 264,
+        "entity_text": "Wahid Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Jahangir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 267,
+        "entity_text": "Amol",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 267,
+        "entity_text": "Ramesh Tayade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "Abdul Arif",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "Abdul Haque",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "Anjangaon Surji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "Anjangaon Surji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Anjangaon Surji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Anjangaon Surji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 282,
+        "entity_text": "Chetan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 282,
+        "entity_text": "Subhash Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 284,
+        "entity_text": "Laxman Shewade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "Subhash Savarkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 289,
+        "entity_text": "Labouror",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Shyamsundar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Baijnath Bhartiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Dadgi Pul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 299,
+        "entity_text": "Laxman Shewade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 306,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 306,
+        "entity_text": "Amol",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 307,
+        "entity_text": "Ramesh Tayade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Labouror",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 310,
+        "entity_text": "Subhash Savarkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 313,
+        "entity_text": "Wahid Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Jahangir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 321,
+        "entity_text": "Mohmed Salik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 321,
+        "entity_text": "Mohmed Sabir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 322,
+        "entity_text": "Mohmed Shahid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 322,
+        "entity_text": "Abdul Razzak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 329,
+        "entity_text": "Nilesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 329,
+        "entity_text": "Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 336,
+        "entity_text": "Nilesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 336,
+        "entity_text": "Narayan Sanghvai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 342,
+        "entity_text": "Lalchand Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 344,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 353,
+        "entity_text": "Mahesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 353,
+        "entity_text": "Bhagchand Jethani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 354,
+        "entity_text": "Bhagchand Jethani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 360,
+        "entity_text": "Sitaram Padia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 365,
+        "entity_text": "Mohmed Ilyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 366,
+        "entity_text": "Mohmed Isaque",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 367,
+        "entity_text": "Mohmed Amin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 368,
+        "entity_text": "Mohmed Isaque",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 375,
+        "entity_text": "Nisar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 376,
+        "entity_text": "Abdul Kadir Quraishi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 386,
+        "entity_text": "Abdul Kadir Quraishi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 392,
+        "entity_text": "Mohit Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 393,
+        "entity_text": "Jahagir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 395,
+        "entity_text": "Mustkim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 395,
+        "entity_text": "Mutalik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 398,
+        "entity_text": "Wahid Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 399,
+        "entity_text": "Jahagir Kha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 404,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 410,
+        "entity_text": "Abdul Rauf",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 410,
+        "entity_text": "Daud Dosani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 417,
+        "entity_text": "Akram Ramjan Gori",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 424,
+        "entity_text": "T. A. Mirza",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "FAC": 7,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 7,
+    "RATIO": 2,
+    "RPC": 5
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 139,
+          "end": 154
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bliberty\\s+granted\\b",
+          "matched_text": "liberty granted",
+          "start": 139,
+          "end": 154
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 607,
+      "facts": 1658,
+      "arguments": 907,
+      "petitioner_arguments": 655,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 251
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "FAC": 11,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 5,
+      "NONE": 8,
+      "RATIO": 1,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 34,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 28,
+        "entity_text": "Vishwajit Vithhal Shinde",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Alibaug",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Vimal Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Manikchand Gutkha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "FAC": 11,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 5,
+    "NONE": 8,
+    "RATIO": 1,
+    "RPC": 9
+  }
+}

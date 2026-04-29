@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 123,
+      "facts": 3480,
+      "arguments": 10807,
+      "petitioner_arguments": 4146,
+      "respondent_arguments": 1769,
+      "other_lawyer_arguments": 4890
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 6,
+      "FAC": 24,
+      "PRE_RELIED": 23
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 27,
+      "NONE": 4,
+      "RATIO": 1,
+      "RLC": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 90,
+    "ignored_sentences": 41,
+    "ignored_entities": [
+      {
+        "sentence_id": 1,
+        "entity_text": "G.Jayachandran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Aavin Ilam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Pasumpon Muthumaralinganar Salai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Aavin Ilam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Pasumpon Muthumaralinganar Salai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Holmes",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Aavin",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 6,
+    "FAC": 24,
+    "PRE_RELIED": 23
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 27,
+    "NONE": 4,
+    "RATIO": 1,
+    "RLC": 2,
+    "RPC": 7
+  }
+}

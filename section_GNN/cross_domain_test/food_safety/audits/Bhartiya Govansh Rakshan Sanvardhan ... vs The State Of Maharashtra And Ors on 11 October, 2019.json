@@ -1,0 +1,102 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 95,
+      "facts": 2550,
+      "arguments": 16068,
+      "petitioner_arguments": 15700,
+      "respondent_arguments": 367,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 64,
+      "ARG_RESPONDENT": 3,
+      "FAC": 10
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 25,
+      "NONE": 7,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 87,
+    "ignored_sentences": 39,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "S. S. Shinde Umesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Raju R. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Dhruv V. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "D.S. Joshi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Prashant Kamble",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Kunal Waghmare",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Rutuja Ambekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Panjrapol",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Ganesh Nakhate",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Raju Gupta",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 64,
+    "ARG_RESPONDENT": 3,
+    "FAC": 10
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 25,
+    "NONE": 7,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

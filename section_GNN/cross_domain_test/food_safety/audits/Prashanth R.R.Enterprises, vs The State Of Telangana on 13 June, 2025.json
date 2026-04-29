@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 133,
+          "end": 140
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 133,
+          "end": 140
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 187,
+      "facts": 1662,
+      "arguments": 706,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 706,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 4,
+      "FAC": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 1,
+      "NONE": 8,
+      "RATIO": 2,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 12,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Batch",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 4,
+    "FAC": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 1,
+    "NONE": 8,
+    "RATIO": 2,
+    "RPC": 5
+  }
+}

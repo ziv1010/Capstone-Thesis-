@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 557,
+      "facts": 1471,
+      "arguments": 975,
+      "petitioner_arguments": 580,
+      "respondent_arguments": 394,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "ARG_RESPONDENT": 3,
+      "FAC": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 1,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 32,
+    "ignored_sentences": 13,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "A. Nikam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Anamika Malhotra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "A. Nikam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Umesh Subhash Bhuse",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "A. Nikam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Amit Palkar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "ARG_RESPONDENT": 3,
+    "FAC": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 1,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 7
+  }
+}

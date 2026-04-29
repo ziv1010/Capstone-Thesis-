@@ -1,0 +1,87 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 256,
+          "end": 263
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 189,
+          "end": 196
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 256,
+          "end": 263
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 189,
+          "end": 196
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1160,
+      "facts": 692,
+      "arguments": 2973,
+      "petitioner_arguments": 2022,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 950
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "FAC": 2,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 1,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 15,
+    "ignored_sentences": 3,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "REENA SUDHIR DAS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "HARSHLATA SONI",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "FAC": 2,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 1,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

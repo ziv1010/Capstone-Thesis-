@@ -1,0 +1,77 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 865,
+      "facts": 2801,
+      "arguments": 37065,
+      "petitioner_arguments": 17926,
+      "respondent_arguments": 1016,
+      "other_lawyer_arguments": 18121
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 81,
+      "ARG_RESPONDENT": 6,
+      "FAC": 16,
+      "PRE_NOT_RELIED": 2,
+      "PRE_RELIED": 47,
+      "STA": 19
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 161,
+      "NONE": 5,
+      "RATIO": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 176,
+    "ignored_sentences": 176,
+    "ignored_entities": [
+      {
+        "sentence_id": 115,
+        "entity_text": "A.Rajappa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Pinjrapoles",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 137,
+        "entity_text": "Banerji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "Uma Devi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 81,
+    "ARG_RESPONDENT": 6,
+    "FAC": 16,
+    "PRE_NOT_RELIED": 2,
+    "PRE_RELIED": 47,
+    "STA": 19
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 161,
+    "NONE": 5,
+    "RATIO": 2,
+    "RPC": 8
+  }
+}

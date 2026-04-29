@@ -1,0 +1,248 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 669,
+      "facts": 1895,
+      "arguments": 6546,
+      "petitioner_arguments": 765,
+      "respondent_arguments": 447,
+      "other_lawyer_arguments": 5332
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 2,
+      "FAC": 15,
+      "PRE_RELIED": 27
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 71,
+      "NONE": 17,
+      "RLC": 18,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 117,
+    "ignored_sentences": 109,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "P N Khatri",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Satish Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Pawan Goel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Pawan Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Pawan Goel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Hari Om",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Gopal Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Yoginder Goel",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Rakesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Deepak Kalra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Kanshi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Gopal Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Yogender Goel",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Rakesh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Kashi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ghisa Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Kashi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Kashi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Kanshi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Kanshi Nath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 156,
+        "entity_text": "Pawan Goyal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Moog Dal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Bishan Sarup",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Subash",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Satinder Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 2,
+    "FAC": 15,
+    "PRE_RELIED": 27
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 71,
+    "NONE": 17,
+    "RLC": 18,
+    "RPC": 3
+  }
+}

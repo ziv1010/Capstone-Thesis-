@@ -1,0 +1,224 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 245,
+          "end": 254
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 245,
+          "end": 254
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1780,
+      "facts": 5226,
+      "arguments": 35512,
+      "petitioner_arguments": 1429,
+      "respondent_arguments": 534,
+      "other_lawyer_arguments": 33547
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 4,
+      "FAC": 49,
+      "PRE_RELIED": 146,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 230,
+      "ISSUE": 14,
+      "NONE": 18,
+      "RATIO": 1,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 217,
+    "ignored_sentences": 273,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Io Asi Ram Kishor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Kuldeep",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Puran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Kuldeep",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Satish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Satish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Ram Kishore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Ram Kishore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Ram Kishore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Satish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Ilaka MM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 240,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 289,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "Pappu Deo Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 305,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 311,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 345,
+        "entity_text": "McGregor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "R. D. Hattangadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 363,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 365,
+        "entity_text": "Pappu Deo Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "Pappu Deo Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 372,
+        "entity_text": "K. Suresh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 391,
+        "entity_text": "Sidram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 416,
+        "entity_text": "A. P. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 440,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 445,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 471,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 4,
+    "FAC": 49,
+    "PRE_RELIED": 146,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 230,
+    "ISSUE": 14,
+    "NONE": 18,
+    "RATIO": 1,
+    "RPC": 10
+  }
+}

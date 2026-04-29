@@ -1,0 +1,71 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 757,
+      "facts": 584,
+      "arguments": 0,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 6
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 22,
+      "RATIO": 2,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 13,
+    "ignored_sentences": 30,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "GEORGE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "BENNY GEORGE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SHRI.K.B.GANGESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SRI.A.R.NIMOD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SRI.M.A.AUGUSTINE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "VIDHYA KURIAKOSE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 6
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 22,
+    "RATIO": 2,
+    "RPC": 6
+  }
+}

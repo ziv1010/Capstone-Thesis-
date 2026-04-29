@@ -1,0 +1,35 @@
+\chapter{Related Work}
+
+\section{Feature Engineering and Statistical Models}
+
+Early legal outcome prediction relied on feature engineering and classical learning: bag-of-words, TF--IDF, or hand-designed legal features fed into linear models, SVMs, or tree ensembles. Aletras et al.\ showed that n-gram and topic features from ECHR case text predicted violation judgments with $\sim$79\% accuracy, with case facts as the strongest signal~\cite{aletras2016echr}. Katz et al.\ built a time-evolving random forest on institutional metadata and historical voting, reaching $>$70\% accuracy on two centuries of US Supreme Court outcomes~\cite{katz2017supreme}. Medvedeva et al.\ demonstrated that predicting genuinely future ECHR cases from past ones substantially lowers performance, raising early concerns about temporal leakage~\cite{medvedeva2020echr}.
+
+These approaches remain useful as truncation-free baselines~\cite{mamakas2022longlegal}. Their limitation is that flat lexical representations cannot capture discourse order, typed legal relations, or cross-case structure. A broader critique~\cite{medvedeva2023doitright} found that most LJP publications rely on unrealistic inputs or temporally inconsistent splits; this thesis treats leakage control as a core methodological contribution.
+
+\section{Text-Based Deep Learning}
+
+The second wave replaced manual features with learned representations. LEGAL-BERT showed that legal-corpus pre-training yields consistent gains over generic BERT~\cite{chalkidis2020legalbert}; LexGLUE confirmed this across diverse legal NLU tasks~\cite{chalkidis2022lexglue}.
+
+The central weakness for standard transformers in law is document length: most judgments far exceed the 512-token window, forcing truncation, sliding windows, or hierarchical architectures. Extended-context models help, but hierarchical TF--IDF remains competitive~\cite{mamakas2022longlegal}. Hierarchical encoders mirror legal intuition (facts, arguments, and operative text play distinct roles) but remain document-centric: they model internal case structure while ignoring cross-case links through shared statutes or precedents. This thesis departs from purely text-based work by treating text embeddings as node features within a larger relational representation.
+
+\section{Graph-Based Approaches}
+
+Graph-based methods model the relational structure that flat pipelines miss. TopJudge formalised dependencies among law articles, charges, and penalties as a DAG, showing joint prediction over structured outputs beats independent subtasks~\cite{zhong2018topjudge}. More recent systems incorporate retrieved precedents and law-article graphs via LLM-and-retrieval pipelines~\cite{wu2023pljp, santosh2024precedents}.
+
+Within Indian LJP, Khatri et al.\ explored GNNs and raised questions about case-graph design and demographic shortcuts~\cite{khatri2023indianGNN}. Large-scale Indian work has extended coverage and RAG pipelines~\cite{nigam2025nyayaanumana}. Existing graph approaches nonetheless leave gaps: many are built for civil-law charge prediction, rely on a single court, or use graph structure without comparable attention to decision-text or identity leakage. This work narrows its claim: the graph should improve prediction by exposing legal structure across cases while explicitly blocking shortcuts that rely on post-decision information.
+
+\section{Heterogeneous GNNs and the Motivation for HGT}
+
+Legal graphs contain multiple semantically distinct node and edge types. A homogeneous GNN is too blunt: case, statute, and precedent nodes play different epistemic roles, and edges such as \emph{cites\_precedent} and \emph{heard\_in} should not collapse into a single message-passing rule.
+
+R-GCN introduced relation-specific weight matrices~\cite{schlichtkrull2018rgcn} but becomes coarse as type counts grow and does not model attention over heterogeneous neighbourhoods. HAN uses hierarchical attention over meta-paths~\cite{wang2019han} but requires manually specified meta-paths, hard-coding assumptions that may not transfer across legal domains. HGT uses node-type-dependent projections and edge-type-dependent attention without meta-path templates~\cite{hu2020hgt}. For this thesis's legal graph --- many node types, many edge types, deliberately cross-domain --- HGT fits better than R-GCN or HAN.
+
+\section{Indian Legal NLP and OpenNyAI}
+
+Indian legal NLP developed later than English-language benchmarks, partly due to data and tooling scarcity. Early work on rhetorical role identification showed that Indian judgments have a recoverable discourse structure (preamble, facts, arguments, ratio, ruling) useful for downstream tasks but not explicitly marked in raw text~\cite{bhattacharya2019rhetoricalroles}.
+
+OpenNyAI is the most important development for this thesis, bringing legal NER, rhetorical-role prediction, and summarisation into an open pipeline~\cite{kalamkar2022ner, opennyai2024docs, opennyai2024about}. ILDC introduced a large Indian Supreme Court corpus for prediction and explanation~\cite{malik2021ildc}; IL-TUR broadened the scope to multi-task legal understanding~\cite{joshi2024iltur}; newer resources such as LegalSeg confirm that structural modelling remains important~\cite{nigam2025legalseg}.
+
+\section{Gaps This Work Addresses}
+
+Most prior work sacrifices at least one of \emph{scale}, \emph{cross-domain coverage}, \emph{cross-case legal structure}, or \emph{leakage-aware evaluation}. What remains rare is an Indian LJP system that (i) operates over a large multi-domain corpus, (ii) consolidates multiple hearings per case, (iii) extracts legal entities and rhetorical structure, (iv) builds an explicitly heterogeneous cross-case graph, and (v) evaluates under a design that resists both decision-text leakage and identity-based shortcuts. That is the niche this thesis occupies.

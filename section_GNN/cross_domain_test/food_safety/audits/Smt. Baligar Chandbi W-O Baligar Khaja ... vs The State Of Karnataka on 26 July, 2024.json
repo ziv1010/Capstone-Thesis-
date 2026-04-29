@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 3243,
+      "facts": 8598,
+      "arguments": 17161,
+      "petitioner_arguments": 4566,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 12594
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "FAC": 34,
+      "PRE_RELIED": 54
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 64,
+      "ISSUE": 2,
+      "NONE": 46,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 179,
+    "ignored_sentences": 118,
+    "ignored_entities": [
+      {
+        "sentence_id": 28,
+        "entity_text": "Raitha Samparka Kendra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Baligar Khaja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Basu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Nakara",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Rescopound",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Baligar Khaja",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 222,
+        "entity_text": "Ajjappa Renuka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 222,
+        "entity_text": "Ajjappa Renuka",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "FAC": 34,
+    "PRE_RELIED": 54
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 64,
+    "ISSUE": 2,
+    "NONE": 46,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

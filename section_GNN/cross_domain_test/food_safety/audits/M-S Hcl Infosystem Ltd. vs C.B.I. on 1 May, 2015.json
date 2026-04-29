@@ -1,0 +1,276 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 207,
+          "end": 214
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 96,
+          "end": 103
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 207,
+          "end": 214
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 96,
+          "end": 103
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 251,
+      "facts": 2018,
+      "arguments": 30863,
+      "petitioner_arguments": 8036,
+      "respondent_arguments": 1724,
+      "other_lawyer_arguments": 21101
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 33,
+      "ARG_RESPONDENT": 4,
+      "FAC": 6,
+      "PRE_RELIED": 54,
+      "STA": 25
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 149,
+      "NONE": 20,
+      "RATIO": 7,
+      "RLC": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 176,
+    "ignored_sentences": 182,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Manish Tiwary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Ashwini Kumar Awasthi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Anurag Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Gopal Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Gopal Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "G.K. Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Gopal Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Gopal Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "G.K. Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Anurag Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Khanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Sunil Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Mahendra Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Y.S. Sachan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Sunil Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Mahendra Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "AMAR PRATAP SINGH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "SHASHAN GRIH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Deepak Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "NRHM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "O.P. Saini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 225,
+        "entity_text": "De Smith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 225,
+        "entity_text": "Thomson Sweet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "De Smith",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Pearce",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Darman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 255,
+        "entity_text": "Reid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 263,
+        "entity_text": "Pearce",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 279,
+        "entity_text": "H.N.R. Wade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "Gopal Chaturvedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 348,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 33,
+    "ARG_RESPONDENT": 4,
+    "FAC": 6,
+    "PRE_RELIED": 54,
+    "STA": 25
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 149,
+    "NONE": 20,
+    "RATIO": 7,
+    "RLC": 2,
+    "RPC": 4
+  }
+}

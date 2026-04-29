@@ -1,0 +1,760 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 931,
+      "facts": 22787,
+      "arguments": 5236,
+      "petitioner_arguments": 2541,
+      "respondent_arguments": 1545,
+      "other_lawyer_arguments": 1148
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 11,
+      "FAC": 163,
+      "PRE_RELIED": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 112,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 1,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 193,
+    "ignored_sentences": 128,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Girdhari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Vasudev",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Dharampal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Girdhari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "S.I. Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "S.I. Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Jaswant Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Jawahar Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Girraj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Tulla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "M.K. Srivastava",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "S.I. Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Girdhari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "M.K. Srivastava",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Vijendra Pal Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "S.I. Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Girdhari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Dharampal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Vasudev",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Tulla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Giriraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Gopi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Kishori Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Premo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Kishori Lal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Tulla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Tulla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Tulla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Hatti",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Gajadhar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 107,
+        "entity_text": "Giriraj Mukhiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Tula",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Vasudev",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Hatti",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Kamal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "he(Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Vasudev",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Dharampal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Kamal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Vasudev",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Dharampal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Raghunath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Leela",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "he",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Pyare",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Gajjo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "M.K. Srivastava",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Vijendra Pal Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "535 Lal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "S.I. Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Som Dutt Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Girdhari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 163,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 163,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "S.S.I. Hari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Girdhari Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Tularam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Hetram",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 11,
+    "FAC": 163,
+    "PRE_RELIED": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 112,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 1,
+    "RPC": 7
+  }
+}

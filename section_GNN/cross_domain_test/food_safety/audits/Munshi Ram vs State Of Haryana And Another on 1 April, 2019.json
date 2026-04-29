@@ -1,0 +1,114 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1101,
+      "facts": 3807,
+      "arguments": 995,
+      "petitioner_arguments": 537,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 457
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 15,
+      "PRE_RELIED": 1,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 17,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 22,
+    "ignored_sentences": 26,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Jatinder Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Mukesh Kamboj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Subhash Chaudhary",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Jatinder Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Subhash Chaudhary",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Atma Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Jatinder Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Kanha Ram",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Sharda Devi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Jatinder Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Mukesh Kamboj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Mukesh Kamboj",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 15,
+    "PRE_RELIED": 1,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 17,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

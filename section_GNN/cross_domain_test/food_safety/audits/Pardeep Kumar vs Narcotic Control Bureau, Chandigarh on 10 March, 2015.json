@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 394,
+      "facts": 3802,
+      "arguments": 17376,
+      "petitioner_arguments": 1281,
+      "respondent_arguments": 200,
+      "other_lawyer_arguments": 15893
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 1,
+      "FAC": 18,
+      "PRE_RELIED": 53,
+      "STA": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 149,
+      "NONE": 8,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 95,
+    "ignored_sentences": 177,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Sukant Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Bahadur Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Jagjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 77,
+        "entity_text": "Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Khosla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Chandigarh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Gill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Maneka Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Gill",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Douglas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 215,
+        "entity_text": "Marshall",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Surjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 240,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 1,
+    "FAC": 18,
+    "PRE_RELIED": 53,
+    "STA": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 149,
+    "NONE": 8,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 17
+  }
+}

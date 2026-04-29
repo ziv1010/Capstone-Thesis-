@@ -1,0 +1,111 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 544,
+          "end": 553
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 536,
+          "end": 543
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 544,
+          "end": 553
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 536,
+          "end": 543
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1253,
+      "facts": 5735,
+      "arguments": 27614,
+      "petitioner_arguments": 5817,
+      "respondent_arguments": 2698,
+      "other_lawyer_arguments": 19097
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 9,
+      "FAC": 29,
+      "PRE_RELIED": 76,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 71,
+      "NONE": 9,
+      "RATIO": 1,
+      "RLC": 2,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 142,
+    "ignored_sentences": 86,
+    "ignored_entities": [
+      {
+        "sentence_id": 78,
+        "entity_text": "Maxwell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Campbell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Sutherland",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 213,
+        "entity_text": "Syed Yakoob",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 220,
+        "entity_text": "Thansingh Nathmal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 9,
+    "FAC": 29,
+    "PRE_RELIED": 76,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 71,
+    "NONE": 9,
+    "RATIO": 1,
+    "RLC": 2,
+    "RPC": 3
+  }
+}

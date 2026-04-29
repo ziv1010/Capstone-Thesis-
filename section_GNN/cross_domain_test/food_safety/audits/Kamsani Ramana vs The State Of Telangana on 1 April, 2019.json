@@ -1,0 +1,76 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 199,
+          "end": 208
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 277,
+      "facts": 1927,
+      "arguments": 11434,
+      "petitioner_arguments": 6891,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 4542
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 21,
+      "FAC": 7,
+      "PRE_RELIED": 12,
+      "STA": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 40,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 49,
+    "ignored_sentences": 50,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Kamsani Yadagiri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "M.A.K.Mukheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 21,
+    "FAC": 7,
+    "PRE_RELIED": 12,
+    "STA": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 40,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

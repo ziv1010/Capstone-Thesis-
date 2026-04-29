@@ -1,0 +1,104 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bpetition\\s+is\\s+allowed\\b",
+          "matched_text": "petition is allowed",
+          "start": 66,
+          "end": 85
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 43,
+          "end": 50
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 221,
+          "end": 228
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 470,
+          "end": 477
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 470,
+          "end": 477
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 43,
+      "facts": 1366,
+      "arguments": 1823,
+      "petitioner_arguments": 1823,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "FAC": 7
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 23,
+    "ignored_sentences": 9,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Basti Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "Ratan Singh Deora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Shiv Ratan Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Mool Chand Agarwal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "FAC": 7
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

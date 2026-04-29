@@ -1,0 +1,128 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 81,
+          "end": 90
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 587,
+      "facts": 1403,
+      "arguments": 19803,
+      "petitioner_arguments": 6822,
+      "respondent_arguments": 1145,
+      "other_lawyer_arguments": 11834
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 37,
+      "ARG_RESPONDENT": 9,
+      "FAC": 11,
+      "PRE_RELIED": 10,
+      "STA": 18
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 278,
+      "ISSUE": 1,
+      "NONE": 17,
+      "RATIO": 2,
+      "RLC": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 121,
+    "ignored_sentences": 307,
+    "ignored_entities": [
+      {
+        "sentence_id": 45,
+        "entity_text": "Maxwell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 143,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Ameerbi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Anganwadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "Ameerbi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 198,
+        "entity_text": "Aastha Mehta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 208,
+        "entity_text": "Aishwarya Bhati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 299,
+        "entity_text": "Ameerbi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 37,
+    "ARG_RESPONDENT": 9,
+    "FAC": 11,
+    "PRE_RELIED": 10,
+    "STA": 18
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 278,
+    "ISSUE": 1,
+    "NONE": 17,
+    "RATIO": 2,
+    "RLC": 4,
+    "RPC": 5
+  }
+}

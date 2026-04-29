@@ -1,0 +1,267 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 466,
+          "end": 473
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 148,
+          "end": 155
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 414,
+          "end": 421
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 466,
+          "end": 473
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 148,
+          "end": 155
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 414,
+          "end": 421
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 359,
+      "facts": 3962,
+      "arguments": 26667,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 26667
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 18,
+      "PRE_RELIED": 22,
+      "STA": 50
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 89,
+      "ISSUE": 3,
+      "NONE": 14,
+      "RATIO": 3,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 206,
+    "ignored_sentences": 115,
+    "ignored_entities": [
+      {
+        "sentence_id": 34,
+        "entity_text": "Kadam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Easgoan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "Nirmal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Koutala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Choutuppal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 56,
+        "entity_text": "Raghunadhpalem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Nalgonda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Kothagudem",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Sadinni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Manikanta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Adibatla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Khammam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "COTPA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Nirmal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "ille  Nirmal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Anand Ramdhani Chaurasia3",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Sayyed Hassan Sayyed Subhan1",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "Bhajan Lal10",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 205,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 206,
+        "entity_text": "Sayyed Hassan Sayyed Subhan1",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 210,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "V. Nageswara Rao11",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 222,
+        "entity_text": "Joseph Kurian6",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 240,
+        "entity_text": "Boop Singh Tyagi9",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "N.T. Rama Rao12",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 251,
+        "entity_text": "Bhajan Lal10",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Chidurala Shyamsubder4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 280,
+        "entity_text": "Bhajan Lal10",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 18,
+    "PRE_RELIED": 22,
+    "STA": 50
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 89,
+    "ISSUE": 3,
+    "NONE": 14,
+    "RATIO": 3,
+    "RPC": 6
+  }
+}

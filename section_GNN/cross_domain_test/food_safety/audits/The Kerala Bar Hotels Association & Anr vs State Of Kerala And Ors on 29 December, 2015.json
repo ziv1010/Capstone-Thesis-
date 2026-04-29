@@ -1,0 +1,122 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1591,
+      "facts": 1237,
+      "arguments": 22702,
+      "petitioner_arguments": 9180,
+      "respondent_arguments": 507,
+      "other_lawyer_arguments": 13013
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 60,
+      "ARG_RESPONDENT": 3,
+      "FAC": 7,
+      "PRE_RELIED": 32,
+      "STA": 21
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 221,
+      "NONE": 1,
+      "RATIO": 6,
+      "RLC": 42,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 127,
+    "ignored_sentences": 273,
+    "ignored_entities": [
+      {
+        "sentence_id": 1,
+        "entity_text": "Vikramajit Sen",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Khoday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 245,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 247,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 248,
+        "entity_text": "Surendra Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Khoday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 271,
+        "entity_text": "Aryaman Sundaram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 272,
+        "entity_text": "Khoday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 274,
+        "entity_text": "Khoday",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 302,
+        "entity_text": "Krishan Kumar Narula",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 60,
+    "ARG_RESPONDENT": 3,
+    "FAC": 7,
+    "PRE_RELIED": 32,
+    "STA": 21
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 221,
+    "NONE": 1,
+    "RATIO": 6,
+    "RLC": 42,
+    "RPC": 3
+  }
+}

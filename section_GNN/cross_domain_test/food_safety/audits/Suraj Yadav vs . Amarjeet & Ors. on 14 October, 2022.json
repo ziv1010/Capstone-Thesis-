@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1407,
+      "facts": 4446,
+      "arguments": 6310,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 6310
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 32,
+      "PRE_RELIED": 27,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 137,
+      "ISSUE": 6,
+      "NONE": 23,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 76,
+    "ignored_sentences": 181,
+    "ignored_entities": [
+      {
+        "sentence_id": 48,
+        "entity_text": "Amit Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Raj Kumar(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 32,
+    "PRE_RELIED": 27,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 137,
+    "ISSUE": 6,
+    "NONE": 23,
+    "RPC": 15
+  }
+}

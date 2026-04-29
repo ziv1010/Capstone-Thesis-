@@ -1,0 +1,77 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 302,
+      "facts": 259,
+      "arguments": 5880,
+      "petitioner_arguments": 345,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 5534
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 2,
+      "PRE_RELIED": 25
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 33,
+      "ISSUE": 8,
+      "NONE": 10,
+      "RATIO": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 144,
+    "ignored_sentences": 54,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "1Dipankar Goshe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Henrietta Fore",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "5Muzna Alvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Manavi Gupta",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 2,
+    "PRE_RELIED": 25
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 33,
+    "ISSUE": 8,
+    "NONE": 10,
+    "RATIO": 1,
+    "RPC": 2
+  }
+}

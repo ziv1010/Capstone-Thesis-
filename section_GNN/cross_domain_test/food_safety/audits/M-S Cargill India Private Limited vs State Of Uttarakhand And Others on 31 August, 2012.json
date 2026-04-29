@@ -1,0 +1,59 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 87,
+      "facts": 1919,
+      "arguments": 1674,
+      "petitioner_arguments": 319,
+      "respondent_arguments": 301,
+      "other_lawyer_arguments": 1052
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 1,
+      "FAC": 5,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 6,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 14,
+    "ignored_sentences": 8,
+    "ignored_entities": [
+      {
+        "sentence_id": 17,
+        "entity_text": "R.S.Rawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Vijay Lakshmi",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 1,
+    "FAC": 5,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 6,
+    "RPC": 2
+  }
+}

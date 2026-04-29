@@ -1,0 +1,301 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 324,
+      "facts": 21100,
+      "arguments": 3851,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3851
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 162,
+      "PRE_RELIED": 16,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 21,
+      "ISSUE": 2,
+      "NONE": 11,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 192,
+    "ignored_sentences": 39,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Vijay Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Lallu Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Swami Omji",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Swami Omji",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "M. Jain",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "MAYANK MAYANK GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Jain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Arvind Kejriwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "MAYANK MAYANK GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Manoj of",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Aam Aadmi Party",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "MAYANK MAYANK GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Jha Ji",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Madam Malti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Narender Modi Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "Raj Nath Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "MAYANK PS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Jahid Hussain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "HC Vijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Ram Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "HC Vijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Amit Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Mukesh Jain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Swami Om Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Swami Om Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Swami Om Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Swami Om Ji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "T.U. Siddiqui",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Ram Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "HC Vijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "MAYANK GOEL GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "HC Vijay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Vijay Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Ram Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Kondali Mor",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Swami Omjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Swami Omjee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "MAYANK GOEL GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Ram Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Ram Naresh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Swami Om Jee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Amit Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "T.U. Siddiqui",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Mukesh Jain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Swami Om Jee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "MAYANK MAYANK GOEL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Swami OmJee",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Swami Omji",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Atkin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "MAYANK GOEL GOEL",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 162,
+    "PRE_RELIED": 16,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 21,
+    "ISSUE": 2,
+    "NONE": 11,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

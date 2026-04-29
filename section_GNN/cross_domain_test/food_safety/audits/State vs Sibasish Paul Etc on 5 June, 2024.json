@@ -1,0 +1,259 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 196,
+      "facts": 9987,
+      "arguments": 3428,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3428
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 76,
+      "PRE_RELIED": 16,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 44,
+      "NONE": 4,
+      "RATIO": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 100,
+    "ignored_sentences": 51,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Sunil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "1.Sibasish Paul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "S.K. Paul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 6,
+        "entity_text": "2.Jitender Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "J.L. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Jitender Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Suraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Pancham",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "Raju Gupta @ Topi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Meena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Suraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Suraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Suraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "danda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Sunil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Jitender",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Arun Aggarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "K.L. Grover",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Gurpreet Singh Walia",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Gurpreet Singh Walia",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Ram Kishan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Gurpreet Singh Walia",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Pancham Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Inderjeet",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Auub Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Jitender Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Sibashish Paul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Ayub Khan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Pancham Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Pancham",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Pancham Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Jitender Kumar Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Sibashish Paul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Sibashish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Lawrence Jenkins",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 76,
+    "PRE_RELIED": 16,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 44,
+    "NONE": 4,
+    "RATIO": 2,
+    "RPC": 1
+  }
+}

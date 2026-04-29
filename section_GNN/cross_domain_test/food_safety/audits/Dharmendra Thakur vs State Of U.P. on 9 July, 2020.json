@@ -1,0 +1,48 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 50,
+      "facts": 136,
+      "arguments": 411,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 411
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 2,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 8,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Dharmendra Thakur",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 2,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RPC": 14
+  }
+}

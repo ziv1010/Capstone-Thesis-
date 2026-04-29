@@ -1,0 +1,142 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 454,
+      "facts": 3124,
+      "arguments": 36983,
+      "petitioner_arguments": 3625,
+      "respondent_arguments": 954,
+      "other_lawyer_arguments": 32402
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "ARG_RESPONDENT": 4,
+      "FAC": 11,
+      "PRE_RELIED": 82,
+      "STA": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 38,
+      "NONE": 3,
+      "RATIO": 5,
+      "RLC": 4,
+      "RPC": 19
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 140,
+    "ignored_sentences": 69,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Suneel Agrahari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Suneel Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Rajeev Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Moharrir Nankau Saroj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Jwala Prasad Chaturvedi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "M.A. Hussain",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "R.K. Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Devendra Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Suneel Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Vikram Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "ARG_RESPONDENT": 4,
+    "FAC": 11,
+    "PRE_RELIED": 82,
+    "STA": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 38,
+    "NONE": 3,
+    "RATIO": 5,
+    "RLC": 4,
+    "RPC": 19
+  }
+}

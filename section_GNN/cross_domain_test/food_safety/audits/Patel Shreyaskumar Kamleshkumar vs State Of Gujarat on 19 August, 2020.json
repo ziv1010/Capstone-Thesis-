@@ -1,0 +1,307 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 965,
+          "end": 974
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 532,
+          "end": 541
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 136,
+          "end": 143
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 200,
+          "end": 207
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 136,
+          "end": 143
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 200,
+          "end": 207
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 70,
+      "facts": 9070,
+      "arguments": 31821,
+      "petitioner_arguments": 12251,
+      "respondent_arguments": 970,
+      "other_lawyer_arguments": 18598
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 66,
+      "ARG_RESPONDENT": 6,
+      "FAC": 36,
+      "PRE_RELIED": 81,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 266,
+      "ISSUE": 2,
+      "NONE": 71,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 205,
+    "ignored_sentences": 346,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "ORAL JUDGMENT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 156,
+        "entity_text": "Anand Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 159,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 161,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "BOG-MAI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 176,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 177,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 180,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 188,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 189,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 190,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 191,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 193,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 194,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 195,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 197,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 200,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 203,
+        "entity_text": "Kamal B.Trivedi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 222,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 340,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 387,
+        "entity_text": "Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 391,
+        "entity_text": "Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 403,
+        "entity_text": "Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 439,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 450,
+        "entity_text": "Doordarshan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 514,
+        "entity_text": "Yagnik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 66,
+    "ARG_RESPONDENT": 6,
+    "FAC": 36,
+    "PRE_RELIED": 81,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 266,
+    "ISSUE": 2,
+    "NONE": 71,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 4
+  }
+}

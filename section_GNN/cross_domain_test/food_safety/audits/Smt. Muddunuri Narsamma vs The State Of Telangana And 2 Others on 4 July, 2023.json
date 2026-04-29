@@ -1,0 +1,137 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 58,
+          "end": 67
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 232,
+          "end": 241
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 232,
+          "end": 241
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 238,
+      "facts": 6384,
+      "arguments": 5254,
+      "petitioner_arguments": 1412,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3841
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "FAC": 44,
+      "PRE_RELIED": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 27,
+      "NONE": 3,
+      "RATIO": 4,
+      "RLC": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 90,
+    "ignored_sentences": 43,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Basa Chanakya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Mujib Kumar Sadasivuni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Muddunuri Sheshaiah @ Sheshanna @ Peddanna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Muddunuri Narsamma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Shakamuri Appa Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "K.S. Vyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "K.S. Vyas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Mohd. Abdullah @ Suresh Goud",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Basa Chanakya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Mallada K. Sri Ram1",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "K. Aruna Kumari4",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "T. Usha Bhai2",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "FAC": 44,
+    "PRE_RELIED": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 27,
+    "NONE": 3,
+    "RATIO": 4,
+    "RLC": 4,
+    "RPC": 5
+  }
+}

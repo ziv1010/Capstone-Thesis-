@@ -1,0 +1,101 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 150,
+          "end": 157
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 150,
+          "end": 157
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 4818,
+      "facts": 2730,
+      "arguments": 13419,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13419
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 15,
+      "PRE_RELIED": 34,
+      "STA": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 45,
+      "NONE": 17,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 101,
+    "ignored_sentences": 68,
+    "ignored_entities": [
+      {
+        "sentence_id": 26,
+        "entity_text": "SRI.D.FEROZE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "JABBIR JABBAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "O.ABDUL JABBAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "A.K. MAHAMMOOD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "S.V. NAZEERA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Ram Kishan Bajaj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "R.P. Neyatia",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 15,
+    "PRE_RELIED": 34,
+    "STA": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 45,
+    "NONE": 17,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

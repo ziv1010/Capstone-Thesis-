@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 604,
+      "facts": 960,
+      "arguments": 2306,
+      "petitioner_arguments": 1336,
+      "respondent_arguments": 306,
+      "other_lawyer_arguments": 662
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 1,
+      "FAC": 4,
+      "PRE_RELIED": 2,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 17,
+      "ISSUE": 6,
+      "NONE": 12,
+      "RATIO": 1,
+      "RPC": 17
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 21,
+    "ignored_sentences": 53,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Ravi Jha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "S.K. Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 1,
+    "FAC": 4,
+    "PRE_RELIED": 2,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 17,
+    "ISSUE": 6,
+    "NONE": 12,
+    "RATIO": 1,
+    "RPC": 17
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 59,
+      "facts": 1502,
+      "arguments": 18666,
+      "petitioner_arguments": 4867,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13798
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "FAC": 8,
+      "PRE_RELIED": 77
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 86,
+      "NONE": 10,
+      "RATIO": 4,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 114,
+    "ignored_sentences": 103,
+    "ignored_entities": [
+      {
+        "sentence_id": 37,
+        "entity_text": "Zahoor Ahmad Rather",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Navin Sinha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Chandra Shekhar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Jyoti K.K.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Gyanender Rawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 171,
+        "entity_text": "Ajay 722",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 189,
+        "entity_text": "Mansuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 189,
+        "entity_text": "Md. Firoz",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "FAC": 8,
+    "PRE_RELIED": 77
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 86,
+    "NONE": 10,
+    "RATIO": 4,
+    "RPC": 3
+  }
+}

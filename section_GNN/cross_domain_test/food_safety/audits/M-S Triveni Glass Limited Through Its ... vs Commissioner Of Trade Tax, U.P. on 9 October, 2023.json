@@ -1,0 +1,81 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 595,
+      "facts": 3194,
+      "arguments": 16379,
+      "petitioner_arguments": 3076,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13302
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "FAC": 14,
+      "PRE_RELIED": 45,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 95,
+      "ISSUE": 6,
+      "NONE": 8,
+      "RATIO": 4,
+      "RLC": 4,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 101,
+    "ignored_sentences": 121,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "NEETA SAPRA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "S.K. Bagaria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "R.K. Raizada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "S.K. Bagaria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 196,
+        "entity_text": "Bagaria",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "FAC": 14,
+    "PRE_RELIED": 45,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 95,
+    "ISSUE": 6,
+    "NONE": 8,
+    "RATIO": 4,
+    "RLC": 4,
+    "RPC": 4
+  }
+}

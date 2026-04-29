@@ -1,0 +1,305 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 269,
+      "facts": 14488,
+      "arguments": 1748,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 727,
+      "other_lawyer_arguments": 1020
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 5,
+      "FAC": 131,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "NONE": 6,
+      "RATIO": 4,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 150,
+    "ignored_sentences": 46,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "S.R Vats",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Raghav Khurana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "ANIMESH  ANIMESH KUMAR  KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "ANIMESH ANIMESH KUMAR KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "A.P Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Narender Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Naresh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Satish Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "S R Vats",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "HS Daya Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Ramesh Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Raghuveer",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "HC Vikash Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "HC Ashutosh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Ramesh Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Ramesh Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "A.P Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 35,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "ANIMESH ANIMESH KUMAR KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Suresh Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 49,
+        "entity_text": "Narender Singh Tyagi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "ANIMESH KUMAR ANIMESH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Naresh Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Satish",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Satish Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Daya Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "S.R Vats",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Anju Dhingra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Satish Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "S R Vats",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "A.P Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "HC Daya Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Subhash Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 98,
+        "entity_text": "Narender",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "Ramesh Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "ANIMESH ANIMESH KUMAR KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Raghuveer",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 112,
+        "entity_text": "HC Vikash Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "ANIMESH KUMAR KUMAR",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "HC Ashutosh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 119,
+        "entity_text": "Anju Kumari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "ANIMESH  ANIMESH KUMAR  KUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Ramesh Chand",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 5,
+    "FAC": 131,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "NONE": 6,
+    "RATIO": 4,
+    "RPC": 1
+  }
+}

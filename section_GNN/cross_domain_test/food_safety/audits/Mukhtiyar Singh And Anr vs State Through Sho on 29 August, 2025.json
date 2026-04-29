@@ -1,0 +1,231 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 755,
+      "facts": 5812,
+      "arguments": 4142,
+      "petitioner_arguments": 336,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3805
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 44,
+      "PRE_RELIED": 13,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 378,
+      "ISSUE": 1,
+      "NONE": 37,
+      "RATIO": 5,
+      "RLC": 13,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 285,
+    "ignored_sentences": 439,
+    "ignored_entities": [
+      {
+        "sentence_id": 26,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "SHIVALI Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 109,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 389,
+        "entity_text": "Pooran Chandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 396,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 402,
+        "entity_text": "Diwali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 405,
+        "entity_text": "Ajay Pal Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 407,
+        "entity_text": "Raj Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 410,
+        "entity_text": "SHIVALI Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 410,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 412,
+        "entity_text": "Atar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 413,
+        "entity_text": "Jagadhari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 424,
+        "entity_text": "Deepak",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 427,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 429,
+        "entity_text": "Gulab Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 431,
+        "entity_text": "Rajender Kr. Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 433,
+        "entity_text": "Jaipal Asstt",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 436,
+        "entity_text": "Rishipal Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 446,
+        "entity_text": "SHIVALI Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 446,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 460,
+        "entity_text": "SHIVALI BANSAL BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 470,
+        "entity_text": "SHIVALI Digitally",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 470,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 478,
+        "entity_text": "Girdhar Shankar Tawade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 478,
+        "entity_text": "Ram Kalita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 492,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 510,
+        "entity_text": "SHIVALI  BANSAL  BANSAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 535,
+        "entity_text": "Ramesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 569,
+        "entity_text": "Mukhtiyar Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 44,
+    "PRE_RELIED": 13,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 378,
+    "ISSUE": 1,
+    "NONE": 37,
+    "RATIO": 5,
+    "RLC": 13,
+    "RPC": 5
+  }
+}

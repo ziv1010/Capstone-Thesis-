@@ -1,0 +1,144 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 401,
+          "end": 410
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 401,
+          "end": 410
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 894,
+      "facts": 6072,
+      "arguments": 6251,
+      "petitioner_arguments": 320,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 5930
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 40,
+      "PRE_RELIED": 24,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 162,
+      "ISSUE": 10,
+      "NONE": 16,
+      "RPC": 25
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 77,
+    "ignored_sentences": 213,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Parul",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Parul",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Parul",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Amandeep Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Poonam",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Amandeep Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Kajal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "T V Jose",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Naveen Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 40,
+    "PRE_RELIED": 24,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 162,
+    "ISSUE": 10,
+    "NONE": 16,
+    "RPC": 25
+  }
+}

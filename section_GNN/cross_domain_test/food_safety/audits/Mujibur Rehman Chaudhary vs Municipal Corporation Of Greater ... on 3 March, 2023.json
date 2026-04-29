@@ -1,0 +1,209 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 543,
+      "facts": 8433,
+      "arguments": 31178,
+      "petitioner_arguments": 15526,
+      "respondent_arguments": 2382,
+      "other_lawyer_arguments": 13268
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 66,
+      "ARG_RESPONDENT": 10,
+      "FAC": 37,
+      "PRE_RELIED": 32,
+      "STA": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 129,
+      "ISSUE": 4,
+      "NONE": 12,
+      "RATIO": 7,
+      "RLC": 6,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 165,
+    "ignored_sentences": 169,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Sharan Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Rohan Surve",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Gajanan Dhotre",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Gajanan Dhotre",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Habibul Rehman Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Habibul Rehman Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Habibur Rehman Hazi Hasmatili",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Habibul Rehman Choudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Jilani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 149,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 158,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 160,
+        "entity_text": "Pradip Kumar Sarkar7",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 163,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 167,
+        "entity_text": "Jagtiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Jagatiani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Ramesh Appa Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 266,
+        "entity_text": "Mohammed Iqbal Abdul",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 66,
+    "ARG_RESPONDENT": 10,
+    "FAC": 37,
+    "PRE_RELIED": 32,
+    "STA": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 129,
+    "ISSUE": 4,
+    "NONE": 12,
+    "RATIO": 7,
+    "RLC": 6,
+    "RPC": 11
+  }
+}

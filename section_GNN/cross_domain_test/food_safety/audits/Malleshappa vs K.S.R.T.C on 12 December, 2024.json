@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1104,
+      "facts": 12088,
+      "arguments": 3461,
+      "petitioner_arguments": 493,
+      "respondent_arguments": 687,
+      "other_lawyer_arguments": 2279
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "ARG_RESPONDENT": 2,
+      "FAC": 46,
+      "PRE_RELIED": 8,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 102,
+      "ISSUE": 5,
+      "NONE": 45,
+      "RATIO": 4,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 168,
+    "ignored_entities": [
+      {
+        "sentence_id": 20,
+        "entity_text": "Syed Chand Pasha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Buden Sab",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "ARG_RESPONDENT": 2,
+    "FAC": 46,
+    "PRE_RELIED": 8,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 102,
+    "ISSUE": 5,
+    "NONE": 45,
+    "RATIO": 4,
+    "RPC": 12
+  }
+}

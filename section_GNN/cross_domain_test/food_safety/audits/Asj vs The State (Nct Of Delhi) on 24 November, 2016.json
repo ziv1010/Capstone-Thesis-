@@ -1,0 +1,95 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 391,
+      "facts": 2033,
+      "arguments": 3153,
+      "petitioner_arguments": 341,
+      "respondent_arguments": 558,
+      "other_lawyer_arguments": 2252
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 2,
+      "FAC": 17,
+      "PRE_RELIED": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 19,
+      "NONE": 23,
+      "RATIO": 4,
+      "RLC": 1,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 35,
+    "ignored_sentences": 62,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Ranjeet Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "A. K. Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Meethi Supari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Nemi Chand",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "T. Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 52,
+        "entity_text": "T. Barai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 53,
+        "entity_text": "Campbell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Martin",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 2,
+    "FAC": 17,
+    "PRE_RELIED": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 19,
+    "NONE": 23,
+    "RATIO": 4,
+    "RLC": 1,
+    "RPC": 15
+  }
+}

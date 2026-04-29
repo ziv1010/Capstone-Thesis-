@@ -1,0 +1,70 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 542,
+      "facts": 0,
+      "arguments": 57890,
+      "petitioner_arguments": 8339,
+      "respondent_arguments": 871,
+      "other_lawyer_arguments": 48872
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 38,
+      "ARG_RESPONDENT": 4,
+      "PRE_RELIED": 130,
+      "STA": 56
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 160,
+      "NONE": 4,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 232,
+    "ignored_sentences": 175,
+    "ignored_entities": [
+      {
+        "sentence_id": 145,
+        "entity_text": "Maxwell",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Lindley",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Shyam Divan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 187,
+        "entity_text": "Donaldson",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 38,
+    "ARG_RESPONDENT": 4,
+    "PRE_RELIED": 130,
+    "STA": 56
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 160,
+    "NONE": 4,
+    "RPC": 11
+  }
+}

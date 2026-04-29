@@ -1,0 +1,112 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1110,
+      "facts": 4229,
+      "arguments": 7062,
+      "petitioner_arguments": 2165,
+      "respondent_arguments": 1094,
+      "other_lawyer_arguments": 3801
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 11,
+      "ARG_RESPONDENT": 5,
+      "FAC": 30,
+      "PRE_RELIED": 3,
+      "STA": 15
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 46,
+      "NONE": 5,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 72,
+    "ignored_sentences": 57,
+    "ignored_entities": [
+      {
+        "sentence_id": 27,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Sharad Shankarrao Kulkarni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Sopan Ramchandra Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Ajit Narayan Vanjari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Tidke",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Nargolkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Nargolkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 79,
+        "entity_text": "Tidke",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Nargolkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Nargolkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Nargolkar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 11,
+    "ARG_RESPONDENT": 5,
+    "FAC": 30,
+    "PRE_RELIED": 3,
+    "STA": 15
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 46,
+    "NONE": 5,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 2
+  }
+}

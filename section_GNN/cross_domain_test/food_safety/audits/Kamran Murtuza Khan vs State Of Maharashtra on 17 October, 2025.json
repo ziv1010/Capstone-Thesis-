@@ -1,0 +1,71 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 849,
+      "facts": 1930,
+      "arguments": 1635,
+      "petitioner_arguments": 716,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 918
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "FAC": 13,
+      "PRE_RELIED": 3
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 8,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 27,
+    "ignored_sentences": 18,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Irfan Nadaf",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Vir  Jawan Mitra Mandal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Datta Mandir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Bhavani  Peth",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Firoj",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "FAC": 13,
+    "PRE_RELIED": 3
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 8,
+    "RPC": 10
+  }
+}

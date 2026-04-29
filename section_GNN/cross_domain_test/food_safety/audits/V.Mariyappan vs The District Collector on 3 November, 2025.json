@@ -1,0 +1,67 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 301,
+      "facts": 2518,
+      "arguments": 3738,
+      "petitioner_arguments": 510,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 3227
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 18,
+      "PRE_RELIED": 4,
+      "STA": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 11,
+      "RATIO": 7,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 42,
+    "ignored_sentences": 57,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "8.S.Amala Rani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Yaman Oberoi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Radhamani",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 18,
+    "PRE_RELIED": 4,
+    "STA": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 11,
+    "RATIO": 7,
+    "RPC": 5
+  }
+}

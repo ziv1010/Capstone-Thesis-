@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2150,
+      "facts": 2225,
+      "arguments": 3067,
+      "petitioner_arguments": 3067,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "FAC": 13
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 4,
+      "NONE": 3,
+      "RATIO": 2,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 49,
+    "ignored_sentences": 16,
+    "ignored_entities": [
+      {
+        "sentence_id": 25,
+        "entity_text": "Irudayanathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Irudayanathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Thiru.Irudayanathan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "FAC": 13
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 4,
+    "NONE": 3,
+    "RATIO": 2,
+    "RPC": 7
+  }
+}

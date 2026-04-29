@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 353,
+      "facts": 198,
+      "arguments": 2946,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 77,
+      "other_lawyer_arguments": 2868
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "FAC": 2,
+      "PRE_RELIED": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 30,
+      "NONE": 3,
+      "RATIO": 3,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 15,
+    "ignored_sentences": 40,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Sita Ram",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "FAC": 2,
+    "PRE_RELIED": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 30,
+    "NONE": 3,
+    "RATIO": 3,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

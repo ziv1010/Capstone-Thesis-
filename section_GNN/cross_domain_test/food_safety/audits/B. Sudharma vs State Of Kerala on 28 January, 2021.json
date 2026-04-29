@@ -1,0 +1,125 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 354,
+          "end": 361
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 354,
+          "end": 361
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 117,
+      "facts": 13198,
+      "arguments": 47201,
+      "petitioner_arguments": 35045,
+      "respondent_arguments": 1251,
+      "other_lawyer_arguments": 10903
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 127,
+      "ARG_RESPONDENT": 5,
+      "FAC": 56,
+      "PRE_RELIED": 43
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 96,
+      "NONE": 28,
+      "RATIO": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 240,
+    "ignored_sentences": 127,
+    "ignored_entities": [
+      {
+        "sentence_id": 70,
+        "entity_text": "Guruvaur Devaswom",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Guruvayur Devaswom",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Guruvayur Devaswom",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "D.Sivakumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "C.L.Dileep",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Ayurveda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 192,
+        "entity_text": "Ayurveda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "C.D.Govinda Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 293,
+        "entity_text": "Ramakanta Sripada Sinai Advolpalcar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 293,
+        "entity_text": "Antonio Xavier Furtado",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Advolpalcar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 127,
+    "ARG_RESPONDENT": 5,
+    "FAC": 56,
+    "PRE_RELIED": 43
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 96,
+    "NONE": 28,
+    "RATIO": 2,
+    "RPC": 1
+  }
+}

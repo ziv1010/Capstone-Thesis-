@@ -1,0 +1,259 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 105,
+          "end": 114
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 105,
+          "end": 114
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 359,
+      "facts": 21459,
+      "arguments": 31388,
+      "petitioner_arguments": 3492,
+      "respondent_arguments": 1954,
+      "other_lawyer_arguments": 25940
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "ARG_RESPONDENT": 7,
+      "FAC": 151,
+      "PRE_RELIED": 80,
+      "STA": 30
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 105,
+      "NONE": 2,
+      "RATIO": 3,
+      "RLC": 5,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 285,
+    "ignored_sentences": 121,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Nani",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Sadhna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Gufran Ahmed",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Genitalia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Rashmi Choudhari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "Kaptan Sahab",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Masala Dani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Anil Kumar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Sadhna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Chitthi Majrubi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "J.M. Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Rashmi Chaudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Gufran Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Sadhna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Manoj Kumar Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "D.K. Sisodiya",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Sadhna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Sadhna Sagar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Sadhna Sagar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "D.K. Sisodiya",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "J.M. Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Gufran Ahmad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Manoj Kumar Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Sadhna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Shaheen",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 163,
+        "entity_text": "Saran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "Saran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "Saran",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 236,
+        "entity_text": "Noor Aga",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 306,
+        "entity_text": "Kathi Kalu Oghad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Veeraswami",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Ramachandra Kaidalwar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Noor Agas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 312,
+        "entity_text": "Abdul Rashid Ibrahim's",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 321,
+        "entity_text": "Noor Aga",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 373,
+        "entity_text": "Usha Kolhe",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "ARG_RESPONDENT": 7,
+    "FAC": 151,
+    "PRE_RELIED": 80,
+    "STA": 30
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 105,
+    "NONE": 2,
+    "RATIO": 3,
+    "RLC": 5,
+    "RPC": 6
+  }
+}

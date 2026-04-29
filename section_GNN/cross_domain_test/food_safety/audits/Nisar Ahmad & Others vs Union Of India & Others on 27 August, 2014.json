@@ -1,0 +1,94 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 302,
+          "end": 311
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 302,
+          "end": 311
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 382,
+      "facts": 4297,
+      "arguments": 10862,
+      "petitioner_arguments": 4067,
+      "respondent_arguments": 1311,
+      "other_lawyer_arguments": 5482
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 5,
+      "FAC": 22,
+      "PRE_RELIED": 19,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 93,
+      "NONE": 4,
+      "RATIO": 1,
+      "RLC": 4,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 65,
+    "ignored_sentences": 106,
+    "ignored_entities": [
+      {
+        "sentence_id": 29,
+        "entity_text": "Ashok Khare",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "K.C. Sinha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Khare",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Babu Lal",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 5,
+    "FAC": 22,
+    "PRE_RELIED": 19,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 93,
+    "NONE": 4,
+    "RATIO": 1,
+    "RLC": 4,
+    "RPC": 4
+  }
+}

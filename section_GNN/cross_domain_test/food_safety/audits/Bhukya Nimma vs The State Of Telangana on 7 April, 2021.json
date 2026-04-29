@@ -1,0 +1,117 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 222,
+          "end": 231
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 222,
+          "end": 231
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 243,
+      "facts": 1717,
+      "arguments": 8022,
+      "petitioner_arguments": 2044,
+      "respondent_arguments": 356,
+      "other_lawyer_arguments": 5620
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 1,
+      "FAC": 7,
+      "PRE_RELIED": 33
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 30,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 6,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 62,
+    "ignored_sentences": 44,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Bhukya Ramu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "P.Prabhakar Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "G.Malla Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "P. Prabhakar Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "G.Mallareddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Rekha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Munagala Yadamma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Rekha",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 1,
+    "FAC": 7,
+    "PRE_RELIED": 33
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 30,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 6,
+    "RPC": 5
+  }
+}

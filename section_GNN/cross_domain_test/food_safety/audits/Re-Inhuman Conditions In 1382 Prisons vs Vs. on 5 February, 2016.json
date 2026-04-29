@@ -1,0 +1,75 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 295,
+      "facts": 0,
+      "arguments": 7382,
+      "petitioner_arguments": 3618,
+      "respondent_arguments": 792,
+      "other_lawyer_arguments": 2970
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 15,
+      "ARG_RESPONDENT": 3,
+      "PRE_RELIED": 16
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 201,
+      "NONE": 10,
+      "RLC": 2,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 36,
+    "ignored_sentences": 219,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "Batra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 152,
+        "entity_text": "Rajesh Kumar Goel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Gaurav Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Rajesh Kumar Goel",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 15,
+    "ARG_RESPONDENT": 3,
+    "PRE_RELIED": 16
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 201,
+    "NONE": 10,
+    "RLC": 2,
+    "RPC": 6
+  }
+}

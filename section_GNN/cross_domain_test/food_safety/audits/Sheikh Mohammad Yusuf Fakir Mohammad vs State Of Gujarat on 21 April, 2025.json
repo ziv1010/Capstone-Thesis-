@@ -1,0 +1,50 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 96,
+      "facts": 1157,
+      "arguments": 1235,
+      "petitioner_arguments": 1235,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "FAC": 4
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 4,
+      "RATIO": 1,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 14,
+    "ignored_sentences": 6,
+    "ignored_entities": [
+      {
+        "sentence_id": 16,
+        "entity_text": "Maulik Nanavati",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "FAC": 4
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 4,
+    "RATIO": 1,
+    "RPC": 1
+  }
+}

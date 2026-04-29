@@ -1,0 +1,91 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2688,
+      "facts": 2840,
+      "arguments": 14237,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 14237
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 18,
+      "PRE_RELIED": 1,
+      "STA": 36
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 125,
+      "ISSUE": 1,
+      "NONE": 1,
+      "RATIO": 3,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 106,
+    "ignored_sentences": 132,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Rameshkumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "N.L. Choudhari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "Majid Khan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Arunrao Pawar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "A.R. Devakate",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Manoharrao Kale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 18,
+    "PRE_RELIED": 1,
+    "STA": 36
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 125,
+    "ISSUE": 1,
+    "NONE": 1,
+    "RATIO": 3,
+    "RPC": 2
+  }
+}

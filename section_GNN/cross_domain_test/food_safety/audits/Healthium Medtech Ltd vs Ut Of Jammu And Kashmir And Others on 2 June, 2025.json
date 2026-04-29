@@ -1,0 +1,95 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 908,
+      "facts": 19663,
+      "arguments": 30241,
+      "petitioner_arguments": 9951,
+      "respondent_arguments": 4573,
+      "other_lawyer_arguments": 15715
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 47,
+      "ARG_RESPONDENT": 22,
+      "FAC": 96,
+      "PRE_RELIED": 83
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 228,
+      "NONE": 25,
+      "RATIO": 2,
+      "RLC": 35,
+      "RPC": 14
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 256,
+    "ignored_sentences": 304,
+    "ignored_entities": [
+      {
+        "sentence_id": 92,
+        "entity_text": "Johnson and Johnson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 92,
+        "entity_text": "Johnson and Johnson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 225,
+        "entity_text": "C.M Koul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 350,
+        "entity_text": "Ovid",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 387,
+        "entity_text": "Kolhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 399,
+        "entity_text": "A.M. Singhvi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 475,
+        "entity_text": "Wade",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 475,
+        "entity_text": "Forsyth",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 47,
+    "ARG_RESPONDENT": 22,
+    "FAC": 96,
+    "PRE_RELIED": 83
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 228,
+    "NONE": 25,
+    "RATIO": 2,
+    "RLC": 35,
+    "RPC": 14
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 311,
+          "end": 320
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 311,
+          "end": 320
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1600,
+      "facts": 6842,
+      "arguments": 28374,
+      "petitioner_arguments": 19935,
+      "respondent_arguments": 1290,
+      "other_lawyer_arguments": 7147
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 82,
+      "ARG_RESPONDENT": 7,
+      "FAC": 29,
+      "PRE_RELIED": 42,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 117,
+      "ISSUE": 1,
+      "NONE": 17,
+      "RATIO": 7,
+      "RLC": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 258,
+    "ignored_sentences": 146,
+    "ignored_entities": [
+      {
+        "sentence_id": 25,
+        "entity_text": "R.N. Hemendranath Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Aadesh Varma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Sanjeev Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "M. Nagaiah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Sanjeev Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "R.N. Hemendranath Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Sanjeev Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Sanjeev Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "A.\nSudershan Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "A. Prabhakar Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "B.Damodar Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Ram Krishna Dalmia28",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Gauri Shanker52",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Triloki Nath Khosa35",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Krishnan Kakkanth5",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 201,
+        "entity_text": "Krishnan Kakkanth5",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 232,
+        "entity_text": "D. Prakash Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 237,
+        "entity_text": "Dimapati Sadasiva Reddi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 240,
+        "entity_text": "Budhan Choudhry27",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "D. Prakash Reddy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Ramana Dayaram Shetty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 300,
+        "entity_text": "Jagdish Mandal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 315,
+        "entity_text": "A. Sudershan Reddy",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 82,
+    "ARG_RESPONDENT": 7,
+    "FAC": 29,
+    "PRE_RELIED": 42,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 117,
+    "ISSUE": 1,
+    "NONE": 17,
+    "RATIO": 7,
+    "RLC": 2,
+    "RPC": 2
+  }
+}

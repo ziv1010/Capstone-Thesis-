@@ -1,0 +1,50 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 382,
+      "facts": 0,
+      "arguments": 708,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 284,
+      "other_lawyer_arguments": 423
+    },
+    "kept_sentence_role_counts": {
+      "ARG_RESPONDENT": 1,
+      "PRE_RELIED": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 1,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 3,
+    "ignored_sentences": 7,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Hamsini",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_RESPONDENT": 1,
+    "PRE_RELIED": 2
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 2,
+    "RATIO": 1,
+    "RPC": 4
+  }
+}

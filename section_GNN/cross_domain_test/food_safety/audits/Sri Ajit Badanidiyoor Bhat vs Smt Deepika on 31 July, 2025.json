@@ -1,0 +1,69 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 159,
+          "end": 166
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1305,
+      "facts": 15728,
+      "arguments": 7389,
+      "petitioner_arguments": 1499,
+      "respondent_arguments": 2617,
+      "other_lawyer_arguments": 3271
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 19,
+      "FAC": 128,
+      "STA": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 79,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 164,
+    "ignored_sentences": 88,
+    "ignored_entities": [
+      {
+        "sentence_id": 131,
+        "entity_text": "Stridhana",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 19,
+    "FAC": 128,
+    "STA": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 79,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

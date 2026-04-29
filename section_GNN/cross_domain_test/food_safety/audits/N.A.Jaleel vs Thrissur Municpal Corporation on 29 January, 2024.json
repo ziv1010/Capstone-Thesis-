@@ -1,0 +1,59 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 10316,
+      "facts": 1288,
+      "arguments": 0,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 5
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 6,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 41,
+    "ignored_sentences": 11,
+    "ignored_entities": [
+      {
+        "sentence_id": 32,
+        "entity_text": "SMT.G.RANJITA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "SMT.P.R.REENA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "SRI.RENJITH THAMPAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "SRI.B.S.SYAMANTAK",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 5
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 6,
+    "RPC": 5
+  }
+}

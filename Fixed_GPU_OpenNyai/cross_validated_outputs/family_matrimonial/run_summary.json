@@ -1,0 +1,28 @@
+{
+  "input_dir": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/final_outputs/family_matrimonial_summary_opennyai/enriched_jsons",
+  "output_dir": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/family_matrimonial",
+  "backend": "local_vllm",
+  "model_id": "/scratch/ziv_baretto/Thesis_Ziv/hf_cache/hub/models--mistralai--Mistral-Small-24B-Instruct-2501/snapshots/9527884be6e5616bdd54de542f9ae13384489724",
+  "provider": "local_gpu",
+  "method": "cross_validation_8q",
+  "resume_enabled": true,
+  "resumed_completed_files": 0,
+  "files_attempted_this_run": 15800,
+  "processed_files": 15800,
+  "successful_files": 15017,
+  "dry_run_files": 0,
+  "skipped_files": 744,
+  "error_files": 39,
+  "label_counts": {
+    "appellant_won": 9853,
+    "postponed_or_procedural": 1750,
+    "appellant_lost": 3255,
+    "unknown": 159
+  },
+  "crossval_label_counts": {
+    "LOSS": 3255,
+    "WIN": 9853,
+    "NEUTRAL": 1750,
+    "UNKNOWN": 159
+  }
+}

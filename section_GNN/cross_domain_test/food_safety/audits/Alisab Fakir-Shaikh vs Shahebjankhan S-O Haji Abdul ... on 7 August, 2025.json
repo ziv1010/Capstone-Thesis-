@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 55,
+      "facts": 2811,
+      "arguments": 9698,
+      "petitioner_arguments": 4934,
+      "respondent_arguments": 1385,
+      "other_lawyer_arguments": 3377
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 22,
+      "ARG_RESPONDENT": 3,
+      "FAC": 14,
+      "PRE_RELIED": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 34,
+      "NONE": 16,
+      "RATIO": 2,
+      "RLC": 14,
+      "RPC": 31
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 54,
+    "ignored_sentences": 97,
+    "ignored_entities": [
+      {
+        "sentence_id": 1,
+        "entity_text": "Haji Abdul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Haji Abdul",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Mohsin Hakim",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Munish Shah",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "G C Mazmudar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Palak Thakkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "Sofar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Sunil Paradkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Munish Shah",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 22,
+    "ARG_RESPONDENT": 3,
+    "FAC": 14,
+    "PRE_RELIED": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 34,
+    "NONE": 16,
+    "RATIO": 2,
+    "RLC": 14,
+    "RPC": 31
+  }
+}

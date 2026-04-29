@@ -1,0 +1,59 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 55,
+      "facts": 0,
+      "arguments": 12619,
+      "petitioner_arguments": 3683,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 8935
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "PRE_RELIED": 55
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 15,
+      "ISSUE": 1,
+      "NONE": 4,
+      "RATIO": 7,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 31,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Sakib",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Jefferson",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "PRE_RELIED": 55
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 15,
+    "ISSUE": 1,
+    "NONE": 4,
+    "RATIO": 7,
+    "RPC": 4
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 256,
+          "end": 265
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 40,
+          "end": 49
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 256,
+          "end": 265
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 252,
+      "facts": 3357,
+      "arguments": 17684,
+      "petitioner_arguments": 4291,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 13392
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 20,
+      "FAC": 6,
+      "PRE_RELIED": 68
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 21,
+      "NONE": 4,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 98,
+    "ignored_sentences": 36,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Imadadulla Shariff",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Ahmedulla Shariff",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "Jefferson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Hitik Malhan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 20,
+    "FAC": 6,
+    "PRE_RELIED": 68
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 21,
+    "NONE": 4,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

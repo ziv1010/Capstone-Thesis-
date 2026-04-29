@@ -1,0 +1,127 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 352,
+      "facts": 2249,
+      "arguments": 37243,
+      "petitioner_arguments": 3749,
+      "respondent_arguments": 693,
+      "other_lawyer_arguments": 32799
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 3,
+      "FAC": 8,
+      "PRE_RELIED": 79,
+      "STA": 29
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 37,
+      "NONE": 2,
+      "RATIO": 4,
+      "RLC": 4,
+      "RPC": 16
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 140,
+    "ignored_sentences": 63,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Shatorhan Lal Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Mewal Lal Rawat",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "Dwarika Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "P.K. Gangwar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "S.K. Shukla",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Mewa Lal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "P.K. Gangwar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 113,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Vikram Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 3,
+    "FAC": 8,
+    "PRE_RELIED": 79,
+    "STA": 29
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 37,
+    "NONE": 2,
+    "RATIO": 4,
+    "RLC": 4,
+    "RPC": 16
+  }
+}

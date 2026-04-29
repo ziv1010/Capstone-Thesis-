@@ -1,0 +1,391 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 784,
+          "end": 791
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 784,
+          "end": 791
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 627,
+      "facts": 1805,
+      "arguments": 13132,
+      "petitioner_arguments": 1359,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 11772
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "FAC": 11,
+      "PRE_RELIED": 3,
+      "STA": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 33,
+      "ISSUE": 2,
+      "NONE": 64,
+      "RATIO": 3,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 274,
+    "ignored_sentences": 106,
+    "ignored_entities": [
+      {
+        "sentence_id": 74,
+        "entity_text": "Ganesh pandarpuritobacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "2.vimal pan masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Khammam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Khammam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Khammam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 168,
+        "entity_text": "14.Rathna",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 169,
+        "entity_text": "Raj Rathan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 170,
+        "entity_text": "18.Buland Kiman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "21.Pan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Bahar Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Rajini Gandha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Rajini Gandha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 177,
+        "entity_text": "26.Rajini Gandha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 178,
+        "entity_text": "27.Vimalaan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "28.Vimal Panmasala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 179,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Rajini Gandha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "31.RMD Panmasala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Wyra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "2.pan bahar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 195,
+        "entity_text": "C",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 195,
+        "entity_text": "3.vimal gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 228,
+        "entity_text": "Gutka",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 229,
+        "entity_text": "AJ Gold Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 231,
+        "entity_text": "Chetan Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 231,
+        "entity_text": "Nava chetan Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 233,
+        "entity_text": "Mera Chap Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 235,
+        "entity_text": "Shanti Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 239,
+        "entity_text": "VIP Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 241,
+        "entity_text": "Pan Parakh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 242,
+        "entity_text": "Salam Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Vimal Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "Chetan Tabacco",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "Charminar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 257,
+        "entity_text": "Oscar Khaini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 257,
+        "entity_text": "Miraj Khaini",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 258,
+        "entity_text": "Kishore Kumavath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 259,
+        "entity_text": "Dandu Manish Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 260,
+        "entity_text": "Patel Laxman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Aashiqui Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 261,
+        "entity_text": "Pottumurthy Rajesh Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 262,
+        "entity_text": "Gurrapu Srinu",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Gutka",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 281,
+        "entity_text": "Guden Garam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 282,
+        "entity_text": "Gutkha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 288,
+        "entity_text": "CSL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 292,
+        "entity_text": "Vimal pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "RR Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 294,
+        "entity_text": "Prakash  Kumawath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 295,
+        "entity_text": "Manak  Kumawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 297,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "Sagar Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 301,
+        "entity_text": "Raja Wives Pan Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Y.Bala Murali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Nanda Kishore Amarchand Yadav",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Srinivas Reddy Balakisti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Gajanand Chakravarthi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "C.Sunitha Kumari",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "N.Arthi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Prasad Ravanaboina",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "P.Rama Sharana Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "M.A.K.Mukheed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 308,
+        "entity_text": "Laxmalla Sandeep",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "FAC": 11,
+    "PRE_RELIED": 3,
+    "STA": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 33,
+    "ISSUE": 2,
+    "NONE": 64,
+    "RATIO": 3,
+    "RPC": 4
+  }
+}

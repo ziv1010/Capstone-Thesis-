@@ -1,0 +1,172 @@
+{
+  "case_id": "CRR-685-2017 on 6 March, 2017",
+  "file_name": "CRR-685-2017 on 6 March, 2017.json",
+  "file_id": "CRR-685-2017 on 6 March, 2017",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/CRR-685-2017 on 6 March, 2017.json",
+  "raw_label": "-1",
+  "texts": {
+    "preamble": "Crr-685-2017 on 6 March, 2017 Author: Joymalya Bagchi Bench: Joymalya Bagchi 1 06.03.17 Sl. No.200 akd C. R. R. 685 of 2017 In Re : Madhusudan Dolai ... Petitioner Mr. Sourav Chatterjee ... ... for the petitioner Mr. Ayan Basu ... ... for the State",
+    "facts": "It is submitted on behalf of the petitioner that the viscera report does not disclose presence of poison in the viscera of the victim.",
+    "arguments": "",
+    "petitioner_arguments": "",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 0,
+    "judge_count": 1,
+    "lawyer_count": 2,
+    "statute_count": 0,
+    "provision_count": 0,
+    "precedent_count": 0,
+    "court_count": 0,
+    "preamble_length": 248,
+    "facts_length": 134,
+    "arguments_length": 0,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [],
+    "judge_names": [
+      "joymalya bagchi"
+    ],
+    "statute_names": [],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "-1",
+    "source_decision_label": "-1"
+  },
+  "entities": [
+    {
+      "entity_type": "judge",
+      "raw_name": "Joymalya Bagchi",
+      "canonical_name": "joymalya bagchi",
+      "mentions": [
+        {
+          "entity_type": "judge",
+          "raw_text": "Joymalya Bagchi",
+          "canonical_text": "joymalya bagchi",
+          "section": "PREAMBLE",
+          "annotation_id": "CRR-685-2017 on 6 March, 2017:sentence_2:entity_0",
+          "start": 39,
+          "end": 54
+        },
+        {
+          "entity_type": "judge",
+          "raw_text": "Joymalya Bagchi",
+          "canonical_text": "joymalya bagchi",
+          "section": "PREAMBLE",
+          "annotation_id": "CRR-685-2017 on 6 March, 2017:sentence_2:entity_1",
+          "start": 62,
+          "end": 77
+        }
+      ],
+      "local_case_frequency": 2,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "lawyer",
+      "raw_name": "Ayan Basu",
+      "canonical_name": "ayan basu",
+      "mentions": [
+        {
+          "entity_type": "lawyer",
+          "raw_text": "Ayan Basu",
+          "canonical_text": "ayan basu",
+          "section": "PREAMBLE",
+          "annotation_id": "CRR-685-2017 on 6 March, 2017:sentence_3:entity_2",
+          "start": 221,
+          "end": 230
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "lawyer",
+      "raw_name": "Sourav Chatterjee",
+      "canonical_name": "sourav chatterjee",
+      "mentions": [
+        {
+          "entity_type": "lawyer",
+          "raw_text": "Sourav Chatterjee",
+          "canonical_text": "sourav chatterjee",
+          "section": "PREAMBLE",
+          "annotation_id": "CRR-685-2017 on 6 March, 2017:sentence_3:entity_1",
+          "start": 172,
+          "end": 189
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "petitioner",
+      "raw_name": "Madhusudan Dolai",
+      "canonical_name": "madhusudan dolai",
+      "mentions": [
+        {
+          "entity_type": "petitioner",
+          "raw_text": "Madhusudan Dolai",
+          "canonical_text": "madhusudan dolai",
+          "section": "PREAMBLE",
+          "annotation_id": "CRR-685-2017 on 6 March, 2017:sentence_3:entity_0",
+          "start": 136,
+          "end": 152
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "PREAMBLE",
+      "seen_in_arguments": false,
+      "seen_in_preamble": true,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset",
+        "facts": "sentence_roles:FAC"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 248,
+        "facts": 134,
+        "arguments": 0,
+        "petitioner_arguments": 0,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {
+        "FAC": 1
+      },
+      "dropped_sentence_role_counts": {
+        "NONE": 1,
+        "RPC": 6
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 4,
+      "ignored_sentences": 7,
+      "ignored_entities": []
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 1,
+      "RPC": 6
+    }
+  }
+}

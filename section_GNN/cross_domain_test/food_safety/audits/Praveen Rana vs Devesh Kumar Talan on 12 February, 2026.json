@@ -1,0 +1,58 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 763,
+      "facts": 4899,
+      "arguments": 8035,
+      "petitioner_arguments": 1316,
+      "respondent_arguments": 236,
+      "other_lawyer_arguments": 6481
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 8,
+      "ARG_RESPONDENT": 1,
+      "FAC": 40,
+      "PRE_RELIED": 37
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 78,
+      "ISSUE": 11,
+      "NONE": 14,
+      "RPC": 24
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 96,
+    "ignored_sentences": 127,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Praveen Rana",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 8,
+    "ARG_RESPONDENT": 1,
+    "FAC": 40,
+    "PRE_RELIED": 37
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 78,
+    "ISSUE": 11,
+    "NONE": 14,
+    "RPC": 24
+  }
+}

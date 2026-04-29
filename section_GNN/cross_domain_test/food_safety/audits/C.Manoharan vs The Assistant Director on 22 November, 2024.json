@@ -1,0 +1,87 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 306,
+          "end": 315
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 306,
+          "end": 315
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1125,
+      "facts": 3042,
+      "arguments": 20624,
+      "petitioner_arguments": 1369,
+      "respondent_arguments": 1026,
+      "other_lawyer_arguments": 18227
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "ARG_RESPONDENT": 4,
+      "FAC": 15,
+      "PRE_RELIED": 45,
+      "STA": 27
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 93,
+      "NONE": 8,
+      "RATIO": 5,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 105,
+    "ignored_sentences": 109,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "V.Karunaraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Natarajan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 157,
+        "entity_text": "Vijay Madanlal Choudhary",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "ARG_RESPONDENT": 4,
+    "FAC": 15,
+    "PRE_RELIED": 45,
+    "STA": 27
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 93,
+    "NONE": 8,
+    "RATIO": 5,
+    "RPC": 3
+  }
+}

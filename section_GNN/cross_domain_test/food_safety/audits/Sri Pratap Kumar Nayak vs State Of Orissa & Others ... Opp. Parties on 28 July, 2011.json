@@ -1,0 +1,92 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 951,
+      "facts": 5747,
+      "arguments": 9884,
+      "petitioner_arguments": 3362,
+      "respondent_arguments": 928,
+      "other_lawyer_arguments": 5592
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 22,
+      "ARG_RESPONDENT": 5,
+      "FAC": 39,
+      "PRE_RELIED": 25
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 43,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 100,
+    "ignored_sentences": 60,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Adarsh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Jayaram Patra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Subrat Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 37,
+        "entity_text": "Malaria",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Adarsh Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 22,
+    "ARG_RESPONDENT": 5,
+    "FAC": 39,
+    "PRE_RELIED": 25
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 43,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 7
+  }
+}

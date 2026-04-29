@@ -1,0 +1,92 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 214,
+          "end": 221
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 214,
+          "end": 221
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2589,
+      "facts": 505,
+      "arguments": 11729,
+      "petitioner_arguments": 9254,
+      "respondent_arguments": 1241,
+      "other_lawyer_arguments": 1232
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 50,
+      "ARG_RESPONDENT": 9,
+      "FAC": 2,
+      "PRE_RELIED": 3,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 58,
+      "ISSUE": 1,
+      "NONE": 4,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 86,
+    "ignored_sentences": 70,
+    "ignored_entities": [
+      {
+        "sentence_id": 17,
+        "entity_text": "HC-KAR CORAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Kiran Chitra Mandira",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Kiran Chitra Mandira",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 120,
+        "entity_text": "Kiran Chitra Mandira",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 50,
+    "ARG_RESPONDENT": 9,
+    "FAC": 2,
+    "PRE_RELIED": 3,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 58,
+    "ISSUE": 1,
+    "NONE": 4,
+    "RPC": 7
+  }
+}

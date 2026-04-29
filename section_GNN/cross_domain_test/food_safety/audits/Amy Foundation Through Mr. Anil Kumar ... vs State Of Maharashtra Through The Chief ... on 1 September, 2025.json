@@ -1,0 +1,113 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1949,
+      "facts": 3989,
+      "arguments": 6135,
+      "petitioner_arguments": 1775,
+      "respondent_arguments": 1398,
+      "other_lawyer_arguments": 2960
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 7,
+      "FAC": 19,
+      "PRE_RELIED": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 46,
+      "NONE": 15,
+      "RATIO": 1,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 58,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "Manoj Jarange",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Virendra Pawar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Azad Maidan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Amaran Uposhan Antarvali Sarati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Walter Lippmann",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "Amit Sahni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Dube Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Tekale",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Gaikwad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "Virendra Pawar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Dube Patil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Tekale",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 7,
+    "FAC": 19,
+    "PRE_RELIED": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 46,
+    "NONE": 15,
+    "RATIO": 1,
+    "RPC": 11
+  }
+}

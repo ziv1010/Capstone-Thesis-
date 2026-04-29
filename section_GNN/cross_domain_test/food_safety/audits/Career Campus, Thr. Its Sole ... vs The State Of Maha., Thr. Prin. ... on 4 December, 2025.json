@@ -1,0 +1,86 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 383,
+          "end": 392
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1047,
+      "facts": 1470,
+      "arguments": 12428,
+      "petitioner_arguments": 1289,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 11138
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 5,
+      "FAC": 8,
+      "PRE_RELIED": 36,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 52,
+      "NONE": 16,
+      "RATIO": 1,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 68,
+    "ignored_sentences": 77,
+    "ignored_entities": [
+      {
+        "sentence_id": 24,
+        "entity_text": "Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 32,
+        "entity_text": "Bhandarkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Watson",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Haji Abdul Razak Yasim Patel",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Mohamed Rizwan Memon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 5,
+    "FAC": 8,
+    "PRE_RELIED": 36,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 52,
+    "NONE": 16,
+    "RATIO": 1,
+    "RPC": 8
+  }
+}

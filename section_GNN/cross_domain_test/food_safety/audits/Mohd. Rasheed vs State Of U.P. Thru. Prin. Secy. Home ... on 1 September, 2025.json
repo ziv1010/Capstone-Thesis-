@@ -1,0 +1,122 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 603,
+      "facts": 1705,
+      "arguments": 37236,
+      "petitioner_arguments": 3674,
+      "respondent_arguments": 946,
+      "other_lawyer_arguments": 32614
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "ARG_RESPONDENT": 4,
+      "FAC": 9,
+      "PRE_RELIED": 77,
+      "STA": 32
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 32,
+      "NONE": 5,
+      "RATIO": 4,
+      "RLC": 5,
+      "RPC": 19
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 144,
+    "ignored_sentences": 65,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Gulam Gaus",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Malik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Sabar Ali",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Gulam Gaus",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Malik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 11,
+        "entity_text": "Sabar Ali",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 116,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Ishar Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Vikram Das",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Ratan Lal Arora",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "ARG_RESPONDENT": 4,
+    "FAC": 9,
+    "PRE_RELIED": 77,
+    "STA": 32
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 32,
+    "NONE": 5,
+    "RATIO": 4,
+    "RLC": 5,
+    "RPC": 19
+  }
+}

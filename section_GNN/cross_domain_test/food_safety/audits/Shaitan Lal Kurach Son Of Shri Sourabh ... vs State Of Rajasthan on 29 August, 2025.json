@@ -1,0 +1,84 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 168,
+          "end": 175
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 168,
+          "end": 175
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2008,
+      "facts": 4380,
+      "arguments": 13415,
+      "petitioner_arguments": 2078,
+      "respondent_arguments": 1080,
+      "other_lawyer_arguments": 10255
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 5,
+      "FAC": 19,
+      "PRE_RELIED": 18,
+      "STA": 20
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 58,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 7,
+      "RPC": 7
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 81,
+    "ignored_sentences": 80,
+    "ignored_entities": [
+      {
+        "sentence_id": 38,
+        "entity_text": "Love Kush Meena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Avtar Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 5,
+    "FAC": 19,
+    "PRE_RELIED": 18,
+    "STA": 20
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 58,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 7,
+    "RPC": 7
+  }
+}

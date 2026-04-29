@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1066,
+      "facts": 0,
+      "arguments": 16721,
+      "petitioner_arguments": 10389,
+      "respondent_arguments": 541,
+      "other_lawyer_arguments": 5789
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 43,
+      "ARG_RESPONDENT": 3,
+      "PRE_RELIED": 28
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 32,
+      "NONE": 15,
+      "RATIO": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 82,
+    "ignored_sentences": 55,
+    "ignored_entities": [
+      {
+        "sentence_id": 23,
+        "entity_text": "S.K. Dalai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Kathajodi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Mahanadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Ashok Parija",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 43,
+    "ARG_RESPONDENT": 3,
+    "PRE_RELIED": 28
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 32,
+    "NONE": 15,
+    "RATIO": 3,
+    "RPC": 5
+  }
+}

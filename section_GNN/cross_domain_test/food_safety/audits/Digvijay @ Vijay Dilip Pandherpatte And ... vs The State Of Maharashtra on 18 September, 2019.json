@@ -1,0 +1,55 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 543,
+      "facts": 1635,
+      "arguments": 0,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 17
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 1,
+      "NONE": 4,
+      "RATIO": 5,
+      "RLC": 5,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 23,
+    "ignored_sentences": 24,
+    "ignored_entities": [
+      {
+        "sentence_id": 13,
+        "entity_text": "Deshmane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Deshmane",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 17
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 1,
+    "NONE": 4,
+    "RATIO": 5,
+    "RLC": 5,
+    "RPC": 9
+  }
+}

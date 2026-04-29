@@ -1,0 +1,108 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 135,
+          "end": 142
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 778,
+          "end": 785
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 778,
+          "end": 785
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 248,
+      "facts": 5937,
+      "arguments": 14087,
+      "petitioner_arguments": 1820,
+      "respondent_arguments": 742,
+      "other_lawyer_arguments": 11523
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 4,
+      "ARG_RESPONDENT": 4,
+      "FAC": 24,
+      "STA": 39
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 75,
+      "NONE": 6,
+      "RATIO": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 74,
+    "ignored_sentences": 87,
+    "ignored_entities": [
+      {
+        "sentence_id": 29,
+        "entity_text": "Manish Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Aniket A. Naik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "Arvind Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 48,
+        "entity_text": "Central",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Aniket Naik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 4,
+    "ARG_RESPONDENT": 4,
+    "FAC": 24,
+    "STA": 39
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 75,
+    "NONE": 6,
+    "RATIO": 2,
+    "RPC": 4
+  }
+}

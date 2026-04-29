@@ -1,0 +1,64 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 649,
+      "facts": 571,
+      "arguments": 808,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 808
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 3,
+      "PRE_RELIED": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 64,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RATIO": 4,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 37,
+    "ignored_sentences": 80,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Kamble Anil",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Goonda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Afzalgunj",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 3,
+    "PRE_RELIED": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 64,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RATIO": 4,
+    "RPC": 5
+  }
+}

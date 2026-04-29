@@ -1,0 +1,135 @@
+{
+  "case_id": "ABLAPL-16213-2020 on 8 February, 2021",
+  "file_name": "ABLAPL-16213-2020 on 8 February, 2021.json",
+  "file_id": "ABLAPL-16213-2020 on 8 February, 2021",
+  "internal_file_id": null,
+  "source_path": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety/ABLAPL-16213-2020 on 8 February, 2021.json",
+  "raw_label": "1",
+  "texts": {
+    "preamble": "Ablapl/16213/2020 on 8 February, 2021",
+    "facts": "",
+    "arguments": "Learned counsel for the Petitioner submits that the Petitioner is having his Food Processing Unit at Jagatpur and for preparing Pan Masala under the trade name, M/s. Khusboo Products, there has been due registration and license to that effect having been taken; is being renewed from time to time and so also trade mark certificate has also been obtained. It is his submission that the 'Pan Masala' and 'Chemicals' kept for use from the being seized from Unit of the Petitioner, samples collected therefrom have in the meantime been analyzed by the Deputy Director-cum-Food Analyst of the State . He submits that as per the report, all the suspected food additives have been found to permit as also 'Katha' and the final product have been found to be in conformity with the standards as prescribed // 2 // keeping in view the safety as to human consumption Learned counsel for the State placing the case diary as also the three reports of the Deputy Director-cum-Food Analyst submits that the three chemical samples sent for analysis have been reported to be permitted additives; the sample of Katha seized has been found out in conformity with the standard prescribed under the FSS Act.",
+    "petitioner_arguments": "Learned counsel for the Petitioner submits that the Petitioner is having his Food Processing Unit at Jagatpur and for preparing Pan Masala under the trade name, M/s. Khusboo Products, there has been due registration and license to that effect having been taken; is being renewed from time to time and so also trade mark certificate has also been obtained. It is his submission that the 'Pan Masala' and 'Chemicals' kept for use from the being seized from Unit of the Petitioner, samples collected therefrom have in the meantime been analyzed by the Deputy Director-cum-Food Analyst of the State . He submits that as per the report, all the suspected food additives have been found to permit as also 'Katha' and the final product have been found to be in conformity with the standards as prescribed // 2 // keeping in view the safety as to human consumption Learned counsel for the State placing the case diary as also the three reports of the Deputy Director-cum-Food Analyst submits that the three chemical samples sent for analysis have been reported to be permitted additives; the sample of Katha seized has been found out in conformity with the standard prescribed under the FSS Act.",
+    "respondent_arguments": "",
+    "other_lawyer_arguments": ""
+  },
+  "metadata": {
+    "respondent_count": 0,
+    "judge_count": 0,
+    "lawyer_count": 0,
+    "statute_count": 1,
+    "provision_count": 0,
+    "precedent_count": 0,
+    "court_count": 0,
+    "preamble_length": 37,
+    "facts_length": 0,
+    "arguments_length": 1187,
+    "case_year": null,
+    "petition_type": null,
+    "petition_type_hash": 0.6962038587537137,
+    "court_names": [],
+    "judge_names": [],
+    "statute_names": [
+      "fss act"
+    ],
+    "source_label_field": "case_outcome_score",
+    "source_label_value": "1",
+    "source_decision_label": "1"
+  },
+  "entities": [
+    {
+      "entity_type": "gpe",
+      "raw_name": "Jagatpur",
+      "canonical_name": "jagatpur",
+      "mentions": [
+        {
+          "entity_type": "gpe",
+          "raw_text": "Jagatpur",
+          "canonical_text": "jagatpur",
+          "section": "arguments",
+          "annotation_id": "ABLAPL-16213-2020 on 8 February, 2021:sentence_3:entity_0",
+          "start": 818,
+          "end": 826
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "arguments",
+      "seen_in_arguments": true,
+      "seen_in_preamble": false,
+      "linked_statute_canonical": null
+    },
+    {
+      "entity_type": "statute",
+      "raw_name": "FSS Act",
+      "canonical_name": "fss act",
+      "mentions": [
+        {
+          "entity_type": "statute",
+          "raw_text": "FSS Act",
+          "canonical_text": "fss act",
+          "section": "arguments",
+          "annotation_id": "ABLAPL-16213-2020 on 8 February, 2021:sentence_10:entity_1",
+          "start": 2044,
+          "end": 2051
+        }
+      ],
+      "local_case_frequency": 1,
+      "first_seen_section": "arguments",
+      "seen_in_arguments": true,
+      "seen_in_preamble": false,
+      "linked_statute_canonical": null
+    }
+  ],
+  "leakage_audit": {
+    "source_format": "fixed_open_sentence_json_v1",
+    "fields_dropped": [],
+    "retained_texts": {
+      "sources": {
+        "preamble": "sentence_prefix:preamble_end_char_offset",
+        "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+        "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+      },
+      "masked_matches": {},
+      "retained_lengths": {
+        "preamble": 37,
+        "facts": 0,
+        "arguments": 1187,
+        "petitioner_arguments": 1187,
+        "respondent_arguments": 0,
+        "other_lawyer_arguments": 0
+      },
+      "kept_sentence_role_counts": {
+        "ARG_PETITIONER": 7
+      },
+      "dropped_sentence_role_counts": {
+        "NONE": 2,
+        "RATIO": 2,
+        "RPC": 2
+      }
+    },
+    "entity_extraction": {
+      "retained_sentences": 8,
+      "ignored_sentences": 6,
+      "ignored_entities": [
+        {
+          "sentence_id": 3,
+          "entity_text": "Pan Masala",
+          "entity_label": "OTHER_PERSON"
+        },
+        {
+          "sentence_id": 10,
+          "entity_text": "Katha",
+          "entity_label": "OTHER_PERSON"
+        }
+      ]
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 2,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1679,
+      "facts": 5971,
+      "arguments": 1277,
+      "petitioner_arguments": 478,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 798
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 46,
+      "PRE_RELIED": 6
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 161,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 11,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 75,
+    "ignored_sentences": 181,
+    "ignored_entities": [
+      {
+        "sentence_id": 30,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 46,
+    "PRE_RELIED": 6
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 161,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 11,
+    "RPC": 1
+  }
+}

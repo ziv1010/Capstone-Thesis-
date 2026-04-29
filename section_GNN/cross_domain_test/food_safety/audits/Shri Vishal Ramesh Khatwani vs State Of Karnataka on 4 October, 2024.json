@@ -1,0 +1,119 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "Set Aside",
+          "start": 699,
+          "end": 708
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 1313,
+      "facts": 2939,
+      "arguments": 8058,
+      "petitioner_arguments": 2965,
+      "respondent_arguments": 135,
+      "other_lawyer_arguments": 4956
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 1,
+      "FAC": 16,
+      "PRE_RELIED": 11,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 77,
+      "NONE": 18,
+      "RATIO": 1,
+      "RPC": 24
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 106,
+    "ignored_sentences": 120,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "V Srishananda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Komathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Nagesh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Sada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Sada",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Komathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Giridhar H",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 78,
+        "entity_text": "Sunderbhai Ambalal Desai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Sandesh J Chouta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Anucheth",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 1,
+    "FAC": 16,
+    "PRE_RELIED": 11,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 77,
+    "NONE": 18,
+    "RATIO": 1,
+    "RPC": 24
+  }
+}

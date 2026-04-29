@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "preamble": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "Set Aside",
+          "start": 469,
+          "end": 478
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 2191,
+      "facts": 2337,
+      "arguments": 10423,
+      "petitioner_arguments": 5596,
+      "respondent_arguments": 2289,
+      "other_lawyer_arguments": 2536
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 15,
+      "FAC": 9,
+      "PRE_RELIED": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 36,
+      "NONE": 3,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 65,
+    "ignored_sentences": 47,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Abaan Ali",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "Savitha Seetharam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 15,
+    "FAC": 9,
+    "PRE_RELIED": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 36,
+    "NONE": 3,
+    "RPC": 8
+  }
+}

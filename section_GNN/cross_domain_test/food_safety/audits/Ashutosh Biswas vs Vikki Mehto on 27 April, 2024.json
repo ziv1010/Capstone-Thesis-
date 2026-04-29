@@ -1,0 +1,81 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 844,
+      "facts": 4129,
+      "arguments": 14882,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 14882
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 28,
+      "PRE_RELIED": 64,
+      "STA": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 134,
+      "ISSUE": 10,
+      "NONE": 9,
+      "RATIO": 2,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 103,
+    "ignored_sentences": 165,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Sudhir Biswas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "HC Ashwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Jaspal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 221,
+        "entity_text": "Nazir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 230,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 28,
+    "PRE_RELIED": 64,
+    "STA": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 134,
+    "ISSUE": 10,
+    "NONE": 9,
+    "RATIO": 2,
+    "RPC": 10
+  }
+}

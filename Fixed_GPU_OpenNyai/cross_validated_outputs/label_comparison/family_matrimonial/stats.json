@@ -1,0 +1,50 @@
+{
+  "bucket": "family_matrimonial",
+  "status": "ok",
+  "total_mistral_files": 15800,
+  "total_crossval_files": 15017,
+  "common_files": 15017,
+  "only_in_mistral": 783,
+  "only_in_crossval": 0,
+  "matching_labels": 13049,
+  "discrepant_labels": 1968,
+  "agreement_rate": 0.8689,
+  "mistral_label_dist": {
+    "appellant_won": 9856,
+    "postponed_or_procedural": 3282,
+    "appellant_lost": 1873,
+    "unknown": 0,
+    "None": 6
+  },
+  "crossval_label_dist": {
+    "appellant_won": 9853,
+    "postponed_or_procedural": 1750,
+    "appellant_lost": 3255,
+    "unknown": 159,
+    "None": 0
+  },
+  "confusion_matrix": {
+    "appellant_lost": {
+      "appellant_lost": 1802,
+      "appellant_won": 68,
+      "postponed_or_procedural": 3
+    },
+    "appellant_won": {
+      "appellant_won": 9593,
+      "appellant_lost": 92,
+      "postponed_or_procedural": 93,
+      "unknown": 78
+    },
+    "postponed_or_procedural": {
+      "appellant_lost": 1361,
+      "postponed_or_procedural": 1654,
+      "appellant_won": 186,
+      "unknown": 81
+    },
+    "None": {
+      "appellant_won": 6
+    }
+  },
+  "discrepancy_csv": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/label_comparison/family_matrimonial/discrepancies.csv",
+  "all_csv": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/label_comparison/family_matrimonial/all_matched_files.csv"
+}

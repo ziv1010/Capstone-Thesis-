@@ -1,0 +1,492 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 665,
+      "facts": 12270,
+      "arguments": 41540,
+      "petitioner_arguments": 1977,
+      "respondent_arguments": 1298,
+      "other_lawyer_arguments": 38263
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 12,
+      "ARG_RESPONDENT": 4,
+      "FAC": 115,
+      "PRE_RELIED": 226
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 76,
+      "ISSUE": 4,
+      "NONE": 8,
+      "RATIO": 5,
+      "RLC": 2,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 401,
+    "ignored_sentences": 104,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 10,
+        "entity_text": "Lash Panchnama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Naib Tahsildar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 12,
+        "entity_text": "Jhansi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Meena Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Kapoori Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Kallu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "D.K. Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Parmeshwar Das @ Bhura",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Subodhmani Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Harishchandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "C.R. Shakya",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Kavindra Singh Chouhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Meena Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 54,
+        "entity_text": "Kapoori Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Munna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Meena Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Kapoori Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "Kallu",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Subodhmani Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Naib-Tahsildar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Jhansi Sadar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 70,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Sarpanch",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Harish Chandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "C.R. Shakya",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 110,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Ram Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Mohan Lal Lodhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 114,
+        "entity_text": "Kavindra Singh Chauhan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "H.C. Ramnaresh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Subodhmani Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 138,
+        "entity_text": "Meena Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 139,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Kapoori Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Ram Prasad",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Basawan Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 148,
+        "entity_text": "Kalki",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Kalki",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Srinivasan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Dalip Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Sarwan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 185,
+        "entity_text": "Sarwan Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 233,
+        "entity_text": "Gurnam Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 255,
+        "entity_text": "Dalip Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "Subodhmani Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "Harishchandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 332,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 333,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 334,
+        "entity_text": "Meena Bai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 335,
+        "entity_text": "Pratipal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 341,
+        "entity_text": "P.V. Radhakrishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 414,
+        "entity_text": "Subodhmani Sharma",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 434,
+        "entity_text": "D. K. Yadav",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 441,
+        "entity_text": "Himmat Raj Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 442,
+        "entity_text": "Himmat Raj Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 442,
+        "entity_text": "Himmat Raj Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 444,
+        "entity_text": "Sushil Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 445,
+        "entity_text": "Fateh Mohammad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 445,
+        "entity_text": "N.K. Gupta",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 445,
+        "entity_text": "Fateh Mohammad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 446,
+        "entity_text": "Anil Kapoor",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 483,
+        "entity_text": "M.P. Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 483,
+        "entity_text": "Harbans Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 483,
+        "entity_text": "Naib Singh",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 12,
+    "ARG_RESPONDENT": 4,
+    "FAC": 115,
+    "PRE_RELIED": 226
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 76,
+    "ISSUE": 4,
+    "NONE": 8,
+    "RATIO": 5,
+    "RLC": 2,
+    "RPC": 9
+  }
+}

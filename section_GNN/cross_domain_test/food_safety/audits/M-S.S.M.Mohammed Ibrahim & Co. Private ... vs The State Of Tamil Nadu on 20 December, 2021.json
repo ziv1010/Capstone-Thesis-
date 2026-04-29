@@ -1,0 +1,89 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 608,
+          "end": 617
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 332,
+      "facts": 2409,
+      "arguments": 4935,
+      "petitioner_arguments": 3078,
+      "respondent_arguments": 279,
+      "other_lawyer_arguments": 1576
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 9,
+      "ARG_RESPONDENT": 1,
+      "FAC": 17,
+      "PRE_RELIED": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 6,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 11
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 55,
+    "ignored_sentences": 26,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "M.Mohammed Farooq",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Petit",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Kalaiman Pugaiyilai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Jayavilas",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "J.Anbazhagan",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 9,
+    "ARG_RESPONDENT": 1,
+    "FAC": 17,
+    "PRE_RELIED": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 6,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 11
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1595,
+      "facts": 5211,
+      "arguments": 5842,
+      "petitioner_arguments": 344,
+      "respondent_arguments": 553,
+      "other_lawyer_arguments": 4943
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "ARG_RESPONDENT": 4,
+      "FAC": 34,
+      "PRE_RELIED": 23
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 79,
+      "ISSUE": 4,
+      "NONE": 20,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 67,
+    "ignored_sentences": 118,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "D. N.\nManjunath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Narayanappa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "D. N. Manjunath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 91,
+        "entity_text": "D. N. Manjunath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "D. N. Manjunath",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "ARG_RESPONDENT": 4,
+    "FAC": 34,
+    "PRE_RELIED": 23
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 79,
+    "ISSUE": 4,
+    "NONE": 20,
+    "RPC": 15
+  }
+}

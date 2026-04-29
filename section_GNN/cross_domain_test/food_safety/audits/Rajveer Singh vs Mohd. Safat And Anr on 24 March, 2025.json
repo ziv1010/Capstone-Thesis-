@@ -1,0 +1,168 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 4,
+          "end": 21
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bappeal\\s+is\\s+allowed\\b",
+          "matched_text": "appeal is allowed",
+          "start": 4,
+          "end": 21
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 656,
+      "facts": 4652,
+      "arguments": 25645,
+      "petitioner_arguments": 805,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 24839
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "FAC": 12,
+      "PRE_RELIED": 52,
+      "STA": 15
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 113,
+      "ISSUE": 4,
+      "NONE": 5,
+      "RATIO": 4,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 88,
+    "ignored_sentences": 133,
+    "ignored_entities": [
+      {
+        "sentence_id": 10,
+        "entity_text": "Rajbeer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Masha Allah",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Mohd. Nasir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "Mubasir Ahmed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Mohd. Nasir",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 122,
+        "entity_text": "Pratap Narain Singh Deo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Ranjit Singh @ Rana",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Pratap Narain Singh Deo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Rayapati Venkateswar Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Hari Om",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 128,
+        "entity_text": "Mohan Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 129,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Mohd. Ajmer",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Mohan Soni",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Bikramjit Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 150,
+        "entity_text": "Pratap Narain Singh Deo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Nagappa Muchalagoda",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 155,
+        "entity_text": "Raj Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "FAC": 12,
+    "PRE_RELIED": 52,
+    "STA": 15
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 113,
+    "ISSUE": 4,
+    "NONE": 5,
+    "RATIO": 4,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

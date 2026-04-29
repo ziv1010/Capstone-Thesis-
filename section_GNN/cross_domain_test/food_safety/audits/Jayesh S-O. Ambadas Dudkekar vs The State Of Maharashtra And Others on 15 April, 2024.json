@@ -1,0 +1,121 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1915,
+      "facts": 0,
+      "arguments": 21566,
+      "petitioner_arguments": 3682,
+      "respondent_arguments": 227,
+      "other_lawyer_arguments": 17655
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 1,
+      "PRE_RELIED": 22,
+      "STA": 40
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 81,
+      "ISSUE": 1,
+      "NONE": 11,
+      "RATIO": 3,
+      "RLC": 2,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 86,
+    "ignored_sentences": 99,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "Gagan Harsh Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Gagan Harsh Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Sharat Babu Digumarti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Sharat Babu Digumarti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Sharat Babu Digumarti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 55,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Gupte",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 64,
+        "entity_text": "Sharat Babu Digumarti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Awadeshkumar Parasnath Pathak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Gagan Harsha Sharma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Aman Mittal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Syyed Hassan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Sangeetaben Mahendrabhai Patel",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 1,
+    "PRE_RELIED": 22,
+    "STA": 40
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 81,
+    "ISSUE": 1,
+    "NONE": 11,
+    "RATIO": 3,
+    "RLC": 2,
+    "RPC": 1
+  }
+}

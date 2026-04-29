@@ -1,0 +1,75 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 555,
+      "facts": 1784,
+      "arguments": 3038,
+      "petitioner_arguments": 2819,
+      "respondent_arguments": 88,
+      "other_lawyer_arguments": 129
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 14,
+      "ARG_RESPONDENT": 1,
+      "FAC": 12,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 28,
+      "ISSUE": 1,
+      "NONE": 7,
+      "RATIO": 4,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 36,
+    "ignored_sentences": 42,
+    "ignored_entities": [
+      {
+        "sentence_id": 24,
+        "entity_text": "Sampat",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Lal Chand",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Arnina Ram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Angna Ram",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 14,
+    "ARG_RESPONDENT": 1,
+    "FAC": 12,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 28,
+    "ISSUE": 1,
+    "NONE": 7,
+    "RATIO": 4,
+    "RPC": 2
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 463,
+      "facts": 9593,
+      "arguments": 20939,
+      "petitioner_arguments": 17297,
+      "respondent_arguments": 3063,
+      "other_lawyer_arguments": 577
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 56,
+      "ARG_RESPONDENT": 17,
+      "FAC": 38,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 2
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 62,
+      "ISSUE": 1,
+      "NONE": 2,
+      "RATIO": 6,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 120,
+    "ignored_sentences": 73,
+    "ignored_entities": [
+      {
+        "sentence_id": 33,
+        "entity_text": "ZINCOVIT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 33,
+        "entity_text": "ZINKOWIT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "ZINCOVIT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 44,
+        "entity_text": "ZINKOWIT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 184,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 56,
+    "ARG_RESPONDENT": 17,
+    "FAC": 38,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 2
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 62,
+    "ISSUE": 1,
+    "NONE": 2,
+    "RATIO": 6,
+    "RPC": 2
+  }
+}

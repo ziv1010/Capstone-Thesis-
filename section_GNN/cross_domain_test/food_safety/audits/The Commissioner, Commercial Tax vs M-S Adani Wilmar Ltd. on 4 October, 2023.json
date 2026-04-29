@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 360,
+      "facts": 0,
+      "arguments": 6859,
+      "petitioner_arguments": 3835,
+      "respondent_arguments": 310,
+      "other_lawyer_arguments": 2712
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 3,
+      "PRE_RELIED": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 56,
+      "NONE": 2,
+      "RATIO": 2,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 37,
+    "ignored_sentences": 63,
+    "ignored_entities": [
+      {
+        "sentence_id": 18,
+        "entity_text": "Jain Suddh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Krishna",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 3,
+    "PRE_RELIED": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 56,
+    "NONE": 2,
+    "RATIO": 2,
+    "RLC": 1,
+    "RPC": 2
+  }
+}

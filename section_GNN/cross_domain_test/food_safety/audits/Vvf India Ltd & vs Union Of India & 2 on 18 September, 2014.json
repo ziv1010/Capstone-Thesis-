@@ -1,0 +1,83 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 382,
+          "end": 389
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 121,
+          "end": 130
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 382,
+          "end": 389
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 121,
+          "end": 130
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 116,
+      "facts": 0,
+      "arguments": 1980,
+      "petitioner_arguments": 323,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 1656
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "PRE_RELIED": 5
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 4,
+      "NONE": 6,
+      "RATIO": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 161,
+    "ignored_sentences": 17,
+    "ignored_entities": [
+      {
+        "sentence_id": 101,
+        "entity_text": "Reliance",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "PRE_RELIED": 5
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 4,
+    "NONE": 6,
+    "RATIO": 1,
+    "RPC": 6
+  }
+}

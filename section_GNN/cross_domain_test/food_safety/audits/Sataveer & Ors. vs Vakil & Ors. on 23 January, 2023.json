@@ -1,0 +1,308 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 806,
+      "facts": 3726,
+      "arguments": 38409,
+      "petitioner_arguments": 10086,
+      "respondent_arguments": 374,
+      "other_lawyer_arguments": 27947
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 58,
+      "ARG_RESPONDENT": 2,
+      "FAC": 30,
+      "PRE_RELIED": 137
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 242,
+      "ISSUE": 2,
+      "NONE": 51,
+      "RPC": 16
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 256,
+    "ignored_sentences": 311,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Suneel Chaudhary",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "Satyaveer Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Brijpal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Mantoo Sarkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Mantoo Sarkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Nirmala Devi Agarwal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 117,
+        "entity_text": "Jagdish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Jagdish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Kaila Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 145,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 146,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Raghubir Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 165,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Jagdish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 173,
+        "entity_text": "Kaila Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 174,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 176,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 176,
+        "entity_text": "Malati Sardar(supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Jagdish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "Malati Sardar(supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "Kaila Devi(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Kaila Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Kaila Devi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 208,
+        "entity_text": "Keith Rowe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Arun Kumar Agrawal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 243,
+        "entity_text": "Kemp",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "Kemp",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 246,
+        "entity_text": "Kemp",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 275,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 291,
+        "entity_text": "Royal Sundaram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 298,
+        "entity_text": "Sarla Verma",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 325,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 326,
+        "entity_text": "Sarla Verma(Supra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 331,
+        "entity_text": "Lata Wadhwa",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 335,
+        "entity_text": "Kirti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 335,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 347,
+        "entity_text": "Indrawati",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 349,
+        "entity_text": "Ram Charan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 427,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 448,
+        "entity_text": "Pranay Sethi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 477,
+        "entity_text": "Ram Charan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 478,
+        "entity_text": "A. P. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 493,
+        "entity_text": "Keith Rowe",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 500,
+        "entity_text": "Susamma Thomas",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 58,
+    "ARG_RESPONDENT": 2,
+    "FAC": 30,
+    "PRE_RELIED": 137
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 242,
+    "ISSUE": 2,
+    "NONE": 51,
+    "RPC": 16
+  }
+}

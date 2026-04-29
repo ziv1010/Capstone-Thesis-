@@ -1,0 +1,142 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1130,
+      "facts": 7289,
+      "arguments": 335,
+      "petitioner_arguments": 0,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 335
+    },
+    "kept_sentence_role_counts": {
+      "FAC": 50,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 7,
+      "NONE": 4,
+      "RATIO": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 60,
+    "ignored_sentences": 15,
+    "ignored_entities": [
+      {
+        "sentence_id": 12,
+        "entity_text": "D.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "S.K. Hari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 19,
+        "entity_text": "Panchnama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Pratap Raj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Pratap Raj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "S.K. Hari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Sh Pratap",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "D.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 39,
+        "entity_text": "S.K. Hari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "S.K.Hari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "D.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "D.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "D.P. Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "S.N.\nShukla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "O.P. Singhal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "K.P. Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "H.N. Bhandari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Kanchit Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 60,
+        "entity_text": "Ishwar Singh",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "FAC": 50,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 7,
+    "NONE": 4,
+    "RATIO": 2,
+    "RPC": 2
+  }
+}

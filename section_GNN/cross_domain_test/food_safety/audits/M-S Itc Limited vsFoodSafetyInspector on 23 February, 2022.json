@@ -1,0 +1,112 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 200,
+          "end": 207
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 343,
+          "end": 350
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 200,
+          "end": 207
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 343,
+          "end": 350
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 772,
+      "facts": 4189,
+      "arguments": 7306,
+      "petitioner_arguments": 2873,
+      "respondent_arguments": 327,
+      "other_lawyer_arguments": 4104
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 1,
+      "FAC": 24,
+      "PRE_RELIED": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 150,
+      "NONE": 4,
+      "RATIO": 3,
+      "RPC": 10
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 55,
+    "ignored_sentences": 167,
+    "ignored_entities": [
+      {
+        "sentence_id": 114,
+        "entity_text": "Franklin Delano Roosevelt",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 115,
+        "entity_text": "Gostin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 121,
+        "entity_text": "Sariramadyam Khaludharma Sadhanara",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 124,
+        "entity_text": "Francis Mullin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Udaya Holla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 147,
+        "entity_text": "Sajjan Poovaiah",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 1,
+    "FAC": 24,
+    "PRE_RELIED": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 150,
+    "NONE": 4,
+    "RATIO": 3,
+    "RPC": 10
+  }
+}

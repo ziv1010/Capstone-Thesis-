@@ -1,0 +1,114 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 185,
+          "end": 192
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 185,
+          "end": 192
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 967,
+      "facts": 6536,
+      "arguments": 9695,
+      "petitioner_arguments": 8269,
+      "respondent_arguments": 1425,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 36,
+      "ARG_RESPONDENT": 6,
+      "FAC": 31
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 28,
+      "NONE": 6,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 75,
+    "ignored_sentences": 43,
+    "ignored_entities": [
+      {
+        "sentence_id": 26,
+        "entity_text": "Maa Basulai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "S.K.Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "P.S. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "P.K. Rath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 40,
+        "entity_text": "S. N.\nPatnaik",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 41,
+        "entity_text": "S. K. Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 59,
+        "entity_text": "Chhatua",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 66,
+        "entity_text": "P. K. Rath",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "S. N. Patnaik",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 36,
+    "ARG_RESPONDENT": 6,
+    "FAC": 31
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 28,
+    "NONE": 6,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 3
+  }
+}

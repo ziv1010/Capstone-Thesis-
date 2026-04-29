@@ -1,0 +1,49 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 188,
+      "facts": 0,
+      "arguments": 249,
+      "petitioner_arguments": 249,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 8,
+      "RATIO": 1,
+      "RLC": 2,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 4,
+    "ignored_sentences": 15,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "B.J. Chourasiya",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 8,
+    "RATIO": 1,
+    "RLC": 2,
+    "RPC": 4
+  }
+}

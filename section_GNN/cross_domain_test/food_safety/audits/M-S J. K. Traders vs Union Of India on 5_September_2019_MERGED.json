@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1277,
+      "facts": 3841,
+      "arguments": 19709,
+      "petitioner_arguments": 8445,
+      "respondent_arguments": 777,
+      "other_lawyer_arguments": 10851
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 47,
+      "ARG_RESPONDENT": 3,
+      "FAC": 17,
+      "PRE_RELIED": 15,
+      "STA": 29
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 303,
+      "NONE": 6,
+      "RATIO": 10,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 146,
+    "ignored_sentences": 331,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Allauddin Sheikh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Abdus  Samad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Anshuman Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 28,
+        "entity_text": "Betel Nut",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 247,
+        "entity_text": "C.A.V JUDGMENT",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 249,
+        "entity_text": "Anshuman Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 257,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 265,
+        "entity_text": "Betel Nut",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 47,
+    "ARG_RESPONDENT": 3,
+    "FAC": 17,
+    "PRE_RELIED": 15,
+    "STA": 29
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 303,
+    "NONE": 6,
+    "RATIO": 10,
+    "RPC": 12
+  }
+}

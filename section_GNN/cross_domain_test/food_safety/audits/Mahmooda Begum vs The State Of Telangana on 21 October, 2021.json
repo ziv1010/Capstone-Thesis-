@@ -1,0 +1,88 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 226,
+          "end": 235
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 119,
+          "end": 128
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 226,
+          "end": 235
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 119,
+          "end": 128
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 242,
+      "facts": 2330,
+      "arguments": 3584,
+      "petitioner_arguments": 2634,
+      "respondent_arguments": 949,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 18,
+      "ARG_RESPONDENT": 4,
+      "FAC": 12
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 35,
+      "ISSUE": 1,
+      "NONE": 5,
+      "RATIO": 6,
+      "RLC": 1,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 38,
+    "ignored_sentences": 53,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Ahmed Hussain @ Amer Hussain @ Gajini Amer",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 18,
+    "ARG_RESPONDENT": 4,
+    "FAC": 12
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 35,
+    "ISSUE": 1,
+    "NONE": 5,
+    "RATIO": 6,
+    "RLC": 1,
+    "RPC": 5
+  }
+}

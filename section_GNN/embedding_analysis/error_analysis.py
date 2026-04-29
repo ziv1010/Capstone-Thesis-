@@ -161,7 +161,7 @@ def main() -> None:
     results["by_domain"] = g_domain.to_dict("records")
 
     # ── Year (every 2 years) ──────────────────────────────────
-    df_yr = df[df["case_year"].between(1990, 2030)].copy()
+    df_yr = df[df["case_year"].between(1990, 2026)].copy()
     df_yr["year_bin"] = (df_yr["case_year"] // 2) * 2  # 2-year buckets
     g_year = _accuracy_by_group(df_yr, "year_bin")
     _bar(g_year, f"Accuracy by case year\n({run_name})", "Year (2-year bins)",
@@ -169,9 +169,8 @@ def main() -> None:
     results["by_year"] = g_year.to_dict("records")
 
     # ── Statute count ─────────────────────────────────────────
-    df["statute_bin"] = pd.cut(df["statute_count"], bins=[0,1,3,6,10,999],
-                                labels=["0","1-3","4-6","7-10","10+"],
-                                include_lowest=True)
+    df["statute_bin"] = pd.cut(df["statute_count"], bins=[-1, 0, 3, 6, 10, 999],
+                                labels=["0","1-3","4-6","7-10","10+"])
     g_statute = _accuracy_by_group(df, "statute_bin")
     _bar(g_statute, f"Accuracy by statute count\n({run_name})", "Statute count",
          out_dir / f"{run_name}_error_by_statute.png", "#d62728")
@@ -189,9 +188,8 @@ def main() -> None:
     results["by_facts_length"] = g_facts.to_dict("records")
 
     # ── Judge count ───────────────────────────────────────────
-    df["judge_bin"] = pd.cut(df["judge_count"], bins=[0,1,2,3,4,99],
-                              labels=["0-1","2","3","4","5+"],
-                              include_lowest=True)
+    df["judge_bin"] = pd.cut(df["judge_count"], bins=[-1, 1, 2, 3, 4, 99],
+                              labels=["0-1","2","3","4","5+"])
     g_judges = _accuracy_by_group(df, "judge_bin")
     _bar(g_judges, f"Accuracy by judge count\n({run_name})", "Number of judges",
          out_dir / f"{run_name}_error_by_judges.png", "#9467bd")

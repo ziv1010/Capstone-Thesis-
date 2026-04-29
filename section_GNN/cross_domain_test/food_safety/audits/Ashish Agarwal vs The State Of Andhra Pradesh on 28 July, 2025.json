@@ -1,0 +1,82 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 144,
+      "facts": 2914,
+      "arguments": 3319,
+      "petitioner_arguments": 1269,
+      "respondent_arguments": 2049,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 11,
+      "ARG_RESPONDENT": 12,
+      "FAC": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 11,
+      "ISSUE": 1,
+      "NONE": 7,
+      "RATIO": 1,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 39,
+    "ignored_sentences": 29,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Venkateswara Swamy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 7,
+        "entity_text": "P. Murali Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "P. Murali Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "S. Sriram",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 16,
+        "entity_text": "Vakakti Venkata Gnanusha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "P.S.P. Suresh Kumar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 11,
+    "ARG_RESPONDENT": 12,
+    "FAC": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 11,
+    "ISSUE": 1,
+    "NONE": 7,
+    "RATIO": 1,
+    "RPC": 9
+  }
+}

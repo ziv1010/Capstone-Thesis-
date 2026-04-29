@@ -1,0 +1,160 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1162,
+      "facts": 5444,
+      "arguments": 40996,
+      "petitioner_arguments": 16654,
+      "respondent_arguments": 780,
+      "other_lawyer_arguments": 23560
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 113,
+      "ARG_RESPONDENT": 5,
+      "FAC": 26,
+      "PRE_RELIED": 14,
+      "STA": 41
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 217,
+      "NONE": 3,
+      "RATIO": 3,
+      "RPC": 22
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 219,
+    "ignored_sentences": 245,
+    "ignored_entities": [
+      {
+        "sentence_id": 78,
+        "entity_text": "Shashikant B. Bhandalkar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 83,
+        "entity_text": "Suresh Kashinath Madane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Madane",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Maneka Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 100,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 123,
+        "entity_text": "Manilal Valliyate",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 125,
+        "entity_text": "Phiroze Khambata",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "B.I. Upadhyay",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 130,
+        "entity_text": "Dilip Vishnu Raut",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 131,
+        "entity_text": "Vikas Khatwani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 132,
+        "entity_text": "Rachel Koyama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Koyama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Koyama",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 135,
+        "entity_text": "Sarfarz Sayed",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 136,
+        "entity_text": "Maneka Gandhi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 142,
+        "entity_text": "Phiroz Khambatta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Khambatta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 164,
+        "entity_text": "Indu Palani",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Deccan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 166,
+        "entity_text": "Kathiawadi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 391,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 113,
+    "ARG_RESPONDENT": 5,
+    "FAC": 26,
+    "PRE_RELIED": 14,
+    "STA": 41
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 217,
+    "NONE": 3,
+    "RATIO": 3,
+    "RPC": 22
+  }
+}

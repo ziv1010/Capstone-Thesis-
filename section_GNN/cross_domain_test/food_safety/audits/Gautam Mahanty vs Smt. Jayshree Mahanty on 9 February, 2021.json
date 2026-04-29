@@ -1,0 +1,169 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 508,
+      "facts": 19130,
+      "arguments": 24071,
+      "petitioner_arguments": 8416,
+      "respondent_arguments": 2372,
+      "other_lawyer_arguments": 13281
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 50,
+      "ARG_RESPONDENT": 18,
+      "FAC": 126,
+      "PRE_RELIED": 57,
+      "STA": 1
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 108,
+      "ISSUE": 4,
+      "NONE": 7,
+      "RATIO": 3,
+      "RLC": 36,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 259,
+    "ignored_sentences": 173,
+    "ignored_entities": [
+      {
+        "sentence_id": 7,
+        "entity_text": "Rohitashya Roy",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 45,
+        "entity_text": "C.J.M. Purulia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 57,
+        "entity_text": "Astamangala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Limaya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Mithileshwar Narayan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Gautam Mahanty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Sanjay Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Awdhesh Kumar Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 93,
+        "entity_text": "Gopal Prasad Mahanty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Jayshree Mahanty",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Raj Kumar Mahapatra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Jimut Bahan Mahanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 181,
+        "entity_text": "K. Srinivas Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 182,
+        "entity_text": "K. Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 204,
+        "entity_text": "M. Yuvraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 223,
+        "entity_text": "K. Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 253,
+        "entity_text": "K. Srinivas Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 286,
+        "entity_text": "K. Sunita",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 314,
+        "entity_text": "Ravinder Kaur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 319,
+        "entity_text": "M. Yuvraj",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 357,
+        "entity_text": "K. Srinivas Rao",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 389,
+        "entity_text": "Bipinchandra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 50,
+    "ARG_RESPONDENT": 18,
+    "FAC": 126,
+    "PRE_RELIED": 57,
+    "STA": 1
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 108,
+    "ISSUE": 4,
+    "NONE": 7,
+    "RATIO": 3,
+    "RLC": 36,
+    "RPC": 15
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 622,
+      "facts": 0,
+      "arguments": 582,
+      "petitioner_arguments": 582,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 10,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 249,
+    "ignored_sentences": 12,
+    "ignored_entities": [
+      {
+        "sentence_id": 15,
+        "entity_text": "CAV JUDGMEN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Dhanjibhai Rupen Navinchandra",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Jayantibhai Ramabhai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 89,
+        "entity_text": "Ramanbhai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Bhavsinhbhai Mafabhai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "Chandrakant",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 99,
+        "entity_text": "Ghanshyambhai",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 105,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 134,
+        "entity_text": "Central",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 140,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 172,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Bhavshibhai Mafabhai Patel",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Chandrakant Chandulal Panchal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Dashrat Kalabhai Solanki",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Bharatbhai Revabhai Solanki",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Kahubhai Kalabhai Solanki",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 211,
+        "entity_text": "Harishchandra Umapati Pande",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 248,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 10,
+    "RPC": 2
+  }
+}

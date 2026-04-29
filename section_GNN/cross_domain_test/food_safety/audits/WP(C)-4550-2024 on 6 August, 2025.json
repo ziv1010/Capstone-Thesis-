@@ -1,0 +1,145 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 406,
+          "end": 415
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 420,
+          "end": 427
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 205,
+          "end": 214
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 219,
+          "end": 226
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 122,
+          "end": 131
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 136,
+          "end": 143
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 406,
+          "end": 415
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 420,
+          "end": 427
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 205,
+          "end": 214
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 219,
+          "end": 226
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 122,
+          "end": 131
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 136,
+          "end": 143
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 528,
+      "facts": 6539,
+      "arguments": 19270,
+      "petitioner_arguments": 10584,
+      "respondent_arguments": 956,
+      "other_lawyer_arguments": 7728
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 46,
+      "ARG_RESPONDENT": 3,
+      "FAC": 34,
+      "PRE_RELIED": 37
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 105,
+      "NONE": 5,
+      "RATIO": 3,
+      "RPC": 15
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 128,
+    "ignored_sentences": 128,
+    "ignored_entities": [
+      {
+        "sentence_id": 6,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Silchar Do",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Silchar",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 46,
+    "ARG_RESPONDENT": 3,
+    "FAC": 34,
+    "PRE_RELIED": 37
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 105,
+    "NONE": 5,
+    "RATIO": 3,
+    "RPC": 15
+  }
+}

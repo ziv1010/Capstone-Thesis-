@@ -1,0 +1,42 @@
+\chapter{Introduction}
+
+\section{The Access to Justice Problem in India}
+
+Access to justice in India is not only a legal ideal but also a large-scale administrative challenge. Court backlogs remain extremely high across the judicial system, which means that delay itself becomes a serious barrier to justice. When cases take years to move, litigation becomes more expensive, evidence becomes harder to trace, and ordinary citizens are less able to sustain meaningful participation in the legal process.
+
+This does not mean that courts should be automated. Judicial decision-making involves interpretation, justification, and public accountability in ways that no prediction system can replace. A more realistic goal is decision support: computational tools that help organise large volumes of case material, surface patterns across past disputes, and assist legal research or case preparation. Legal Judgment Prediction (LJP) sits within that narrower and more defensible ambition.
+
+\section{What is Legal Judgement Prediction?}
+
+Legal Judgment Prediction is the task of estimating some aspect of a court outcome from information contained in the case record \cite{aletras2016echr, katz2017supreme, medvedeva2020echr}. Different papers define the target differently: some predict violation versus non-violation, some predict appeal outcomes, and others predict charges or penalties. In all cases, the core idea is the same: given a representation of a dispute, can a model forecast the judicial result?
+
+In this thesis, LJP is defined narrowly as outcome prediction over Indian court judgments after removing explicit decision-bearing text. The aim is not to generate legal reasoning or normative conclusions, but to test whether pre-decision signals, facts, arguments, statutes, provisions, and precedents, can support outcome prediction when represented in a structured way.
+
+This definition matters because much of the LJP literature has been criticised for hidden leakage \cite{medvedeva2023doitright}. If a model can read operative text, ruling sections, or highly outcome-correlated metadata, then the task becomes answer recovery rather than prediction. For that reason, LJP is as much an experimental-design problem as it is a modelling problem. The central question is not only \emph{what} to predict, but also \emph{what information the model is allowed to use}. 
+
+\section{Why LJP is Hard}
+
+LJP is difficult because legal judgments combine four challenges that ordinary classification benchmarks do not face simultaneously: \emph{long documents} that exceed transformer context windows and force truncation or hierarchy~\cite{chalkidis2020legalbert, mamakas2022longlegal}; \emph{noisy Indian text} with abbreviations, citation variations, OCR artefacts, transliterated names, and entities that rarely appear in one canonical form, plus the multi-hearing pattern that publishes one dispute as several documents; \emph{relational legal structure} in which outcomes depend on how facts, arguments, statutes, provisions, precedents, and parties connect rather than on isolated sentences; and \emph{leakage}, where decisive phrases such as \emph{appeal allowed} or \emph{petition dismissed}, identity-heavy metadata, or post-decision text can act as shortcuts that recover the outcome rather than predict it. Together these make LJP a representation and evaluation problem first, and only then a modelling problem.
+
+\section{Why Graph-Based Approaches?}
+
+A graph-based approach is a natural fit for legal disputes because cases are structured collections of typed objects and relations. A case is heard in a court, involves parties and lawyers, cites statutes and precedents, and contains argument blocks linked to different sides. When all of this is flattened into one sequence, the model must recover structure that is already present in the source material. A graph preserves that structure explicitly.
+
+Graphs are useful here for two reasons. First, they preserve heterogeneity: a statute, a party, and a facts section do not play the same legal role and should not be treated as identical inputs. Second, they allow cross-case reasoning through shared legal objects. If two cases cite the same statute or precedent, they are connected in a legally meaningful way, not merely through surface lexical similarity. This thesis therefore argues for a heterogeneous, leakage-audited, cross-case graph representation for Indian LJP.
+
+\section{Contributions of This Work}
+
+This thesis makes five main contributions.
+
+\begin{enumerate}
+    \item It constructs a large structured corpus of Indian court cases spanning five legal domains, with more than 73{,}000 final-case records after multi-hearing consolidation.
+
+    \item It develops an end-to-end pipeline that converts raw judgments into leakage-audited, graph-ready representations using document collection, OpenNyAI enrichment, outcome labelling, multi-hearing merging, and explicit leakage filtering.
+
+    \item It proposes a reasoning-focused heterogeneous knowledge graph schema in which cases are represented together with text blocks, parties, courts, statutes, provisions, and precedents, while legally meaningful sharing is separated from identity-based shortcuts.
+
+    \item It applies a Heterogeneous Graph Transformer to this graph and evaluates it in the pooled cross-domain setting, showing that structured graph representations outperform text-only baselines on the thesis dataset.
+
+    \item It complements prediction with graph analysis, ablations, and leakage-oriented reasoning, treating the graph not just as model input but as an empirical object that helps explain both performance and limitations.
+\end{enumerate}
+

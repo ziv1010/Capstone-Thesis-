@@ -1,0 +1,54 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 504,
+      "facts": 1251,
+      "arguments": 933,
+      "petitioner_arguments": 933,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 7,
+      "FAC": 11
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 9,
+      "NONE": 4,
+      "RATIO": 4,
+      "RLC": 2,
+      "RPC": 8
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 23,
+    "ignored_sentences": 27,
+    "ignored_entities": [
+      {
+        "sentence_id": 5,
+        "entity_text": "Rajendra Prasad",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 7,
+    "FAC": 11
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 9,
+    "NONE": 4,
+    "RATIO": 4,
+    "RLC": 2,
+    "RPC": 8
+  }
+}

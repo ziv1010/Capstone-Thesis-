@@ -1,0 +1,293 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 266,
+      "facts": 15722,
+      "arguments": 5880,
+      "petitioner_arguments": 3073,
+      "respondent_arguments": 1461,
+      "other_lawyer_arguments": 1344
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 24,
+      "ARG_RESPONDENT": 8,
+      "FAC": 93,
+      "STA": 3
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 58,
+      "NONE": 8,
+      "RATIO": 7,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 140,
+    "ignored_sentences": 75,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Shuse Sreshtra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 2,
+        "entity_text": "Hazrat Nizamuddin",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "VR Anirudh Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "VM Ramgopal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "Pind Balluchi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Pankaj Kumar Meena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 14,
+        "entity_text": "Pramod M Kothekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 17,
+        "entity_text": "Pankaj Kumar Meena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 18,
+        "entity_text": "Shuse Shrestha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Shuse Sreshtha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 27,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 29,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 30,
+        "entity_text": "Shuse Sreshtha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 31,
+        "entity_text": "Pankaj Kumar Meena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 34,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 36,
+        "entity_text": "Pramod M Kothekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Pramod M Kothekar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 38,
+        "entity_text": "Ram Bahadur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Ram Bahadur Shreshtha",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "Sushe Bahadur",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "V R Anirudh Krishna",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "V M Ramgopal",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ashok Kumar Singh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Tarun Negi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "A.K.\nSingh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Pramod M. Kothekar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Pankaj Kumar Meena",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 62,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "A.K. Singh",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "Tarun Negi",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Anjali Bhardwaj",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Paneer Tikka Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Paneer Tikka Masala Subzi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 103,
+        "entity_text": "A.K. Adhikari",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 108,
+        "entity_text": "Paneer Tikka Masala",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Ram Bahadur Shreshta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 111,
+        "entity_text": "Paneer Tikka Masala Subzi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 118,
+        "entity_text": "Paneer Tikka Masala",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 24,
+    "ARG_RESPONDENT": 8,
+    "FAC": 93,
+    "STA": 3
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 58,
+    "NONE": 8,
+    "RATIO": 7,
+    "RPC": 2
+  }
+}

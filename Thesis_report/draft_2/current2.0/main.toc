@@ -1,0 +1,158 @@
+\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.2}%
+\contentsline {section}{\numberline {1.1}The Access to Justice Problem in India}{4}{section.3}%
+\contentsline {section}{\numberline {1.2}What is Legal Judgement Prediction?}{5}{section.4}%
+\contentsline {section}{\numberline {1.3}Why LJP is Hard}{5}{section.5}%
+\contentsline {section}{\numberline {1.4}Why Graph-Based Approaches?}{6}{section.6}%
+\contentsline {section}{\numberline {1.5}Contributions of This Work}{6}{section.7}%
+\contentsline {section}{\numberline {1.6}Thesis Organisation}{7}{section.13}%
+\contentsline {chapter}{\numberline {2}Related Work}{8}{chapter.14}%
+\contentsline {section}{\numberline {2.1}Feature Engineering and Statistical Models}{8}{section.15}%
+\contentsline {section}{\numberline {2.2}Text-Based Deep Learning}{9}{section.16}%
+\contentsline {section}{\numberline {2.3}Graph-Based Approaches}{9}{section.17}%
+\contentsline {section}{\numberline {2.4}Heterogeneous GNNs and the Motivation for HGT}{10}{section.18}%
+\contentsline {section}{\numberline {2.5}Indian Legal NLP and OpenNyAI}{11}{section.19}%
+\contentsline {section}{\numberline {2.6}Gaps This Work Addresses}{11}{section.20}%
+\contentsline {chapter}{\numberline {3}System Overview and Data Pipeline}{13}{chapter.21}%
+\contentsline {section}{\numberline {3.1}System Architecture Overview}{13}{section.22}%
+\contentsline {section}{\numberline {3.2}Document Collection and Legal Domains}{15}{section.25}%
+\contentsline {subsection}{\numberline {3.2.1}Source Selection and Crawling Strategy}{15}{subsection.26}%
+\contentsline {subsection}{\numberline {3.2.2}Local Bucketing and Legal Domains}{15}{subsection.27}%
+\contentsline {section}{\numberline {3.3}Named Entity Recognition and Rhetorical Role Classification}{17}{section.30}%
+\contentsline {subsection}{\numberline {3.3.1}The OpenNyAI Pipeline}{18}{subsection.31}%
+\contentsline {subsection}{\numberline {3.3.2}Entity Types and Their Graph Roles}{20}{subsection.33}%
+\contentsline {subsection}{\numberline {3.3.3}Rhetorical Role Taxonomy and Leakage-Safe Filtering}{22}{subsection.36}%
+\contentsline {section}{\numberline {3.4}Outcome Labelling with Mistral}{23}{section.37}%
+\contentsline {subsection}{\numberline {3.4.1}Labelling Methodology}{23}{subsection.38}%
+\contentsline {paragraph}{Labels.}{23}{section*.39}%
+\contentsline {paragraph}{Label model hallucination and the motivation for cross-validation.}{24}{section*.40}%
+\contentsline {paragraph}{Cross-validation design.}{24}{section*.41}%
+\contentsline {paragraph}{Results.}{26}{section*.48}%
+\contentsline {subsection}{\numberline {3.4.2}Coverage and Label Distribution}{27}{subsection.51}%
+\contentsline {section}{\numberline {3.5}Multi-Hearing Merging}{30}{section.58}%
+\contentsline {subsection}{\numberline {3.5.1}The Problem}{30}{subsection.59}%
+\contentsline {subsection}{\numberline {3.5.2}Merge Strategy}{30}{subsection.63}%
+\contentsline {paragraph}{What the merger is and is not looking for.}{30}{section*.64}%
+\contentsline {paragraph}{The v1/v2 flaw and the v3 fix.}{31}{section*.65}%
+\contentsline {paragraph}{Case number extraction.}{31}{section*.66}%
+\contentsline {paragraph}{Merge mechanics.}{32}{section*.70}%
+\contentsline {paragraph}{Scale of the operation.}{32}{section*.71}%
+\contentsline {section}{\numberline {3.6}Technology Stack}{33}{section.74}%
+\contentsline {chapter}{\numberline {4}Heterogeneous Knowledge Graph Construction}{34}{chapter.75}%
+\contentsline {section}{\numberline {4.1}Motivation: Why a Heterogeneous Graph?}{34}{section.76}%
+\contentsline {section}{\numberline {4.2}Graph Schema}{35}{section.77}%
+\contentsline {subsection}{\numberline {4.2.1}Node Types}{35}{subsection.78}%
+\contentsline {subsection}{\numberline {4.2.2}Cross-Case Sharing}{36}{subsection.79}%
+\contentsline {subsection}{\numberline {4.2.3}Edge Types}{36}{subsection.80}%
+\contentsline {paragraph}{Shortcut edges that are intentionally removed.}{37}{section*.81}%
+\contentsline {subsection}{\numberline {4.2.4}Attributes}{37}{subsection.82}%
+\contentsline {subsection}{\numberline {4.2.5}Visualizing the Graph Structure}{38}{subsection.83}%
+\contentsline {section}{\numberline {4.3}Leakage Prevention Strategy}{38}{section.88}%
+\contentsline {paragraph}{1. Field-level removal.}{38}{section*.89}%
+\contentsline {paragraph}{2. Rhetorical-role filtering.}{41}{section*.90}%
+\contentsline {paragraph}{3. Phrase-level masking.}{41}{section*.91}%
+\contentsline {paragraph}{4. Temporal gating on shared entities.}{41}{section*.92}%
+\contentsline {paragraph}{5. Audit trail.}{41}{section*.93}%
+\contentsline {section}{\numberline {4.4}Text Embedding and Feature Extraction}{42}{section.94}%
+\contentsline {subsection}{\numberline {4.4.1}The \texttt {bge-m3} Text Encoder}{42}{subsection.95}%
+\contentsline {paragraph}{Configuration.}{42}{section*.96}%
+\contentsline {paragraph}{Hierarchical chunking for long spans.}{42}{section*.97}%
+\contentsline {paragraph}{Caching.}{42}{section*.98}%
+\contentsline {subsection}{\numberline {4.4.2}Node Feature Assembly}{42}{subsection.99}%
+\contentsline {chapter}{\numberline {5}Graph Exploration and Structural Insights}{44}{chapter.100}%
+\contentsline {section}{\numberline {5.1}Why Explore the Graph Before Prediction?}{44}{section.101}%
+\contentsline {section}{\numberline {5.2}Graph Statistics and Structural Analysis}{45}{section.102}%
+\contentsline {subsection}{\numberline {5.2.1}Overall Graph Statistics}{45}{subsection.103}%
+\contentsline {subsection}{\numberline {5.2.2}Node Type Distribution}{45}{subsection.106}%
+\contentsline {subsection}{\numberline {5.2.3}Degree Distribution and Hub Entities}{47}{subsection.111}%
+\contentsline {subsection}{\numberline {5.2.4}Cross-Domain Bridge Analysis}{50}{subsection.116}%
+\contentsline {subsection}{\numberline {5.2.5}Cross-Bucket Entity Sharing Matrix}{51}{subsection.119}%
+\contentsline {subsection}{\numberline {5.2.6}Connectivity Score Distribution}{53}{subsection.125}%
+\contentsline {section}{\numberline {5.3}Per-Domain Corpus Analysis}{55}{section.128}%
+\contentsline {subsection}{\numberline {5.3.1}Case Length and Sentence Distributions}{55}{subsection.129}%
+\contentsline {subsection}{\numberline {5.3.2}Entity Richness Per Domain}{56}{subsection.132}%
+\contentsline {subsection}{\numberline {5.3.3}Rhetorical Role Composition Per Domain}{61}{subsection.139}%
+\contentsline {subsection}{\numberline {5.3.4}Outcome Distribution Per Domain}{62}{subsection.142}%
+\contentsline {section}{\numberline {5.4}Key Structural Insights}{63}{section.143}%
+\contentsline {chapter}{\numberline {6}Prediction Model and Results}{64}{chapter.149}%
+\contentsline {section}{\numberline {6.1}Why a Heterogeneous Graph Transformer?}{64}{section.150}%
+\contentsline {section}{\numberline {6.2}Model Architecture}{64}{section.151}%
+\contentsline {paragraph}{Input projection.}{64}{section*.152}%
+\contentsline {paragraph}{Stacked HGT layers.}{65}{section*.153}%
+\contentsline {paragraph}{Classifier head.}{65}{section*.154}%
+\contentsline {paragraph}{Reference implementation.}{65}{section*.155}%
+\contentsline {paragraph}{Training configuration.}{65}{section*.156}%
+\contentsline {section}{\numberline {6.3}Experimental Setup}{65}{section.157}%
+\contentsline {paragraph}{Transductive protocol.}{65}{section*.158}%
+\contentsline {paragraph}{5-fold cross-validation.}{66}{section*.159}%
+\contentsline {paragraph}{Evaluation settings.}{66}{section*.160}%
+\contentsline {paragraph}{Metrics.}{66}{section*.161}%
+\contentsline {section}{\numberline {6.4}Ablation Variants and Rationale}{66}{section.162}%
+\contentsline {section}{\numberline {6.5}Baseline Comparisons}{67}{section.163}%
+\contentsline {section}{\numberline {6.6}Cross-Bucket Results}{67}{section.166}%
+\contentsline {paragraph}{The pooled winner is clear.}{68}{section*.169}%
+\contentsline {paragraph}{Cross-case sharing is doing something, but less than expected.}{68}{section*.170}%
+\contentsline {paragraph}{Identity removal does not hurt.}{68}{section*.171}%
+\contentsline {section}{\numberline {6.7}Per-Domain Results}{69}{section.172}%
+\contentsline {section}{\numberline {6.8}Ablation Findings}{70}{section.177}%
+\contentsline {section}{\numberline {6.9}Out-of-Domain Evaluation: A Fully Unseen Legal Domain}{71}{section.185}%
+\contentsline {paragraph}{Problem.}{71}{section*.186}%
+\contentsline {paragraph}{Approach.}{71}{section*.187}%
+\contentsline {paragraph}{Results.}{72}{table.193}%
+\contentsline {paragraph}{What this shows.}{73}{section*.194}%
+\contentsline {chapter}{\numberline {7}Interpretability and Case-Level Explanation}{74}{chapter.195}%
+\contentsline {section}{\numberline {7.1}Why Interpretability, and Why at Four Levels}{74}{section.196}%
+\contentsline {section}{\numberline {7.2}Representation-Level Analysis: What Did the GNN Learn?}{75}{section.201}%
+\contentsline {paragraph}{Problem.}{75}{section*.202}%
+\contentsline {paragraph}{Approach.}{75}{section*.203}%
+\contentsline {paragraph}{Result.}{76}{section*.208}%
+\contentsline {paragraph}{What does this embedding space look like?}{77}{section*.209}%
+\contentsline {section}{\numberline {7.3}Component-Level Analysis: Which Parts of the Graph Matter?}{78}{section.212}%
+\contentsline {paragraph}{Problem.}{78}{section*.213}%
+\contentsline {paragraph}{Three complementary probes.}{78}{section*.214}%
+\contentsline {paragraph}{Node-type zeroing.}{79}{section*.217}%
+\contentsline {paragraph}{Per-relation attention and gradient saliency.}{80}{section*.218}%
+\contentsline {paragraph}{SHAP over the post-GNN embedding.}{81}{section*.221}%
+\contentsline {section}{\numberline {7.4}Error-Level Analysis: Where Does the Representation Fail?}{82}{section.224}%
+\contentsline {paragraph}{Problem.}{82}{section*.225}%
+\contentsline {paragraph}{Approach.}{82}{section*.226}%
+\contentsline {paragraph}{Findings.}{83}{section*.231}%
+\contentsline {section}{\numberline {7.5}Case-Level Explanation}{84}{section.232}%
+\contentsline {paragraph}{Problem.}{84}{section*.233}%
+\contentsline {paragraph}{Approach.}{84}{section*.234}%
+\contentsline {subsection}{\numberline {7.5.1}Phase 1--2: Frozen Inference and Retrieval Index}{85}{subsection.237}%
+\contentsline {subsection}{\numberline {7.5.2}Phase 3: Training a Heterogeneous Edge Masker}{85}{subsection.238}%
+\contentsline {paragraph}{Heterogeneous adaptation.}{85}{section*.239}%
+\contentsline {subsection}{\numberline {7.5.3}Phase 4: From Edge Scores to Legal Evidence}{86}{subsection.243}%
+\contentsline {subsection}{\numberline {7.5.4}Phase 5: LLM Translation}{87}{subsection.248}%
+\contentsline {paragraph}{Role boundary.}{87}{section*.249}%
+\contentsline {section}{\numberline {7.6}A Worked Example: A Confidently-Correct Case}{88}{section.250}%
+\contentsline {paragraph}{Evidence extracted.}{88}{section*.253}%
+\contentsline {paragraph}{LLM-translated narrative.}{89}{section*.254}%
+\contentsline {section}{\numberline {7.7}When Confidence and Correctness Diverge: Structural Error Analysis}{89}{section.255}%
+\contentsline {paragraph}{Aggregate statistic.}{89}{section*.256}%
+\contentsline {paragraph}{Interpretation.}{90}{section*.259}%
+\contentsline {paragraph}{A worked confident-wrong example.}{90}{section*.260}%
+\contentsline {section}{\numberline {7.8}Summary}{91}{section.263}%
+\contentsline {chapter}{\numberline {8}Discussion}{93}{chapter.264}%
+\contentsline {section}{\numberline {8.1}Summary of Findings}{93}{section.265}%
+\contentsline {paragraph}{The pipeline produces a legally coherent corpus.}{93}{section*.266}%
+\contentsline {paragraph}{The graph is hub-dominated and cross-domain.}{94}{section*.267}%
+\contentsline {paragraph}{The HGT model learns cross-case structural signal.}{94}{section*.268}%
+\contentsline {paragraph}{The model does not rely on identity shortcuts.}{94}{section*.269}%
+\contentsline {paragraph}{Predictions are auditable at the case level.}{95}{section*.270}%
+\contentsline {paragraph}{The cross-bucket representation transfers, partially, to an unseen legal domain.}{96}{section*.271}%
+\contentsline {section}{\numberline {8.2}Limitations}{96}{section.272}%
+\contentsline {paragraph}{Transductive evaluation assumes entity overlap at test time.}{96}{section*.273}%
+\contentsline {paragraph}{Outcome labels are LLM-generated.}{96}{section*.274}%
+\contentsline {paragraph}{RPC/RLC filtering is a lower bound on leakage, not a guarantee.}{97}{section*.275}%
+\contentsline {paragraph}{The ablation ordering is stable but the margins are small.}{97}{section*.276}%
+\contentsline {paragraph}{The pooled optimum is not the universal optimum.}{97}{section*.277}%
+\contentsline {section}{\numberline {8.3}Future Work}{98}{section.278}%
+\contentsline {paragraph}{1.\ Inductive and temporal splits.}{98}{section*.279}%
+\contentsline {paragraph}{2.\ Multi-label and ordinal outcome targets.}{98}{section*.280}%
+\contentsline {paragraph}{3.\ Expert-in-the-loop validation of the case-level explanations.}{98}{section*.281}%
+\contentsline {paragraph}{4.\ Scaling the bucket inventory.}{99}{section*.282}%
+\contentsline {paragraph}{5.\ Stronger identity-leakage audits.}{99}{section*.283}%
+\contentsline {paragraph}{6.\ Cross-domain fine-tuning and domain-adaptive heads.}{99}{section*.284}%
+\contentsline {paragraph}{7.\ Connectivity- and difficulty-aware modelling.}{99}{section*.285}%
+\contentsline {chapter}{\numberline {9}Conclusion}{101}{chapter.286}%

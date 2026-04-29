@@ -1,0 +1,66 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 416,
+      "facts": 0,
+      "arguments": 6500,
+      "petitioner_arguments": 767,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 5732
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 2,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 10,
+      "ISSUE": 1,
+      "NONE": 13,
+      "RATIO": 5,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 16,
+    "ignored_sentences": 36,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Gandhiji",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Giri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "Giri",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 2,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 10,
+    "ISSUE": 1,
+    "NONE": 13,
+    "RATIO": 5,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

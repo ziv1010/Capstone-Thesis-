@@ -209,12 +209,17 @@ def main() -> None:
     data        = bundle["data"].to(device)
     label_names = list(bundle["metadata"]["label_names"])
 
+    state_dict = torch.load(model_path, map_location=device, weights_only=True)
+    hidden_dim = int(state_dict["input_projections.case.weight"].shape[0])
+    num_layers = sum(1 for k in state_dict if k.startswith("layer_norms.") and k.endswith(".case.weight"))
+    model_cfg  = {**cfg.get("model", {}), "hidden_dim": hidden_dim, "num_layers": num_layers}
+
     input_dims = {nt: int(data[nt].x.shape[1]) for nt in data.node_types}
     model = HeteroLegalOutcomeGNN(
         metadata=data.metadata(), input_dims=input_dims,
-        out_dim=len(label_names), cfg=cfg.get("model", {}),
+        out_dim=len(label_names), cfg=model_cfg,
     ).to(device)
-    model.load_state_dict(torch.load(model_path, map_location=device, weights_only=True))
+    model.load_state_dict(state_dict)
     model.eval()
 
     # ── p_rel ─────────────────────────────────────────────────

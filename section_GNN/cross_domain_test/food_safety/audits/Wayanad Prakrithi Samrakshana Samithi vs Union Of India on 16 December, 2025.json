@@ -1,0 +1,122 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 769,
+      "facts": 32286,
+      "arguments": 3471,
+      "petitioner_arguments": 841,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 2629
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "FAC": 146,
+      "PRE_RELIED": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 112,
+      "NONE": 24,
+      "RATIO": 2,
+      "RLC": 2,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 181,
+    "ignored_sentences": 142,
+    "ignored_entities": [
+      {
+        "sentence_id": 11,
+        "entity_text": "THIRUVANANTHAPURAM",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "S.KONKAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "SRI.K.GOPALAKRISHNA KURUP",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "SRI.C.E.UNNIKRISHNAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "SRI.B.PRAMOD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "SRI.M.P.SREEKRISHNAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "SRI.T.C.KRISHNA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 42,
+        "entity_text": "SANRAKSHAN EVAM SAMVARDHAN) ADHINIYAM, 1980",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Banasura Chilappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 75,
+        "entity_text": "Nilgiri Sholakili",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 80,
+        "entity_text": "K. Soman",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 84,
+        "entity_text": "Banasura Chilappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Banasura Chilappan",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 127,
+        "entity_text": "Nilgiri Sholakili",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "FAC": 146,
+    "PRE_RELIED": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 112,
+    "NONE": 24,
+    "RATIO": 2,
+    "RLC": 2,
+    "RPC": 2
+  }
+}

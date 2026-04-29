@@ -1,0 +1,212 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 173,
+          "end": 180
+        }
+      ],
+      "respondent_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 173,
+          "end": 180
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 516,
+      "facts": 9537,
+      "arguments": 11415,
+      "petitioner_arguments": 4248,
+      "respondent_arguments": 675,
+      "other_lawyer_arguments": 6490
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 19,
+      "ARG_RESPONDENT": 3,
+      "FAC": 45,
+      "PRE_RELIED": 7,
+      "STA": 14
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 43,
+      "NONE": 1,
+      "RATIO": 3,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 128,
+    "ignored_sentences": 52,
+    "ignored_entities": [
+      {
+        "sentence_id": 8,
+        "entity_text": "Prem Kumar Patn",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 13,
+        "entity_text": "Janani Bhagini Jaya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Tareque Ahemad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 46,
+        "entity_text": "Ramchandra Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 47,
+        "entity_text": "Ram Chandi Prasad",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 58,
+        "entity_text": "K.S. Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "K.S. Nayak",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 63,
+        "entity_text": "D.P. Majumdar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Sabita Sahoo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Nabrakrushna Sahoo",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "Matrushakti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "A.D.M.O.",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Nayagarh",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 82,
+        "entity_text": "D.K. Mohanty",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Samir Kumar Mishra",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Gopal Dalei",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Sudarsan Ghadei",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 87,
+        "entity_text": "Iswar Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Iswar Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Basanti",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 88,
+        "entity_text": "Iswar Naik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Prem Kumar Patnaik",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Gopal Dalai",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Sudarsan Ghadei",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Surya Narayan Biswal",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Upendra Kalasa",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 106,
+        "entity_text": "Ragini Jena",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 126,
+        "entity_text": "Craies",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 19,
+    "ARG_RESPONDENT": 3,
+    "FAC": 45,
+    "PRE_RELIED": 7,
+    "STA": 14
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 43,
+    "NONE": 1,
+    "RATIO": 3,
+    "RPC": 5
+  }
+}

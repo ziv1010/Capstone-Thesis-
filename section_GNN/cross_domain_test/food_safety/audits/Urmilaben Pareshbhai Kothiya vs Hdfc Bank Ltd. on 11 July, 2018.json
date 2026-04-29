@@ -1,0 +1,128 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 179,
+          "end": 186
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 286,
+          "end": 293
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 80,
+          "end": 87
+        }
+      ],
+      "other_lawyer_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 286,
+          "end": 293
+        },
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 80,
+          "end": 87
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 137,
+      "facts": 3184,
+      "arguments": 16680,
+      "petitioner_arguments": 5373,
+      "respondent_arguments": 2122,
+      "other_lawyer_arguments": 9183
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 26,
+      "ARG_RESPONDENT": 7,
+      "FAC": 22,
+      "PRE_RELIED": 24,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 90,
+      "NONE": 6,
+      "RATIO": 5,
+      "RPC": 12
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 97,
+    "ignored_sentences": 113,
+    "ignored_entities": [
+      {
+        "sentence_id": 36,
+        "entity_text": "Aditya A. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 65,
+        "entity_text": "Shanku Concretes",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Vivek B. Gupta",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 94,
+        "entity_text": "Radheshyam Cottex",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 96,
+        "entity_text": "Rahul Kanubhai Kothiya",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 97,
+        "entity_text": "Radheshyam Cottex",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 26,
+    "ARG_RESPONDENT": 7,
+    "FAC": 22,
+    "PRE_RELIED": 24,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 90,
+    "NONE": 6,
+    "RATIO": 5,
+    "RPC": 12
+  }
+}

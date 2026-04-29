@@ -1,0 +1,52 @@
+{
+  "bucket": "fin_fraud",
+  "status": "ok",
+  "total_mistral_files": 15014,
+  "total_crossval_files": 14342,
+  "common_files": 14342,
+  "only_in_mistral": 672,
+  "only_in_crossval": 0,
+  "matching_labels": 12015,
+  "discrepant_labels": 2327,
+  "agreement_rate": 0.8377,
+  "mistral_label_dist": {
+    "appellant_won": 8709,
+    "postponed_or_procedural": 3196,
+    "appellant_lost": 2433,
+    "unknown": 0,
+    "None": 4
+  },
+  "crossval_label_dist": {
+    "appellant_won": 8561,
+    "postponed_or_procedural": 1477,
+    "appellant_lost": 4138,
+    "unknown": 166,
+    "None": 0
+  },
+  "confusion_matrix": {
+    "postponed_or_procedural": {
+      "postponed_or_procedural": 1251,
+      "appellant_lost": 1641,
+      "unknown": 113,
+      "appellant_won": 191
+    },
+    "appellant_won": {
+      "appellant_won": 8352,
+      "appellant_lost": 84,
+      "postponed_or_procedural": 220,
+      "unknown": 53
+    },
+    "appellant_lost": {
+      "appellant_lost": 2412,
+      "postponed_or_procedural": 5,
+      "appellant_won": 16
+    },
+    "None": {
+      "appellant_won": 2,
+      "postponed_or_procedural": 1,
+      "appellant_lost": 1
+    }
+  },
+  "discrepancy_csv": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/label_comparison/fin_fraud/discrepancies.csv",
+  "all_csv": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/cross_validated_outputs/label_comparison/fin_fraud/all_matched_files.csv"
+}

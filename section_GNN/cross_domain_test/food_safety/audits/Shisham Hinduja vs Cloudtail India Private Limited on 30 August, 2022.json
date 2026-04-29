@@ -1,0 +1,62 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 2283,
+      "facts": 6387,
+      "arguments": 11939,
+      "petitioner_arguments": 4426,
+      "respondent_arguments": 7512,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 17,
+      "ARG_RESPONDENT": 40,
+      "FAC": 22
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 161,
+      "ISSUE": 7,
+      "NONE": 180,
+      "RATIO": 4,
+      "RPC": 9
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 111,
+    "ignored_sentences": 361,
+    "ignored_entities": [
+      {
+        "sentence_id": 19,
+        "entity_text": "Anand Rathi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 199,
+        "entity_text": "Hinduja Shisham",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 17,
+    "ARG_RESPONDENT": 40,
+    "FAC": 22
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 161,
+    "ISSUE": 7,
+    "NONE": 180,
+    "RATIO": 4,
+    "RPC": 9
+  }
+}

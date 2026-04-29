@@ -1,0 +1,167 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1326,
+      "facts": 6314,
+      "arguments": 26077,
+      "petitioner_arguments": 15235,
+      "respondent_arguments": 1695,
+      "other_lawyer_arguments": 9145
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 86,
+      "ARG_RESPONDENT": 7,
+      "FAC": 34,
+      "PRE_RELIED": 18,
+      "STA": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 68,
+      "ISSUE": 1,
+      "NONE": 6,
+      "RLC": 16,
+      "RPC": 36
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 204,
+    "ignored_sentences": 127,
+    "ignored_entities": [
+      {
+        "sentence_id": 2,
+        "entity_text": "Digitally Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 22,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 26,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 43,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 51,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 86,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 95,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 101,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 151,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 154,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 175,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 186,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 207,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 216,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "Leoborg",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "Vasilia",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "Berostar",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 227,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 296,
+        "entity_text": "Kanchan P Dhuri",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 86,
+    "ARG_RESPONDENT": 7,
+    "FAC": 34,
+    "PRE_RELIED": 18,
+    "STA": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 68,
+    "ISSUE": 1,
+    "NONE": 6,
+    "RLC": 16,
+    "RPC": 36
+  }
+}

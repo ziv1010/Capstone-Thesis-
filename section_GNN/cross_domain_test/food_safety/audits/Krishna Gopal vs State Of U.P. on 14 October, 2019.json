@@ -1,0 +1,57 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 232,
+      "facts": 0,
+      "arguments": 686,
+      "petitioner_arguments": 384,
+      "respondent_arguments": 0,
+      "other_lawyer_arguments": 301
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 1,
+      "PRE_RELIED": 1
+    },
+    "dropped_sentence_role_counts": {
+      "NONE": 3,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 7,
+    "ignored_sentences": 11,
+    "ignored_entities": [
+      {
+        "sentence_id": 3,
+        "entity_text": "Pankaj Satsangi",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 3,
+        "entity_text": "Praveen Kumar Srivastava",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 1,
+    "PRE_RELIED": 1
+  },
+  "dropped_sentence_role_counts": {
+    "NONE": 3,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 6
+  }
+}

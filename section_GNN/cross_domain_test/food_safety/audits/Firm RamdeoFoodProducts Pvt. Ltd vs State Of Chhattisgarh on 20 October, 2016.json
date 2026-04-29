@@ -1,0 +1,77 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 196,
+          "end": 203
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 196,
+          "end": 203
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 900,
+      "facts": 1588,
+      "arguments": 8246,
+      "petitioner_arguments": 1526,
+      "respondent_arguments": 1036,
+      "other_lawyer_arguments": 5682
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 2,
+      "FAC": 7,
+      "PRE_RELIED": 1,
+      "STA": 7
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 15,
+      "NONE": 2,
+      "RATIO": 4,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 29,
+    "ignored_sentences": 23,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "S.B. Mishra",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 2,
+    "FAC": 7,
+    "PRE_RELIED": 1,
+    "STA": 7
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 15,
+    "NONE": 2,
+    "RATIO": 4,
+    "RPC": 2
+  }
+}

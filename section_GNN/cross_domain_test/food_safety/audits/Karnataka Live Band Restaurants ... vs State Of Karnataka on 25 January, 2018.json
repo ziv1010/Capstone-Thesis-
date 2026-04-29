@@ -1,0 +1,100 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 133,
+          "end": 140
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 65,
+          "end": 74
+        }
+      ],
+      "petitioner_arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 241,
+          "end": 248
+        }
+      ],
+      "arguments": [
+        {
+          "pattern": "\\bquashed\\b",
+          "matched_text": "quashed",
+          "start": 241,
+          "end": 248
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 612,
+      "facts": 8171,
+      "arguments": 25563,
+      "petitioner_arguments": 2608,
+      "respondent_arguments": 171,
+      "other_lawyer_arguments": 22782
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 10,
+      "ARG_RESPONDENT": 1,
+      "FAC": 44,
+      "PRE_RELIED": 20,
+      "STA": 55
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 85,
+      "ISSUE": 1,
+      "NONE": 13,
+      "RATIO": 5,
+      "RLC": 12,
+      "RPC": 5
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 132,
+    "ignored_sentences": 121,
+    "ignored_entities": [
+      {
+        "sentence_id": 157,
+        "entity_text": "Budhan Choudhry",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 162,
+        "entity_text": "Ram Krishna Dalmia",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 10,
+    "ARG_RESPONDENT": 1,
+    "FAC": 44,
+    "PRE_RELIED": 20,
+    "STA": 55
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 85,
+    "ISSUE": 1,
+    "NONE": 13,
+    "RATIO": 5,
+    "RLC": 12,
+    "RPC": 5
+  }
+}

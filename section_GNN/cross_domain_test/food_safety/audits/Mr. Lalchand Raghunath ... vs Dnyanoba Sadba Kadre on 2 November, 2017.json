@@ -1,0 +1,94 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 392,
+      "facts": 11385,
+      "arguments": 1608,
+      "petitioner_arguments": 852,
+      "respondent_arguments": 755,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 3,
+      "ARG_RESPONDENT": 3,
+      "FAC": 65
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 43,
+      "ISSUE": 2,
+      "NONE": 6,
+      "RATIO": 3,
+      "RLC": 14,
+      "RPC": 4
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 79,
+    "ignored_sentences": 72,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "Ajit Lalchand Lunawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Pradeep Lalchand Lunawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 4,
+        "entity_text": "Sanjiva Lalchand Lunawat",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 50,
+        "entity_text": "Indian Kanoon",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 61,
+        "entity_text": "Narayan Manolikar",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "Narayan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "Narayan",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "Lalchand Lunawat",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 3,
+    "ARG_RESPONDENT": 3,
+    "FAC": 65
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 43,
+    "ISSUE": 2,
+    "NONE": 6,
+    "RATIO": 3,
+    "RLC": 14,
+    "RPC": 4
+  }
+}

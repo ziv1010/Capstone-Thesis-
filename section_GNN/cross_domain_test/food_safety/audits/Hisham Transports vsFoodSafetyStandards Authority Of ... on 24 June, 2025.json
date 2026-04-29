@@ -1,0 +1,80 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 886,
+      "facts": 4300,
+      "arguments": 4873,
+      "petitioner_arguments": 2361,
+      "respondent_arguments": 103,
+      "other_lawyer_arguments": 2407
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 1,
+      "FAC": 22,
+      "PRE_RELIED": 2,
+      "STA": 9
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 54,
+      "NONE": 2,
+      "RATIO": 4,
+      "RPC": 1
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 78,
+    "ignored_sentences": 61,
+    "ignored_entities": [
+      {
+        "sentence_id": 9,
+        "entity_text": "ADV. SMT.CHITHRA P.GEORGE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 9,
+        "entity_text": "SRI.GRASHIOUS KURIAKOSE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "SRI.PREMJIT NAGENDRAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 20,
+        "entity_text": "SMT.CHITHRA P.GEORGE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 23,
+        "entity_text": "SRI.GRASHIOUS KURIAKOSE",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 1,
+    "FAC": 22,
+    "PRE_RELIED": 2,
+    "STA": 9
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 54,
+    "NONE": 2,
+    "RATIO": 4,
+    "RPC": 1
+  }
+}

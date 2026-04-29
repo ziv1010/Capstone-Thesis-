@@ -1,0 +1,107 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT"
+    },
+    "masked_matches": {
+      "facts": [
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 49,
+          "end": 58
+        },
+        {
+          "pattern": "\\bset\\s+aside\\b",
+          "matched_text": "set aside",
+          "start": 96,
+          "end": 105
+        }
+      ]
+    },
+    "retained_lengths": {
+      "preamble": 344,
+      "facts": 5029,
+      "arguments": 4720,
+      "petitioner_arguments": 3913,
+      "respondent_arguments": 806,
+      "other_lawyer_arguments": 0
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 16,
+      "ARG_RESPONDENT": 3,
+      "FAC": 24
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 44,
+      "NONE": 4,
+      "RATIO": 3,
+      "RLC": 4,
+      "RPC": 6
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 52,
+    "ignored_sentences": 61,
+    "ignored_entities": [
+      {
+        "sentence_id": 4,
+        "entity_text": "O.THANKAPPAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SRI.M.T.SURESHKUMAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SMT.T.J.SEEMA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SMT.BHAVANA VELAYUDHAN",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 5,
+        "entity_text": "SMT.SMITHA PHILIPOSE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 8,
+        "entity_text": "SRI.K.SUBASH CHANDRA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Karthikappally",
+        "entity_label": "WITNESS"
+      },
+      {
+        "sentence_id": 24,
+        "entity_text": "Karkithakappally Taluk",
+        "entity_label": "WITNESS"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 16,
+    "ARG_RESPONDENT": 3,
+    "FAC": 24
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 44,
+    "NONE": 4,
+    "RATIO": 3,
+    "RLC": 4,
+    "RPC": 6
+  }
+}

@@ -1,0 +1,58 @@
+\documentclass[12pt]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, backgrounds}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{microtype}
+\usepackage{multirow}
+
+\hypersetup{hypertexnames=false}
+
+% Allow \path{} to break at dots and underscores in addition to slashes and hyphens.
+\makeatletter
+\def\path{\begingroup \def\UrlBigBreaks{\do\/\do-\do\_\do\.}\let\UrlBreaks\UrlBigBreaks
+  \urlstyle{tt}\Url}
+\makeatother
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{From Legal Text to Legal Graphs: Judgment Prediction with Graph Neural Networks}
+\author{Ziv Barretto}
+\date{\today}
+
+\begin{document}
+\setlength{\emergencystretch}{3em}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+\maketitle
+\input{sections/abstract}
+\clearpage
+\tableofcontents
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_system_overview_and_data_pipeline}
+\input{sections/04_heterogeneous_knowledge_graph_construction}
+\input{sections/05_graph_exploration_and_structural_insights}
+\input{sections/06_prediction_model_and_results}
+\input{sections/09_gnn_explainability}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+% \input{sections/appendix}
+
+\bibliographystyle{plain}   % or: unsrt, abbrv, ieeetr, etc.
+\bibliography{references}   % filename without .bib
+
+
+\end{document}

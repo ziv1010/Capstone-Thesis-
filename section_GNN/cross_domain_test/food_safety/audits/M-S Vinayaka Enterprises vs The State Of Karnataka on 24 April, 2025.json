@@ -1,0 +1,87 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 1723,
+      "facts": 1766,
+      "arguments": 3633,
+      "petitioner_arguments": 1197,
+      "respondent_arguments": 397,
+      "other_lawyer_arguments": 2037
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 6,
+      "ARG_RESPONDENT": 3,
+      "FAC": 14,
+      "PRE_NOT_RELIED": 1,
+      "PRE_RELIED": 4
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 52,
+      "ISSUE": 2,
+      "NONE": 6,
+      "RATIO": 3,
+      "RPC": 3
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 58,
+    "ignored_sentences": 66,
+    "ignored_entities": [
+      {
+        "sentence_id": 14,
+        "entity_text": "CHAMARAJANAGARA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 15,
+        "entity_text": "V. MANJUNATHA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 21,
+        "entity_text": "V. MANJUNATHA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 25,
+        "entity_text": "MADESH V M.,ADVOCATE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 102,
+        "entity_text": "SUBIR GHOSH",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 104,
+        "entity_text": "K.M. Nataraj",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 6,
+    "ARG_RESPONDENT": 3,
+    "FAC": 14,
+    "PRE_NOT_RELIED": 1,
+    "PRE_RELIED": 4
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 52,
+    "ISSUE": 2,
+    "NONE": 6,
+    "RATIO": 3,
+    "RPC": 3
+  }
+}

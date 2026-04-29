@@ -1,0 +1,145 @@
+{
+  "source_format": "fixed_open_sentence_json_v1",
+  "fields_dropped": [],
+  "retained_texts": {
+    "sources": {
+      "preamble": "sentence_prefix:preamble_end_char_offset",
+      "facts": "sentence_roles:FAC",
+      "petitioner_arguments": "sentence_roles:ARG_PETITIONER",
+      "arguments": "sentence_roles:ARG_* + PRE_* + STA",
+      "respondent_arguments": "sentence_roles:ARG_RESPONDENT",
+      "other_lawyer_arguments": "sentence_roles:PRE_RELIED + PRE_NOT_RELIED + STA"
+    },
+    "masked_matches": {},
+    "retained_lengths": {
+      "preamble": 5459,
+      "facts": 2044,
+      "arguments": 17523,
+      "petitioner_arguments": 7822,
+      "respondent_arguments": 1309,
+      "other_lawyer_arguments": 8390
+    },
+    "kept_sentence_role_counts": {
+      "ARG_PETITIONER": 47,
+      "ARG_RESPONDENT": 9,
+      "FAC": 13,
+      "PRE_RELIED": 50
+    },
+    "dropped_sentence_role_counts": {
+      "ANALYSIS": 70,
+      "NONE": 7,
+      "RATIO": 1,
+      "RLC": 1,
+      "RPC": 2
+    }
+  },
+  "entity_extraction": {
+    "retained_sentences": 221,
+    "ignored_sentences": 81,
+    "ignored_entities": [
+      {
+        "sentence_id": 66,
+        "entity_text": "VEERABASAPPA V NEREGAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 67,
+        "entity_text": "JALAVARDINI BOREWELLS",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "S.G. GUNJ",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 68,
+        "entity_text": "BHIMAPPA BIDANAL",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 69,
+        "entity_text": "VENKATAGIRI BADAVANE",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 71,
+        "entity_text": "K YADAHALLI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 72,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "VIKAS SOUDHA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 73,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 74,
+        "entity_text": "AMBEDKAR VEEDI",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 76,
+        "entity_text": "KARNATAKA MAHARSHI VALMIKI SCHEDULED TRIBE DEVELOPMENT CORPORATION LTD",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 81,
+        "entity_text": "THANDA",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 85,
+        "entity_text": "AMBEDKAR",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 90,
+        "entity_text": "KARNATAKA MAHARSHI VALMIKI SCHEDULED",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 133,
+        "entity_text": "Kaveri Neeravari Nigam",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 143,
+        "entity_text": "H.V. Harish",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 144,
+        "entity_text": "Udaya Holla",
+        "entity_label": "OTHER_PERSON"
+      },
+      {
+        "sentence_id": 219,
+        "entity_text": "Karnataka Kaveri Neeravari Nigam",
+        "entity_label": "OTHER_PERSON"
+      }
+    ]
+  },
+  "kept_sentence_role_counts": {
+    "ARG_PETITIONER": 47,
+    "ARG_RESPONDENT": 9,
+    "FAC": 13,
+    "PRE_RELIED": 50
+  },
+  "dropped_sentence_role_counts": {
+    "ANALYSIS": 70,
+    "NONE": 7,
+    "RATIO": 1,
+    "RLC": 1,
+    "RPC": 2
+  }
+}
