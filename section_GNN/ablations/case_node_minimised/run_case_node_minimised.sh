@@ -20,8 +20,8 @@ MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 PYTHON="micromamba run -n $MAMBA_ENV python"
 GPUS="${GPUS:-0,1,2,3,4,5,6,7}"
 
-BUILD_SCRIPT="$SECTION_GNN/final_graph/build_graph.py"
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+BUILD_SCRIPT="$SECTION_GNN/src/scripts/build_graph.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 
 log() { echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"; }
 

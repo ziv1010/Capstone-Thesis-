@@ -1,0 +1,247 @@
+{
+  "results": {
+    "accuracy": 0.9534,
+    "correct": 3641,
+    "total": 3819,
+    "by_label": {
+      "ANALYSIS": {
+        "precision": 0.9585,
+        "recall": 0.9687,
+        "f1": 0.9636,
+        "support": 1215,
+        "tp": 1177,
+        "fp": 51,
+        "fn": 38
+      },
+      "ARG_PETITIONER": {
+        "precision": 0.9395,
+        "recall": 0.9357,
+        "f1": 0.9376,
+        "support": 249,
+        "tp": 233,
+        "fp": 15,
+        "fn": 16
+      },
+      "ARG_RESPONDENT": {
+        "precision": 0.8961,
+        "recall": 0.8519,
+        "f1": 0.8734,
+        "support": 81,
+        "tp": 69,
+        "fp": 8,
+        "fn": 12
+      },
+      "FAC": {
+        "precision": 0.9597,
+        "recall": 0.9714,
+        "f1": 0.9655,
+        "support": 908,
+        "tp": 882,
+        "fp": 37,
+        "fn": 26
+      },
+      "ISSUE": {
+        "precision": 0.9697,
+        "recall": 0.8889,
+        "f1": 0.9275,
+        "support": 36,
+        "tp": 32,
+        "fp": 1,
+        "fn": 4
+      },
+      "NONE": {
+        "precision": 0.9048,
+        "recall": 0.9194,
+        "f1": 0.912,
+        "support": 186,
+        "tp": 171,
+        "fp": 18,
+        "fn": 15
+      },
+      "PREAMBLE": {
+        "precision": 0.9628,
+        "recall": 0.9594,
+        "f1": 0.9611,
+        "support": 566,
+        "tp": 543,
+        "fp": 21,
+        "fn": 23
+      },
+      "PRE_NOT_RELIED": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      },
+      "PRE_RELIED": {
+        "precision": 0.9403,
+        "recall": 0.9197,
+        "f1": 0.9299,
+        "support": 137,
+        "tp": 126,
+        "fp": 8,
+        "fn": 11
+      },
+      "RATIO": {
+        "precision": 0.9213,
+        "recall": 0.936,
+        "f1": 0.9286,
+        "support": 125,
+        "tp": 117,
+        "fp": 10,
+        "fn": 8
+      },
+      "RLC": {
+        "precision": 1.0,
+        "recall": 0.8659,
+        "f1": 0.9281,
+        "support": 82,
+        "tp": 71,
+        "fp": 0,
+        "fn": 11
+      },
+      "RPC": {
+        "precision": 0.9888,
+        "recall": 0.9617,
+        "f1": 0.9751,
+        "support": 183,
+        "tp": 176,
+        "fp": 2,
+        "fn": 7
+      },
+      "STA": {
+        "precision": 0.8627,
+        "recall": 0.88,
+        "f1": 0.8713,
+        "support": 50,
+        "tp": 44,
+        "fp": 7,
+        "fn": 6
+      }
+    },
+    "macro": {
+      "precision": 0.8695,
+      "recall": 0.8507,
+      "f1": 0.8595
+    },
+    "weighted_f1": 0.9532,
+    "metadata": {
+      "model": "InRhetoricalRoles (opennyaiorg/InRhetoricalRoles)",
+      "dataset": "opennyaiorg/InRhetoricalRoles",
+      "split": "test",
+      "total_docs_in_split": 50,
+      "documents_evaluated": 50,
+      "sentences_evaluated": 3819,
+      "use_gpu": true
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "ANALYSIS",
+      "ARG_PETITIONER",
+      "ARG_RESPONDENT",
+      "FAC",
+      "ISSUE",
+      "NONE",
+      "PREAMBLE",
+      "PRE_NOT_RELIED",
+      "PRE_RELIED",
+      "RATIO",
+      "RLC",
+      "RPC",
+      "STA"
+    ],
+    "matrix": {
+      "ANALYSIS": {
+        "ANALYSIS": 1177,
+        "RATIO": 7,
+        "ARG_PETITIONER": 2,
+        "ARG_RESPONDENT": 1,
+        "FAC": 13,
+        "PRE_RELIED": 4,
+        "PREAMBLE": 4,
+        "STA": 5,
+        "NONE": 2
+      },
+      "ARG_PETITIONER": {
+        "ARG_PETITIONER": 233,
+        "ANALYSIS": 5,
+        "STA": 1,
+        "FAC": 3,
+        "ARG_RESPONDENT": 7
+      },
+      "ARG_RESPONDENT": {
+        "ARG_RESPONDENT": 69,
+        "ARG_PETITIONER": 11,
+        "ANALYSIS": 1
+      },
+      "FAC": {
+        "FAC": 882,
+        "NONE": 7,
+        "ANALYSIS": 11,
+        "ARG_PETITIONER": 1,
+        "ISSUE": 1,
+        "PREAMBLE": 6
+      },
+      "ISSUE": {
+        "ISSUE": 32,
+        "RATIO": 1,
+        "PRE_RELIED": 1,
+        "STA": 1,
+        "PREAMBLE": 1
+      },
+      "NONE": {
+        "NONE": 171,
+        "PRE_RELIED": 1,
+        "FAC": 1,
+        "PREAMBLE": 8,
+        "ANALYSIS": 4,
+        "RPC": 1
+      },
+      "PREAMBLE": {
+        "PREAMBLE": 543,
+        "FAC": 9,
+        "NONE": 5,
+        "ANALYSIS": 8,
+        "RATIO": 1
+      },
+      "PRE_NOT_RELIED": {
+        "PRE_RELIED": 1
+      },
+      "PRE_RELIED": {
+        "PRE_RELIED": 126,
+        "ANALYSIS": 9,
+        "RPC": 1,
+        "NONE": 1
+      },
+      "RATIO": {
+        "RATIO": 117,
+        "ANALYSIS": 5,
+        "FAC": 2,
+        "PRE_RELIED": 1
+      },
+      "RLC": {
+        "RLC": 71,
+        "FAC": 6,
+        "ANALYSIS": 2,
+        "PREAMBLE": 2,
+        "ARG_PETITIONER": 1
+      },
+      "RPC": {
+        "RPC": 176,
+        "NONE": 3,
+        "FAC": 2,
+        "ANALYSIS": 2
+      },
+      "STA": {
+        "STA": 44,
+        "FAC": 1,
+        "ANALYSIS": 4,
+        "RATIO": 1
+      }
+    }
+  }
+}

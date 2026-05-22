@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """Phase 4: For each (selected) test case, extract the most important
 Statutes, Provisions, Precedents, and Argument-role nodes using the trained
-heterogeneous PGExplainer, plus top-k similar training cases via FAISS.
+heterogeneous PGExplainer.
 
-Produces one JSON bundle per test case: the "evidence" that Phase 5 hands to
-the LLM.
+Produces one JSON bundle per test case with the bucket-local evidence used by
+the downstream diagnostics.
 
 Multi-GPU usage (8 GPUs example):
   for i in $(seq 0 7); do
@@ -29,7 +29,12 @@ import torch
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from analyser.loader import build_and_load_hgt, load_config, load_graph_cache  # noqa: E402
+from analyser.loader import (  # noqa: E402
+    build_and_load_hgt,
+    load_config,
+    load_graph_cache,
+    validate_case_ids_bucket,
+)
 from analyser.hetero_pg_explainer import HeteroEdgeMaskerConfig, HeteroPGExplainer  # noqa: E402
 from analyser.hetero_utils import (  # noqa: E402
     build_index_to_text,
@@ -54,6 +59,26 @@ ARGUMENT_NODE_TYPES = (
     "other_lawyer_arguments",
 )
 
+DEFAULT_GRAPH_NODE_TYPES = (
+    "case",
+    "preamble",
+    "facts",
+    "arguments",
+    "petitioner_arguments",
+    "respondent_arguments",
+    "other_lawyer_arguments",
+    "court",
+    "judge",
+    "lawyer",
+    "defence_lawyer",
+    "petitioner_lawyer",
+    "petitioner",
+    "respondent",
+    "statute",
+    "provision",
+    "precedent",
+)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -68,6 +93,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rank",       type=int, default=0, help="Worker rank (0-indexed)")
     parser.add_argument("--world-size", type=int, default=1, help="Total number of parallel workers")
     parser.add_argument("--merge-only", action="store_true", help="Skip extraction; just merge partial manifests")
+    parser.add_argument("--force", action="store_true", help="Recompute case JSON files even when cached.")
+    parser.add_argument(
+        "--graph-nodes-only",
+        action="store_true",
+        help="Backfill only top_graph_nodes into existing case JSON files.",
+    )
     return parser.parse_args()
 
 
@@ -170,6 +201,66 @@ def per_node_max_edge_score(
     return out
 
 
+def precompute_global_node_scores(
+    data,
+    edge_importance: dict[tuple[str, str, str], torch.Tensor],
+) -> dict[str, dict[int, dict[str, Any]]]:
+    """Compute max incident edge score for every node once.
+
+    `per_node_max_edge_score` scanned all edge tensors for every case. The
+    score assigned to a reachable node is just its max incident edge score, so
+    the same value can be computed globally once per worker and reused.
+    """
+    device = next(iter(data.edge_index_dict.values())).device
+    max_scores: dict[str, torch.Tensor] = {
+        nt: torch.full((data[nt].num_nodes,), -1.0, device=device)
+        for nt in data.node_types
+    }
+    best_labels: dict[str, dict[int, str]] = {nt: {} for nt in data.node_types}
+
+    for edge_type, edge_index in data.edge_index_dict.items():
+        if edge_index.numel() == 0:
+            continue
+        scores = edge_importance.get(edge_type)
+        if scores is None or scores.numel() == 0:
+            continue
+        src_type, relation, dst_type = edge_type
+        edge_label = f"{src_type}|{relation}|{dst_type}"
+        src, dst = edge_index[0], edge_index[1]
+        scores_dev = scores.to(device)
+
+        for node_type, node_indices in ((src_type, src), (dst_type, dst)):
+            updated = max_scores[node_type].clone()
+            updated.scatter_reduce_(0, node_indices, scores_dev, reduce="amax", include_self=True)
+            improved = (updated > max_scores[node_type]).nonzero(as_tuple=False).view(-1)
+            if improved.numel():
+                for idx in improved.tolist():
+                    best_labels[node_type][idx] = edge_label
+                max_scores[node_type] = updated
+
+    out: dict[str, dict[int, dict[str, Any]]] = defaultdict(dict)
+    for nt, scores_nt in max_scores.items():
+        valid = (scores_nt > -1.0).nonzero(as_tuple=False).view(-1).tolist()
+        labels = best_labels.get(nt, {})
+        for idx in valid:
+            lbl = labels.get(idx)
+            if lbl:
+                out[nt][idx] = {"score": float(scores_nt[idx].item()), "edge_type": lbl}
+    return out
+
+
+def filter_scores_to_reachable(
+    global_node_scores: dict[str, dict[int, dict[str, Any]]],
+    reachable_nodes: dict[str, set[int]],
+) -> dict[str, dict[int, dict[str, Any]]]:
+    out: dict[str, dict[int, dict[str, Any]]] = {}
+    for node_type, node_set in reachable_nodes.items():
+        scores = global_node_scores.get(node_type, {})
+        if scores and node_set:
+            out[node_type] = {idx: scores[idx] for idx in node_set if idx in scores}
+    return out
+
+
 def top_k_from_node_scores(
     node_scores: dict[int, dict[str, Any]],
     index_to_text: dict[int, str],
@@ -200,6 +291,115 @@ def top_k_from_node_scores(
     return items[:k]
 
 
+def cached_bundle_is_current(
+    path: Path,
+    expected_bucket: str | None = None,
+    expected_case_id: str | None = None,
+) -> bool:
+    try:
+        bundle = json.loads(path.read_text())
+    except Exception:
+        return False
+    try:
+        validate_case_ids_bucket(
+            [str(bundle.get("case_id", ""))],
+            expected_bucket,
+            f"cached Phase 4 bundle {path}",
+        )
+    except ValueError:
+        return False
+    if expected_case_id is not None and str(bundle.get("case_id", "")) != expected_case_id:
+        return False
+    return isinstance(bundle.get("top_graph_nodes"), dict)
+
+
+def direct_case_neighbour_sets(data, case_node_index: int) -> dict[str, set[int]]:
+    """Nodes directly adjacent to the target case via any case relation."""
+    out: dict[str, set[int]] = defaultdict(set)
+    device = next(iter(data.edge_index_dict.values())).device
+    case_tensor = torch.tensor(case_node_index, dtype=torch.long, device=device)
+    for (src_type, _relation, dst_type), edge_index in data.edge_index_dict.items():
+        if edge_index.numel() == 0:
+            continue
+        src, dst = edge_index[0], edge_index[1]
+        if src_type == "case":
+            mask = src == case_tensor
+            if mask.any():
+                out[dst_type].update(dst[mask].detach().cpu().tolist())
+        if dst_type == "case":
+            mask = dst == case_tensor
+            if mask.any():
+                out[src_type].update(src[mask].detach().cpu().tolist())
+    return out
+
+
+def build_undirected_adjacency(data) -> dict[str, list[list[tuple[str, int]]]]:
+    """CPU adjacency lists for fast repeated small BFS expansions."""
+    adjacency: dict[str, list[list[tuple[str, int]]]] = {
+        nt: [[] for _ in range(data[nt].num_nodes)]
+        for nt in data.node_types
+    }
+    for (src_type, _relation, dst_type), edge_index in data.edge_index_dict.items():
+        if edge_index.numel() == 0:
+            continue
+        srcs = edge_index[0].detach().cpu().tolist()
+        dsts = edge_index[1].detach().cpu().tolist()
+        src_adj = adjacency[src_type]
+        dst_adj = adjacency[dst_type]
+        for src_idx, dst_idx in zip(srcs, dsts):
+            src_adj[src_idx].append((dst_type, dst_idx))
+            dst_adj[dst_idx].append((src_type, src_idx))
+    return adjacency
+
+
+def collect_k_hop_from_adjacency(
+    adjacency: dict[str, list[list[tuple[str, int]]]],
+    case_node_index: int,
+    num_hops: int,
+) -> tuple[dict[str, set[int]], dict[str, set[int]]]:
+    """Fast CPU BFS from a case node plus the direct neighbour sets."""
+    visited: dict[str, set[int]] = {"case": {case_node_index}}
+    frontier: dict[str, set[int]] = {"case": {case_node_index}}
+    direct_neighbours: dict[str, set[int]] = defaultdict(set)
+
+    for hop in range(num_hops):
+        next_frontier: dict[str, set[int]] = defaultdict(set)
+        for node_type, node_indices in frontier.items():
+            node_adj = adjacency.get(node_type)
+            if not node_adj:
+                continue
+            for node_idx in node_indices:
+                if node_idx >= len(node_adj):
+                    continue
+                for nbr_type, nbr_idx in node_adj[node_idx]:
+                    if hop == 0:
+                        direct_neighbours[nbr_type].add(nbr_idx)
+                    seen = visited.setdefault(nbr_type, set())
+                    if nbr_idx not in seen:
+                        seen.add(nbr_idx)
+                        next_frontier[nbr_type].add(nbr_idx)
+        if not next_frontier:
+            break
+        frontier = next_frontier
+    return visited, direct_neighbours
+
+
+def annotate_graph_nodes(
+    items: list[dict[str, Any]],
+    node_type: str,
+    direct_neighbours: dict[str, set[int]],
+) -> list[dict[str, Any]]:
+    direct = direct_neighbours.get(node_type, set())
+    out: list[dict[str, Any]] = []
+    for item in items:
+        node_index = int(item["node_index"])
+        enriched = dict(item)
+        enriched["target_direct"] = node_index in direct
+        enriched["connection_scope"] = "target-linked" if enriched["target_direct"] else "shared-neighbourhood"
+        out.append(enriched)
+    return out
+
+
 def build_raw_index_maps(metadata: dict[str, Any]) -> dict[str, dict[int, str]]:
     node_mappings = metadata.get("node_mappings", {})
     out: dict[str, dict[int, str]] = {}
@@ -211,46 +411,11 @@ def build_raw_index_maps(metadata: dict[str, Any]) -> dict[str, dict[int, str]]:
     return out
 
 
-def extract_similar_case_argument_context(
-    bundle_arg_top_nodes: dict[str, list[dict[str, Any]]],
-    raw_index_maps: dict[str, dict[int, str]],
-    cleaned_case_dir: Path,
-    case_id_to_file_name: dict[str, str],
-    max_entries: int = 4,
-    per_section_chars: int = 600,
-) -> list[dict[str, Any]]:
-    candidates: list[dict[str, Any]] = []
-    seen: set[str] = set()
-    flat: list[tuple[str, dict[str, Any]]] = []
-    for arg_type, items in bundle_arg_top_nodes.items():
-        for item in items:
-            flat.append((arg_type, item))
-    flat.sort(key=lambda pair: pair[1]["importance"], reverse=True)
-    for arg_type, item in flat:
-        raw_key = raw_index_maps.get(arg_type, {}).get(item["node_index"], "")
-        owning_case = owning_case_of_arg_node(raw_key)
-        if not owning_case or owning_case in seen:
-            continue
-        seen.add(owning_case)
-        file_name = case_id_to_file_name.get(owning_case)
-        section_text = ""
-        if file_name:
-            texts = load_case_text(cleaned_case_dir, file_name, max_chars_per_section=per_section_chars)
-            section_text = texts.get(arg_type) or texts.get("arguments", "")
-        candidates.append(
-            {
-                "owning_case": owning_case,
-                "argument_section": arg_type,
-                "importance": item["importance"],
-                "snippet": section_text,
-            }
-        )
-        if len(candidates) >= max_entries:
-            break
-    return candidates
-
-
-def merge_manifests(output_root: Path, world_size: int) -> None:
+def merge_manifests(
+    output_root: Path,
+    world_size: int,
+    expected_bucket: str | None = None,
+) -> None:
     """Merge per-rank partial manifests into a single manifest.json."""
     all_indices: list[int] = []
     num_hops = 2
@@ -260,10 +425,20 @@ def merge_manifests(output_root: Path, world_size: int) -> None:
             print(f"[phase4 merge] warning: missing {partial}", flush=True)
             continue
         d = json.loads(partial.read_text())
+        if expected_bucket and d.get("bucket") != expected_bucket:
+            raise ValueError(
+                f"Stale or cross-bucket Phase 4 partial manifest: {partial}. "
+                f"manifest bucket={d.get('bucket')!r}, expected={expected_bucket!r}"
+            )
         all_indices.extend(d["case_indices"])
         num_hops = d.get("num_hops", num_hops)
     all_indices.sort()
-    manifest = {"n_cases_explained": len(all_indices), "num_hops": num_hops, "case_indices": all_indices}
+    manifest = {
+        "bucket": expected_bucket,
+        "n_cases_explained": len(all_indices),
+        "num_hops": num_hops,
+        "case_indices": all_indices,
+    }
     with open(output_root / "manifest.json", "w") as f:
         json.dump(manifest, f, indent=2)
     print(f"[phase4 merge] manifest.json written — {len(all_indices)} cases total", flush=True)
@@ -272,6 +447,7 @@ def merge_manifests(output_root: Path, world_size: int) -> None:
 def main() -> None:
     args = parse_args()
     cfg = load_config(args.config)
+    expected_bucket = cfg.get("bucket")
 
     phase12_dir = Path(cfg["output_root"]) / "phase1_2_inference"
     phase3_dir  = Path(cfg["output_root"]) / "phase3_explainer"
@@ -280,7 +456,7 @@ def main() -> None:
 
     # ── merge-only mode: just stitch partial manifests ────────────────────
     if args.merge_only:
-        merge_manifests(output_root, args.world_size)
+        merge_manifests(output_root, args.world_size, expected_bucket=expected_bucket)
         return
 
     if not (phase12_dir / "summary.json").exists():
@@ -294,7 +470,7 @@ def main() -> None:
 
     prefix = f"[phase4 rank={rank}/{world_size}]"
     print(f"{prefix} loading graph cache: {cfg['graph_cache']}", flush=True)
-    data, metadata = load_graph_cache(cfg["graph_cache"])
+    data, metadata = load_graph_cache(cfg["graph_cache"], expected_bucket=expected_bucket)
     label_names   = metadata.get("label_names", ["-1", "1"])
     index_to_text = build_index_to_text(metadata)
     raw_index_maps = build_raw_index_maps(metadata)
@@ -331,20 +507,18 @@ def main() -> None:
 
     print(f"{prefix} scoring all edges with trained explainer...", flush=True)
     edge_importance = {k: v.to(device) for k, v in explainer.edge_importance().items()}
+    print(f"{prefix} precomputing global node scores...", flush=True)
+    global_node_scores = precompute_global_node_scores(data=data, edge_importance=edge_importance)
+    adjacency = None
+    if args.graph_nodes_only:
+        print(f"{prefix} building CPU adjacency for fast graph-node backfill...", flush=True)
+        adjacency = build_undirected_adjacency(data)
     # keep data on GPU — BFS and scoring now use vectorised GPU ops
 
     # ── Load phase 1-2 artefacts ──────────────────────────────────────────
-    case_embeddings = np.load(phase12_dir / "case_embeddings.npy")
     predictions     = np.load(phase12_dir / "predictions.npy")
     probabilities   = np.load(phase12_dir / "probabilities.npy")
     targets         = np.load(phase12_dir / "targets.npy")
-    train_faiss_idx = np.load(phase12_dir / "train_indices.npy")
-
-    import faiss  # noqa: WPS433
-
-    index   = faiss.read_index(str(phase12_dir / "train_faiss.index"))
-    metric  = json.loads((phase12_dir / "summary.json").read_text()).get("metric", "cosine")
-    top_k_similar = int(cfg.get("faiss", {}).get("top_k_similar_cases", 3))
 
     case_ids   = list(data["case"].case_id)
     file_names = list(data["case"].file_name)
@@ -352,7 +526,11 @@ def main() -> None:
 
     fold_predictions_csv = Path(cfg["checkpoint_dir"]) / "predictions.csv"
     if fold_predictions_csv.exists():
-        split_indices = load_fold_splits(str(fold_predictions_csv), data)
+        split_indices = load_fold_splits(
+            str(fold_predictions_csv),
+            data,
+            expected_bucket=expected_bucket,
+        )
     else:
         split_indices = get_split_indices(data)
     test_indices = split_indices.get("test", [])
@@ -371,6 +549,11 @@ def main() -> None:
             confidences = probabilities[test_indices].max(axis=1)
             order = np.argsort(-confidences)
             selected = [int(test_indices[i]) for i in order[:top_n]]
+    validate_case_ids_bucket(
+        [str(case_ids[i]) for i in selected],
+        expected_bucket,
+        "Phase 4 selected cases",
+    )
 
     # ── Shard across workers ──────────────────────────────────────────────
     my_cases = selected[rank::world_size]
@@ -381,27 +564,80 @@ def main() -> None:
     top_k_provisions = int(cfg.get("extraction", {}).get("top_k_provisions", 5))
     top_k_precedents = int(cfg.get("extraction", {}).get("top_k_precedents", 5))
     top_k_arguments = int(cfg.get("extraction", {}).get("top_k_arguments", 3))
-    top_k_similar_arg_contexts = int(cfg.get("extraction", {}).get("top_k_similar_arg_contexts", 4))
+    top_k_graph_nodes = int(cfg.get("extraction", {}).get("top_k_graph_nodes", 5))
     target_arg_char_budget     = int(cfg.get("extraction", {}).get("target_case_text_chars", 1200))
-    similar_arg_snippet_chars  = int(cfg.get("extraction", {}).get("similar_case_arg_chars", 600))
-
-    case_id_to_file_name = {cid: fn for cid, fn in zip(case_ids, file_names)}
+    graph_node_types = tuple(
+        nt for nt in cfg.get("extraction", {}).get("graph_node_types", DEFAULT_GRAPH_NODE_TYPES)
+        if nt in data.node_types
+    )
 
     my_indices: list[int] = []
 
     for i, case_idx in enumerate(my_cases):
         out_path = output_root / "cases" / f"case_{case_idx}.json"
-        if out_path.exists():
+        target_case_id   = case_ids[case_idx]
+        target_file_name = file_names[case_idx]
+        if (
+            out_path.exists()
+            and not args.force
+            and cached_bundle_is_current(
+                out_path,
+                expected_bucket=expected_bucket,
+                expected_case_id=str(target_case_id),
+            )
+        ):
             my_indices.append(int(case_idx))
             if (i + 1) % 100 == 0:
                 print(f"{prefix} skipped (cached) {i + 1}/{len(my_cases)}", flush=True)
             continue
+        if args.graph_nodes_only and not out_path.exists():
+            print(f"{prefix} skip missing bundle: {out_path}", flush=True)
+            continue
 
-        target_case_id   = case_ids[case_idx]
-        target_file_name = file_names[case_idx]
+        if adjacency is not None:
+            reachable, direct_neighbours = collect_k_hop_from_adjacency(
+                adjacency=adjacency,
+                case_node_index=case_idx,
+                num_hops=num_hops,
+            )
+        else:
+            reachable = collect_k_hop_case_subgraph(
+                data=data,
+                case_node_index=case_idx,
+                num_hops=num_hops,
+            )
+            direct_neighbours = direct_case_neighbour_sets(data, case_idx)
+        node_scores = filter_scores_to_reachable(
+            global_node_scores=global_node_scores,
+            reachable_nodes=reachable,
+        )
 
-        reachable  = collect_k_hop_case_subgraph(data=data, case_node_index=case_idx, num_hops=num_hops)
-        node_scores = per_node_max_edge_score(data=data, edge_importance=edge_importance, reachable_nodes=reachable)
+        top_graph_nodes: dict[str, list[dict[str, Any]]] = {}
+        for node_type in graph_node_types:
+            exclude_text = target_case_id if node_type == "case" else None
+            items = top_k_from_node_scores(
+                node_scores.get(node_type, {}),
+                index_to_text.get(node_type, {}),
+                k=top_k_graph_nodes,
+                exclude_texts_matching=exclude_text,
+                raw_index_to_text=raw_index_maps.get(node_type, {}),
+            )
+            top_graph_nodes[node_type] = annotate_graph_nodes(
+                items=items,
+                node_type=node_type,
+                direct_neighbours=direct_neighbours,
+            )
+
+        if args.graph_nodes_only:
+            bundle = json.loads(out_path.read_text())
+            bundle["num_hops"] = num_hops
+            bundle["top_graph_nodes"] = top_graph_nodes
+            with open(out_path, "w") as f:
+                json.dump(bundle, f, indent=2)
+            my_indices.append(int(case_idx))
+            if (i + 1) % 50 == 0 or i == len(my_cases) - 1:
+                print(f"{prefix} graph-node refreshed {i + 1}/{len(my_cases)}", flush=True)
+            continue
 
         top_nodes: dict[str, list[dict[str, Any]]] = {}
         for ent_type, k in [
@@ -427,49 +663,16 @@ def main() -> None:
                 raw_index_to_text=raw_index_maps.get(arg_type, {}),
             )
 
-        similar_case_argument_context = extract_similar_case_argument_context(
-            bundle_arg_top_nodes=raw_arg_top_nodes,
-            raw_index_maps=raw_index_maps,
-            cleaned_case_dir=cleaned_case_dir,
-            case_id_to_file_name=case_id_to_file_name,
-            max_entries=top_k_similar_arg_contexts,
-            per_section_chars=similar_arg_snippet_chars,
-        )
-
         target_case_text = load_case_text(
             cleaned_case_dir,
             target_file_name,
             max_chars_per_section=target_arg_char_budget,
         )
 
-        query = case_embeddings[case_idx:case_idx + 1].astype(np.float32).copy()
-        if metric == "cosine":
-            faiss.normalize_L2(query)
-        distances, neighbours = index.search(query, top_k_similar)
-        similar_cases: list[dict[str, Any]] = []
-        for rank_nb, (nb_row_idx, dist) in enumerate(zip(neighbours[0].tolist(), distances[0].tolist())):
-            if nb_row_idx < 0:
-                continue
-            case_node_idx = int(train_faiss_idx[nb_row_idx])
-            neighbour_case_id = case_ids[case_node_idx]
-            if is_self_match(target_case_id, neighbour_case_id):
-                continue
-            similar_cases.append(
-                {
-                    "rank": len(similar_cases) + 1,
-                    "case_node_index": case_node_idx,
-                    "case_id": neighbour_case_id,
-                    "file_name": file_names[case_node_idx],
-                    "raw_label": raw_labels[case_node_idx],
-                    "target_label": label_names[int(targets[case_node_idx])],
-                    "predicted_label": label_names[int(predictions[case_node_idx])],
-                    "similarity": float(dist),
-                }
-            )
-
         bundle = {
             "case_node_index": int(case_idx),
             "case_id": target_case_id,
+            "bucket": expected_bucket,
             "file_name": target_file_name,
             "raw_label": raw_labels[case_idx],
             "target_label": label_names[int(targets[case_idx])],
@@ -485,8 +688,7 @@ def main() -> None:
                 "provision": top_nodes["provision"],
                 "precedent": top_nodes["precedent"],
             },
-            "similar_case_argument_context": similar_case_argument_context,
-            "similar_training_cases": similar_cases,
+            "top_graph_nodes": top_graph_nodes,
             "_raw_argument_top_nodes": raw_arg_top_nodes,
         }
         with open(out_path, "w") as f:
@@ -496,8 +698,13 @@ def main() -> None:
         if (i + 1) % 50 == 0 or i == len(my_cases) - 1:
             print(f"{prefix} processed {i + 1}/{len(my_cases)}", flush=True)
 
+    if args.graph_nodes_only:
+        print(f"{prefix} done. graph-node backfill does not alter manifests.", flush=True)
+        return
+
     # Write partial manifest for this rank
     partial_manifest = {
+        "bucket": expected_bucket,
         "rank": rank,
         "n_cases_explained": len(my_indices),
         "num_hops": num_hops,
@@ -509,7 +716,7 @@ def main() -> None:
 
     # If single-process run, write the final manifest directly
     if world_size == 1:
-        merge_manifests(output_root, world_size=1)
+        merge_manifests(output_root, world_size=1, expected_bucket=expected_bucket)
 
 
 if __name__ == "__main__":

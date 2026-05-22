@@ -1,0 +1,89 @@
+# ── Graph Visualiser Configuration ────────────────────────────────────────────
+#
+# Each entry in `buckets` is one legal domain.
+# color is the hex used throughout the Dash app for that bucket.
+# limit: null = load every file in data_dir; set an integer to cap.
+
+buckets:
+  - name: financial_fraud
+    color: "#E74C3C"    # red
+    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/fin_fraud"
+    limit: null
+
+  - name: family_matrimonial
+    color: "#9B59B6"    # purple
+    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/family_matrimonial"
+    limit: null
+
+  - name: land_property
+    color: "#1ABC9C"    # teal
+    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/land_property"
+    limit: null
+
+  - name: motor_accidents
+    color: "#F39C12"    # orange
+    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/motor_accidents"
+    limit: null
+
+  - name: sexual_offences
+    color: "#3498DB"    # blue
+    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/sexual_offences"
+    limit: null
+
+# ── Graph structure (mirrors GNN reasoning_graph_policy) ──────────────────────
+graph:
+  # Shared nodes: same statute/court/judge cited by two cases → single node.
+  # Directly mirrors GNN shareable_node_types.
+  shared_node_types:
+    - STATUTE
+    - PROVISION
+    - PRECEDENT
+    - COURT
+    - JUDGE
+    - LAWYER
+
+  # Local nodes: petitioner/respondent are case-specific.
+  local_node_types:
+    - PETITIONER
+    - RESPONDENT
+
+  # Completely ignored (too noisy, not structurally useful).
+  skip_node_types:
+    - DATE
+    - GPE
+    - OTHER_PERSON
+    - CASE_NUMBER
+    - ORG
+    - WITNESS
+
+  normalize_entities: true
+
+# ── Sampling for interactive display ──────────────────────────────────────────
+# Cases are ranked by *connectivity score* (sum of their shared-entity degrees),
+# so the top-cases_per_bucket cases per bucket are the most structurally central.
+# The app slider lets the user dial between top-10 and this maximum at runtime.
+sampling:
+  max_display_nodes: 6000    # hard cap — increased for 5 buckets
+  min_degree_for_hub: 8      # entity/case with degree >= this is always kept
+  cases_per_bucket: 300      # max cases stored in the sample (per bucket)
+
+# ── Entity node colours ────────────────────────────────────────────────────────
+entity_colors:
+  statute:    "#F1C40F"   # yellow
+  provision:  "#E67E22"   # orange
+  precedent:  "#C0392B"   # dark red
+  court:      "#8E44AD"   # purple
+  judge:      "#2980B9"   # blue
+  lawyer:     "#7F8C8D"   # grey
+  petitioner: "#16A085"   # teal
+  respondent: "#D35400"   # burnt orange
+  default:    "#BDC3C7"   # light grey
+
+# ── Output paths ──────────────────────────────────────────────────────────────
+output_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GRAPH_VISUALISER/outputs"
+
+# ── Dash app settings ─────────────────────────────────────────────────────────
+app:
+  port: 8050
+  host: "0.0.0.0"
+  debug: false

@@ -6,7 +6,7 @@
 #   02 preprocess (cleaned cases)                (env: thesis_work)
 #   03 build self-contained reasoning graph      (env: thesis_work, needs GPU)
 #   04 run inference w/ trained kfold model      (env: thesis_work, needs GPU)
-#   05 analyse stage transitions                 (env: thesis_work)
+#   05 analyse stage/model/raw transitions       (env: thesis_work)
 #   06 (optional, --explain) Graph_Analyser      (env: graph_explainer, GPU)
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -42,6 +42,10 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS" \
 
 echo "[run_all] === 05 analyze transitions ==="
 micromamba run -n "$MAMBA_ENV" python scripts/05_analyze_transitions.py
+micromamba run -n "$MAMBA_ENV" python scripts/05b_aggregate_transitions.py
+micromamba run -n "$MAMBA_ENV" python scripts/05c_per_case_factors.py --changed-only
+micromamba run -n "$MAMBA_ENV" python scripts/05d_raw_outcome_factors.py
+micromamba run -n "$MAMBA_ENV" python scripts/05e_early_signal_test.py
 
 if [[ "$EXPLAIN" == "true" ]]; then
   echo "[run_all] === 06 explain transitions (Graph_Analyser) ==="

@@ -28,8 +28,8 @@ GPUS="${GPUS:-0,1,2,3,4,5,6,7}"
 
 ABLATION_DIR="$SECTION_GNN/ablations/hierarchical_enc"
 ANALYSIS_DIR="$SECTION_GNN/embedding_analysis"
-BUILD_SCRIPT="$SECTION_GNN/final_graph/build_graph.py"
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+BUILD_SCRIPT="$SECTION_GNN/src/scripts/build_graph.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 
 # ── Single-domain buckets first, cross-bucket last ────────────────────────────
 BUCKETS=(

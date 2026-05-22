@@ -43,7 +43,7 @@ log "STEP 3/7  Done."
 log "STEP 4/7  Building no_cross_case ablation graph"
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS" \
   micromamba run -n "$MAMBA_ENV" python \
-  "$SECTION_GNN/final_graph/build_graph.py" \
+  "$SECTION_GNN/src/scripts/build_graph.py" \
   --config "$ABLATIONS/no_cross_case/cross_bucket_total_dataset/config.yaml"
 log "STEP 4/7  Done."
 

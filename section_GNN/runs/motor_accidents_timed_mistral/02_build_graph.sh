@@ -19,7 +19,7 @@ done
 echo "[02_build_graph] env=$MAMBA_ENV gpus=$GPUS"
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS" \
   micromamba run -n "$MAMBA_ENV" python \
-  "$SECTION_GNN/final_graph/build_graph.py" \
+  "$SECTION_GNN/src/scripts/build_graph.py" \
   --config "$CONFIG" \
   "${LIMIT_ARGS[@]}"
 echo "[02_build_graph] Done."

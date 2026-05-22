@@ -33,7 +33,8 @@ def main() -> None:
     output_root.mkdir(parents=True, exist_ok=True)
 
     print(f"[phase3] loading graph cache: {cfg['graph_cache']}", flush=True)
-    data, _metadata = load_graph_cache(cfg["graph_cache"])
+    expected_bucket = cfg.get("bucket")
+    data, _metadata = load_graph_cache(cfg["graph_cache"], expected_bucket=expected_bucket)
     model, _ = build_and_load_hgt(
         data=data,
         checkpoint_dir=cfg["checkpoint_dir"],
@@ -56,7 +57,11 @@ def main() -> None:
 
     fold_predictions_csv = Path(cfg["checkpoint_dir"]) / "predictions.csv"
     if fold_predictions_csv.exists():
-        split_indices = load_fold_splits(str(fold_predictions_csv), data)
+        split_indices = load_fold_splits(
+            str(fold_predictions_csv),
+            data,
+            expected_bucket=expected_bucket,
+        )
     else:
         split_indices = get_split_indices(data)
     train_idx = split_indices.get("train", [])

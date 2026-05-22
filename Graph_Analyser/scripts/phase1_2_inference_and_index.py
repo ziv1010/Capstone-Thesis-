@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-"""Phase 1-2: Freeze the HGT, run full-graph inference, save artefacts,
-and build a FAISS index over training-set case embeddings."""
+"""Phase 1-2: Freeze the HGT, run full-graph inference, and save artefacts."""
 from __future__ import annotations
 
 import argparse
@@ -35,7 +34,8 @@ def main() -> None:
     output_root.mkdir(parents=True, exist_ok=True)
 
     print(f"[phase1_2] loading graph cache: {cfg['graph_cache']}", flush=True)
-    data, metadata = load_graph_cache(cfg["graph_cache"])
+    expected_bucket = cfg.get("bucket")
+    data, metadata = load_graph_cache(cfg["graph_cache"], expected_bucket=expected_bucket)
     label_names = metadata.get("label_names", ["-1", "1"])
 
     print(f"[phase1_2] loading HGT checkpoint: {cfg['checkpoint_dir']}", flush=True)
@@ -70,7 +70,11 @@ def main() -> None:
     fold_predictions_csv = Path(cfg["checkpoint_dir"]) / "predictions.csv"
     if fold_predictions_csv.exists():
         print(f"[phase1_2] using fold-specific splits from {fold_predictions_csv}", flush=True)
-        split_indices = load_fold_splits(str(fold_predictions_csv), data)
+        split_indices = load_fold_splits(
+            str(fold_predictions_csv),
+            data,
+            expected_bucket=expected_bucket,
+        )
     else:
         print("[phase1_2] fold predictions.csv not found; falling back to graph-cache masks", flush=True)
         split_indices = get_split_indices(data)
@@ -108,37 +112,16 @@ def main() -> None:
     )
     predictions_df.to_csv(output_root / "predictions.csv", index=False)
 
-    print("[phase1_2] building FAISS index over TRAIN embeddings...", flush=True)
-    import faiss  # noqa: WPS433
-
-    train_idx = np.asarray(split_indices.get("train", []), dtype=np.int64)
-    if train_idx.size == 0:
-        raise RuntimeError("No training indices found; cannot build retrieval index.")
-
-    metric = str(cfg.get("faiss", {}).get("metric", "cosine")).lower()
-    train_vecs = emb_np[train_idx].copy()
-    if metric == "cosine":
-        faiss.normalize_L2(train_vecs)
-        index = faiss.IndexFlatIP(embedding_dim)
-    else:
-        index = faiss.IndexFlatL2(embedding_dim)
-    index.add(train_vecs)
-
-    faiss.write_index(index, str(output_root / "train_faiss.index"))
-    np.save(output_root / "train_indices.npy", train_idx)
-    if metric == "cosine":
-        # also save normalized vectors so we can recompute similarities later if needed
-        np.save(output_root / "train_embeddings_normalized.npy", train_vecs)
-
     summary = {
         "graph_cache": str(cfg["graph_cache"]),
         "checkpoint_dir": str(cfg["checkpoint_dir"]),
+        "bucket": expected_bucket,
+        "allow_cross_bucket": bool(cfg.get("allow_cross_bucket", False)),
         "n_cases": n_cases,
         "embedding_dim": embedding_dim,
         "label_names": label_names,
         "effective_model_cfg": effective_cfg,
         "split_counts": {k: len(v) for k, v in split_indices.items()},
-        "metric": metric,
     }
     with open(output_root / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)

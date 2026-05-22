@@ -39,8 +39,8 @@ SKIP_PREPROCESS="${SKIP_PREPROCESS:-0}"
 K=5
 
 PYTHON="micromamba run -n $MAMBA_ENV python"
-BUILD_SCRIPT="$SECTION_GNN/final_graph/build_graph.py"
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+BUILD_SCRIPT="$SECTION_GNN/src/scripts/build_graph.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 
 BUCKETS=(
   family_matrimonial_timed_mistral

@@ -25,7 +25,6 @@ from _shared import (  # noqa: E402
     explained_case_indices,
     load_phase4,
     load_predictions,
-    phase5_case_indices,
 )
 from _panels import render_case  # noqa: E402
 
@@ -33,20 +32,12 @@ from _panels import render_case  # noqa: E402
 def _auto_pick(paths: Paths) -> tuple[int, int]:
     preds = load_predictions(paths).set_index("node_index")
     explained = explained_case_indices(paths)
-    have_phase5 = phase5_case_indices(paths)
-    for label, pool in (
-        ("with LLM", [i for i in explained if i in have_phase5]),
-        ("all explained", explained),
-    ):
-        if not pool:
-            continue
-        rows = preds.loc[pool].copy()
-        rows["correct"] = rows["pred_label"].astype(str) == rows["target_label"].astype(str)
-        corr = rows[rows["correct"]].sort_values("confidence", ascending=False)
-        wrong = rows[~rows["correct"]].sort_values("confidence", ascending=False)
-        if len(corr) and len(wrong):
-            print(f"[right_vs_wrong] picking from pool '{label}'")
-            return int(corr.index[0]), int(wrong.index[0])
+    rows = preds.loc[explained].copy()
+    rows["correct"] = rows["pred_label"].astype(str) == rows["target_label"].astype(str)
+    corr = rows[rows["correct"]].sort_values("confidence", ascending=False)
+    wrong = rows[~rows["correct"]].sort_values("confidence", ascending=False)
+    if len(corr) and len(wrong):
+        return int(corr.index[0]), int(wrong.index[0])
     rows = preds.loc[explained].copy()
     rows["correct"] = rows["pred_label"].astype(str) == rows["target_label"].astype(str)
     corr = rows[rows["correct"]].sort_values("confidence", ascending=False)
@@ -77,10 +68,9 @@ def _write_comparison_readme(
     lines = [
         "# Right vs Wrong — per-case artefacts",
         "",
-        "Two cases rendered with the same four-panel layout. Compare the",
-        "PGExplainer subgraphs and FAISS neighbours between rows — the character",
-        "of the explanation typically diverges between a confident-correct and a",
-        "wrong prediction.",
+        "Two cases rendered with the same PGExplainer-focused layout. Compare",
+        "the explainer subgraphs between rows — the character of the explanation",
+        "typically diverges between a confident-correct and a wrong prediction.",
         "",
         "## Correct prediction",
         "",
@@ -89,8 +79,6 @@ def _write_comparison_readme(
         f"- Folder: [`{rel_c}/`]({rel_c}/README.md)",
         f"  - [`panel_a_tsne.png`]({rel_c}/panel_a_tsne.png)",
         f"  - [`panel_b_subgraph.png`]({rel_c}/panel_b_subgraph.png)",
-        f"  - [`panel_c_neighbours.md`]({rel_c}/panel_c_neighbours.md)",
-        f"  - [`panel_d_llm.md`]({rel_c}/panel_d_llm.md)",
         "",
         "## Wrong prediction",
         "",
@@ -99,8 +87,6 @@ def _write_comparison_readme(
         f"- Folder: [`{rel_w}/`]({rel_w}/README.md)",
         f"  - [`panel_a_tsne.png`]({rel_w}/panel_a_tsne.png)",
         f"  - [`panel_b_subgraph.png`]({rel_w}/panel_b_subgraph.png)",
-        f"  - [`panel_c_neighbours.md`]({rel_w}/panel_c_neighbours.md)",
-        f"  - [`panel_d_llm.md`]({rel_w}/panel_d_llm.md)",
         "",
     ]
     fp.write_text("\n".join(lines))

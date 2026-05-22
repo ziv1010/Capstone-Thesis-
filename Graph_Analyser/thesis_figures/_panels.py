@@ -1,8 +1,7 @@
 """Per-panel renderers.
 
 Each `save_*` function writes ONE artefact for ONE case into `out_dir`.
-PNGs for the visual panels; Markdown for the text-heavy panels (neighbours,
-LLM explanation) so they can be dropped straight into a thesis.
+PNGs for the visual panels and Markdown for the case summary.
 """
 from __future__ import annotations
 
@@ -16,7 +15,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
 
-from _shared import Paths, load_phase4, load_phase5, load_predictions
+from _shared import Paths, load_phase4, load_predictions
 
 _ALLOWED_COLOR = "#1f77b4"
 _DISMISSED_COLOR = "#d62728"
@@ -26,7 +25,6 @@ _CATEGORY_COLORS = {
     "statute": "#2ca02c",
     "provision": "#9467bd",
     "precedent": "#ff7f0e",
-    "similar_argument": "#17becf",
 }
 
 
@@ -80,13 +78,6 @@ def _draw_subgraph(ax: Axes, phase4: dict, max_per_cat: int = 3) -> None:
         items = [it for it in (top.get(key) or []) if it][:max_per_cat]
         if items:
             categories.append((key, items))
-    sims = phase4.get("similar_case_argument_context", [])[:max_per_cat]
-    if sims:
-        categories.append(("similar_argument", [
-            {"text": s.get("owning_case", "")[:60],
-             "importance": s.get("importance", 0.0)} for s in sims
-        ]))
-
     total = sum(len(items) for _, items in categories) or 1
     max_imp = max((it.get("importance", 0.0) for _, items in categories for it in items),
                   default=1.0)
@@ -136,71 +127,6 @@ def save_subgraph_png(paths: Paths, case_idx: int, out_dir: Path) -> Path:
     return fp
 
 
-# ---------- (c) FAISS neighbours as Markdown ----------
-
-def save_neighbours_md(paths: Paths, case_idx: int, out_dir: Path,
-                       max_k: int = 5) -> Path:
-    phase4 = load_phase4(paths, case_idx)
-    neigh = (phase4.get("similar_training_cases") or [])[:max_k]
-    target_case_id = str(phase4.get("case_id", ""))
-    target_label = str(phase4.get("target_label", "?")).strip()
-    pred_label = str(phase4.get("predicted_label", "?")).strip()
-    conf = phase4.get("confidence", 0.0)
-
-    lines = [
-        f"# Top FAISS neighbours — case {case_idx}",
-        "",
-        f"**Target case:** {target_case_id}  ",
-        f"**True / predicted label:** {target_label} / {pred_label}  ",
-        f"**Confidence:** {conf:.4f}",
-        "",
-        "Retrieved from the post-GNN case embedding space (cosine similarity, "
-        "FAISS index built over the train split).",
-        "",
-        "| Rank | Similarity | True | Pred | Match | Case |",
-        "| ---: | ---------: | :--: | :--: | :---: | :--- |",
-    ]
-    if not neigh:
-        lines.append("| — | — | — | — | — | _no neighbours recorded_ |")
-    for n in neigh:
-        rank = n.get("rank", "?")
-        cid = str(n.get("case_id", "")).replace("|", "/")
-        sim = n.get("similarity", 0.0)
-        tgt = str(n.get("target_label", "?")).strip()
-        prd = str(n.get("predicted_label", "?")).strip()
-        mark = "✓" if tgt == prd else "✗"
-        lines.append(f"| {rank} | {sim:.4f} | {tgt} | {prd} | {mark} | {cid} |")
-    fp = out_dir / "panel_c_neighbours.md"
-    fp.write_text("\n".join(lines) + "\n")
-    return fp
-
-
-# ---------- (d) LLM explanation as Markdown ----------
-
-def save_llm_md(paths: Paths, case_idx: int, out_dir: Path) -> Path:
-    phase5 = load_phase5(paths, case_idx)
-    fp = out_dir / "panel_d_llm.md"
-    if phase5 is None:
-        fp.write_text(
-            f"# LLM explanation — case {case_idx}\n\n"
-            "_Phase 5 explanation not available for this case._\n"
-        )
-        return fp
-    expl = phase5.get("explanation", "")
-    case_id = phase5.get("case_id", "")
-    target = str(phase5.get("target_label", "?")).strip()
-    pred = str(phase5.get("predicted_label", "?")).strip()
-    conf = phase5.get("confidence", 0.0)
-    fp.write_text(
-        f"# LLM explanation — case {case_idx}\n\n"
-        f"**Case:** {case_id}  \n"
-        f"**True / predicted label:** {target} / {pred}  \n"
-        f"**Confidence:** {conf:.4f}\n\n"
-        f"---\n\n{expl}\n"
-    )
-    return fp
-
-
 # ---------- case-level summary ----------
 
 def save_case_summary(paths: Paths, case_idx: int, out_dir: Path) -> Path:
@@ -223,8 +149,6 @@ def save_case_summary(paths: Paths, case_idx: int, out_dir: Path) -> Path:
         "## Artefacts in this folder",
         "- `panel_a_tsne.png` — t-SNE of post-GNN embeddings with this case highlighted",
         "- `panel_b_subgraph.png` — PGExplainer top nodes around the target",
-        "- `panel_c_neighbours.md` — top FAISS neighbours in post-GNN space",
-        "- `panel_d_llm.md` — Mistral-Small 24B explanation (Phase 5)",
     ]
     fp = out_dir / "README.md"
     fp.write_text("\n".join(lines) + "\n")
@@ -236,7 +160,5 @@ def render_case(paths: Paths, case_idx: int, out_dir: Path) -> dict[str, Path]:
     return {
         "tsne": save_tsne_png(paths, case_idx, out_dir),
         "subgraph": save_subgraph_png(paths, case_idx, out_dir),
-        "neighbours": save_neighbours_md(paths, case_idx, out_dir),
-        "llm": save_llm_md(paths, case_idx, out_dir),
         "summary": save_case_summary(paths, case_idx, out_dir),
     }

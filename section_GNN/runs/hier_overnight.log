@@ -1,611 +1,0 @@
-nohup: ignoring input
-[2026-04-18 04:52:15] ═══════════════════════════════════════════════════════
-[2026-04-18 04:52:15] Starting hierarchical encoding pipeline — all buckets
-[2026-04-18 04:52:15] ═══════════════════════════════════════════════════════
-[2026-04-18 04:52:15] 
-[2026-04-18 04:52:15] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 04:52:15] BUCKET: family_matrimonial_timed_mistral  (1/6)
-[2026-04-18 04:52:15] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 04:52:15]   [build] Graph cache already exists — skipping build.
-[2026-04-18 04:52:15]   [kfold] Summary already exists — skipping training.
-[2026-04-18 04:52:15]   [analysis] Running embedding analysis ...
-[2026-04-18 04:52:15]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_family_matrimonial_kfold
-[2026-04-18 04:52:15]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_family_matrimonial_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=14563  labels=['-1', '1']
-[extract] model loaded — hidden_dim=128  num_layers=3
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/family_matrimonial_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_family_matrimonial_kfold/ablation_hierarchical_enc_family_matrimonial_kfold_embeddings.npz
-[extract] pre_gnn shape=(14563, 1036)  post_gnn shape=(14563, 128)
-[extract] label distribution: {np.int32(0): np.int64(4952), np.int32(1): np.int64(9611)}
-[extract]   domain '_': 3 cases
-[extract]   domain 'unknown': 14560 cases
-[2026-04-18 04:52:23]   [2/6] t-SNE ...
-[tsne] loaded 14563 cases | pre_gnn=(14563, 1036) post_gnn=(14563, 128)
-[tsne] subsampling 5000 / 14563 cases
-[tsne] running t-SNE on post-GNN (5000 × 128) ...
-[tsne] saved → ablation_hierarchical_enc_family_matrimonial_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_family_matrimonial_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_family_matrimonial_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_family_matrimonial_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 04:52:46]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_family_matrimonial_kfold  train_n=10194  test_n=2185
-[probe] majority_baseline     test_acc=0.6600  macro_f1=0.3976
-[probe] pre_gnn_raw_features  test_acc=0.7735  macro_f1=0.7575  binary_f1=0.8197  (train_n=10194  test_n=2185)
-[probe] post_gnn_embeddings   test_acc=0.9011  macro_f1=0.8922  binary_f1=0.9232  (train_n=10194  test_n=2185)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.1277
-[probe] results → ablation_hierarchical_enc_family_matrimonial_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_family_matrimonial_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 04:52:47]   [4/6] Attention / gradient saliency ...
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_family_matrimonial_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  defence_lawyer__rev_has_defence_lawyer__case        1.0282
-  arguments__rev_has_arguments__case                  1.0249
-  court__rev_heard_in__case                           1.0160
-  respondent_arguments__rev_has_respondent_arguments__case  1.0152
-  respondent__rev_has_respondent__case                1.0144
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_family_matrimonial_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 04:52:56]   [5/6] Error analysis ...
-[error] 2913 cases (test)  overall accuracy=0.8284
-[error] joined 2913 / 2913 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_family_matrimonial_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_family_matrimonial_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_family_matrimonial_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_family_matrimonial_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_family_matrimonial_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_family_matrimonial_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain : unknown                              0.8283  (n=2912)
-  Highest accuracy domain:                                      1.0000  (n=1)
-  Accuracy, 0 statutes : 0.8162217659137577
-  Accuracy, 7-10 statutes: 0.7888888888888889
-[error] done.
-[2026-04-18 04:52:57]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (10194, 128) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.9011
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_family_matrimonial_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_family_matrimonial_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 04:52:59]   [analysis] Done.
-[2026-04-18 04:52:59] 
-[2026-04-18 04:52:59] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 04:52:59] BUCKET: fin_fraud_timed_mistral  (2/6)
-[2026-04-18 04:52:59] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 04:52:59]   [build] Building hierarchical graph ...
-2026-04-18 04:53:07 | INFO | build_reasoning_graph | Loaded 13973 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed/cleaned_cases
-2026-04-18 04:53:47 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 244849 texts
-[hierarchical] 21596/244849 texts exceed 1800 chars — chunking and pooling
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:06<09:09,  6.96s/it]Chunks:   2%|▎         | 2/80 [00:07<03:55,  3.02s/it]Chunks:   5%|▌         | 4/80 [00:09<02:26,  1.92s/it]Chunks:   6%|▋         | 5/80 [00:12<02:39,  2.13s/it]Chunks:   8%|▊         | 6/80 [00:12<01:55,  1.56s/it]Chunks:  10%|█         | 8/80 [00:15<01:42,  1.43s/it]Chunks:  11%|█▏        | 9/80 [00:17<02:01,  1.72s/it]Chunks:  12%|█▎        | 10/80 [00:17<01:32,  1.32s/it]Chunks:  14%|█▍        | 11/80 [00:19<01:36,  1.40s/it]Chunks:  15%|█▌        | 12/80 [00:20<01:31,  1.34s/it]Chunks:  16%|█▋        | 13/80 [00:23<01:56,  1.74s/it]Chunks:  18%|█▊        | 14/80 [00:23<01:29,  1.36s/it]Chunks:  19%|█▉        | 15/80 [00:25<01:24,  1.30s/it]Chunks:  20%|██        | 16/80 [00:26<01:16,  1.20s/it]Chunks:  21%|██▏       | 17/80 [00:28<01:37,  1.56s/it]Chunks:  22%|██▎       | 18/80 [00:28<01:15,  1.22s/it]Chunks:  25%|██▌       | 20/80 [00:29<00:48,  1.23it/s]Chunks:  26%|██▋       | 21/80 [00:30<00:52,  1.12it/s]Chunks:  28%|██▊       | 22/80 [00:31<00:50,  1.14it/s]Chunks:  29%|██▉       | 23/80 [00:32<00:46,  1.23it/s]Chunks:  30%|███       | 24/80 [00:34<01:03,  1.14s/it]Chunks:  31%|███▏      | 25/80 [00:34<00:48,  1.13it/s]Chunks:  34%|███▍      | 27/80 [00:35<00:35,  1.50it/s]Chunks:  35%|███▌      | 28/80 [00:36<00:38,  1.34it/s]Chunks:  36%|███▋      | 29/80 [00:36<00:30,  1.70it/s]Chunks:  38%|███▊      | 30/80 [00:36<00:30,  1.66it/s]Chunks:  39%|███▉      | 31/80 [00:37<00:32,  1.52it/s]Chunks:  40%|████      | 32/80 [00:39<00:49,  1.02s/it]Chunks:  41%|████▏     | 33/80 [00:39<00:38,  1.23it/s]Chunks:  42%|████▎     | 34/80 [00:40<00:29,  1.58it/s]Chunks:  44%|████▍     | 35/80 [00:40<00:28,  1.56it/s]Chunks:  45%|████▌     | 36/80 [00:41<00:33,  1.33it/s]Chunks:  46%|████▋     | 37/80 [00:43<00:42,  1.02it/s]Chunks:  49%|████▉     | 39/80 [00:45<00:39,  1.03it/s]Chunks:  50%|█████     | 40/80 [00:45<00:30,  1.31it/s]Chunks:  51%|█████▏    | 41/80 [00:45<00:24,  1.60it/s]Chunks:  52%|█████▎    | 42/80 [00:46<00:25,  1.49it/s]Chunks:  54%|█████▍    | 43/80 [00:47<00:27,  1.33it/s]Chunks:  55%|█████▌    | 44/80 [00:48<00:33,  1.06it/s]Chunks:  56%|█████▋    | 45/80 [00:54<01:20,  2.31s/it]Chunks:  57%|█████▊    | 46/80 [00:54<00:59,  1.75s/it]Chunks:  59%|█████▉    | 47/80 [00:56<00:59,  1.81s/it]Chunks:  60%|██████    | 48/80 [01:01<01:28,  2.76s/it]Chunks:  61%|██████▏   | 49/80 [01:02<01:01,  1.98s/it]Chunks:  62%|██████▎   | 50/80 [01:02<00:43,  1.46s/it]Chunks:  65%|██████▌   | 52/80 [01:04<00:39,  1.42s/it]Chunks:  66%|██████▋   | 53/80 [01:05<00:29,  1.10s/it]Chunks:  68%|██████▊   | 54/80 [01:07<00:38,  1.46s/it]Chunks:  70%|███████   | 56/80 [01:07<00:20,  1.15it/s]Chunks:  71%|███████▏  | 57/80 [01:08<00:16,  1.37it/s]Chunks:  72%|███████▎  | 58/80 [01:09<00:19,  1.12it/s]Chunks:  74%|███████▍  | 59/80 [01:10<00:20,  1.00it/s]Chunks:  75%|███████▌  | 60/80 [01:10<00:15,  1.31it/s]Chunks:  76%|███████▋  | 61/80 [01:11<00:12,  1.48it/s]Chunks:  78%|███████▊  | 62/80 [01:13<00:19,  1.06s/it]Chunks:  80%|████████  | 64/80 [01:13<00:09,  1.63it/s]Chunks:  81%|████████▏ | 65/80 [01:13<00:07,  1.98it/s]Chunks:  82%|████████▎ | 66/80 [01:15<00:10,  1.36it/s]Chunks:  84%|████████▍ | 67/80 [01:16<00:11,  1.11it/s]Chunks:  85%|████████▌ | 68/80 [01:16<00:08,  1.45it/s]Chunks:  86%|████████▋ | 69/80 [01:16<00:06,  1.65it/s]Chunks:  88%|████████▊ | 70/80 [01:18<00:09,  1.01it/s]Chunks:  90%|█████████ | 72/80 [01:18<00:04,  1.75it/s]Chunks:  91%|█████████▏| 73/80 [01:19<00:03,  2.06it/s]Chunks:  92%|█████████▎| 74/80 [01:20<00:04,  1.46it/s]Chunks:  94%|█████████▍| 75/80 [01:21<00:04,  1.15it/s]Chunks:  95%|█████████▌| 76/80 [01:22<00:02,  1.45it/s]Chunks:  96%|█████████▋| 77/80 [01:24<00:03,  1.14s/it]Chunks:  98%|█████████▊| 78/80 [01:24<00:01,  1.15it/s]Chunks:  99%|█████████▉| 79/80 [01:29<00:01,  1.99s/it]Chunks: 100%|██████████| 80/80 [01:30<00:00,  1.70s/it]Chunks: 100%|██████████| 80/80 [01:30<00:00,  1.13s/it]
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:15<20:31, 15.59s/it]Chunks:   4%|▍         | 3/80 [00:15<05:14,  4.09s/it]Chunks:   6%|▋         | 5/80 [00:15<02:33,  2.04s/it]Chunks:   9%|▉         | 7/80 [00:16<01:36,  1.32s/it]Chunks:  10%|█         | 8/80 [00:17<01:21,  1.14s/it]Chunks:  11%|█▏        | 9/80 [00:30<05:01,  4.24s/it]Chunks:  12%|█▎        | 10/80 [00:31<03:51,  3.31s/it]Chunks:  14%|█▍        | 11/80 [00:31<02:54,  2.54s/it]Chunks:  16%|█▋        | 13/80 [00:32<01:37,  1.46s/it]Chunks:  18%|█▊        | 14/80 [00:32<01:19,  1.20s/it]Chunks:  19%|█▉        | 15/80 [00:33<01:23,  1.29s/it]Chunks:  20%|██        | 16/80 [00:34<01:15,  1.17s/it]Chunks:  21%|██▏       | 17/80 [00:46<04:15,  4.06s/it]Chunks:  22%|██▎       | 18/80 [00:47<03:18,  3.20s/it]Chunks:  24%|██▍       | 19/80 [00:48<02:44,  2.69s/it]Chunks:  26%|██▋       | 21/80 [00:49<01:29,  1.51s/it]Chunks:  28%|██▊       | 22/80 [00:50<01:26,  1.49s/it]Chunks:  29%|██▉       | 23/80 [00:52<01:33,  1.64s/it]Chunks:  30%|███       | 24/80 [00:54<01:34,  1.69s/it]Chunks:  31%|███▏      | 25/80 [01:03<03:30,  3.82s/it]Chunks:  32%|███▎      | 26/80 [01:04<02:36,  2.89s/it]Chunks:  34%|███▍      | 27/80 [01:06<02:18,  2.61s/it]Chunks:  35%|███▌      | 28/80 [01:06<01:40,  1.93s/it]Chunks:  36%|███▋      | 29/80 [01:07<01:18,  1.55s/it]Chunks:  38%|███▊      | 30/80 [01:08<01:07,  1.36s/it]Chunks:  39%|███▉      | 31/80 [01:11<01:33,  1.91s/it]Chunks:  40%|████      | 32/80 [01:12<01:28,  1.85s/it]Chunks:  41%|████▏     | 33/80 [01:21<02:59,  3.83s/it]Chunks:  44%|████▍     | 35/80 [01:24<02:01,  2.69s/it]Chunks:  45%|████▌     | 36/80 [01:24<01:34,  2.14s/it]Chunks:  46%|████▋     | 37/80 [01:25<01:12,  1.69s/it]Chunks:  48%|████▊     | 38/80 [01:27<01:16,  1.82s/it]Chunks:  49%|████▉     | 39/80 [01:29<01:24,  2.06s/it]Chunks:  50%|█████     | 40/80 [01:31<01:12,  1.82s/it]Chunks:  51%|█████▏    | 41/80 [01:38<02:13,  3.43s/it]Chunks:  52%|█████▎    | 42/80 [01:39<01:38,  2.58s/it]Chunks:  54%|█████▍    | 43/80 [01:41<01:38,  2.67s/it]Chunks:  55%|█████▌    | 44/80 [01:42<01:12,  2.00s/it]Chunks:  56%|█████▋    | 45/80 [01:42<00:50,  1.45s/it]Chunks:  57%|█████▊    | 46/80 [01:44<00:59,  1.76s/it]Chunks:  59%|█████▉    | 47/80 [01:49<01:22,  2.49s/it]Chunks:  60%|██████    | 48/80 [01:51<01:18,  2.44s/it]Chunks:  61%|██████▏   | 49/80 [01:57<01:45,  3.40s/it]Chunks:  62%|██████▎   | 50/80 [01:58<01:20,  2.68s/it]Chunks:  64%|██████▍   | 51/80 [01:58<00:59,  2.04s/it]Chunks:  65%|██████▌   | 52/80 [02:00<00:54,  1.94s/it]Chunks:  66%|██████▋   | 53/80 [02:00<00:39,  1.48s/it]Chunks:  68%|██████▊   | 54/80 [02:02<00:39,  1.53s/it]Chunks:  69%|██████▉   | 55/80 [02:06<00:56,  2.27s/it]Chunks:  70%|███████   | 56/80 [02:09<01:01,  2.57s/it]Chunks:  71%|███████▏  | 57/80 [02:13<01:07,  2.93s/it]Chunks:  72%|███████▎  | 58/80 [02:14<00:51,  2.35s/it]Chunks:  74%|███████▍  | 59/80 [02:14<00:36,  1.72s/it]Chunks:  75%|███████▌  | 60/80 [02:17<00:38,  1.91s/it]Chunks:  76%|███████▋  | 61/80 [02:17<00:26,  1.39s/it]Chunks:  78%|███████▊  | 62/80 [02:19<00:30,  1.71s/it]Chunks:  79%|███████▉  | 63/80 [02:24<00:45,  2.70s/it]Chunks:  80%|████████  | 64/80 [02:27<00:43,  2.73s/it]Chunks:  81%|████████▏ | 65/80 [02:30<00:40,  2.68s/it]Chunks:  82%|████████▎ | 66/80 [02:30<00:29,  2.08s/it]Chunks:  84%|████████▍ | 67/80 [02:31<00:21,  1.69s/it]Chunks:  85%|████████▌ | 68/80 [02:33<00:22,  1.89s/it]Chunks:  86%|████████▋ | 69/80 [02:34<00:16,  1.46s/it]Chunks:  88%|████████▊ | 70/80 [02:36<00:17,  1.79s/it]Chunks:  89%|████████▉ | 71/80 [02:42<00:27,  3.04s/it]Chunks:  90%|█████████ | 72/80 [02:46<00:24,  3.07s/it]Chunks:  92%|█████████▎| 74/80 [02:46<00:10,  1.81s/it]Chunks:  94%|█████████▍| 75/80 [02:47<00:07,  1.59s/it]Chunks:  95%|█████████▌| 76/80 [02:49<00:06,  1.61s/it]Chunks:  96%|█████████▋| 77/80 [02:49<00:03,  1.29s/it]Chunks:  98%|█████████▊| 78/80 [02:51<00:03,  1.56s/it]Chunks:  99%|█████████▉| 79/80 [03:03<00:04,  4.32s/it]Chunks: 100%|██████████| 80/80 [03:04<00:00,  3.58s/it]Chunks: 100%|██████████| 80/80 [03:04<00:00,  2.31s/it]
-2026-04-18 04:59:24 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/embeddings_cache/all_nodes_338c168cb8932a7cef3a.npz shape=(244849, 1024)
-2026-04-18 04:59:26 | INFO | build_reasoning_graph | Prepared 13973 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-18 04:59:30 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/graph_cache/case_star_fin_fraud_hierarchical_enc.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[2026-04-18 04:59:32]   [build] Done.
-[2026-04-18 04:59:32]   [kfold] Starting 5-fold CV ...
-[2026-04-18 04:59:32]   Launching 5 folds in parallel (GPUs 0-4) ...
-[2026-04-18 04:59:32]   Fold 0 → GPU 0  pid=2502363
-[2026-04-18 04:59:32]   Fold 1 → GPU 1  pid=2502365
-[2026-04-18 04:59:32]   Fold 2 → GPU 2  pid=2502368
-[2026-04-18 04:59:32]   Fold 3 → GPU 3  pid=2502370
-[2026-04-18 04:59:32]   Fold 4 → GPU 4  pid=2502374
-[2026-04-18 05:04:31]   Fold 0 done.
-[2026-04-18 05:04:31]   Fold 1 done.
-[2026-04-18 05:04:33]   Fold 2 done.
-[2026-04-18 05:04:33]   Fold 3 done.
-[2026-04-18 05:04:33]   Fold 4 done.
-[2026-04-18 05:04:33]   Aggregating folds ...
-2026-04-18 05:04:37 | INFO | kfold_cv_ablation_hierarchical_enc_fin_fraud_kfold | Aggregate (5/5 folds) | accuracy=0.7715±0.0124  macro_f1=0.7610±0.0123
-[2026-04-18 05:04:37]   [kfold] Done. Summary → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/models/ablation_hierarchical_enc_fin_fraud_kfold/kfold/kfold_summary.json
-[2026-04-18 05:04:37]   [analysis] Running embedding analysis ...
-[2026-04-18 05:04:37]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_fin_fraud_kfold
-[2026-04-18 05:04:37]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_fin_fraud_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=13973  labels=['-1', '1']
-[extract] model loaded — hidden_dim=128  num_layers=3
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/fin_fraud_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_fin_fraud_kfold/ablation_hierarchical_enc_fin_fraud_kfold_embeddings.npz
-[extract] pre_gnn shape=(13973, 1036)  post_gnn shape=(13973, 128)
-[extract] label distribution: {np.int32(0): np.int64(5503), np.int32(1): np.int64(8470)}
-[extract]   domain '_': 5 cases
-[extract]   domain 'unknown': 13968 cases
-[2026-04-18 05:04:45]   [2/6] t-SNE ...
-[tsne] loaded 13973 cases | pre_gnn=(13973, 1036) post_gnn=(13973, 128)
-[tsne] subsampling 5000 / 13973 cases
-[tsne] running t-SNE on post-GNN (5000 × 128) ...
-[tsne] saved → ablation_hierarchical_enc_fin_fraud_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_fin_fraud_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_fin_fraud_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_fin_fraud_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 05:05:09]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_fin_fraud_kfold  train_n=9781  test_n=2096
-[probe] majority_baseline     test_acc=0.6059  macro_f1=0.3773
-[probe] pre_gnn_raw_features  test_acc=0.7290  macro_f1=0.7195  binary_f1=0.7712  (train_n=9781  test_n=2096)
-[probe] post_gnn_embeddings   test_acc=0.8793  macro_f1=0.8747  binary_f1=0.8987  (train_n=9781  test_n=2096)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.1503
-[probe] results → ablation_hierarchical_enc_fin_fraud_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_fin_fraud_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 05:05:10]   [4/6] Attention / gradient saliency ...
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_fin_fraud_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  defence_lawyer__rev_has_defence_lawyer__case        1.0288
-  respondent__rev_has_respondent__case                1.0187
-  other_lawyer_arguments__rev_has_other_lawyer_arguments__case  1.0167
-  petitioner__rev_has_petitioner__case                1.0157
-  arguments__rev_has_arguments__case                  1.0146
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_fin_fraud_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 05:05:19]   [5/6] Error analysis ...
-[error] 2795 cases (test)  overall accuracy=0.7818
-[error] joined 2795 / 2795 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_fin_fraud_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_fin_fraud_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_fin_fraud_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_fin_fraud_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_fin_fraud_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_fin_fraud_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain : unknown                              0.7818  (n=2795)
-  Highest accuracy domain: unknown                              0.7818  (n=2795)
-  Accuracy, 0 statutes : 0.7974051896207585
-  Accuracy, 7-10 statutes: 0.6826923076923077
-[error] done.
-[2026-04-18 05:05:21]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (9781, 128) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.8793
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_fin_fraud_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_fin_fraud_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 05:05:22]   [analysis] Done.
-[2026-04-18 05:05:22] 
-[2026-04-18 05:05:22] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:05:22] BUCKET: land_property_timed_mistral  (3/6)
-[2026-04-18 05:05:22] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:05:22]   [build] Building hierarchical graph ...
-2026-04-18 05:05:34 | INFO | build_reasoning_graph | Loaded 13307 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/processed/cleaned_cases
-2026-04-18 05:06:25 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 356315 texts
-[hierarchical] 27832/356315 texts exceed 1800 chars — chunking and pooling
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:09<12:42,  9.66s/it]Chunks:   5%|▌         | 4/80 [00:09<02:21,  1.86s/it]Chunks:   8%|▊         | 6/80 [00:11<01:52,  1.52s/it]Chunks:   9%|▉         | 7/80 [00:17<03:05,  2.54s/it]Chunks:  11%|█▏        | 9/80 [00:18<01:51,  1.57s/it]Chunks:  12%|█▎        | 10/80 [00:20<01:59,  1.71s/it]Chunks:  14%|█▍        | 11/80 [00:25<03:03,  2.67s/it]Chunks:  16%|█▋        | 13/80 [00:26<01:50,  1.65s/it]Chunks:  18%|█▊        | 14/80 [00:26<01:28,  1.34s/it]Chunks:  19%|█▉        | 15/80 [00:28<01:35,  1.47s/it]Chunks:  20%|██        | 16/80 [00:29<01:27,  1.36s/it]Chunks:  21%|██▏       | 17/80 [00:34<02:23,  2.27s/it]Chunks:  24%|██▍       | 19/80 [00:34<01:23,  1.36s/it]Chunks:  25%|██▌       | 20/80 [00:34<01:03,  1.06s/it]Chunks:  26%|██▋       | 21/80 [00:36<01:15,  1.29s/it]Chunks:  28%|██▊       | 22/80 [00:37<01:03,  1.10s/it]Chunks:  29%|██▉       | 23/80 [00:37<00:54,  1.05it/s]Chunks:  31%|███▏      | 25/80 [00:42<01:25,  1.56s/it]Chunks:  34%|███▍      | 27/80 [00:42<00:53,  1.01s/it]Chunks:  35%|███▌      | 28/80 [00:43<00:48,  1.08it/s]Chunks:  36%|███▋      | 29/80 [00:45<01:04,  1.26s/it]Chunks:  38%|███▊      | 30/80 [00:45<00:50,  1.00s/it]Chunks:  40%|████      | 32/80 [00:50<01:14,  1.56s/it]Chunks:  42%|████▎     | 34/80 [00:50<00:47,  1.04s/it]Chunks:  44%|████▍     | 35/80 [00:51<00:42,  1.07it/s]Chunks:  45%|████▌     | 36/80 [00:53<00:56,  1.29s/it]Chunks:  46%|████▋     | 37/80 [00:54<00:43,  1.01s/it]Chunks:  48%|████▊     | 38/80 [00:54<00:34,  1.21it/s]Chunks:  49%|████▉     | 39/80 [00:57<00:59,  1.45s/it]Chunks:  50%|█████     | 40/80 [00:58<00:57,  1.45s/it]Chunks:  51%|█████▏    | 41/80 [00:59<00:42,  1.10s/it]Chunks:  54%|█████▍    | 43/80 [00:59<00:26,  1.39it/s]Chunks:  55%|█████▌    | 44/80 [01:01<00:39,  1.10s/it]Chunks:  56%|█████▋    | 45/80 [01:08<01:23,  2.39s/it]Chunks:  57%|█████▊    | 46/80 [01:09<01:15,  2.21s/it]Chunks:  59%|█████▉    | 47/80 [01:09<00:54,  1.64s/it]Chunks:  60%|██████    | 48/80 [01:12<00:59,  1.85s/it]Chunks:  61%|██████▏   | 49/80 [01:16<01:15,  2.43s/it]Chunks:  62%|██████▎   | 50/80 [01:17<01:07,  2.24s/it]Chunks:  64%|██████▍   | 51/80 [01:18<00:47,  1.64s/it]Chunks:  65%|██████▌   | 52/80 [01:19<00:45,  1.64s/it]Chunks:  66%|██████▋   | 53/80 [01:20<00:38,  1.43s/it]Chunks:  68%|██████▊   | 54/80 [01:21<00:29,  1.13s/it]Chunks:  69%|██████▉   | 55/80 [01:24<00:44,  1.77s/it]Chunks:  70%|███████   | 56/80 [01:25<00:38,  1.59s/it]Chunks:  71%|███████▏  | 57/80 [01:26<00:30,  1.33s/it]Chunks:  74%|███████▍  | 59/80 [01:28<00:23,  1.12s/it]Chunks:  75%|███████▌  | 60/80 [01:28<00:20,  1.03s/it]Chunks:  76%|███████▋  | 61/80 [01:29<00:15,  1.24it/s]Chunks:  78%|███████▊  | 62/80 [01:29<00:13,  1.37it/s]Chunks:  79%|███████▉  | 63/80 [01:32<00:24,  1.46s/it]Chunks:  80%|████████  | 64/80 [01:33<00:20,  1.29s/it]Chunks:  81%|████████▏ | 65/80 [01:34<00:17,  1.17s/it]Chunks:  82%|████████▎ | 66/80 [01:34<00:12,  1.08it/s]Chunks:  84%|████████▍ | 67/80 [01:36<00:13,  1.06s/it]Chunks:  85%|████████▌ | 68/80 [01:37<00:12,  1.00s/it]Chunks:  86%|████████▋ | 69/80 [01:37<00:08,  1.32it/s]Chunks:  88%|████████▊ | 70/80 [01:38<00:07,  1.31it/s]Chunks:  89%|████████▉ | 71/80 [01:41<00:12,  1.44s/it]Chunks:  90%|█████████ | 72/80 [01:42<00:10,  1.29s/it]Chunks:  91%|█████████▏| 73/80 [01:42<00:07,  1.12s/it]Chunks:  92%|█████████▎| 74/80 [01:43<00:05,  1.06it/s]Chunks:  94%|█████████▍| 75/80 [01:44<00:04,  1.00it/s]Chunks:  95%|█████████▌| 76/80 [01:45<00:03,  1.02it/s]Chunks:  96%|█████████▋| 77/80 [01:45<00:02,  1.34it/s]Chunks:  98%|█████████▊| 78/80 [01:49<00:03,  1.56s/it]Chunks:  99%|█████████▉| 79/80 [01:49<00:01,  1.32s/it]Chunks: 100%|██████████| 80/80 [01:57<00:00,  3.25s/it]Chunks: 100%|██████████| 80/80 [01:57<00:00,  1.47s/it]
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:23<31:17, 23.76s/it]Chunks:   4%|▍         | 3/80 [00:23<07:58,  6.21s/it]Chunks:   6%|▋         | 5/80 [00:24<03:59,  3.20s/it]Chunks:   8%|▊         | 6/80 [00:24<02:56,  2.39s/it]Chunks:   9%|▉         | 7/80 [00:26<02:31,  2.07s/it]Chunks:  10%|█         | 8/80 [00:26<01:50,  1.54s/it]Chunks:  11%|█▏        | 9/80 [00:46<08:22,  7.08s/it]Chunks:  14%|█▍        | 11/80 [00:48<04:49,  4.19s/it]Chunks:  15%|█▌        | 12/80 [00:48<03:41,  3.26s/it]Chunks:  16%|█▋        | 13/80 [00:48<02:46,  2.49s/it]Chunks:  19%|█▉        | 15/80 [00:51<02:02,  1.88s/it]Chunks:  20%|██        | 16/80 [00:51<01:42,  1.60s/it]Chunks:  21%|██▏       | 17/80 [01:13<06:55,  6.59s/it]Chunks:  22%|██▎       | 18/80 [01:13<05:06,  4.95s/it]Chunks:  24%|██▍       | 19/80 [01:15<04:15,  4.18s/it]Chunks:  25%|██▌       | 20/80 [01:17<03:21,  3.35s/it]Chunks:  26%|██▋       | 21/80 [01:17<02:24,  2.46s/it]Chunks:  29%|██▉       | 23/80 [01:19<01:49,  1.92s/it]Chunks:  30%|███       | 24/80 [01:21<01:38,  1.76s/it]Chunks:  31%|███▏      | 25/80 [01:40<05:43,  6.24s/it]Chunks:  32%|███▎      | 26/80 [01:41<04:25,  4.92s/it]Chunks:  34%|███▍      | 27/80 [01:43<03:32,  4.01s/it]Chunks:  35%|███▌      | 28/80 [01:44<02:52,  3.31s/it]Chunks:  36%|███▋      | 29/80 [01:46<02:21,  2.77s/it]Chunks:  38%|███▊      | 30/80 [01:47<01:59,  2.39s/it]Chunks:  39%|███▉      | 31/80 [01:49<01:54,  2.34s/it]Chunks:  40%|████      | 32/80 [01:51<01:36,  2.01s/it]Chunks:  41%|████▏     | 33/80 [02:08<05:03,  6.45s/it]Chunks:  42%|████▎     | 34/80 [02:09<03:49,  4.99s/it]Chunks:  44%|████▍     | 35/80 [02:11<03:09,  4.21s/it]Chunks:  45%|████▌     | 36/80 [02:14<02:36,  3.56s/it]Chunks:  46%|████▋     | 37/80 [02:15<02:11,  3.07s/it]Chunks:  48%|████▊     | 38/80 [02:16<01:35,  2.26s/it]Chunks:  49%|████▉     | 39/80 [02:19<01:44,  2.54s/it]Chunks:  50%|█████     | 40/80 [02:20<01:26,  2.16s/it]Chunks:  51%|█████▏    | 41/80 [02:35<03:47,  5.83s/it]Chunks:  52%|█████▎    | 42/80 [02:39<03:20,  5.27s/it]Chunks:  54%|█████▍    | 43/80 [02:40<02:35,  4.19s/it]Chunks:  55%|█████▌    | 44/80 [02:44<02:22,  3.97s/it]Chunks:  57%|█████▊    | 46/80 [02:45<01:25,  2.52s/it]Chunks:  59%|█████▉    | 47/80 [02:50<01:37,  2.96s/it]Chunks:  60%|██████    | 48/80 [02:53<01:40,  3.13s/it]Chunks:  61%|██████▏   | 49/80 [03:03<02:31,  4.90s/it]Chunks:  62%|██████▎   | 50/80 [03:06<02:13,  4.44s/it]Chunks:  64%|██████▍   | 51/80 [03:07<01:40,  3.47s/it]Chunks:  65%|██████▌   | 52/80 [03:09<01:21,  2.90s/it]Chunks:  66%|██████▋   | 53/80 [03:09<00:57,  2.13s/it]Chunks:  68%|██████▊   | 54/80 [03:11<00:53,  2.07s/it]Chunks:  69%|██████▉   | 55/80 [03:16<01:14,  2.96s/it]Chunks:  70%|███████   | 56/80 [03:21<01:23,  3.49s/it]Chunks:  71%|███████▏  | 57/80 [03:26<01:33,  4.07s/it]Chunks:  72%|███████▎  | 58/80 [03:30<01:30,  4.10s/it]Chunks:  74%|███████▍  | 59/80 [03:32<01:10,  3.37s/it]Chunks:  75%|███████▌  | 60/80 [03:34<00:56,  2.81s/it]Chunks:  76%|███████▋  | 61/80 [03:34<00:38,  2.03s/it]Chunks:  78%|███████▊  | 62/80 [03:37<00:45,  2.51s/it]Chunks:  79%|███████▉  | 63/80 [03:43<01:00,  3.57s/it]Chunks:  80%|████████  | 64/80 [03:48<01:04,  4.00s/it]Chunks:  81%|████████▏ | 65/80 [03:51<00:52,  3.51s/it]Chunks:  82%|████████▎ | 66/80 [03:56<00:55,  3.98s/it]Chunks:  84%|████████▍ | 67/80 [03:56<00:37,  2.92s/it]Chunks:  85%|████████▌ | 68/80 [03:58<00:30,  2.55s/it]Chunks:  86%|████████▋ | 69/80 [03:59<00:22,  2.06s/it]Chunks:  88%|████████▊ | 70/80 [04:02<00:24,  2.46s/it]Chunks:  89%|████████▉ | 71/80 [04:10<00:35,  3.90s/it]Chunks:  90%|█████████ | 72/80 [04:14<00:31,  3.97s/it]Chunks:  92%|█████████▎| 74/80 [04:19<00:19,  3.32s/it]Chunks:  94%|█████████▍| 75/80 [04:22<00:15,  3.19s/it]Chunks:  95%|█████████▌| 76/80 [04:29<00:17,  4.35s/it]Chunks:  96%|█████████▋| 77/80 [04:33<00:12,  4.09s/it]Chunks:  98%|█████████▊| 78/80 [04:35<00:07,  3.66s/it]Chunks:  99%|█████████▉| 79/80 [04:36<00:02,  2.81s/it]Chunks: 100%|██████████| 80/80 [04:44<00:00,  4.37s/it]Chunks: 100%|██████████| 80/80 [04:44<00:00,  3.56s/it]
-2026-04-18 05:14:45 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/embeddings_cache/all_nodes_c0ce04563a183f40934f.npz shape=(356315, 1024)
-2026-04-18 05:14:50 | INFO | build_reasoning_graph | Prepared 13307 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-18 05:14:54 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/land_property_timed_mistral/graph_cache/case_star_land_property_hierarchical_enc.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[2026-04-18 05:14:58]   [build] Done.
-[2026-04-18 05:14:58]   [kfold] Starting 5-fold CV ...
-[2026-04-18 05:14:58]   Launching 5 folds in parallel (GPUs 0-4) ...
-[2026-04-18 05:14:58]   Fold 0 → GPU 0  pid=2527178
-[2026-04-18 05:14:58]   Fold 1 → GPU 1  pid=2527180
-[2026-04-18 05:14:58]   Fold 2 → GPU 2  pid=2527183
-[2026-04-18 05:14:58]   Fold 3 → GPU 3  pid=2527186
-[2026-04-18 05:14:58]   Fold 4 → GPU 4  pid=2527189
-[2026-04-18 05:20:25]   Fold 0 done.
-[2026-04-18 05:20:25]   Fold 1 done.
-[2026-04-18 05:20:26]   Fold 2 done.
-[2026-04-18 05:20:26]   Fold 3 done.
-[2026-04-18 05:20:26]   Fold 4 done.
-[2026-04-18 05:20:26]   Aggregating folds ...
-2026-04-18 05:20:30 | INFO | kfold_cv_ablation_hierarchical_enc_land_property_kfold | Aggregate (5/5 folds) | accuracy=0.8133±0.0049  macro_f1=0.7931±0.0074
-[2026-04-18 05:20:31]   [kfold] Done. Summary → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/models/ablation_hierarchical_enc_land_property_kfold/kfold/kfold_summary.json
-[2026-04-18 05:20:31]   [analysis] Running embedding analysis ...
-[2026-04-18 05:20:31]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_land_property_kfold
-[2026-04-18 05:20:31]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_land_property_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=13307  labels=['-1', '1']
-[extract] model loaded — hidden_dim=128  num_layers=3
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/land_property_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_land_property_kfold/ablation_hierarchical_enc_land_property_kfold_embeddings.npz
-[extract] pre_gnn shape=(13307, 1036)  post_gnn shape=(13307, 128)
-[extract] label distribution: {np.int32(0): np.int64(8440), np.int32(1): np.int64(4867)}
-[extract]   domain 'P.Mathiyarasu vs ': 1 cases
-[extract]   domain 'The State Of Tamil Nadu vs ': 1 cases
-[extract]   domain 'TheLandAcquisitionOfficer Cum vs ': 1 cases
-[extract]   domain 'Vasantha vs ': 1 cases
-[extract]   domain '_': 22 cases
-[extract]   domain 'unknown': 13281 cases
-[2026-04-18 05:20:39]   [2/6] t-SNE ...
-[tsne] loaded 13307 cases | pre_gnn=(13307, 1036) post_gnn=(13307, 128)
-[tsne] subsampling 5000 / 13307 cases
-[tsne] running t-SNE on post-GNN (5000 × 128) ...
-[tsne] saved → ablation_hierarchical_enc_land_property_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_land_property_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_land_property_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_land_property_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 05:21:02]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_land_property_kfold  train_n=9314  test_n=1997
-[probe] majority_baseline     test_acc=0.6345  macro_f1=0.3882
-[probe] pre_gnn_raw_features  test_acc=0.7451  macro_f1=0.7341  binary_f1=0.6801  (train_n=9314  test_n=1997)
-[probe] post_gnn_embeddings   test_acc=0.9234  macro_f1=0.9176  binary_f1=0.8957  (train_n=9314  test_n=1997)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.1783
-[probe] results → ablation_hierarchical_enc_land_property_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_land_property_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 05:21:04]   [4/6] Attention / gradient saliency ...
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_land_property_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  defence_lawyer__rev_has_defence_lawyer__case        1.0248
-  petitioner_arguments__rev_has_petitioner_arguments__case  1.0190
-  facts__rev_has_facts__case                          1.0158
-  petitioner_lawyer__rev_has_petitioner_lawyer__case  1.0150
-  petitioner__rev_has_petitioner__case                1.0144
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_land_property_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 05:21:14]   [5/6] Error analysis ...
-[error] 2662 cases (test)  overall accuracy=0.8125
-[error] joined 2662 / 2662 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_land_property_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_land_property_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_land_property_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_land_property_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_land_property_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_land_property_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain : unknown                              0.8124  (n=2654)
-  Highest accuracy domain: TheLandAcquisitionOfficer Cum vs     1.0000  (n=1)
-  Accuracy, 0 statutes : 0.8271213322759714
-  Accuracy, 7-10 statutes: 0.6823529411764706
-[error] done.
-[2026-04-18 05:21:15]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (9314, 128) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.9234
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_land_property_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_land_property_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 05:21:17]   [analysis] Done.
-[2026-04-18 05:21:17] 
-[2026-04-18 05:21:17] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:21:17] BUCKET: motor_accidents_timed_mistral  (4/6)
-[2026-04-18 05:21:17] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:21:17]   [build] Building hierarchical graph ...
-2026-04-18 05:21:29 | INFO | build_reasoning_graph | Loaded 14697 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/processed/cleaned_cases
-2026-04-18 05:22:17 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 296764 texts
-[hierarchical] 33617/296764 texts exceed 1800 chars — chunking and pooling
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:08<10:39,  8.10s/it]Chunks:   4%|▍         | 3/80 [00:08<02:44,  2.14s/it]Chunks:   8%|▊         | 6/80 [00:14<02:36,  2.11s/it]Chunks:  10%|█         | 8/80 [00:14<01:38,  1.37s/it]Chunks:  12%|█▎        | 10/80 [00:15<01:06,  1.05it/s]Chunks:  14%|█▍        | 11/80 [00:21<02:16,  1.98s/it]Chunks:  15%|█▌        | 12/80 [00:21<01:47,  1.58s/it]Chunks:  16%|█▋        | 13/80 [00:24<02:10,  1.95s/it]Chunks:  18%|█▊        | 14/80 [00:25<01:58,  1.80s/it]Chunks:  19%|█▉        | 15/80 [00:26<01:39,  1.54s/it]Chunks:  22%|██▎       | 18/80 [00:27<00:56,  1.10it/s]Chunks:  24%|██▍       | 19/80 [00:27<00:46,  1.31it/s]Chunks:  25%|██▌       | 20/80 [00:31<01:17,  1.29s/it]Chunks:  26%|██▋       | 21/80 [00:32<01:17,  1.31s/it]Chunks:  28%|██▊       | 22/80 [00:33<01:06,  1.15s/it]Chunks:  30%|███       | 24/80 [00:33<00:38,  1.44it/s]Chunks:  31%|███▏      | 25/80 [00:34<00:41,  1.32it/s]Chunks:  32%|███▎      | 26/80 [00:34<00:34,  1.55it/s]Chunks:  34%|███▍      | 27/80 [00:37<01:06,  1.26s/it]Chunks:  35%|███▌      | 28/80 [00:38<01:05,  1.27s/it]Chunks:  36%|███▋      | 29/80 [00:39<00:57,  1.13s/it]Chunks:  39%|███▉      | 31/80 [00:41<00:48,  1.01it/s]Chunks:  40%|████      | 32/80 [00:41<00:41,  1.16it/s]Chunks:  41%|████▏     | 33/80 [00:44<01:02,  1.33s/it]Chunks:  42%|████▎     | 34/80 [00:45<00:58,  1.27s/it]Chunks:  44%|████▍     | 35/80 [00:45<00:48,  1.08s/it]Chunks:  46%|████▋     | 37/80 [00:46<00:28,  1.52it/s]Chunks:  48%|████▊     | 38/80 [00:47<00:35,  1.17it/s]Chunks:  49%|████▉     | 39/80 [00:48<00:31,  1.30it/s]Chunks:  50%|█████     | 40/80 [00:51<00:52,  1.31s/it]Chunks:  51%|█████▏    | 41/80 [00:51<00:47,  1.22s/it]Chunks:  52%|█████▎    | 42/80 [00:52<00:38,  1.01s/it]Chunks:  54%|█████▍    | 43/80 [00:53<00:41,  1.13s/it]Chunks:  55%|█████▌    | 44/80 [01:00<01:35,  2.66s/it]Chunks:  56%|█████▋    | 45/80 [01:04<01:44,  2.98s/it]Chunks:  57%|█████▊    | 46/80 [01:04<01:16,  2.24s/it]Chunks:  59%|█████▉    | 47/80 [01:06<01:14,  2.25s/it]Chunks:  60%|██████    | 48/80 [01:07<00:53,  1.66s/it]Chunks:  61%|██████▏   | 49/80 [01:10<01:08,  2.20s/it]Chunks:  62%|██████▎   | 50/80 [01:11<00:51,  1.72s/it]Chunks:  64%|██████▍   | 51/80 [01:13<00:54,  1.88s/it]Chunks:  65%|██████▌   | 52/80 [01:13<00:38,  1.39s/it]Chunks:  66%|██████▋   | 53/80 [01:14<00:34,  1.28s/it]Chunks:  68%|██████▊   | 54/80 [01:15<00:29,  1.12s/it]Chunks:  69%|██████▉   | 55/80 [01:16<00:25,  1.04s/it]Chunks:  70%|███████   | 56/80 [01:17<00:23,  1.02it/s]Chunks:  71%|███████▏  | 57/80 [01:17<00:20,  1.11it/s]Chunks:  72%|███████▎  | 58/80 [01:19<00:26,  1.22s/it]Chunks:  74%|███████▍  | 59/80 [01:20<00:19,  1.08it/s]Chunks:  75%|███████▌  | 60/80 [01:20<00:15,  1.33it/s]Chunks:  76%|███████▋  | 61/80 [01:21<00:15,  1.20it/s]Chunks:  78%|███████▊  | 62/80 [01:22<00:14,  1.26it/s]Chunks:  79%|███████▉  | 63/80 [01:23<00:14,  1.19it/s]Chunks:  80%|████████  | 64/80 [01:23<00:12,  1.27it/s]Chunks:  81%|████████▏ | 65/80 [01:24<00:12,  1.22it/s]Chunks:  82%|████████▎ | 66/80 [01:26<00:15,  1.10s/it]Chunks:  84%|████████▍ | 67/80 [01:26<00:11,  1.16it/s]Chunks:  85%|████████▌ | 68/80 [01:27<00:09,  1.32it/s]Chunks:  86%|████████▋ | 69/80 [01:28<00:08,  1.26it/s]Chunks:  88%|████████▊ | 70/80 [01:28<00:07,  1.29it/s]Chunks:  89%|████████▉ | 71/80 [01:29<00:07,  1.16it/s]Chunks:  90%|█████████ | 72/80 [01:30<00:05,  1.37it/s]Chunks:  91%|█████████▏| 73/80 [01:31<00:05,  1.21it/s]Chunks:  92%|█████████▎| 74/80 [01:32<00:06,  1.02s/it]Chunks:  94%|█████████▍| 75/80 [01:33<00:04,  1.11it/s]Chunks:  95%|█████████▌| 76/80 [01:33<00:02,  1.41it/s]Chunks:  96%|█████████▋| 77/80 [01:34<00:02,  1.34it/s]Chunks:  98%|█████████▊| 78/80 [01:39<00:04,  2.09s/it]Chunks:  99%|█████████▉| 79/80 [01:40<00:01,  1.59s/it]Chunks: 100%|██████████| 80/80 [01:44<00:00,  2.34s/it]Chunks: 100%|██████████| 80/80 [01:44<00:00,  1.30s/it]
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:22<29:06, 22.11s/it]Chunks:   2%|▎         | 2/80 [00:22<12:09,  9.35s/it]Chunks:   4%|▍         | 3/80 [00:22<06:41,  5.21s/it]Chunks:   6%|▋         | 5/80 [00:23<03:00,  2.40s/it]Chunks:   8%|▊         | 6/80 [00:23<02:09,  1.75s/it]Chunks:   9%|▉         | 7/80 [00:23<01:34,  1.29s/it]Chunks:  10%|█         | 8/80 [00:24<01:27,  1.21s/it]Chunks:  11%|█▏        | 9/80 [00:44<07:48,  6.60s/it]Chunks:  12%|█▎        | 10/80 [00:44<05:40,  4.86s/it]Chunks:  14%|█▍        | 11/80 [00:44<03:57,  3.45s/it]Chunks:  15%|█▌        | 12/80 [00:45<02:54,  2.57s/it]Chunks:  16%|█▋        | 13/80 [00:46<02:13,  1.99s/it]Chunks:  18%|█▊        | 14/80 [00:46<01:37,  1.48s/it]Chunks:  19%|█▉        | 15/80 [00:47<01:36,  1.49s/it]Chunks:  20%|██        | 16/80 [00:52<02:41,  2.52s/it]Chunks:  21%|██▏       | 17/80 [01:09<07:15,  6.92s/it]Chunks:  22%|██▎       | 18/80 [01:11<05:32,  5.36s/it]Chunks:  24%|██▍       | 19/80 [01:12<03:58,  3.90s/it]Chunks:  25%|██▌       | 20/80 [01:12<02:48,  2.81s/it]Chunks:  26%|██▋       | 21/80 [01:12<02:05,  2.12s/it]Chunks:  28%|██▊       | 22/80 [01:14<01:59,  2.05s/it]Chunks:  29%|██▉       | 23/80 [01:15<01:24,  1.49s/it]Chunks:  30%|███       | 24/80 [01:21<02:47,  3.00s/it]Chunks:  31%|███▏      | 25/80 [01:36<06:01,  6.57s/it]Chunks:  32%|███▎      | 26/80 [01:39<04:49,  5.36s/it]Chunks:  34%|███▍      | 27/80 [01:40<03:38,  4.13s/it]Chunks:  36%|███▋      | 29/80 [01:40<01:56,  2.28s/it]Chunks:  38%|███▊      | 30/80 [01:42<01:54,  2.30s/it]Chunks:  39%|███▉      | 31/80 [01:43<01:29,  1.82s/it]Chunks:  40%|████      | 32/80 [01:50<02:36,  3.26s/it]Chunks:  41%|████▏     | 33/80 [02:02<04:32,  5.79s/it]Chunks:  42%|████▎     | 34/80 [02:05<03:49,  4.98s/it]Chunks:  44%|████▍     | 35/80 [02:07<02:59,  3.99s/it]Chunks:  45%|████▌     | 36/80 [02:07<02:07,  2.90s/it]Chunks:  46%|████▋     | 37/80 [02:07<01:33,  2.17s/it]Chunks:  48%|████▊     | 38/80 [02:10<01:31,  2.19s/it]Chunks:  49%|████▉     | 39/80 [02:12<01:26,  2.12s/it]Chunks:  50%|█████     | 40/80 [02:21<02:50,  4.25s/it]Chunks:  51%|█████▏    | 41/80 [02:29<03:34,  5.49s/it]Chunks:  52%|█████▎    | 42/80 [02:33<03:02,  4.81s/it]Chunks:  54%|█████▍    | 43/80 [02:35<02:32,  4.13s/it]Chunks:  56%|█████▋    | 45/80 [02:35<01:19,  2.28s/it]Chunks:  57%|█████▊    | 46/80 [02:39<01:30,  2.67s/it]Chunks:  59%|█████▉    | 47/80 [02:43<01:39,  3.00s/it]Chunks:  60%|██████    | 48/80 [02:50<02:10,  4.07s/it]Chunks:  61%|██████▏   | 49/80 [02:55<02:18,  4.45s/it]Chunks:  62%|██████▎   | 50/80 [02:58<01:58,  3.95s/it]Chunks:  64%|██████▍   | 51/80 [02:58<01:22,  2.84s/it]Chunks:  65%|██████▌   | 52/80 [02:59<01:02,  2.22s/it]Chunks:  66%|██████▋   | 53/80 [03:03<01:11,  2.63s/it]Chunks:  68%|██████▊   | 54/80 [03:03<00:50,  1.93s/it]Chunks:  69%|██████▉   | 55/80 [03:08<01:09,  2.79s/it]Chunks:  70%|███████   | 56/80 [03:15<01:39,  4.13s/it]Chunks:  71%|███████▏  | 57/80 [03:18<01:25,  3.72s/it]Chunks:  72%|███████▎  | 58/80 [03:21<01:17,  3.51s/it]Chunks:  74%|███████▍  | 59/80 [03:21<00:55,  2.64s/it]Chunks:  75%|███████▌  | 60/80 [03:22<00:43,  2.18s/it]Chunks:  76%|███████▋  | 61/80 [03:26<00:47,  2.52s/it]Chunks:  78%|███████▊  | 62/80 [03:26<00:32,  1.83s/it]Chunks:  79%|███████▉  | 63/80 [03:33<00:59,  3.48s/it]Chunks:  80%|████████  | 64/80 [03:39<01:05,  4.10s/it]Chunks:  81%|████████▏ | 65/80 [03:40<00:49,  3.31s/it]Chunks:  82%|████████▎ | 66/80 [03:45<00:52,  3.76s/it]Chunks:  84%|████████▍ | 67/80 [03:45<00:34,  2.69s/it]Chunks:  85%|████████▌ | 68/80 [03:46<00:26,  2.19s/it]Chunks:  86%|████████▋ | 69/80 [03:50<00:29,  2.71s/it]Chunks:  88%|████████▊ | 70/80 [03:51<00:20,  2.10s/it]Chunks:  89%|████████▉ | 71/80 [03:59<00:34,  3.82s/it]Chunks:  90%|█████████ | 72/80 [04:03<00:30,  3.82s/it]Chunks:  91%|█████████▏| 73/80 [04:04<00:22,  3.16s/it]Chunks:  92%|█████████▎| 74/80 [04:06<00:15,  2.63s/it]Chunks:  94%|█████████▍| 75/80 [04:06<00:09,  1.90s/it]Chunks:  95%|█████████▌| 76/80 [04:06<00:05,  1.38s/it]Chunks:  96%|█████████▋| 77/80 [04:19<00:14,  4.90s/it]Chunks:  98%|█████████▊| 78/80 [04:20<00:07,  3.83s/it]Chunks:  99%|█████████▉| 79/80 [04:27<00:04,  4.51s/it]Chunks: 100%|██████████| 80/80 [04:30<00:00,  4.17s/it]Chunks: 100%|██████████| 80/80 [04:30<00:00,  3.38s/it]
-2026-04-18 05:29:47 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/embeddings_cache/all_nodes_e4a6c1ffb10874079cb9.npz shape=(296764, 1024)
-2026-04-18 05:29:49 | INFO | build_reasoning_graph | Prepared 14697 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-18 05:29:53 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/graph_cache/case_star_motor_accidents_hierarchical_enc.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[2026-04-18 05:29:55]   [build] Done.
-[2026-04-18 05:29:55]   [kfold] Starting 5-fold CV ...
-[2026-04-18 05:29:55]   Launching 5 folds in parallel (GPUs 0-4) ...
-[2026-04-18 05:29:55]   Fold 0 → GPU 0  pid=2551333
-[2026-04-18 05:29:55]   Fold 1 → GPU 1  pid=2551335
-[2026-04-18 05:29:55]   Fold 2 → GPU 2  pid=2551338
-[2026-04-18 05:29:55]   Fold 3 → GPU 3  pid=2551341
-[2026-04-18 05:29:55]   Fold 4 → GPU 4  pid=2551344
-[2026-04-18 05:35:02]   Fold 0 done.
-[2026-04-18 05:35:02]   Fold 1 done.
-[2026-04-18 05:35:02]   Fold 2 done.
-[2026-04-18 05:35:03]   Fold 3 done.
-[2026-04-18 05:35:03]   Fold 4 done.
-[2026-04-18 05:35:03]   Aggregating folds ...
-2026-04-18 05:35:06 | INFO | kfold_cv_ablation_hierarchical_enc_motor_accidents_kfold | Aggregate (5/5 folds) | accuracy=0.8287±0.0054  macro_f1=0.7951±0.0039
-[2026-04-18 05:35:07]   [kfold] Done. Summary → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/models/ablation_hierarchical_enc_motor_accidents_kfold/kfold/kfold_summary.json
-[2026-04-18 05:35:07]   [analysis] Running embedding analysis ...
-[2026-04-18 05:35:07]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_motor_accidents_kfold
-[2026-04-18 05:35:07]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_motor_accidents_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=14697  labels=['-1', '1']
-[extract] model loaded — hidden_dim=128  num_layers=3
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_motor_accidents_kfold/ablation_hierarchical_enc_motor_accidents_kfold_embeddings.npz
-[extract] pre_gnn shape=(14697, 1036)  post_gnn shape=(14697, 128)
-[extract] label distribution: {np.int32(0): np.int64(3899), np.int32(1): np.int64(10798)}
-[extract]   domain '_': 6 cases
-[extract]   domain 'unknown': 14691 cases
-[2026-04-18 05:35:15]   [2/6] t-SNE ...
-[tsne] loaded 14697 cases | pre_gnn=(14697, 1036) post_gnn=(14697, 128)
-[tsne] subsampling 5000 / 14697 cases
-[tsne] running t-SNE on post-GNN (5000 × 128) ...
-[tsne] saved → ablation_hierarchical_enc_motor_accidents_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_motor_accidents_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_motor_accidents_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_motor_accidents_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 05:35:38]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_motor_accidents_kfold  train_n=10287  test_n=2205
-[probe] majority_baseline     test_acc=0.7347  macro_f1=0.4235
-[probe] pre_gnn_raw_features  test_acc=0.7655  macro_f1=0.7283  binary_f1=0.8289  (train_n=10287  test_n=2205)
-[probe] post_gnn_embeddings   test_acc=0.8744  macro_f1=0.8525  binary_f1=0.9093  (train_n=10287  test_n=2205)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.1088
-[probe] results → ablation_hierarchical_enc_motor_accidents_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_motor_accidents_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 05:35:40]   [4/6] Attention / gradient saliency ...
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_motor_accidents_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  arguments__rev_has_arguments__case                  1.0161
-  respondent_arguments__rev_has_respondent_arguments__case  1.0150
-  lawyer__rev_has_lawyer__case                        1.0142
-  court__rev_heard_in__case                           1.0130
-  other_lawyer_arguments__rev_has_other_lawyer_arguments__case  1.0129
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_motor_accidents_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 05:35:50]   [5/6] Error analysis ...
-[error] 2940 cases (test)  overall accuracy=0.8245
-[error] joined 2940 / 2940 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_motor_accidents_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_motor_accidents_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_motor_accidents_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_motor_accidents_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_motor_accidents_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_motor_accidents_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain :                                      0.0000  (n=1)
-  Highest accuracy domain: unknown                              0.8248  (n=2939)
-  Accuracy, 0 statutes : 0.8214670981661273
-  Accuracy, 7-10 statutes: 0.7916666666666666
-[error] done.
-[2026-04-18 05:35:51]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (10287, 128) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.8744
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_motor_accidents_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_motor_accidents_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 05:35:52]   [analysis] Done.
-[2026-04-18 05:35:52] 
-[2026-04-18 05:35:52] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:35:52] BUCKET: sexual_offences_timed_mistral  (5/6)
-[2026-04-18 05:35:52] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:35:53]   [build] Building hierarchical graph ...
-2026-04-18 05:36:03 | INFO | build_reasoning_graph | Loaded 13920 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/processed/cleaned_cases
-2026-04-18 05:36:35 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 224168 texts
-[hierarchical] 18370/224168 texts exceed 1800 chars — chunking and pooling
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:06<08:43,  6.63s/it]Chunks:   4%|▍         | 3/80 [00:06<02:16,  1.77s/it]Chunks:   5%|▌         | 4/80 [00:11<03:34,  2.82s/it]Chunks:   8%|▊         | 6/80 [00:11<01:47,  1.45s/it]Chunks:   9%|▉         | 7/80 [00:16<02:49,  2.32s/it]Chunks:  10%|█         | 8/80 [00:16<02:04,  1.73s/it]Chunks:  12%|█▎        | 10/80 [00:17<01:23,  1.19s/it]Chunks:  14%|█▍        | 11/80 [00:19<01:27,  1.27s/it]Chunks:  15%|█▌        | 12/80 [00:19<01:17,  1.14s/it]Chunks:  16%|█▋        | 13/80 [00:23<01:54,  1.71s/it]Chunks:  18%|█▊        | 14/80 [00:24<01:40,  1.52s/it]Chunks:  19%|█▉        | 15/80 [00:24<01:13,  1.13s/it]Chunks:  20%|██        | 16/80 [00:24<01:00,  1.05it/s]Chunks:  21%|██▏       | 17/80 [00:27<01:30,  1.44s/it]Chunks:  22%|██▎       | 18/80 [00:28<01:18,  1.26s/it]Chunks:  24%|██▍       | 19/80 [00:29<01:13,  1.21s/it]Chunks:  25%|██▌       | 20/80 [00:29<00:55,  1.08it/s]Chunks:  26%|██▋       | 21/80 [00:29<00:42,  1.38it/s]Chunks:  28%|██▊       | 22/80 [00:30<00:41,  1.40it/s]Chunks:  29%|██▉       | 23/80 [00:31<00:42,  1.35it/s]Chunks:  30%|███       | 24/80 [00:31<00:33,  1.67it/s]Chunks:  31%|███▏      | 25/80 [00:32<00:38,  1.44it/s]Chunks:  32%|███▎      | 26/80 [00:33<00:43,  1.24it/s]Chunks:  34%|███▍      | 27/80 [00:34<00:44,  1.20it/s]Chunks:  35%|███▌      | 28/80 [00:34<00:36,  1.44it/s]Chunks:  36%|███▋      | 29/80 [00:35<00:27,  1.84it/s]Chunks:  38%|███▊      | 30/80 [00:35<00:29,  1.71it/s]Chunks:  39%|███▉      | 31/80 [00:36<00:30,  1.59it/s]Chunks:  40%|████      | 32/80 [00:36<00:26,  1.84it/s]Chunks:  41%|████▏     | 33/80 [00:37<00:30,  1.53it/s]Chunks:  42%|████▎     | 34/80 [00:38<00:33,  1.35it/s]Chunks:  44%|████▍     | 35/80 [00:39<00:37,  1.20it/s]Chunks:  45%|████▌     | 36/80 [00:40<00:30,  1.42it/s]Chunks:  48%|████▊     | 38/80 [00:40<00:23,  1.76it/s]Chunks:  49%|████▉     | 39/80 [00:42<00:37,  1.08it/s]Chunks:  50%|█████     | 40/80 [00:43<00:37,  1.08it/s]Chunks:  51%|█████▏    | 41/80 [00:44<00:37,  1.04it/s]Chunks:  52%|█████▎    | 42/80 [00:45<00:29,  1.27it/s]Chunks:  55%|█████▌    | 44/80 [00:46<00:24,  1.47it/s]Chunks:  57%|█████▊    | 46/80 [00:47<00:19,  1.70it/s]Chunks:  59%|█████▉    | 47/80 [00:55<01:11,  2.18s/it]Chunks:  60%|██████    | 48/80 [00:58<01:20,  2.51s/it]Chunks:  61%|██████▏   | 49/80 [00:59<01:01,  1.99s/it]Chunks:  62%|██████▎   | 50/80 [00:59<00:44,  1.49s/it]Chunks:  64%|██████▍   | 51/80 [00:59<00:33,  1.15s/it]Chunks:  65%|██████▌   | 52/80 [01:00<00:29,  1.07s/it]Chunks:  66%|██████▋   | 53/80 [01:00<00:22,  1.21it/s]Chunks:  68%|██████▊   | 54/80 [01:01<00:23,  1.13it/s]Chunks:  69%|██████▉   | 55/80 [01:03<00:32,  1.28s/it]Chunks:  70%|███████   | 56/80 [01:04<00:25,  1.05s/it]Chunks:  72%|███████▎  | 58/80 [01:04<00:14,  1.57it/s]Chunks:  74%|███████▍  | 59/80 [01:05<00:14,  1.42it/s]Chunks:  75%|███████▌  | 60/80 [01:05<00:11,  1.72it/s]Chunks:  76%|███████▋  | 61/80 [01:06<00:13,  1.39it/s]Chunks:  78%|███████▊  | 62/80 [01:09<00:20,  1.13s/it]Chunks:  80%|████████  | 64/80 [01:09<00:11,  1.35it/s]Chunks:  82%|████████▎ | 66/80 [01:09<00:07,  1.99it/s]Chunks:  84%|████████▍ | 67/80 [01:10<00:07,  1.71it/s]Chunks:  85%|████████▌ | 68/80 [01:11<00:06,  1.92it/s]Chunks:  86%|████████▋ | 69/80 [01:12<00:07,  1.54it/s]Chunks:  88%|████████▊ | 70/80 [01:14<00:10,  1.01s/it]Chunks:  89%|████████▉ | 71/80 [01:14<00:07,  1.28it/s]Chunks:  90%|█████████ | 72/80 [01:14<00:05,  1.47it/s]Chunks:  92%|█████████▎| 74/80 [01:15<00:02,  2.23it/s]Chunks:  94%|█████████▍| 75/80 [01:15<00:02,  1.84it/s]Chunks:  95%|█████████▌| 76/80 [01:16<00:02,  1.95it/s]Chunks:  96%|█████████▋| 77/80 [01:19<00:03,  1.20s/it]Chunks:  98%|█████████▊| 78/80 [01:19<00:01,  1.07it/s]Chunks:  99%|█████████▉| 79/80 [01:24<00:02,  2.07s/it]Chunks: 100%|██████████| 80/80 [01:24<00:00,  1.06s/it]
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [00:10<14:16, 10.84s/it]Chunks:   4%|▍         | 3/80 [00:10<03:39,  2.85s/it]Chunks:   6%|▋         | 5/80 [00:11<01:49,  1.47s/it]Chunks:   9%|▉         | 7/80 [00:11<01:05,  1.12it/s]Chunks:  11%|█▏        | 9/80 [00:21<02:57,  2.50s/it]Chunks:  12%|█▎        | 10/80 [00:21<02:19,  1.99s/it]Chunks:  14%|█▍        | 11/80 [00:22<01:47,  1.56s/it]Chunks:  15%|█▌        | 12/80 [00:22<01:24,  1.24s/it]Chunks:  18%|█▊        | 14/80 [00:22<00:50,  1.29it/s]Chunks:  19%|█▉        | 15/80 [00:24<01:03,  1.03it/s]Chunks:  20%|██        | 16/80 [00:24<00:55,  1.15it/s]Chunks:  21%|██▏       | 17/80 [00:32<02:52,  2.74s/it]Chunks:  22%|██▎       | 18/80 [00:33<02:15,  2.19s/it]Chunks:  24%|██▍       | 19/80 [00:33<01:39,  1.64s/it]Chunks:  25%|██▌       | 20/80 [00:34<01:17,  1.28s/it]Chunks:  28%|██▊       | 22/80 [00:34<00:51,  1.12it/s]Chunks:  29%|██▉       | 23/80 [00:37<01:08,  1.21s/it]Chunks:  30%|███       | 24/80 [00:37<01:01,  1.10s/it]Chunks:  31%|███▏      | 25/80 [00:45<02:33,  2.80s/it]Chunks:  32%|███▎      | 26/80 [00:45<01:55,  2.14s/it]Chunks:  34%|███▍      | 27/80 [00:45<01:23,  1.57s/it]Chunks:  35%|███▌      | 28/80 [00:46<00:59,  1.15s/it]Chunks:  36%|███▋      | 29/80 [00:46<00:50,  1.02it/s]Chunks:  38%|███▊      | 30/80 [00:46<00:39,  1.25it/s]Chunks:  39%|███▉      | 31/80 [00:49<01:08,  1.40s/it]Chunks:  40%|████      | 32/80 [00:50<01:01,  1.28s/it]Chunks:  41%|████▏     | 33/80 [00:57<02:14,  2.87s/it]Chunks:  42%|████▎     | 34/80 [00:57<01:36,  2.10s/it]Chunks:  44%|████▍     | 35/80 [00:58<01:11,  1.58s/it]Chunks:  46%|████▋     | 37/80 [00:58<00:44,  1.03s/it]Chunks:  48%|████▊     | 38/80 [00:59<00:44,  1.05s/it]Chunks:  49%|████▉     | 39/80 [01:03<01:07,  1.64s/it]Chunks:  50%|█████     | 40/80 [01:04<01:05,  1.63s/it]Chunks:  51%|█████▏    | 41/80 [01:09<01:31,  2.36s/it]Chunks:  52%|█████▎    | 42/80 [01:09<01:07,  1.77s/it]Chunks:  54%|█████▍    | 43/80 [01:10<00:54,  1.48s/it]Chunks:  55%|█████▌    | 44/80 [01:10<00:45,  1.25s/it]Chunks:  56%|█████▋    | 45/80 [01:10<00:32,  1.08it/s]Chunks:  57%|█████▊    | 46/80 [01:12<00:38,  1.14s/it]Chunks:  59%|█████▉    | 47/80 [01:16<01:05,  1.98s/it]Chunks:  60%|██████    | 48/80 [01:18<00:59,  1.85s/it]Chunks:  61%|██████▏   | 49/80 [01:22<01:19,  2.55s/it]Chunks:  62%|██████▎   | 50/80 [01:22<00:54,  1.83s/it]Chunks:  64%|██████▍   | 51/80 [01:22<00:40,  1.41s/it]Chunks:  65%|██████▌   | 52/80 [01:23<00:32,  1.17s/it]Chunks:  66%|██████▋   | 53/80 [01:23<00:22,  1.18it/s]Chunks:  68%|██████▊   | 54/80 [01:25<00:27,  1.06s/it]Chunks:  69%|██████▉   | 55/80 [01:29<00:50,  2.02s/it]Chunks:  70%|███████   | 56/80 [01:30<00:44,  1.84s/it]Chunks:  71%|███████▏  | 57/80 [01:34<00:53,  2.35s/it]Chunks:  74%|███████▍  | 59/80 [01:34<00:28,  1.34s/it]Chunks:  75%|███████▌  | 60/80 [01:35<00:23,  1.19s/it]Chunks:  78%|███████▊  | 62/80 [01:37<00:19,  1.06s/it]Chunks:  79%|███████▉  | 63/80 [01:41<00:31,  1.86s/it]Chunks:  80%|████████  | 64/80 [01:44<00:34,  2.13s/it]Chunks:  81%|████████▏ | 65/80 [01:46<00:29,  1.95s/it]Chunks:  84%|████████▍ | 67/80 [01:46<00:16,  1.29s/it]Chunks:  85%|████████▌ | 68/80 [01:47<00:12,  1.08s/it]Chunks:  86%|████████▋ | 69/80 [01:47<00:09,  1.19it/s]Chunks:  88%|████████▊ | 70/80 [01:49<00:11,  1.15s/it]Chunks:  89%|████████▉ | 71/80 [01:54<00:19,  2.19s/it]Chunks:  90%|█████████ | 72/80 [01:57<00:18,  2.35s/it]Chunks:  91%|█████████▏| 73/80 [01:57<00:12,  1.81s/it]Chunks:  92%|█████████▎| 74/80 [01:57<00:08,  1.35s/it]Chunks:  96%|█████████▋| 77/80 [01:58<00:01,  1.50it/s]Chunks:  98%|█████████▊| 78/80 [02:00<00:01,  1.11it/s]Chunks:  99%|█████████▉| 79/80 [02:08<00:02,  2.54s/it]Chunks: 100%|██████████| 80/80 [02:09<00:00,  2.26s/it]Chunks: 100%|██████████| 80/80 [02:09<00:00,  1.62s/it]
-2026-04-18 05:41:25 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/embeddings_cache/all_nodes_0c33a3a3fabdb632e81c.npz shape=(224168, 1024)
-2026-04-18 05:41:27 | INFO | build_reasoning_graph | Prepared 13920 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-18 05:41:30 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/sexual_offences_timed_mistral/graph_cache/case_star_sexual_offences_hierarchical_enc.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[2026-04-18 05:41:33]   [build] Done.
-[2026-04-18 05:41:33]   [kfold] Starting 5-fold CV ...
-[2026-04-18 05:41:33]   Launching 5 folds in parallel (GPUs 0-4) ...
-[2026-04-18 05:41:33]   Fold 0 → GPU 0  pid=2572089
-[2026-04-18 05:41:33]   Fold 1 → GPU 1  pid=2572091
-[2026-04-18 05:41:33]   Fold 2 → GPU 2  pid=2572094
-[2026-04-18 05:41:33]   Fold 3 → GPU 3  pid=2572097
-[2026-04-18 05:41:33]   Fold 4 → GPU 4  pid=2572100
-[2026-04-18 05:51:17]   Fold 0 done.
-[2026-04-18 05:51:17]   Fold 1 done.
-[2026-04-18 05:51:24]   Fold 2 done.
-[2026-04-18 05:51:25]   Fold 3 done.
-[2026-04-18 05:51:25]   Fold 4 done.
-[2026-04-18 05:51:25]   Aggregating folds ...
-2026-04-18 05:51:28 | INFO | kfold_cv_ablation_hierarchical_enc_sexual_offences_kfold | Aggregate (5/5 folds) | accuracy=0.7779±0.0064  macro_f1=0.7559±0.0063
-[2026-04-18 05:51:29]   [kfold] Done. Summary → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/models/ablation_hierarchical_enc_sexual_offences_kfold/kfold/kfold_summary.json
-[2026-04-18 05:51:29]   [analysis] Running embedding analysis ...
-[2026-04-18 05:51:29]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_sexual_offences_kfold
-[2026-04-18 05:51:29]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_sexual_offences_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=13920  labels=['-1', '1']
-[extract] model loaded — hidden_dim=128  num_layers=3
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/sexual_offences_timed_mistral/embedding_analysis/hier_ablation_hierarchical_enc_sexual_offences_kfold/ablation_hierarchical_enc_sexual_offences_kfold_embeddings.npz
-[extract] pre_gnn shape=(13920, 1036)  post_gnn shape=(13920, 128)
-[extract] label distribution: {np.int32(0): np.int64(4768), np.int32(1): np.int64(9152)}
-[extract]   domain '_': 11 cases
-[extract]   domain 'unknown': 13909 cases
-[2026-04-18 05:51:36]   [2/6] t-SNE ...
-[tsne] loaded 13920 cases | pre_gnn=(13920, 1036) post_gnn=(13920, 128)
-[tsne] subsampling 5000 / 13920 cases
-[tsne] running t-SNE on post-GNN (5000 × 128) ...
-[tsne] saved → ablation_hierarchical_enc_sexual_offences_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_sexual_offences_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_sexual_offences_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_sexual_offences_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 05:52:00]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_sexual_offences_kfold  train_n=9744  test_n=2088
-[probe] majority_baseline     test_acc=0.6576  macro_f1=0.3967
-[probe] pre_gnn_raw_features  test_acc=0.7222  macro_f1=0.7020  binary_f1=0.7796  (train_n=9744  test_n=2088)
-[probe] post_gnn_embeddings   test_acc=0.8683  macro_f1=0.8581  binary_f1=0.8961  (train_n=9744  test_n=2088)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.1461
-[probe] results → ablation_hierarchical_enc_sexual_offences_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_sexual_offences_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 05:52:02]   [4/6] Attention / gradient saliency ...
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_sexual_offences_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  defence_lawyer__rev_has_defence_lawyer__case        1.0238
-  petitioner_lawyer__rev_has_petitioner_lawyer__case  1.0208
-  other_lawyer_arguments__rev_has_other_lawyer_arguments__case  1.0168
-  lawyer__rev_has_lawyer__case                        1.0163
-  respondent_arguments__rev_has_respondent_arguments__case  1.0108
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_sexual_offences_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 05:52:10]   [5/6] Error analysis ...
-[error] 2784 cases (test)  overall accuracy=0.7863
-[error] joined 2784 / 2784 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_sexual_offences_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_sexual_offences_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_sexual_offences_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_sexual_offences_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_sexual_offences_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_sexual_offences_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain :                                      0.6667  (n=3)
-  Highest accuracy domain: unknown                              0.7864  (n=2781)
-  Accuracy, 0 statutes : 0.7847133757961784
-  Accuracy, 7-10 statutes: 0.6551724137931034
-[error] done.
-[2026-04-18 05:52:11]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (9744, 128) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.8683
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_sexual_offences_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_sexual_offences_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 05:52:13]   [analysis] Done.
-[2026-04-18 05:52:13] 
-[2026-04-18 05:52:13] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:52:13] BUCKET: cross_bucket_total_dataset  (6/6)
-[2026-04-18 05:52:13] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[2026-04-18 05:52:13]   [build] Building hierarchical graph ...
-2026-04-18 05:52:45 | INFO | build_reasoning_graph | Loaded 70460 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/processed/cleaned_cases
-2026-04-18 05:55:44 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 1328245 texts
-[hierarchical] 119888/1328245 texts exceed 1800 chars — chunking and pooling
-Chunks:   0%|          | 0/242 [00:00<?, ?it/s]Chunks:   0%|          | 1/242 [00:33<2:14:50, 33.57s/it]Chunks:   1%|          | 2/242 [00:33<55:39, 13.91s/it]  Chunks:   1%|          | 3/242 [00:35<32:31,  8.16s/it]Chunks:   2%|▏         | 4/242 [00:35<19:53,  5.01s/it]Chunks:   2%|▏         | 5/242 [00:36<14:30,  3.67s/it]Chunks:   2%|▏         | 6/242 [00:37<11:13,  2.85s/it]Chunks:   3%|▎         | 7/242 [00:40<11:03,  2.82s/it]Chunks:   3%|▎         | 8/242 [00:44<12:42,  3.26s/it]Chunks:   4%|▎         | 9/242 [00:46<10:26,  2.69s/it]Chunks:   4%|▍         | 10/242 [00:46<08:00,  2.07s/it]Chunks:   5%|▍         | 11/242 [00:47<06:13,  1.62s/it]Chunks:   5%|▍         | 12/242 [00:50<07:41,  2.01s/it]Chunks:   5%|▌         | 13/242 [00:54<10:04,  2.64s/it]Chunks:   6%|▌         | 14/242 [00:55<08:40,  2.28s/it]Chunks:   6%|▌         | 15/242 [00:56<06:44,  1.78s/it]Chunks:   7%|▋         | 16/242 [00:57<05:43,  1.52s/it]Chunks:   7%|▋         | 17/242 [01:00<07:34,  2.02s/it]Chunks:   7%|▋         | 18/242 [01:04<09:35,  2.57s/it]Chunks:   8%|▊         | 19/242 [01:06<08:32,  2.30s/it]Chunks:   8%|▊         | 20/242 [01:06<06:26,  1.74s/it]Chunks:   9%|▊         | 21/242 [01:07<05:50,  1.59s/it]Chunks:   9%|▉         | 22/242 [01:10<07:26,  2.03s/it]Chunks:  10%|▉         | 23/242 [01:14<08:53,  2.44s/it]Chunks:  10%|█         | 25/242 [01:16<06:12,  1.71s/it]Chunks:  11%|█         | 26/242 [01:16<05:20,  1.48s/it]Chunks:  11%|█         | 27/242 [01:17<04:52,  1.36s/it]Chunks:  12%|█▏        | 28/242 [01:20<06:28,  1.82s/it]Chunks:  12%|█▏        | 29/242 [01:21<04:57,  1.40s/it]Chunks:  12%|█▏        | 30/242 [01:24<06:35,  1.86s/it]Chunks:  13%|█▎        | 31/242 [01:24<04:48,  1.37s/it]Chunks:  13%|█▎        | 32/242 [01:25<04:54,  1.40s/it]Chunks:  14%|█▎        | 33/242 [01:25<03:32,  1.02s/it]Chunks:  14%|█▍        | 34/242 [01:26<03:27,  1.00it/s]Chunks:  14%|█▍        | 35/242 [01:28<03:35,  1.04s/it]Chunks:  15%|█▍        | 36/242 [01:30<05:18,  1.55s/it]Chunks:  15%|█▌        | 37/242 [01:31<04:09,  1.22s/it]Chunks:  16%|█▌        | 38/242 [01:33<05:34,  1.64s/it]Chunks:  16%|█▌        | 39/242 [01:34<04:13,  1.25s/it]Chunks:  17%|█▋        | 40/242 [01:36<05:01,  1.49s/it]Chunks:  17%|█▋        | 41/242 [01:48<15:27,  4.61s/it]Chunks:  17%|█▋        | 42/242 [01:57<19:53,  5.97s/it]Chunks:  18%|█▊        | 43/242 [01:57<14:17,  4.31s/it]Chunks:  18%|█▊        | 44/242 [01:58<10:46,  3.27s/it]Chunks:  19%|█▊        | 45/242 [01:59<08:38,  2.63s/it]Chunks:  19%|█▉        | 46/242 [02:04<10:18,  3.16s/it]Chunks:  19%|█▉        | 47/242 [02:04<07:38,  2.35s/it]Chunks:  20%|█▉        | 48/242 [02:07<08:12,  2.54s/it]Chunks:  21%|██        | 50/242 [02:08<05:06,  1.60s/it]Chunks:  21%|██        | 51/242 [02:09<04:51,  1.53s/it]Chunks:  21%|██▏       | 52/242 [02:10<04:00,  1.26s/it]Chunks:  22%|██▏       | 53/242 [02:10<03:04,  1.02it/s]Chunks:  22%|██▏       | 54/242 [02:14<05:25,  1.73s/it]Chunks:  23%|██▎       | 55/242 [02:14<04:13,  1.36s/it]Chunks:  23%|██▎       | 56/242 [02:17<05:35,  1.80s/it]Chunks:  24%|██▎       | 57/242 [02:17<04:03,  1.32s/it]Chunks:  24%|██▍       | 58/242 [02:18<03:34,  1.17s/it]Chunks:  24%|██▍       | 59/242 [02:19<03:44,  1.23s/it]Chunks:  25%|██▍       | 60/242 [02:20<03:14,  1.07s/it]Chunks:  25%|██▌       | 61/242 [02:20<02:21,  1.28it/s]Chunks:  26%|██▌       | 62/242 [02:24<05:01,  1.67s/it]Chunks:  26%|██▌       | 63/242 [02:25<04:03,  1.36s/it]Chunks:  26%|██▋       | 64/242 [02:27<05:13,  1.76s/it]Chunks:  27%|██▋       | 66/242 [02:28<03:26,  1.17s/it]Chunks:  28%|██▊       | 67/242 [02:30<03:32,  1.22s/it]Chunks:  28%|██▊       | 68/242 [02:30<03:06,  1.07s/it]Chunks:  29%|██▊       | 69/242 [02:30<02:26,  1.18it/s]Chunks:  29%|██▉       | 70/242 [02:34<04:44,  1.65s/it]Chunks:  29%|██▉       | 71/242 [02:35<03:47,  1.33s/it]Chunks:  30%|██▉       | 72/242 [02:37<04:42,  1.66s/it]Chunks:  30%|███       | 73/242 [02:37<03:26,  1.22s/it]Chunks:  31%|███       | 74/242 [02:38<03:13,  1.15s/it]Chunks:  31%|███       | 75/242 [02:40<03:25,  1.23s/it]Chunks:  31%|███▏      | 76/242 [02:40<02:58,  1.08s/it]Chunks:  32%|███▏      | 77/242 [02:41<02:18,  1.19it/s]Chunks:  32%|███▏      | 78/242 [02:44<04:28,  1.64s/it]Chunks:  33%|███▎      | 79/242 [02:45<03:40,  1.35s/it]Chunks:  33%|███▎      | 80/242 [02:47<04:33,  1.69s/it]Chunks:  34%|███▍      | 82/242 [02:48<03:02,  1.14s/it]Chunks:  34%|███▍      | 83/242 [02:50<03:18,  1.25s/it]Chunks:  35%|███▍      | 84/242 [02:51<02:52,  1.09s/it]Chunks:  35%|███▌      | 85/242 [02:51<02:30,  1.04it/s]Chunks:  36%|███▌      | 86/242 [02:55<04:09,  1.60s/it]Chunks:  36%|███▌      | 87/242 [02:55<03:25,  1.32s/it]Chunks:  36%|███▋      | 88/242 [02:57<04:08,  1.61s/it]Chunks:  37%|███▋      | 90/242 [02:59<02:54,  1.15s/it]Chunks:  38%|███▊      | 91/242 [03:00<03:10,  1.26s/it]Chunks:  38%|███▊      | 92/242 [03:01<02:41,  1.08s/it]Chunks:  38%|███▊      | 93/242 [03:02<02:41,  1.08s/it]Chunks:  39%|███▉      | 94/242 [03:05<03:46,  1.53s/it]Chunks:  39%|███▉      | 95/242 [03:05<03:14,  1.32s/it]Chunks:  40%|███▉      | 96/242 [03:07<03:41,  1.52s/it]Chunks:  40%|████      | 97/242 [03:08<02:42,  1.12s/it]Chunks:  40%|████      | 98/242 [03:09<02:45,  1.15s/it]Chunks:  41%|████      | 99/242 [03:10<03:05,  1.30s/it]Chunks:  41%|████▏     | 100/242 [03:11<02:32,  1.07s/it]Chunks:  42%|████▏     | 101/242 [03:12<02:35,  1.10s/it]Chunks:  42%|████▏     | 102/242 [03:15<03:32,  1.52s/it]Chunks:  43%|████▎     | 103/242 [03:15<03:03,  1.32s/it]Chunks:  43%|████▎     | 104/242 [03:17<03:23,  1.47s/it]Chunks:  43%|████▎     | 105/242 [03:18<02:30,  1.10s/it]Chunks:  44%|████▍     | 106/242 [03:24<06:25,  2.83s/it]Chunks:  44%|████▍     | 107/242 [03:25<05:07,  2.28s/it]Chunks:  45%|████▍     | 108/242 [03:27<04:42,  2.11s/it]Chunks:  45%|████▌     | 109/242 [03:27<03:28,  1.56s/it]Chunks:  45%|████▌     | 110/242 [03:31<04:40,  2.13s/it]Chunks:  46%|████▌     | 111/242 [03:34<05:29,  2.52s/it]Chunks:  46%|████▋     | 112/242 [03:36<04:38,  2.14s/it]Chunks:  47%|████▋     | 113/242 [03:37<04:12,  1.95s/it]Chunks:  47%|████▋     | 114/242 [03:37<03:06,  1.46s/it]Chunks:  48%|████▊     | 115/242 [03:39<03:10,  1.50s/it]Chunks:  48%|████▊     | 116/242 [03:41<03:25,  1.63s/it]Chunks:  48%|████▊     | 117/242 [03:42<03:22,  1.62s/it]Chunks:  49%|████▉     | 118/242 [03:44<03:30,  1.70s/it]Chunks:  49%|████▉     | 119/242 [03:45<02:34,  1.26s/it]Chunks:  50%|████▉     | 120/242 [03:46<02:25,  1.19s/it]Chunks:  50%|█████     | 121/242 [03:47<02:29,  1.24s/it]Chunks:  50%|█████     | 122/242 [03:48<02:06,  1.05s/it]Chunks:  51%|█████     | 123/242 [03:50<02:38,  1.33s/it]Chunks:  51%|█████     | 124/242 [03:51<02:40,  1.36s/it]Chunks:  52%|█████▏    | 125/242 [03:53<02:51,  1.47s/it]Chunks:  52%|█████▏    | 126/242 [03:55<03:11,  1.65s/it]Chunks:  53%|█████▎    | 128/242 [03:56<02:18,  1.22s/it]Chunks:  53%|█████▎    | 129/242 [03:57<02:02,  1.08s/it]Chunks:  54%|█████▎    | 130/242 [03:58<01:55,  1.04s/it]Chunks:  54%|█████▍    | 131/242 [04:00<02:34,  1.40s/it]Chunks:  55%|█████▍    | 132/242 [04:01<02:21,  1.29s/it]Chunks:  55%|█████▍    | 133/242 [04:03<02:31,  1.39s/it]Chunks:  55%|█████▌    | 134/242 [04:05<02:47,  1.55s/it]Chunks:  56%|█████▌    | 135/242 [04:05<02:02,  1.15s/it]Chunks:  56%|█████▌    | 136/242 [04:06<02:09,  1.22s/it]Chunks:  57%|█████▋    | 137/242 [04:07<01:48,  1.04s/it]Chunks:  57%|█████▋    | 138/242 [04:08<01:38,  1.06it/s]Chunks:  57%|█████▋    | 139/242 [04:10<02:25,  1.41s/it]Chunks:  58%|█████▊    | 140/242 [04:11<02:05,  1.23s/it]Chunks:  58%|█████▊    | 141/242 [04:28<10:15,  6.09s/it]Chunks:  59%|█████▊    | 142/242 [04:33<09:09,  5.50s/it]Chunks:  59%|█████▉    | 143/242 [04:33<06:35,  4.00s/it]Chunks:  60%|█████▉    | 144/242 [04:38<06:46,  4.15s/it]Chunks:  60%|█████▉    | 145/242 [04:38<04:56,  3.06s/it]Chunks:  60%|██████    | 146/242 [04:38<03:33,  2.23s/it]Chunks:  61%|██████    | 147/242 [04:39<02:38,  1.67s/it]Chunks:  61%|██████    | 148/242 [04:41<02:52,  1.84s/it]Chunks:  62%|██████▏   | 149/242 [04:43<02:47,  1.80s/it]Chunks:  62%|██████▏   | 150/242 [04:59<09:31,  6.21s/it]Chunks:  62%|██████▏   | 151/242 [05:03<08:07,  5.36s/it]Chunks:  63%|██████▎   | 152/242 [05:08<07:59,  5.32s/it]Chunks:  63%|██████▎   | 153/242 [05:09<06:14,  4.20s/it]Chunks:  64%|██████▎   | 154/242 [05:09<04:22,  2.99s/it]Chunks:  64%|██████▍   | 155/242 [05:10<03:23,  2.34s/it]Chunks:  64%|██████▍   | 156/242 [05:16<04:43,  3.30s/it]Chunks:  65%|██████▍   | 157/242 [05:21<05:34,  3.94s/it]Chunks:  65%|██████▌   | 158/242 [05:24<04:50,  3.46s/it]Chunks:  66%|██████▌   | 159/242 [05:26<04:21,  3.15s/it]Chunks:  66%|██████▌   | 160/242 [05:31<05:05,  3.73s/it]Chunks:  67%|██████▋   | 161/242 [05:34<04:29,  3.33s/it]Chunks:  67%|██████▋   | 162/242 [05:36<04:09,  3.12s/it]Chunks:  67%|██████▋   | 163/242 [05:39<03:52,  2.95s/it]Chunks:  68%|██████▊   | 165/242 [05:39<02:05,  1.63s/it]Chunks:  69%|██████▊   | 166/242 [05:39<01:40,  1.33s/it]Chunks:  69%|██████▉   | 167/242 [05:41<01:51,  1.49s/it]Chunks:  69%|██████▉   | 168/242 [05:43<02:04,  1.68s/it]Chunks:  70%|██████▉   | 169/242 [05:45<01:52,  1.54s/it]Chunks:  70%|███████   | 170/242 [05:47<01:58,  1.65s/it]Chunks:  71%|███████   | 171/242 [05:49<02:13,  1.87s/it]Chunks:  71%|███████   | 172/242 [05:49<01:36,  1.37s/it]Chunks:  72%|███████▏  | 174/242 [05:50<00:58,  1.16it/s]Chunks:  72%|███████▏  | 175/242 [05:52<01:15,  1.12s/it]Chunks:  73%|███████▎  | 176/242 [05:54<01:29,  1.36s/it]Chunks:  73%|███████▎  | 177/242 [05:55<01:28,  1.36s/it]Chunks:  74%|███████▎  | 178/242 [05:57<01:38,  1.54s/it]Chunks:  74%|███████▍  | 179/242 [05:59<01:51,  1.77s/it]Chunks:  75%|███████▍  | 181/242 [05:59<01:01,  1.01s/it]Chunks:  75%|███████▌  | 182/242 [06:00<00:54,  1.10it/s]Chunks:  76%|███████▌  | 183/242 [06:02<01:04,  1.09s/it]Chunks:  76%|███████▌  | 184/242 [06:04<01:20,  1.38s/it]Chunks:  76%|███████▋  | 185/242 [06:05<01:19,  1.40s/it]Chunks:  77%|███████▋  | 186/242 [06:08<01:32,  1.65s/it]Chunks:  77%|███████▋  | 187/242 [06:10<01:36,  1.76s/it]Chunks:  78%|███████▊  | 189/242 [06:10<00:53,  1.02s/it]Chunks:  79%|███████▊  | 190/242 [06:10<00:44,  1.17it/s]Chunks:  79%|███████▉  | 191/242 [06:12<00:52,  1.03s/it]Chunks:  79%|███████▉  | 192/242 [06:14<01:08,  1.37s/it]Chunks:  80%|███████▉  | 193/242 [06:15<01:06,  1.36s/it]Chunks:  80%|████████  | 194/242 [06:18<01:22,  1.72s/it]Chunks:  81%|████████  | 195/242 [06:20<01:21,  1.74s/it]Chunks:  81%|████████▏ | 197/242 [06:20<00:46,  1.04s/it]Chunks:  82%|████████▏ | 199/242 [06:22<00:41,  1.04it/s]Chunks:  83%|████████▎ | 200/242 [06:24<00:51,  1.23s/it]Chunks:  83%|████████▎ | 201/242 [06:25<00:50,  1.22s/it]Chunks:  83%|████████▎ | 202/242 [06:28<01:07,  1.69s/it]Chunks:  84%|████████▍ | 203/242 [06:30<01:04,  1.65s/it]Chunks:  85%|████████▍ | 205/242 [06:30<00:38,  1.05s/it]Chunks:  86%|████████▌ | 207/242 [06:32<00:31,  1.11it/s]Chunks:  86%|████████▌ | 208/242 [06:34<00:41,  1.23s/it]Chunks:  86%|████████▋ | 209/242 [06:35<00:40,  1.23s/it]Chunks:  87%|████████▋ | 210/242 [06:39<00:56,  1.76s/it]Chunks:  87%|████████▋ | 211/242 [06:40<00:51,  1.67s/it]Chunks:  88%|████████▊ | 213/242 [06:41<00:30,  1.06s/it]Chunks:  89%|████████▉ | 215/242 [06:42<00:23,  1.13it/s]Chunks:  89%|████████▉ | 216/242 [06:44<00:31,  1.21s/it]Chunks:  90%|████████▉ | 217/242 [06:45<00:29,  1.19s/it]Chunks:  90%|█████████ | 218/242 [06:49<00:42,  1.79s/it]Chunks:  90%|█████████ | 219/242 [06:50<00:38,  1.68s/it]Chunks:  91%|█████████▏| 221/242 [06:51<00:22,  1.06s/it]Chunks:  92%|█████████▏| 223/242 [06:52<00:16,  1.15it/s]Chunks:  93%|█████████▎| 224/242 [06:54<00:21,  1.21s/it]Chunks:  93%|█████████▎| 225/242 [06:55<00:19,  1.16s/it]Chunks:  93%|█████████▎| 226/242 [06:59<00:29,  1.85s/it]Chunks:  94%|█████████▍| 227/242 [07:01<00:25,  1.71s/it]Chunks:  95%|█████████▍| 229/242 [07:01<00:13,  1.05s/it]Chunks:  95%|█████████▌| 231/242 [07:02<00:08,  1.27it/s]Chunks:  96%|█████████▌| 232/242 [07:04<00:11,  1.17s/it]Chunks:  96%|█████████▋| 233/242 [07:05<00:10,  1.13s/it]Chunks:  97%|█████████▋| 234/242 [07:10<00:15,  1.95s/it]Chunks:  97%|█████████▋| 235/242 [07:15<00:19,  2.84s/it]Chunks:  98%|█████████▊| 236/242 [07:15<00:13,  2.17s/it]Chunks:  98%|█████████▊| 237/242 [07:16<00:09,  1.87s/it]Chunks:  98%|█████████▊| 238/242 [07:21<00:11,  2.76s/it]Chunks:  99%|█████████▉| 239/242 [07:22<00:06,  2.07s/it]Chunks:  99%|█████████▉| 240/242 [07:22<00:03,  1.56s/it]Chunks: 100%|█████████▉| 241/242 [07:25<00:01,  1.84s/it]Chunks: 100%|██████████| 242/242 [07:26<00:00,  1.64s/it]Chunks: 100%|██████████| 242/242 [07:26<00:00,  1.84s/it]
-Chunks:   0%|          | 0/107 [00:00<?, ?it/s]Chunks:   1%|          | 1/107 [01:00<1:46:38, 60.36s/it]Chunks:   2%|▏         | 2/107 [01:02<45:46, 26.16s/it]  Chunks:   3%|▎         | 3/107 [01:03<24:59, 14.42s/it]Chunks:   4%|▎         | 4/107 [01:04<15:56,  9.29s/it]Chunks:   5%|▍         | 5/107 [01:04<10:09,  5.98s/it]Chunks:   6%|▌         | 6/107 [01:06<07:31,  4.47s/it]Chunks:   7%|▋         | 7/107 [01:07<05:36,  3.37s/it]Chunks:   7%|▋         | 8/107 [01:08<04:35,  2.78s/it]Chunks:   8%|▊         | 9/107 [02:06<32:30, 19.91s/it]Chunks:   9%|▉         | 10/107 [02:07<22:59, 14.22s/it]Chunks:  10%|█         | 11/107 [02:08<16:09, 10.10s/it]Chunks:  11%|█         | 12/107 [02:09<11:32,  7.29s/it]Chunks:  12%|█▏        | 13/107 [02:09<08:10,  5.22s/it]Chunks:  13%|█▎        | 14/107 [02:14<08:02,  5.18s/it]Chunks:  14%|█▍        | 15/107 [02:17<06:44,  4.40s/it]Chunks:  15%|█▍        | 16/107 [02:18<05:19,  3.51s/it]Chunks:  16%|█▌        | 17/107 [03:09<26:34, 17.72s/it]Chunks:  17%|█▋        | 18/107 [03:10<18:34, 12.52s/it]Chunks:  18%|█▊        | 19/107 [03:12<13:53,  9.47s/it]Chunks:  19%|█▊        | 20/107 [03:12<09:41,  6.69s/it]Chunks:  20%|█▉        | 21/107 [03:14<07:36,  5.31s/it]Chunks:  21%|██        | 22/107 [03:23<09:07,  6.44s/it]Chunks:  21%|██▏       | 23/107 [03:32<09:56,  7.10s/it]Chunks:  22%|██▏       | 24/107 [03:32<06:58,  5.04s/it]Chunks:  23%|██▎       | 25/107 [04:17<23:08, 16.93s/it]Chunks:  24%|██▍       | 26/107 [04:19<16:48, 12.45s/it]Chunks:  25%|██▌       | 27/107 [04:24<13:43, 10.29s/it]Chunks:  26%|██▌       | 28/107 [04:26<10:17,  7.81s/it]Chunks:  27%|██▋       | 29/107 [04:28<07:40,  5.90s/it]Chunks:  28%|██▊       | 30/107 [04:37<08:50,  6.89s/it]Chunks:  29%|██▉       | 31/107 [04:47<10:07,  7.99s/it]Chunks:  30%|██▉       | 32/107 [04:48<07:04,  5.66s/it]Chunks:  31%|███       | 33/107 [05:28<19:46, 16.03s/it]Chunks:  32%|███▏      | 34/107 [05:29<13:59, 11.50s/it]Chunks:  33%|███▎      | 35/107 [05:35<11:58,  9.98s/it]Chunks:  34%|███▎      | 36/107 [05:39<09:25,  7.96s/it]Chunks:  35%|███▍      | 37/107 [05:43<08:08,  6.98s/it]Chunks:  36%|███▌      | 38/107 [05:53<08:59,  7.82s/it]Chunks:  36%|███▋      | 39/107 [06:06<10:45,  9.49s/it]Chunks:  37%|███▋      | 40/107 [06:08<07:52,  7.05s/it]Chunks:  38%|███▊      | 41/107 [06:42<16:40, 15.16s/it]Chunks:  39%|███▉      | 42/107 [06:44<12:16, 11.33s/it]Chunks:  40%|████      | 43/107 [06:50<10:26,  9.79s/it]Chunks:  41%|████      | 44/107 [06:55<08:34,  8.17s/it]Chunks:  42%|████▏     | 45/107 [07:02<08:15,  8.00s/it]Chunks:  43%|████▎     | 46/107 [07:10<07:57,  7.83s/it]Chunks:  44%|████▍     | 47/107 [07:30<11:28, 11.48s/it]Chunks:  46%|████▌     | 49/107 [07:58<12:14, 12.66s/it]Chunks:  47%|████▋     | 50/107 [08:01<09:44, 10.25s/it]Chunks:  48%|████▊     | 51/107 [08:07<08:33,  9.18s/it]Chunks:  49%|████▊     | 52/107 [08:12<07:26,  8.12s/it]Chunks:  50%|████▉     | 53/107 [08:21<07:29,  8.32s/it]Chunks:  50%|█████     | 54/107 [08:30<07:34,  8.57s/it]Chunks:  51%|█████▏    | 55/107 [08:53<10:52, 12.56s/it]Chunks:  52%|█████▏    | 56/107 [08:55<08:02,  9.45s/it]Chunks:  53%|█████▎    | 57/107 [09:13<10:05, 12.11s/it]Chunks:  54%|█████▍    | 58/107 [09:16<07:47,  9.54s/it]Chunks:  55%|█████▌    | 59/107 [09:26<07:35,  9.50s/it]Chunks:  56%|█████▌    | 60/107 [09:32<06:40,  8.51s/it]Chunks:  57%|█████▋    | 61/107 [09:42<06:55,  9.03s/it]Chunks:  58%|█████▊    | 62/107 [09:53<07:11,  9.59s/it]Chunks:  59%|█████▉    | 63/107 [10:07<07:59, 10.89s/it]Chunks:  60%|█████▉    | 64/107 [10:13<06:42,  9.37s/it]Chunks:  61%|██████    | 65/107 [10:20<06:06,  8.73s/it]Chunks:  62%|██████▏   | 66/107 [10:23<04:44,  6.93s/it]Chunks:  63%|██████▎   | 67/107 [10:37<06:03,  9.09s/it]Chunks:  64%|██████▎   | 68/107 [10:40<04:37,  7.12s/it]Chunks:  64%|██████▍   | 69/107 [10:55<06:10,  9.74s/it]Chunks:  65%|██████▌   | 70/107 [11:02<05:26,  8.83s/it]Chunks:  66%|██████▋   | 71/107 [11:13<05:36,  9.33s/it]Chunks:  67%|██████▋   | 72/107 [11:25<05:53, 10.10s/it]Chunks:  68%|██████▊   | 73/107 [11:25<04:02,  7.12s/it]Chunks:  69%|██████▉   | 74/107 [11:29<03:28,  6.33s/it]Chunks:  70%|███████   | 75/107 [11:43<04:37,  8.66s/it]Chunks:  71%|███████   | 76/107 [11:46<03:35,  6.95s/it]Chunks:  72%|███████▏  | 77/107 [12:02<04:48,  9.62s/it]Chunks:  73%|███████▎  | 78/107 [12:09<04:19,  8.94s/it]Chunks:  74%|███████▍  | 79/107 [12:23<04:46, 10.24s/it]Chunks:  75%|███████▍  | 80/107 [12:28<03:55,  8.73s/it]Chunks:  76%|███████▌  | 81/107 [12:34<03:25,  7.91s/it]Chunks:  77%|███████▋  | 82/107 [12:35<02:25,  5.83s/it]Chunks:  78%|███████▊  | 83/107 [12:48<03:12,  8.03s/it]Chunks:  79%|███████▊  | 84/107 [12:52<02:39,  6.91s/it]Chunks:  79%|███████▉  | 85/107 [13:10<03:44, 10.19s/it]Chunks:  80%|████████  | 86/107 [13:16<03:08,  8.98s/it]Chunks:  81%|████████▏ | 87/107 [13:33<03:47, 11.36s/it]Chunks:  82%|████████▏ | 88/107 [13:34<02:36,  8.21s/it]Chunks:  83%|████████▎ | 89/107 [13:42<02:24,  8.05s/it]Chunks:  84%|████████▍ | 90/107 [13:48<02:08,  7.56s/it]Chunks:  85%|████████▌ | 91/107 [13:54<01:54,  7.16s/it]Chunks:  86%|████████▌ | 92/107 [13:59<01:34,  6.31s/it]Chunks:  87%|████████▋ | 93/107 [14:20<02:32, 10.88s/it]Chunks:  88%|████████▊ | 94/107 [14:26<02:00,  9.30s/it]Chunks:  89%|████████▉ | 95/107 [14:38<02:00, 10.02s/it]Chunks:  90%|████████▉ | 96/107 [14:41<01:28,  8.08s/it]Chunks:  91%|█████████ | 97/107 [14:45<01:07,  6.77s/it]Chunks:  92%|█████████▏| 98/107 [14:54<01:07,  7.51s/it]Chunks:  93%|█████████▎| 99/107 [14:58<00:52,  6.54s/it]Chunks:  93%|█████████▎| 100/107 [15:00<00:34,  4.94s/it]Chunks:  94%|█████████▍| 101/107 [15:10<00:39,  6.66s/it]Chunks:  95%|█████████▌| 102/107 [15:19<00:36,  7.30s/it]Chunks:  96%|█████████▋| 103/107 [15:32<00:36,  9.00s/it]Chunks:  97%|█████████▋| 104/107 [15:58<00:42, 14.07s/it]Chunks:  98%|█████████▊| 105/107 [16:07<00:25, 12.56s/it]Chunks:  99%|█████████▉| 106/107 [16:10<00:09,  9.66s/it]Chunks: 100%|██████████| 107/107 [16:12<00:00,  7.47s/it]Chunks: 100%|██████████| 107/107 [16:12<00:00,  9.09s/it]
-2026-04-18 06:24:21 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/embeddings_cache/all_nodes_440130dddfc7c4fb130e.npz shape=(1328245, 1024)
-2026-04-18 06:24:32 | INFO | build_reasoning_graph | Prepared 70460 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-18 06:24:52 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_hierarchical_enc.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[2026-04-18 06:24:56]   [build] Done.
-[2026-04-18 06:24:56]   [kfold] Starting 5-fold CV ...
-[2026-04-18 06:24:56]   Launching 5 folds in parallel (GPUs 0-4) ...
-[2026-04-18 06:24:56]   Fold 0 → GPU 0  pid=2623245
-[2026-04-18 06:24:56]   Fold 1 → GPU 1  pid=2623247
-[2026-04-18 06:24:56]   Fold 2 → GPU 2  pid=2623250
-[2026-04-18 06:24:57]   Fold 3 → GPU 3  pid=2623253
-[2026-04-18 06:24:57]   Fold 4 → GPU 4  pid=2623256
-[2026-04-18 06:31:51]   Fold 0 done.
-[2026-04-18 06:31:52]   Fold 1 done.
-[2026-04-18 06:31:53]   Fold 2 done.
-[2026-04-18 06:31:53]   Fold 3 done.
-[2026-04-18 06:31:56]   Fold 4 done.
-[2026-04-18 06:31:56]   Aggregating folds ...
-2026-04-18 06:32:00 | INFO | kfold_cv_ablation_hierarchical_enc_cross_bucket_kfold | Aggregate (5/5 folds) | accuracy=0.7828±0.0041  macro_f1=0.7771±0.0030
-[2026-04-18 06:32:01]   [kfold] Done. Summary → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/ablation_hierarchical_enc_cross_bucket_kfold/kfold/kfold_summary.json
-[2026-04-18 06:32:01]   [analysis] Running embedding analysis ...
-[2026-04-18 06:32:01]   Embedding analysis output dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/embedding_analysis/hier_ablation_hierarchical_enc_cross_bucket_kfold
-[2026-04-18 06:32:01]   [1/6] Extracting embeddings ...
-[extract] device=cuda  graph=case_star_cross_bucket_hierarchical_enc.reasoning_focused.pt  model=model.pt
-[extract] n_cases=70460  labels=['-1', '1']
-[extract] model loaded — hidden_dim=64  num_layers=2
-[extract] saved → /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/embedding_analysis/hier_ablation_hierarchical_enc_cross_bucket_kfold/ablation_hierarchical_enc_cross_bucket_kfold_embeddings.npz
-[extract] pre_gnn shape=(70460, 1036)  post_gnn shape=(70460, 64)
-[extract] label distribution: {np.int32(0): np.int64(27562), np.int32(1): np.int64(42898)}
-[extract]   domain 'family_matrimonial_timed_mistral': 14563 cases
-[extract]   domain 'fin_fraud_timed_mistral': 13973 cases
-[extract]   domain 'land_property_timed_mistral': 13307 cases
-[extract]   domain 'motor_accidents_timed_mistral': 14697 cases
-[extract]   domain 'sexual_offences_timed_mistral': 13920 cases
-[2026-04-18 06:32:24]   [2/6] t-SNE ...
-[tsne] loaded 70460 cases | pre_gnn=(70460, 1036) post_gnn=(70460, 64)
-[tsne] subsampling 5000 / 70460 cases
-[tsne] running t-SNE on post-GNN (5000 × 64) ...
-[tsne] saved → ablation_hierarchical_enc_cross_bucket_kfold_tsne_post_by_label.png
-[tsne] saved → ablation_hierarchical_enc_cross_bucket_kfold_tsne_post_by_domain.png
-[tsne] running t-SNE on pre-GNN (5000 × 1036) ...
-[tsne] saved → ablation_hierarchical_enc_cross_bucket_kfold_tsne_pre_by_label.png
-[tsne] saved → ablation_hierarchical_enc_cross_bucket_kfold_tsne_pre_by_domain.png
-[tsne] done.
-[2026-04-18 06:32:47]   [3/6] Probing classifier ...
-[probe] ablation_hierarchical_enc_cross_bucket_kfold  train_n=49322  test_n=10569
-[probe] majority_baseline     test_acc=0.6088  macro_f1=0.3784
-[probe] pre_gnn_raw_features  test_acc=0.7486  macro_f1=0.7413  binary_f1=0.7847  (train_n=49322  test_n=10569)
-[probe] post_gnn_embeddings   test_acc=0.8003  macro_f1=0.7962  binary_f1=0.8249  (train_n=49322  test_n=10569)
-[probe] delta (post-GNN − pre-GNN) accuracy = +0.0517
-[probe] results → ablation_hierarchical_enc_cross_bucket_kfold_probing_results.json
-[probe] bar chart → ablation_hierarchical_enc_cross_bucket_kfold_probing_bar.png
-[probe] done.
-[2026-04-18 06:32:51]   [4/6] Attention / gradient saliency ...
-/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/embedding_analysis/attention_analysis.py:112: UserWarning: Tight layout not applied. The left and right margins cannot be made large enough to accommodate all Axes decorations.
-  plt.tight_layout()
-[attn] device=cuda  model=model.pt
-[attn] extracting p_rel ...
-[attn] p_rel heatmap → ablation_hierarchical_enc_cross_bucket_kfold_prel_heatmap.png
-[attn] top edge types by mean |p_rel|:
-  arguments__rev_has_arguments__case                  1.0278
-  court__rev_heard_in__case                           1.0231
-  lawyer__rev_has_lawyer__case                        1.0220
-  defence_lawyer__rev_has_defence_lawyer__case        1.0207
-  respondent_arguments__rev_has_respondent_arguments__case  1.0204
-[attn] computing gradient saliency over 500 cases ...
-[attn] saliency bar → ablation_hierarchical_enc_cross_bucket_kfold_gradient_saliency.png
-[attn] done.
-[2026-04-18 06:33:09]   [5/6] Error analysis ...
-[error] 14092 cases (test)  overall accuracy=0.7806
-[error] joined 14092 / 14092 cases with metadata
-[error] Accuracy by legal domain
-(ablation_hiera → ablation_hierarchical_enc_cross_bucket_kfold_error_by_domain.png
-[error] Accuracy by case year
-(ablation_hierarch → ablation_hierarchical_enc_cross_bucket_kfold_error_by_year.png
-[error] Accuracy by statute count
-(ablation_hier → ablation_hierarchical_enc_cross_bucket_kfold_error_by_statute.png
-[error] Accuracy by facts length (quintiles)
-(ab → ablation_hierarchical_enc_cross_bucket_kfold_error_by_facts_len.png
-[error] Accuracy by judge count
-(ablation_hierar → ablation_hierarchical_enc_cross_bucket_kfold_error_by_judges.png
-[error] summary → ablation_hierarchical_enc_cross_bucket_kfold_error_analysis.json
-
-[error] Key findings:
-  Lowest accuracy domain : fin fraud                            0.7533  (n=2813)
-  Highest accuracy domain: motor accidents                      0.8149  (n=2982)
-  Accuracy, 0 statutes : 0.7921251719394773
-  Accuracy, 7-10 statutes: 0.6704035874439462
-[error] done.
-[2026-04-18 06:33:13]   [6/6] SHAP analysis ...
-[shap] fitting logistic regression on (49322, 64) post-GNN embeddings ...
-[shap] logistic regression test accuracy = 0.8003
-[shap] SHAP not installed — falling back to |logistic regression coef|
-[shap] bar chart → ablation_hierarchical_enc_cross_bucket_kfold_shap_bar.png
-[shap] summary → ablation_hierarchical_enc_cross_bucket_kfold_shap_summary.json
-[shap] done.
-[2026-04-18 06:33:14]   [analysis] Done.
-[2026-04-18 06:33:14] 
-[2026-04-18 06:33:14] ═══════════════════════════════════════════════════════
-[2026-04-18 06:33:14] All buckets complete in 100 minutes.
-[2026-04-18 06:33:14] Results under: section_GNN/outputs/timed_bucket_runs/<bucket>/embedding_analysis/hier_*
-[2026-04-18 06:33:14] ═══════════════════════════════════════════════════════

@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """Per-case artefacts for the "shared-case" story.
 
-For each selected case, writes ONE folder containing four files:
+For each selected case, writes ONE folder containing PGExplainer-focused files:
   panel_a_tsne.png        — t-SNE of post-GNN case embeddings, target highlighted
   panel_b_subgraph.png    — PGExplainer top nodes around the target
-  panel_c_neighbours.md   — top FAISS neighbours (post-GNN cosine)
-  panel_d_llm.md          — Phase 5 LLM explanation
   README.md               — case metadata + file index
 
 Output folder per case:
@@ -13,7 +11,7 @@ Output folder per case:
 
 Usage
 -----
-  # Auto-pick cases (prefers those with both Phase 4 and Phase 5 available):
+  # Auto-pick cases from Phase 4 explanations:
   python shared_case_figure.py --auto 3
 
   # Or pass specific case node indices (must appear in phase4 manifest):
@@ -30,7 +28,6 @@ from _shared import (  # noqa: E402
     Paths,
     explained_case_indices,
     load_predictions,
-    phase5_case_indices,
 )
 from _panels import render_case  # noqa: E402
 
@@ -38,9 +35,6 @@ from _panels import render_case  # noqa: E402
 def _auto_pick(paths: Paths, n: int) -> list[int]:
     preds = load_predictions(paths).set_index("node_index")
     explained = explained_case_indices(paths)
-    have_phase5 = phase5_case_indices(paths)
-    primary = [i for i in explained if i in have_phase5]
-    fallback = [i for i in explained if i not in have_phase5]
 
     def _rank(pool):
         if not pool:
@@ -52,33 +46,26 @@ def _auto_pick(paths: Paths, n: int) -> list[int]:
             rows[~rows["correct"]].sort_values("confidence", ascending=False).index.tolist(),
         )
 
-    corr_p, wrong_p = _rank(primary)
-    corr_f, wrong_f = _rank(fallback)
+    corr, wrong = _rank(explained)
 
     picks: list[int] = []
     target_correct = max(n - 1, 1)
-    for src in (corr_p, corr_f):
-        for idx in src:
-            if idx not in picks:
-                picks.append(idx)
-            if len(picks) >= target_correct:
-                break
+    for idx in corr:
+        if idx not in picks:
+            picks.append(idx)
         if len(picks) >= target_correct:
             break
     if n >= 2:
-        for src in (wrong_p, wrong_f):
-            added = False
-            for idx in src:
-                if idx not in picks:
-                    picks.append(idx); added = True; break
-            if added:
-                break
-    for src in (corr_p, wrong_p, corr_f, wrong_f):
-        for idx in src:
-            if len(picks) >= n:
-                break
+        for idx in wrong:
             if idx not in picks:
                 picks.append(idx)
+                break
+    for src in (corr, wrong):
+        for idx in src:
+            if idx not in picks:
+                picks.append(idx)
+            if len(picks) >= n:
+                break
         if len(picks) >= n:
             break
     return picks[:n]

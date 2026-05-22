@@ -23,7 +23,7 @@ GRAPH_CACHE_DIR=$($PY -c "import yaml; print(yaml.safe_load(open('$BASE_CONFIG')
 GRAPH_CACHE_NAME=$($PY -c "import yaml; print(yaml.safe_load(open('$BASE_CONFIG'))['graph']['cache_name'])")
 GRAPH_CACHE="$GRAPH_CACHE_DIR/$GRAPH_CACHE_NAME"
 OUTPUTS_DIR=$($PY -c "import yaml; print(yaml.safe_load(open('$BASE_CONFIG'))['paths']['outputs_dir'])")
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 
 echo ">>> Depth ablation using graph: $GRAPH_CACHE"
 

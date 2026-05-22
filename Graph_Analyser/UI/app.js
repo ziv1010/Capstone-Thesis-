@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pipelineStagesEl = document.getElementById('pipeline-stages');
     const summaryExplanationEl = document.getElementById('summary-explanation');
     const precedentsListEl = document.getElementById('precedents-list');
-    const similarCasesListEl = document.getElementById('similar-cases-list');
+    const argumentContextListEl = document.getElementById('argument-context-list');
 
     const detailTabs = Array.from(document.querySelectorAll('.detail-tab'));
     const detailPanels = {
@@ -37,7 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const graphBreakdownEl = document.getElementById('graph-breakdown');
     const graphInsightsEl = document.getElementById('graph-insights');
 
+    const params = new URLSearchParams(window.location.search);
+    const OUTPUT_BASE = (params.get('output') || '../outputs/fin_fraud_party_args_preamble_lr_decay_fold_00').replace(/\/$/, '');
+
+    function outputUrl(relativePath) {
+        return `${OUTPUT_BASE}/${relativePath.replace(/^\//, '')}`;
+    }
+
     const GROUP_COLORS = {
+        case: '#f0f6fc',
+        preamble: '#e6edf3',
+        facts: '#d2a8ff',
         precedent: '#f6c667',
         statute: '#63c8ff',
         provision: '#7ce38b',
@@ -45,10 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
         petitioner_arguments: '#c295ff',
         respondent_arguments: '#ff89c2',
         other_lawyer_arguments: '#9aa7b8',
-        similar_training_cases: '#59e1d5'
+        court: '#a5d6ff',
+        judge: '#79c0ff',
+        lawyer: '#ffa657',
+        defence_lawyer: '#ffb77c',
+        petitioner_lawyer: '#ffd33d',
+        petitioner: '#56d364',
+        respondent: '#f778ba'
     };
 
     const GROUP_LABELS = {
+        case: 'Case',
+        preamble: 'Preamble',
+        facts: 'Facts',
         precedent: 'Precedent',
         statute: 'Statute',
         provision: 'Provision',
@@ -56,7 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
         petitioner_arguments: 'Petitioner Arg.',
         respondent_arguments: 'Respondent Arg.',
         other_lawyer_arguments: 'Other Counsel Arg.',
-        similar_training_cases: 'Similar Case'
+        court: 'Court',
+        judge: 'Judge',
+        lawyer: 'Lawyer',
+        defence_lawyer: 'Defence Lawyer',
+        petitioner_lawyer: 'Petitioner Lawyer',
+        petitioner: 'Petitioner',
+        respondent: 'Respondent'
     };
 
     let allCases = [];
@@ -81,13 +106,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function init() {
         try {
-            const response = await fetch('../outputs/phase5_llm_reasoning/index.json');
-            if (!response.ok) throw new Error('Failed to load index.json');
-            allCases = await response.json();
+            allCases = await loadCaseIndex();
             renderCaseList(allCases);
         } catch (error) {
             caseListEl.innerHTML = `<div class="loading error">Error loading cases: ${escapeHtml(error.message)}.<br>Make sure you are running via a web server.</div>`;
             console.error(error);
+        }
+    }
+
+    async function loadCaseIndex() {
+        const phase6Summary = await fetchJsonIfExists(outputUrl('phase6_misclass_diagnostic/summary.json'));
+        if (Array.isArray(phase6Summary) && phase6Summary.length) {
+            return phase6Summary.map(row => ({
+                case_node_index: row.case_node_index,
+                case_id: row.case_id || `case_${row.case_node_index}`,
+                predicted_label: row.predicted_label,
+                target_label: row.target_label,
+                confidence: row.confidence
+            }));
+        }
+
+        const manifest = await fetchJsonIfExists(outputUrl('phase4_explanations/manifest.json'));
+        const indices = Array.isArray(manifest?.case_indices) ? manifest.case_indices : [];
+        if (indices.length) {
+            return indices.map(idx => ({
+                case_node_index: idx,
+                case_id: `case_${idx}`,
+                predicted_label: '?',
+                target_label: '?',
+                confidence: null
+            }));
+        }
+
+        throw new Error('No Phase 4/5/6 case index found under outputs/');
+    }
+
+    async function fetchJsonIfExists(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) return null;
+            return await response.json();
+        } catch (_error) {
+            return null;
         }
     }
 
@@ -139,16 +199,22 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoading('Analyzing data...');
 
         try {
-            const [explRes, caseRes] = await Promise.all([
-                fetch(`../outputs/phase5_llm_reasoning/explanation_${nodeIndex}.json`),
-                fetch(`../outputs/phase4_explanations/cases/case_${nodeIndex}.json`).catch(() => null)
+            const [caseRes, diagRes, phase7Res] = await Promise.all([
+                fetch(outputUrl(`phase4_explanations/cases/case_${nodeIndex}.json`)).catch(() => null),
+                fetch(outputUrl(`phase6_misclass_diagnostic/case_${nodeIndex}.json`)).catch(() => null),
+                fetchPhase7Report(nodeIndex)
             ]);
 
-            if (!explRes.ok) throw new Error('Explanation not found');
-            const explData = await explRes.json();
             const caseData = (caseRes && caseRes.ok) ? await caseRes.json() : null;
+            const diagData = (diagRes && diagRes.ok) ? await diagRes.json() : null;
+            const phase7Data = (phase7Res && phase7Res.ok) ? await phase7Res.json() : null;
+            const explData = buildCaseOverview(nodeIndex, caseData, diagData, phase7Data);
 
-            renderDetails(explData, caseData);
+            if (!caseData && !diagData && !phase7Data) {
+                throw new Error('Case details not found');
+            }
+
+            renderDetails(explData, caseData, diagData, phase7Data);
             loadingState.classList.add('hidden');
             detailState.classList.remove('hidden');
             setActiveTab(activeTab);
@@ -158,7 +224,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderDetails(explData, caseData) {
+    function buildCaseOverview(nodeIndex, caseData, diagData, phase7Data) {
+        const source = diagData || caseData || phase7Data || {};
+        return {
+            case_node_index: Number(nodeIndex),
+            case_id: source.case_id || `case_${nodeIndex}`,
+            predicted_label: source.predicted_label || '?',
+            target_label: source.target_label || '?',
+            confidence: source.confidence ?? 0,
+            class_probabilities: source.class_probabilities || {},
+            explanation: ''
+        };
+    }
+
+    async function fetchPhase7Report(nodeIndex) {
+        const current = await fetchJsonIfExists(outputUrl(`phase7_topk_embedding/case_${nodeIndex}.json`));
+        if (current) return { ok: true, json: async () => current };
+        const legacy = await fetchJsonIfExists(outputUrl(`phase7_counterfactual_embedding/case_${nodeIndex}.json`));
+        if (legacy) return { ok: true, json: async () => legacy };
+        return null;
+    }
+
+    function renderDetails(explData, caseData, diagData, phase7Data) {
         detailCaseId.textContent = explData.case_id;
 
         setupBadge(badgePred, `Pred: ${formatOutcomeLabel(explData.predicted_label)}`,
@@ -170,21 +257,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const isCorrect = explData.predicted_label === explData.target_label;
         setupBadge(badgeCorrect, isCorrect ? '✓ Correct' : '✗ Incorrect', isCorrect ? 'success' : 'danger');
 
-        renderPipelineStages(explData, caseData);
-        renderSummaryPanel(explData, caseData);
+        renderPipelineStages(explData, caseData, diagData, phase7Data);
+        renderSummaryPanel(explData, caseData, diagData);
         renderGraphView(explData, caseData);
     }
 
     // ============ PIPELINE STAGES ============
-    function renderPipelineStages(explData, caseData) {
+    function renderPipelineStages(explData, caseData, diagData, phase7Data) {
         const stages = [
             buildStage1Inference(explData, caseData),
             buildStage2CaseInput(caseData),
             buildStage3GraphExplainer(caseData),
-            buildStage4Retrieval(caseData),
-            buildStage5LLMReasoning(explData)
+            buildStage4ArgumentContext(caseData),
+            buildStage6Diagnostic(explData, diagData),
+            buildStage7Counterfactual(explData, caseData, diagData, phase7Data)
         ];
         pipelineStagesEl.innerHTML = stages.join('');
+        bindDiagnosticControls(diagData);
     }
 
     function buildStage1Inference(explData, caseData) {
@@ -255,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function buildStage3GraphExplainer(caseData) {
         const top = caseData?.top_nodes || {};
         const raw = caseData?._raw_argument_top_nodes || {};
-        const categories = [
+        const legalCategories = [
             { key: 'precedent', items: top.precedent },
             { key: 'statute', items: top.statute },
             { key: 'provision', items: top.provision },
@@ -264,8 +353,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'respondent_arguments', items: raw.respondent_arguments },
             { key: 'other_lawyer_arguments', items: raw.other_lawyer_arguments }
         ].filter(cat => Array.isArray(cat.items) && cat.items.length > 0);
+        const graphCategories = getTopGraphCategories(caseData)
+            .filter(cat => Array.isArray(cat.items) && cat.items.length > 0);
 
-        if (!categories.length) {
+        if (!legalCategories.length && !graphCategories.length) {
             return `
                 <article class="stage-card">
                     <div class="stage-header">
@@ -282,18 +373,25 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
-        const blocks = categories.map(cat => `
-            <div class="explainer-category">
-                <div class="explainer-category-head">
-                    <span class="explainer-swatch" style="background:${GROUP_COLORS[cat.key]}"></span>
-                    <span class="explainer-category-label">${escapeHtml(GROUP_LABELS[cat.key])}</span>
-                    <span class="explainer-category-count">${cat.items.length}</span>
+        const legalBlocks = legalCategories.map(cat => buildExplainerCategory(cat)).join('');
+        const graphBlocks = graphCategories.map(cat => buildExplainerCategory(cat)).join('');
+
+        const legalSection = legalBlocks
+            ? `
+                <div class="stage-section">
+                    <h4 class="stage-col-title">Legal Evidence</h4>
+                    <div class="explainer-grid">${legalBlocks}</div>
                 </div>
-                <div class="explainer-items">
-                    ${cat.items.map(item => buildExplainerItem(item, cat.key)).join('')}
+            `
+            : '';
+        const graphSection = graphBlocks
+            ? `
+                <div class="stage-section">
+                    <h4 class="stage-col-title">Full Graph Evidence</h4>
+                    <div class="explainer-grid">${graphBlocks}</div>
                 </div>
-            </div>
-        `).join('');
+            `
+            : '';
 
         return `
             <article class="stage-card">
@@ -301,14 +399,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="stage-number">3</span>
                     <div>
                         <h3>Graph Explainer (Phase 3–4)</h3>
-                        <p class="stage-subtitle">Nodes scored by the trained PGExplainer as most influential to the prediction.</p>
+                        <p class="stage-subtitle">PGExplainer node scores across legal evidence and broader graph structure.</p>
                     </div>
                 </div>
-                <div class="stage-body explainer-grid">
-                    ${blocks}
+                <div class="stage-body">
+                    ${legalSection}
+                    ${graphSection}
                 </div>
             </article>
         `;
+    }
+
+    function buildExplainerCategory(cat) {
+        return `
+            <div class="explainer-category">
+                <div class="explainer-category-head">
+                    <span class="explainer-swatch" style="background:${GROUP_COLORS[cat.key] || '#58a6ff'}"></span>
+                    <span class="explainer-category-label">${escapeHtml(GROUP_LABELS[cat.key] || cat.key)}</span>
+                    <span class="explainer-category-count">${cat.items.length}</span>
+                </div>
+                <div class="explainer-items">
+                    ${cat.items.map(item => buildExplainerItem(item, cat.key)).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function getTopGraphCategories(caseData) {
+        const graph = caseData?.top_graph_nodes || {};
+        const preferred = [
+            'case', 'preamble', 'facts', 'arguments',
+            'petitioner_arguments', 'respondent_arguments', 'other_lawyer_arguments',
+            'court', 'judge', 'lawyer', 'defence_lawyer', 'petitioner_lawyer',
+            'petitioner', 'respondent', 'precedent', 'statute', 'provision'
+        ];
+        const seen = new Set(preferred);
+        const rest = Object.keys(graph).filter(key => !seen.has(key)).sort();
+        return [...preferred, ...rest].map(key => ({ key, items: graph[key] || [] }));
     }
 
     function buildExplainerItem(item, groupKey) {
@@ -316,11 +443,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const imp = Number.isFinite(item.importance) ? item.importance : 0;
         const width = Math.min(100, Math.max(6, imp * 220));
         const edge = item.edge_type ? `<span class="edge-tag">${escapeHtml(item.edge_type)}</span>` : '';
+        const scope = item.connection_scope
+            ? `<span class="scope-tag ${item.target_direct ? 'direct' : 'shared'}">${escapeHtml(item.connection_scope)}</span>`
+            : '';
         return `
             <div class="explainer-item">
                 <div class="explainer-item-title">${escapeHtml(text)}</div>
                 <div class="explainer-item-meta">
                     <span>Node #${escapeHtml(String(item.node_index ?? '-'))}</span>
+                    ${scope}
                     ${edge}
                 </div>
                 <div class="importance-wrapper">
@@ -333,80 +464,549 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    function buildStage4Retrieval(caseData) {
-        const argCtx = caseData?.similar_case_argument_context || [];
-        const similar = caseData?.similar_training_cases || [];
+    function buildStage4ArgumentContext(caseData) {
+        const rawGroups = caseData?._raw_argument_top_nodes || {};
+        const argCtx = Object.entries(rawGroups).flatMap(([group, items]) =>
+            (items || []).map(item => ({ ...item, group }))
+        ).sort((a, b) => (b.importance || 0) - (a.importance || 0)).slice(0, 12);
 
         const argCtxHtml = argCtx.length
-            ? argCtx.map(ctx => `
+            ? argCtx.map(item => `
                 <div class="arg-ctx-item">
                     <div class="arg-ctx-head">
-                        <strong>${escapeHtml(ctx.owning_case)}</strong>
-                        <span class="pill info">${escapeHtml(formatPercent(ctx.importance, 1))}</span>
+                        <strong>${escapeHtml(truncate(normalizeNodeText(item.text || ''), 120))}</strong>
+                        <span class="pill info">${escapeHtml(formatPercent(item.importance, 1))}</span>
                     </div>
-                    <div class="arg-ctx-meta">${escapeHtml(ctx.argument_section || '')}</div>
-                    <div class="arg-ctx-snippet">${escapeHtml(truncate(ctx.snippet || '', 320))}</div>
+                    <div class="arg-ctx-meta">
+                        ${escapeHtml(GROUP_LABELS[item.group] || item.group || 'Argument')}
+                        · Node #${escapeHtml(String(item.node_index ?? '-'))}
+                    </div>
+                    <div class="arg-ctx-snippet">${escapeHtml(truncate(item.edge_type || '', 180))}</div>
                 </div>
             `).join('')
-            : '<p class="empty-copy">No argument context from cited cases.</p>';
-
-        const similarHtml = similar.length
-            ? similar.map(sc => {
-                const isWin = sc.target_label === '1';
-                return `
-                    <div class="retrieval-item">
-                        <div class="retrieval-rank">#${escapeHtml(String(sc.rank))}</div>
-                        <div class="retrieval-body">
-                            <div class="retrieval-title">${escapeHtml(sc.case_id)}</div>
-                            <div class="retrieval-meta">
-                                <span class="pill ${isWin ? 'success' : 'danger'}">Actual: ${escapeHtml(formatOutcomeLabel(sc.target_label))}</span>
-                                <span class="pill ${sc.predicted_label === '1' ? 'success' : 'danger'}">Pred: ${escapeHtml(formatOutcomeLabel(sc.predicted_label))}</span>
-                                <span class="pill info">Sim ${escapeHtml(formatPercent(sc.similarity, 2))}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('')
-            : '<p class="empty-copy">No similar training cases.</p>';
+            : '<p class="empty-copy">No bucket-local argument nodes were surfaced for this case.</p>';
 
         return `
             <article class="stage-card">
                 <div class="stage-header">
                     <span class="stage-number">4</span>
                     <div>
-                        <h3>Retrieval & Argument Context</h3>
-                        <p class="stage-subtitle">Nearest training analogues (FAISS cosine) and attributed argument snippets.</p>
+                        <h3>Bucket-Local Argument Nodes</h3>
+                        <p class="stage-subtitle">Argument-role graph nodes surfaced by the explainer for this selected bucket.</p>
                     </div>
                 </div>
-                <div class="stage-body stage-split">
-                    <div class="stage-col">
-                        <h4 class="stage-col-title">Similar Training Cases</h4>
-                        ${similarHtml}
+                <div class="stage-body">
+                    ${argCtxHtml}
+                </div>
+            </article>
+        `;
+    }
+
+    function buildStage6Diagnostic(explData, diagData) {
+        if (!diagData) {
+            return `
+                <article class="stage-card">
+                    <div class="stage-header">
+                        <span class="stage-number">6</span>
+                        <div>
+                            <h3>Evidence Diagnostic (Phase 6)</h3>
+                            <p class="stage-subtitle">Training-set label distribution behind the surfaced evidence.</p>
+                        </div>
                     </div>
-                    <div class="stage-col">
-                        <h4 class="stage-col-title">Argument Snippets From Retrieved Cases</h4>
-                        ${argCtxHtml}
+                    <div class="stage-body">
+                        <p class="empty-copy">Phase 6 diagnostic output is not available for this case.</p>
+                    </div>
+                </article>
+            `;
+        }
+
+        const predicted = String(diagData.predicted_label ?? explData.predicted_label ?? '?');
+        const target = String(diagData.target_label ?? explData.target_label ?? '?');
+        const weighted = diagData.weighted_evidence || {};
+        const majority = String(weighted.majority_class ?? 'untraceable');
+        const strength = toFiniteNumber(weighted.strength);
+        const perNode = Array.isArray(diagData.per_node) ? diagData.per_node : [];
+        const traceableNodes = toFiniteNumber(weighted.n_traceable_nodes) ?? 0;
+        const totalNodes = toFiniteNumber(weighted.n_nodes) ?? perNode.length;
+        const scopeLabel = diagData.diagnostic_scope === 'full_graph' ? 'Full graph' : 'Legal';
+        const isMisclassified = Boolean(diagData.misclassified);
+        const supportsPrediction = majority !== 'tie' && majority !== 'untraceable' && majority === predicted;
+        const scopeOptions = availableTopKScopes(diagData);
+        const cutoffs = topKCutoffs(diagData);
+        const initialScope = scopeOptions[0]?.key || 'full_graph';
+        const initialK = cutoffs[0] || 3;
+
+        const supportLabel = majority === 'tie' || majority === 'untraceable'
+            ? formatDiagnosticMajority(majority)
+            : (supportsPrediction ? 'Yes' : 'No');
+        const supportTone = majority === 'tie' || majority === 'untraceable'
+            ? ''
+            : (supportsPrediction ? 'pos' : 'neg');
+
+        return `
+            <article class="stage-card" data-diagnostic-card>
+                <div class="stage-header">
+                    <span class="stage-number">6</span>
+                    <div>
+                        <h3>Evidence Diagnostic (Phase 6)</h3>
+                        <p class="stage-subtitle">Top-k sweep over PGExplainer nodes, with traceable training-neighbour evidence separated from case-local factors.</p>
+                    </div>
+                </div>
+                <div class="stage-body">
+                    <div class="stage-row">
+                        <div class="stage-metric"><span>Status</span><strong class="${isMisclassified ? 'neg' : 'pos'}">${isMisclassified ? 'Misclassified' : 'Correct'}</strong></div>
+                        <div class="stage-metric"><span>Scope</span><strong>${escapeHtml(scopeLabel)}</strong></div>
+                        <div class="stage-metric"><span>Prediction</span><strong class="${predicted === '1' ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(predicted))}</strong></div>
+                        <div class="stage-metric"><span>Target</span><strong class="${target === '1' ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(target))}</strong></div>
+                        <div class="stage-metric"><span>Full-Scope Majority</span><strong>${escapeHtml(formatDiagnosticMajority(majority))}</strong></div>
+                        <div class="stage-metric"><span>Full-Scope Skew</span><strong>${strength == null ? 'N/A' : escapeHtml(formatPercent(strength, 1))}</strong></div>
+                        <div class="stage-metric"><span>Traceable Nodes</span><strong>${escapeHtml(`${traceableNodes} / ${totalNodes}`)}</strong></div>
+                        <div class="stage-metric"><span>Traceable Weight</span><strong>${escapeHtml(formatPercent(weighted.traceable_importance_share || 0, 1))}</strong></div>
+                        <div class="stage-metric"><span>Full-Scope Support</span><strong class="${supportTone}">${escapeHtml(supportLabel)}</strong></div>
+                    </div>
+                    ${buildDiagnosticEvidenceBarForWeighted(weighted, 'Full-scope traceable evidence vote')}
+                    ${scopeOptions.length ? `
+                        <div class="diagnostic-controls">
+                            <label class="diagnostic-control">
+                                <span>Top-k cutoff</span>
+                                <input type="range" min="0" max="${Math.max(cutoffs.length - 1, 0)}" value="0" step="1" data-topk-slider>
+                                <strong data-topk-label>Top ${escapeHtml(String(initialK))}</strong>
+                            </label>
+                            <label class="diagnostic-control">
+                                <span>Evidence scope</span>
+                                <select data-topk-scope>
+                                    ${scopeOptions.map(opt => `<option value="${escapeHtml(opt.key)}">${escapeHtml(opt.label)}</option>`).join('')}
+                                </select>
+                            </label>
+                        </div>
+                        <div class="diagnostic-topk-body" data-topk-body>
+                            ${buildTopKDiagnosticPanel(diagData, initialScope, initialK)}
+                        </div>
+                    ` : '<p class="empty-copy">No top-k diagnostic sweep is available for this case.</p>'}
+                    ${buildLegalNeighbourhoodPanel(diagData)}
+                    <div class="diagnostic-section">
+                        <h4 class="stage-col-title">All Node Training-Neighbour Breakdown</h4>
+                        ${buildDiagnosticNodeRows(perNode)}
                     </div>
                 </div>
             </article>
         `;
     }
 
-    function buildStage5LLMReasoning(explData) {
-        const body = typeof marked !== 'undefined'
-            ? marked.parse(explData.explanation || '*No explanation provided.*')
-            : escapeHtml(explData.explanation || 'No explanation provided.');
+    function buildStage7Counterfactual(explData, caseData, diagData, phase7Data) {
+        if (!phase7Data) {
+            return `
+                <article class="stage-card muted-stage">
+                    <div class="stage-header">
+                        <span class="stage-number">7</span>
+                        <div>
+                            <h3>Embedding Nearest Neighbours (Phase 7)</h3>
+                            <p class="stage-subtitle">Run Phase 7 to find closest training cases in GNN embedding space.</p>
+                        </div>
+                    </div>
+                    <div class="stage-body">
+                        <p class="empty-copy">Phase 7 output is not available for this case yet.</p>
+                    </div>
+                </article>
+            `;
+        }
+
+        const predicted = String(phase7Data.predicted_label ?? explData.predicted_label ?? '?');
+        const target = String(phase7Data.target_label ?? explData.target_label ?? '?');
+        const confidence = phase7Data.confidence ?? null;
+        const neighbours = phase7Data.embedding_neighbours || {};
+        const nnCounts = neighbours.target_label_counts || {};
+        const nnMajority = String(neighbours.majority_target_label ?? '?');
+        const nnSupports = nnMajority === predicted;
+
+        const isMisclassified = predicted !== target;
+        const isUntraceable = diagData
+            ? (diagData.weighted_evidence?.majority_class === 'untraceable' ||
+               Number(diagData.weighted_evidence?.n_traceable_nodes ?? 1) === 0)
+            : false;
+
         return `
             <article class="stage-card">
                 <div class="stage-header">
-                    <span class="stage-number">5</span>
+                    <span class="stage-number">7</span>
                     <div>
-                        <h3>LLM Reasoning (Phase 5)</h3>
-                        <p class="stage-subtitle">Natural-language justification grounded in the explainer evidence.</p>
+                        <h3>Embedding Nearest Neighbours (Phase 7)</h3>
+                        <p class="stage-subtitle">Closest training cases by cosine similarity in the frozen GNN embedding space. Fallback when graph evidence is untraceable.</p>
                     </div>
                 </div>
-                <div class="stage-body markdown-body">${body}</div>
+                <div class="stage-body">
+                    <div class="stage-row">
+                        <div class="stage-metric"><span>Prediction</span><strong class="${predicted === '1' ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(predicted))}</strong></div>
+                        <div class="stage-metric"><span>Target</span><strong class="${target === '1' ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(target))}</strong></div>
+                        ${confidence != null ? `<div class="stage-metric" title="GNN softmax probability assigned to the predicted class"><span>Confidence (?)</span><strong>${escapeHtml(formatPercent(confidence, 2))}</strong></div>` : ''}
+                        <div class="stage-metric"><span>Neighbour Majority</span><strong class="${nnSupports ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(nnMajority))}</strong></div>
+                        <div class="stage-metric"><span>Supports Prediction</span><strong class="${nnSupports ? 'pos' : 'neg'}">${nnSupports ? 'Yes' : 'No'}</strong></div>
+                    </div>
+                    ${isMisclassified && isUntraceable ? buildDrivingSignalPanel(caseData, predicted, target) : ''}
+                    ${buildPhase7NeighbourRows(neighbours, nnCounts)}
+                </div>
             </article>
+        `;
+    }
+
+    function buildDrivingSignalPanel(caseData, predicted, target) {
+        if (!caseData) return '';
+
+        // Collect surfaced nodes sorted by importance
+        const topGraphNodes = caseData.top_graph_nodes || {};
+        const allNodes = [];
+        for (const [nodeType, items] of Object.entries(topGraphNodes)) {
+            for (const node of (items || [])) {
+                allNodes.push({ nodeType, ...node });
+            }
+        }
+        allNodes.sort((a, b) => (b.importance || 0) - (a.importance || 0));
+
+        // Count which node types have any coverage
+        const legalTypes = ['statute', 'provision', 'precedent'];
+        const presentTypes = new Set(Object.keys(topGraphNodes).filter(t => (topGraphNodes[t] || []).length > 0));
+        const missingLegal = legalTypes.filter(t => !presentTypes.has(t));
+        const hasNoLegal = missingLegal.length === legalTypes.length;
+
+        // Get the case text for the top-importance nodes
+        const caseText = caseData.target_case_text || {};
+        const TEXT_ORDER = ['respondent_arguments', 'petitioner_arguments', 'arguments', 'facts', 'preamble'];
+        const textSnippets = TEXT_ORDER
+            .filter(k => caseText[k] && caseText[k].trim())
+            .slice(0, 3)
+            .map(k => ({ section: k, text: caseText[k].trim() }));
+
+        const top3Nodes = allNodes.slice(0, 3);
+
+        return `
+            <div class="diagnostic-evidence" style="margin-bottom:14px; border-color: rgba(248,81,73,0.3)">
+                <div class="diagnostic-evidence-head" style="margin-bottom:8px">
+                    <strong style="color:#f85149">Misclassified + Untraceable — Driving Signal Analysis</strong>
+                    <span>Neighbour majority says ${escapeHtml(formatOutcomeLabel(target))} but model predicted ${escapeHtml(formatOutcomeLabel(predicted))}</span>
+                </div>
+
+                ${hasNoLegal ? `
+                <p style="font-size:0.82rem; color: var(--text-secondary); margin:0 0 10px">
+                    <strong style="color:#e3b341">⚠ No legal citation nodes</strong> — zero statutes, provisions, or precedents were found in
+                    this case's graph subgraph. The model has no shared legal evidence and is relying
+                    entirely on case-local text features.
+                </p>` : ''}
+
+                ${top3Nodes.length ? `
+                <div style="margin-bottom:10px">
+                    <div class="stage-col-title" style="margin-bottom:6px">Top surfaced nodes by importance</div>
+                    ${top3Nodes.map(n => `
+                        <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:4px 0; border-bottom:1px solid rgba(139,148,158,0.1); font-size:0.82rem">
+                            <span class="edge-tag">${escapeHtml(n.nodeType)}</span>
+                            <span style="color:var(--text-secondary); font-variant-numeric:tabular-nums">${formatPercent(n.importance, 2)} importance</span>
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+
+                ${textSnippets.length ? `
+                <div>
+                    <div class="stage-col-title" style="margin-bottom:6px">Case text the model was reading</div>
+                    ${textSnippets.map(({ section, text }) => `
+                        <div style="margin-bottom:10px">
+                            <div style="font-size:0.74rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--text-secondary); margin-bottom:3px">${escapeHtml(section.replace(/_/g, ' '))}</div>
+                            <div style="font-size:0.83rem; color:#cdd9e5; line-height:1.5; padding:8px 10px; background:rgba(13,17,23,0.7); border-radius:6px; border-left:2px solid rgba(139,148,158,0.3)">${escapeHtml(text.slice(0, 400))}${text.length > 400 ? '…' : ''}</div>
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+            </div>
+        `;
+    }
+
+    function buildPhase7NeighbourRows(neighbours, counts) {
+        const rows = Array.isArray(neighbours?.neighbours) ? neighbours.neighbours : [];
+        if (!rows.length) {
+            return '<p class="empty-copy">No embedding-neighbour records were generated for this case.</p>';
+        }
+
+        const totalCount = rows.length;
+        const winCount = rows.filter(r => String(r.target_label) === '1').length;
+        const lossCount = totalCount - winCount;
+        const winRate = totalCount > 0 ? winCount / totalCount : 0;
+        const lossRate = 1 - winRate;
+
+        // similarity-weighted win/loss
+        const totalSim = rows.reduce((s, r) => s + (r.cosine_similarity || 0), 0);
+        const winSimSum = rows.filter(r => String(r.target_label) === '1').reduce((s, r) => s + (r.cosine_similarity || 0), 0);
+        const weightedWinRate = totalSim > 0 ? winSimSum / totalSim : 0;
+        const weightedLossRate = 1 - weightedWinRate;
+
+        // avg similarity by label
+        const winRows = rows.filter(r => String(r.target_label) === '1');
+        const lossRows = rows.filter(r => String(r.target_label) === '-1');
+        const avgSimWin = winRows.length ? winRows.reduce((s, r) => s + (r.cosine_similarity || 0), 0) / winRows.length : null;
+        const avgSimLoss = lossRows.length ? lossRows.reduce((s, r) => s + (r.cosine_similarity || 0), 0) / lossRows.length : null;
+
+        const winPct = (winRate * 100).toFixed(0);
+        const lossPct = (lossRate * 100).toFixed(0);
+        const wWinPct = (weightedWinRate * 100).toFixed(0);
+        const wLossPct = (weightedLossRate * 100).toFixed(0);
+
+        return `
+            <div class="diagnostic-section">
+                <h4 class="stage-col-title">Nearest Training Cases in GNN Embedding Space</h4>
+
+                <div class="diagnostic-evidence" style="margin-bottom:12px">
+                    <div class="diagnostic-evidence-head">
+                        <span>Raw label mix — ${winCount} Win / ${lossCount} Loss of ${totalCount} neighbours</span>
+                        <span>${winPct}% Win · ${lossPct}% Loss</span>
+                    </div>
+                    <div class="diagnostic-stack">
+                        <div class="diagnostic-segment win" style="width:${winPct}%" title="Win: ${winPct}%">${winPct >= 15 ? winPct + '%' : ''}</div>
+                        <div class="diagnostic-segment loss" style="width:${lossPct}%" title="Loss: ${lossPct}%">${lossPct >= 15 ? lossPct + '%' : ''}</div>
+                    </div>
+                </div>
+
+                <div class="diagnostic-evidence" style="margin-bottom:12px">
+                    <div class="diagnostic-evidence-head">
+                        <span title="Each neighbour weighted by its cosine similarity — closer neighbours count more">Similarity-weighted label mix</span>
+                        <span>${wWinPct}% Win · ${wLossPct}% Loss</span>
+                    </div>
+                    <div class="diagnostic-stack">
+                        <div class="diagnostic-segment win" style="width:${wWinPct}%" title="Weighted Win: ${wWinPct}%">${wWinPct >= 15 ? wWinPct + '%' : ''}</div>
+                        <div class="diagnostic-segment loss" style="width:${wLossPct}%" title="Weighted Loss: ${wLossPct}%">${wLossPct >= 15 ? wLossPct + '%' : ''}</div>
+                    </div>
+                </div>
+
+                <div class="stage-row" style="margin-bottom:14px">
+                    ${avgSimWin != null ? `<div class="stage-metric" title="Mean cosine similarity among Win neighbours"><span>Avg sim (Win)</span><strong class="pos">${avgSimWin.toFixed(4)}</strong></div>` : ''}
+                    ${avgSimLoss != null ? `<div class="stage-metric" title="Mean cosine similarity among Loss neighbours"><span>Avg sim (Loss)</span><strong class="neg">${avgSimLoss.toFixed(4)}</strong></div>` : ''}
+                    <div class="stage-metric" title="Similarity-weighted outcome vote"><span>Weighted vote</span><strong class="${weightedWinRate >= 0.5 ? 'pos' : 'neg'}">${weightedWinRate >= 0.5 ? 'Win' : 'Loss'} (${(Math.max(weightedWinRate, weightedLossRate) * 100).toFixed(0)}%)</strong></div>
+                </div>
+
+                <div class="diagnostic-node-list">
+                    ${rows.slice(0, 8).map(row => {
+                        const label = String(row.target_label);
+                        const simPct = Math.min(100, ((row.cosine_similarity || 0) * 100)).toFixed(1);
+                        return `
+                            <div class="diagnostic-node-row">
+                                <div class="diagnostic-node-head">
+                                    <strong>#${escapeHtml(String(row.rank))} <span class="${label === '1' ? 'pos' : 'neg'}">${escapeHtml(formatOutcomeLabel(label))}</span></strong>
+                                    <span>similarity ${escapeHtml(Number(row.cosine_similarity || 0).toFixed(4))} · pred ${escapeHtml(formatOutcomeLabel(row.pred_label))}</span>
+                                </div>
+                                <div class="diagnostic-mini-stack" style="margin:6px 0 6px">
+                                    <div class="diagnostic-mini-segment ${label === '1' ? 'win' : 'loss'}" style="width:${simPct}%"></div>
+                                </div>
+                                <div class="diagnostic-node-text">${escapeHtml(truncate(row.case_id || '', 190))}</div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    function formatDelta(value) {
+        const n = toFiniteNumber(value);
+        if (n == null) return 'N/A';
+        const sign = n > 0 ? '+' : '';
+        return `${sign}${formatPercent(n, 2)}`;
+    }
+
+    function buildDiagnosticEvidenceBar(diagData) {
+        return buildDiagnosticEvidenceBarForWeighted(diagData.weighted_evidence, 'Weighted Evidence Distribution');
+    }
+
+    function buildDiagnosticEvidenceBarForWeighted(weighted, title) {
+        const winShare = getDiagnosticPct(weighted, '1');
+        const lossShare = getDiagnosticPct(weighted, '-1');
+        const hasEvidence = (winShare || 0) + (lossShare || 0) > 0;
+        if (!hasEvidence) {
+            return '<p class="empty-copy">No weighted training-neighbour evidence was found for the surfaced nodes.</p>';
+        }
+        return `
+            <div class="diagnostic-evidence">
+                <div class="diagnostic-evidence-head">
+                    <span>${escapeHtml(title)}</span>
+                    <span>Loss ${escapeHtml(formatPercent(lossShare || 0, 1))} / Win ${escapeHtml(formatPercent(winShare || 0, 1))}</span>
+                </div>
+                <div class="diagnostic-stack" aria-label="Weighted evidence distribution">
+                    <div class="diagnostic-segment loss" style="width:${((lossShare || 0) * 100).toFixed(2)}%">${lossShare >= 0.08 ? `Loss ${formatPercent(lossShare, 0)}` : ''}</div>
+                    <div class="diagnostic-segment win" style="width:${((winShare || 0) * 100).toFixed(2)}%">${winShare >= 0.08 ? `Win ${formatPercent(winShare, 0)}` : ''}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function buildLegalNeighbourhoodPanel(diagData) {
+        const legalRows = (Array.isArray(diagData?.legal_per_node) ? diagData.legal_per_node : [])
+            .filter(row => ['statute', 'provision', 'precedent'].includes(row.node_type));
+        if (!legalRows.length) return '';
+
+        const hasCaseLists = legalRows.some(row => Array.isArray(row.connected_train_cases));
+        const rowsHtml = legalRows.map((row, index) => {
+            const total = toFiniteNumber(row.n_train_neighbours) ?? 0;
+            const allConnected = toFiniteNumber(row.n_connected_cases) ?? total;
+            const lossCount = toFiniteNumber(row['label_-1']) ?? 0;
+            const winCount = toFiniteNumber(row.label_1) ?? 0;
+            const cases = Array.isArray(row.connected_train_cases) ? row.connected_train_cases : [];
+            const visibleCount = cases.length > 80 ? 40 : cases.length;
+            const visibleCases = cases.slice(0, visibleCount);
+            const majority = formatDiagnosticMajority(row.majority_class);
+            const importance = toFiniteNumber(row.importance) ?? 0;
+            const groupLabel = GROUP_LABELS[row.node_type] || row.node_type || 'Node';
+            const note = cases.length
+                ? `showing ${visibleCases.length} of ${total} training cases`
+                : (total ? 'rerun Phase 6 to materialize connected case rows' : 'no connected training cases');
+            return `
+                <details class="legal-neighbour-row" ${index < 2 ? 'open' : ''}>
+                    <summary>
+                        <span class="legal-neighbour-summary">
+                            <strong>${escapeHtml(groupLabel)}</strong>
+                            <span>${escapeHtml(truncate(row.text || '', 150))}</span>
+                        </span>
+                        <span class="legal-neighbour-meta">
+                            ${escapeHtml(formatPercent(importance, 1))} importance · ${escapeHtml(String(total))} train / ${escapeHtml(String(allConnected))} connected · ${escapeHtml(majority)}
+                        </span>
+                    </summary>
+                    <div class="diagnostic-mini-stack legal-neighbour-stack">
+                        <div class="diagnostic-mini-segment loss" style="width:${total ? ((lossCount / total) * 100).toFixed(2) : 0}%"></div>
+                        <div class="diagnostic-mini-segment win" style="width:${total ? ((winCount / total) * 100).toFixed(2) : 0}%"></div>
+                    </div>
+                    <div class="legal-neighbour-counts">
+                        <span>Loss ${escapeHtml(String(Math.round(lossCount)))}</span>
+                        <span>Win ${escapeHtml(String(Math.round(winCount)))}</span>
+                        <span>${escapeHtml(note)}</span>
+                    </div>
+                    ${visibleCases.length ? `
+                        <div class="legal-neighbour-case-list">
+                            ${visibleCases.map(item => {
+                                const label = String(item.label ?? '?');
+                                const tone = label === '1' ? 'pos' : (label === '-1' ? 'neg' : '');
+                                return `
+                                    <div class="legal-neighbour-case">
+                                        <span class="${tone}">${escapeHtml(formatOutcomeLabel(label))}</span>
+                                        <span>${escapeHtml(truncate(item.case_id || '', 190))}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    ` : ''}
+                </details>
+            `;
+        }).join('');
+
+        return `
+            <div class="diagnostic-section">
+                <h4 class="stage-col-title">Legal Shared-Case Neighbours</h4>
+                ${hasCaseLists ? '' : '<p class="empty-copy">Existing Phase 6 JSON has counts only. Rerun Phase 6 to include connected training-case rows.</p>'}
+                <div class="legal-neighbour-list">${rowsHtml}</div>
+            </div>
+        `;
+    }
+
+    function bindDiagnosticControls(diagData) {
+        if (!diagData?.topk_diagnostics) return;
+        const card = pipelineStagesEl.querySelector('[data-diagnostic-card]');
+        if (!card) return;
+        const slider = card.querySelector('[data-topk-slider]');
+        const scopeSelect = card.querySelector('[data-topk-scope]');
+        const label = card.querySelector('[data-topk-label]');
+        const body = card.querySelector('[data-topk-body]');
+        if (!slider || !scopeSelect || !label || !body) return;
+        const cutoffs = topKCutoffs(diagData);
+        const update = () => {
+            const k = cutoffs[Number(slider.value)] || cutoffs[0] || 3;
+            label.textContent = `Top ${k}`;
+            body.innerHTML = buildTopKDiagnosticPanel(diagData, scopeSelect.value, k);
+        };
+        slider.addEventListener('input', update);
+        scopeSelect.addEventListener('change', update);
+    }
+
+    function buildTopKDiagnosticPanel(diagData, scopeKey, k) {
+        const sweep = diagData?.topk_diagnostics?.[scopeKey] || [];
+        const selected = sweep.find(item => Number(item.k) === Number(k)) || sweep[0];
+        if (!selected) {
+            return '<p class="empty-copy">No top-k records were produced for this scope.</p>';
+        }
+        const weighted = selected.weighted_evidence || {};
+        const majority = String(selected.evidence_majority ?? weighted.majority_class ?? 'untraceable');
+        const supports = Boolean(selected.supports_prediction);
+        const supportTone = majority === 'tie' || majority === 'untraceable' ? '' : (supports ? 'pos' : 'neg');
+        const supportText = majority === 'tie' || majority === 'untraceable'
+            ? formatDiagnosticMajority(majority)
+            : (supports ? 'Supports prediction' : 'Does not support prediction');
+        const traceable = toFiniteNumber(weighted.n_traceable_nodes) ?? 0;
+        const total = toFiniteNumber(weighted.n_nodes) ?? selected.n_nodes_used ?? 0;
+        const strength = toFiniteNumber(weighted.strength);
+        return `
+            <div class="diagnostic-section">
+                <div class="stage-row compact">
+                    <div class="stage-metric"><span>k</span><strong>${escapeHtml(String(selected.k))}</strong></div>
+                    <div class="stage-metric"><span>Top-k Majority</span><strong>${escapeHtml(formatDiagnosticMajority(majority))}</strong></div>
+                    <div class="stage-metric"><span>Skew</span><strong>${strength == null ? 'N/A' : escapeHtml(formatPercent(strength, 1))}</strong></div>
+                    <div class="stage-metric"><span>Traceable</span><strong>${escapeHtml(`${traceable} / ${total}`)}</strong></div>
+                    <div class="stage-metric"><span>Traceable Weight</span><strong>${escapeHtml(formatPercent(weighted.traceable_importance_share || 0, 1))}</strong></div>
+                    <div class="stage-metric"><span>Verdict</span><strong class="${supportTone}">${escapeHtml(supportText)}</strong></div>
+                </div>
+                ${buildDiagnosticEvidenceBarForWeighted(weighted, `Top ${selected.k} traceable evidence vote`)}
+                ${buildDiagnosticNodeRows(Array.isArray(selected.per_node) ? selected.per_node : [])}
+            </div>
+        `;
+    }
+
+    function topKCutoffs(diagData) {
+        const explicit = Array.isArray(diagData?.top_k_cutoffs) ? diagData.top_k_cutoffs : [];
+        const fromSweep = Object.values(diagData?.topk_diagnostics || {})
+            .flatMap(items => Array.isArray(items) ? items.map(item => Number(item.k)) : []);
+        const values = [...explicit, ...fromSweep]
+            .map(Number)
+            .filter(Number.isFinite);
+        return Array.from(new Set(values)).sort((a, b) => a - b);
+    }
+
+    function availableTopKScopes(diagData) {
+        const labels = {
+            full_graph: 'Full graph',
+            legal: 'Legal only',
+            traceable_full_graph: 'Traceable full graph',
+            traceable_legal: 'Traceable legal'
+        };
+        return Object.entries(diagData?.topk_diagnostics || {})
+            .filter(([, items]) => Array.isArray(items) && items.length)
+            .map(([key]) => ({ key, label: labels[key] || key }));
+    }
+
+    function buildDiagnosticNodeRows(rows) {
+        if (!rows.length) {
+            return '<p class="empty-copy">No per-node training-neighbour rows were produced for this case.</p>';
+        }
+        return `
+            <div class="diagnostic-node-list">
+                ${rows.slice(0, 8).map(row => {
+                    const lossShare = getDiagnosticPct(row, '-1');
+                    const winShare = getDiagnosticPct(row, '1');
+                    const trainNeighbours = toFiniteNumber(row.n_train_neighbours) ?? 0;
+                    const importance = toFiniteNumber(row.importance) ?? 0;
+                    const majority = formatDiagnosticMajority(row.majority_class);
+                    const groupLabel = GROUP_LABELS[row.node_type] || row.node_type || 'Node';
+                    const scope = row.connection_scope
+                        ? `<span class="scope-tag ${row.target_direct ? 'direct' : 'shared'}">${escapeHtml(row.connection_scope)}</span>`
+                        : '';
+                    const traceStatus = row.trace_status
+                        ? `<span class="scope-tag trace">${escapeHtml(formatTraceStatus(row.trace_status))}</span>`
+                        : '';
+                    return `
+                        <div class="diagnostic-node-row">
+                            <div class="diagnostic-node-head">
+                                <strong>${escapeHtml(groupLabel)}</strong>
+                                <span>${escapeHtml(formatPercent(importance, 1))} importance · ${escapeHtml(String(trainNeighbours))} train cases · ${escapeHtml(majority)}</span>
+                            </div>
+                            <div class="explainer-item-meta">${scope}${traceStatus}<span class="edge-tag">${escapeHtml(row.edge_type || '')}</span></div>
+                            <div class="diagnostic-node-text">${escapeHtml(truncate(row.text || '', 190))}</div>
+                            <div class="diagnostic-mini-stack">
+                                <div class="diagnostic-mini-segment loss" style="width:${((lossShare || 0) * 100).toFixed(2)}%"></div>
+                                <div class="diagnostic-mini-segment win" style="width:${((winShare || 0) * 100).toFixed(2)}%"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
         `;
     }
 
@@ -424,14 +1024,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============ SUMMARY PANEL ============
-    function renderSummaryPanel(explData, caseData) {
-        if (typeof marked !== 'undefined') {
-            summaryExplanationEl.innerHTML = marked.parse(explData.explanation || '*No explanation provided.*');
+    function renderSummaryPanel(explData, caseData, diagData) {
+        const weighted = diagData?.weighted_evidence || {};
+        if (!diagData) {
+            summaryExplanationEl.innerHTML = '<p class="empty-copy">Run Phase 6 to see the bucket-local evidence diagnostic for this prediction.</p>';
         } else {
-            summaryExplanationEl.textContent = explData.explanation || 'No explanation provided.';
+            const majority = weighted.majority_class || 'untraceable';
+            const strength = formatPercent(weighted.strength || 0, 1);
+            const traceable = `${weighted.n_traceable_nodes || 0} / ${weighted.n_nodes || 0}`;
+            summaryExplanationEl.innerHTML = `
+                <p>The model predicted <strong>${escapeHtml(formatOutcomeLabel(explData.predicted_label))}</strong>
+                with ${escapeHtml(formatPercent(explData.confidence, 2))} confidence for this bucket-local graph.</p>
+                <p>Among surfaced evidence nodes that trace back to training cases, the importance-weighted majority is
+                <strong>${escapeHtml(formatOutcomeLabel(majority))}</strong> with ${escapeHtml(strength)} skew.
+                Traceable nodes: ${escapeHtml(traceable)}.</p>
+            `;
         }
         renderPrecedents(caseData);
-        renderSimilarCases(caseData);
+        renderArgumentContext(caseData);
     }
 
     function renderPrecedents(caseData) {
@@ -451,31 +1061,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function renderSimilarCases(caseData) {
-        similarCasesListEl.innerHTML = '';
-        if (!caseData?.similar_training_cases?.length) {
-            similarCasesListEl.innerHTML = '<p class="empty-copy">No similar cases found.</p>';
+    function renderArgumentContext(caseData) {
+        if (!argumentContextListEl) {
             return;
         }
-        caseData.similar_training_cases.forEach(sc => {
-            const isWin = sc.target_label === '1';
-            const simPct = formatPercent(sc.similarity, 1);
+        argumentContextListEl.innerHTML = '';
+        const rawGroups = caseData?._raw_argument_top_nodes || {};
+        const contexts = Object.entries(rawGroups).flatMap(([group, items]) =>
+            (items || []).map(item => ({ ...item, group }))
+        ).sort((a, b) => (b.importance || 0) - (a.importance || 0)).slice(0, 12);
+        if (!contexts.length) {
+            argumentContextListEl.innerHTML = '<p class="empty-copy">No bucket-local argument nodes surfaced.</p>';
+            return;
+        }
+        contexts.forEach(item => {
             const card = document.createElement('div');
             card.className = 'node-item';
             card.innerHTML = `
-                <div class="node-item-title">${escapeHtml(sc.case_id)}</div>
+                <div class="node-item-title">${escapeHtml(truncate(normalizeNodeText(item.text || ''), 160))}</div>
                 <div class="node-item-meta" style="margin-bottom:8px;">
-                    <span style="display:flex;align-items:center;gap:6px;">
-                        <span class="label-dot ${isWin ? 'win' : 'loss'}"></span>
-                        Outcome: ${escapeHtml(formatOutcomeLabel(sc.target_label))}
-                    </span>
-                    <span>Sim: ${simPct}</span>
+                    <span>${escapeHtml(GROUP_LABELS[item.group] || item.group || 'Argument')}</span>
+                    <span>${escapeHtml(formatPercent(item.importance || 0, 1))} importance</span>
                 </div>
-                <div class="node-item-meta">
-                    <span>Model: ${escapeHtml(formatOutcomeLabel(sc.predicted_label))}</span>
-                </div>
+                <div class="node-item-meta">${escapeHtml(truncate(item.edge_type || '', 220))}</div>
             `;
-            similarCasesListEl.appendChild(card);
+            argumentContextListEl.appendChild(card);
         });
     }
 
@@ -483,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGraphView(explData, caseData) {
         const nodes = collectGraphNodes(caseData);
         graphDescriptionEl.textContent = nodes.length
-            ? 'Node-link view. Edge thickness ≈ importance; dashed edges = embedding-retrieval links.'
+            ? 'Node-link view. Edge thickness ≈ PGExplainer importance.'
             : 'No structured graph links available for this case.';
         graphLegendEl.innerHTML = buildGraphLegend(nodes);
         graphVisualizationEl.innerHTML = buildGraphSVG(explData, nodes);
@@ -494,66 +1104,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function collectGraphNodes(caseData) {
         const out = [];
-        const top = caseData?.top_nodes || {};
-        const raw = caseData?._raw_argument_top_nodes || {};
+        const graphCategories = getTopGraphCategories(caseData)
+            .flatMap(cat => (cat.items || []).map(item => ({ cat, item })))
+            .sort((a, b) => (b.item.importance || 0) - (a.item.importance || 0))
+            .slice(0, 22);
 
-        const legalSources = [
-            { key: 'precedent', items: (top.precedent || []).slice(0, 4), section: 'legal' },
-            { key: 'statute', items: (top.statute || []).slice(0, 3), section: 'legal' },
-            { key: 'provision', items: (top.provision || []).slice(0, 3), section: 'legal' }
-        ];
-        const argSources = [
-            { key: 'arguments', items: (raw.arguments || []).slice(0, 4), section: 'arguments' },
-            { key: 'petitioner_arguments', items: (raw.petitioner_arguments || []).slice(0, 2), section: 'arguments' },
-            { key: 'respondent_arguments', items: (raw.respondent_arguments || []).slice(0, 2), section: 'arguments' },
-            { key: 'other_lawyer_arguments', items: (raw.other_lawyer_arguments || []).slice(0, 2), section: 'arguments' }
-        ];
-
-        [...legalSources, ...argSources].forEach(cat => {
-            cat.items.forEach(item => {
+        if (graphCategories.length) {
+            graphCategories.forEach(({ cat, item }) => {
                 const imp = Number.isFinite(item.importance) ? item.importance : 0;
                 out.push({
-                    section: cat.section,
+                    section: graphNodeSection(cat.key),
                     groupKey: cat.key,
-                    groupLabel: GROUP_LABELS[cat.key],
-                    color: GROUP_COLORS[cat.key],
+                    groupLabel: GROUP_LABELS[cat.key] || cat.key,
+                    color: GROUP_COLORS[cat.key] || '#58a6ff',
                     title: normalizeNodeText(item.text),
                     score: imp,
                     scoreLabel: 'Importance',
                     edgeStyle: 'solid',
-                    extra: `Node #${item.node_index}`
+                    extra: [
+                        `Node #${item.node_index}`,
+                        item.connection_scope || ''
+                    ].filter(Boolean).join(' · ')
                 });
             });
-        });
-
-        (caseData?.similar_training_cases || []).slice(0, 4).forEach(sc => {
-            out.push({
-                section: 'similar',
-                groupKey: 'similar_training_cases',
-                groupLabel: GROUP_LABELS.similar_training_cases,
-                color: GROUP_COLORS.similar_training_cases,
-                title: sc.case_id,
-                score: sc.similarity || 0,
-                scoreLabel: 'Similarity',
-                edgeStyle: 'dashed',
-                extra: `Rank #${sc.rank} · ${formatOutcomeLabel(sc.target_label)}`,
-                outcomeClass: sc.target_label === '1' ? 'win' : 'loss'
+        } else {
+            const top = caseData?.top_nodes || {};
+            const raw = caseData?._raw_argument_top_nodes || {};
+            const fallbackSources = [
+                { key: 'precedent', items: (top.precedent || []).slice(0, 4), section: 'legal' },
+                { key: 'statute', items: (top.statute || []).slice(0, 3), section: 'legal' },
+                { key: 'provision', items: (top.provision || []).slice(0, 3), section: 'legal' },
+                { key: 'arguments', items: (raw.arguments || []).slice(0, 4), section: 'text' },
+                { key: 'petitioner_arguments', items: (raw.petitioner_arguments || []).slice(0, 2), section: 'text' },
+                { key: 'respondent_arguments', items: (raw.respondent_arguments || []).slice(0, 2), section: 'text' },
+                { key: 'other_lawyer_arguments', items: (raw.other_lawyer_arguments || []).slice(0, 2), section: 'text' }
+            ];
+            fallbackSources.forEach(cat => {
+                cat.items.forEach(item => {
+                    const imp = Number.isFinite(item.importance) ? item.importance : 0;
+                    out.push({
+                        section: cat.section,
+                        groupKey: cat.key,
+                        groupLabel: GROUP_LABELS[cat.key],
+                        color: GROUP_COLORS[cat.key],
+                        title: normalizeNodeText(item.text),
+                        score: imp,
+                        scoreLabel: 'Importance',
+                        edgeStyle: 'solid',
+                        extra: `Node #${item.node_index}`
+                    });
+                });
             });
-        });
+        }
 
         return out;
+    }
+
+    function graphNodeSection(key) {
+        if (['statute', 'provision', 'precedent'].includes(key)) return 'legal';
+        if (['preamble', 'facts', 'arguments', 'petitioner_arguments', 'respondent_arguments', 'other_lawyer_arguments'].includes(key)) return 'text';
+        if (['court', 'judge', 'lawyer', 'defence_lawyer', 'petitioner_lawyer', 'petitioner', 'respondent'].includes(key)) return 'actors';
+        if (key === 'case') return 'cases';
+        return 'other';
     }
 
     function buildGraphLegend(nodes) {
         const groups = Array.from(new Set(nodes.map(n => n.groupKey)));
         if (!groups.length) return '';
         const chips = groups.map(k => `
-            <span class="legend-chip"><span class="legend-swatch" style="background:${GROUP_COLORS[k]}"></span>${escapeHtml(GROUP_LABELS[k])}</span>
+            <span class="legend-chip"><span class="legend-swatch" style="background:${GROUP_COLORS[k] || '#58a6ff'}"></span>${escapeHtml(GROUP_LABELS[k] || k)}</span>
         `).join('');
         return `
             ${chips}
             <span class="legend-chip"><span class="legend-line solid"></span>Importance</span>
-            <span class="legend-chip"><span class="legend-line dashed"></span>Similarity</span>
         `;
     }
 
@@ -567,9 +1190,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const R = Math.min(W, H) * 0.38;
 
         const sections = {
-            legal: { start: -145, end: -35, nodes: [] },
-            arguments: { start: 35, end: 145, nodes: [] },
-            similar: { start: 160, end: 200, nodes: [] }
+            legal: { start: -150, end: -70, nodes: [] },
+            text: { start: -45, end: 35, nodes: [] },
+            actors: { start: 60, end: 140, nodes: [] },
+            cases: { start: 165, end: 210, nodes: [] },
+            other: { start: 225, end: 305, nodes: [] }
         };
         nodes.forEach(n => { (sections[n.section] || sections.legal).nodes.push(n); });
 
@@ -596,8 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const curveStrength = 26;
             const ctrlX = midX + (nx / norm) * curveStrength;
             const ctrlY = midY + (ny / norm) * curveStrength;
-            const dash = p.edgeStyle === 'dashed' ? 'stroke-dasharray="6 5"' : '';
-            return `<path class="graph-edge" d="M ${cx} ${cy} Q ${ctrlX} ${ctrlY} ${p.x} ${p.y}" stroke="${p.color}" stroke-width="${strokeW.toFixed(2)}" fill="none" ${dash} data-node-idx="${p.idx}"/>`;
+            return `<path class="graph-edge" d="M ${cx} ${cy} Q ${ctrlX} ${ctrlY} ${p.x} ${p.y}" stroke="${p.color}" stroke-width="${strokeW.toFixed(2)}" fill="none" data-node-idx="${p.idx}"/>`;
         }).join('');
 
         const satellites = positioned.map(p => {
@@ -708,16 +1332,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderGraphSide(explData, nodes) {
         const legalCount = nodes.filter(n => n.section === 'legal').length;
-        const argCount = nodes.filter(n => n.section === 'arguments').length;
-        const simNodes = nodes.filter(n => n.section === 'similar');
-        const simWins = simNodes.filter(n => n.outcomeClass === 'win').length;
-        const simLosses = simNodes.filter(n => n.outcomeClass === 'loss').length;
+        const textCount = nodes.filter(n => n.section === 'text').length;
+        const actorCount = nodes.filter(n => n.section === 'actors').length;
+        const caseCount = nodes.filter(n => n.section === 'cases').length;
 
         graphStatsEl.innerHTML = [
             { label: 'Satellite nodes', value: String(nodes.length) },
             { label: 'Legal sources', value: String(legalCount) },
-            { label: 'Argument nodes', value: String(argCount) },
-            { label: 'Retrieved outcomes', value: `${simWins}W / ${simLosses}L` },
+            { label: 'Text sections', value: String(textCount) },
+            { label: 'Actor nodes', value: String(actorCount) },
+            { label: 'Case nodes', value: String(caseCount) },
             { label: 'Prediction conf.', value: formatPercent(explData.confidence, 2) }
         ].map(s => `<div class="stat-card"><div class="stat-value">${escapeHtml(s.value)}</div><div class="stat-label">${escapeHtml(s.label)}</div></div>`).join('');
 
@@ -735,13 +1359,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 .sort((a, b) => b.items.length - a.items.length)
                 .map(g => {
                     const peak = Math.max(...g.items.map(i => i.score));
-                    const color = GROUP_COLORS[g.key];
+                    const color = GROUP_COLORS[g.key] || '#58a6ff';
                     return `
                         <div class="breakdown-item">
                             <div class="breakdown-header">
                                 <div class="breakdown-label">
                                     <span class="swatch" style="background:${color}"></span>
-                                    ${escapeHtml(GROUP_LABELS[g.key])}
+                                    ${escapeHtml(GROUP_LABELS[g.key] || g.key)}
                                 </div>
                                 <span>${g.items.length}</span>
                             </div>
@@ -764,15 +1388,6 @@ document.addEventListener('DOMContentLoaded', () => {
             insights.push({
                 title: `Strongest ${strongest.groupLabel}`,
                 body: `${strongest.title} scored ${formatPercent(strongest.score, 2)}.`
-            });
-        }
-        if (simNodes.length) {
-            const agree = explData.predicted_label === '1'
-                ? simWins
-                : simLosses;
-            insights.push({
-                title: 'Retrieval Agreement',
-                body: `${agree} of ${simNodes.length} retrieved analogues share the predicted outcome.`
             });
         }
         graphInsightsEl.innerHTML = insights.map(i =>
@@ -823,10 +1438,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadAnalyticsData() {
         const [summaryRes, manifestRes, trainHistRes, predRes] = await Promise.all([
-            fetch('../outputs/phase1_2_inference/summary.json'),
-            fetch('../outputs/phase4_explanations/manifest.json'),
-            fetch('../outputs/phase3_explainer/training_history.json').catch(() => null),
-            fetch('../outputs/phase1_2_inference/predictions.csv').catch(() => null)
+            fetch(outputUrl('phase1_2_inference/summary.json')),
+            fetch(outputUrl('phase4_explanations/manifest.json')),
+            fetch(outputUrl('phase3_explainer/training_history.json')).catch(() => null),
+            fetch(outputUrl('phase1_2_inference/predictions.csv')).catch(() => null)
         ]);
 
         const summary = summaryRes.ok ? await summaryRes.json() : {};
@@ -837,7 +1452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const caseIndices = manifest.case_indices || [];
         const caseFiles = await Promise.all(caseIndices.map(async idx => {
             try {
-                const r = await fetch(`../outputs/phase4_explanations/cases/case_${idx}.json`);
+                const r = await fetch(outputUrl(`phase4_explanations/cases/case_${idx}.json`));
                 return r.ok ? await r.json() : null;
             } catch (_) { return null; }
         }));
@@ -897,7 +1512,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const splitAccuracy = buildSplitAccuracy(predictions);
         const confidenceHist = buildConfidenceHistogram(predictions);
         const topPrecedents = buildTopPrecedents(cases);
-        const retrievalAgreement = buildRetrievalAgreement(cases);
         const lossChart = buildTrainingLossChart(trainHist);
         const explainedDist = buildExplainedDistribution(cases);
 
@@ -909,7 +1523,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="analytics-row">
                 ${confidenceHist}
-                ${retrievalAgreement}
             </div>
             ${topPrecedents}
             ${lossChart}
@@ -1002,7 +1615,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const highConf = confs.filter(v => v >= 0.95).length;
         const lowConf = confs.filter(v => v < 0.6).length;
         const avgTopPrec = averageTopPrecedentImportance(cases);
-        const avgSim = averageTopSimilarity(cases);
 
         return `
             <section class="card">
@@ -1013,7 +1625,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="stat-card"><div class="stat-value">${highConf}</div><div class="stat-label">Very confident (≥95%)</div></div>
                     <div class="stat-card"><div class="stat-value">${lowConf}</div><div class="stat-label">Uncertain (&lt;60%)</div></div>
                     <div class="stat-card"><div class="stat-value">${formatPercent(avgTopPrec, 1)}</div><div class="stat-label">Avg top-precedent score</div></div>
-                    <div class="stat-card"><div class="stat-value">${formatPercent(avgSim, 2)}</div><div class="stat-label">Avg top-1 similarity</div></div>
                 </div>
             </section>
         `;
@@ -1022,14 +1633,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function averageTopPrecedentImportance(cases) {
         const vals = cases
             .map(c => c?.top_nodes?.precedent?.[0]?.importance)
-            .filter(Number.isFinite);
-        if (!vals.length) return 0;
-        return vals.reduce((s, v) => s + v, 0) / vals.length;
-    }
-
-    function averageTopSimilarity(cases) {
-        const vals = cases
-            .map(c => c?.similar_training_cases?.[0]?.similarity)
             .filter(Number.isFinite);
         if (!vals.length) return 0;
         return vals.reduce((s, v) => s + v, 0) / vals.length;
@@ -1123,43 +1726,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    function buildRetrievalAgreement(cases) {
-        let withSim = 0, sameOutcome = 0, samePred = 0, totalSims = 0, simOut = 0;
-        cases.forEach(c => {
-            const sims = c?.similar_training_cases || [];
-            if (!sims.length) return;
-            withSim++;
-            const top = sims[0];
-            if (top.target_label === c.target_label) sameOutcome++;
-            if (top.predicted_label === c.predicted_label) samePred++;
-            sims.forEach(s => {
-                totalSims++;
-                if (s.target_label === c.predicted_label) simOut++;
-            });
-        });
-
-        if (!withSim) {
-            return `<section class="card"><div class="card-header"><h3>🔗 Retrieval Agreement</h3></div><p class="empty-copy">No similar-case retrievals.</p></section>`;
-        }
-
-        const topMatchPct = sameOutcome / withSim;
-        const topPredPct = samePred / withSim;
-        const allMatchPct = totalSims ? simOut / totalSims : 0;
-
-        return `
-            <section class="card">
-                <div class="card-header"><h3>🔗 Retrieval ↔ Case Agreement</h3></div>
-                <div class="stat-grid">
-                    <div class="stat-card"><div class="stat-value">${formatPercent(topMatchPct, 1)}</div><div class="stat-label">Top-1 shares query outcome</div></div>
-                    <div class="stat-card"><div class="stat-value">${formatPercent(topPredPct, 1)}</div><div class="stat-label">Top-1 shares query prediction</div></div>
-                    <div class="stat-card"><div class="stat-value">${formatPercent(allMatchPct, 1)}</div><div class="stat-label">All retrievals match prediction</div></div>
-                    <div class="stat-card"><div class="stat-value">${withSim}</div><div class="stat-label">Cases with ≥1 neighbor</div></div>
-                </div>
-                <p class="card-subtext">High agreement suggests the embedding space clusters outcome-compatible cases, which is exactly what drives the retrieval-augmented reasoning in phase 5.</p>
-            </section>
-        `;
-    }
-
     function buildTrainingLossChart(trainHist) {
         if (!trainHist || !Array.isArray(trainHist.history) || !trainHist.history.length) {
             return '';
@@ -1233,10 +1799,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function shortKind(key) {
         const map = {
+            case: 'CASE', preamble: 'PRE', facts: 'FACT',
             precedent: 'PREC', statute: 'STAT', provision: 'PROV',
             arguments: 'ARG', petitioner_arguments: 'PET',
             respondent_arguments: 'RESP', other_lawyer_arguments: 'OTH',
-            similar_training_cases: 'SIM'
+            court: 'CRT', judge: 'JDG', lawyer: 'LAW',
+            defence_lawyer: 'DEF', petitioner_lawyer: 'PLAW',
+            petitioner: 'PTR', respondent: 'RSP'
         };
         return map[key] || '•';
     }
@@ -1244,6 +1813,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function truncate(text, max) {
         const s = String(text || '').trim();
         return s.length > max ? s.slice(0, max - 1).trimEnd() + '…' : s;
+    }
+
+    function toFiniteNumber(value) {
+        const num = typeof value === 'number' ? value : Number.parseFloat(value);
+        return Number.isFinite(num) ? num : null;
+    }
+
+    function getDiagnosticPct(source, label) {
+        if (!source) return null;
+        const value = toFiniteNumber(source[`pct_${label}`]);
+        if (value == null) return null;
+        return Math.max(0, Math.min(1, value));
+    }
+
+    function formatDiagnosticMajority(value) {
+        if (value === 'tie') return 'Tie';
+        if (value === 'untraceable') return 'Untraceable';
+        return formatOutcomeLabel(value);
+    }
+
+    function formatTraceStatus(value) {
+        const map = {
+            traceable: 'Traceable',
+            case_local_untraceable: 'Case-local',
+            shared_untraceable: 'No train neighbours'
+        };
+        return map[value] || String(value || '');
     }
 
     function formatPercent(value, digits = 1) {

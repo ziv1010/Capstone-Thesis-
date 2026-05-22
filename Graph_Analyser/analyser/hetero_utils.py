@@ -130,11 +130,15 @@ def strip_node_prefix(canonical_key: str, node_type: str) -> str:
     prefix = f"{node_type}::"
     if canonical_key.startswith(prefix):
         return canonical_key[len(prefix):]
-    # Argument-role nodes use the pattern ``case::<case_id>::<arg_type>``. Pull
-    # out the owning case id so downstream display is a readable case title
-    # rather than a raw node key.
-    if canonical_key.startswith("case::") and canonical_key.endswith(f"::{node_type}"):
-        return canonical_key[len("case::"):-len(f"::{node_type}")]
+    # Case-scoped nodes use either ``case::<case_id>::<arg_type>`` or
+    # ``case::<case_id>::<node_type>::<value>``. Keep argument nodes anchored
+    # to the owning case, but show the actual value for actors/courts.
+    if canonical_key.startswith("case::"):
+        parts = canonical_key.split("::")
+        if len(parts) >= 4 and parts[-2] == node_type:
+            return parts[-1]
+        if canonical_key.endswith(f"::{node_type}"):
+            return canonical_key[len("case::"):-len(f"::{node_type}")]
     return canonical_key
 
 
@@ -164,7 +168,11 @@ def get_split_indices(data) -> dict[str, list[int]]:
     return out
 
 
-def load_fold_splits(predictions_csv_path: str, data) -> dict[str, list[int]]:
+def load_fold_splits(
+    predictions_csv_path: str,
+    data,
+    expected_bucket: str | None = None,
+) -> dict[str, list[int]]:
     """Recover the fold-specific train/val/test split from a training-time
     predictions.csv written by section_GNN.
 
@@ -175,6 +183,14 @@ def load_fold_splits(predictions_csv_path: str, data) -> dict[str, list[int]]:
     import pandas as pd  # kept local to avoid a hard torch-only import
 
     df = pd.read_csv(predictions_csv_path)
+    if expected_bucket:
+        from analyser.loader import validate_case_ids_bucket  # local to avoid import cycles
+
+        validate_case_ids_bucket(
+            [str(x) for x in df["case_id"].tolist()],
+            expected_bucket,
+            f"fold predictions {predictions_csv_path}",
+        )
     case_ids = list(data["case"].case_id)
     case_id_to_node_idx = {cid: idx for idx, cid in enumerate(case_ids)}
     splits: dict[str, list[int]] = {"train": [], "val": [], "test": []}

@@ -1,0 +1,718 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\definecolor{stepgray}{RGB}{90,90,100}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+\setlist[itemize]{leftmargin=1.5em, itemsep=3pt}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Experiments Overview}} \\[4pt]
+  {\small HGT Legal Outcome Prediction --- Explainability \& Structural Analysis}
+\end{center}
+
+\vspace{4pt}
+
+This document summarises every experiment and test implemented for the explanation
+phase of the thesis, written in pipeline order --- each step either produces outputs
+that feed the next step, or deepens the interpretation of a previous step. The goal
+is to record methodology and rationale in enough detail to support the research paper.
+
+The underlying model is a Heterogeneous Graph Transformer (HGT) trained on Indian
+Supreme Court cases. The graph contains case nodes, statute/provision/precedent nodes,
+judge/court/party/lawyer nodes, and structured case section nodes (facts, arguments,
+preamble, etc.). The model predicts case outcomes (petitioner win or loss). All
+experiments operate on a frozen, trained model --- nothing is retrained.
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 1 \texorpdfstring{\textcolor{stepgray}{---}}{---} Typed Counterfactual Masking (Core Explainability)}
+
+\textbf{What we do.}
+For every test case we first extract its \emph{L-hop induced receptive field}: the
+complete set of nodes within $L$ hops of the target case in the heterogeneous graph
+(where $L$ equals the number of GNN layers, typically 2), together with all directed
+edges among those nodes. This is the exact subgraph the model used to compute the
+prediction; we reconstruct it locally so the model can be run on it in isolation.
+
+Within this local subgraph we enumerate \emph{mask groups}. Two kinds exist:
+\begin{itemize}
+  \item \textbf{Node groups} --- every non-case node in the receptive field (individual
+    statutes, provisions, precedents, case sections, judges, courts, parties, lawyers).
+    Masking removes all edges incident to that node in the local subgraph.
+  \item \textbf{Relation-type groups} --- every distinct edge type (e.g.\ all
+    ``cites-statute'' edges, all ``cited-by-section'' edges). Masking removes every
+    edge of that type from the local subgraph.
+\end{itemize}
+
+For each group we run one forward pass of the frozen model with those edges removed
+and record: the change in predicted-class probability (\emph{delta}), the change in
+the probability of the positive label, and whether the prediction flips to the
+opposite class. Groups are ranked by absolute delta. We simultaneously run the
+unmasked forward pass with attention recording enabled and attach the mean HGT
+attention weight assigned to each group's edges --- giving a second, attention-derived
+importance signal for comparison.
+
+The top-$k$ groups per case, aggregate evidence-type importance across all test cases,
+aggregate relation-type importance, and a leakage-sensitivity summary (average delta
+for identity-type nodes) are all written to disk. For each masked evidence node we
+also compute a \emph{support profile}: how many training cases share that node and
+what their label distribution (wins vs.\ losses) is. This directly links each
+explanation back to the training data that shaped the model.
+
+\textbf{Why.}
+Standard attribution methods (SHAP, LIME, saliency maps) are designed for
+fixed-input models. A GNN operating on a typed heterogeneous graph has no fixed
+input structure: the number of evidence nodes varies per case, edges carry semantic
+type, and message passing is inherently structural. Counterfactual masking is the
+natural adaptation: we intervene directly on the graph structure and observe the
+causal effect on the prediction. Masking at the \emph{edge} level (rather than
+deleting nodes) ensures we capture the total contribution of each evidence node
+regardless of which path through the graph it uses.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Per-case explanation:} Which specific statutes, provisions, or
+    precedents drove each prediction. A positive delta means the group supported the
+    original prediction; a negative delta means its presence worked against it.
+  \item \textbf{Prediction flips:} When masking a single group flips the prediction
+    entirely, that group is load-bearing. Flip rates across the test set reveal how
+    often the model's decision depends on a single piece of evidence.
+  \item \textbf{Relation-type importance:} The aggregate ranking of edge types shows
+    which kinds of connections the model relies on most globally.
+  \item \textbf{Attention--counterfactual agreement:} When both signals rank the same
+    group highly, that is convergent evidence of importance. Disagreement raises
+    questions about what HGT attention is actually tracking.
+  \item \textbf{Early identity signal:} If judges, courts, petitioners, or lawyers
+    appear persistently in top-ranked groups, the model may be using identity
+    shortcuts. This is the seed for the shortcut and mask sensitivity experiments
+    (Steps 9 and 10).
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} top explanations CSV, case summary CSV,
+counterfactual groups CSV, connected-case label distribution CSV, leakage sensitivity
+summary CSV, attention--counterfactual overlap CSV.
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 2 \texorpdfstring{\textcolor{stepgray}{---}}{---} Faithfulness Validation of Explanations}
+
+\textbf{What we do.}
+Using the counterfactual groups from Step 1 we verify that the evidence rankings
+actually reflect what the model uses, via two complementary faithfulness metrics:
+\begin{itemize}
+  \item \textbf{Sufficiency:} Keep only the top-$k$ ranked evidence groups; mask
+    everything else. If the ranking is faithful, the prediction should be largely
+    preserved with just those $k$ groups. We record the absolute predicted-class
+    probability and the fraction of the original probability retained.
+  \item \textbf{Comprehensiveness:} Remove only the top-$k$ groups; keep everything
+    else. If the ranking is faithful, the prediction probability should drop
+    substantially. We record the absolute drop and fractional drop.
+\end{itemize}
+We sweep $k$ over $\{0,1,2,3,5,10,20\}$ and compute AUC over the resulting curves.
+We run this for three rankers: counterfactual ranking (Step 1), attention-score
+ranking (Step 1), and a random baseline averaged over three trials per case. Mean
+and median AUC are compared across rankers.
+
+We also run a \emph{prediction bucket analysis}: cases are split into high-confidence
+correct ($\geq$0.8 confidence, right label), high-confidence wrong ($\geq$0.8,
+wrong label), and low-confidence. For each bucket we report the dominant evidence
+type, mean top-1 counterfactual delta, mean evidence purity (how skewed the supporting
+training cases are toward one label), and mean training support size.
+
+\textbf{Why.}
+Generating importance scores is easy; demonstrating they honestly reflect the model's
+computation is hard. Sufficiency and comprehensiveness are the canonical XAI
+faithfulness metrics and must be reported. Comparing against attention and random
+baselines determines whether our ranking extracts genuine causal information, not
+artefacts of graph structure. The bucket analysis addresses what evidence the model
+relies on when it is right, uncertain, and confidently wrong --- the last group is
+the highest-risk failure mode in a legal setting.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Explanation trustworthiness:} High comprehensiveness AUC (removing
+    top-$k$ hurts the model significantly) and high sufficiency AUC (keeping only
+    top-$k$ preserves the prediction) together confirm the explanation captures
+    genuine model reasoning.
+  \item \textbf{Counterfactual vs.\ attention:} If counterfactual AUC consistently
+    exceeds attention AUC, HGT attention is not a reliable importance signal despite
+    its intuitive appeal --- a notable finding for the paper.
+  \item \textbf{Failure mode characterisation:} The high-confidence wrong bucket
+    reveals whether mistakes cluster around specific evidence types (a fixable bias)
+    or are diffuse (a harder generalisation problem).
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 3 \texorpdfstring{\textcolor{stepgray}{---}}{---} Evidence Label Skew Scoring}
+
+\textbf{What we do.}
+Using the connected-case label distribution produced in Step 1, we score every
+legal authority that appears in the explanations for statistical association with
+outcome. For each authority we have its training support (how many training cases
+cite it) and the label breakdown (wins vs.\ losses). We run a G-test
+(log-likelihood ratio test) comparing that distribution against the global training
+base rate. Multiple-testing correction is applied with Benjamini-Hochberg at
+$\alpha = 0.05$.
+
+Each authority is classified as:
+\begin{itemize}
+  \item \textbf{Label-discriminative:} statistically significant ($q \leq 0.05$)
+    and effect size $\geq$10 percentage points above or below the base rate.
+  \item \textbf{Neutral:} sufficient training support but no significant skew.
+  \item \textbf{Ambiguous:} insufficient training support.
+\end{itemize}
+We also compute log-odds of winning given the authority is present, and produce an
+augmented explanations table with the skew classification attached to each evidence
+row from Step 1.
+
+\textbf{Why.}
+The counterfactual experiment tells us which evidence the model relies on; this
+experiment tells us whether that reliance is statistically justified by the training
+data. The two are independent: a model could heavily rely on evidence with no real
+label association (overfitting or structural bias) or underweight strongly
+discriminative evidence (underfitting). Cross-referencing the two is essential for
+interpretation.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Explanation grounding:} When an authority has a high counterfactual
+    delta \emph{and} is label-discriminative in the direction of the prediction, we
+    have strong convergent evidence of meaningful legal reasoning.
+  \item \textbf{Structural vs.\ content reliance:} If the model's top-ranked
+    authorities are predominantly neutral (no label association), it may be responding
+    to graph topology rather than legal content.
+  \item \textbf{Most predictive authorities:} The skew table ranked by log-odds is
+    itself a descriptive finding about which legal authorities are most strongly
+    associated with outcomes in Indian Supreme Court data.
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} evidence label skew CSV (used in Steps 12
+and 13 to rank distinguishing features by discriminative strength).
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 4 \texorpdfstring{\textcolor{stepgray}{---}}{---} Case-Case Structural Community Detection}
+
+\textbf{What we do.}
+We build a TF-IDF-weighted case-feature matrix where rows are cases and columns are
+legal features (statutes, provisions, precedents, judges, courts). The IDF weight of
+feature $f$ is $\log(N / n_f)$ where $N$ is total cases and $n_f$ is the number of
+cases containing that feature. Features appearing in fewer than 2 or more than 5,000
+cases are pruned (too rare $\Rightarrow$ noise; too common $\Rightarrow$
+uninformative). We compute a case-case similarity matrix as $\mathbf{W}\mathbf{W}^\top$
+where $\mathbf{W}$ is the IDF-weighted feature matrix. Each case retains only its top
+80 most similar neighbours and the matrix is symmetrised, giving a sparse undirected
+case-case graph. Leiden community detection (resolution 1.0 by default) partitions
+cases into latent legal domains. PageRank on the projection identifies representative
+cases (most central in citation-overlap structure) within each community.
+
+\textbf{Why.}
+We need a principled, model-independent way to group cases before we can ask whether
+the model behaves differently across legal domains. Grouping by citation structure
+--- cases that cite the same laws --- clusters cases by the legal questions they
+involve, independent of the model's predictions. The IDF weighting ensures
+communities are shaped by specific discriminative legal content, not by ubiquitous
+constitutional provisions cited in almost every case.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Legal domain structure:} Communities should correspond to
+    interpretable legal domains. If they do, the citation network has clean latent
+    structure.
+  \item \textbf{Model accuracy by domain:} Domains with high accuracy and high
+    confidence are well understood by the model; domains with low accuracy but high
+    confidence are the most dangerous failure zones.
+  \item \textbf{Train/test distribution:} The split composition of each community
+    (how many train vs.\ test cases) reveals whether some legal domains are
+    underrepresented at training time.
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} case communities CSV with community
+membership, domain bucket, and community-level accuracy (used in Steps 11, 12, 13).
+Case-feature matrix (used in Steps 12, 13). Evidence label skew CSV (joint with
+Step 3 from the same script).
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 5 \texorpdfstring{\textcolor{stepgray}{---}}{---} Full Heterogeneous Graph Community Detection}
+
+\textbf{What we do.}
+Rather than projecting to a case-case graph, we run Leiden directly on the full typed
+graph containing cases, statutes, provisions, and precedents as nodes simultaneously.
+Because cases do not directly cite statutes (citations go through section nodes such
+as arguments, facts, and preamble), we insert \emph{section bridges}: for each
+``case $\to$ section $\to$ cites statute'' path we add a direct case-to-statute edge
+before passing the graph to Leiden, ensuring authority nodes are connected to their
+citing cases. We run Leiden at five resolution parameters (0.4, 0.7, 1.0, 1.4, 2.0)
+in a single sweep, producing long- and wide-form membership tables. Edge weights are
+configurable: uniform binary, or log-inverse-degree weights that downweight edges to
+very high-degree hub nodes.
+
+\textbf{Why.}
+The case-case projection (Step 4) loses information about the authority nodes
+themselves --- we cannot say which community a statute belongs to. Running Leiden on
+the full graph gives every node a community assignment. The multi-resolution sweep
+gives a hierarchy of partitions from coarse broad domains to fine sub-topics, enabling
+the hierarchy analysis in Step 7.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Authority-case co-membership:} If a statute and the cases that cite it
+    tend to land in the same community, the graph has clean domain structure. If they
+    span multiple communities, that authority is a cross-domain connector (motivating
+    the bridge/hub analysis in Step 8).
+  \item \textbf{Resolution sensitivity:} The sweep reveals the natural scale of
+    legal structure --- too low a resolution merges all of law into a few giant
+    communities; too high produces noise. The elbow in the number-of-communities curve
+    suggests the operating resolution.
+  \item \textbf{Model error clustering:} Errors can be projected onto the full-graph
+    communities, giving a richer topological view than the case-case communities
+    alone.
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} long-form node community membership CSV (used
+in Steps 6, 7, and 8).
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 6 \texorpdfstring{\textcolor{stepgray}{---}}{---} Full Graph Community Profiling}
+
+\textbf{What we do.}
+For a chosen resolution from the Step 5 sweep (default 1.0) we profile each community
+along three axes:
+
+\textbf{Composition:} Community size, number of test cases, counts of statutes/
+provisions/precedents, dominant outcome label and legal domain bucket, full label
+distribution, and the top 10 authorities per type by case count within the community.
+Representative cases are identified as those whose cited authority set most overlaps
+with their own community (highest same-community authority share).
+
+\textbf{Prediction behaviour:} Overall accuracy, test-set accuracy, mean and median
+confidence, and a four-bucket breakdown: (i) high-confidence correct, (ii)
+high-confidence wrong (confidence $\geq$0.8, wrong label), (iii) low-confidence
+correct, (iv) low-confidence wrong.
+
+\textbf{Neighbourhood mixedness:} For every case, among all the authorities it cites,
+what fraction belong to a different community? We compute the normalised entropy of
+the authority community distribution and flag cases as \emph{boundary cases} if they
+have enough authority citations and normalised entropy $\geq$0.5 --- cases whose
+evidence spans multiple legal domains.
+
+\textbf{Why.}
+The abstract Leiden partition becomes interpretable here. Without profiling, a
+community is just a set of integers; with it, it becomes ``the income tax appeals
+cluster, dominated by specific provisions of the Income Tax Act, with 78\% petitioner
+win rate and 82\% model accuracy''. Boundary cases are motivated by the hypothesis
+that cross-domain evidence is structurally harder to reason about --- and therefore
+associated with higher error rates and lower confidence.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Interpretable legal taxonomy:} Community profiles form a de facto
+    taxonomy of Indian Supreme Court jurisprudence grounded in citation patterns ---
+    independently valuable as a descriptive contribution.
+  \item \textbf{Systematic failure zones:} Communities sorted by high-confidence
+    wrong rate immediately flag the most dangerous failure modes.
+  \item \textbf{Boundary cases as uncertainty signal:} If boundary cases tend to have
+    lower model confidence and higher error rates, cross-domain evidence is a genuine
+    source of model uncertainty --- a structurally grounded explanation of why some
+    cases are hard.
+  \item \textbf{Authority concentration:} If a small number of authorities dominate
+    every community (monoculture), the dataset may generalise poorly to cases invoking
+    less common legal provisions.
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 7 \texorpdfstring{\textcolor{stepgray}{---}}{---} Community Hierarchy Analysis}
+
+\textbf{What we do.}
+For every ordered pair of resolutions $(r_{\text{coarse}}, r_{\text{fine}})$ from the
+Step 5 sweep with $r_{\text{coarse}} < r_{\text{fine}}$, we compute a lineage table:
+for each community at the finer resolution, which community at the coarser resolution
+does it most overlap with (by node count), and what fraction of its nodes fall in that
+parent? A minimum overlap threshold of 10\% suppresses noisy links. We compute
+Adjusted Rand Index (ARI) and Normalised Mutual Information (NMI) between every
+resolution pair for case nodes specifically. We also build full lineage chains: for
+every leaf community at the finest resolution, its majority parent at every coarser
+level.
+
+\textbf{Why.}
+The multi-resolution sweep produces a family of partitions but does not itself reveal
+how they relate. Hierarchy analysis makes the nesting structure explicit. In an ideal
+legal taxonomy, broad domains at low resolution cleanly split into sub-domains at
+higher resolution. ARI and NMI between adjacent resolution levels quantify stability:
+high ARI means the partition is robust to small changes in resolution parameter, which
+increases confidence in the community assignments. A sharp drop identifies a structural
+phase transition.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Hierarchical vs.\ flat structure:} High overlap between fine and
+    coarse communities means the legal citation graph has genuine hierarchical
+    structure (broad domains $\to$ sub-domains $\to$ specific topics).
+  \item \textbf{Stable resolution range:} The range where ARI stays high between
+    adjacent levels is where community assignments are trustworthy and not sensitive
+    to the exact resolution chosen.
+  \item \textbf{Concrete sub-domain description:} The lineage chains produce statements
+    like ``community 5 at resolution 1.4 is a refinement of community 2 at resolution
+    0.7 (income tax appeals), corresponding to TDS-specific provisions'' --- usable
+    directly in the paper.
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 8 \texorpdfstring{\textcolor{stepgray}{---}}{---} Bridge, Hub, and Core Authority Classification}
+
+\textbf{What we do.}
+Using the full-graph community memberships from Step 5, for every statute, provision,
+and precedent we collect the Leiden community assignments of all cases that cite it
+and characterise the distribution across communities using: number of distinct
+communities touched, the share of citing cases in the most common community
+(max-share), and the normalised entropy of the community distribution.
+
+Three thresholds classify each authority into a role:
+\begin{itemize}
+  \item \textbf{Core} (max-share $\geq$80\%) --- primarily cited within one legal
+    domain; a domain specialist.
+  \item \textbf{Bridge} (60\%$\leq$ max-share $<$80\%, few communities touched) ---
+    primarily serves one domain but also connects to one or two others.
+  \item \textbf{Hub} (max-share $<$60\%, many communities) --- cited across the
+    legal landscape with no dominant home domain.
+  \item \textbf{Rare} ($<$5 citing cases) --- insufficient data to classify.
+\end{itemize}
+We also record the model's average accuracy and confidence on the cases that cite each
+authority, and output a bridge-pair table showing which community pairs are most often
+connected by bridge authorities.
+
+\textbf{Why.}
+From a legal perspective the taxonomy is meaningful: constitutional provisions cited
+everywhere are hubs; a highly specialised tax statute is a core authority. From a
+model perspective, removing a core authority should have a concentrated local effect on
+its domain; removing a hub should have a diffuse global effect. If the model does not
+behave this way, that tells us something important about how it processes authority
+information. This classification also provides the hub authority list used in Step 10.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Legal network topology:} The ratio of core to bridge to hub authorities
+    characterises how specialised vs.\ interconnected Indian Supreme Court jurisprudence
+    is.
+  \item \textbf{Authority importance conditioned on role:} Do core authorities receive
+    higher counterfactual deltas within their domain than hub authorities? If yes, the
+    model has implicitly learnt domain specificity; if no, it treats all legal citations
+    as equally weighted regardless of domain relevance.
+  \item \textbf{Cross-domain coupling:} The bridge-pair table shows which legal domain
+    pairs are most tightly coupled via shared authority --- independently informative
+    about Indian legal practice.
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} authority role classification CSV (used in
+Step 10 to select hub authorities for masking).
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 9 \texorpdfstring{\textcolor{stepgray}{---}}{---} Identity Shortcut Audit}
+
+\textbf{What we do.}
+Independently of the model, we test whether identity names alone can predict case
+outcomes from the training data. For each identity type (judge, court, petitioner,
+respondent, petitioner lawyer, defence lawyer, general lawyer) we:
+\begin{enumerate}
+  \item Collect all training-case identity links (which training cases involve which
+    judges, which petitioners, etc.).
+  \item For each identity compute a smoothed posterior win rate:
+    $(n_{\text{wins}} + \alpha \cdot p_{\text{prior}}) / (n_{\text{total}} + \alpha)$
+    where $\alpha = 5$ is a smoothing factor and $p_{\text{prior}}$ is the global
+    training win rate. This prevents single-case identities from receiving extreme
+    predictions.
+  \item For each test case, look up all identities it involves, weight each by its
+    training support count, and compute a weighted average predicted win probability.
+  \item Evaluate these identity-only predictions against ground truth using AUC-ROC,
+    log-loss, Brier score, and balanced accuracy. Compare against two baselines: the
+    global prior (predict the training win rate for every test case) and a domain-level
+    prior (predict the domain-specific win rate), controlling for the possibility that
+    identity ``signal'' is really domain signal.
+  \item Run $n=100$ permutation tests (shuffling training labels within domain buckets)
+    to get a p-value for whether the observed identity-only AUC exceeds chance.
+\end{enumerate}
+We output a top-skewed-identities table: for each type, the 50 individuals whose
+training win rates deviate most from the base rate and who appear in at least 2
+training and 1 test case.
+
+\textbf{Why.}
+This is a pure \emph{data} audit, separate from the model. It asks: does the dataset
+contain the information needed to exploit identity shortcuts, regardless of whether the
+model actually exploits it? This is necessary to correctly interpret Step 10 (mask
+sensitivity). If the data contains strong identity signal (high identity-only AUC)
+\emph{and} the model is sensitive to identity masking, both pieces of evidence point
+to shortcut learning. If only one holds, the interpretation is more nuanced. The
+smoothed-rate approach matters: identities appearing only once or twice in training
+have unreliable rates and must be shrunk toward the prior.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Dataset-level leakage risk:} High identity-only AUC above the domain
+    baseline indicates the raw dataset contains exploitable identity-outcome
+    correlations, independent of legal content. This is worth reporting even if the
+    model turns out not to exploit it.
+  \item \textbf{Most informative identities:} The top-skewed table lists the specific
+    judges, lawyers, or parties most strongly associated with outcomes. In a real legal
+    system these correlations may reflect seniority, specialisation, or selection
+    effects.
+  \item \textbf{Cross-referencing with counterfactuals:} By joining the skewed identity
+    table with the per-case counterfactual outputs (Step 1), we can ask: when the
+    model assigns high importance to a judge node, is that judge one of the highly
+    skewed ones? If yes, the model has specifically learnt the shortcut for high-signal
+    identities.
+  \item \textbf{Permutation significance:} A p-value $<0.05$ rules out the possibility
+    that the observed identity-only AUC is a random artefact of the train/test split.
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 10 \texorpdfstring{\textcolor{stepgray}{---}}{---} Mask Sensitivity Audit}
+
+\textbf{What we do.}
+We conduct two families of global post-hoc masking experiments on the frozen model,
+running full-graph inference with entire categories of edges removed.
+
+\textbf{Identity masking.} Five configurations:
+\begin{itemize}
+  \item Remove all edges to/from judge nodes.
+  \item Remove all edges to/from party nodes (petitioner + respondent).
+  \item Remove all edges to/from lawyer nodes (petitioner lawyer + defence lawyer
+    + general lawyer).
+  \item Remove all edges to/from court nodes.
+  \item Remove all identity nodes simultaneously.
+\end{itemize}
+For each we record: accuracy, macro F1, mean confidence, mean and median drop in the
+original predicted-class probability, and flip rate (share of cases whose predicted
+class changes). Results are broken down globally and by legal domain bucket.
+
+\textbf{Hub authority masking.} Using the authority role classification from Step 8,
+we take the top 10, 25, and 50 hub authorities by citing-case count and remove all
+their incident edges. We measure the same metrics.
+
+\textbf{Why.}
+Step 9 tested the data for identity signal; this step tests the \emph{model} for
+identity sensitivity. This is a post-hoc \emph{inference-time} masking experiment,
+not a retraining ablation: we ask what the trained model predicts when we hide judges
+at test time, not what the model would learn if it never saw judges. The distinction
+matters --- a model that learnt identity shortcuts during training may partially
+compensate through other features at inference time, understating the problem. But the
+masking approach is clean, fast, and directly comparable to the per-case counterfactual
+results from Step 1.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Identity dependence:} Large accuracy drops and high flip rates when
+    masking judges or parties are a red flag for shortcut learning. The domain-level
+    breakdown reveals whether the dependence is universal or concentrated in specific
+    legal areas.
+  \item \textbf{Parties and lawyers as signals:} Party names and lawyer names could
+    carry outcome signal (well-resourced litigants with experienced lawyers may win
+    more often). Measuring the effect of masking these nodes tells us whether the model
+    exploits this.
+  \item \textbf{Hub authority fragility:} If accuracy collapses when the top 10 hub
+    authorities are removed, the model is heavily dependent on a small number of very
+    common legal references --- a robustness concern.
+  \item \textbf{Convergent evidence:} Read alongside Step 9: if the data has strong
+    identity signal \emph{and} the model is sensitive to masking identities, the
+    evidence for shortcut learning is strong. If only one holds, the picture is more
+    complex.
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 11 \texorpdfstring{\textcolor{stepgray}{---}}{---} HGT Embedding Extraction \& Cluster Characterisation}
+
+\textbf{What we do.}
+We run a single full-graph forward pass of the frozen model on GPU (no gradient
+computation) and extract the final hidden-layer representation for every case node.
+These embeddings are the model's internal representation of each case after all layers
+of heterogeneous message passing --- they summarise everything the model has aggregated
+from the case's legal graph neighbourhood. The embeddings are L2-normalised and saved.
+
+We then run HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications
+with Noise) on the normalised embeddings. HDBSCAN is chosen over $k$-means because it
+does not require specifying the number of clusters, handles clusters of varying density,
+and explicitly labels low-density cases as \emph{noise} (cases the model does not
+group confidently with any cluster).
+
+We profile each embedding cluster: size, label distribution, accuracy, mean confidence,
+dominant structural community (from Step 4), and domain bucket distribution. We compute
+alignment metrics between the embedding clusters and the Leiden structural communities
+from Step 4: ARI, NMI, homogeneity, completeness, and V-measure, both including and
+excluding HDBSCAN noise points.
+
+\textbf{Why.}
+The Leiden communities (Step 4) are derived from raw citation structure; the embedding
+clusters are derived from what the model has \emph{learnt} to represent. If they align,
+the model has internalised legal structure. If they diverge, the model organises cases
+differently --- possibly by outcome, by identity, or by some other latent factor. This
+alignment test is a direct, quantitative probe of whether the model's learned
+representations correspond to the structure of Indian legal citation patterns.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Structural faithfulness:} High ARI and NMI between embedding clusters
+    and Leiden communities means the model has internalised the citation-based structure
+    of the legal graph --- it groups cases the same way citation overlap does.
+  \item \textbf{Alternative organisation:} Low alignment means the embedding space is
+    organised by something other than citation structure. Profiling embedding clusters
+    by label distribution, confidence, and domain immediately suggests hypotheses
+    (e.g.\ the model has collapsed to a simple win/loss geometry, or groups by which
+    court presided).
+  \item \textbf{Noise cases:} HDBSCAN noise points are cases in a low-density region
+    of embedding space --- not similar to any dense group. These may be the hardest
+    cases for the model, or the most legally unusual. Their accuracy and confidence
+    profiles are worth examining separately.
+  \item \textbf{Community--cluster mismatch:} If a structural community maps to many
+    distinct embedding clusters, the model makes further distinctions within that legal
+    domain that the citation graph alone does not capture --- potentially meaningful
+    or potentially indicative of spurious features.
+\end{itemize}
+
+\textbf{Outputs that feed later steps:} normalised case embeddings (used in Steps
+12 and 13).
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 12 \texorpdfstring{\textcolor{stepgray}{---}}{---} Counterfactual Neighborhoods in Embedding Space}
+
+\textbf{What we do.}
+For every test case we find its nearest \emph{opposite-label} training case in the
+normalised embedding space using GPU-accelerated batched cosine similarity. The search
+is label-aware: for a test case labelled WIN we search among training LOSS cases, and
+vice versa. This gives, for each test case, the training case most similar in
+embedding space but with the opposite ground-truth label --- the case that most nearly
+``confused'' the model at training time.
+
+Having found the nearest opposite-label neighbour, we compare the two cases' evidence
+feature sets from the TF-IDF feature matrix (Step 4) and identify:
+\begin{itemize}
+  \item Features present in the test case but absent in the neighbour (\emph{query-only}).
+  \item Features present in the neighbour but absent in the test case (\emph{opposite-only}).
+  \item Features shared by both.
+\end{itemize}
+For each difference feature we look up its label skew from Step 3 and rank the
+distinguishing features by a combination of discriminative strength (log-odds) and
+rarity (IDF weight). The top distinguishing features, the cosine similarity to the
+neighbour, and a narrative summary are written per case.
+
+\textbf{Why.}
+The typed counterfactual masking (Step 1) explains a prediction in absolute terms:
+``this statute was important for this case''. Counterfactual neighbourhood analysis
+asks a relative question: ``what is different between this case and the most similar
+case with the opposite outcome?'' This directly probes the model's decision boundary
+rather than its interior. Cases with a nearby opposite-label neighbour are close to
+the margin in the model's representation space --- the features that distinguish them
+reveal what the model is using to separate WIN from LOSS at the boundary.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Decision boundary characterisation:} If the distinguishing features
+    are predominantly label-discriminative legal authorities (Step 3), the model's
+    decision boundary is aligned with meaningful legal content. If they are identity
+    nodes (different judge, same statutes), the boundary is shaped by shortcuts.
+  \item \textbf{Cosine similarity as a margin signal:} Test cases with very high
+    cosine similarity ($\geq$0.95) to their nearest opposite-label neighbour are the
+    model's hardest cases: nearly identical internal representations, opposite labels.
+    These deserve qualitative examination.
+  \item \textbf{Systematic vs.\ idiosyncratic margins:} If the same distinguishing
+    features recur across many test cases' nearest-neighbour comparisons, those features
+    systematically shape the global decision boundary. If every case has unique
+    distinguishing features, the margins are idiosyncratic.
+  \item \textbf{Community membership of pairs:} If a test case and its nearest
+    opposite-label neighbour are in the same structural community (similar citations,
+    Step 4) but have opposite labels and similar embeddings, the model has not found
+    a way to separate nearly-identical cases with different outcomes --- possibly
+    because the legal question is genuinely ambiguous.
+\end{itemize}
+
+\bigskip
+
+% -----------------------------------------------------------------------
+\section{Step 13 \texorpdfstring{\textcolor{stepgray}{---}}{---} Per-Case Traceability Reports}
+
+\textbf{What we do.}
+As the final synthesis step, for any selected set of cases we generate self-contained
+HTML reports that bring together the outputs of all previous steps into a
+human-readable form. Each report contains:
+\begin{itemize}
+  \item Header with case identifier, split, target label, predicted label, and
+    confidence.
+  \item A \emph{structured reading} paragraph synthesised automatically from the top
+    evidence group: which evidence was most important, the direction of its effect,
+    whether it flips the prediction, and what the connected training cases look like.
+  \item An interactive force-directed graph (rendered in-browser) showing the typed
+    computation subgraph --- the target case at the centre, evidence nodes sized by
+    counterfactual delta (Step 1), edges coloured by relation type and weighted by
+    attention score (Step 1).
+  \item An evidence group table with counterfactual rank (Step 1), attention rank
+    (Step 1), a ``both agree'' marker when the two rankings concur, delta values,
+    attention scores, and the connected training-case label distribution (Step 1).
+    Label skew class from Step 3 is attached to each row.
+  \item A provenance trail: for every top-ranked evidence node, a list of training
+    cases that share it (up to a configurable limit), with links to the source JSON
+    judgment files, the training-case label, and the typed graph path connecting the
+    training case to the evidence node.
+  \item Machine-readable JSON and DOT graph exports alongside the HTML.
+\end{itemize}
+Case selection can be targeted (specific indices), or ranked by counterfactual
+importance so the most ``interesting'' cases are always surfaced first.
+
+\textbf{Why.}
+XAI research requires both quantitative faithfulness metrics and human-interpretable
+outputs. Metrics prove the system is not lying; human-readable reports make it usable.
+The traceability reports bridge this gap. They are designed so that a lawyer, a
+supervisor, or a judge reviewing the model's reasoning can follow every claim back to
+its source --- the specific training cases that established the association between
+evidence and outcome. The provenance trail is the difference between ``the model
+relied on this statute because it is associated with wins'' and ``the model relied on
+this statute because cases A, B, and C all cited it and were won by the petitioner''
+--- the latter is auditable and falsifiable.
+
+\textbf{What we can infer.}
+\begin{itemize}
+  \item \textbf{Face validity:} Do the explanations make legal sense? A qualitative
+    review of reports on a representative sample is an important sanity check that
+    quantitative metrics alone cannot provide.
+  \item \textbf{Attention vs.\ counterfactual disagreements:} When the ``both agree''
+    marker is absent, the report makes the disagreement visible case-by-case, enabling
+    inspection of what structural feature drives the discrepancy.
+  \item \textbf{Provenance quality:} If the model highlights a statute and the
+    provenance trail shows it was cited in training cases with a 90\% win rate, that is
+    meaningful legal grounding. If training cases are mixed, the model's reliance is
+    less interpretable.
+  \item \textbf{Error diagnosis at the instance level:} Reports for high-confidence
+    wrong cases (flagged in Step 2) let us ask: what did the model see in these cases,
+    and why was that evidence insufficient or misleading? This closes the loop between
+    the quantitative failure analysis (Steps 1--2) and concrete case-level inspection.
+\end{itemize}
+
+\end{document}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import textwrap
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,9 +11,15 @@ import numpy as np
 import pandas as pd
 
 GRAPH_ANALYSER_ROOT = Path(__file__).resolve().parent.parent
-OUTPUTS_ROOT = GRAPH_ANALYSER_ROOT / "outputs"
-FIG_OUTPUT_DIR = OUTPUTS_ROOT / "thesis_figures"
-FIG_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+sys.path.insert(0, str(GRAPH_ANALYSER_ROOT))
+
+from analyser.loader import load_config  # noqa: E402
+
+CONFIG_PATH = GRAPH_ANALYSER_ROOT / "configs" / "default.yaml"
+
+
+def default_outputs_root(config_path: str | Path = CONFIG_PATH) -> Path:
+    return Path(load_config(config_path)["output_root"])
 
 
 @dataclass
@@ -21,21 +28,21 @@ class Paths:
     case_embeddings: Path
     phase4_cases_dir: Path
     phase4_manifest: Path
-    phase5_dir: Path
     fig_dir: Path
 
     @classmethod
     def default(cls) -> "Paths":
-        p12 = OUTPUTS_ROOT / "phase1_2_inference"
-        p4 = OUTPUTS_ROOT / "phase4_explanations"
-        p5 = OUTPUTS_ROOT / "phase5_llm_reasoning"
+        outputs_root = default_outputs_root()
+        fig_dir = outputs_root / "thesis_figures"
+        fig_dir.mkdir(parents=True, exist_ok=True)
+        p12 = outputs_root / "phase1_2_inference"
+        p4 = outputs_root / "phase4_explanations"
         return cls(
             predictions_csv=p12 / "predictions.csv",
             case_embeddings=p12 / "case_embeddings.npy",
             phase4_cases_dir=p4 / "cases",
             phase4_manifest=p4 / "manifest.json",
-            phase5_dir=p5,
-            fig_dir=FIG_OUTPUT_DIR,
+            fig_dir=fig_dir,
         )
 
 
@@ -58,31 +65,9 @@ def load_phase4(paths: Paths, case_idx: int) -> dict:
         return json.load(f)
 
 
-def load_phase5(paths: Paths, case_idx: int) -> dict | None:
-    fp = paths.phase5_dir / f"explanation_{case_idx}.json"
-    if not fp.exists():
-        return None
-    with open(fp) as f:
-        return json.load(f)
-
-
 def explained_case_indices(paths: Paths) -> list[int]:
     with open(paths.phase4_manifest) as f:
         return list(json.load(f)["case_indices"])
-
-
-def phase5_case_indices(paths: Paths) -> set[int]:
-    """Indices that have a Phase-5 LLM explanation on disk."""
-    out: set[int] = set()
-    if not paths.phase5_dir.exists():
-        return out
-    for fp in paths.phase5_dir.glob("explanation_*.json"):
-        stem = fp.stem.removeprefix("explanation_")
-        try:
-            out.add(int(stem))
-        except ValueError:
-            continue
-    return out
 
 
 def compute_or_load_tsne(

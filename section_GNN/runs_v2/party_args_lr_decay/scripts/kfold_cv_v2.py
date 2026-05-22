@@ -2,7 +2,7 @@
 """
 Stratified K-fold CV — v2 variant.
 Uses train_v2.train_model (adds ReduceLROnPlateau LR decay).
-Drop-in replacement for dump2/scripts/kfold_cv.py.
+Drop-in replacement for src/scripts/kfold_cv.py.
 """
 from __future__ import annotations
 

@@ -16,7 +16,7 @@
         <aside id="sidebar">
             <div class="sidebar-header">
                 <h2>Explainer Cases</h2>
-                <p>Phase 5 Reasoning</p>
+                <p>Phase 4-7 Diagnostics</p>
             </div>
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Search case ID...">
@@ -35,7 +35,7 @@
                     <div class="welcome-card">
                         <div class="icon">🔍</div>
                         <h2>Select a Case</h2>
-                        <p>Explore pipeline outputs, graph-explainer evidence, retrieved analogues, and the final LLM reasoning.</p>
+                        <p>Explore graph-explainer evidence, top-k diagnostics, counterfactuals, and prediction factors.</p>
                     </div>
                 </div>
 
@@ -71,13 +71,13 @@
                                 Pipeline Stages
                             </button>
                             <button type="button" class="detail-tab" data-tab="summary" role="tab" aria-selected="false">
-                                Final Summary
+                                Summary
                             </button>
                             <button type="button" class="detail-tab" data-tab="graph" role="tab" aria-selected="false">
                                 Connection Graph
                             </button>
                         </div>
-                        <p class="detail-toolbar-copy">Step through pipeline stages, read the final narrative, or explore the case's connection graph.</p>
+                        <p class="detail-toolbar-copy">Step through pipeline stages, inspect top-k diagnostics, or explore the case's connection graph.</p>
                     </div>
 
                     <div id="detail-panel-stages" class="detail-panel">
@@ -87,7 +87,7 @@
                     <div id="detail-panel-summary" class="detail-panel hidden">
                         <section class="card summary-card">
                             <div class="card-header">
-                                <h3>🧠 Final LLM Reasoning</h3>
+                                <h3>Summary</h3>
                             </div>
                             <div id="summary-explanation" class="markdown-body"></div>
                         </section>
@@ -97,8 +97,8 @@
                                 <div id="precedents-list" class="node-list"></div>
                             </section>
                             <section class="card">
-                                <div class="card-header"><h3>🔗 Retrieved Cases</h3></div>
-                                <div id="similar-cases-list" class="node-list"></div>
+                                <div class="card-header"><h3>PGExplainer Argument Context</h3></div>
+                                <div id="argument-context-list" class="node-list"></div>
                             </section>
                         </div>
                     </div>

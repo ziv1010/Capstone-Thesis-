@@ -21,9 +21,9 @@ EVAL_GPUS="${EVAL_GPUS:-6,7}"
 LIMIT="${LIMIT:-}"
 
 PREPROCESS_SCRIPT="$PROJECT_ROOT/experiments/fixed_open_pipeline/preprocess_fixed_open.py"
-GRAPH_BUILD_SCRIPT="$PROJECT_ROOT/final_graph/build_graph.py"
-TRAIN_SCRIPT="$PROJECT_ROOT/dump2/scripts/train_gnn.py"
-EVAL_SCRIPT="$PROJECT_ROOT/dump2/scripts/evaluate_saved_model.py"
+GRAPH_BUILD_SCRIPT="$PROJECT_ROOT/src/scripts/build_graph.py"
+TRAIN_SCRIPT="$PROJECT_ROOT/src/scripts/train_gnn.py"
+EVAL_SCRIPT="$PROJECT_ROOT/src/scripts/evaluate_saved_model.py"
 
 BUCKET_NAMES=(
   family_matrimonial_timed_mistral

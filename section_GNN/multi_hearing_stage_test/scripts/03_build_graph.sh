@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Step 03 — Build a self-contained reasoning-focused graph from the cleaned
-# stage-tagged cases. Output: data/graph_cache/stage_test_graph.reasoning_focused.pt
+# Step 03 — Build a self-contained section-separated graph from the cleaned
+# stage-tagged cases. Output path is controlled by graph.cache_name in config.yaml.
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXP_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -22,7 +22,7 @@ done
 echo "[03_build_graph] env=$MAMBA_ENV gpus=$GPUS"
 CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS" \
   micromamba run -n "$MAMBA_ENV" python \
-  "$SECTION_GNN/final_graph/build_graph.py" \
+  "$SECTION_GNN/final_graph/build_graph_section_sep.py" \
   --config "$CONFIG" \
   "${LIMIT_ARGS[@]}"
 echo "[03_build_graph] Done."

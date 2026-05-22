@@ -1,737 +1,0 @@
-nohup: ignoring input
-[2026-04-17 04:13:32] ========================================================
-[2026-04-17 04:13:32] cross_bucket_total_dataset — full run + 3 ablations
-[2026-04-17 04:13:32]   env=thesis_work  gpus=0,1,2,3,4,5,6,7  k=5
-[2026-04-17 04:13:32] ========================================================
-[2026-04-17 04:13:32] STEP 1/7  Preprocessing
-[01_preprocess] env=thesis_work config=/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/runs/cross_bucket_total_dataset/config.yaml
-2026-04-17 04:13:33 | INFO | preprocess_fixed_open | Preprocessing 73809 FIXED_OPEN files from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/cross_bucket_total_dataset
-2026-04-17 04:13:35 | INFO | preprocess_fixed_open | Processed 500/73809 files
-2026-04-17 04:13:37 | INFO | preprocess_fixed_open | Processed 1000/73809 files
-2026-04-17 04:13:39 | INFO | preprocess_fixed_open | Processed 1500/73809 files
-2026-04-17 04:13:42 | INFO | preprocess_fixed_open | Processed 2000/73809 files
-2026-04-17 04:13:44 | INFO | preprocess_fixed_open | Processed 2500/73809 files
-2026-04-17 04:13:46 | INFO | preprocess_fixed_open | Processed 3000/73809 files
-2026-04-17 04:13:48 | INFO | preprocess_fixed_open | Processed 3500/73809 files
-2026-04-17 04:13:51 | INFO | preprocess_fixed_open | Processed 4000/73809 files
-2026-04-17 04:13:53 | INFO | preprocess_fixed_open | Processed 4500/73809 files
-2026-04-17 04:13:55 | INFO | preprocess_fixed_open | Processed 5000/73809 files
-2026-04-17 04:13:57 | INFO | preprocess_fixed_open | Processed 5500/73809 files
-2026-04-17 04:14:00 | INFO | preprocess_fixed_open | Processed 6000/73809 files
-2026-04-17 04:14:02 | INFO | preprocess_fixed_open | Processed 6500/73809 files
-2026-04-17 04:14:04 | INFO | preprocess_fixed_open | Processed 7000/73809 files
-2026-04-17 04:14:06 | INFO | preprocess_fixed_open | Processed 7500/73809 files
-2026-04-17 04:14:08 | INFO | preprocess_fixed_open | Processed 8000/73809 files
-2026-04-17 04:14:11 | INFO | preprocess_fixed_open | Processed 8500/73809 files
-2026-04-17 04:14:13 | INFO | preprocess_fixed_open | Processed 9000/73809 files
-2026-04-17 04:14:15 | INFO | preprocess_fixed_open | Processed 9500/73809 files
-2026-04-17 04:14:18 | INFO | preprocess_fixed_open | Processed 10000/73809 files
-2026-04-17 04:14:20 | INFO | preprocess_fixed_open | Processed 10500/73809 files
-2026-04-17 04:14:23 | INFO | preprocess_fixed_open | Processed 11000/73809 files
-2026-04-17 04:14:25 | INFO | preprocess_fixed_open | Processed 11500/73809 files
-2026-04-17 04:14:29 | INFO | preprocess_fixed_open | Processed 12500/73809 files
-2026-04-17 04:14:32 | INFO | preprocess_fixed_open | Processed 13000/73809 files
-2026-04-17 04:14:41 | INFO | preprocess_fixed_open | Processed 14000/73809 files
-2026-04-17 04:14:43 | INFO | preprocess_fixed_open | Processed 14500/73809 files
-2026-04-17 04:14:46 | INFO | preprocess_fixed_open | Processed 15000/73809 files
-2026-04-17 04:14:48 | INFO | preprocess_fixed_open | Processed 15500/73809 files
-2026-04-17 04:14:51 | INFO | preprocess_fixed_open | Processed 16000/73809 files
-2026-04-17 04:14:54 | INFO | preprocess_fixed_open | Processed 16500/73809 files
-2026-04-17 04:14:57 | INFO | preprocess_fixed_open | Processed 17000/73809 files
-2026-04-17 04:15:00 | INFO | preprocess_fixed_open | Processed 17500/73809 files
-2026-04-17 04:15:04 | INFO | preprocess_fixed_open | Processed 18000/73809 files
-2026-04-17 04:15:08 | INFO | preprocess_fixed_open | Processed 18500/73809 files
-2026-04-17 04:15:12 | INFO | preprocess_fixed_open | Processed 19000/73809 files
-2026-04-17 04:15:15 | INFO | preprocess_fixed_open | Processed 19500/73809 files
-2026-04-17 04:15:18 | INFO | preprocess_fixed_open | Processed 20000/73809 files
-2026-04-17 04:15:21 | INFO | preprocess_fixed_open | Processed 20500/73809 files
-2026-04-17 04:15:24 | INFO | preprocess_fixed_open | Processed 21000/73809 files
-2026-04-17 04:15:27 | INFO | preprocess_fixed_open | Processed 21500/73809 files
-2026-04-17 04:15:30 | INFO | preprocess_fixed_open | Processed 22000/73809 files
-2026-04-17 04:15:33 | INFO | preprocess_fixed_open | Processed 22500/73809 files
-2026-04-17 04:15:36 | INFO | preprocess_fixed_open | Processed 23000/73809 files
-2026-04-17 04:15:39 | INFO | preprocess_fixed_open | Processed 23500/73809 files
-2026-04-17 04:15:42 | INFO | preprocess_fixed_open | Processed 24000/73809 files
-2026-04-17 04:15:45 | INFO | preprocess_fixed_open | Processed 24500/73809 files
-2026-04-17 04:15:48 | INFO | preprocess_fixed_open | Processed 25000/73809 files
-2026-04-17 04:15:52 | INFO | preprocess_fixed_open | Processed 25500/73809 files
-2026-04-17 04:15:59 | INFO | preprocess_fixed_open | Processed 26500/73809 files
-2026-04-17 04:16:03 | INFO | preprocess_fixed_open | Processed 27000/73809 files
-2026-04-17 04:16:06 | INFO | preprocess_fixed_open | Processed 27500/73809 files
-2026-04-17 04:16:11 | INFO | preprocess_fixed_open | Processed 28000/73809 files
-2026-04-17 04:16:14 | INFO | preprocess_fixed_open | Processed 28500/73809 files
-2026-04-17 04:16:18 | INFO | preprocess_fixed_open | Processed 29000/73809 files
-2026-04-17 04:16:22 | INFO | preprocess_fixed_open | Processed 29500/73809 files
-2026-04-17 04:16:25 | INFO | preprocess_fixed_open | Processed 30000/73809 files
-2026-04-17 04:16:32 | INFO | preprocess_fixed_open | Processed 30500/73809 files
-2026-04-17 04:16:37 | INFO | preprocess_fixed_open | Processed 31000/73809 files
-2026-04-17 04:16:50 | INFO | preprocess_fixed_open | Processed 32000/73809 files
-2026-04-17 04:16:56 | INFO | preprocess_fixed_open | Processed 32500/73809 files
-2026-04-17 04:17:01 | INFO | preprocess_fixed_open | Processed 33000/73809 files
-2026-04-17 04:17:05 | INFO | preprocess_fixed_open | Processed 33500/73809 files
-2026-04-17 04:17:11 | INFO | preprocess_fixed_open | Processed 34000/73809 files
-2026-04-17 04:17:16 | INFO | preprocess_fixed_open | Processed 34500/73809 files
-2026-04-17 04:17:21 | INFO | preprocess_fixed_open | Processed 35000/73809 files
-2026-04-17 04:17:27 | INFO | preprocess_fixed_open | Processed 35500/73809 files
-2026-04-17 04:17:31 | INFO | preprocess_fixed_open | Processed 36000/73809 files
-2026-04-17 04:17:38 | INFO | preprocess_fixed_open | Processed 36500/73809 files
-2026-04-17 04:17:43 | INFO | preprocess_fixed_open | Processed 37000/73809 files
-2026-04-17 04:17:47 | INFO | preprocess_fixed_open | Processed 37500/73809 files
-2026-04-17 04:17:51 | INFO | preprocess_fixed_open | Processed 38000/73809 files
-2026-04-17 04:17:55 | INFO | preprocess_fixed_open | Processed 38500/73809 files
-2026-04-17 04:18:00 | INFO | preprocess_fixed_open | Processed 39000/73809 files
-2026-04-17 04:18:05 | INFO | preprocess_fixed_open | Processed 39500/73809 files
-2026-04-17 04:18:10 | INFO | preprocess_fixed_open | Processed 40000/73809 files
-2026-04-17 04:18:14 | INFO | preprocess_fixed_open | Processed 40500/73809 files
-2026-04-17 04:18:18 | INFO | preprocess_fixed_open | Processed 41000/73809 files
-2026-04-17 04:18:22 | INFO | preprocess_fixed_open | Processed 41500/73809 files
-2026-04-17 04:18:27 | INFO | preprocess_fixed_open | Processed 42000/73809 files
-2026-04-17 04:18:32 | INFO | preprocess_fixed_open | Processed 42500/73809 files
-2026-04-17 04:18:38 | INFO | preprocess_fixed_open | Processed 43000/73809 files
-2026-04-17 04:18:42 | INFO | preprocess_fixed_open | Processed 43500/73809 files
-2026-04-17 04:18:46 | INFO | preprocess_fixed_open | Processed 44000/73809 files
-2026-04-17 04:18:52 | INFO | preprocess_fixed_open | Processed 44500/73809 files
-2026-04-17 04:18:57 | INFO | preprocess_fixed_open | Processed 45000/73809 files
-2026-04-17 04:19:01 | INFO | preprocess_fixed_open | Processed 45500/73809 files
-2026-04-17 04:19:06 | INFO | preprocess_fixed_open | Processed 46000/73809 files
-2026-04-17 04:19:10 | INFO | preprocess_fixed_open | Processed 46500/73809 files
-2026-04-17 04:19:14 | INFO | preprocess_fixed_open | Processed 47000/73809 files
-2026-04-17 04:19:19 | INFO | preprocess_fixed_open | Processed 47500/73809 files
-2026-04-17 04:19:23 | INFO | preprocess_fixed_open | Processed 48000/73809 files
-2026-04-17 04:19:28 | INFO | preprocess_fixed_open | Processed 48500/73809 files
-2026-04-17 04:19:32 | INFO | preprocess_fixed_open | Processed 49000/73809 files
-2026-04-17 04:19:39 | INFO | preprocess_fixed_open | Processed 50000/73809 files
-2026-04-17 04:19:43 | INFO | preprocess_fixed_open | Processed 50500/73809 files
-2026-04-17 04:19:48 | INFO | preprocess_fixed_open | Processed 51000/73809 files
-2026-04-17 04:19:52 | INFO | preprocess_fixed_open | Processed 51500/73809 files
-2026-04-17 04:19:56 | INFO | preprocess_fixed_open | Processed 52000/73809 files
-2026-04-17 04:20:00 | INFO | preprocess_fixed_open | Processed 52500/73809 files
-2026-04-17 04:20:05 | INFO | preprocess_fixed_open | Processed 53000/73809 files
-2026-04-17 04:20:09 | INFO | preprocess_fixed_open | Processed 53500/73809 files
-2026-04-17 04:20:13 | INFO | preprocess_fixed_open | Processed 54000/73809 files
-2026-04-17 04:20:15 | INFO | preprocess_fixed_open | Processed 54500/73809 files
-2026-04-17 04:20:18 | INFO | preprocess_fixed_open | Processed 55000/73809 files
-2026-04-17 04:20:22 | INFO | preprocess_fixed_open | Processed 55500/73809 files
-2026-04-17 04:20:25 | INFO | preprocess_fixed_open | Processed 56000/73809 files
-2026-04-17 04:20:29 | INFO | preprocess_fixed_open | Processed 56500/73809 files
-2026-04-17 04:20:33 | INFO | preprocess_fixed_open | Processed 57000/73809 files
-2026-04-17 04:20:36 | INFO | preprocess_fixed_open | Processed 57500/73809 files
-2026-04-17 04:20:39 | INFO | preprocess_fixed_open | Processed 58000/73809 files
-2026-04-17 04:20:43 | INFO | preprocess_fixed_open | Processed 58500/73809 files
-2026-04-17 04:20:46 | INFO | preprocess_fixed_open | Processed 59000/73809 files
-2026-04-17 04:20:49 | INFO | preprocess_fixed_open | Processed 59500/73809 files
-2026-04-17 04:20:52 | INFO | preprocess_fixed_open | Processed 60000/73809 files
-2026-04-17 04:20:54 | INFO | preprocess_fixed_open | Processed 60500/73809 files
-2026-04-17 04:20:57 | INFO | preprocess_fixed_open | Processed 61000/73809 files
-2026-04-17 04:21:00 | INFO | preprocess_fixed_open | Processed 61500/73809 files
-2026-04-17 04:21:03 | INFO | preprocess_fixed_open | Processed 62000/73809 files
-2026-04-17 04:21:06 | INFO | preprocess_fixed_open | Processed 62500/73809 files
-2026-04-17 04:21:08 | INFO | preprocess_fixed_open | Processed 63000/73809 files
-2026-04-17 04:21:11 | INFO | preprocess_fixed_open | Processed 63500/73809 files
-2026-04-17 04:21:13 | INFO | preprocess_fixed_open | Processed 64000/73809 files
-2026-04-17 04:21:16 | INFO | preprocess_fixed_open | Processed 64500/73809 files
-2026-04-17 04:21:18 | INFO | preprocess_fixed_open | Processed 65000/73809 files
-2026-04-17 04:21:21 | INFO | preprocess_fixed_open | Processed 65500/73809 files
-2026-04-17 04:21:23 | INFO | preprocess_fixed_open | Processed 66000/73809 files
-2026-04-17 04:21:25 | INFO | preprocess_fixed_open | Processed 66500/73809 files
-2026-04-17 04:21:28 | INFO | preprocess_fixed_open | Processed 67000/73809 files
-2026-04-17 04:21:31 | INFO | preprocess_fixed_open | Processed 67500/73809 files
-2026-04-17 04:21:34 | INFO | preprocess_fixed_open | Processed 68000/73809 files
-2026-04-17 04:21:36 | INFO | preprocess_fixed_open | Processed 68500/73809 files
-2026-04-17 04:21:39 | INFO | preprocess_fixed_open | Processed 69000/73809 files
-2026-04-17 04:21:41 | INFO | preprocess_fixed_open | Processed 69500/73809 files
-2026-04-17 04:21:44 | INFO | preprocess_fixed_open | Processed 70000/73809 files
-2026-04-17 04:21:46 | INFO | preprocess_fixed_open | Processed 70500/73809 files
-2026-04-17 04:21:49 | INFO | preprocess_fixed_open | Processed 71000/73809 files
-2026-04-17 04:21:51 | INFO | preprocess_fixed_open | Processed 71500/73809 files
-2026-04-17 04:21:56 | INFO | preprocess_fixed_open | Processed 72000/73809 files
-2026-04-17 04:21:59 | INFO | preprocess_fixed_open | Processed 72500/73809 files
-2026-04-17 04:22:01 | INFO | preprocess_fixed_open | Processed 73000/73809 files
-2026-04-17 04:22:04 | INFO | preprocess_fixed_open | Processed 73500/73809 files
-2026-04-17 04:22:07 | INFO | preprocess_fixed_open | Wrote 70460 cleaned cases to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/processed/cleaned_cases and skipped 3349 unlabeled/unmapped files
-[01_preprocess] Done.
-[2026-04-17 04:22:07] STEP 1/7  Done.
-[2026-04-17 04:22:07] STEP 2/7  Building main graph (shared statute/provision/precedent)
-[02_build_graph] env=thesis_work gpus=0,1,2,3,4,5,6,7
-2026-04-17 04:22:42 | INFO | build_reasoning_graph | Loaded 70460 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/processed/cleaned_cases
-2026-04-17 04:25:44 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 1328245 texts
-Chunks:   0%|          | 0/266 [00:00<?, ?it/s]Chunks:   0%|          | 1/266 [01:58<8:42:12, 118.24s/it]Chunks:   1%|          | 2/266 [02:13<4:12:57, 57.49s/it] Chunks:   1%|          | 3/266 [02:42<3:15:13, 44.54s/it]Chunks:   2%|▏         | 4/266 [02:43<1:59:39, 27.40s/it]Chunks:   2%|▏         | 5/266 [02:56<1:35:58, 22.06s/it]Chunks:   2%|▏         | 6/266 [03:34<1:59:27, 27.57s/it]Chunks:   3%|▎         | 7/266 [04:11<2:11:57, 30.57s/it]Chunks:   3%|▎         | 8/266 [04:14<1:34:23, 21.95s/it]Chunks:   3%|▎         | 9/266 [04:30<1:25:36, 19.98s/it]Chunks:   4%|▍         | 10/266 [04:32<1:01:19, 14.37s/it]Chunks:   4%|▍         | 11/266 [05:15<1:38:35, 23.20s/it]Chunks:   5%|▍         | 12/266 [05:56<2:01:49, 28.78s/it]Chunks:   5%|▍         | 13/266 [06:12<1:44:33, 24.80s/it]Chunks:   5%|▌         | 14/266 [08:15<3:48:38, 54.44s/it]Chunks:   6%|▌         | 15/266 [09:14<3:53:41, 55.86s/it]Chunks:   6%|▌         | 16/266 [09:16<2:44:34, 39.50s/it]Chunks:   6%|▋         | 17/266 [11:32<4:45:19, 68.75s/it]Chunks:   7%|▋         | 18/266 [12:56<5:02:24, 73.16s/it]Chunks:   7%|▋         | 19/266 [13:05<3:42:16, 53.99s/it]Chunks:   8%|▊         | 20/266 [13:06<2:35:27, 37.92s/it]Chunks:   8%|▊         | 21/266 [13:06<1:49:34, 26.83s/it]Chunks:   8%|▊         | 22/266 [13:15<1:26:24, 21.25s/it]Chunks:   9%|▊         | 23/266 [13:15<1:00:33, 14.95s/it]Chunks:   9%|▉         | 24/266 [13:16<43:51, 10.88s/it]  Chunks:   9%|▉         | 25/266 [13:21<36:40,  9.13s/it]Chunks:  10%|▉         | 26/266 [13:24<28:54,  7.23s/it]Chunks:  10%|█         | 27/266 [13:25<20:36,  5.18s/it]Chunks:  11%|█         | 28/266 [13:26<16:04,  4.05s/it]Chunks:  11%|█         | 29/266 [13:32<17:44,  4.49s/it]Chunks:  11%|█▏        | 30/266 [13:32<12:44,  3.24s/it]Chunks:  12%|█▏        | 31/266 [13:34<11:09,  2.85s/it]Chunks:  12%|█▏        | 32/266 [13:34<08:23,  2.15s/it]Chunks:  12%|█▏        | 33/266 [13:36<07:39,  1.97s/it]Chunks:  13%|█▎        | 34/266 [13:41<11:46,  3.04s/it]Chunks:  14%|█▎        | 36/266 [13:43<08:05,  2.11s/it]Chunks:  14%|█▍        | 37/266 [13:44<06:31,  1.71s/it]Chunks:  14%|█▍        | 38/266 [13:46<06:36,  1.74s/it]Chunks:  15%|█▍        | 39/266 [13:51<10:29,  2.77s/it]Chunks:  15%|█▌        | 41/266 [13:53<07:20,  1.96s/it]Chunks:  16%|█▌        | 42/266 [13:53<05:46,  1.55s/it]Chunks:  16%|█▌        | 43/266 [13:54<04:29,  1.21s/it]Chunks:  17%|█▋        | 44/266 [13:56<05:15,  1.42s/it]Chunks:  17%|█▋        | 45/266 [14:01<09:22,  2.55s/it]Chunks:  17%|█▋        | 46/266 [14:01<06:50,  1.86s/it]Chunks:  18%|█▊        | 47/266 [14:03<06:46,  1.86s/it]Chunks:  18%|█▊        | 48/266 [14:03<05:02,  1.39s/it]Chunks:  18%|█▊        | 49/266 [14:04<03:51,  1.06s/it]Chunks:  19%|█▉        | 50/266 [14:05<04:39,  1.30s/it]Chunks:  19%|█▉        | 51/266 [14:10<08:34,  2.39s/it]Chunks:  20%|█▉        | 52/266 [14:11<06:39,  1.87s/it]Chunks:  20%|█▉        | 53/266 [14:38<33:03,  9.31s/it]Chunks:  20%|██        | 54/266 [15:15<1:01:58, 17.54s/it]Chunks:  21%|██        | 55/266 [15:19<47:23, 13.48s/it]  Chunks:  21%|██        | 56/266 [15:22<37:02, 10.58s/it]Chunks:  21%|██▏       | 57/266 [15:50<54:28, 15.64s/it]Chunks:  22%|██▏       | 58/266 [16:12<1:00:31, 17.46s/it]Chunks:  22%|██▏       | 59/266 [16:40<1:11:15, 20.66s/it]Chunks:  23%|██▎       | 60/266 [16:49<59:13, 17.25s/it]  Chunks:  23%|██▎       | 61/266 [16:54<46:18, 13.55s/it]Chunks:  23%|██▎       | 62/266 [16:58<36:43, 10.80s/it]Chunks:  24%|██▎       | 63/266 [17:04<30:54,  9.13s/it]Chunks:  24%|██▍       | 64/266 [17:08<25:44,  7.64s/it]Chunks:  24%|██▍       | 65/266 [17:13<23:34,  7.04s/it]Chunks:  25%|██▍       | 66/266 [17:14<17:29,  5.25s/it]Chunks:  25%|██▌       | 67/266 [17:17<15:09,  4.57s/it]Chunks:  26%|██▌       | 68/266 [17:21<13:40,  4.14s/it]Chunks:  26%|██▌       | 69/266 [17:22<10:24,  3.17s/it]Chunks:  26%|██▋       | 70/266 [17:23<09:00,  2.76s/it]Chunks:  27%|██▋       | 71/266 [17:24<07:02,  2.16s/it]Chunks:  27%|██▋       | 72/266 [17:27<08:02,  2.49s/it]Chunks:  27%|██▋       | 73/266 [17:30<08:36,  2.68s/it]Chunks:  28%|██▊       | 74/266 [17:31<06:49,  2.13s/it]Chunks:  28%|██▊       | 75/266 [17:33<06:35,  2.07s/it]Chunks:  29%|██▊       | 76/266 [17:34<05:06,  1.61s/it]Chunks:  29%|██▉       | 77/266 [17:35<04:17,  1.36s/it]Chunks:  29%|██▉       | 78/266 [17:37<05:19,  1.70s/it]Chunks:  30%|██▉       | 79/266 [17:40<06:55,  2.22s/it]Chunks:  30%|███       | 80/266 [17:41<05:27,  1.76s/it]Chunks:  30%|███       | 81/266 [17:43<05:48,  1.88s/it]Chunks:  31%|███       | 82/266 [17:44<04:17,  1.40s/it]Chunks:  31%|███       | 83/266 [17:44<03:47,  1.24s/it]Chunks:  32%|███▏      | 84/266 [17:47<04:48,  1.59s/it]Chunks:  32%|███▏      | 85/266 [17:48<04:35,  1.52s/it]Chunks:  32%|███▏      | 86/266 [17:51<05:16,  1.76s/it]Chunks:  33%|███▎      | 87/266 [17:51<04:21,  1.46s/it]Chunks:  33%|███▎      | 88/266 [17:53<04:51,  1.64s/it]Chunks:  33%|███▎      | 89/266 [17:54<03:36,  1.22s/it]Chunks:  34%|███▍      | 90/266 [17:55<03:21,  1.15s/it]Chunks:  34%|███▍      | 91/266 [17:56<03:11,  1.09s/it]Chunks:  35%|███▍      | 92/266 [17:57<03:09,  1.09s/it]Chunks:  35%|███▍      | 93/266 [17:58<03:30,  1.22s/it]Chunks:  35%|███▌      | 94/266 [18:01<04:38,  1.62s/it]Chunks:  36%|███▌      | 95/266 [18:02<03:56,  1.38s/it]Chunks:  36%|███▌      | 96/266 [18:04<04:34,  1.61s/it]Chunks:  36%|███▋      | 97/266 [18:04<03:16,  1.16s/it]Chunks:  37%|███▋      | 98/266 [18:05<02:58,  1.06s/it]Chunks:  37%|███▋      | 99/266 [18:06<02:53,  1.04s/it]Chunks:  38%|███▊      | 100/266 [18:07<02:56,  1.07s/it]Chunks:  38%|███▊      | 101/266 [18:08<03:15,  1.18s/it]Chunks:  38%|███▊      | 102/266 [18:11<04:22,  1.60s/it]Chunks:  39%|███▊      | 103/266 [18:12<03:50,  1.41s/it]Chunks:  39%|███▉      | 104/266 [18:14<04:12,  1.56s/it]Chunks:  39%|███▉      | 105/266 [18:14<03:13,  1.20s/it]Chunks:  40%|███▉      | 106/266 [18:15<02:51,  1.07s/it]Chunks:  40%|████      | 107/266 [18:16<02:45,  1.04s/it]Chunks:  41%|████      | 108/266 [18:17<02:47,  1.06s/it]Chunks:  41%|████      | 109/266 [18:19<03:16,  1.25s/it]Chunks:  41%|████▏     | 110/266 [18:21<04:08,  1.60s/it]Chunks:  42%|████▏     | 111/266 [18:22<03:37,  1.40s/it]Chunks:  42%|████▏     | 112/266 [18:24<03:52,  1.51s/it]Chunks:  42%|████▏     | 113/266 [18:24<03:17,  1.29s/it]Chunks:  43%|████▎     | 114/266 [18:25<02:42,  1.07s/it]Chunks:  43%|████▎     | 115/266 [18:26<02:29,  1.01it/s]Chunks:  44%|████▎     | 116/266 [18:27<02:59,  1.20s/it]Chunks:  44%|████▍     | 117/266 [18:29<02:59,  1.20s/it]Chunks:  44%|████▍     | 118/266 [18:31<03:51,  1.56s/it]Chunks:  45%|████▍     | 119/266 [18:32<03:19,  1.35s/it]Chunks:  45%|████▌     | 120/266 [18:34<03:24,  1.40s/it]Chunks:  45%|████▌     | 121/266 [18:35<03:08,  1.30s/it]Chunks:  46%|████▌     | 122/266 [18:35<02:33,  1.07s/it]Chunks:  46%|████▌     | 123/266 [18:36<02:14,  1.06it/s]Chunks:  47%|████▋     | 124/266 [18:38<02:52,  1.21s/it]Chunks:  47%|████▋     | 125/266 [18:45<07:27,  3.17s/it]Chunks:  47%|████▋     | 126/266 [18:47<06:31,  2.79s/it]Chunks:  48%|████▊     | 127/266 [18:55<09:53,  4.27s/it]Chunks:  48%|████▊     | 128/266 [18:57<08:14,  3.58s/it]Chunks:  48%|████▊     | 129/266 [19:05<11:00,  4.82s/it]Chunks:  49%|████▉     | 130/266 [19:07<09:00,  3.98s/it]Chunks:  49%|████▉     | 131/266 [19:14<11:29,  5.11s/it]Chunks:  50%|████▉     | 132/266 [19:16<09:12,  4.12s/it]Chunks:  50%|█████     | 133/266 [19:24<11:38,  5.26s/it]Chunks:  50%|█████     | 134/266 [19:26<09:07,  4.15s/it]Chunks:  51%|█████     | 135/266 [19:34<11:40,  5.34s/it]Chunks:  51%|█████     | 136/266 [19:35<08:59,  4.15s/it]Chunks:  52%|█████▏    | 137/266 [19:43<11:32,  5.37s/it]Chunks:  52%|█████▏    | 138/266 [19:45<08:49,  4.14s/it]Chunks:  52%|█████▏    | 139/266 [19:53<11:22,  5.37s/it]Chunks:  53%|█████▎    | 140/266 [19:54<08:39,  4.12s/it]Chunks:  53%|█████▎    | 141/266 [20:03<11:16,  5.41s/it]Chunks:  53%|█████▎    | 142/266 [20:04<08:27,  4.09s/it]Chunks:  54%|█████▍    | 143/266 [20:12<11:18,  5.51s/it]Chunks:  55%|█████▍    | 145/266 [20:13<06:25,  3.19s/it]Chunks:  55%|█████▍    | 146/266 [20:22<09:05,  4.54s/it]Chunks:  55%|█████▌    | 147/266 [20:22<06:42,  3.38s/it]Chunks:  56%|█████▌    | 148/266 [20:23<05:14,  2.66s/it]Chunks:  56%|█████▌    | 149/266 [20:30<07:38,  3.92s/it]Chunks:  56%|█████▋    | 150/266 [20:32<06:18,  3.26s/it]Chunks:  57%|█████▋    | 151/266 [20:32<04:37,  2.41s/it]Chunks:  57%|█████▋    | 152/266 [20:32<03:33,  1.87s/it]Chunks:  58%|█████▊    | 153/266 [20:40<06:33,  3.48s/it]Chunks:  58%|█████▊    | 154/266 [20:41<05:21,  2.87s/it]Chunks:  58%|█████▊    | 155/266 [20:42<03:58,  2.15s/it]Chunks:  59%|█████▊    | 156/266 [20:42<02:58,  1.62s/it]Chunks:  59%|█████▉    | 157/266 [20:52<07:40,  4.22s/it]Chunks:  59%|█████▉    | 158/266 [20:55<06:41,  3.71s/it]Chunks:  60%|█████▉    | 159/266 [21:25<20:53, 11.71s/it]Chunks:  60%|██████    | 160/266 [21:26<14:52,  8.42s/it]Chunks:  61%|██████    | 161/266 [21:48<21:56, 12.54s/it]Chunks:  61%|██████    | 162/266 [21:49<15:52,  9.16s/it]Chunks:  61%|██████▏   | 163/266 [21:55<13:42,  7.99s/it]Chunks:  62%|██████▏   | 164/266 [22:13<18:48, 11.06s/it]Chunks:  62%|██████▏   | 165/266 [22:28<20:33, 12.22s/it]Chunks:  62%|██████▏   | 166/266 [22:32<16:31,  9.92s/it]Chunks:  63%|██████▎   | 167/266 [22:41<15:37,  9.47s/it]Chunks:  64%|██████▎   | 169/266 [22:43<09:00,  5.57s/it]Chunks:  64%|██████▍   | 170/266 [22:47<08:11,  5.12s/it]Chunks:  64%|██████▍   | 171/266 [22:47<06:08,  3.88s/it]Chunks:  65%|██████▍   | 172/266 [22:48<04:52,  3.11s/it]Chunks:  65%|██████▌   | 173/266 [23:03<09:52,  6.38s/it]Chunks:  65%|██████▌   | 174/266 [23:08<09:11,  5.99s/it]Chunks:  66%|██████▌   | 175/266 [23:18<10:55,  7.20s/it]Chunks:  66%|██████▌   | 176/266 [23:22<09:32,  6.36s/it]Chunks:  67%|██████▋   | 177/266 [23:24<07:26,  5.02s/it]Chunks:  67%|██████▋   | 178/266 [23:56<18:57, 12.92s/it]Chunks:  67%|██████▋   | 179/266 [23:57<13:49,  9.53s/it]Chunks:  68%|██████▊   | 180/266 [23:59<10:07,  7.06s/it]Chunks:  68%|██████▊   | 181/266 [24:07<10:30,  7.42s/it]Chunks:  68%|██████▊   | 182/266 [24:09<07:57,  5.69s/it]Chunks:  69%|██████▉   | 183/266 [24:12<06:52,  4.96s/it]Chunks:  69%|██████▉   | 184/266 [24:17<06:43,  4.92s/it]Chunks:  70%|██████▉   | 185/266 [24:19<05:25,  4.02s/it]Chunks:  70%|██████▉   | 186/266 [24:20<04:27,  3.35s/it]Chunks:  70%|███████   | 187/266 [24:22<03:33,  2.71s/it]Chunks:  71%|███████   | 188/266 [24:22<02:35,  2.00s/it]Chunks:  71%|███████   | 189/266 [24:27<03:41,  2.87s/it]Chunks:  71%|███████▏  | 190/266 [24:28<02:55,  2.31s/it]Chunks:  72%|███████▏  | 191/266 [24:29<02:21,  1.89s/it]Chunks:  72%|███████▏  | 192/266 [24:30<02:14,  1.82s/it]Chunks:  73%|███████▎  | 193/266 [24:32<02:01,  1.67s/it]Chunks:  73%|███████▎  | 194/266 [24:32<01:29,  1.24s/it]Chunks:  73%|███████▎  | 195/266 [24:33<01:21,  1.15s/it]Chunks:  74%|███████▎  | 196/266 [24:37<02:22,  2.03s/it]Chunks:  74%|███████▍  | 197/266 [24:38<02:01,  1.75s/it]Chunks:  74%|███████▍  | 198/266 [24:39<01:39,  1.47s/it]Chunks:  75%|███████▍  | 199/266 [24:41<01:43,  1.55s/it]Chunks:  75%|███████▌  | 200/266 [24:42<01:37,  1.48s/it]Chunks:  76%|███████▌  | 201/266 [24:42<01:18,  1.20s/it]Chunks:  76%|███████▋  | 203/266 [24:43<00:50,  1.25it/s]Chunks:  77%|███████▋  | 204/266 [24:47<01:35,  1.55s/it]Chunks:  77%|███████▋  | 205/266 [24:48<01:31,  1.50s/it]Chunks:  77%|███████▋  | 206/266 [24:49<01:20,  1.35s/it]Chunks:  78%|███████▊  | 207/266 [24:51<01:25,  1.44s/it]Chunks:  78%|███████▊  | 208/266 [24:52<01:19,  1.38s/it]Chunks:  79%|███████▊  | 209/266 [24:53<01:03,  1.12s/it]Chunks:  79%|███████▉  | 210/266 [24:53<00:49,  1.14it/s]Chunks:  79%|███████▉  | 211/266 [24:54<00:45,  1.20it/s]Chunks:  80%|███████▉  | 212/266 [24:57<01:25,  1.58s/it]Chunks:  80%|████████  | 213/266 [24:59<01:22,  1.56s/it]Chunks:  80%|████████  | 214/266 [25:00<01:14,  1.44s/it]Chunks:  81%|████████  | 215/266 [25:01<01:16,  1.51s/it]Chunks:  81%|████████  | 216/266 [25:02<01:09,  1.39s/it]Chunks:  82%|████████▏ | 217/266 [25:03<00:52,  1.07s/it]Chunks:  82%|████████▏ | 218/266 [25:03<00:39,  1.22it/s]Chunks:  82%|████████▏ | 219/266 [25:04<00:43,  1.07it/s]Chunks:  83%|████████▎ | 220/266 [25:07<01:08,  1.48s/it]Chunks:  83%|████████▎ | 221/266 [25:09<01:12,  1.60s/it]Chunks:  83%|████████▎ | 222/266 [25:10<01:05,  1.50s/it]Chunks:  84%|████████▍ | 223/266 [25:11<01:01,  1.42s/it]Chunks:  84%|████████▍ | 224/266 [25:13<01:00,  1.44s/it]Chunks:  85%|████████▍ | 226/266 [25:13<00:32,  1.23it/s]Chunks:  85%|████████▌ | 227/266 [25:15<00:40,  1.05s/it]Chunks:  86%|████████▌ | 228/266 [25:17<00:49,  1.31s/it]Chunks:  86%|████████▌ | 229/266 [25:19<00:58,  1.58s/it]Chunks:  86%|████████▋ | 230/266 [25:20<00:52,  1.46s/it]Chunks:  87%|████████▋ | 231/266 [25:22<00:50,  1.43s/it]Chunks:  87%|████████▋ | 232/266 [25:23<00:48,  1.43s/it]Chunks:  88%|████████▊ | 235/266 [25:25<00:31,  1.03s/it]Chunks:  89%|████████▊ | 236/266 [25:27<00:34,  1.14s/it]Chunks:  89%|████████▉ | 237/266 [25:30<00:44,  1.53s/it]Chunks:  89%|████████▉ | 238/266 [25:31<00:39,  1.40s/it]Chunks:  90%|████████▉ | 239/266 [25:32<00:37,  1.38s/it]Chunks:  90%|█████████ | 240/266 [25:33<00:35,  1.36s/it]Chunks:  91%|█████████ | 242/266 [25:33<00:18,  1.26it/s]Chunks:  91%|█████████▏| 243/266 [25:36<00:27,  1.19s/it]Chunks:  92%|█████████▏| 244/266 [25:37<00:25,  1.14s/it]Chunks:  92%|█████████▏| 245/266 [25:40<00:34,  1.66s/it]Chunks:  92%|█████████▏| 246/266 [25:41<00:29,  1.49s/it]Chunks:  93%|█████████▎| 247/266 [25:42<00:26,  1.38s/it]Chunks:  93%|█████████▎| 248/266 [25:44<00:25,  1.42s/it]Chunks:  94%|█████████▍| 250/266 [25:44<00:13,  1.23it/s]Chunks:  94%|█████████▍| 251/266 [25:46<00:18,  1.24s/it]Chunks:  95%|█████████▍| 252/266 [25:47<00:14,  1.02s/it]Chunks:  95%|█████████▌| 253/266 [25:50<00:21,  1.68s/it]Chunks:  95%|█████████▌| 254/266 [25:51<00:17,  1.47s/it]Chunks:  96%|█████████▌| 255/266 [25:52<00:14,  1.32s/it]Chunks:  96%|█████████▌| 256/266 [25:53<00:12,  1.28s/it]Chunks:  97%|█████████▋| 257/266 [25:53<00:08,  1.04it/s]Chunks:  97%|█████████▋| 258/266 [26:01<00:23,  2.98s/it]Chunks:  97%|█████████▋| 259/266 [26:03<00:18,  2.69s/it]Chunks:  98%|█████████▊| 260/266 [26:05<00:14,  2.40s/it]Chunks:  98%|█████████▊| 261/266 [26:07<00:12,  2.44s/it]Chunks:  98%|█████████▊| 262/266 [26:15<00:15,  3.94s/it]Chunks:  99%|█████████▉| 263/266 [26:19<00:12,  4.11s/it]Chunks:  99%|█████████▉| 264/266 [26:21<00:06,  3.38s/it]Chunks: 100%|█████████▉| 265/266 [26:23<00:02,  2.82s/it]Chunks: 100%|██████████| 266/266 [26:28<00:00,  3.53s/it]Chunks: 100%|██████████| 266/266 [26:28<00:00,  5.97s/it]
-2026-04-17 04:55:45 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/embeddings_cache/all_nodes_4e7783ff2b37e34a09ef.npz shape=(1328245, 1024)
-2026-04-17 04:55:56 | INFO | build_reasoning_graph | Prepared 70460 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-17 04:56:14 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
-[02_build_graph] Done.
-[2026-04-17 04:56:20] STEP 2/7  Done.
-[2026-04-17 04:56:20] STEP 3/7  K-fold (main run)
-[03_kfold] env=thesis_work  run=cross_bucket_full_kfold  k=5
-[03_kfold] Launching 5 folds in parallel on GPUs 0-4 ...
-[03_kfold] Fold 0 -> GPU 0  (pid 1378130)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_full_kfold_fold_0.log
-[03_kfold] Fold 1 -> GPU 1  (pid 1378132)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_full_kfold_fold_1.log
-[03_kfold] Fold 2 -> GPU 2  (pid 1378134)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_full_kfold_fold_2.log
-[03_kfold] Fold 3 -> GPU 3  (pid 1378136)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_full_kfold_fold_3.log
-[03_kfold] Fold 4 -> GPU 4  (pid 1378138)  log: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/logs/cross_bucket_full_kfold_fold_4.log
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-2026-04-17 04:56:23 | INFO | kfold_cv_cross_bucket_full_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
-2026-04-17 04:56:23 | INFO | kfold_cv_cross_bucket_full_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
-2026-04-17 04:56:23 | INFO | kfold_cv_cross_bucket_full_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
-2026-04-17 04:56:23 | INFO | kfold_cv_cross_bucket_full_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
-2026-04-17 04:56:23 | INFO | kfold_cv_cross_bucket_full_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_total_dataset.reasoning_focused.pt …
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | ── Fold 2/5 | train=56368  test=14092  seed=43
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 04:56:29 | INFO | kfold_cv_cross_bucket_full_kfold | ── Fold 3/5 | train=56368  test=14092  seed=44
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | ── Fold 4/5 | train=56368  test=14092  seed=45
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | ── Fold 1/5 | train=56368  test=14092  seed=42
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 04:56:30 | INFO | kfold_cv_cross_bucket_full_kfold | ── Fold 5/5 | train=56368  test=14092  seed=46
-Traceback (most recent call last):
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 308, in <module>
-    main()
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 244, in main
-    result = train_model(
-             ^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/training/train.py", line 75, in train_model
-    logits, _ = model(data.x_dict, data.edge_index_dict)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/models/hetero_gnn.py", line 100, in forward
-    conv_out = conv(hidden, edge_index_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/hgt_conv.py", line 199, in forward
-    out = self.propagate(edge_index, k=k, q=q, v=v, edge_attr=edge_attr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/torch_geometric.nn.conv.hgt_conv_HGTConv_propagate_98jahblw.py", line 288, in propagate
-    out = self.aggregate(
-          ^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/message_passing.py", line 594, in aggregate
-    return self.aggr_module(inputs, index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/experimental.py", line 117, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 139, in __call__
-    raise e
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 131, in __call__
-    return super().__call__(x, index=index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/basic.py", line 22, in forward
-    return self.reduce(x, index, ptr, dim_size, dim, reduce='sum')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 185, in reduce
-    return scatter(x, index, dim, dim_size, reduce)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
-    return src.new_zeros(size).scatter_add_(dim, index, src)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.70 GiB. GPU 0 has a total capacity of 47.37 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 46.17 GiB memory in use. Of the allocated memory 42.56 GiB is allocated by PyTorch, and 3.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Traceback (most recent call last):
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 308, in <module>
-    main()
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 244, in main
-    result = train_model(
-             ^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/training/train.py", line 75, in train_model
-    logits, _ = model(data.x_dict, data.edge_index_dict)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/models/hetero_gnn.py", line 100, in forward
-    conv_out = conv(hidden, edge_index_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/hgt_conv.py", line 199, in forward
-    out = self.propagate(edge_index, k=k, q=q, v=v, edge_attr=edge_attr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/torch_geometric.nn.conv.hgt_conv_HGTConv_propagate_6axjt138.py", line 288, in propagate
-    out = self.aggregate(
-          ^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/message_passing.py", line 594, in aggregate
-    return self.aggr_module(inputs, index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/experimental.py", line 117, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 139, in __call__
-    raise e
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 131, in __call__
-    return super().__call__(x, index=index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/basic.py", line 22, in forward
-    return self.reduce(x, index, ptr, dim_size, dim, reduce='sum')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 185, in reduce
-    return scatter(x, index, dim, dim_size, reduce)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
-    return src.new_zeros(size).scatter_add_(dim, index, src)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.70 GiB. GPU 0 has a total capacity of 47.37 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 46.17 GiB memory in use. Of the allocated memory 42.56 GiB is allocated by PyTorch, and 3.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Traceback (most recent call last):
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 308, in <module>
-    main()
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 244, in main
-    result = train_model(
-             ^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/training/train.py", line 75, in train_model
-    logits, _ = model(data.x_dict, data.edge_index_dict)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/models/hetero_gnn.py", line 100, in forward
-    conv_out = conv(hidden, edge_index_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/hgt_conv.py", line 199, in forward
-    out = self.propagate(edge_index, k=k, q=q, v=v, edge_attr=edge_attr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/torch_geometric.nn.conv.hgt_conv_HGTConv_propagate_w91ntqzx.py", line 288, in propagate
-    out = self.aggregate(
-          ^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/message_passing.py", line 594, in aggregate
-    return self.aggr_module(inputs, index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/experimental.py", line 117, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 139, in __call__
-    raise e
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 131, in __call__
-    return super().__call__(x, index=index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/basic.py", line 22, in forward
-    return self.reduce(x, index, ptr, dim_size, dim, reduce='sum')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 185, in reduce
-    return scatter(x, index, dim, dim_size, reduce)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
-    return src.new_zeros(size).scatter_add_(dim, index, src)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.70 GiB. GPU 0 has a total capacity of 47.37 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 46.17 GiB memory in use. Of the allocated memory 42.56 GiB is allocated by PyTorch, and 3.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Traceback (most recent call last):
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 308, in <module>
-    main()
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 244, in main
-    result = train_model(
-             ^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/training/train.py", line 75, in train_model
-    logits, _ = model(data.x_dict, data.edge_index_dict)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/models/hetero_gnn.py", line 100, in forward
-    conv_out = conv(hidden, edge_index_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/hgt_conv.py", line 199, in forward
-    out = self.propagate(edge_index, k=k, q=q, v=v, edge_attr=edge_attr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/torch_geometric.nn.conv.hgt_conv_HGTConv_propagate_nhvpus01.py", line 288, in propagate
-    out = self.aggregate(
-          ^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/message_passing.py", line 594, in aggregate
-    return self.aggr_module(inputs, index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/experimental.py", line 117, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 139, in __call__
-    raise e
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 131, in __call__
-    return super().__call__(x, index=index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/basic.py", line 22, in forward
-    return self.reduce(x, index, ptr, dim_size, dim, reduce='sum')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 185, in reduce
-    return scatter(x, index, dim, dim_size, reduce)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
-    return src.new_zeros(size).scatter_add_(dim, index, src)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.70 GiB. GPU 0 has a total capacity of 47.37 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 46.17 GiB memory in use. Of the allocated memory 42.56 GiB is allocated by PyTorch, and 3.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Traceback (most recent call last):
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 308, in <module>
-    main()
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/dump2/scripts/kfold_cv.py", line 244, in main
-    result = train_model(
-             ^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/training/train.py", line 75, in train_model
-    logits, _ = model(data.x_dict, data.edge_index_dict)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/src/models/hetero_gnn.py", line 100, in forward
-    conv_out = conv(hidden, edge_index_dict)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/hgt_conv.py", line 199, in forward
-    out = self.propagate(edge_index, k=k, q=q, v=v, edge_attr=edge_attr)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/torch_geometric.nn.conv.hgt_conv_HGTConv_propagate_e3g7258r.py", line 288, in propagate
-    out = self.aggregate(
-          ^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/conv/message_passing.py", line 594, in aggregate
-    return self.aggr_module(inputs, index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/experimental.py", line 117, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 139, in __call__
-    raise e
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 131, in __call__
-    return super().__call__(x, index=index, ptr=ptr, dim_size=dim_size,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/basic.py", line 22, in forward
-    return self.reduce(x, index, ptr, dim_size, dim, reduce='sum')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/nn/aggr/base.py", line 185, in reduce
-    return scatter(x, index, dim, dim_size, reduce)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py", line 75, in scatter
-    return src.new_zeros(size).scatter_add_(dim, index, src)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.70 GiB. GPU 0 has a total capacity of 47.37 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 46.17 GiB memory in use. Of the allocated memory 42.56 GiB is allocated by PyTorch, and 3.09 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[03_kfold] Fold 0 FAILED.
-[03_kfold] Fold 1 FAILED.
-[03_kfold] Fold 2 FAILED.
-[03_kfold] Fold 3 FAILED.
-[03_kfold] Fold 4 FAILED.
-[03_kfold] One or more folds failed.
-nohup: ignoring input
->>> Building ablation graph (text-only) ...
-2026-04-17 09:45:40 | INFO | build_reasoning_graph | Loaded 70460 cleaned cases from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/processed/cleaned_cases
-2026-04-17 09:48:23 | INFO | build_reasoning_graph | Computing embeddings with backend=sentence_transformers model=BAAI/bge-m3 for 354874 texts
-Chunks:   0%|          | 0/80 [00:00<?, ?it/s]Chunks:   1%|▏         | 1/80 [01:43<2:16:20, 103.55s/it]Chunks:   2%|▎         | 2/80 [02:01<1:08:47, 52.91s/it] Chunks:   4%|▍         | 3/80 [02:18<47:13, 36.80s/it]  Chunks:   5%|▌         | 4/80 [02:26<32:02, 25.30s/it]Chunks:   6%|▋         | 5/80 [02:51<31:35, 25.27s/it]Chunks:   8%|▊         | 6/80 [03:15<30:28, 24.70s/it]Chunks:   9%|▉         | 7/80 [03:26<24:43, 20.32s/it]Chunks:  10%|█         | 8/80 [03:50<25:42, 21.43s/it]Chunks:  11%|█▏        | 9/80 [04:18<27:49, 23.51s/it]Chunks:  12%|█▎        | 10/80 [04:23<20:58, 17.98s/it]Chunks:  14%|█▍        | 11/80 [04:25<14:54, 12.97s/it]Chunks:  15%|█▌        | 12/80 [04:34<13:26, 11.85s/it]Chunks:  16%|█▋        | 13/80 [05:33<29:06, 26.07s/it]Chunks:  18%|█▊        | 14/80 [06:09<31:53, 28.99s/it]Chunks:  19%|█▉        | 15/80 [06:39<31:46, 29.33s/it]Chunks:  20%|██        | 16/80 [08:03<48:54, 45.84s/it]Chunks:  21%|██▏       | 17/80 [08:29<41:46, 39.78s/it]Chunks:  22%|██▎       | 18/80 [08:54<36:27, 35.28s/it]Chunks:  24%|██▍       | 19/80 [10:49<1:00:17, 59.30s/it]Chunks:  25%|██▌       | 20/80 [12:02<1:03:35, 63.59s/it]Chunks:  26%|██▋       | 21/80 [12:21<49:13, 50.06s/it]  Chunks:  28%|██▊       | 22/80 [12:39<39:02, 40.39s/it]Chunks:  29%|██▉       | 23/80 [13:04<34:00, 35.80s/it]Chunks:  30%|███       | 24/80 [13:45<34:56, 37.44s/it]Chunks:  31%|███▏      | 25/80 [13:46<24:18, 26.53s/it]Chunks:  32%|███▎      | 26/80 [13:52<18:13, 20.24s/it]Chunks:  34%|███▍      | 27/80 [13:53<12:45, 14.45s/it]Chunks:  35%|███▌      | 28/80 [14:02<11:14, 12.97s/it]Chunks:  36%|███▋      | 29/80 [14:19<11:57, 14.06s/it]Chunks:  38%|███▊      | 30/80 [14:53<16:38, 19.97s/it]Chunks:  39%|███▉      | 31/80 [15:21<18:22, 22.51s/it]Chunks:  40%|████      | 32/80 [15:38<16:32, 20.68s/it]Chunks:  41%|████▏     | 33/80 [15:50<14:22, 18.35s/it]Chunks:  42%|████▎     | 34/80 [16:12<14:44, 19.23s/it]Chunks:  44%|████▍     | 35/80 [16:19<11:49, 15.77s/it]Chunks:  45%|████▌     | 36/80 [16:22<08:33, 11.67s/it]Chunks:  46%|████▋     | 37/80 [16:48<11:35, 16.16s/it]Chunks:  48%|████▊     | 38/80 [17:01<10:31, 15.03s/it]Chunks:  49%|████▉     | 39/80 [17:07<08:33, 12.52s/it]Chunks:  50%|█████     | 40/80 [17:16<07:35, 11.38s/it]Chunks:  51%|█████▏    | 41/80 [17:20<06:03,  9.33s/it]Chunks:  52%|█████▎    | 42/80 [18:01<11:48, 18.64s/it]Chunks:  54%|█████▍    | 43/80 [18:04<08:33, 13.89s/it]Chunks:  55%|█████▌    | 44/80 [18:43<12:50, 21.41s/it]Chunks:  56%|█████▋    | 45/80 [18:52<10:22, 17.79s/it]Chunks:  57%|█████▊    | 46/80 [19:03<08:52, 15.67s/it]Chunks:  59%|█████▉    | 47/80 [19:05<06:26, 11.72s/it]Chunks:  60%|██████    | 48/80 [19:18<06:22, 11.95s/it]Chunks:  61%|██████▏   | 49/80 [19:29<06:08, 11.90s/it]Chunks:  62%|██████▎   | 50/80 [19:52<07:31, 15.04s/it]Chunks:  64%|██████▍   | 51/80 [20:07<07:17, 15.09s/it]Chunks:  65%|██████▌   | 52/80 [20:09<05:09, 11.04s/it]Chunks:  66%|██████▋   | 53/80 [20:11<03:46,  8.40s/it]Chunks:  68%|██████▊   | 54/80 [20:20<03:43,  8.61s/it]Chunks:  69%|██████▉   | 55/80 [20:27<03:23,  8.12s/it]Chunks:  70%|███████   | 56/80 [20:28<02:24,  6.02s/it]Chunks:  71%|███████▏  | 57/80 [20:29<01:44,  4.56s/it]Chunks:  72%|███████▎  | 58/80 [20:37<02:00,  5.49s/it]Chunks:  74%|███████▍  | 59/80 [20:41<01:45,  5.01s/it]Chunks:  76%|███████▋  | 61/80 [20:46<01:14,  3.93s/it]Chunks:  78%|███████▊  | 62/80 [20:54<01:27,  4.89s/it]Chunks:  79%|███████▉  | 63/80 [21:04<01:45,  6.19s/it]Chunks:  80%|████████  | 64/80 [21:06<01:21,  5.11s/it]Chunks:  81%|████████▏ | 65/80 [21:34<02:54, 11.61s/it]Chunks:  82%|████████▎ | 66/80 [21:37<02:08,  9.18s/it]Chunks:  84%|████████▍ | 67/80 [21:42<01:43,  7.94s/it]Chunks:  85%|████████▌ | 68/80 [21:52<01:41,  8.45s/it]Chunks:  86%|████████▋ | 69/80 [21:59<01:28,  8.00s/it]Chunks:  89%|████████▉ | 71/80 [22:05<00:51,  5.76s/it]Chunks:  90%|█████████ | 72/80 [22:07<00:37,  4.70s/it]Chunks:  91%|█████████▏| 73/80 [22:07<00:25,  3.71s/it]Chunks:  92%|█████████▎| 74/80 [22:15<00:27,  4.63s/it]Chunks:  94%|█████████▍| 75/80 [22:16<00:18,  3.68s/it]Chunks:  95%|█████████▌| 76/80 [22:21<00:16,  4.21s/it]Chunks:  96%|█████████▋| 77/80 [22:29<00:15,  5.24s/it]Chunks:  98%|█████████▊| 78/80 [22:30<00:07,  3.90s/it]Chunks:  99%|█████████▉| 79/80 [22:31<00:03,  3.17s/it]Chunks: 100%|██████████| 80/80 [22:37<00:00,  4.07s/it]Chunks: 100%|██████████| 80/80 [22:37<00:00, 16.97s/it]
-2026-04-17 10:12:44 | INFO | build_reasoning_graph | Saved embedding cache /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/embeddings_cache/all_nodes_56a1b5131d76088464dc.npz shape=(354874, 1024)
-2026-04-17 10:12:48 | INFO | build_reasoning_graph | Prepared 70460 cases for reasoning-focused graph mode=binary and dropped 0 cases
-2026-04-17 10:12:57 | INFO | build_reasoning_graph | Saved reasoning-focused graph bundle to /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt
-/home/ziv_baretto/.local/share/mamba/envs/thesis_work/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
->>> Graph build done.
->>> K-fold: run=ablation_text_only_cross_bucket_kfold  k=5  graph=/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt
-  Fold 0 -> GPU 0  (pid 1635547)
-  Fold 1 -> GPU 1  (pid 1635549)
-  Fold 2 -> GPU 2  (pid 1635551)
-  Fold 3 -> GPU 3  (pid 1635553)
-  Fold 4 -> GPU 4  (pid 1635555)
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-2026-04-17 10:13:06 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:13:06 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:13:06 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:13:06 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:13:06 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | ── Fold 1/5 | train=56368  test=14092  seed=42
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | ── Fold 2/5 | train=56368  test=14092  seed=43
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | ── Fold 3/5 | train=56368  test=14092  seed=44
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | ── Fold 5/5 | train=56368  test=14092  seed=46
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:13:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | ── Fold 4/5 | train=56368  test=14092  seed=45
-2026-04-17 10:13:14 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=1/60 train_loss=0.7079 train_macro_f1=0.3805 val_macro_f1=0.3845 best_val_macro_f1=0.3845 patience_counter=0
-2026-04-17 10:13:15 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=1/60 train_loss=0.7035 train_macro_f1=0.4201 val_macro_f1=0.4144 best_val_macro_f1=0.4144 patience_counter=0
-2026-04-17 10:13:15 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=1/60 train_loss=0.7056 train_macro_f1=0.2918 val_macro_f1=0.2964 best_val_macro_f1=0.2964 patience_counter=0
-2026-04-17 10:13:16 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=1/60 train_loss=0.7249 train_macro_f1=0.3794 val_macro_f1=0.3801 best_val_macro_f1=0.3801 patience_counter=0
-2026-04-17 10:13:19 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=1/60 train_loss=0.7048 train_macro_f1=0.2811 val_macro_f1=0.2822 best_val_macro_f1=0.2822 patience_counter=0
-2026-04-17 10:13:29 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=5/60 train_loss=0.6665 train_macro_f1=0.6549 val_macro_f1=0.6447 best_val_macro_f1=0.6447 patience_counter=0
-2026-04-17 10:13:33 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=5/60 train_loss=0.6491 train_macro_f1=0.6422 val_macro_f1=0.6433 best_val_macro_f1=0.6496 patience_counter=1
-2026-04-17 10:13:35 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=5/60 train_loss=0.6372 train_macro_f1=0.6730 val_macro_f1=0.6767 best_val_macro_f1=0.6767 patience_counter=0
-2026-04-17 10:13:37 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=5/60 train_loss=0.6739 train_macro_f1=0.5982 val_macro_f1=0.5840 best_val_macro_f1=0.5840 patience_counter=0
-2026-04-17 10:13:38 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=5/60 train_loss=0.6559 train_macro_f1=0.6364 val_macro_f1=0.6429 best_val_macro_f1=0.6429 patience_counter=0
-2026-04-17 10:13:44 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=10/60 train_loss=0.6154 train_macro_f1=0.6833 val_macro_f1=0.6751 best_val_macro_f1=0.6751 patience_counter=0
-2026-04-17 10:13:45 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=10/60 train_loss=0.6022 train_macro_f1=0.6868 val_macro_f1=0.6864 best_val_macro_f1=0.6864 patience_counter=0
-2026-04-17 10:13:45 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=10/60 train_loss=0.5925 train_macro_f1=0.7006 val_macro_f1=0.7039 best_val_macro_f1=0.7040 patience_counter=1
-2026-04-17 10:13:45 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=10/60 train_loss=0.6287 train_macro_f1=0.6665 val_macro_f1=0.6546 best_val_macro_f1=0.6580 patience_counter=1
-2026-04-17 10:13:46 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=10/60 train_loss=0.6073 train_macro_f1=0.6890 val_macro_f1=0.6960 best_val_macro_f1=0.6960 patience_counter=0
-2026-04-17 10:13:52 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=15/60 train_loss=0.5846 train_macro_f1=0.7074 val_macro_f1=0.7018 best_val_macro_f1=0.7018 patience_counter=0
-2026-04-17 10:13:53 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=15/60 train_loss=0.5779 train_macro_f1=0.7067 val_macro_f1=0.7099 best_val_macro_f1=0.7099 patience_counter=0
-2026-04-17 10:13:53 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=15/60 train_loss=0.5539 train_macro_f1=0.7316 val_macro_f1=0.7317 best_val_macro_f1=0.7317 patience_counter=0
-2026-04-17 10:13:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=15/60 train_loss=0.5960 train_macro_f1=0.6947 val_macro_f1=0.6829 best_val_macro_f1=0.6829 patience_counter=0
-2026-04-17 10:13:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=15/60 train_loss=0.5770 train_macro_f1=0.7131 val_macro_f1=0.7206 best_val_macro_f1=0.7206 patience_counter=0
-2026-04-17 10:14:00 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=20/60 train_loss=0.5480 train_macro_f1=0.7200 val_macro_f1=0.7120 best_val_macro_f1=0.7266 patience_counter=1
-2026-04-17 10:14:01 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=20/60 train_loss=0.5440 train_macro_f1=0.7377 val_macro_f1=0.7353 best_val_macro_f1=0.7353 patience_counter=0
-2026-04-17 10:14:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=20/60 train_loss=0.5239 train_macro_f1=0.7472 val_macro_f1=0.7480 best_val_macro_f1=0.7480 patience_counter=0
-2026-04-17 10:14:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=20/60 train_loss=0.5656 train_macro_f1=0.7180 val_macro_f1=0.7131 best_val_macro_f1=0.7131 patience_counter=0
-2026-04-17 10:14:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=20/60 train_loss=0.5403 train_macro_f1=0.7147 val_macro_f1=0.7158 best_val_macro_f1=0.7344 patience_counter=1
-2026-04-17 10:14:16 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=25/60 train_loss=0.5213 train_macro_f1=0.7380 val_macro_f1=0.7273 best_val_macro_f1=0.7423 patience_counter=1
-2026-04-17 10:14:18 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=25/60 train_loss=0.5139 train_macro_f1=0.7482 val_macro_f1=0.7475 best_val_macro_f1=0.7475 patience_counter=0
-2026-04-17 10:14:22 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=25/60 train_loss=0.4993 train_macro_f1=0.7449 val_macro_f1=0.7478 best_val_macro_f1=0.7577 patience_counter=2
-2026-04-17 10:14:24 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=25/60 train_loss=0.5348 train_macro_f1=0.7355 val_macro_f1=0.7252 best_val_macro_f1=0.7252 patience_counter=0
-2026-04-17 10:14:26 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=25/60 train_loss=0.5161 train_macro_f1=0.7322 val_macro_f1=0.7321 best_val_macro_f1=0.7463 patience_counter=1
-2026-04-17 10:14:39 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=30/60 train_loss=0.4947 train_macro_f1=0.7571 val_macro_f1=0.7429 best_val_macro_f1=0.7495 patience_counter=1
-2026-04-17 10:14:42 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=30/60 train_loss=0.4932 train_macro_f1=0.7628 val_macro_f1=0.7597 best_val_macro_f1=0.7597 patience_counter=0
-2026-04-17 10:14:47 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=30/60 train_loss=0.4815 train_macro_f1=0.7604 val_macro_f1=0.7543 best_val_macro_f1=0.7656 patience_counter=1
-2026-04-17 10:14:48 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=30/60 train_loss=0.5087 train_macro_f1=0.7540 val_macro_f1=0.7464 best_val_macro_f1=0.7464 patience_counter=0
-2026-04-17 10:14:48 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=30/60 train_loss=0.4923 train_macro_f1=0.7543 val_macro_f1=0.7464 best_val_macro_f1=0.7515 patience_counter=1
-2026-04-17 10:14:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=35/60 train_loss=0.4746 train_macro_f1=0.7716 val_macro_f1=0.7591 best_val_macro_f1=0.7591 patience_counter=0
-2026-04-17 10:15:00 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=35/60 train_loss=0.4743 train_macro_f1=0.7737 val_macro_f1=0.7671 best_val_macro_f1=0.7671 patience_counter=0
-2026-04-17 10:15:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=35/60 train_loss=0.4888 train_macro_f1=0.7656 val_macro_f1=0.7554 best_val_macro_f1=0.7554 patience_counter=0
-2026-04-17 10:15:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=35/60 train_loss=0.4674 train_macro_f1=0.7658 val_macro_f1=0.7572 best_val_macro_f1=0.7690 patience_counter=1
-2026-04-17 10:15:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=35/60 train_loss=0.4699 train_macro_f1=0.7692 val_macro_f1=0.7587 best_val_macro_f1=0.7607 patience_counter=1
-2026-04-17 10:15:22 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=40/60 train_loss=0.4559 train_macro_f1=0.7826 val_macro_f1=0.7680 best_val_macro_f1=0.7680 patience_counter=0
-2026-04-17 10:15:26 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=40/60 train_loss=0.4599 train_macro_f1=0.7824 val_macro_f1=0.7765 best_val_macro_f1=0.7765 patience_counter=0
-2026-04-17 10:15:28 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=40/60 train_loss=0.4728 train_macro_f1=0.7701 val_macro_f1=0.7577 best_val_macro_f1=0.7623 patience_counter=2
-2026-04-17 10:15:28 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=40/60 train_loss=0.4426 train_macro_f1=0.7886 val_macro_f1=0.7747 best_val_macro_f1=0.7747 patience_counter=0
-2026-04-17 10:15:29 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=40/60 train_loss=0.4620 train_macro_f1=0.7745 val_macro_f1=0.7590 best_val_macro_f1=0.7687 patience_counter=3
-2026-04-17 10:15:36 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=45/60 train_loss=0.4422 train_macro_f1=0.7920 val_macro_f1=0.7725 best_val_macro_f1=0.7725 patience_counter=0
-2026-04-17 10:15:40 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=45/60 train_loss=0.4476 train_macro_f1=0.7909 val_macro_f1=0.7803 best_val_macro_f1=0.7810 patience_counter=2
-2026-04-17 10:15:44 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=45/60 train_loss=0.4548 train_macro_f1=0.7657 val_macro_f1=0.7459 best_val_macro_f1=0.7663 patience_counter=1
-2026-04-17 10:15:47 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=45/60 train_loss=0.4297 train_macro_f1=0.8004 val_macro_f1=0.7782 best_val_macro_f1=0.7782 patience_counter=0
-2026-04-17 10:15:49 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=45/60 train_loss=0.4364 train_macro_f1=0.7943 val_macro_f1=0.7709 best_val_macro_f1=0.7709 patience_counter=0
-2026-04-17 10:16:01 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=50/60 train_loss=0.4206 train_macro_f1=0.8028 val_macro_f1=0.7777 best_val_macro_f1=0.7777 patience_counter=0
-2026-04-17 10:16:05 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=50/60 train_loss=0.4402 train_macro_f1=0.7997 val_macro_f1=0.7807 best_val_macro_f1=0.7816 patience_counter=2
-2026-04-17 10:16:07 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=50/60 train_loss=0.4402 train_macro_f1=0.7883 val_macro_f1=0.7661 best_val_macro_f1=0.7696 patience_counter=1
-2026-04-17 10:16:08 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=50/60 train_loss=0.4052 train_macro_f1=0.8114 val_macro_f1=0.7844 best_val_macro_f1=0.7844 patience_counter=0
-2026-04-17 10:16:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=50/60 train_loss=0.4262 train_macro_f1=0.8072 val_macro_f1=0.7755 best_val_macro_f1=0.7755 patience_counter=0
-2026-04-17 10:16:13 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=55/60 train_loss=0.4236 train_macro_f1=0.8021 val_macro_f1=0.7700 best_val_macro_f1=0.7794 patience_counter=2
-2026-04-17 10:16:14 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=55/60 train_loss=0.4045 train_macro_f1=0.8007 val_macro_f1=0.7746 best_val_macro_f1=0.7847 patience_counter=2
-2026-04-17 10:16:16 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=55/60 train_loss=0.4199 train_macro_f1=0.8001 val_macro_f1=0.7717 best_val_macro_f1=0.7717 patience_counter=0
-2026-04-17 10:16:16 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=55/60 train_loss=0.4143 train_macro_f1=0.8154 val_macro_f1=0.7890 best_val_macro_f1=0.7890 patience_counter=0
-2026-04-17 10:16:21 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=55/60 train_loss=0.4046 train_macro_f1=0.8160 val_macro_f1=0.7759 best_val_macro_f1=0.7763 patience_counter=2
-2026-04-17 10:16:29 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=60/60 train_loss=0.3986 train_macro_f1=0.8196 val_macro_f1=0.7814 best_val_macro_f1=0.7824 patience_counter=1
-2026-04-17 10:16:30 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 1 done | test_acc=0.7901  test_macro_f1=0.7823
-2026-04-17 10:16:30 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:16:30 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=60/60 train_loss=0.3888 train_macro_f1=0.8230 val_macro_f1=0.7881 best_val_macro_f1=0.7882 patience_counter=2
-2026-04-17 10:16:31 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 3 done | test_acc=0.7912  test_macro_f1=0.7835
-2026-04-17 10:16:31 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:16:31 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=60/60 train_loss=0.4049 train_macro_f1=0.8081 val_macro_f1=0.7753 best_val_macro_f1=0.7763 patience_counter=1
-2026-04-17 10:16:32 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=60/60 train_loss=0.3905 train_macro_f1=0.8233 val_macro_f1=0.7878 best_val_macro_f1=0.7900 patience_counter=1
-2026-04-17 10:16:32 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 5 done | test_acc=0.7863  test_macro_f1=0.7813
-2026-04-17 10:16:32 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:16:33 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 2 done | test_acc=0.7935  test_macro_f1=0.7842
-2026-04-17 10:16:33 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:16:33 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | epoch=60/60 train_loss=0.3788 train_macro_f1=0.8163 val_macro_f1=0.7688 best_val_macro_f1=0.7808 patience_counter=4
-2026-04-17 10:16:34 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 4 done | test_acc=0.7982  test_macro_f1=0.7903
-2026-04-17 10:16:34 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
->>> Aggregating ...
-2026-04-17 10:16:39 | INFO | kfold_cv_ablation_text_only_cross_bucket_kfold | Aggregate (5/5 folds) | accuracy=0.7918±0.0039  macro_f1=0.7843±0.0032
-Done. Summary: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/ablation_text_only_cross_bucket_kfold/kfold/kfold_summary.json
-nohup: ignoring input
->>> K-fold: run=ablation_text_only_cross_bucket_v2_kfold  k=5  graph=/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt
-  Fold 0 -> GPU 0  (pid 1651797)
-  Fold 1 -> GPU 1  (pid 1651799)
-  Fold 2 -> GPU 2  (pid 1651801)
-  Fold 3 -> GPU 3  (pid 1651803)
-  Fold 4 -> GPU 4  (pid 1651805)
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-error    libmamba Could not set lock (Resource temporarily unavailable)
-warning  libmamba Cannot lock '/home/ziv_baretto/.cache/mamba/proc'
-    Waiting for other mamba process to finish
-2026-04-17 10:24:56 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:24:56 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:24:56 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:24:56 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:24:56 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Loading graph bundle from /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_cross_bucket_text_only.reasoning_focused.pt …
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | ── Fold 3/5 | train=56368  test=14092  seed=44
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | ── Fold 5/5 | train=56368  test=14092  seed=46
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | ── Fold 4/5 | train=56368  test=14092  seed=45
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:24:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | ── Fold 2/5 | train=56368  test=14092  seed=43
-2026-04-17 10:25:00 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Graph loaded | n_cases=70460 | labels=['-1', '1']
-2026-04-17 10:25:00 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Running 1 fold(s) of 5-fold CV | val_fraction=0.10
-2026-04-17 10:25:00 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | ── Fold 1/5 | train=56368  test=14092  seed=42
-2026-04-17 10:25:01 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=1/60 train_loss=0.6971 train_macro_f1=0.6254 val_macro_f1=0.6219 best_val_macro_f1=0.6219 patience_counter=0
-2026-04-17 10:25:01 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=1/60 train_loss=0.7213 train_macro_f1=0.5322 val_macro_f1=0.5403 best_val_macro_f1=0.5403 patience_counter=0
-2026-04-17 10:25:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=1/60 train_loss=0.7037 train_macro_f1=0.4776 val_macro_f1=0.4744 best_val_macro_f1=0.4744 patience_counter=0
-2026-04-17 10:25:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=1/60 train_loss=0.7648 train_macro_f1=0.4881 val_macro_f1=0.4860 best_val_macro_f1=0.4860 patience_counter=0
-2026-04-17 10:25:05 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=1/60 train_loss=0.6961 train_macro_f1=0.5851 val_macro_f1=0.5846 best_val_macro_f1=0.5846 patience_counter=0
-2026-04-17 10:25:21 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=5/60 train_loss=0.6305 train_macro_f1=0.6761 val_macro_f1=0.6753 best_val_macro_f1=0.6753 patience_counter=0
-2026-04-17 10:25:22 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=5/60 train_loss=0.6584 train_macro_f1=0.6629 val_macro_f1=0.6772 best_val_macro_f1=0.6772 patience_counter=0
-2026-04-17 10:25:23 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=5/60 train_loss=0.6884 train_macro_f1=0.5765 val_macro_f1=0.5718 best_val_macro_f1=0.5718 patience_counter=0
-2026-04-17 10:25:24 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=5/60 train_loss=0.6801 train_macro_f1=0.6483 val_macro_f1=0.6393 best_val_macro_f1=0.6393 patience_counter=0
-2026-04-17 10:25:26 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=5/60 train_loss=0.6542 train_macro_f1=0.6733 val_macro_f1=0.6638 best_val_macro_f1=0.6638 patience_counter=0
-2026-04-17 10:25:45 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=10/60 train_loss=0.6667 train_macro_f1=0.6618 val_macro_f1=0.6643 best_val_macro_f1=0.6649 patience_counter=1
-2026-04-17 10:25:46 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=10/60 train_loss=0.6142 train_macro_f1=0.6812 val_macro_f1=0.6922 best_val_macro_f1=0.6922 patience_counter=0
-2026-04-17 10:25:46 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=10/60 train_loss=0.5935 train_macro_f1=0.6953 val_macro_f1=0.6918 best_val_macro_f1=0.6934 patience_counter=1
-2026-04-17 10:25:49 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=10/60 train_loss=0.6442 train_macro_f1=0.6707 val_macro_f1=0.6603 best_val_macro_f1=0.6603 patience_counter=0
-2026-04-17 10:25:51 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=10/60 train_loss=0.6086 train_macro_f1=0.6887 val_macro_f1=0.6845 best_val_macro_f1=0.6845 patience_counter=0
-2026-04-17 10:26:05 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=15/60 train_loss=0.6387 train_macro_f1=0.6656 val_macro_f1=0.6687 best_val_macro_f1=0.6687 patience_counter=0
-2026-04-17 10:26:08 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=15/60 train_loss=0.5885 train_macro_f1=0.7006 val_macro_f1=0.7112 best_val_macro_f1=0.7112 patience_counter=0
-2026-04-17 10:26:08 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=15/60 train_loss=0.5664 train_macro_f1=0.7148 val_macro_f1=0.7164 best_val_macro_f1=0.7164 patience_counter=0
-2026-04-17 10:26:11 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=15/60 train_loss=0.6098 train_macro_f1=0.6886 val_macro_f1=0.6841 best_val_macro_f1=0.6841 patience_counter=0
-2026-04-17 10:26:11 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=15/60 train_loss=0.5839 train_macro_f1=0.7115 val_macro_f1=0.7066 best_val_macro_f1=0.7066 patience_counter=0
-2026-04-17 10:26:32 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=20/60 train_loss=0.6141 train_macro_f1=0.6815 val_macro_f1=0.6874 best_val_macro_f1=0.6874 patience_counter=0
-2026-04-17 10:26:35 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=20/60 train_loss=0.5598 train_macro_f1=0.7255 val_macro_f1=0.7292 best_val_macro_f1=0.7292 patience_counter=0
-2026-04-17 10:26:35 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=20/60 train_loss=0.5400 train_macro_f1=0.7381 val_macro_f1=0.7362 best_val_macro_f1=0.7362 patience_counter=0
-2026-04-17 10:26:35 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=20/60 train_loss=0.5552 train_macro_f1=0.7336 val_macro_f1=0.7297 best_val_macro_f1=0.7297 patience_counter=0
-2026-04-17 10:26:35 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=20/60 train_loss=0.5835 train_macro_f1=0.7044 val_macro_f1=0.6909 best_val_macro_f1=0.6936 patience_counter=1
-2026-04-17 10:26:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=25/60 train_loss=0.5984 train_macro_f1=0.6964 val_macro_f1=0.7022 best_val_macro_f1=0.7022 patience_counter=0
-2026-04-17 10:26:58 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=25/60 train_loss=0.5328 train_macro_f1=0.7410 val_macro_f1=0.7401 best_val_macro_f1=0.7401 patience_counter=0
-2026-04-17 10:26:59 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=25/60 train_loss=0.5181 train_macro_f1=0.7482 val_macro_f1=0.7466 best_val_macro_f1=0.7466 patience_counter=0
-2026-04-17 10:27:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=25/60 train_loss=0.5329 train_macro_f1=0.7414 val_macro_f1=0.7349 best_val_macro_f1=0.7368 patience_counter=2
-2026-04-17 10:27:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=25/60 train_loss=0.5567 train_macro_f1=0.7206 val_macro_f1=0.7134 best_val_macro_f1=0.7134 patience_counter=0
-2026-04-17 10:27:18 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=30/60 train_loss=0.5757 train_macro_f1=0.7129 val_macro_f1=0.7184 best_val_macro_f1=0.7184 patience_counter=0
-2026-04-17 10:27:23 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=30/60 train_loss=0.5165 train_macro_f1=0.7520 val_macro_f1=0.7483 best_val_macro_f1=0.7483 patience_counter=0
-2026-04-17 10:27:23 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=30/60 train_loss=0.4996 train_macro_f1=0.7569 val_macro_f1=0.7543 best_val_macro_f1=0.7543 patience_counter=0
-2026-04-17 10:27:25 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=30/60 train_loss=0.5112 train_macro_f1=0.7456 val_macro_f1=0.7357 best_val_macro_f1=0.7434 patience_counter=1
-2026-04-17 10:27:27 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=30/60 train_loss=0.5317 train_macro_f1=0.7423 val_macro_f1=0.7282 best_val_macro_f1=0.7282 patience_counter=0
-2026-04-17 10:27:47 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=35/60 train_loss=0.5525 train_macro_f1=0.7261 val_macro_f1=0.7262 best_val_macro_f1=0.7262 patience_counter=0
-2026-04-17 10:27:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=35/60 train_loss=0.5002 train_macro_f1=0.7566 val_macro_f1=0.7495 best_val_macro_f1=0.7508 patience_counter=1
-2026-04-17 10:27:54 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=35/60 train_loss=0.4827 train_macro_f1=0.7688 val_macro_f1=0.7672 best_val_macro_f1=0.7672 patience_counter=0
-2026-04-17 10:27:55 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=35/60 train_loss=0.4930 train_macro_f1=0.7553 val_macro_f1=0.7456 best_val_macro_f1=0.7493 patience_counter=1
-2026-04-17 10:27:58 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=35/60 train_loss=0.5132 train_macro_f1=0.7518 val_macro_f1=0.7472 best_val_macro_f1=0.7472 patience_counter=0
-2026-04-17 10:28:10 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=40/60 train_loss=0.5301 train_macro_f1=0.7413 val_macro_f1=0.7402 best_val_macro_f1=0.7402 patience_counter=0
-2026-04-17 10:28:19 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=40/60 train_loss=0.4763 train_macro_f1=0.7618 val_macro_f1=0.7439 best_val_macro_f1=0.7539 patience_counter=2
-2026-04-17 10:28:19 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=40/60 train_loss=0.4715 train_macro_f1=0.7745 val_macro_f1=0.7691 best_val_macro_f1=0.7691 patience_counter=0
-2026-04-17 10:28:20 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=40/60 train_loss=0.4849 train_macro_f1=0.7606 val_macro_f1=0.7483 best_val_macro_f1=0.7546 patience_counter=2
-2026-04-17 10:28:23 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=40/60 train_loss=0.4984 train_macro_f1=0.7554 val_macro_f1=0.7430 best_val_macro_f1=0.7472 patience_counter=5
-2026-04-17 10:28:40 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=45/60 train_loss=0.5138 train_macro_f1=0.7500 val_macro_f1=0.7500 best_val_macro_f1=0.7501 patience_counter=1
-2026-04-17 10:28:47 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=45/60 train_loss=0.4634 train_macro_f1=0.7637 val_macro_f1=0.7414 best_val_macro_f1=0.7591 patience_counter=1
-2026-04-17 10:28:49 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=45/60 train_loss=0.4556 train_macro_f1=0.7674 val_macro_f1=0.7635 best_val_macro_f1=0.7733 patience_counter=2
-2026-04-17 10:28:49 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=45/60 train_loss=0.4710 train_macro_f1=0.7723 val_macro_f1=0.7552 best_val_macro_f1=0.7599 patience_counter=4
-2026-04-17 10:28:51 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=45/60 train_loss=0.4826 train_macro_f1=0.7602 val_macro_f1=0.7440 best_val_macro_f1=0.7531 patience_counter=1
-2026-04-17 10:29:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=50/60 train_loss=0.4995 train_macro_f1=0.7489 val_macro_f1=0.7429 best_val_macro_f1=0.7612 patience_counter=2
-2026-04-17 10:29:11 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=50/60 train_loss=0.4534 train_macro_f1=0.7725 val_macro_f1=0.7462 best_val_macro_f1=0.7594 patience_counter=1
-2026-04-17 10:29:12 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=50/60 train_loss=0.4462 train_macro_f1=0.7793 val_macro_f1=0.7702 best_val_macro_f1=0.7810 patience_counter=1
-2026-04-17 10:29:18 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=50/60 train_loss=0.4564 train_macro_f1=0.7828 val_macro_f1=0.7618 best_val_macro_f1=0.7618 patience_counter=0
-2026-04-17 10:29:21 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=50/60 train_loss=0.4708 train_macro_f1=0.7644 val_macro_f1=0.7441 best_val_macro_f1=0.7585 patience_counter=1
-2026-04-17 10:29:31 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=55/60 train_loss=0.4866 train_macro_f1=0.7670 val_macro_f1=0.7604 best_val_macro_f1=0.7612 patience_counter=7
-2026-04-17 10:29:39 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=55/60 train_loss=0.4419 train_macro_f1=0.7829 val_macro_f1=0.7538 best_val_macro_f1=0.7633 patience_counter=1
-2026-04-17 10:29:43 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=55/60 train_loss=0.4350 train_macro_f1=0.7867 val_macro_f1=0.7760 best_val_macro_f1=0.7842 patience_counter=1
-2026-04-17 10:29:46 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=55/60 train_loss=0.4453 train_macro_f1=0.7902 val_macro_f1=0.7658 best_val_macro_f1=0.7658 patience_counter=0
-2026-04-17 10:29:50 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=55/60 train_loss=0.4577 train_macro_f1=0.7671 val_macro_f1=0.7460 best_val_macro_f1=0.7629 patience_counter=1
-2026-04-17 10:29:58 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=60/60 train_loss=0.4748 train_macro_f1=0.7749 val_macro_f1=0.7625 best_val_macro_f1=0.7625 patience_counter=0
-2026-04-17 10:30:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=60/60 train_loss=0.4333 train_macro_f1=0.7782 val_macro_f1=0.7447 best_val_macro_f1=0.7656 patience_counter=1
-2026-04-17 10:30:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 2 done | test_acc=0.7631  test_macro_f1=0.7571
-2026-04-17 10:30:02 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 1 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:30:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 1 done | test_acc=0.7817  test_macro_f1=0.7722
-2026-04-17 10:30:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 0 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:30:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=60/60 train_loss=0.4256 train_macro_f1=0.7817 val_macro_f1=0.7656 best_val_macro_f1=0.7859 patience_counter=3
-2026-04-17 10:30:03 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=60/60 train_loss=0.4308 train_macro_f1=0.7965 val_macro_f1=0.7681 best_val_macro_f1=0.7688 patience_counter=3
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 3 done | test_acc=0.7785  test_macro_f1=0.7729
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 2 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | epoch=60/60 train_loss=0.4484 train_macro_f1=0.7738 val_macro_f1=0.7517 best_val_macro_f1=0.7657 patience_counter=1
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 4 done | test_acc=0.7831  test_macro_f1=0.7750
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 3 complete. Run remaining folds then aggregate with --aggregate-only.
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 5 done | test_acc=0.7816  test_macro_f1=0.7739
-2026-04-17 10:30:04 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Fold 4 complete. Run remaining folds then aggregate with --aggregate-only.
->>> Aggregating ...
-2026-04-17 10:30:09 | INFO | kfold_cv_ablation_text_only_cross_bucket_v2_kfold | Aggregate (5/5 folds) | accuracy=0.7776±0.0074  macro_f1=0.7702±0.0066
-Done. Summary: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/ablation_text_only_cross_bucket_v2_kfold/kfold/kfold_summary.json

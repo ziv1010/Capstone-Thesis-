@@ -18,6 +18,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "[02_preprocess] env=$MAMBA_ENV config=$CONFIG"
+echo "[02_preprocess] clearing generated multistage processed data"
+rm -rf "$EXP_ROOT/data/processed" "$EXP_ROOT/data/audits"
 micromamba run -n "$MAMBA_ENV" python \
   "$SECTION_GNN/experiments/fixed_open_pipeline/preprocess_fixed_open.py" \
   --config "$CONFIG" \

@@ -1,0 +1,167 @@
+project:
+  name: inlegalbert_sexual_offences_central_section_no_lr
+  seed: 42
+paths:
+  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/sexual_offences
+  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/remove_central_authorities/sexual_offences_timed_mistral/processed
+  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/remove_central_authorities/sexual_offences_timed_mistral/processed/cleaned_cases
+  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/remove_central_authorities/sexual_offences_timed_mistral/processed/normalized_entities
+  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_remaining/central_section_no_lr/sexual_offences_timed_mistral/embeddings_cache
+  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_remaining/central_section_no_lr/sexual_offences_timed_mistral/graph_cache
+  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_remaining/central_section_no_lr/sexual_offences_timed_mistral/audits
+  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/inlegalbert_remaining/central_section_no_lr/sexual_offences_timed_mistral
+data:
+  file_glob: '*.json'
+  limit: null
+  sample_case_ids: []
+preprocessing:
+  label_field: case_outcome_score
+  label_value_map:
+    '-1': '-1'
+    '0': '-1'
+    '1': '1'
+  skip_missing_or_unmapped_labels: true
+  use_preamble_end_offset: true
+  preamble_roles:
+  - PREAMBLE
+  facts_roles:
+  - FAC
+  petitioner_argument_roles:
+  - ARG_PETITIONER
+  respondent_argument_roles:
+  - ARG_RESPONDENT
+  other_argument_roles:
+  - PRE_RELIED
+  - PRE_NOT_RELIED
+  - STA
+  dropped_sentence_roles:
+  - ANALYSIS
+  - ISSUE
+  - NONE
+  - RATIO
+  - RLC
+  - RPC
+  mask_token: '[LEAKAGE_MASK]'
+  leakage_phrases:
+  - petition stands disposed of
+  - writ petition stands disposed of
+  - appeal is allowed
+  - appeal allowed
+  - petition is allowed
+  - petition allowed
+  - appeal dismissed
+  - petition dismissed
+  - writ petition dismissed
+  - matter remanded
+  - set aside
+  - quashed
+  - liberty granted
+  - tribunal shall entertain
+  - consequently, connected miscellaneous petition is closed
+  - without rejecting it on the ground of limitation
+graph:
+  build_mode: full_star_global
+  use_to_undirected: true
+  include_sections:
+  - preamble
+  - facts
+  - arguments
+  - petitioner_arguments
+  - respondent_arguments
+  - other_lawyer_arguments
+  case_text_sections:
+  - preamble
+  - facts
+  - arguments
+  include_node_types:
+  - case
+  - preamble
+  - facts
+  - arguments
+  - petitioner_arguments
+  - respondent_arguments
+  - other_lawyer_arguments
+  - petitioner
+  - respondent
+  - court
+  - judge
+  - petitioner_lawyer
+  - defence_lawyer
+  - lawyer
+  - statute
+  - provision
+  - precedent
+  shareable_node_types: []
+  share_party_nodes: false
+  cache_name: case_star_inlegalbert_sexual_offences_central_section_no_lr.reasoning_focused.pt
+  debug_sample_size: 3
+features:
+  text_encoder:
+    backend: hf_encoder
+    model_name: law-ai/InLegalBERT
+    batch_size: 16
+    max_length: 512
+    device: cuda
+    pooling: mean
+    data_parallel: true
+    show_progress_bar: true
+  fallback_text_encoder:
+    backend: hashing
+    dim: 384
+  case_scalar_names:
+  - respondent_count
+  - judge_count
+  - lawyer_count
+  - statute_count
+  - provision_count
+  - precedent_count
+  - preamble_length
+  - facts_length
+  - arguments_length
+  - case_year
+  - petition_type_known
+  - petition_type_hash
+  entity_scalar_names:
+  - mention_count
+  - first_seen_preamble
+  - first_seen_facts
+  - first_seen_arguments
+  - seen_in_arguments
+  - seen_in_preamble
+  - local_case_frequency
+  - degree
+  - global_case_frequency
+  - is_shared_node
+labels:
+  task_mode: binary
+  drop_procedural: false
+  binary_map:
+    '-1': '-1'
+    '1': '1'
+  class_order_binary:
+  - '-1'
+  - '1'
+splits:
+  mode: random
+  train_size: 0.7
+  val_size: 0.15
+  test_size: 0.15
+  stratify: true
+  random_state: 42
+model:
+  architecture: hgt
+  hidden_dim: 128
+  num_layers: 3
+  num_heads: 4
+  dropout: 0.25
+  mlp_hidden_dim: 128
+training:
+  epochs: 60
+  lr: 0.001
+  weight_decay: 1.0e-05
+  use_early_stopping: true
+  early_stopping_patience: 15
+  log_every: 5
+  class_weight: balanced
+  repeat_runs: 1
+  seed_stride: 1

@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 GRAPH_CACHE_ARGS=()
 [[ -n "$GRAPH_CACHE" ]] && GRAPH_CACHE_ARGS+=(--graph-cache "$GRAPH_CACHE")
 

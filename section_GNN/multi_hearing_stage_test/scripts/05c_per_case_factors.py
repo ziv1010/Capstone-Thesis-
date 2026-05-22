@@ -35,6 +35,7 @@ import argparse
 import csv
 import json
 import re
+import shutil
 from collections import defaultdict
 from pathlib import Path
 
@@ -270,6 +271,8 @@ def build_factor_report(case_diff: dict, priors: dict, args) -> dict | None:
 def main() -> None:
     args = parse_args()
     out_dir = Path(args.out_dir)
+    if out_dir.exists():
+        shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     with open(args.aggregates) as f:

@@ -53,13 +53,16 @@ def _ordered_unique(values: list[str]) -> list[str]:
 
 def apply_reasoning_graph_policy(graph_cfg: dict[str, Any]) -> dict[str, Any]:
     cfg = deepcopy(graph_cfg)
+    respect_explicit_includes = bool(cfg.get("respect_explicit_includes", False))
 
     include_sections = list(cfg.get("include_sections") or UPDATED_TEXT_NODE_TYPES)
-    include_sections = _ordered_unique(include_sections + list(UPDATED_TEXT_NODE_TYPES))
+    if not respect_explicit_includes:
+        include_sections = _ordered_unique(include_sections + list(UPDATED_TEXT_NODE_TYPES))
     cfg["include_sections"] = [section for section in include_sections if section in UPDATED_TEXT_NODE_TYPES]
 
     include_node_types = list(cfg.get("include_node_types") or UPDATED_DEFAULT_NODE_TYPES)
-    include_node_types = _ordered_unique(include_node_types + list(UPDATED_DEFAULT_NODE_TYPES))
+    if not respect_explicit_includes:
+        include_node_types = _ordered_unique(include_node_types + list(UPDATED_DEFAULT_NODE_TYPES))
     cfg["include_node_types"] = [
         node_type
         for node_type in include_node_types
@@ -74,6 +77,12 @@ def apply_reasoning_graph_policy(graph_cfg: dict[str, Any]) -> dict[str, Any]:
     # enforced in case_star_builder before any citation edge is added.
     if cfg.get("disable_cross_case_sharing", False):
         cfg["shareable_node_types"] = []
+    elif respect_explicit_includes and "shareable_node_types" in cfg:
+        cfg["shareable_node_types"] = [
+            node_type
+            for node_type in cfg.get("shareable_node_types", [])
+            if node_type in cfg["include_node_types"]
+        ]
     else:
         cfg["shareable_node_types"] = ["statute", "provision", "precedent"]
 

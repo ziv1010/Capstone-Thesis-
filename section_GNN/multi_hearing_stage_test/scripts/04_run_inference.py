@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Step 04 — Run the trained HGT (cross_bucket_party_args_lr_decay_kfold) on the
-self-contained test graph built in step 03.
+Step 04 — Run the configured trained HGT folds on the self-contained test graph
+built in step 03.
 
 Strategy
 --------

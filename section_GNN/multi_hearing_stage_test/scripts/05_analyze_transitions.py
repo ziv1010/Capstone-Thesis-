@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -79,7 +80,10 @@ def diff_sets(a: dict[str, list[str]], b: dict[str, list[str]]) -> dict:
 def main() -> None:
     args = parse_args()
     out_dir = Path(args.out_dir)
-    (out_dir / "per_case_diffs").mkdir(parents=True, exist_ok=True)
+    diffs_dir = out_dir / "per_case_diffs"
+    if diffs_dir.exists():
+        shutil.rmtree(diffs_dir)
+    diffs_dir.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(args.predictions)
     df = df.sort_values(["base_case_id", "stage_index"]).reset_index(drop=True)
@@ -185,7 +189,7 @@ def main() -> None:
             ],
             "consecutive_diffs": consecutive_diffs,
         }
-        with open(out_dir / "per_case_diffs" / f"{base_id}.json", "w") as f:
+        with open(diffs_dir / f"{base_id}.json", "w") as f:
             json.dump(per_case_payload, f, indent=2)
 
     transitions_df = pd.DataFrame(transition_rows)

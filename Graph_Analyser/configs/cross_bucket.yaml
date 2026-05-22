@@ -1,0 +1,40 @@
+section_gnn_root: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN
+
+# Use this only when the trained model itself is cross-bucket.
+bucket: cross_bucket_total_dataset
+graph_variant: party_args_preamble
+model_variant: party_args_preamble_lr_decay
+fold: fold_00
+allow_cross_bucket: true
+
+model:
+  architecture: hgt
+  hidden_dim: 64
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.25
+  mlp_hidden_dim: 128
+
+explainer:
+  epochs: 30
+  lr: 3.0e-3
+  coeff_size: 0.01
+  coeff_ent: 1.0e-4
+  temperature_start: 5.0
+  temperature_end: 1.0
+  max_train_cases_per_epoch: 512
+  hidden_dim: 64
+
+extraction:
+  top_k_statutes: 10
+  top_k_provisions: 10
+  top_k_precedents: 10
+  top_k_arguments: 10
+  top_k_graph_nodes: 10
+  top_k_diagnostic_cutoffs: [3, 5, 7]
+  top_n_test_cases: 99999
+  target_case_text_chars: 1200
+
+phase7:
+  nearest_k: 20
+  top_k_sufficiency: [3, 5, 7]

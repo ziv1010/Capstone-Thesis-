@@ -28,7 +28,7 @@ PY="micromamba run -n $MAMBA_ENV python"
 if [[ "$SKIP_BUILD" == false ]]; then
   echo ">>> Building ablation graph (no-names, cross-case sharing ON) ..."
   CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS" \
-    $PY "$SECTION_GNN/final_graph/build_graph.py" --config "$CONFIG"
+    $PY "$SECTION_GNN/src/scripts/build_graph.py" --config "$CONFIG"
   echo ">>> Graph build done."
 fi
 
@@ -36,7 +36,7 @@ GRAPH_CACHE_DIR=$($PY -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['pa
 GRAPH_CACHE_NAME=$($PY -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['graph']['cache_name'])")
 GRAPH_CACHE="$GRAPH_CACHE_DIR/$GRAPH_CACHE_NAME"
 OUTPUTS_DIR=$($PY -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['paths']['outputs_dir'])")
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 LOG_DIR="$OUTPUTS_DIR/logs"
 mkdir -p "$LOG_DIR"
 

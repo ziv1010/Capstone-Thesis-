@@ -4,6 +4,12 @@ A modular, reproducible ML pipeline for predicting Indian Supreme/High Court cas
 
 ---
 
+## Repository Hygiene
+
+This repository is kept source-first for GitHub. Scripts, configs, LaTeX sources, compact figures, and README files are tracked. Large generated corpora, local model weights, graph caches, embedding arrays, LLM/Hugging Face caches, and experiment output folders are ignored and should be regenerated locally or restored from external storage.
+
+---
+
 ## Table of Contents
 
 1. [Project Overview](#1-project-overview)  

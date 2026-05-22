@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HGT Explainability — Experiment Browser</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body data-view="overview">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-kicker">HGT Thesis Audit</div>
+          <h1>Explainability Browser</h1>
+          <p class="brand-copy">Move through the experiments like a paper narrative: model representation, causal evidence, validation, legal patterns, then case-level drilldown.</p>
+          <p id="outputDir" class="path"></p>
+        </div>
+        <nav class="tabs" aria-label="Experiments">
+          <button class="tab active" data-view="overview" aria-current="page">
+            <span class="tab-index">Start</span>
+            <span class="tab-copy"><strong>Overview</strong><small>Pipeline map and headline results</small></span>
+          </button>
+          <button class="tab" data-view="exp1">
+            <span class="tab-index">01</span>
+            <span class="tab-copy"><strong>Embeddings</strong><small>What the trained HGT encoded</small></span>
+          </button>
+          <button class="tab" data-view="exp2">
+            <span class="tab-index">02</span>
+            <span class="tab-copy"><strong>Counterfactual Evidence</strong><small>What changes the prediction</small></span>
+          </button>
+          <button class="tab" data-view="exp10">
+            <span class="tab-index">Audit</span>
+            <span class="tab-copy"><strong>Identity Shortcuts</strong><small>Name-only train priors vs held-out labels</small></span>
+          </button>
+          <button class="tab" data-view="exp3">
+            <span class="tab-index">03</span>
+            <span class="tab-copy"><strong>Faithfulness</strong><small>Counterfactual vs attention/random</small></span>
+          </button>
+          <button class="tab" data-view="exp4">
+            <span class="tab-index">04</span>
+            <span class="tab-copy"><strong>Legal Communities</strong><small>Corpus-level legal patterns</small></span>
+          </button>
+          <button class="tab" data-view="exp5">
+            <span class="tab-index">05</span>
+            <span class="tab-copy"><strong>Embedding Clusters</strong><small>Topology vs learned geometry</small></span>
+          </button>
+          <button class="tab" data-view="exp6">
+            <span class="tab-index">06</span>
+            <span class="tab-copy"><strong>Opposite Cases</strong><small>Closest case decided the other way</small></span>
+          </button>
+          <button class="tab" data-view="exp7">
+            <span class="tab-index">07</span>
+            <span class="tab-copy"><strong>Full-Graph Communities</strong><small>Leiden on the heterogeneous graph</small></span>
+          </button>
+          <button class="tab" data-view="exp8">
+            <span class="tab-index">08</span>
+            <span class="tab-copy"><strong>Community Hierarchy</strong><small>Broad → specific legal groupings</small></span>
+          </button>
+          <button class="tab" data-view="exp9">
+            <span class="tab-index">09</span>
+            <span class="tab-copy"><strong>Bridge / Hub Authorities</strong><small>Core, bridge, and hub statutes</small></span>
+          </button>
+          <button class="tab" data-view="expMask">
+            <span class="tab-index">10</span>
+            <span class="tab-copy"><strong>Mask Sensitivity</strong><small>What breaks when you hide identities &amp; hubs</small></span>
+          </button>
+          <button class="tab tab-aggregate" data-view="aggregate">
+            <span class="tab-index">Synthesis</span>
+            <span class="tab-copy"><strong>Aggregate Trends</strong><small>The cross-experiment story</small></span>
+          </button>
+          <button class="tab" data-view="cases">
+            <span class="tab-index">Drill</span>
+            <span class="tab-copy"><strong>Case Explorer</strong><small>Inspect individual cases</small></span>
+          </button>
+          <button class="tab" data-view="tables">
+            <span class="tab-index">Data</span>
+            <span class="tab-copy"><strong>Raw Tables</strong><small>CSV reference view</small></span>
+          </button>
+        </nav>
+        <div class="sidebar-note">
+          <strong>Reading order</strong>
+          <span>Start with the overview, read one experiment per tab, then use Aggregate and Case Explorer to connect the claims.</span>
+        </div>
+      </aside>
+
+      <main class="content">
+      <!-- ───────────────────────── OVERVIEW ───────────────────────── -->
+      <section id="overview" class="view active">
+        <header class="exp-header">
+          <span class="exp-pill">Start Here</span>
+          <h2 class="exp-title">Pipeline Overview</h2>
+          <p class="exp-lede">This browser is organized as a sequence of questions. Each tab isolates one experiment, shows the strongest quantitative readout first, then gives you tables for drilldown when the headline needs evidence.</p>
+        </header>
+
+        <div id="overviewHeadline" class="metrics"></div>
+        <section id="overviewResultStory" class="result-story result-story-wide"></section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Experiment Pipeline</h3>
+            <span class="panel-sub">From raw embeddings to interactive case audits — each tab unpacks one stage.</span>
+          </div>
+          <div id="experimentMap" class="experiment-map"></div>
+        </section>
+
+        <section id="overviewRunStatus" class="panel">
+          <div class="panel-head">
+            <h3>Run Status &amp; Available Outputs</h3>
+            <span class="panel-sub">Which CSV artefacts each tab is reading from on disk.</span>
+          </div>
+          <div id="overviewRunBody" class="panel-body"></div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 1: EMBEDDINGS ───────────────────────── -->
+      <section id="exp1" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 1</span>
+          <h2 class="exp-title">HGT Case-Embedding Extraction</h2>
+          <p class="exp-lede">After training, the penultimate-layer hidden representation for every case is extracted in a single forward pass. These embeddings are the substrate every downstream analysis reuses.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>One forward pass over the trained HGT produces a dense vector per case node, plus its predicted probability, true label, split, and confidence. Saved as <code>hgt_case_embeddings.npz</code>.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>Re-running the model for every analysis is expensive. A frozen embedding lets clustering, nearest-neighbour search, and contrastive analyses run in seconds — and reveals what the model has internalized about each case.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>Confidence histogram = decisiveness. Split-wise accuracy = sanity check the saved predictions match a reasonable test/val/train story. Alignment row hints at whether embeddings track topology.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp1Findings"></ul>
+        </section>
+
+        <section id="exp1ResultStory" class="result-story"></section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Embedding Manifest</h3></div>
+            <div id="exp1Manifest" class="panel-body"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Accuracy by Split</h3></div>
+            <div id="exp1Splits" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Confidence Distribution</h3>
+            <span class="panel-sub">Where the model lands on the probability axis — peaks at 0.9+ mean a decisive model.</span>
+          </div>
+          <div id="exp1ConfidenceHist" class="chart-wrap"></div>
+        </section>
+
+        <section class="panel collapsible">
+          <div class="panel-head">
+            <h3>Patterns of Interest</h3>
+            <span class="panel-sub">Embedding-space behaviour worth probing further.</span>
+          </div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>If the confidence histogram is bimodal at 0.5 and 1.0, the model has a "sure or shrug" calibration — investigate the 0.5 cluster in the Case Explorer.</li>
+              <li>If train accuracy is much higher than test accuracy, embeddings memorize rather than generalize. Cross-check with Experiment 5 alignment.</li>
+              <li>If alignment NMI is low but accuracy is high, the HGT learned outcome-relevant signal beyond pure citation topology — that is the thesis claim.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 2: COUNTERFACTUAL ───────────────────────── -->
+      <section id="exp2" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 2</span>
+          <h2 class="exp-title">Counterfactual Evidence Masking</h2>
+          <p class="exp-lede">For every case, evidence groups (specific nodes or whole relation types) are masked one at a time and the model is re-run. The resulting probability change <code>Δp</code> is the causal importance score.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>Per case, build the L-hop receptive field, define evidence groups, mask each, record <code>Δp</code>, flip flag, attention score, and training-case support. Per-case CSVs are then aggregated by evidence type, relation type, and typed path.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>Attention says "the model looks at this neighbour"; counterfactuals say "removing this changes the outcome." Only the second answers the question a lawyer would ask. We compare the two to audit attention as an explanation tool.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>Total importance = cumulative |Δp| across cases. Flip rate = how often masking that group flips the predicted class. Attention overlap measures agreement between the two rankings. Identity rows (judge, court, parties) are leakage flags.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp2Findings"></ul>
+        </section>
+
+        <section id="exp2ResultStory" class="result-story"></section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Evidence Type Importance</h3>
+              <span class="panel-sub">Aggregate <code>Σ|Δp|</code> per legal evidence type across cases.</span>
+            </div>
+            <div id="exp2Evidence" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Top Typed Paths</h3>
+              <span class="panel-sub">Which relation chains carry the most causal weight.</span>
+            </div>
+            <div id="exp2Paths" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Relation-Type Importance</h3>
+            <span class="panel-sub">Including <code>rev_</code> (reverse) edges that exist only for HGT message passing.</span>
+          </div>
+          <div id="exp2Relations" class="table-wrap"></div>
+        </section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Identity-Leakage Sensitivity</h3>
+              <span class="panel-sub">Judges, courts, parties. High importance here = audit alarm.</span>
+            </div>
+            <div id="exp2Leakage" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Attention vs Counterfactual</h3>
+              <span class="panel-sub">Top-k overlap. Low overlap = attention is unreliable as an explanation.</span>
+            </div>
+            <div id="exp2Attention" class="panel-body"></div>
+          </section>
+        </div>
+
+        <section class="panel collapsible">
+          <div class="panel-head">
+            <h3>Patterns of Interest</h3>
+            <span class="panel-sub">Probing failure modes and surprises.</span>
+          </div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>Which path families involve <code>rev_</code> edges? Those rows mean the model needed the reverse message-passing signal — different from a real legal citation chain.</li>
+              <li>Identity-node mean importance &gt; 0.05 with non-trivial flip rate is a flag: the model may be using <em>who</em> rather than <em>what law</em>.</li>
+              <li>If attention overlap is &lt; 0.3, treat attention-only papers' findings with scepticism for this graph type.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── IDENTITY SHORTCUT AUDIT ───────────────────────── -->
+      <section id="exp10" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Identity Audit</span>
+          <h2 class="exp-title">Identity Shortcut Test</h2>
+          <p class="exp-lede">This audit tests whether normalized identity names alone predict held-out labels from train-split outcome priors, then compares that shortcut signal with the counterfactual flip-rate evidence.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>For each identity type, estimate train-label priors by normalized name, score test cases using only identities seen in train, and report AUC, coverage, overlap, domain-baseline deltas, and permutation p-values.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>Counterfactual masking tells us the model is sensitive to identity nodes. This audit asks the sharper question: are those identities predictive even without legal text or graph context?</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>High identity-only AUC plus improved log-loss over the domain baseline means shortcut risk. High flip rate but low identity-only AUC means sparse or context-specific model reliance.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp10Findings"></ul>
+        </section>
+
+        <section id="exp10ResultStory" class="result-story"></section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Inference Mask Stress Test</h3>
+              <span class="panel-sub">Frozen-model performance after removing identity nodes at inference time.</span>
+            </div>
+            <div id="exp10MaskSummary" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Domains Most Affected by Identity Masks</h3>
+              <span class="panel-sub">Domain buckets ranked by accuracy drop for each identity mask.</span>
+            </div>
+            <div id="exp10MaskDomains" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Identity Shortcut Summary</h3>
+            <span class="panel-sub">Identity-only signal joined with counterfactual identity sensitivity.</span>
+          </div>
+          <div id="exp10Summary" class="table-wrap"></div>
+        </section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Most Skewed Reused Identities</h3>
+              <span class="panel-sub">Normalized names with train-label skew that also appear in the eval split.</span>
+            </div>
+            <div id="exp10Skewed" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head">
+              <h3>Largest Case-Level Shortcut Gaps</h3>
+              <span class="panel-sub">Cases where identity-only score differs most from the domain baseline.</span>
+            </div>
+            <div id="exp10Cases" class="table-wrap"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ───────────────────────── EXP 3: FAITHFULNESS ───────────────────────── -->
+      <section id="exp3" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 3</span>
+          <h2 class="exp-title">Faithfulness Validation</h2>
+          <p class="exp-lede">A counterfactual ranking is only useful if it is causally faithful. We sweep top-k masks under three rankings — counterfactual, attention, random — and measure how prediction probability evolves.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>For each ranker, progressively (a) <strong>keep only top-k</strong> evidence (sufficiency) and (b) <strong>remove only top-k</strong> evidence (comprehensiveness). Record probability curves and AUCs per case.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>If the counterfactual ranking really captures causal influence, keeping top-k evidence should preserve the prediction <em>fast</em> and removing top-k should collapse it <em>fast</em>. Random is the floor; attention is the standard baseline.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>Higher sufficiency AUC = compact evidence preserves the prediction. Higher comprehensiveness AUC = top-k removal damages the prediction. The counterfactual line should sit visibly above attention and random on both.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp3Findings"></ul>
+        </section>
+
+        <section id="exp3ResultStory" class="result-story"></section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>AUC Comparison</h3>
+            <span class="panel-sub">Counterfactual is the proposed ranker; attention and random are baselines.</span>
+          </div>
+          <div id="exp3Auc" class="table-wrap"></div>
+        </section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Sufficiency Curve</h3>
+              <span class="panel-sub">Predicted-class probability vs k (keep only top-k).</span>
+            </div>
+            <div id="exp3Sufficiency" class="chart-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Comprehensiveness Curve</h3>
+              <span class="panel-sub">Probability drop vs k (remove top-k).</span>
+            </div>
+            <div id="exp3Comprehensiveness" class="chart-wrap"></div>
+          </section>
+        </div>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Prediction Buckets</h3>
+              <span class="panel-sub">Are confident predictions also more explainable?</span>
+            </div>
+            <div id="exp3Buckets" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Evidence Types per Bucket</h3>
+              <span class="panel-sub">What kinds of evidence dominate at each confidence band.</span>
+            </div>
+            <div id="exp3BucketEvidence" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel collapsible">
+          <div class="panel-head">
+            <h3>Patterns of Interest</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>If counterfactual sufficiency only marginally beats random, the per-case top-k is too small or evidence is genuinely diffuse.</li>
+              <li>If <em>high-confidence wrong</em> cases have high evidence purity, the model is not confused — it is being confidently misled by a clean-looking but misleading neighbourhood. Worth a deep dive in Case Explorer.</li>
+              <li>If evidence types differ between high-confidence-correct and high-confidence-wrong, the wrong cases may be driven by a specific suspect type (e.g. judges) — cross-check Experiment 2 leakage.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 4: COMMUNITIES ───────────────────────── -->
+      <section id="exp4" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 4</span>
+          <h2 class="exp-title">Legal Communities (Structural)</h2>
+          <p class="exp-lede">Cases are projected into a case-case graph weighted by rarity-adjusted shared authorities, then clustered with Leiden. Each community is a recurring legal-neighbourhood pattern.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>Build a sparse case-case projection from <code>case_feature_matrix</code> (statutes, provisions, precedents, judges, courts) weighted by IDF. Run Leiden. Profile each community by size, dominant label, dominant domain bucket, and top authorities.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>If we are going to claim "this case looks like a familiar legal pattern", we need an explicit, corpus-grounded notion of "pattern". Communities give us that. They also surface <em>failure communities</em> — clusters where the model is confidently wrong.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>Largest communities reveal corpus structure. Failure communities (high <code>high_confidence_wrong_n</code>) are systematic blind spots. Top provisions/statutes identify the legal fingerprint of each pattern.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp4Findings"></ul>
+        </section>
+
+        <section id="exp4ResultStory" class="result-story"></section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Largest Communities</h3>
+              <span class="panel-sub">Click a row to drill into authorities and representative cases.</span>
+            </div>
+            <div id="exp4Top" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Confident-Wrong Communities</h3>
+              <span class="panel-sub">Where the model is wrong with high confidence — the audit-priority list.</span>
+            </div>
+            <div id="exp4Risky" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Domain Distribution</h3>
+            <span class="panel-sub">Cases per domain bucket across all communities.</span>
+          </div>
+          <div id="exp4Domains" class="table-wrap"></div>
+        </section>
+
+        <section class="panel detail" id="exp4DetailPanel" hidden>
+          <div class="panel-head"><h3>Community Detail</h3>
+            <span class="panel-sub">Profile, enriched evidence, representative cases.</span>
+          </div>
+          <div id="exp4Detail" class="detail-body"></div>
+        </section>
+
+        <section class="panel collapsible">
+          <div class="panel-head">
+            <h3>Patterns of Interest</h3>
+          </div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>Heavy single-domain communities (e.g. all motor accidents) confirm the case-case projection is doing reasonable topical clustering.</li>
+              <li>Mixed-domain communities (e.g. financial fraud + sexual offences) usually share a procedural authority like Section 482 CrPC — check the top provisions list.</li>
+              <li>Failure communities with dominant label ≠ dominant predicted label = the model contradicts the local legal consensus. Worth a manual case-by-case review.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 5: EMBEDDING CLUSTERS ───────────────────────── -->
+      <section id="exp5" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 5</span>
+          <h2 class="exp-title">Embedding Cluster Characterization</h2>
+          <p class="exp-lede">HDBSCAN clusters the HGT case embeddings. The resulting partition is then compared to the structural Leiden partition (Experiment 4) using ARI, NMI, V-measure.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>Density-based clustering of HGT embeddings → clusters + a noise pile. Then cross-tabulate with structural communities. Per-cluster profile: size, dominant label/domain, dominant matching community.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>This answers: <em>did the GNN actually use graph structure, or did it learn something else?</em> High alignment ⇒ the model is mostly doing topology-aware classification. Low alignment with high accuracy ⇒ the model has found outcome-relevant signal beyond pure structure.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>Read alignment first (NMI, ARI). Then look for outcome-pure clusters (one label dominates) — those are the places the model carved out its own outcome-relevant geometry.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp5Findings"></ul>
+        </section>
+
+        <section id="exp5ResultStory" class="result-story"></section>
+
+        <section class="panel graph-panel">
+          <div class="panel-head"><h3>Community → Embedding Cluster Flow</h3>
+            <span class="panel-sub">Leiden structural communities on the left; HDBSCAN embedding clusters on the right. Thick flows show where cases move.</span>
+          </div>
+          <div id="exp5FlowGraph" class="graph-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Alignment Metrics</h3>
+            <span class="panel-sub">Embedding partition vs structural partition.</span>
+          </div>
+          <div id="exp5Alignment" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Embedding Cluster Profiles</h3>
+            <span class="panel-sub">One row per HDBSCAN cluster (plus the noise pile).</span>
+          </div>
+          <div id="exp5Clusters" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>How Structural Communities Split into Embedding Clusters</h3>
+            <span class="panel-sub">High split count = a single legal-neighbourhood is being subdivided by HGT geometry.</span>
+          </div>
+          <div id="exp5Splits" class="table-wrap"></div>
+        </section>
+
+        <section class="panel collapsible">
+          <div class="panel-head"><h3>Patterns of Interest</h3></div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>Communities with many embedding clusters = the HGT is splitting a legal-neighbourhood into outcome-relevant subregions. Read these as model-discovered fine-grained patterns.</li>
+              <li>Embedding clusters that span many structural communities = the HGT collapsed across legal-neighbourhood boundaries — outcome similarity overrides citation similarity.</li>
+              <li>Pure (≥ 90% one label) clusters of n ≥ 50 are strong candidates for "this is what the model has learned to confidently classify."</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 6: NEIGHBORHOODS ───────────────────────── -->
+      <section id="exp6" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 6</span>
+          <h2 class="exp-title">Counterfactual Neighborhoods (Opposite Cases)</h2>
+          <p class="exp-lede">For each test case, find the closest training case in HGT-embedding space that has the <em>opposite</em> true label. The feature differences become the contrastive explanation.</p>
+        </header>
+
+        <section class="briefing-grid">
+          <div class="briefing-card briefing-what">
+            <h3>What</h3>
+            <p>GPU cosine search over embeddings. For each query case, retrieve the K nearest opposite-label train cases. Then rank feature differences by IDF and label-discriminative skew.</p>
+          </div>
+          <div class="briefing-card briefing-why">
+            <h3>Why</h3>
+            <p>This is the "find me the most similar case that was decided the other way" question — exactly the kind of reasoning lawyers and judges already do from precedent. It complements Exp 2 (which evidence drives <em>this</em> prediction) with: which evidence <em>isn't</em> there compared to the closest opposite outcome.</p>
+          </div>
+          <div class="briefing-card briefing-how">
+            <h3>How to Read</h3>
+            <p>High cosine = the model sees the cases as similar despite opposite labels. Query-only features = present here, absent in the opposite. Opposite-only features = absent here, present in the opposite. Together they describe the contrastive boundary.</p>
+          </div>
+        </section>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp6Findings"></ul>
+        </section>
+
+        <section id="exp6ResultStory" class="result-story"></section>
+
+        <section class="panel graph-panel">
+          <div class="panel-head"><h3>Case Contrast Graph</h3>
+            <span class="panel-sub">The selected query case, its nearest opposite-label case, and the evidence they share or disagree on.</span>
+          </div>
+          <div id="exp6ContrastGraph" class="graph-wrap"></div>
+        </section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Cosine Distribution</h3></div>
+            <div id="exp6CosineSummary" class="panel-body"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Differentiating Feature-Type Frequency</h3>
+              <span class="panel-sub">How often each feature type appears as query-only vs opposite-only.</span>
+            </div>
+            <div id="exp6FeatureTypes" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Closest Opposite-Label Pairs</h3>
+            <span class="panel-sub">Sorted by cosine similarity. Click a row to redraw the contrast graph.</span>
+          </div>
+          <div class="toolbar">
+            <input id="exp6Search" type="search" placeholder="Search case, evidence, opposite case" />
+            <input id="exp6CasePick" type="number" min="0" step="1" placeholder="Case index for graph" />
+            <button id="exp6LoadCase" type="button">Load Graph</button>
+          </div>
+          <div id="exp6Pairs" class="table-wrap"></div>
+        </section>
+
+        <section class="panel collapsible">
+          <div class="panel-head"><h3>Patterns of Interest</h3></div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li>Cosine ≥ 0.95 with opposite label = strong decision-boundary candidate. These cases are the ones the thesis can argue could plausibly have gone the other way.</li>
+              <li>If query-only features are dominated by judges/courts, the boundary is identity-driven — alarm.</li>
+              <li>If opposite-only features are dominated by provisions/precedents, the boundary is content-driven — desirable.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 7: FULL-GRAPH COMMUNITIES ───────────────────────── -->
+      <section id="exp7" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 7</span>
+          <h2 class="exp-title">Full-Graph Leiden Communities</h2>
+          <p class="exp-lede">Leiden runs directly on the heterogeneous citation graph at multiple resolutions. Each community is a structurally coherent legal "neighbourhood" — cases that cite overlapping statutes, provisions and precedents.</p>
+        </header>
+
+        <section class="narrative-panel" id="exp7Narrative">
+          <h3>What you're looking at</h3>
+          <p>Pick a resolution below. Lower γ → broader legal domains; higher γ → sub-themes. Each card represents one community; the bars inside show its label balance and the model's prediction quality on that community.</p>
+        </section>
+
+        <div id="exp7Hero" class="hero-tally"></div>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp7Findings"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Resolution Sweep</h3>
+            <span class="panel-sub">Each row is one Leiden run. Higher resolution = more, smaller communities.</span>
+          </div>
+          <div class="toolbar">
+            <label for="exp7ResolutionSelect"><span>Profile resolution γ</span></label>
+            <select id="exp7ResolutionSelect"></select>
+          </div>
+          <div id="exp7Sweep" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Largest Communities — visual cards</h3>
+            <span class="panel-sub">Hover a card to highlight. Bars show <em>label distribution</em> (green=label 1, red=label −1) and <em>prediction quality</em> (high-conf correct / wrong, low-conf correct / wrong).</span>
+          </div>
+          <div id="exp7Cards" class="card-grid cards-wide"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Confident-Wrong Communities — audit priority</h3>
+            <span class="panel-sub">These communities have the most cases the model got wrong with high confidence. Investigate the dominant authorities.</span>
+          </div>
+          <div id="exp7RiskyCards" class="card-grid cards-wide"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Boundary Cases</h3>
+            <span class="panel-sub">Cases whose authority neighbours span multiple communities — intrinsically mixed legal context. Click a row to open the case.</span>
+          </div>
+          <div id="exp7Boundary" class="table-wrap"></div>
+        </section>
+
+        <section class="panel collapsible">
+          <div class="panel-head"><h3>How to read this tab</h3></div>
+          <div class="panel-body">
+            <ul class="bullets">
+              <li><strong>Stack bar — label distribution:</strong> tells you whether a community is internally consistent on outcome. Roughly 50/50 means the legal pattern alone does not predict outcome.</li>
+              <li><strong>Stack bar — prediction quality:</strong> green (HC correct) is what we want; orange (HC wrong) is the real concern, that is the model being confidently wrong on a coherent legal pattern.</li>
+              <li><strong>Top authorities:</strong> the legal "fingerprint" of the community. Communities sharing a dominant statute usually share the procedural posture.</li>
+              <li><strong>Boundary cases:</strong> when a case cites authorities from two different communities, the model has less internal consensus to lean on.</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 8: COMMUNITY HIERARCHY ───────────────────────── -->
+      <section id="exp8" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 8</span>
+          <h2 class="exp-title">Community Hierarchy (Broad → Specific)</h2>
+          <p class="exp-lede">As the resolution parameter γ rises, broad legal communities split into more specific sub-themes. This tab shows that lineage so you can read it as a tree.</p>
+        </header>
+
+        <section class="narrative-panel">
+          <h3>What you're looking at</h3>
+          <p>Each row in <em>Lineage</em> below traces one community at the finest resolution back through every coarser γ to its majority parent. A near-100% parent share means a clean nested split (the fine community lived inside one coarse community). Drift means the partition reorganises across resolutions.</p>
+          <p>The pairwise <strong>NMI</strong> matrix tells you where the split happens: the lowest NMI between two adjacent γ values is the resolution where the partition reshuffles most.</p>
+        </section>
+
+        <div id="exp8Hero" class="hero-tally"></div>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp8Findings"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Lineage — Broad to Specific</h3>
+            <span class="panel-sub">Each row is a finest-resolution leaf community. The chain shows its majority parent at every coarser γ; the percentage in each step is the share of the leaf's cases that came from that parent.</span>
+          </div>
+          <div id="exp8HierLegend" class="hier-legend"></div>
+          <div id="exp8Lineage" class="panel-body"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Pairwise Resolution Alignment</h3>
+            <span class="panel-sub">ARI / NMI between every pair of resolutions, restricted to case nodes. Lower NMI ⇒ more reshuffling between those two γ values.</span>
+          </div>
+          <div id="exp8Pairwise" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Parent → Children (Top Splits)</h3>
+            <span class="panel-sub">Each parent community at the coarser γ, listed against its largest fine-resolution children.</span>
+          </div>
+          <div id="exp8Pairs" class="table-wrap"></div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── EXP 9: BRIDGE / HUB AUTHORITIES ───────────────────────── -->
+      <section id="exp9" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Experiment 9</span>
+          <h2 class="exp-title">Bridge / Hub / Core Authorities</h2>
+          <p class="exp-lede">Every statute, provision and precedent is given a structural role based on the spread of cases that cite it. The four roles answer: <em>does this authority anchor one legal niche, bridge a few, or knit many together?</em></p>
+        </header>
+
+        <section class="narrative-panel">
+          <h3>What the four roles mean</h3>
+          <p><strong style="color:#20517a">CORE</strong> — almost all citing cases live in a single community (≥80% concentration). The authority anchors one legal niche.</p>
+          <p><strong style="color:#7a4f08">BRIDGE</strong> — citing cases concentrate in a small handful of communities (typically 2). The authority is a transfer path between those niches.</p>
+          <p><strong style="color:#186b4a">HUB</strong> — citing cases spread across many communities, no dominant home. These are the structural backbone — the few authorities that knit the corpus together.</p>
+          <p><strong style="color:#4d5763">RARE</strong> — too few citing cases to classify. Set aside.</p>
+        </section>
+
+        <div id="exp9Hero" class="hero-tally"></div>
+
+        <section class="findings-strip">
+          <h3>Key Findings</h3>
+          <ul id="exp9Findings"></ul>
+        </section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Hub-Removal Sensitivity</h3>
+              <span class="panel-sub">Frozen-model stress test after masking top-k hub authorities.</span>
+            </div>
+            <div id="exp9HubSensitivity" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Masked Hub Authorities</h3>
+              <span class="panel-sub">Top hubs selected from Experiment 9 and removed in the stress test.</span>
+            </div>
+            <div id="exp9MaskedHubs" class="table-wrap"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Resolution</h3>
+            <span class="panel-sub">Roles depend on the community partition at γ. Try a coarser γ (broad domains, fewer hubs) or a finer γ (sub-themes, more bridges).</span>
+          </div>
+          <div class="toolbar">
+            <label for="exp9ResolutionSelect"><span>Resolution γ</span></label>
+            <select id="exp9ResolutionSelect"></select>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Hub Authorities — the structural backbone</h3>
+            <span class="panel-sub">Each card shows one hub authority. The bars beside the name show how the citing cases distribute across the top communities.</span>
+          </div>
+          <div id="exp9Hubs" class="card-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Bridge Authorities — natural transfer paths</h3>
+            <span class="panel-sub">Each card connects a small set of communities. The bridge-pair list below shows which community pairs are linked most often.</span>
+          </div>
+          <div id="exp9Bridges" class="card-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Bridge-pair connections</h3>
+            <span class="panel-sub">Top community pairs ranked by how many bridge authorities connect them.</span>
+          </div>
+          <div id="exp9BridgePairs" class="panel-body"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Core Authorities — niche-specific anchors</h3>
+            <span class="panel-sub">Each card represents an authority that lives almost entirely inside a single community.</span>
+          </div>
+          <div id="exp9Cores" class="card-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Role count by feature type</h3>
+            <span class="panel-sub">Reference: how the classification distributes across statutes, provisions, precedents.</span>
+          </div>
+          <div id="exp9RoleSummary" class="table-wrap"></div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── MASK SENSITIVITY ──────────────────────── -->
+      <section id="expMask" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">10</span>
+          <h2 class="exp-title">Mask Sensitivity Audit</h2>
+          <p class="exp-lede">Global inference-time masking: what happens to model performance when entire classes of nodes are hidden? Two families — identity masks (judges, parties, lawyers, courts) and hub authority masks (top-k most cross-domain statutes/precedents).</p>
+        </header>
+        <div id="expMaskFindings" class="findings"></div>
+        <section id="expMaskResultStory" class="result-story result-story-wide"></section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Identity Masks</h3>
+            <span class="panel-sub">Each row removes all edges to one family of identity nodes from the full graph. Accuracy and flip-rate drops show how much the model depended on that information.</span>
+          </div>
+          <div id="expMaskIdentity" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Hub Authority Masks</h3>
+            <span class="panel-sub">Removes the top-k hub authorities (statutes / precedents cited across many legal domains) and measures performance change. Tests whether the model is fragile to losing a small set of cross-domain anchors.</span>
+          </div>
+          <div id="expMaskHubs" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Domain Breakdown — Top Drops</h3>
+            <span class="panel-sub">For each mask, which legal domain suffers the biggest accuracy drop? Reveals whether identity or hub dependence is concentrated in specific areas of law.</span>
+          </div>
+          <div id="expMaskDomains" class="table-wrap"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>Hub Authorities Masked</h3>
+            <span class="panel-sub">The specific statutes and precedents selected as hub authorities, ranked by hub rank (most cross-domain first).</span>
+          </div>
+          <div id="expMaskHubList" class="table-wrap"></div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── AGGREGATE TRENDS ───────────────────────── -->
+      <section id="aggregate" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Aggregate</span>
+          <h2 class="exp-title">Cross-Experiment Trends</h2>
+          <p class="exp-lede">Patterns that only emerge once you view experiments together — calibration, leakage links, model-vs-structure trade-offs.</p>
+        </header>
+
+        <section class="findings-strip findings-strip-wide">
+          <h3>What the Experiments Say in Combination</h3>
+          <ul id="aggregateTrends"></ul>
+        </section>
+
+        <section id="aggregateResultStory" class="result-story result-story-wide"></section>
+
+        <div class="grid two">
+          <section class="panel">
+            <div class="panel-head"><h3>Story 1: Calibration</h3>
+              <span class="panel-sub">Confidence → accuracy → explanation quality.</span>
+            </div>
+            <div id="aggregateCalibration" class="panel-body"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h3>Story 2: Identity vs Content</h3>
+              <span class="panel-sub">Identity-evidence share vs total importance.</span>
+            </div>
+            <div id="aggregateIdentity" class="panel-body"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><h3>Story 3: Topology vs Outcome</h3>
+            <span class="panel-sub">Embedding↔structural alignment + per-experiment summary.</span>
+          </div>
+          <div id="aggregateTopology" class="panel-body"></div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── CASE EXPLORER ───────────────────────── -->
+      <section id="cases" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Drilldown</span>
+          <h2 class="exp-title">Case Explorer</h2>
+          <p class="exp-lede">Per-case audit joining Experiments 2, 4, 5, and 6 — pattern card on top, ranked evidence below, evidence inspector on the right.</p>
+        </header>
+
+        <section class="panel">
+          <div class="toolbar">
+            <input id="caseSearch" type="search" placeholder="Search cases, evidence, paths" />
+            <select id="targetFilter">
+              <option value="">Any target</option>
+              <option value="-1">Target -1</option>
+              <option value="1">Target 1</option>
+            </select>
+            <select id="predFilter">
+              <option value="">Any prediction</option>
+              <option value="-1">Pred -1</option>
+              <option value="1">Pred 1</option>
+            </select>
+            <select id="correctFilter">
+              <option value="">Any result</option>
+              <option value="correct">Correct</option>
+              <option value="wrong">Wrong</option>
+            </select>
+            <select id="caseSort">
+              <option value="max_abs_delta_pred_proba">Largest importance</option>
+              <option value="n_prediction_flips">Most flips</option>
+              <option value="baseline_pred_proba">Highest confidence</option>
+              <option value="case_index">Case index</option>
+            </select>
+          </div>
+          <div id="caseList" class="table-wrap"></div>
+          <div class="pager">
+            <button id="prevCases">Previous</button>
+            <span id="casePage"></span>
+            <button id="nextCases">Next</button>
+          </div>
+        </section>
+        <section class="panel detail">
+          <div class="panel-head"><h3>Case Detail</h3></div>
+          <div id="caseDetail" class="detail-body empty">Select a case row.</div>
+        </section>
+        <section class="panel detail">
+          <div class="panel-head"><h3>Evidence Inspector</h3></div>
+          <div id="caseEvidenceInspector" class="detail-body empty">Select an explanation row.</div>
+        </section>
+      </section>
+
+      <!-- ───────────────────────── RAW TABLES ───────────────────────── -->
+      <section id="tables" class="view">
+        <header class="exp-header">
+          <span class="exp-pill">Reference</span>
+          <h2 class="exp-title">Raw Output Tables</h2>
+          <p class="exp-lede">Direct access to all generated CSVs. Use this only when you need a column the curated experiment views don't expose.</p>
+        </header>
+        <section class="panel">
+          <div class="toolbar">
+            <select id="tableSelect">
+              <optgroup label="Experiment 2 — Counterfactual">
+                <option value="typed_path_importance">typed_path_importance</option>
+                <option value="relation_type_importance">relation_type_importance</option>
+                <option value="evidence_type_importance">evidence_type_importance</option>
+                <option value="leakage_sensitivity_summary">leakage_sensitivity_summary</option>
+                <option value="attention_counterfactual_overlap">attention_counterfactual_overlap</option>
+              </optgroup>
+              <optgroup label="Identity Shortcut Audit">
+                <option value="identity_shortcut_summary">identity_shortcut_summary</option>
+                <option value="identity_shortcut_case_scores">identity_shortcut_case_scores</option>
+                <option value="identity_shortcut_top_skewed_identities">identity_shortcut_top_skewed_identities</option>
+                <option value="mask_sensitivity_summary">mask_sensitivity_summary</option>
+                <option value="mask_sensitivity_by_domain">mask_sensitivity_by_domain</option>
+                <option value="mask_sensitivity_top_domain_drops">mask_sensitivity_top_domain_drops</option>
+                <option value="mask_sensitivity_case_predictions">mask_sensitivity_case_predictions</option>
+              </optgroup>
+              <optgroup label="Experiment 3 — Faithfulness">
+                <option value="faithfulness_auc_summary">faithfulness_auc_summary</option>
+                <option value="faithfulness_curve_summary">faithfulness_curve_summary</option>
+                <option value="prediction_bucket_summary">prediction_bucket_summary</option>
+                <option value="prediction_bucket_evidence_types">prediction_bucket_evidence_types</option>
+              </optgroup>
+              <optgroup label="Experiment 4 — Communities">
+                <option value="community_profiles">community_profiles</option>
+                <option value="community_success_failure">community_success_failure</option>
+                <option value="community_feature_profiles">community_feature_profiles</option>
+                <option value="evidence_label_skew">evidence_label_skew</option>
+              </optgroup>
+              <optgroup label="Experiment 5 — Embedding Clusters">
+                <option value="embedding_cluster_profiles">embedding_cluster_profiles</option>
+                <option value="community_embedding_splits">community_embedding_splits</option>
+                <option value="structural_embedding_alignment">structural_embedding_alignment</option>
+              </optgroup>
+              <optgroup label="Experiment 6 — Opposite Cases">
+                <option value="counterfactual_neighborhoods">counterfactual_neighborhoods</option>
+                <option value="counterfactual_neighborhood_feature_differences">counterfactual_neighborhood_feature_differences</option>
+              </optgroup>
+              <optgroup label="Full-Graph Outputs">
+                <option value="resolution_sweep_summary">resolution_sweep_summary</option>
+                <option value="resolution_pairwise_alignment">resolution_pairwise_alignment</option>
+                <option value="community_lineage_chains">community_lineage_chains</option>
+                <option value="community_lineage_pairs">community_lineage_pairs</option>
+                <option value="authority_role_summary_res_1_00">authority_role_summary_res_1.00</option>
+                <option value="mask_sensitivity_hub_authorities">mask_sensitivity_hub_authorities</option>
+              </optgroup>
+            </select>
+            <input id="tableSearch" type="search" placeholder="Search table" />
+          </div>
+          <div id="genericTable" class="table-wrap"></div>
+        </section>
+      </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Step 01 — Build the flat input directory of stage-tagged JSONs from the
-multi-hearing case folders in cases_by_outcome/.
+multi-hearing case folders in the entity-resolved cases_by_outcome/.
 
 Each multi-hearing case folder contains 2 JSON files (one per hearing).
 We sort by hearing date, copy the earlier one as STAGE1__<id>.json and the
@@ -22,7 +22,7 @@ from datetime import datetime
 from pathlib import Path
 
 REPO_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-")
-SOURCE_ROOT = REPO_ROOT / "DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/cases_by_outcome"
+SOURCE_ROOT = REPO_ROOT / "DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/cases_by_outcome"
 EXP_ROOT = REPO_ROOT / "section_GNN/multi_hearing_stage_test"
 INPUT_DIR = EXP_ROOT / "data/input_jsons"
 MANIFEST_DIR = EXP_ROOT / "outputs"

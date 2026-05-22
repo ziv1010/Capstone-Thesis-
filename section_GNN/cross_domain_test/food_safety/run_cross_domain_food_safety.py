@@ -48,8 +48,8 @@ TRAINING_CONFIG = Path(
 )
 
 PREPROCESS_SCRIPT = SECTION_GNN / "experiments" / "fixed_open_pipeline" / "preprocess_fixed_open.py"
-BUILD_GRAPH_SCRIPT = SECTION_GNN / "final_graph" / "build_graph.py"
-EVAL_SCRIPT = SECTION_GNN / "dump2" / "scripts" / "evaluate_saved_model.py"
+BUILD_GRAPH_SCRIPT = SECTION_GNN / "src" / "scripts" / "build_graph.py"
+EVAL_SCRIPT = SECTION_GNN / "src" / "scripts" / "evaluate_saved_model.py"
 
 ARTIFACT_ROOT = THIS_DIR
 N_FOLDS = 5

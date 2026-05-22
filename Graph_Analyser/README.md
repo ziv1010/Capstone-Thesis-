@@ -1,89 +1,85 @@
-# Graph_Analyser — GNN Explainability Pipeline
+# Graph_Analyser - Bucket-Locked GNN Diagnostics
 
-Five-phase pipeline that takes a **frozen, pre-trained Heterogeneous Graph
-Transformer (HGT)** from `section_GNN/…/kfold/fold_XX/model.pt` and produces
-plain-English explanations for its case-outcome predictions, grounded in
-retrieved statutes/provisions/precedents and similar past cases.
+This pipeline explains predictions from a frozen HGT model trained in
+`section_GNN`. A config names the model scope, and the loader resolves and
+validates the matching graph cache, checkpoint, cleaned-case directory, fold
+split file, Phase 4 bundles, and Phase 1-2 prediction artifacts.
+
+For single-bucket models, use a single bucket such as `fin_fraud`; cross-bucket
+artifacts are rejected. For a model trained on the mixed dataset, use the
+explicit `configs/cross_bucket.yaml` config.
+
+There is no LLM stage. The analyzer now produces structured graph evidence and
+quantitative diagnostics only, so explanations stay tied to the bucket/model
+you selected.
 
 ## Pipeline
 
 | Phase | Script | Outputs |
 |-------|--------|---------|
-| 1 & 2: Foundation + Retrieval | `scripts/phase1_2_inference_and_index.py` | `outputs/phase1_2_inference/` — predictions, 64-d case embeddings, FAISS index over train split |
-| 3: Explainer Training | `scripts/phase3_train_explainer.py` | `outputs/phase3_explainer/explainer.pt` — trained PGExplainer-style edge masker |
-| 4: Extraction | `scripts/phase4_extract_importance.py` | `outputs/phase4_explanations/cases/case_<idx>.json` — top statutes/provisions/precedents/arguments + top-k similar training cases per test case |
-| 5: LLM Translation | `scripts/phase5_llm_translate.py` | `outputs/phase5_llm_reasoning/explanation_<idx>.json` — Mistral-Small 24B explanation |
-
-## Environments
-
-Phases 1–4 run in the `graph_explainer` micromamba env (torch 2.6, PyG 2.7,
-FAISS). Phase 5 runs in the `llm` env (vLLM 0.11). Both already exist on the
-host. No new env needs to be created.
+| 1 & 2: Frozen Inference | `scripts/phase1_2_inference_and_index.py` | predictions, probabilities, case embeddings, split metadata |
+| 3: Explainer Training | `scripts/phase3_train_explainer.py` | trained heterogeneous PGExplainer edge masker |
+| 4: Evidence Extraction | `scripts/phase4_extract_importance.py` | bucket-local top graph/legal nodes per selected test case |
+| 6: Evidence Diagnostic | `scripts/phase6_misclass_diagnostic.py` | training-label distribution and top-k support sweeps for surfaced evidence |
+| 7: Embedding Neighbours | `scripts/phase7_topk_embedding.py` | nearest training cases in frozen GNN embedding space |
 
 ## Running
 
 ```bash
 cd /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Graph_Analyser
 
-# Full pipeline, default config:
+# Full bucket-locked graph diagnostic pipeline.
 bash scripts/run_all.sh
 
-# Phase 1–4 only (skip LLM):
-bash scripts/run_all.sh --skip-llm
+# Smoke config: three test cases, short explainer training.
+bash scripts/run_all.sh --config configs/smoke.yaml --p4-gpus 1
 
-# Only explain the first 20 test cases with the LLM:
-bash scripts/run_all.sh --limit 20
+# Cross-bucket model: uses the cross_bucket_total_dataset graph and checkpoint.
+bash scripts/run_all.sh --config configs/cross_bucket.yaml
+
+# Add embedding nearest-neighbour reports for untraceable cases.
+bash scripts/run_all.sh --phase7 --phase7-only-untraceable --phase7-limit 25
+
+# Run Phase 6 only after Phase 4 exists.
+micromamba run -n graph_explainer python scripts/phase6_misclass_diagnostic.py \
+  --config configs/default.yaml --all --skip-plots
+
+# Include every connected training case for each surfaced statute/provision/precedent.
+# Omit this flag to keep only the first 50 connected cases per legal node.
+micromamba run -n graph_explainer python scripts/phase6_misclass_diagnostic.py \
+  --config configs/cross_bucket.yaml --all --skip-plots --connected-case-limit 0
 ```
 
 ## Configuration
 
-See `configs/default.yaml`. Important fields:
+Use `configs/default.yaml` or copy it for a new run. The key fields are:
 
-- `graph_cache`: path to the `.pt` HeteroData graph from `section_GNN`.
-- `checkpoint_dir`: the `fold_XX` directory containing `model.pt`.
-- `model`: HGT architecture hyperparameters (inferred automatically from the
-  checkpoint if left partial — `hidden_dim` / `num_layers` are read off the
-  state-dict shapes).
-- `explainer.*`: training knobs for the heterogeneous PGExplainer.
-- `extraction.*`: how many top nodes per category, and how many test cases to
-  explain. Setting `top_n_test_cases: 0` explains every test case.
-- `llm.model_path`: Mistral-Small 24B snapshot path.
+- `bucket`: one of `family_matrimonial`, `fin_fraud`, `land_property`,
+  `motor_accidents`, `sexual_offences`, or `cross_bucket_total_dataset`.
+- `graph_variant`: graph-cache suffix for the selected bucket, for example
+  `party_args_preamble`.
+- `model_variant`: model directory suffix before `_kfold`, for example
+  `party_args_preamble_lr_decay`.
+- `fold`: checkpoint fold directory, for example `fold_00`.
+- `allow_cross_bucket`: defaults to `false`; set it to `true` only with
+  `bucket: cross_bucket_total_dataset`.
 
-## Heterogeneous PGExplainer — design note
+If `graph_cache`, `checkpoint_dir`, or `cleaned_case_dir` are omitted, they are
+resolved from the selected bucket and variant. If they are provided manually,
+their paths are checked against `bucket`.
 
-PyG's stock `PGExplainer` is homogeneous and requires a model that accepts
-`edge_weight`; HGTConv does not. `src/hetero_pg_explainer.py` implements the
-same core idea — a shared MLP scores every edge from its endpoint embeddings
-and a relation-specific embedding, trained via Gumbel-sigmoid straight-through
-estimation against the frozen HGT's *predicted* label plus a sparsity /
-entropy regulariser — but performs edge selection by subset-masking
-`edge_index_dict` rather than weighting messages, which keeps the explainer
-compatible with HGTConv as-is.
+Phase 4 emits target-case text, top legal nodes, broader graph nodes, and raw
+argument-role nodes. It does not emit similar-case text snippets.
 
-Node importance is derived in Phase 4 as the maximum score across incident
-edges, restricted to nodes reachable from the target case node within
-`num_layers` hops (the HGT's message-passing radius).
+## Outputs Layout
 
-## Outputs layout
+The default output root is resolved from bucket, model variant, and fold:
 
-```
-outputs/
+```text
+outputs/<bucket>_<model_variant>_<fold>/
 ├── phase1_2_inference/
-│   ├── case_embeddings.npy
-│   ├── predictions.{npy,csv}
-│   ├── probabilities.npy
-│   ├── train_faiss.index
-│   ├── train_indices.npy
-│   ├── effective_model_cfg.json
-│   └── summary.json
 ├── phase3_explainer/
-│   ├── explainer.pt
-│   ├── explainer_cfg.json
-│   └── training_history.json
 ├── phase4_explanations/
-│   ├── manifest.json
-│   └── cases/case_<node_idx>.json
-└── phase5_llm_reasoning/
-    ├── index.json
-    └── explanation_<node_idx>.json
+├── phase6_misclass_diagnostic/
+└── phase7_topk_embedding/
 ```

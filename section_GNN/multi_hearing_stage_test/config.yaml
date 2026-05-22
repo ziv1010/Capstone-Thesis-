@@ -61,10 +61,9 @@ graph:
     - respondent_arguments
     - other_lawyer_arguments
   case_text_sections:
+    - preamble
     - facts
     - arguments
-    - petitioner_arguments
-    - respondent_arguments
   include_node_types:
     - case
     - preamble
@@ -85,14 +84,14 @@ graph:
     - precedent
   shareable_node_types: []
   share_party_nodes: false
-  cache_name: stage_test_graph.reasoning_focused.pt
+  cache_name: stage_test_entity_resolved_section_sep_lr_decay.reasoning_focused.pt
   debug_sample_size: 0
 
 features:
   text_encoder:
     backend: sentence_transformers
     model_name: BAAI/bge-m3
-    batch_size: 32
+    batch_size: 8
     max_length: 512
     device: cuda
     multi_process: true
@@ -145,8 +144,8 @@ splits:
 
 # Paths to the trained model the test cases will be evaluated against.
 inference:
-  trained_model_run_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset/models/cross_bucket_party_args_lr_decay_kfold/kfold
-  trained_graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache/case_star_global_graph_cross_bucket_party_args.reasoning_focused.pt
+  trained_model_run_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold
+  trained_graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/entity_resolved_data/cross_bucket_total_dataset/graph_cache/section/case_star_entity_resolved_cross_bucket_section_sep_lr_decay.reasoning_focused.pt
   folds_to_use: [0, 1, 2, 3, 4]
   ensemble: mean_proba
   model:

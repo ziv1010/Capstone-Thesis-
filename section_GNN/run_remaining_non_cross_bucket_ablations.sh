@@ -168,7 +168,7 @@ run_kfold() {
     (
       CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$fold_idx" \
         micromamba run -n "$MAMBA_ENV" python \
-        "$SECTION_GNN/dump2/scripts/kfold_cv.py" \
+        "$SECTION_GNN/src/scripts/kfold_cv.py" \
         --config "$config_path" \
         --run-name "$run_name" \
         --k "$K" \
@@ -192,7 +192,7 @@ run_kfold() {
 
   log "Aggregating $run_name"
   micromamba run -n "$MAMBA_ENV" python \
-    "$SECTION_GNN/dump2/scripts/kfold_cv.py" \
+    "$SECTION_GNN/src/scripts/kfold_cv.py" \
     --config "$config_path" \
     --run-name "$run_name" \
     --k "$K" \
@@ -218,7 +218,7 @@ build_graph_for_ablation() {
   (
     CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES="$GPUS_BUILD" \
       micromamba run -n "$MAMBA_ENV" python \
-      "$SECTION_GNN/final_graph/build_graph.py" \
+      "$SECTION_GNN/src/scripts/build_graph.py" \
       --config "$config_path"
   ) 2>&1 | tee -a "$build_log"
 }

@@ -27,7 +27,7 @@ GPUS="${GPUS:-0,1,2,3,4,5,6,7}"
 
 ABLATION_DIR="$SECTION_GNN/ablations/section_sep_enc"
 BUILD_SCRIPT="$SECTION_GNN/final_graph/build_graph_section_sep.py"
-KFOLD_SCRIPT="$SECTION_GNN/dump2/scripts/kfold_cv.py"
+KFOLD_SCRIPT="$SECTION_GNN/src/scripts/kfold_cv.py"
 
 BUCKETS=(
   family_matrimonial_timed_mistral
