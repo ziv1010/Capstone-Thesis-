@@ -4,6 +4,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+cd "$SECTION_GNN"
 BASE_CONFIG="$SECTION_GNN/runs/fin_fraud_timed_mistral/config.yaml"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 K=5

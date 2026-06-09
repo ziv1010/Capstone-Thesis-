@@ -50,20 +50,15 @@ from pathlib import Path
 
 import networkx as nx
 import numpy as np
-import yaml
 from tqdm import tqdm
 
+from path_utils import load_config
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def _norm(text: str) -> str:
     """Uppercase, strip, collapse whitespace — matches GNN canonical form."""
     return re.sub(r"\s+", " ", text.strip().replace("\n", " ").replace("\r", "")).upper()
-
-
-def load_config(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
 
 
 def load_case(path: Path) -> dict | None:
@@ -512,7 +507,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args   = parse_args()
-    config = load_config(args.config)
+    config, _config_path = load_config(args.config)
 
     if args.limit:
         for b in config["buckets"]:

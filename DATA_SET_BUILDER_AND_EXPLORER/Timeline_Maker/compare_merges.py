@@ -19,8 +19,9 @@ Usage:
 import os, re, json
 from collections import defaultdict
 
-OLD_BASE = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/old_outputs"
-NEW_BASE = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OLD_BASE = os.path.join(SCRIPT_DIR, "old_outputs")
+NEW_BASE = os.path.join(SCRIPT_DIR, "output_merged_v3")
 
 # Maps new category name → old directory name
 CATEGORY_MAP = {

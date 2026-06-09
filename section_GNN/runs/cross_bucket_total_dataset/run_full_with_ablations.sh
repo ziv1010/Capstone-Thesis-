@@ -9,6 +9,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$SECTION_GNN"
 ABLATIONS="$SECTION_GNN/ablations"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 GPUS="0,1,2,3,4,5,6,7"
@@ -71,7 +72,7 @@ log "STEP 7/7  Done."
 
 log "========================================================"
 log "ALL DONE. Summaries:"
-OUTPUTS="/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset"
+OUTPUTS="outputs/timed_bucket_runs/cross_bucket_total_dataset"
 log "  Main:          $OUTPUTS/models/cross_bucket_full_kfold/kfold/kfold_summary.json"
 log "  No cross-case: $OUTPUTS/models/ablation_no_cross_case_cross_bucket_kfold/kfold/kfold_summary.json"
 log "  Text-only:     $OUTPUTS/models/ablation_text_only_cross_bucket_kfold/kfold/kfold_summary.json"

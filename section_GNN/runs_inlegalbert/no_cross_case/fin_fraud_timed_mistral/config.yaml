@@ -2,14 +2,14 @@ project:
   name: inlegalbert_fin_fraud_no_cross_case
   seed: 42
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/fin_fraud_timed_mistral
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/timed_bucket_runs/fin_fraud_timed_mistral/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_runs/fin_fraud_timed_mistral/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_runs/fin_fraud_timed_mistral/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/inlegalbert_runs/fin_fraud_timed_mistral/audits/no_cross_case
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/inlegalbert_runs/fin_fraud_timed_mistral
+  raw_json_dir: ../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/fin_fraud_timed_mistral
+  processed_dir: data/timed_bucket_runs/fin_fraud_timed_mistral/processed
+  cleaned_case_dir: data/timed_bucket_runs/fin_fraud_timed_mistral/processed/cleaned_cases
+  normalized_entity_dir: data/timed_bucket_runs/fin_fraud_timed_mistral/processed/normalized_entities
+  embeddings_cache_dir: data/inlegalbert_runs/fin_fraud_timed_mistral/embeddings_cache
+  graph_cache_dir: data/inlegalbert_runs/fin_fraud_timed_mistral/graph_cache
+  audits_dir: data/inlegalbert_runs/fin_fraud_timed_mistral/audits/no_cross_case
+  outputs_dir: outputs/inlegalbert_runs/fin_fraud_timed_mistral
 data:
   file_glob: '*__*.json'
   limit: null

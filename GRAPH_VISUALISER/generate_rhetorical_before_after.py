@@ -20,7 +20,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-import yaml
+
+from path_utils import load_config, resolve_output_arg, resolve_path
 
 
 ROOT = Path(__file__).resolve().parent
@@ -32,7 +33,7 @@ DEFAULT_CLEANED_DIR = (
 DEFAULT_OUT_DIR = ROOT / "outputs/leakage_role_comparison"
 
 BUCKETS = [
-    ("financial_fraud", "fin_fraud", "Financial fraud"),
+    ("fin_fraud", "fin_fraud", "Financial fraud"),
     ("family_matrimonial", "family_matrimonial", "Family/matrimonial"),
     ("land_property", "land_property", "Land/property"),
     ("motor_accidents", "motor_accidents", "Motor accidents"),
@@ -89,11 +90,6 @@ ROLE_COLORS = {
 
 LEAKAGE_ROLES = {"RLC", "RPC"}
 DROPPED_BY_FILTER = {"ANALYSIS", "ISSUE", "NONE", "RATIO", "RLC", "RPC"}
-
-
-def load_config(path: Path) -> dict[str, Any]:
-    with path.open(encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
 
 
 def raw_dirs_from_config(config: dict[str, Any]) -> dict[str, Path]:
@@ -351,7 +347,9 @@ def main() -> None:
     parser.add_argument("--overwrite", action="store_true")
     args = parser.parse_args()
 
-    out_dir = args.out_dir
+    config, config_path = load_config(args.config)
+    out_dir = resolve_output_arg(args.out_dir, config_path)
+    cleaned_dir = resolve_path(args.cleaned_dir, Path.cwd())
     out_dir.mkdir(parents=True, exist_ok=True)
     stem = "rhetorical_role_before_after_leakage_filtering"
     out_png = out_dir / f"{stem}.png"
@@ -360,10 +358,9 @@ def main() -> None:
     out_summary = out_dir / f"{stem}_summary.json"
     ensure_outputs_are_new([out_png, out_pdf, out_csv, out_summary], args.overwrite)
 
-    config = load_config(args.config)
     raw_dirs = raw_dirs_from_config(config)
     before, before_summary = load_before_role_data(raw_dirs)
-    after, after_summary = load_after_role_data(args.cleaned_dir)
+    after, after_summary = load_after_role_data(cleaned_dir)
 
     make_figure(before, after, out_png, out_pdf)
     write_csv(out_csv, before, after)

@@ -38,7 +38,7 @@ plt.rcParams.update({
     "axes.spines.right": False,
 })
 
-ROOT     = Path(__file__).parent
+ROOT     = Path(__file__).resolve().parent
 WITHIN   = ROOT / "entity_analysis" / "outputs" / "within_bucket"
 STATS_J  = ROOT / "outputs" / "graph_stats" / "graph_stats.json"
 HUBS_J   = ROOT / "outputs" / "stats.json"

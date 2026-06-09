@@ -1,53 +1,45 @@
-# Updated Graph
+# final_graph
 
-This folder contains a separate reasoning-focused graph variant so the original `src/graph` pipeline stays untouched.
-
-## What Changed
-
-Removed nodes:
-
-- `org`
-- `gpe`
-- `date`
-- `case_number`
-
-Removed shortcut edges:
-
-- `statute -> used_in_arguments -> arguments`
-- `provision -> used_in_arguments -> arguments`
-- `judge -> presided_arguments -> arguments`
-- `petitioner -> is_party_in_arguments -> arguments`
-- `respondent -> is_party_in_arguments -> arguments`
-- `petitioner_lawyer -> citation -> arguments`
-- `defence_lawyer -> citation -> arguments`
-- `lawyer -> citation -> arguments`
-
-Kept edges:
-
-- `case -> has_* -> text / party / court / judge / lawyer nodes`
-- `arguments -> cites_statute / cites_provision / cites_precedent`
-- `provision -> belongs_to_statute -> statute`
-- `petitioner_lawyer -> petitioner_arguments`
-- `defence_lawyer -> respondent_arguments`
-- `lawyer -> other_lawyer_arguments`
-- `petitioner -> petitioner_arguments`
-- `respondent -> respondent_arguments`
+`final_graph` contains reasoning-focused graph builders used by the later
+experiments. These builders remove some noisy context nodes and shortcut edges
+from the older case-star graph while keeping the parts needed for legal outcome
+prediction.
 
 ## Files
 
-- `updated_graph/reasoning_graph_policy.py`: enforced node and edge policy
-- `updated_graph/case_star_builder.py`: updated local case-star builder
-- `updated_graph/pipeline.py`: graph bundle assembly using the updated builder
-- `build_graph.py`: standalone entrypoint for this variant
-- `graph_config_template.yaml`: graph section to merge into a dataset-specific config later
+- `build_graph.py`: reasoning-focused graph build entry point.
+- `build_graph_section_sep.py`: section-separated graph build entry point.
+- `graph_config_template.yaml`: graph-section template for dataset configs.
+- `visualize_graph_structure.py`: produces graph-structure visualisations.
+- `updated_graph/`: implementation modules for the reasoning-focused builder.
 
-## Later Use
+## Reasoning-Focused Policy
 
-When you are ready to parse/build the dataset for this graph:
+This graph family keeps:
+
+- case-to-section edges
+- case-to-party/court/judge/lawyer edges
+- argument-to-statute/provision/precedent citation edges
+- provision-to-statute membership edges
+- party/lawyer-to-party-argument edges
+
+It removes noisy context nodes such as generic `org`, `gpe`, `date`, and
+`case_number`, plus shortcut edges that can over-connect argument nodes.
+
+## Build Example
+
+From `section_GNN`:
 
 ```bash
-python "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/build_graph.py" \
-  --config /path/to/your/dataset_specific_config.yaml
+CUDA_VISIBLE_DEVICES=0,1 micromamba run -n thesis_work python final_graph/build_graph.py \
+  --config runs/cross_bucket_total_dataset/config.yaml
 ```
 
-The builder writes separate `*.reasoning_focused.*` metadata snapshots plus a `reasoning_focused_case_star_graph.pt` cache name by default.
+For section-separated features:
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 micromamba run -n thesis_work python final_graph/build_graph_section_sep.py \
+  --config ablations/section_sep_enc/cross_bucket_total_dataset/config.yaml
+```
+
+Graph caches and metadata are written under the config's `paths.graph_cache_dir`.

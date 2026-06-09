@@ -6,6 +6,7 @@ set -euo pipefail
 
 V2_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$V2_DIR/../.." && pwd)"
+cd "$SECTION_GNN"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 RUN_NAME="${RUN_NAME:-kfold_run_v2}"
 CONFIG="${CONFIG:-}"

@@ -23,7 +23,7 @@ from pathlib import Path
 
 import pandas as pd
 
-EXP_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test")
+EXP_ROOT = Path(__file__).resolve().parents[1]
 INPUT_DIR = EXP_ROOT / "data/input_jsons"
 
 PRETTY = {"-1": "LOSE", "1": "WIN"}

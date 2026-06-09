@@ -22,8 +22,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
-import yaml
 from tqdm import tqdm
+
+from path_utils import load_config, resolve_output_arg
 
 # ── style ─────────────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -39,6 +40,7 @@ plt.rcParams.update({
 
 BUCKET_DISPLAY = {
     "financial_fraud":    "Financial fraud",
+    "fin_fraud":          "Financial fraud",
     "family_matrimonial": "Family/matrimonial",
     "land_property":      "Land/property",
     "motor_accidents":    "Motor accidents",
@@ -49,11 +51,6 @@ ENTITY_TYPES = ["STATUTE", "PROVISION", "PRECEDENT", "COURT", "JUDGE",
                 "LAWYER", "PETITIONER", "RESPONDENT"]
 
 # ── helpers ───────────────────────────────────────────────────────────────────
-
-def load_config(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
-
 
 def savefig(fig: plt.Figure, out_dir: Path, stem: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -332,8 +329,8 @@ def main():
     parser.add_argument("--out",    default="outputs/plots_full")
     args = parser.parse_args()
 
-    cfg     = load_config(args.config)
-    out_dir = Path(args.out)
+    cfg, config_path = load_config(args.config)
+    out_dir = resolve_output_arg(args.out, config_path)
     bcolors = bucket_colors(cfg)
 
     print("Loading full dataset …")

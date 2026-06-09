@@ -10,7 +10,7 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parent
 SRC  = {
     # --- from plots_full/ (raw dataset, no graph needed) ---
     "01_case_counts_full.png":              ROOT / "outputs/plots_full/case_counts_full.png",

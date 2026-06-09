@@ -15,7 +15,8 @@ echo "Config : config.yaml"
 echo "Output : $(grep output_dir config.yaml | awk '{print $2}')"
 echo ""
 
-micromamba run -n graph_vis python build_graph.py \
+MAMBA_ENV="${MAMBA_ENV:-graph_vis}"
+micromamba run -n "${MAMBA_ENV}" python build_graph.py \
     --config config.yaml \
     "$@"
 

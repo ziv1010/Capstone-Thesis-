@@ -21,7 +21,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-REPO_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-")
+REPO_ROOT = Path(__file__).resolve().parents[3]
 SOURCE_ROOT = REPO_ROOT / "DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/cases_by_outcome"
 EXP_ROOT = REPO_ROOT / "section_GNN/multi_hearing_stage_test"
 INPUT_DIR = EXP_ROOT / "data/input_jsons"

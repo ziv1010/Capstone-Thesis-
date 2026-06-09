@@ -4,6 +4,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+cd "$SECTION_GNN"
 CONFIG="$SCRIPT_DIR/config.yaml"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 RUN_NAME="${RUN_NAME:-ablation_section_sep_enc_family_matrimonial_kfold}"

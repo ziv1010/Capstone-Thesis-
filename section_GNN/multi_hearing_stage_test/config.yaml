@@ -3,14 +3,14 @@ project:
   seed: 42
 
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/input_jsons
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/processed/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/data/audits
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test/outputs
+  raw_json_dir: multi_hearing_stage_test/data/input_jsons
+  processed_dir: multi_hearing_stage_test/data/processed
+  cleaned_case_dir: multi_hearing_stage_test/data/processed/cleaned_cases
+  normalized_entity_dir: multi_hearing_stage_test/data/processed/normalized_entities
+  embeddings_cache_dir: multi_hearing_stage_test/data/processed/embeddings_cache
+  graph_cache_dir: multi_hearing_stage_test/data/graph_cache
+  audits_dir: multi_hearing_stage_test/data/audits
+  outputs_dir: multi_hearing_stage_test/outputs
 
 data:
   file_glob: "*.json"
@@ -144,8 +144,8 @@ splits:
 
 # Paths to the trained model the test cases will be evaluated against.
 inference:
-  trained_model_run_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold
-  trained_graph_cache: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/entity_resolved_data/cross_bucket_total_dataset/graph_cache/section/case_star_entity_resolved_cross_bucket_section_sep_lr_decay.reasoning_focused.pt
+  trained_model_run_dir: outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold
+  trained_graph_cache: data/ablations/entity_resolved_data/cross_bucket_total_dataset/graph_cache/section/case_star_entity_resolved_cross_bucket_section_sep_lr_decay.reasoning_focused.pt
   folds_to_use: [0, 1, 2, 3, 4]
   ensemble: mean_proba
   model:

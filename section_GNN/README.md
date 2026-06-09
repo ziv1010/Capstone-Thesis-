@@ -1,353 +1,260 @@
-# Case Star Graph + Global Authority Graph for Pre-Judgment Outcome Prediction
+# section_GNN
 
-This project builds a leakage-safe heterogeneous graph neural network pipeline for legal outcome prediction before judgment.
+`section_GNN` contains the graph-neural-network pipeline used for leakage-aware
+legal outcome prediction. It converts extracted case JSON files into cleaned
+case records, builds heterogeneous PyTorch Geometric graphs, trains/evaluates
+GNN models, and runs the ablation and cross-domain experiments used for thesis
+tables.
 
-The pipeline reads per-case JSON files produced by the OpenNyai-style extraction pipeline, removes outcome-bearing content, builds local case star graphs, merges them through shared authority/context nodes, and trains a PyTorch Geometric hetero GNN over case nodes.
+The folder is intentionally self-contained: paths in configs are relative to
+`section_GNN`, and paths to sibling repository folders use `../...`. The Python
+config loader resolves those relative paths at runtime.
 
-## Why this is pre-judgment prediction
+## Quick Start
 
-The model is designed to predict the appellant or petitioner outcome from information that would plausibly exist before the final order is issued. The pipeline therefore uses:
+Run commands from this folder:
 
-- preamble text
-- facts summary
-- arguments summary
-- pre-judgment entities such as court, judge, statutes, provisions, lawyers, parties, precedents, and locations
+```bash
+cd section_GNN
+```
 
-It explicitly excludes final outcome text, operative orders, and decision summaries from model inputs.
+For a baseline timed-bucket run:
 
-## Leakage Prevention in Pre-Judgment Legal Prediction
+```bash
+bash runs/fin_fraud_timed_mistral/01_preprocess.sh
+bash runs/fin_fraud_timed_mistral/02_build_graph.sh
+bash runs/fin_fraud_timed_mistral/03_kfold_8gpu.sh
+```
 
-The preprocessing layer applies hard exclusions and audits them per case.
+For the active text-only cross-bucket ablation:
 
-Excluded top-level fields:
+```bash
+bash ablations/text_only/cross_bucket_total_dataset/run.sh
+```
 
-- `case_outcome_label`
-- `case_outcome_score`
-- `llm_case_outcome`
-- `decision_text`
-- `rpc_texts`
-- `short_explanation`
-- `raw_model_response`
+Most scripts use the micromamba environment named `thesis_work` by default.
+Override it with:
 
-Excluded summary fields:
+```bash
+MAMBA_ENV=my_env bash runs/fin_fraud_timed_mistral/run_all.sh
+```
 
-- `raw_result.summary.decision`
-- `raw_result.summary.ANALYSIS`
-- `raw_result.summary.issue`
+## Core Workflow
 
-Excluded annotations:
+The standard pipeline has three stages.
 
-- any annotation with `summary_section == "decision"`
-- any annotation with `summary_section` in conservative blocked sections such as `ANALYSIS` and `issue`
-- any annotation carrying `RPC` or `RLC`
-- any annotation whose text matches an explicit outcome phrase
+1. Preprocess raw JSON files.
 
-Regex-based leakage masking is also applied to retained text. Examples include:
+   Entry points:
 
-- `petition stands disposed of`
-- `appeal allowed`
-- `appeal dismissed`
-- `set aside`
-- `quashed`
-- `liberty granted`
+   - `experiments/fixed_open_pipeline/preprocess_fixed_open.py`
+   - bucket wrappers such as `runs/<bucket>/01_preprocess.sh`
 
-Each processed case gets a dedicated audit JSON in `data/audits/` listing:
+   Main outputs:
 
-- fields dropped
-- annotations dropped
-- decision text removal flag
-- leakage phrases matched
-- retained text lengths
+   - `data/.../processed/cleaned_cases/*.json`
+   - `data/.../processed/normalized_entities/*.json`
+   - `data/.../audits/*.json`
 
-## Graph Schema
+2. Build graph caches.
 
-### Local Case Star Graph
+   Entry points:
 
-Each case has one central `case` node connected to:
+   - `src/scripts/build_graph.py`
+   - `final_graph/build_graph.py`
+   - `final_graph/build_graph_section_sep.py`
+   - `runs_v2/party_args_lr_decay/graph/build_graph_v2.py`
 
-- text nodes: `preamble`, `facts`, `arguments`
-- party and authority nodes: `petitioner`, `respondent`, `court`, `judge`, `lawyer`
-- legal citation nodes: `statute`, `provision`, optional `precedent`
-- context nodes: `org`, `gpe`, `date`, `case_number`
+   Main outputs:
 
-Key edges:
+   - `data/.../graph_cache/*.pt`
+   - `data/.../graph_cache/graph_metadata*.json`
+   - `data/.../graph_cache/node_mappings*.json`
+   - `data/.../embeddings_cache/*.npz`
 
-- `case -> has_preamble -> preamble`
-- `case -> has_facts -> facts`
-- `case -> has_arguments -> arguments`
-- `case -> has_petitioner -> petitioner`
-- `case -> has_respondent -> respondent`
-- `case -> heard_in -> court`
-- `case -> decided_by_bench -> judge`
-- `case -> has_lawyer -> lawyer`
-- `arguments -> cites_statute -> statute`
-- `arguments -> cites_provision -> provision`
-- `provision -> belongs_to_statute -> statute`
-- optional mention edges for `precedent`, `org`, `gpe`, `date`, `case_number`
+3. Train and evaluate.
 
-No decision node is created.
+   Entry points:
 
-### Global Authority Graph
+   - `src/scripts/kfold_cv.py`
+   - `runs_v2/party_args_lr_decay/scripts/kfold_cv_v2.py`
+   - `src/scripts/train_gnn.py`
+   - `src/scripts/evaluate_saved_model.py`
 
-All local case star graphs are merged into one heterogeneous graph by sharing normalized nodes across cases for:
+   Main outputs:
 
-- `court`
-- `judge`
-- `lawyer`
-- `statute`
-- `provision`
-- `precedent`
-- `org`
-- `gpe`
-- `date`
-- `case_number`
+   - `outputs/.../models/<run_name>/kfold/fold_*/`
+   - `outputs/.../models/<run_name>/kfold/kfold_summary.json`
+   - predictions, metrics, confusion matrices, and training-history plots
 
-By default, `petitioner` and `respondent` nodes stay case-local because party resolution is noisier.
+## Path Convention
 
-The first version deliberately does not add dense case-to-case similarity edges.
+Configs store portable paths. Examples:
 
-## Model
+```yaml
+paths:
+  raw_json_dir: ../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/cross_bucket_total_dataset
+  processed_dir: data/timed_bucket_runs/cross_bucket_total_dataset/processed
+  graph_cache_dir: data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache
+  outputs_dir: outputs/timed_bucket_runs/cross_bucket_total_dataset
+```
 
-Default model:
+When a Python script calls `src.utils.io.load_yaml`, these values are resolved
+relative to `section_GNN`. Shell scripts that inspect YAML directly change into
+`section_GNN` first for the same reason.
 
-- `HGTConv`-based hetero GNN
-- 2 message-passing layers
-- learned node-type offsets
-- case-node MLP head for classification
+Avoid adding machine-specific absolute paths to configs or scripts.
 
-Fallback:
+## Main Folders
 
-- `HeteroConv` with relation-specific `SAGEConv`
+| Folder | Purpose |
+| --- | --- |
+| `src/` | Reusable preprocessing, graph construction, model, training, and utility code. |
+| `src/scripts/` | Python command-line entry points for build/train/eval/audit helpers. |
+| `runs/` | Baseline BGE-M3 timed-bucket configs and shell wrappers. |
+| `runs_v2/` | Later run families with party-argument case text and LR-decay controls. |
+| `runs_inlegalbert/` | InLegalBERT versions of the main comparison matrix. |
+| `runs_inlegalbert_remaining/` | InLegalBERT runs used to fill remaining thesis-table cells. |
+| `ablations/` | Controlled graph/input/model ablations. |
+| `experiments/` | Standalone experiments such as fixed-open preprocessing, size sweep, and encoder comparison. |
+| `final_graph/` | Reasoning-focused and section-separated graph builders. |
+| `embedding_analysis/` | Post-hoc embedding, SHAP, t-SNE, probing, and node-importance tools. |
+| `cross_domain_test/` | Cross-domain evaluation workflows, currently including food safety. |
+| `multi_hearing_stage_test/` | Multi-hearing/stage-transition experiment and visualiser. |
+| `run_scripts/` | Top-level orchestration scripts for larger matrices. |
+| `data/` | Generated cleaned cases, graph caches, embedding caches, and audits. |
+| `outputs/` | Generated predictions, metrics, model checkpoints, and summary tables. |
+| `run_logs/` | Long-running experiment logs. |
+| `configs/` | Older legacy configs retained for reference. |
+| `FINAL_DUMP/` | Archived dump material. Treat it as read-only and out of the main pipeline. |
 
-Outputs:
+## Dataset Buckets
 
-- logits per case node
-- accuracy
-- macro F1
-- micro F1
-- per-class precision/recall/F1
-- confusion matrix
-- ROC-AUC and PR-AUC for binary runs
+Most run families use the same six dataset names:
 
-## 3-Way Setup
+- `family_matrimonial_timed_mistral`
+- `fin_fraud_timed_mistral`
+- `land_property_timed_mistral`
+- `motor_accidents_timed_mistral`
+- `sexual_offences_timed_mistral`
+- `cross_bucket_total_dataset`
 
-There is now a separate 3-way configuration for predicting `-1`, `0`, and `1` from:
+The first five are domain-specific timed buckets. `cross_bucket_total_dataset`
+is the combined dataset used for broader training/evaluation.
+
+## Graph Variants
+
+The main graph family is a case-star heterogeneous graph. A case node connects
+to text-section nodes, party/court/lawyer nodes, and legal authority nodes.
+Graph variants change which nodes and edges are included:
+
+- baseline: full reasoning-focused graph
+- `text_only`: case and text-section nodes only
+- `no_names`: removes identity/name-bearing nodes and features
+- `no_cross_case`: removes cross-case sharing
+- `hierarchical_enc`: changes text encoding/aggregation strategy
+- `section_sep_enc`: separates section embeddings
+- `case_node_minimised`: reduces case-node text/features
+- `entity_resolved_data`: uses externally resolved entity data
+- `remove_central_authorities`: filters overly central authority nodes
+- `runs_v2/party_args_*`: uses party-argument/preamble case-node text variants
+
+See `ablations/README.md`, `runs/README.md`, and `runs_v2/README.md` for more
+detail.
+
+## Configuration Fields
+
+Important sections in each YAML config:
+
+- `project`: run name and seed.
+- `paths`: input, intermediate, cache, audit, and output directories.
+- `data`: file glob, limits, and optional sample case IDs.
+- `preprocessing`: label mapping, role mapping, dropped roles, and leakage masks.
+- `graph`: graph build mode, included node types, section handling, cache name.
+- `features`: text encoder backend, scalar features, embedding settings.
+- `labels`: binary or multiclass label handling.
+- `model`: architecture, hidden size, layer count, heads, dropout.
+- `training`: epochs, optimizer, LR schedule, early stopping, folds/repeats.
+
+## Common Commands
+
+Run one baseline bucket:
+
+```bash
+bash runs/fin_fraud_timed_mistral/run_all.sh
+```
+
+Run all baseline/ablation families:
+
+```bash
+nohup bash run_scripts/run_all_experiments.sh > run_logs/run_all_experiments.log 2>&1 &
+```
+
+Run the main InLegalBERT matrix:
+
+```bash
+nohup bash run_scripts/run_inlegalbert_experiments.sh > run_logs/run_inlegalbert_experiments.log 2>&1 &
+```
+
+Run the timed-bucket pipeline:
+
+```bash
+bash run_scripts/run_timed_mistral_buckets_8gpu.sh
+```
+
+Run fixed-open preprocessing directly:
+
+```bash
+micromamba run -n thesis_work python experiments/fixed_open_pipeline/preprocess_fixed_open.py \
+  --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
+```
+
+Build a reasoning-focused graph directly:
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 micromamba run -n thesis_work python final_graph/build_graph.py \
+  --config runs/cross_bucket_total_dataset/config.yaml
+```
+
+Run K-fold CV directly:
+
+```bash
+micromamba run -n thesis_work python src/scripts/kfold_cv.py \
+  --config runs/cross_bucket_total_dataset/config.yaml \
+  --run-name cross_bucket_kfold
+```
+
+## Reading Results
+
+Primary summaries usually live at:
 
 ```text
-/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/input/augmented_jsons
+outputs/<family>/<bucket>/models/<run_name>/kfold/kfold_summary.json
 ```
 
-Config:
+Per-fold artifacts usually include:
 
-```text
-/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/configs/gnn_case_star_augmented_jsons_3way.yaml
-```
+- `metrics.json`
+- `predictions.csv`
+- `model.pt`
+- `run_config_snapshot.yaml`
+- `training_history.png`
+- `split_metrics.png`
+- `confusion_matrix_*.png`
 
-This config keeps `postponed_or_procedural` cases instead of dropping them and maps labels as:
+Aggregate result tables are stored under `outputs/`, including:
 
-- `appellant_lost` → `-1`
-- `postponed_or_procedural` → `0`
-- `appellant_won` → `1`
+- `outputs/master_ablation_results.csv`
+- `outputs/inlegalbert_vs_bge_comparison.csv`
 
-It writes to separate folders so the binary runs stay untouched:
+## Development Notes
 
-- `section_GNN/data/augmented_jsons_3way/`
-- `section_GNN/outputs/augmented_jsons_3way/`
-
-End-to-end run:
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star bash -lc '
-python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/scripts/preprocess_cases.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/configs/gnn_case_star_augmented_jsons_3way.yaml && \
-python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/scripts/build_graph.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/configs/gnn_case_star_augmented_jsons_3way.yaml && \
-python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/scripts/train_gnn.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/configs/gnn_case_star_augmented_jsons_3way.yaml \
-  --run-name augmented_jsons_3way
-'
-```
-
-## Project Layout
-
-```text
-GNN/
-  configs/
-  data/
-    processed/
-    embeddings_cache/
-    graph_cache/
-    audits/
-  envs/
-  outputs/
-  scripts/
-  src/
-    preprocessing/
-    graph/
-    models/
-    training/
-    utils/
-```
-
-## Environment Setup
-
-Create the local micromamba environment:
-
-```bash
-micromamba create -y -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  -f /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/envs/gnn_case_star.yaml
-```
-
-Run commands inside it with:
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star <command>
-```
-
-## Main Scripts
-
-### 1. Preprocess cases
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/preprocess_cases.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star.yaml
-```
-
-Outputs:
-
-- `data/processed/cleaned_cases/*.json`
-- `data/processed/normalized_entities/*.json`
-- `data/audits/*.json`
-
-### 2. Build the graph
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/build_graph.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star.yaml
-```
-
-Outputs:
-
-- `data/graph_cache/case_star_global_graph.pt`
-- `data/graph_cache/graph_metadata.json`
-- `data/graph_cache/node_mappings.json`
-- `data/graph_cache/relation_mappings.json`
-- `data/graph_cache/split_assignments.json`
-- `data/graph_cache/graph_debug_samples.json`
-
-### 3. Train the GNN
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/train_gnn.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star.yaml \
-  --run-name full_hgt_run
-```
-
-Outputs:
-
-- `outputs/models/<run_name>/model.pt`
-- `outputs/models/<run_name>/metrics.json`
-- `outputs/models/<run_name>/predictions.csv`
-- `outputs/models/<run_name>/confusion_matrix_test.png`
-
-### 4. Run ablations
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/run_ablation.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star.yaml \
-  --variants full_star_global without_judge without_statute_provision text_only
-```
-
-## Example Runs
-
-### Single-case preprocessing sanity check
-
-This is useful for inspecting leakage removal on one sample JSON before building a trainable dataset.
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/preprocess_cases.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star_sanity.yaml \
-  --limit 1
-```
-
-Sample input file in this dataset:
-
-`/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/OpenNyai/outputs/current_output/combined_mistral24b_case_outcomes/augmented_jsons/Abhijeet_Suryakant_Maske_And_Anr_vs_The_State_Of_Maharashtra_on_1_March_2022.json`
-
-Inspect:
-
-- `data/processed/cleaned_cases/Abhijeet_Suryakant_Maske_And_Anr_vs_The_State_Of_Maharashtra_on_1_March_2022.json`
-- `data/audits/Abhijeet_Suryakant_Maske_And_Anr_vs_The_State_Of_Maharashtra_on_1_March_2022.json`
-
-### Fast end-to-end sanity run
-
-This uses the hashing encoder and a short HGT schedule.
-
-```bash
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/preprocess_cases.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star_sanity.yaml \
-  --limit 60
-
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/build_graph.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star_sanity.yaml \
-  --limit 60
-
-micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/scripts/train_gnn.py \
-  --config /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/configs/gnn_case_star_sanity.yaml \
-  --run-name sanity_hgt_hashing
-```
-
-In the verification run shipped in this folder:
-
-- 60 raw JSONs were preprocessed
-- 48 non-procedural cases remained for binary training
-- the graph contained cached node embeddings in `data/embeddings_cache/`
-- training outputs were written to `outputs/models/sanity_hgt_hashing/`
-
-## Training & Split Policy (Transductive Masking)
-
-Supported physical split assignments:
-
-- `random`
-- `year`
-- `court`
-
-The architecture treats the dataset as a **transductive global graph**. This has major implications for how training and evaluation work:
-
-### 1. The Global Forward Pass
-During every epoch, the GNN doesn't look at cases one-by-one. It feeds the **entire global graph** (containing every Train, Val, and Test case) into the network simultaneously. By the end of the forward pass, the model outputs a prediction (a `logit` probability) for **every single case node** at once.
-
-### 2. The Masking Trick
-To prevent the model from cheating on the Test set, every `case` node holds a boolean array flag (`train_mask`, `val_mask`, or `test_mask`).
-
-### 3. Calculating Loss (Training)
-When calculating the Error/Loss to actually update the neural network weights, the PyTorch code mathematically "slices" the predictions.
-```python
-loss = cross_entropy_loss(logits[train_mask], true_labels[train_mask])
-```
-The GNN generated predictions for the Val and Test cases, but the optimizer completely ignores them. The model's weights are updated **exclusively based on its performance on the `train_mask` cases**.
-
-### 4. Evaluation 
-During validation or testing, the exact same slicing happens, but targeting the respective mask:
-```python
-val_metrics = calculate_metrics(logits[val_mask], true_labels[val_mask])
-```
-
-### The Transductive "Leak" Caveat
-Because the full graph is evaluated simultaneously, and nodes like `[judge]` are global, the embeddings of the `Train` cases pass messages to the `Judge` taking their labels implicitly with them. In the *same forward pass*, that updated `Judge` passes messages into the `Test` cases. The model never explicitly peeks at the Test **labels**, but the structural mathematical context of the Train set profoundly influences the Test cases during message passing.
-
-## Known Limitations
-
-- Entity normalization is conservative and string-based, not a full legal entity resolver.
-- Party nodes are local by default to avoid unsafe cross-case merges.
-- The dataset is small and class-imbalanced, so validation and test F1 can be unstable.
-- The first version does not use raw full-text sentence graphs or dense case similarity edges.
-- `ANALYSIS` is conservatively excluded to avoid post-judgment reasoning leakage, which may remove some potentially useful but risky context.
+- Keep source code in `src/`; keep experiment-specific orchestration in
+  `runs*/`, `ablations/`, `experiments/`, or `run_scripts/`.
+- Generated artifacts belong under `data/`, `outputs/`, or `run_logs/`.
+- Do not hand-edit generated graph metadata unless you are explicitly repairing
+  an artifact.
+- Prefer updating YAML configs and wrapper scripts over hardcoding paths inside
+  Python modules.
+- Keep `FINAL_DUMP/`, `dump/`, and `__pycache__/` out of operational docs and
+  new experiment wiring.

@@ -1677,7 +1677,7 @@ async function loadExp7(requestedResolution) {
     ? `?resolution=${encodeURIComponent(requestedResolution)}`
     : "";
   const data = await api(`/api/exp/full_graph_communities${qs}`);
-  const empty = `<div class="detail-body empty">Full-graph community outputs not found. Run <code>run_full_graph_communities.sh</code>, then refresh.</div>`;
+  const empty = `<div class="detail-body empty">Full-graph community outputs not found. Run <code>run_scripts/run_full_graph_communities.sh</code>, then refresh.</div>`;
   if (!data.available) {
     ["exp7Sweep", "exp7Cards", "exp7RiskyCards", "exp7Boundary"].forEach((id) => byId(id).innerHTML = empty);
     renderHero("exp7Hero", []);

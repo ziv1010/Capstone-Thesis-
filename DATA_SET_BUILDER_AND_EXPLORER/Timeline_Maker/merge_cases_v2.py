@@ -29,18 +29,27 @@ import os, re, json, copy, argparse
 from collections import defaultdict
 from datetime import datetime
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
+
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def parse_args():
     p = argparse.ArgumentParser(description="Merge multi-hearing legal case JSONs")
     p.add_argument(
         "--input", "-i",
-        default="/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/fin_fraud_labelled/labelled_jsons",
+        default=os.path.join(
+            REPO_ROOT,
+            "Fixed_GPU_OpenNyai",
+            "final_outputs",
+            "fin_fraud_labelled_mistral",
+            "labelled_jsons",
+        ),
         help="Directory containing labelled JSON files",
     )
     p.add_argument(
         "--output", "-o",
-        default="/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v2",
+        default=os.path.join(SCRIPT_DIR, "output_merged_v2"),
         help="Output directory for merged files",
     )
     p.add_argument(

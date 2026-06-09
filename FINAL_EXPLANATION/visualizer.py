@@ -702,7 +702,7 @@ class ExplanationStore:
                 "mask_summary": [],
                 "mask_domain_drops": [],
                 "findings": [
-                    "Identity shortcut and mask-sensitivity audit outputs were not found. Run `run_identity_shortcut_audit.sh --permutations 100` and `run_mask_sensitivity_audit.sh` for this output directory."
+                    "Identity shortcut and mask-sensitivity audit outputs were not found. Run `run_scripts/run_identity_shortcut_audit.sh --permutations 100` and `run_scripts/run_mask_sensitivity_audit.sh` for this output directory."
                 ],
             }
 

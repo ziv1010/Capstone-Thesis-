@@ -10,21 +10,22 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-PYTHON="/home/ziv_baretto/.local/share/mamba/envs/graph_vis/bin/python3"
+MAMBA_ENV="${MAMBA_ENV:-graph_vis}"
+PYTHON=(micromamba run -n "$MAMBA_ENV" python)
 
 MODE="${1:-both}"
 PORT="${2:-8052}"
 
 if [ "$MODE" = "analyse-only" ]; then
     echo "═══ Running full analysis (both within + cross) — no viz ═══"
-    "$PYTHON" analyse.py both
-    echo "Done. Start viz separately: $PYTHON app.py --port $PORT"
+    "${PYTHON[@]}" analyse.py both
+    echo "Done. Start viz separately: micromamba run -n $MAMBA_ENV python app.py --port $PORT"
     exit 0
 fi
 
 echo "═══ Step 1: Running analysis (mode=$MODE) ═══"
-"$PYTHON" analyse.py "$MODE"
+"${PYTHON[@]}" analyse.py "$MODE"
 
 echo ""
 echo "═══ Step 2: Starting visualizer on port $PORT ═══"
-"$PYTHON" app.py --port "$PORT"
+"${PYTHON[@]}" app.py --port "$PORT"

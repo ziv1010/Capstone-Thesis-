@@ -19,8 +19,9 @@ import os, re, json, copy
 from collections import defaultdict
 from datetime import datetime
 
-BASE_DIR = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/input_data/augmented_jsons/"
-OUT_DIR  = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged/"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.join(SCRIPT_DIR, "input_data", "augmented_jsons")
+OUT_DIR  = os.path.join(SCRIPT_DIR, "output_merged")
 REPORT_PATH = os.path.join(OUT_DIR, "report.json")
 
 os.makedirs(OUT_DIR, exist_ok=True)

@@ -33,7 +33,7 @@ micromamba run -n model_comparison_inlegalllama python -c "import torch, transfo
 To recreate it:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 micromamba env create -f environment.yml
 ```
 
@@ -44,7 +44,7 @@ If any model download is gated, set `HF_TOKEN` before running.
 This validates paths and sharding without loading the model:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 micromamba run -n model_comparison_inlegalllama python run_inlegalllama.py \
   --input-dir data/motor_accidents_fold_00_test_cases \
   --dry-run \
@@ -54,7 +54,7 @@ micromamba run -n model_comparison_inlegalllama python run_inlegalllama.py \
 ## Full 8-GPU Run
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 bash run_inlegalllama_8gpu.sh
 ```
 
@@ -85,7 +85,7 @@ Available prediction-only checkpoints:
 Prepare only:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
   --checkpoint nyaya_facts_single \
   --prepare-only
@@ -94,7 +94,7 @@ micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
 Dry run:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
   --checkpoint nyaya_facts_single \
   --input-dir data/motor_accidents_fold_00_test_cases \
@@ -106,7 +106,7 @@ micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
 Full 8-GPU run:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 bash run_factlegalllama_8gpu.sh
 ```
 
@@ -129,7 +129,7 @@ These are separate from the earlier JSON `-1/1` scripts and write to separate ou
 Run the InLegalLlama SFT prediction-only checkpoint:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 bash run_inlegalllama_sft_original_prompt_8gpu.sh
 ```
 
@@ -140,7 +140,7 @@ Outputs are written under:
 Run FactLegalLlama with facts-only preprocessing:
 
 ```bash
-cd "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/model comparison"
+cd "model comparison"
 bash run_factlegalllama_facts_original_prompt_8gpu.sh
 ```
 

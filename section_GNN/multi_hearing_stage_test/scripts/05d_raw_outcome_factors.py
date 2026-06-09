@@ -21,7 +21,7 @@ import shutil
 from collections import Counter, defaultdict
 from pathlib import Path
 
-EXP_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test")
+EXP_ROOT = Path(__file__).resolve().parents[1]
 DIFFS_DIR = EXP_ROOT / "outputs/analysis/per_case_diffs"
 INPUT_JSON_DIR = EXP_ROOT / "data/input_jsons"
 OUT_DIR = EXP_ROOT / "outputs/analysis/per_case_raw_outcome_factors"

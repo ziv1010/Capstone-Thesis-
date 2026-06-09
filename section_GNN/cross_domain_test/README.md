@@ -1,9 +1,21 @@
-# Cross-Domain Tests
+# cross_domain_test
 
-Scripts and configs for evaluating trained graph models on held-out or out-of-domain buckets.
+Cross-domain tests evaluate a trained model on a held-out legal domain that was
+not part of the original training distribution.
 
-## Food Safety Holdout
+## Subfolders
 
-`food_safety/run_cross_domain_food_safety.py` runs the food-safety cross-domain evaluation using the local graph pipeline outputs and matching config.
+- `food_safety/`: evaluates cross-bucket legal-domain checkpoints on food-safety
+  cases.
 
-Generated graph caches, embeddings, processed cases, audits, and per-fold evaluation outputs are ignored because they contain large model/data artifacts.
+## Workflow
+
+The general pattern is:
+
+1. Create or reuse a domain-specific config.
+2. Preprocess that domain's JSON files.
+3. Build a graph using the same graph assumptions as training.
+4. Evaluate trained checkpoints on the new graph.
+5. Aggregate fold metrics into a cross-domain summary.
+
+See `food_safety/README.md` for the concrete workflow.

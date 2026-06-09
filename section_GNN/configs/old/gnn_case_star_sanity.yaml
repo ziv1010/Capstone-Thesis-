@@ -3,14 +3,14 @@ project:
   seed: 42
 
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/OpenNyai/outputs/current_output/combined_mistral24b_case_outcomes/augmented_jsons
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/data/audits
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/outputs
+  raw_json_dir: ../OpenNyai/outputs/current_output/combined_mistral24b_case_outcomes/augmented_jsons
+  processed_dir: ../GNN/data/processed
+  cleaned_case_dir: ../GNN/data/processed/cleaned_cases
+  normalized_entity_dir: ../GNN/data/processed/normalized_entities
+  embeddings_cache_dir: ../GNN/data/embeddings_cache
+  graph_cache_dir: ../GNN/data/graph_cache
+  audits_dir: ../GNN/data/audits
+  outputs_dir: ../GNN/outputs
 
 data:
   file_glob: "*.json"

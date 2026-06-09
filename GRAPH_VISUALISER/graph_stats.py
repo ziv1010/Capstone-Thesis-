@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import networkx as nx
 import numpy as np
-import yaml
+from path_utils import load_config, resolve_output_arg
 
 # ── style ──────────────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -45,6 +45,7 @@ plt.rcParams.update({
 
 BUCKET_DISPLAY = {
     "financial_fraud":    "Financial fraud",
+    "fin_fraud":          "Financial fraud",
     "family_matrimonial": "Family/matrimonial",
     "land_property":      "Land/property",
     "motor_accidents":    "Motor accidents",
@@ -54,10 +55,6 @@ ENTITY_TYPES = ["statute", "provision", "precedent", "court", "judge",
                 "lawyer", "petitioner", "respondent"]
 
 # ── helpers ────────────────────────────────────────────────────────────────────
-
-def load_config(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
 
 def bucket_colors(cfg: dict) -> dict:
     return {b["name"]: b["color"] for b in cfg.get("buckets", [])}
@@ -537,8 +534,8 @@ def main():
                         help="Number of pivot samples for approx betweenness")
     args = parser.parse_args()
 
-    cfg     = load_config(args.config)
-    out_dir = Path(args.out)
+    cfg, config_path = load_config(args.config)
+    out_dir = resolve_output_arg(args.out, config_path)
     out_dir.mkdir(parents=True, exist_ok=True)
     bcolors = bucket_colors(cfg)
 

@@ -39,15 +39,9 @@ import dash_bootstrap_components as dbc
 import networkx as nx
 import numpy as np
 import plotly.graph_objects as go
-import yaml
 from dash import Input, Output, dcc, html, no_update
 
-
-# ── config ────────────────────────────────────────────────────────────────────
-
-def load_config(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
+from path_utils import load_config
 
 
 # ── data loading ──────────────────────────────────────────────────────────────
@@ -1951,7 +1945,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args    = parse_args()
-    config  = load_config(args.config)
+    config, _config_path = load_config(args.config)
     out_dir = Path(config.get("output_dir", "outputs"))
 
     if not (out_dir / "graph_sample.pkl").exists():

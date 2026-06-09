@@ -24,7 +24,7 @@ import numpy as np
 import scipy.sparse as sp
 
 
-ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/FINAL_EXPLANATION")
+ROOT = Path(__file__).resolve().parent
 EXP3 = ROOT / "outputs/entity_resolved_section_sep_lr_decay_cross_bucket_fold00"
 EXP5 = ROOT / "outputs/entity_resolved_section_sep_lr_decay_cross_bucket_pattern_why"
 OUT_DIR = ROOT / "figures"

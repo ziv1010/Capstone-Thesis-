@@ -1,63 +1,68 @@
-# Fixed Open Pipeline
+# fixed_open_pipeline
 
-This folder converts sentence-level JSON files from:
+This folder converts sentence-level fixed-open JSON outputs into the cleaned
+case schema used by the graph builders.
 
-- `/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/fin_fraud_labelled/labelled_jsons`
+## Inputs
 
-into `cleaned_cases` that are compatible with the reasoning-focused graph builder in:
+Default config:
 
-- `/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/build_graph.py`
+```text
+experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
+```
 
-## What It Does
+Default raw input path in that config:
 
-- reads sentence-level OpenNyAI output with `sentences`, `preamble_end_char_offset`, and `case_outcome_score`
-- builds leakage-safe section texts:
-  - `preamble`
-  - `facts`
-  - `arguments`
-  - `petitioner_arguments`
-  - `respondent_arguments`
-  - `other_lawyer_arguments`
-- converts sentence entities into the `CleanedCase` entity schema expected by `section_GNN`
-- preserves binary labels with `case_outcome_score` values `"0"` and `"-1"` collapsed into `"-1"`, and `"1"` kept as `"1"`
-- skips files that do not contain `case_outcome_score` and records them in `preprocess_summary.fixed_open.json`
+```text
+../Fixed_GPU_OpenNyai/fin_fraud_labelled/labelled_jsons
+```
 
-## Default Role Mapping
+Other configs in this folder cover cross-bucket and quick-test workflows.
+
+## Main Script
+
+```text
+preprocess_fixed_open.py
+```
+
+It reads sentence-level case JSON files and writes:
+
+```text
+data/.../processed/cleaned_cases/
+data/.../processed/normalized_entities/
+data/.../audits/
+data/.../processed/preprocess_summary.fixed_open.json
+```
+
+## Section Mapping
+
+Typical role mapping:
 
 - `PREAMBLE` -> `preamble`
 - `FAC` -> `facts`
 - `ARG_PETITIONER` -> `petitioner_arguments` and `arguments`
 - `ARG_RESPONDENT` -> `respondent_arguments` and `arguments`
 - `PRE_RELIED`, `PRE_NOT_RELIED`, `STA` -> `other_lawyer_arguments` and `arguments`
-- `ANALYSIS`, `ISSUE`, `NONE`, `RATIO`, `RLC`, `RPC` are dropped conservatively
 
-## Commands
+Roles such as `ANALYSIS`, `ISSUE`, `NONE`, `RATIO`, `RLC`, and `RPC` are
+dropped conservatively by default.
 
-Use the existing micromamba environment at:
+## Run
 
-- `/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star`
-
-Preprocess:
+From `section_GNN`:
 
 ```bash
-CUDA_VISIBLE_DEVICES=4,5,6,7 micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/fixed_open_pipeline/preprocess_fixed_open.py" \
-  --config "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/fixed_open_pipeline/fixed_open_reasoning_config.yaml"
+micromamba run -n thesis_work python experiments/fixed_open_pipeline/preprocess_fixed_open.py \
+  --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
 ```
 
-Build the reasoning-focused graph:
+Then build/train with the normal graph scripts:
 
 ```bash
-CUDA_VISIBLE_DEVICES=4,5,6,7 micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/build_graph.py" \
-  --config "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/fixed_open_pipeline/fixed_open_reasoning_config.yaml"
-```
+micromamba run -n thesis_work python final_graph/build_graph.py \
+  --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
 
-Train the GNN on the built graph:
-
-```bash
-CUDA_VISIBLE_DEVICES=4,5,6,7 micromamba run -p /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GNN/.micromamba/gnn_case_star \
-  python "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/scripts/train_gnn.py" \
-  --config "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/updated graph/fixed_open_pipeline/fixed_open_reasoning_config.yaml" \
+micromamba run -n thesis_work python src/scripts/train_gnn.py \
+  --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml \
   --run-name fin_fraud_labelled_reasoning
 ```

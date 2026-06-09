@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXP_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 SECTION_GNN="$(cd "$EXP_ROOT/.." && pwd)"
+cd "$SECTION_GNN"
 CONFIG="$EXP_ROOT/config.yaml"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 

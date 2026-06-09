@@ -9,15 +9,17 @@ Outputs go to outputs/figures_readable/
 import json
 import os
 import glob
+from pathlib import Path
 import networkx as nx
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 
-OUT_DIR    = os.path.join(os.path.dirname(__file__), "outputs")
+ROOT = Path(__file__).resolve().parent
+OUT_DIR = str(ROOT / "outputs")
 WITHIN_DIR = os.path.join(OUT_DIR, "within_bucket")
-CROSS_DIR  = os.path.join(OUT_DIR, "cross_bucket")
-FIG_DIR    = os.path.join(OUT_DIR, "figures_readable")
+CROSS_DIR = os.path.join(OUT_DIR, "cross_bucket")
+FIG_DIR = os.path.join(OUT_DIR, "figures_readable")
 os.makedirs(FIG_DIR, exist_ok=True)
 
 BUCKET_LABELS = {

@@ -6,6 +6,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+cd "$SECTION_GNN"
 PARTY_ARGS_DIR="$SECTION_GNN/runs_v2/party_args_lr_decay"
 CONFIG="$SCRIPT_DIR/config.yaml"
 

@@ -42,10 +42,8 @@ Resume support:
   Already-written .json files are skipped — safe to interrupt and re-run.
 
 Usage:
-  bash Fixed_GPU_OpenNyai/run_ner_rr_custom.sh                          # all GPUs
-  bash Fixed_GPU_OpenNyai/run_ner_rr_custom.sh --workers 4             # 4 GPUs
-  bash Fixed_GPU_OpenNyai/run_ner_rr_custom.sh --pipeline_batch_size 4 # 4 docs per call
-  bash Fixed_GPU_OpenNyai/run_ner_rr_custom.sh --quick                 # 20 docs sanity check
+  python run_ner_rr_custom.py --input_dir ../INPUT_DATA/financial_fraud_text --output_dir final_outputs/test_fin_fraud_extract
+  bash run_scripts/run_ner_rr_all_categories.sh --gpus 0,1,2,3
 """
 
 from __future__ import annotations

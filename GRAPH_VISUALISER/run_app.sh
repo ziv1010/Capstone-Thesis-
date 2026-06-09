@@ -12,6 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${SCRIPT_DIR}"
 
 PORT="${1:-8050}"
+MAMBA_ENV="${MAMBA_ENV:-graph_vis}"
 
 echo "=== Legal Case Graph Visualiser ==="
 echo "Serving on port ${PORT}"
@@ -20,6 +21,6 @@ echo "SSH tunnel (from local machine):"
 echo "  ssh -L ${PORT}:localhost:${PORT} $(whoami)@$(hostname)"
 echo ""
 
-micromamba run -n graph_vis python app.py \
+micromamba run -n "${MAMBA_ENV}" python app.py \
     --config config.yaml \
     --port "${PORT}"

@@ -5,29 +5,29 @@
 # limit: null = load every file in data_dir; set an integer to cap.
 
 buckets:
-  - name: financial_fraud
+  - name: fin_fraud
     color: "#E74C3C"    # red
-    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/fin_fraud"
+    data_dir: "../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/fin_fraud"
     limit: null
 
   - name: family_matrimonial
     color: "#9B59B6"    # purple
-    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/family_matrimonial"
+    data_dir: "../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/family_matrimonial"
     limit: null
 
   - name: land_property
     color: "#1ABC9C"    # teal
-    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/land_property"
+    data_dir: "../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/land_property"
     limit: null
 
   - name: motor_accidents
     color: "#F39C12"    # orange
-    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/motor_accidents"
+    data_dir: "../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/motor_accidents"
     limit: null
 
   - name: sexual_offences
     color: "#3498DB"    # blue
-    data_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/sexual_offences"
+    data_dir: "../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/sexual_offences"
     limit: null
 
 # ── Graph structure (mirrors GNN reasoning_graph_policy) ──────────────────────
@@ -80,7 +80,7 @@ entity_colors:
   default:    "#BDC3C7"   # light grey
 
 # ── Output paths ──────────────────────────────────────────────────────────────
-output_dir: "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GRAPH_VISUALISER/outputs"
+output_dir: "outputs"
 
 # ── Dash app settings ─────────────────────────────────────────────────────────
 app:

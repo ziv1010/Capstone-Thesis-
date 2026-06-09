@@ -13,6 +13,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$SECTION_GNN"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 
 # ── Defaults — main cross_bucket model, fold 0 ───────────────

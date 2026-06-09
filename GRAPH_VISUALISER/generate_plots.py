@@ -22,7 +22,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import networkx as nx
 import numpy as np
-import yaml
+
+from path_utils import load_config, resolve_output_arg
 
 # ── style ─────────────────────────────────────────────────────────────────────
 plt.rcParams.update({
@@ -38,6 +39,7 @@ plt.rcParams.update({
 
 BUCKET_DISPLAY = {
     "financial_fraud":    "Financial fraud",
+    "fin_fraud":          "Financial fraud",
     "family_matrimonial": "Family/matrimonial",
     "land_property":      "Land/property",
     "motor_accidents":    "Motor accidents",
@@ -49,11 +51,6 @@ ENTITY_ORDER = ["statute", "provision", "precedent", "court", "judge", "lawyer",
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
-
-def load_config(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
-
 
 def savefig(fig: plt.Figure, out_dir: Path, stem: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -308,9 +305,9 @@ def main():
     parser.add_argument("--out",    default="outputs/plots")
     args = parser.parse_args()
 
-    cfg      = load_config(args.config)
-    out_dir  = Path(args.out)
-    artefact = Path(cfg.get("output", {}).get("dir", "outputs"))
+    cfg, config_path = load_config(args.config)
+    out_dir  = resolve_output_arg(args.out, config_path)
+    artefact = Path(cfg.get("output_dir", cfg.get("output", {}).get("dir", "outputs")))
     bcolors  = bucket_colors(cfg)
 
     print("Loading artefacts …")

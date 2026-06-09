@@ -12,12 +12,15 @@ import glob
 import sys
 from collections import defaultdict, Counter
 from itertools import combinations
+from pathlib import Path
 import networkx as nx
 
 # ── config ────────────────────────────────────────────────────────────────────
 
-BASE_DIR = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3"
-OUT_DIR  = "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/GRAPH_VISUALISER/entity_analysis/outputs"
+APP_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = APP_ROOT.parent
+BASE_DIR = REPO_ROOT / "DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved"
+OUT_DIR = Path(__file__).resolve().parent / "outputs"
 
 BUCKETS = [
     "family_matrimonial",
@@ -246,6 +249,7 @@ def serialise_graph(G: nx.Graph, centrality: dict, bucket_name: str) -> dict:
 
 def run_within_bucket():
     print("\n═══ WITHIN-BUCKET ANALYSIS ═══\n")
+    (OUT_DIR / "within_bucket").mkdir(parents=True, exist_ok=True)
     summaries = []
 
     for bucket in BUCKETS:
@@ -261,7 +265,7 @@ def run_within_bucket():
         centrality = compute_centrality(G)
         result     = serialise_graph(G, centrality, bucket)
 
-        out_path = f"{OUT_DIR}/within_bucket/{bucket}.json"
+        out_path = OUT_DIR / "within_bucket" / f"{bucket}.json"
         with open(out_path, "w") as f:
             json.dump(result, f, indent=2)
         print(f"  saved → {out_path}")
@@ -274,7 +278,7 @@ def run_within_bucket():
             "top5_pagerank": result["top_by_pagerank"][:5],
         })
 
-    summary_path = f"{OUT_DIR}/within_bucket/_summary.json"
+    summary_path = OUT_DIR / "within_bucket" / "_summary.json"
     with open(summary_path, "w") as f:
         json.dump(summaries, f, indent=2)
     print(f"\nWithin-bucket summary → {summary_path}")
@@ -282,9 +286,10 @@ def run_within_bucket():
 
 def run_cross_bucket():
     print("\n═══ CROSS-BUCKET ANALYSIS ═══\n")
+    (OUT_DIR / "cross_bucket").mkdir(parents=True, exist_ok=True)
 
     # use the pre-merged combined dataset directory
-    cross_dir = f"{BASE_DIR}/combined_dataset_without_food_safety"
+    cross_dir = BASE_DIR / "combined_dataset_without_food_safety"
     files = sorted(glob.glob(f"{cross_dir}/*.json"))
     if MAX_FILES:
         files = files[:MAX_FILES * len(BUCKETS)]
@@ -296,7 +301,7 @@ def run_cross_bucket():
     centrality = compute_centrality(G)
     result     = serialise_graph(G, centrality, "cross_bucket")
 
-    out_path = f"{OUT_DIR}/cross_bucket/cross_bucket_analysis.json"
+    out_path = OUT_DIR / "cross_bucket" / "cross_bucket_analysis.json"
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
     print(f"  saved → {out_path}")
@@ -308,7 +313,7 @@ def run_cross_bucket():
     for t in by_type:
         by_type[t].sort(key=lambda x: x["pagerank"], reverse=True)
 
-    breakdown_path = f"{OUT_DIR}/cross_bucket/by_entity_type.json"
+    breakdown_path = OUT_DIR / "cross_bucket" / "by_entity_type.json"
     with open(breakdown_path, "w") as f:
         json.dump({t: v[:50] for t, v in by_type.items()}, f, indent=2)
     print(f"  type breakdown → {breakdown_path}")

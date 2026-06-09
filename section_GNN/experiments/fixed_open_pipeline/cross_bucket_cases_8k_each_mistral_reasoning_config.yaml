@@ -3,14 +3,14 @@ project:
   seed: 42
 
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/cross_bucket_cases_8k_each_mistral
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/cross_bucket_cases_8k_each_mistral_reasoning/audits
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/cross_bucket_cases_8k_each_mistral_reasoning
+  raw_json_dir: ../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/cross_bucket_cases_8k_each_mistral
+  processed_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/processed
+  cleaned_case_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/processed/cleaned_cases
+  normalized_entity_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/processed/normalized_entities
+  embeddings_cache_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/embeddings_cache
+  graph_cache_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/graph_cache
+  audits_dir: data/cross_bucket_cases_8k_each_mistral_reasoning/audits
+  outputs_dir: outputs/cross_bucket_cases_8k_each_mistral_reasoning
 
 data:
   file_glob: "*__*.json"

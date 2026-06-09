@@ -30,11 +30,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
-import yaml
 
-EXP_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test")
-SECTION_GNN_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN")
+EXP_ROOT = Path(__file__).resolve().parents[1]
+SECTION_GNN_ROOT = EXP_ROOT.parent
 sys.path.insert(0, str(SECTION_GNN_ROOT))
+
+from src.utils.io import load_yaml, resolve_path
 
 
 def parse_args() -> argparse.Namespace:
@@ -42,11 +43,6 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--config", default=str(EXP_ROOT / "config.yaml"))
     p.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     return p.parse_args()
-
-
-def load_yaml(path: str) -> dict:
-    with open(path) as f:
-        return yaml.safe_load(f)
 
 
 def load_graph_bundle(path: str) -> tuple:
@@ -129,7 +125,7 @@ def main() -> None:
     print(f"[04_inference] test cases: {n_cases}", flush=True)
 
     print(f"[04_inference] loading trained graph (for metadata): {inf_cfg['trained_graph_cache']}", flush=True)
-    train_data, train_meta = load_graph_bundle(inf_cfg["trained_graph_cache"])
+    train_data, train_meta = load_graph_bundle(str(resolve_path(inf_cfg["trained_graph_cache"])))
     train_metadata = (list(train_data.node_types), [tuple(e) for e in train_data.edge_types])
     label_names = list(train_meta.get("label_names", ["-1", "1"]))
 
@@ -148,7 +144,7 @@ def main() -> None:
     padded_data = padded_data.to(device)
 
     folds = list(inf_cfg.get("folds_to_use", [0]))
-    fold_dir_root = Path(inf_cfg["trained_model_run_dir"])
+    fold_dir_root = resolve_path(inf_cfg["trained_model_run_dir"])
     all_probs = []
     per_fold_summary = []
     for fold_idx in folds:

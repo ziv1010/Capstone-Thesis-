@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 
-SECTION_GNN_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN")
+SECTION_GNN_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_ROOT = SECTION_GNN_ROOT / "data/timed_bucket_runs"
 DEFAULT_OUTPUT_ROOT = SECTION_GNN_ROOT / "outputs/timed_bucket_runs"
 DEFAULT_BUCKETS = (

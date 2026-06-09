@@ -65,6 +65,7 @@ __pycache__/
 **/checkpoints/
 
 # Legacy scratch snapshot: keep scripts/docs visible, ignore bulky data.
+DUMP_MISC/
 old_scripts_pt2/temp_dump/**
 !old_scripts_pt2/temp_dump/**/
 !old_scripts_pt2/temp_dump/**/*.py
@@ -133,8 +134,10 @@ DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/entity_resolver/logs/
 Fixed_GPU_OpenNyai/.cache/
 Fixed_GPU_OpenNyai/.runtime_home/
 Fixed_GPU_OpenNyai/outputs/
-Fixed_GPU_OpenNyai/cross_validated_outputs/
-Fixed_GPU_OpenNyai/final_outputs/
+Fixed_GPU_OpenNyai/cross_validated_outputs/*
+!Fixed_GPU_OpenNyai/cross_validated_outputs/README.md
+Fixed_GPU_OpenNyai/final_outputs/*
+!Fixed_GPU_OpenNyai/final_outputs/README.md
 Fixed_GPU_OpenNyai/fin_fraud_extract/
 Fixed_GPU_OpenNyai/fin_fraud_label_only_test/
 Fixed_GPU_OpenNyai/fin_fraud_labelled/
@@ -153,7 +156,11 @@ GRAPH_VISUALISER/outputs/
 GRAPH_VISUALISER/**/outputs/
 GRAPH_VISUALISER/dump_old_data_visualisations/
 Graph_Analyser/outputs/
-FINAL_EXPLANATION/outputs/
+Graph_Analyser_OLD/outputs/**
+!Graph_Analyser_OLD/outputs/
+!Graph_Analyser_OLD/outputs/README.md
+FINAL_EXPLANATION/outputs/*
+!FINAL_EXPLANATION/outputs/README.md
 
 # Section GNN generated data, caches, and experiment outputs
 section_GNN/data/
@@ -190,3 +197,37 @@ Thesis_report/**/*.fls
 Thesis_report/**/*.log
 Thesis_report/**/*.out
 Thesis_report/**/*.synctex.gz
+
+# Keep README marker files visible inside ignored data/output folders.
+INPUT_DATA/**
+!INPUT_DATA/**/
+!INPUT_DATA/**/README.md
+
+!Thesis_FINAL_DATA/
+Thesis_FINAL_DATA/**
+!Thesis_FINAL_DATA/**/
+!Thesis_FINAL_DATA/**/README.md
+
+!GRAPH_VISUALISER/outputs/
+GRAPH_VISUALISER/outputs/**
+!GRAPH_VISUALISER/outputs/README.md
+
+!posthoc_case_reports/analysis/
+posthoc_case_reports/analysis/**
+!posthoc_case_reports/analysis/README.md
+!posthoc_case_reports/current/
+posthoc_case_reports/current/**
+!posthoc_case_reports/current/README.md
+!posthoc_case_reports/timeline_merger/
+posthoc_case_reports/timeline_merger/**
+!posthoc_case_reports/timeline_merger/README.md
+
+!model comparison/data/
+model comparison/data/**
+!model comparison/data/README.md
+!model comparison/models/
+model comparison/models/**
+!model comparison/models/README.md
+!model comparison/outputs/
+model comparison/outputs/**
+!model comparison/outputs/README.md

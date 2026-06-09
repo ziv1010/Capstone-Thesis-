@@ -31,7 +31,7 @@ from typing import Iterable
 
 import pandas as pd
 
-EXP_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test")
+EXP_ROOT = Path(__file__).resolve().parents[1]
 ANALYSIS_DIR = EXP_ROOT / "outputs/analysis"
 DIFFS_DIR = ANALYSIS_DIR / "per_case_diffs"
 

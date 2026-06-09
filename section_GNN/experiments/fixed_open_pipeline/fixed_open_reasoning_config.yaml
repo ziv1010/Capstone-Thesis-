@@ -3,14 +3,14 @@ project:
   seed: 42
 
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/fin_fraud_labelled/labelled_jsons
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/fin_fraud_labelled_reasoning/audits
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/fin_fraud_labelled_reasoning
+  raw_json_dir: ../Fixed_GPU_OpenNyai/fin_fraud_labelled/labelled_jsons
+  processed_dir: data/fin_fraud_labelled_reasoning/processed
+  cleaned_case_dir: data/fin_fraud_labelled_reasoning/processed/cleaned_cases
+  normalized_entity_dir: data/fin_fraud_labelled_reasoning/processed/normalized_entities
+  embeddings_cache_dir: data/fin_fraud_labelled_reasoning/embeddings_cache
+  graph_cache_dir: data/fin_fraud_labelled_reasoning/graph_cache
+  audits_dir: data/fin_fraud_labelled_reasoning/audits
+  outputs_dir: outputs/fin_fraud_labelled_reasoning
 
 data:
   file_glob: "*.json"

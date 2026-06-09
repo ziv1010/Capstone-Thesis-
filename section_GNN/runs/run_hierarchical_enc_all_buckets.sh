@@ -22,6 +22,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$SECTION_GNN"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 PYTHON="micromamba run -n $MAMBA_ENV python"
 GPUS="${GPUS:-0,1,2,3,4,5,6,7}"

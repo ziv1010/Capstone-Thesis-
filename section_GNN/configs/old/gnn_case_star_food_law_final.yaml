@@ -3,14 +3,14 @@ project:
   seed: 42
 
 paths:
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai/outputs/food_law_case _output/augmented_jsons
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/processed
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/processed/cleaned_cases
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/processed/normalized_entities
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/graph_cache
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/food_law_final/audits
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/food_law_final
+  raw_json_dir: ../Fixed_GPU_OpenNyai/outputs/food_law_case _output/augmented_jsons
+  processed_dir: data/food_law_final/processed
+  cleaned_case_dir: data/food_law_final/processed/cleaned_cases
+  normalized_entity_dir: data/food_law_final/processed/normalized_entities
+  embeddings_cache_dir: data/food_law_final/embeddings_cache
+  graph_cache_dir: data/food_law_final/graph_cache
+  audits_dir: data/food_law_final/audits
+  outputs_dir: outputs/food_law_final
 
 data:
   file_glob: "*.json"

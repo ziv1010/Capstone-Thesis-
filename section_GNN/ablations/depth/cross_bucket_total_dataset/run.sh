@@ -4,6 +4,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+cd "$SECTION_GNN"
 BASE_CONFIG="$SECTION_GNN/runs/cross_bucket_total_dataset/config.yaml"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 K=5

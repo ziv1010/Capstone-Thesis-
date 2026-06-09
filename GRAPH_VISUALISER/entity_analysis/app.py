@@ -4,8 +4,7 @@ Two tabs: Within-Bucket and Cross-Bucket.
 """
 
 import json
-import os
-import glob
+from pathlib import Path
 import dash
 from dash import dcc, html, dash_table, Input, Output, State
 import plotly.graph_objects as go
@@ -15,17 +14,27 @@ import networkx as nx
 
 # ── paths ─────────────────────────────────────────────────────────────────────
 
-OUT_DIR = os.path.join(os.path.dirname(__file__), "outputs")
-WITHIN_DIR = os.path.join(OUT_DIR, "within_bucket")
-CROSS_DIR  = os.path.join(OUT_DIR, "cross_bucket")
+ROOT = Path(__file__).resolve().parent
+OUT_DIR = ROOT / "outputs"
+WITHIN_DIR = OUT_DIR / "within_bucket"
+CROSS_DIR = OUT_DIR / "cross_bucket"
 
 BUCKET_COLOURS = {
-    "family_matrimonial_timed_mistral": "#e63946",
-    "land_property_timed_mistral":      "#2a9d8f",
-    "motor_accidents_timed_mistral":    "#e9c46a",
-    "sexual_offences_timed_mistral":    "#a8dadc",
-    "fin_fraud_timed_mistral":          "#457b9d",
-    "unknown":                          "#adb5bd",
+    "family_matrimonial": "#e63946",
+    "land_property":      "#2a9d8f",
+    "motor_accidents":    "#e9c46a",
+    "sexual_offences":    "#a8dadc",
+    "fin_fraud":          "#457b9d",
+    "unknown":            "#adb5bd",
+}
+
+BUCKET_LABELS = {
+    "family_matrimonial": "Family Matrimonial",
+    "land_property": "Land Property",
+    "motor_accidents": "Motor Accidents",
+    "sexual_offences": "Sexual Offences",
+    "fin_fraud": "Financial Fraud",
+    "unknown": "Unknown",
 }
 
 TYPE_COLOURS = {
@@ -41,36 +50,39 @@ TYPE_COLOURS = {
 # ── data loading ──────────────────────────────────────────────────────────────
 
 def load_within_summary():
-    path = os.path.join(WITHIN_DIR, "_summary.json")
-    if not os.path.exists(path):
+    path = WITHIN_DIR / "_summary.json"
+    if not path.exists():
         return []
-    with open(path) as f:
+    with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
 def load_within_bucket(bucket: str) -> dict:
-    path = os.path.join(WITHIN_DIR, f"{bucket}.json")
-    if not os.path.exists(path):
+    path = WITHIN_DIR / f"{bucket}.json"
+    if not path.exists():
         return {}
-    with open(path) as f:
+    with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
 def load_cross_bucket() -> dict:
-    path = os.path.join(CROSS_DIR, "cross_bucket_analysis.json")
-    if not os.path.exists(path):
+    path = CROSS_DIR / "cross_bucket_analysis.json"
+    if not path.exists():
         return {}
-    with open(path) as f:
+    with path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
 def available_buckets():
-    files = glob.glob(os.path.join(WITHIN_DIR, "*.json"))
     return [
-        os.path.basename(f).replace(".json", "")
-        for f in files
-        if not os.path.basename(f).startswith("_")
+        path.stem
+        for path in sorted(WITHIN_DIR.glob("*.json"))
+        if not path.name.startswith("_")
     ]
+
+
+def bucket_label(bucket: str) -> str:
+    return BUCKET_LABELS.get(bucket, bucket.replace("_", " ").title())
 
 
 # ── graph layout helper ────────────────────────────────────────────────────────
@@ -235,8 +247,7 @@ app.layout = html.Div(style={**DARK, "fontFamily": "monospace", "minHeight": "10
                 html.Label("Select Bucket:", style={"fontWeight": "bold"}),
                 dcc.Dropdown(
                     id="bucket-selector",
-                    options=[{"label": b.replace("_timed_mistral", "").replace("_", " ").title(), "value": b}
-                             for b in buckets_available],
+                    options=[{"label": bucket_label(b), "value": b} for b in buckets_available],
                     value=buckets_available[0] if buckets_available else None,
                     style={"backgroundColor": "#0f3460", "color": "#000"},
                 ),
@@ -390,7 +401,7 @@ def update_within(bucket, metric, topn):
 
     net_fig = make_network_figure(
         nodes, edges, colour_key="type", top_n=topn,
-        title=f"Entity Network — {bucket.replace('_timed_mistral','').replace('_',' ').title()}",
+        title=f"Entity Network — {bucket_label(bucket)}",
     )
 
     top_list = data.get(metric, [])

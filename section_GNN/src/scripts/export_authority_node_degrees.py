@@ -8,18 +8,10 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_RUN_DIR = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/"
-    "outputs/timed_bucket_runs/fin_fraud_timed_mistral"
-)
-DEFAULT_OUTPUT_ROOT = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/"
-    "outputs/timed_bucket_runs"
-)
-DEFAULT_DATA_ROOT = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/"
-    "data/timed_bucket_runs"
-)
+SECTION_GNN_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_RUN_DIR = SECTION_GNN_ROOT / "outputs/timed_bucket_runs/fin_fraud_timed_mistral"
+DEFAULT_OUTPUT_ROOT = SECTION_GNN_ROOT / "outputs/timed_bucket_runs"
+DEFAULT_DATA_ROOT = SECTION_GNN_ROOT / "data/timed_bucket_runs"
 DEFAULT_BUCKETS = (
     "family_matrimonial_timed_mistral",
     "fin_fraud_timed_mistral",

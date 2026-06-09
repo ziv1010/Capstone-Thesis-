@@ -23,6 +23,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 PY="micromamba run -n $MAMBA_ENV python"
+cd "$SECTION_GNN"
 
 if [[ "$SKIP_BUILD" == false ]]; then
   echo ">>> Building ablation graph (text-only) ..."

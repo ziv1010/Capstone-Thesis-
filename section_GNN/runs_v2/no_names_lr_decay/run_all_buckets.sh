@@ -14,6 +14,7 @@ set -euo pipefail
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$THIS_DIR/../.." && pwd)"
+cd "$SECTION_GNN"
 PARTY_ARGS_DIR="$SECTION_GNN/runs_v2/party_args_lr_decay"
 
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"

@@ -32,20 +32,25 @@ import yaml
 # ---------------------------------------------------------------------------
 THIS_DIR = Path(__file__).resolve().parent
 SECTION_GNN = THIS_DIR.parents[1]
+REPO_ROOT = SECTION_GNN.parent
 
-FOOD_SAFETY_DIR = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-"
-    "/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety"
+FOOD_SAFETY_DIR = (
+    REPO_ROOT
+    / "DATA_SET_BUILDER_AND_EXPLORER"
+    / "Timeline_Maker"
+    / "output_merged_v3"
+    / "food_safety"
 )
-KFOLD_DIR = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-"
-    "/section_GNN/outputs/timed_bucket_runs/cross_bucket_total_dataset"
-    "/models/cross_bucket_party_args_lr_decay_kfold/kfold"
+KFOLD_DIR = (
+    SECTION_GNN
+    / "outputs"
+    / "timed_bucket_runs"
+    / "cross_bucket_total_dataset"
+    / "models"
+    / "cross_bucket_party_args_lr_decay_kfold"
+    / "kfold"
 )
-TRAINING_CONFIG = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-"
-    "/section_GNN/runs/cross_bucket_total_dataset/config.yaml"
-)
+TRAINING_CONFIG = SECTION_GNN / "runs" / "cross_bucket_total_dataset" / "config.yaml"
 
 PREPROCESS_SCRIPT = SECTION_GNN / "experiments" / "fixed_open_pipeline" / "preprocess_fixed_open.py"
 BUILD_GRAPH_SCRIPT = SECTION_GNN / "src" / "scripts" / "build_graph.py"

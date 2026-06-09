@@ -90,14 +90,14 @@ model:
   num_heads: 4
   num_layers: 2
 paths:
-  audits_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/audits
-  cleaned_case_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed/cleaned_cases
-  embeddings_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/embeddings_cache
-  graph_cache_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/graph_cache
-  normalized_entity_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed/normalized_entities
-  outputs_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/outputs
-  processed_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/cross_domain_test/food_safety/processed
-  raw_json_dir: /scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety
+  audits_dir: cross_domain_test/food_safety/audits
+  cleaned_case_dir: cross_domain_test/food_safety/processed/cleaned_cases
+  embeddings_cache_dir: cross_domain_test/food_safety/embeddings_cache
+  graph_cache_dir: cross_domain_test/food_safety/graph_cache
+  normalized_entity_dir: cross_domain_test/food_safety/processed/normalized_entities
+  outputs_dir: cross_domain_test/food_safety/outputs
+  processed_dir: cross_domain_test/food_safety/processed
+  raw_json_dir: ../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/food_safety
 preprocessing:
   dropped_sentence_roles:
   - ANALYSIS

@@ -35,19 +35,17 @@ except ImportError:  # pragma: no cover - optional dependency
 
 
 DEFAULT_MODEL_ID = "mistralai/Mistral-Small-24B-Instruct-2501"
-WORKSPACE_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = PROJECT_ROOT.parent
+WORKSPACE_ROOT = REPO_ROOT.parent
 DEFAULT_LOCAL_MODEL_CACHE_DIR = (
     WORKSPACE_ROOT
     / "hf_cache"
     / "hub"
     / f"models--{DEFAULT_MODEL_ID.replace('/', '--')}"
 )
-DEFAULT_INPUT_DIR = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/OpenNyai/outputs/current_output/combined"
-)
-DEFAULT_OUTPUT_DIR = Path(
-    "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/OpenNyai/outputs/current_output/combined_mistral24b_case_outcomes"
-)
+DEFAULT_INPUT_DIR = PROJECT_ROOT / "outputs" / "current_output" / "combined"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "outputs" / "current_output" / "combined_mistral24b_case_outcomes"
 
 LABEL_TO_SCORE = {
     "appellant_won": 1,

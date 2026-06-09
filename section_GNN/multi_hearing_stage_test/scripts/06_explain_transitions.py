@@ -21,8 +21,17 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-EXP_ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/multi_hearing_stage_test")
-GRAPH_ANALYSER = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Graph_Analyser")
+EXP_ROOT = Path(__file__).resolve().parents[1]
+SECTION_GNN_ROOT = EXP_ROOT.parent
+REPO_ROOT = SECTION_GNN_ROOT.parent
+GRAPH_ANALYSER = REPO_ROOT / "Graph_Analyser"
+
+
+def resolve_from_section_gnn(path: str | Path) -> Path:
+    expanded = Path(path).expanduser()
+    if expanded.is_absolute():
+        return expanded
+    return (SECTION_GNN_ROOT / expanded).resolve()
 
 
 def parse_args() -> argparse.Namespace:
@@ -41,13 +50,13 @@ def main() -> None:
     with open(args.config) as f:
         cfg = yaml.safe_load(f)
     inf = cfg["inference"]
-    test_graph = Path(cfg["paths"]["graph_cache_dir"]) / cfg["graph"]["cache_name"]
-    fold_dir = Path(inf["trained_model_run_dir"]) / f"fold_{args.fold:02d}"
+    test_graph = resolve_from_section_gnn(cfg["paths"]["graph_cache_dir"]) / cfg["graph"]["cache_name"]
+    fold_dir = resolve_from_section_gnn(inf["trained_model_run_dir"]) / f"fold_{args.fold:02d}"
     output_root = EXP_ROOT / "outputs" / "explainer"
     output_root.mkdir(parents=True, exist_ok=True)
 
     explainer_cfg = {
-        "section_gnn_root": str(Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN")),
+        "section_gnn_root": str(SECTION_GNN_ROOT),
         "graph_cache": str(test_graph),
         "checkpoint_dir": str(fold_dir),
         "model": inf["model"],

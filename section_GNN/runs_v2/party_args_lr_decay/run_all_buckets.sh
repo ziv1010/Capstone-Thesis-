@@ -15,6 +15,7 @@ set -euo pipefail
 
 V2_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SECTION_GNN="$(cd "$V2_DIR/../.." && pwd)"
+cd "$SECTION_GNN"
 MAMBA_ENV="${MAMBA_ENV:-thesis_work}"
 GPUS_BUILD="${GPUS_BUILD:-0,1,2,3,4,5,6,7}"
 SKIP_BUILD="${SKIP_BUILD:-0}"
