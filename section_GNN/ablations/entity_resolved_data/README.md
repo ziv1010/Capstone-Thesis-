@@ -1,34 +1,28 @@
-# entity_resolved_data
+# 🔗 entity_resolved_data — Canonicalized-Entity Ablation
 
-This ablation uses externally resolved entity data instead of the baseline
-entity extraction/canonicalization assumptions.
+> Part of [`ablations/`](../README.md).
 
-## Main Files
+Trains on the **entity-resolved dataset** produced by
+[`DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/entity_resolver/`](../../../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/entity_resolver/README.md)
+instead of the baseline entity extraction — testing the effect of statute/provision/precedent
+canonicalization on graph quality. The entity-resolved **section-separated LR-decay
+cross-bucket model** from this family is the one explained in `FINAL_EXPLANATION/`.
 
-- `prepare_configs.py`: generates per-bucket configs for entity-resolved runs.
-- `preprocess_fixed_open_resolved.py`: preprocessing entry point for resolved
-  entity payloads.
-- `run_entity_resolved_data_ablation.sh`: main launcher.
-- `run_section_sep_no_names_both_lr.sh`: helper for combined section/no-name LR
-  comparisons.
+## 📄 Main Files
 
-## Config Layout
+| File | Role |
+|------|------|
+| `prepare_configs.py` | Generates per-bucket configs for entity-resolved runs. |
+| `preprocess_fixed_open_resolved.py` | Preprocessing entry point for resolved entity payloads. |
+| `run_entity_resolved_data_ablation.sh` | Main launcher. |
+| `run_section_sep_no_names_both_lr.sh` | Helper for combined section/no-name LR comparisons. |
 
-Generated configs live under:
+## 🗂️ Configs & Outputs
 
-```text
-ablations/entity_resolved_data/configs/
-ablations/entity_resolved_data/configs_no_lr/
-```
+Configs: `configs/` and `configs_no_lr/`, with `party`, `section`, and `section_no_names`
+subfolders naming the paired graph variant.
+Outputs: `data/ablations/entity_resolved_data/` and `outputs/ablations/entity_resolved_data/`.
 
-The subfolders `party`, `section`, and `section_no_names` identify which graph
-variant the resolved-entity data is paired with.
+---
 
-## Outputs
-
-Generated data and model outputs usually use:
-
-```text
-data/ablations/entity_resolved_data/
-outputs/ablations/entity_resolved_data/
-```
+⬆️ Back to [`ablations/`](../README.md)

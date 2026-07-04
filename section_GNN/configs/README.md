@@ -1,7 +1,9 @@
-# configs
+# 🗃️ configs — Legacy Configuration Archive
 
-This folder contains older legacy configs retained for reference. The main
-current experiment configs live closer to their launchers:
+> Part of [`section_GNN/`](../README.md) · **reference only** — the active configs live next
+> to their launchers.
+
+Current experiment configs are located at:
 
 - `runs/<bucket>/config.yaml`
 - `runs_v2/<variant>/<bucket>/config.yaml`
@@ -9,9 +11,9 @@ current experiment configs live closer to their launchers:
 - `experiments/fixed_open_pipeline/*.yaml`
 - `multi_hearing_stage_test/config.yaml`
 
-## Current Path Convention
+## 🗺️ Current Path Convention
 
-Configs should use paths relative to `section_GNN`, such as:
+Configs use paths relative to `section_GNN`:
 
 ```yaml
 paths:
@@ -20,11 +22,13 @@ paths:
   outputs_dir: outputs/timed_bucket_runs/cross_bucket_total_dataset
 ```
 
-Python scripts should load configs through `src.utils.io.load_yaml` so those
-relative paths resolve correctly.
+Load them via `src.utils.io.load_yaml` so relative paths resolve correctly.
 
-## `old/`
+## 🗄️ `old/`
 
-`configs/old/` contains pre-refactor configs. Use them only for historical
-comparison unless you have checked that their fields still match the current
-pipeline.
+`configs/old/` holds pre-refactor configs. Use them only for historical comparison after
+checking that their fields still match the current pipeline.
+
+---
+
+⬆️ Back to [`section_GNN/`](../README.md)

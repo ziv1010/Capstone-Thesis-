@@ -1,72 +1,40 @@
-# Run Scripts
+# 🚀 run_scripts — Stage ⑤ Shell Launchers
 
-This folder contains shell launchers for the final explanation pipeline.
+> Part of [`FINAL_EXPLANATION/`](../README.md) · run from the repository root **or** from
+> `FINAL_EXPLANATION/` — every script resolves `SCRIPT_DIR`, `APP_ROOT`
+> (`FINAL_EXPLANATION/`), `REPO_ROOT`, and `SECTION_GNN` (`REPO_ROOT/section_GNN`) from its
+> own location.
 
-Run them from the repository root:
+## ⭐ Primary Launchers
 
-```bash
-bash FINAL_EXPLANATION/run_scripts/run_default.sh
-```
+| Script | Purpose |
+|--------|---------|
+| `run_entity_resolved_section_sep_lr_decay_cross_bucket_all.sh` | **Full current end-to-end workflow** — explanations, validation, audits, pattern analyses, full-graph analyses, optional visualizer startup. |
+| `run_default.sh` | Single-process fold-00 explanation run — ideal for smoke tests. |
+| `run_multi_gpu.sh` | Shards explanation cases over multiple GPUs; writes shard logs/outputs and merges shard CSVs with `merge_outputs.py` (skip with `--no-merge`). |
+| `run_validation_multi_gpu.sh` | Shards faithfulness + prediction-bucket validation over GPUs; merges with `merge_validation_outputs.py` (skip with `--no-merge`). |
+| `run_visualizer.sh` | Starts the ⭐ **Final Explanation Visualizer** (`visualizer.py`) on port **8899**. |
 
-or from `FINAL_EXPLANATION/`:
+## 🕵️ Audit & Analysis Launchers
 
-```bash
-bash run_scripts/run_default.sh
-```
+| Script | Purpose |
+|--------|---------|
+| `run_identity_shortcut_audit.sh` | Identity-only train-label shortcut audit. |
+| `run_mask_sensitivity_audit.sh` | Frozen-model inference masks for identity groups and hub authorities. |
+| `run_full_graph_communities.sh` | Full-graph Leiden detection, hierarchy analysis, profiling, bridge/hub authority analysis. |
 
-Each script resolves:
+## 🔧 Common Environment Overrides
 
-- `SCRIPT_DIR`: this `run_scripts/` folder.
-- `APP_ROOT`: the parent `FINAL_EXPLANATION/` folder.
-- `REPO_ROOT`: the parent repository folder.
-- `SECTION_GNN`: `REPO_ROOT/section_GNN`.
+| Variable | Meaning |
+|----------|---------|
+| `MAMBA_ENV` | Micromamba environment (default `thesis_work`). |
+| `GPUS` | Comma-separated GPU IDs. |
+| `OUTPUT_BASE` | Prefix used by the full workflow. |
+| `EXPLAIN_DIR` / `PATTERN_DIR` / `FULL_GRAPH_DIR` | The three output directories. |
+| `MODEL` / `PRED` / `GRAPH` / `CONFIG` | Checkpoint, predictions CSV, graph cache, experiment config. |
+| `RUN_*` | Enable/skip individual stages in the full workflow. |
+| `HOST` / `PORT` | Visualizer bind address (defaults `127.0.0.1` / `8899`). |
 
-## Primary Launchers
+---
 
-- `run_entity_resolved_section_sep_lr_decay_cross_bucket_all.sh`
-  - Full current end-to-end explanation workflow.
-  - Runs explanations, validation, audits, pattern analyses, full-graph
-    analyses, and optional visualizer startup.
-
-- `run_default.sh`
-  - Single-process default fold-00 explanation run.
-  - Useful for smoke tests and small local runs.
-
-- `run_multi_gpu.sh`
-  - Shards explanation cases over multiple GPUs.
-  - Writes shard logs and outputs under the requested output directory.
-  - Merges shard CSVs with `merge_outputs.py` unless `--no-merge` is passed.
-
-- `run_validation_multi_gpu.sh`
-  - Shards faithfulness and prediction-bucket validation over GPUs.
-  - Merges validation outputs with `merge_validation_outputs.py` unless
-    `--no-merge` is passed.
-
-- `run_visualizer.sh`
-  - Starts the local HTML/JS visualizer served by `visualizer.py`.
-
-## Audit And Analysis Launchers
-
-- `run_identity_shortcut_audit.sh`
-  - Runs the identity-only train-label shortcut audit.
-
-- `run_mask_sensitivity_audit.sh`
-  - Runs frozen-model inference masks for identity groups and hub authorities.
-
-- `run_full_graph_communities.sh`
-  - Runs full-graph Leiden detection, hierarchy analysis, profiling, and
-    bridge/hub authority analysis.
-
-## Common Environment Overrides
-
-- `MAMBA_ENV`: micromamba environment. Default: `thesis_work`.
-- `GPUS`: comma-separated GPU IDs.
-- `OUTPUT_BASE`: prefix used by the full workflow.
-- `EXPLAIN_DIR`: explanation output directory.
-- `PATTERN_DIR`: pattern analysis output directory.
-- `FULL_GRAPH_DIR`: full-graph analysis output directory.
-- `MODEL`: model checkpoint.
-- `PRED`: predictions CSV.
-- `GRAPH`: graph cache.
-- `CONFIG`: experiment config.
-- `RUN_*`: enable or skip individual stages in the full workflow.
+⬆️ Back to [`FINAL_EXPLANATION/`](../README.md)

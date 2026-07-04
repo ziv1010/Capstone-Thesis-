@@ -1,31 +1,26 @@
-# text_only
+# 📝 text_only — Text-Only Graph Ablation
 
-The text-only ablation removes legal-entity and authority-node structure so the
-model mainly sees case and text-section information.
+> Part of [`ablations/`](../README.md).
 
-## Purpose
+Removes legal-entity and authority-node structure so the model sees only **case and
+text-section information** — testing whether performance comes from text encodings alone or
+from the heterogeneous legal graph structure.
 
-This tests whether performance comes from text encodings alone or from the
-heterogeneous legal graph structure.
+## 🧬 Node Policy
 
-## Typical Nodes
+Kept: `case`, `preamble`, `facts`, `arguments`, and party-specific argument sections where
+configured. Removed/disabled: `statute`, `provision`, `precedent`, `judge`, `lawyer`,
+`petitioner`, `respondent`.
 
-The configs restrict the graph to nodes such as:
-
-- `case`
-- `preamble`
-- `facts`
-- `arguments`
-- party-specific argument sections where configured
-
-Entity nodes such as statutes, provisions, precedent, judge, lawyer, petitioner,
-and respondent are removed or disabled.
-
-## Run Example
+## ▶️ Run
 
 ```bash
 bash ablations/text_only/cross_bucket_total_dataset/run.sh
 ```
 
-Each bucket folder has a `config.yaml`; some have a `config_hashing.yaml` for
+Each bucket folder has a `config.yaml`; some also have a `config_hashing.yaml` for
 hashing-encoder tests.
+
+---
+
+⬆️ Back to [`ablations/`](../README.md)

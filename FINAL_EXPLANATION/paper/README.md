@@ -1,14 +1,15 @@
-# Paper
+# 📄 paper — Experiment Overview Note
 
-This folder contains the LaTeX experiment overview note and its build artifacts.
+> Part of [`FINAL_EXPLANATION/`](../README.md) · LaTeX material, not pipeline code.
 
-## Main Source
+| File | Role |
+|------|------|
+| `experiments_overview.tex` | Human-readable LaTeX overview of the final explanation experiments. |
+| `experiments_overview.*` (other extensions) | LaTeX build byproducts (logs, aux files, latexmk metadata) — useful for local builds, not required by the Python pipeline. |
 
-- `experiments_overview.tex`
-  - Human-readable experiment overview for the final explanation work.
+The main paper/thesis sources live in
+[`Latex_Documentation/`](../../Latex_Documentation/README.md).
 
-## Generated Build Files
+---
 
-The remaining `experiments_overview.*` files are LaTeX build byproducts such as
-logs, auxiliary files, and latexmk metadata. They are useful for local builds but
-are not required by the Python explanation pipeline.
+⬆️ Back to [`FINAL_EXPLANATION/`](../README.md)

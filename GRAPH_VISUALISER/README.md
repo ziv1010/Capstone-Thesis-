@@ -1,78 +1,86 @@
-# Graph Visualiser
+# 🌐 GRAPH_VISUALISER — Extra Interactive Graph Explorer (Port 8050)
 
-Dash-based visual exploration tools for the final legal case graph and entity-connectivity analyses.
+> ➕ The repository's **extra** visualiser — a Dash app for exploring the final legal case
+> graph, plus static plotting/statistics tools for thesis figures.
+> *(The two main visualisers are the [Multi-Hearing Stage Test Visualiser](../section_GNN/multi_hearing_stage_test/visualiser/README.md) on port 8050 and the [Final Explanation Visualizer](../FINAL_EXPLANATION/README.md) on port 8899.)*
 
-## Data Source
+An interactive, **GNN-aligned** view of the case-entity graph: the graph policy in
+`config.yaml` mirrors `section_GNN`'s `reasoning_graph_policy`, so what you explore here is
+structurally what the model was trained on.
 
-The visualiser now points to the final entity-resolved Timeline Maker output:
+---
+
+## 🗄️ Data Source
+
+The visualiser reads the final entity-resolved Timeline Maker corpus (repo-relative paths in
+`config.yaml`, resolved by `path_utils.py` regardless of the launch directory):
 
 ```text
-../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/
+../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/<bucket>/
 ```
 
-`config.yaml` uses repo-relative paths for these five buckets:
+for the five buckets `fin_fraud`, `family_matrimonial`, `land_property`, `motor_accidents`,
+`sexual_offences` — each with its own colour throughout the app.
 
-- `fin_fraud`
-- `family_matrimonial`
-- `land_property`
-- `motor_accidents`
-- `sexual_offences`
+## 🧬 Graph Policy (mirrors the GNN)
 
-The path resolver in `path_utils.py` interprets relative paths from the location of `config.yaml`, so scripts work whether they are launched from the repo root or from `GRAPH_VISUALISER/`.
+- **Shared nodes** (one node per canonical entity across cases): `STATUTE`, `PROVISION`,
+  `PRECEDENT`, `COURT`, `JUDGE`, `LAWYER`
+- **Local nodes** (case-specific): `PETITIONER`, `RESPONDENT`
+- **Skipped** (too noisy): `DATE`, `GPE`, `OTHER_PERSON`, `CASE_NUMBER`, `ORG`, `WITNESS`
+- **Connectivity-ranked sampling** — cases are ranked by the sum of their shared-entity
+  degrees; the app shows the most structurally central cases per bucket (slider from top-10
+  up to `cases_per_bucket`, default 300; display cap 6 000 nodes; hubs with degree ≥ 8 always kept).
 
-## Main Files
+## 🪟 App Layout & Tabs
 
-- `config.yaml`: bucket list, final data paths, graph policy, sampling limits, colours, and Dash settings.
-- `path_utils.py`: shared path resolver for config, data, and output paths.
-- `build_graph.py`: builds the NetworkX graph artifacts from the final resolved JSONs.
-- `app.py`: launches the main interactive Dash graph visualiser.
-- `generate_plots.py`: exports static figures from the sampled graph artifacts.
-- `generate_plots_full.py`: exports full-dataset descriptive figures directly from the final JSON buckets.
-- `graph_stats.py`: computes full-graph statistics and graph-stat figures.
-- `generate_rhetorical_before_after.py`: compares rhetorical-role distributions before and after leakage filtering.
-- `entity_analysis/`: separate within-bucket and cross-bucket entity co-occurrence analysis and Dash app.
+Three-column layout — sidebar | graph + tabs | persistent details panel. Tabs:
+**Overview** · **Top Hubs** · **Bridges** · **Top Cases** · **Case Connections**.
+Clicking a case shows every connected case with the specific shared entities
+(statute/court/judge/…) grouped by type.
 
-## Running
+---
 
-Set up the environment once:
+## 📄 Main Files
+
+| File | Role |
+|------|------|
+| `config.yaml` | Buckets, data paths, graph policy, sampling limits, colours, Dash settings. |
+| `path_utils.py` | Shared path resolver (config-relative). |
+| `build_graph.py` | Builds the NetworkX graph artifacts from the resolved JSONs. |
+| `app.py` | The interactive Dash app. |
+| `generate_plots.py` | Static figures from the sampled graph artifacts. |
+| `generate_plots_full.py` | Full-dataset descriptive figures straight from the JSON buckets. |
+| `graph_stats.py` | Full-graph statistics + figures. |
+| `generate_rhetorical_before_after.py` | Rhetorical-role distributions before/after leakage filtering. |
+| `generate_thesis_extras.py` / `organise_thesis_figures.py` | Extra thesis figures and figure organisation. |
+| [`entity_analysis/`](entity_analysis/README.md) | Separate entity co-occurrence analysis + Dash app (port 8052). |
+| [`outputs/`](outputs/README.md) | 📤 Generated pickles, layouts, plots, stats, thesis figures. |
+| [`dump_old_data_visualisations/`](dump_old_data_visualisations/README.md) | 🗄️ Archived older visualisation outputs. |
+
+---
+
+## ▶️ Running
 
 ```bash
+# One-time environment setup (creates 'graph_vis'):
 bash GRAPH_VISUALISER/setup_env.sh
-```
 
-Build the graph artifacts:
-
-```bash
+# Build the graph artifacts:
 bash GRAPH_VISUALISER/run_build.sh
+bash GRAPH_VISUALISER/run_build.sh --limit 500 --skip-layout   # quick smoke test
+
+# Launch the Dash app (default port 8050):
+bash GRAPH_VISUALISER/run_app.sh
+bash GRAPH_VISUALISER/run_app.sh 8051                          # custom port
+MAMBA_ENV=my_env bash GRAPH_VISUALISER/run_app.sh 8050         # custom env
 ```
 
-For a quick smoke test:
+> ⚠️ The ⭐ Multi-Hearing Stage Test Visualiser also defaults to port **8050** — run one at a
+> time or pass different ports. Remote server? Tunnel first:
+> `ssh -L 8050:localhost:8050 <user>@<server>`.
 
-```bash
-bash GRAPH_VISUALISER/run_build.sh --limit 500 --skip-layout
-```
-
-Launch the main Dash app:
-
-```bash
-bash GRAPH_VISUALISER/run_app.sh 8050
-```
-
-If the environment name is different, override it without editing scripts:
-
-```bash
-MAMBA_ENV=my_env bash GRAPH_VISUALISER/run_app.sh 8050
-```
-
-## Static Outputs
-
-Generated graph pickles, layouts, plots, logs, and thesis figures are written under:
-
-```text
-GRAPH_VISUALISER/outputs/
-```
-
-Common commands:
+## 🖼️ Static Outputs
 
 ```bash
 micromamba run -n graph_vis python GRAPH_VISUALISER/generate_plots.py --config GRAPH_VISUALISER/config.yaml
@@ -80,22 +88,15 @@ micromamba run -n graph_vis python GRAPH_VISUALISER/generate_plots_full.py --con
 micromamba run -n graph_vis python GRAPH_VISUALISER/graph_stats.py --config GRAPH_VISUALISER/config.yaml
 ```
 
-## Entity Analysis App
+All artifacts land in [`outputs/`](outputs/README.md).
 
-The entity-analysis sub-app also reads from the final resolved Timeline Maker output and writes to:
-
-```text
-GRAPH_VISUALISER/entity_analysis/outputs/
-```
-
-Run both within-bucket and cross-bucket analysis, then launch the app:
+## 🔗 Entity Analysis Sub-App
 
 ```bash
-bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052
+bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052        # analyse + launch app
+bash GRAPH_VISUALISER/entity_analysis/run.sh analyse-only     # refresh JSONs only
 ```
 
-Use analysis-only mode when you only need refreshed JSON outputs:
+---
 
-```bash
-bash GRAPH_VISUALISER/entity_analysis/run.sh analyse-only
-```
+⬆️ Back to the [repository root](../README.md)

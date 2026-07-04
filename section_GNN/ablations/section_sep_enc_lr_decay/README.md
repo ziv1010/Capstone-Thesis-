@@ -1,20 +1,26 @@
-# section_sep_enc_lr_decay
+# 📑 section_sep_enc_lr_decay — Section-Separated + LR Decay
 
-This folder stores section-separated encoding configs with LR-decay training
-settings. It is used by later thesis-table runs where section-separated graphs
-need to be compared under the same optimizer schedule as other LR-decay cells.
+> Part of [`ablations/`](../README.md).
 
-## Usage
+Section-separated encoding configs under the **LR-decay training schedule**, so
+section-separated graphs can be compared against the other LR-decay thesis-table cells under
+the same optimizer settings. Combined with entity-resolved data, this variant underlies the
+model explained in `FINAL_EXPLANATION/`.
 
-These configs are usually launched by higher-level scripts rather than manually:
+## ▶️ Run
+
+Launched by the higher-level table scripts rather than manually:
 
 ```bash
 bash run_scripts/run_party_args_preamble_and_section_sep_lr_decay.sh
 bash run_scripts/run_remaining_table_experiments_8gpu.sh
 ```
 
-## Relationship to `section_sep_enc`
+## 🔗 Relationship
 
-`section_sep_enc/` is the base section-separated ablation. This folder keeps the
-same graph idea but changes training schedule/configuration for controlled
-comparisons.
+[`section_sep_enc/`](../section_sep_enc/README.md) is the base ablation; this folder keeps
+the same graph idea and changes only the training schedule.
+
+---
+
+⬆️ Back to [`ablations/`](../README.md)

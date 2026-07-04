@@ -1,155 +1,101 @@
-# InLegalLlama Model Comparison
+# 🤖 model comparison — Legal-LLM Baselines vs the GNN
 
-This folder runs `L-NLProc/InLegalLlama` on one filtered fold test split using Hugging Face Transformers plus PEFT.
+> Supporting experiment · benchmarks published legal LLMs (**InLegalLlama**,
+> **FactLegalLlama / TathyaNyaya**) on the **same held-out fold test cases** used by the GNN,
+> so the thesis can compare graph models against LLM baselines fairly.
 
-The first run used the continued-pretraining adapter under:
+## 🧾 Test Set
 
-`INLegalLlama/CPT/llama2_cpt_checkpoint_3000_seq_2048`
+Cases are copied from
+`section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/processed/cleaned_cases`,
+selecting the `test` rows of
+`section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/models/motor_accidents_timed_mistral_kfold/kfold/fold_00/predictions.csv`.
 
-The adapter config points to this base model:
+The runner **never puts the gold label in the prompt** — labels are used only after
+generation to compute summary metrics.
 
-`NousResearch/Llama-2-7b-chat-hf`
-
-For the closer published-style comparison, use the separate original-prompt scripts below. They use `0` for rejection/loss and `1` for acceptance/win in the prompt, then map `0 -> -1` before metrics are computed.
-
-The included test set is copied from:
-
-`section_GNN/data/timed_bucket_runs/motor_accidents_timed_mistral/processed/cleaned_cases`
-
-using the `test` rows from:
-
-`section_GNN/outputs/timed_bucket_runs/motor_accidents_timed_mistral/models/motor_accidents_timed_mistral_kfold/kfold/fold_00/predictions.csv`
-
-The runner does not put the gold label in the prompt. Labels are used only after generation for summary metrics.
-
-## Environment
-
-The env has been created as:
-
-```bash
-micromamba run -n model_comparison_inlegalllama python -c "import torch, transformers; print(torch.__version__, transformers.__version__)"
-```
-
-To recreate it:
+## 🧪 Environment
 
 ```bash
 cd "model comparison"
-micromamba env create -f environment.yml
+micromamba env create -f environment.yml     # env: model_comparison_inlegalllama
 ```
 
-If any model download is gated, set `HF_TOKEN` before running.
+Set `HF_TOKEN` if any model/base download is gated.
 
-## Smoke Test
+---
 
-This validates paths and sharding without loading the model:
+## 🦙 InLegalLlama Runs
+
+The first run used the continued-pretraining adapter
+`INLegalLlama/CPT/llama2_cpt_checkpoint_3000_seq_2048` from `L-NLProc/InLegalLlama`
+(base model: `NousResearch/Llama-2-7b-chat-hf`).
 
 ```bash
 cd "model comparison"
+
+# Smoke test (paths + sharding, no model load):
 micromamba run -n model_comparison_inlegalllama python run_inlegalllama.py \
-  --input-dir data/motor_accidents_fold_00_test_cases \
-  --dry-run \
-  --limit 2
-```
+  --input-dir data/motor_accidents_fold_00_test_cases --dry-run --limit 2
 
-## Full 8-GPU Run
-
-```bash
-cd "model comparison"
+# Full 8-GPU run (one shard per GPU, combined JSONL + metrics.json):
 bash run_inlegalllama_8gpu.sh
-```
+# → outputs/lnlproc_inlegalllama_motor_accidents_fold00
 
-Outputs are written under:
-
-`outputs/lnlproc_inlegalllama_motor_accidents_fold00`
-
-Each GPU gets a separate shard process. The wrapper launches eight processes with `CUDA_VISIBLE_DEVICES=0` through `CUDA_VISIBLE_DEVICES=7`, then combines the shard JSONL files and writes `metrics.json`.
-
-To override back to the older full-model repo for a one-off run:
-
-```bash
+# One-off with the older full-model repo:
 MODEL_NAME="sudipto-ducs/InLegalLLaMA" MODEL_SUBFOLDER="" ADAPTER_MODE="full" bash run_inlegalllama_8gpu.sh
 ```
 
-## FactLegalLlama / TathyaNyaya Run
+## ⚖️ FactLegalLlama / TathyaNyaya Runs
 
-The Hugging Face repo `L-NLProc/TathyaNyaya-and-FactLegalLlama-Large-Language-Models-Based-Models` stores checkpoints inside zip archives. The helper script extracts the selected PEFT adapter into `models/factlegalllama/` and then reuses the same inference and metrics flow.
+The HF repo `L-NLProc/TathyaNyaya-and-FactLegalLlama-Large-Language-Models-Based-Models`
+stores checkpoints in zip archives; `prepare_factlegalllama_adapter.py` extracts the selected
+PEFT adapter into `models/factlegalllama/` (base model: `meta-llama/Meta-Llama-3-8B`).
 
-Default checkpoint:
-
-`nyaya_facts_single`
-
-Available prediction-only checkpoints:
-
-`nyaya_facts_single`, `nyaya_facts_multi`, `nyaya_scrape_single`, `nyaya_scrape_multi`, `nyaya_simplify`
-
-Prepare only:
+Prediction-only checkpoints: `nyaya_facts_single` (default), `nyaya_facts_multi`,
+`nyaya_scrape_single`, `nyaya_scrape_multi`, `nyaya_simplify`.
 
 ```bash
 cd "model comparison"
+
+# Prepare only / dry run:
 micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
-  --checkpoint nyaya_facts_single \
-  --prepare-only
-```
-
-Dry run:
-
-```bash
-cd "model comparison"
+  --checkpoint nyaya_facts_single --prepare-only
 micromamba run -n model_comparison_inlegalllama python run_factlegalllama.py \
-  --checkpoint nyaya_facts_single \
-  --input-dir data/motor_accidents_fold_00_test_cases \
-  --output-dir outputs/factlegalllama_smoke \
-  --dry-run \
-  --limit 2
-```
+  --checkpoint nyaya_facts_single --input-dir data/motor_accidents_fold_00_test_cases \
+  --output-dir outputs/factlegalllama_smoke --dry-run --limit 2
 
-Full 8-GPU run:
-
-```bash
-cd "model comparison"
+# Full 8-GPU run:
 bash run_factlegalllama_8gpu.sh
+# → outputs/factlegalllama_nyaya_facts_single_motor_accidents_fold00
+
+CHECKPOINT=nyaya_scrape_single bash run_factlegalllama_8gpu.sh   # other checkpoints
 ```
 
-Outputs are written under:
+## 📝 Original-Prompt Runs
 
-`outputs/factlegalllama_nyaya_facts_single_motor_accidents_fold00`
-
-To use another checkpoint:
-
-```bash
-CHECKPOINT=nyaya_scrape_single bash run_factlegalllama_8gpu.sh
-```
-
-These adapters use `meta-llama/Meta-Llama-3-8B` as the base model, so set `HF_TOKEN` if Hugging Face requires access approval for that base model.
-
-## Original-Prompt Runs
-
-These are separate from the earlier JSON `-1/1` scripts and write to separate output folders.
-
-Run the InLegalLlama SFT prediction-only checkpoint:
+For the closest published-style comparison, separate scripts use the papers' original prompt
+format (`0` = rejection/loss, `1` = acceptance/win; `0` is mapped to `-1` before metrics):
 
 ```bash
 cd "model comparison"
 bash run_inlegalllama_sft_original_prompt_8gpu.sh
-```
+# → outputs/lnlproc_inlegalllama_sft_pred_only_original_prompt_motor_accidents_fold00
 
-Outputs are written under:
-
-`outputs/lnlproc_inlegalllama_sft_pred_only_original_prompt_motor_accidents_fold00`
-
-Run FactLegalLlama with facts-only preprocessing:
-
-```bash
-cd "model comparison"
 bash run_factlegalllama_facts_original_prompt_8gpu.sh
-```
+# → outputs/factlegalllama_nyaya_facts_single_facts_original_prompt_motor_accidents_fold00
 
-Outputs are written under:
-
-`outputs/factlegalllama_nyaya_facts_single_facts_original_prompt_motor_accidents_fold00`
-
-To use another FactLegalLlama checkpoint with the same facts-only prompt:
-
-```bash
 CHECKPOINT=nyaya_scrape_single bash run_factlegalllama_facts_original_prompt_8gpu.sh
 ```
+
+## 🗂️ Subfolders
+
+| Folder | Contents |
+|--------|----------|
+| [`data/`](data/README.md) | 📤 Copied held-out test cases and prompt/evaluation inputs. |
+| [`models/`](models/README.md) | 📤 Downloaded model assets / extracted adapters. |
+| [`outputs/`](outputs/README.md) | 📤 Predictions, metrics, and reports per run. |
+
+---
+
+⬆️ Back to the [repository root](../README.md)

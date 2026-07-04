@@ -1,0 +1,14 @@
+# Environment: .micromamba/pdf_extract
+# Purpose: local PDF extraction utility environment found inside this checkout.
+# Status: optional/local helper. Launch scripts do not reference this env by name,
+# but its packages match the PDF extraction dependency surface.
+# Source basis: Capstone-Thesis-/.micromamba/pdf_extract.
+
+micromamba create -p .micromamba/pdf_extract -c conda-forge python=3.11 pymupdf pytesseract pillow
+
+# installed-env reference observed in this checkout:
+python=3.11
+PyMuPDF
+pytesseract
+pillow
+packaging

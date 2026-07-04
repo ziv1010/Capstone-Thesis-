@@ -1,25 +1,30 @@
-# party_args_lr_decay
+# ⚙️ party_args_lr_decay — Shared V2 Run Family
 
-Shared v2 run family for party-argument case-node text with LR-decay training.
+> Part of [`runs_v2/`](../README.md) · party-argument case-node text + LR-decay training.
+> Also hosts the **shared v2 builder/trainer** used by the sibling v2 folders.
 
-## Files
+## 📄 Files
 
-- `graph/build_graph_v2.py`: graph builder for the v2 case-node text policy.
-- `scripts/kfold_cv_v2.py`: K-fold trainer with LR-decay settings.
-- `03_kfold_v2.sh`: shell wrapper for parallel K-fold runs.
-- `run_all_buckets.sh`: runs the v2 pipeline across all buckets.
-- `<bucket>/config.yaml`: per-bucket configs.
+| File | Role |
+|------|------|
+| `graph/build_graph_v2.py` | Graph builder implementing the v2 case-node text policy. |
+| `scripts/kfold_cv_v2.py` | K-fold trainer with LR-decay settings. |
+| `03_kfold_v2.sh` | Shell wrapper for parallel K-fold runs. |
+| `run_all_buckets.sh` | Runs the v2 pipeline across all buckets. |
+| `<bucket>/config.yaml` | Per-bucket configurations. |
 
-## Run All Buckets
+## ▶️ Run
 
 ```bash
+# All buckets:
 bash runs_v2/party_args_lr_decay/run_all_buckets.sh
-```
 
-## Run One K-Fold Job
-
-```bash
+# One K-fold job:
 bash runs_v2/party_args_lr_decay/03_kfold_v2.sh \
   --config runs_v2/party_args_lr_decay/cross_bucket_total_dataset/config.yaml \
   --run-name cross_bucket_party_args_lr_decay_kfold
 ```
+
+---
+
+⬆️ Back to [`runs_v2/`](../README.md)

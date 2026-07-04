@@ -1,6 +1,11 @@
-# assets
+# 🎨 assets — Stage Visualiser Frontend Assets
 
-Static frontend assets for the stage visualiser.
+> Part of [`STAGE_VISUALISER/`](../README.md).
 
-Keep only small CSS, JavaScript, image, or other static files required by
-`STAGE_VISUALISER`. Large generated data should stay outside this assets folder.
+Static frontend assets (CSS/JS/images) automatically served by the Dash app. Keep only small
+static files required by the visualiser here — large generated data belongs outside this
+folder.
+
+---
+
+⬆️ Back to [`STAGE_VISUALISER/`](../README.md)

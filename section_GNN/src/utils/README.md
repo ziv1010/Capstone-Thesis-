@@ -1,21 +1,21 @@
-# src/utils
+# 🧰 src/utils — Shared Infrastructure
 
-This package contains shared infrastructure used by almost every entry point.
+> Part of [`section_GNN/src/`](../README.md) · used by nearly every entry point.
 
-## Files
+| File | Role |
+|------|------|
+| `io.py` | JSON/YAML helpers, directory creation, deep-merge, and **portable config path resolution** (`load_yaml`). |
+| `logging_utils.py` | File + console logger setup. |
+| `pipeline.py` | Shared graph-building pipeline utilities. |
+| `seed.py` | Deterministic seed setup for reproducible runs. |
+| `text_encoder.py` | Text-encoder wrappers: sentence-transformers (BGE-M3), Hugging Face (InLegalBERT, …), and a hashing fallback. |
 
-- `io.py`: JSON/YAML helpers, directory creation, deep-merge helpers, and
-  portable config path resolution.
-- `logging_utils.py`: file and console logger setup.
-- `pipeline.py`: shared graph-building pipeline utilities.
-- `seed.py`: deterministic seed setup.
-- `text_encoder.py`: sentence-transformer, Hugging Face, and hashing encoder
-  wrappers.
+## 🗺️ Why `load_yaml` Matters
 
-## Path Resolution
+Use `load_yaml` instead of raw `yaml.safe_load` for project configs: it expands relative
+config paths against `section_GNN`, and `dump_yaml`/`dump_json` write repository-local paths
+back out where possible. **This is what keeps every config reproducible across machines.**
 
-Use `load_yaml` instead of raw `yaml.safe_load` for project configs. It expands
-relative config paths against `section_GNN`, while `dump_yaml` and `dump_json`
-write repository-local paths back out where possible.
+---
 
-This is what keeps configs reproducible across machines.
+⬆️ Back to [`src/`](../README.md)

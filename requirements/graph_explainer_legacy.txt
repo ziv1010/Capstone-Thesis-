@@ -1,0 +1,25 @@
+# Environment: graph_explainer
+# Purpose: legacy Graph_Analyser_OLD explainer pipeline and old multi-hearing
+# stage explanation helpers.
+# Referenced by: Graph_Analyser_OLD scripts and
+# section_GNN/multi_hearing_stage_test/scripts/06_explain_transitions.py.
+# Source basis: installed micromamba env in this checkout; no dedicated repo YAML
+# was found.
+
+micromamba create -n graph_explainer -c conda-forge python=3.11 pip
+
+# key installed packages:
+torch==2.6.0+cu124
+torch-geometric==2.7.0
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+scikit-learn==1.8.0
+networkx==3.6.1
+matplotlib==3.10.8
+faiss-cpu==1.13.2
+PyYAML==6.0.3
+tqdm==4.67.3
+requests==2.33.1
+aiohttp==3.13.5
+joblib==1.5.3

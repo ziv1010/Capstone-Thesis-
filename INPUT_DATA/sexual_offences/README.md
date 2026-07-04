@@ -1,6 +1,11 @@
-# sexual_offences
+# 🗃️ Sexual Offences — Raw Case Material
 
-Local raw/extracted sexual-offences case material.
+> Part of [`INPUT_DATA/`](../README.md) · **Stage ①** of the pipeline.
 
-Use `sexual_offences_text/` as the plain-text input source for the active
-OpenNyAI pipeline. This folder is local data and is ignored by Git.
+Raw/collected Indian court-judgment material for **sexual-offence prosecutions**.
+
+- 📄 **Contents:** source PDFs / collected files from the original data-gathering step.
+- ➡️ **Next step:** extract plain text with `INPUT_DATA/01_extract_pdf_text.py`; the active
+  pipeline then consumes the sibling [`sexual_offences_text/`](../sexual_offences_text/README.md) folder.
+- 🧩 **Role in the thesis:** one of the five core GNN training buckets.
+- 🚫 **Git policy:** local data only — this folder's contents are ignored by Git.

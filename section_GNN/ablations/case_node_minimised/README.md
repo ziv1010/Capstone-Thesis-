@@ -1,21 +1,19 @@
-# case_node_minimised
+# 🎯 case_node_minimised — Minimal Case-Node Ablation
 
-The case-node-minimised ablation reduces how much text or scalar information is
-placed directly on the `case` node.
+> Part of [`ablations/`](../README.md).
 
-## Purpose
+Reduces how much text/scalar information sits directly on the central `case` node — testing
+whether the model relies on the case-node feature vector instead of **learning through the
+section and entity graph structure**.
 
-This tests whether the model is relying on the central case node feature vector
-instead of learning through section and entity graph structure.
-
-## Run All Buckets
+## ▶️ Run
 
 ```bash
 bash ablations/case_node_minimised/run_case_node_minimised.sh
 ```
 
-Per-bucket configs live in:
+Per-bucket configs: `ablations/case_node_minimised/<bucket>/config.yaml`.
 
-```text
-ablations/case_node_minimised/<bucket>/config.yaml
-```
+---
+
+⬆️ Back to [`ablations/`](../README.md)

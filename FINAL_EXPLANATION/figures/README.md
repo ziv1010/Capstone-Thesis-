@@ -1,26 +1,24 @@
-# Figures
+# 🖼️ figures — Paper-Facing Static Figures
 
-This folder stores paper-facing static figures generated from
-`FINAL_EXPLANATION/outputs`.
+> Part of [`FINAL_EXPLANATION/`](../README.md) · generated from the tables in
+> [`../outputs/`](../outputs/README.md).
 
-## Current Figures
+## 📊 Current Figures
 
-- `fig1_faithfulness_curves.*`
-  - Sufficiency and comprehensiveness curves comparing counterfactual,
-    attention, and random rankings.
+| Figure | Contents |
+|--------|----------|
+| `fig1_faithfulness_curves.*` | Sufficiency & comprehensiveness curves comparing counterfactual, attention, and random rankings. |
+| `fig2_community_cluster_sankey.*` | Relationship between structural communities and embedding clusters. |
+| `fig3_contrastive_subgraph_51419_15962.*` | Contrastive subgraph for one query/opposite-case pair. |
 
-- `fig2_community_cluster_sankey.*`
-  - Relationship between structural communities and embedding clusters.
+## ♻️ Regeneration
 
-- `fig3_contrastive_subgraph_51419_15962.*`
-  - Contrastive subgraph figure for one query/opposite-case pair.
-
-## Regeneration
-
-From the repository root:
+From the repository root (writes both PNG and PDF):
 
 ```bash
 micromamba run -n thesis_work python FINAL_EXPLANATION/generate_paper_figures.py
 ```
 
-The script writes both PNG and PDF by default.
+---
+
+⬆️ Back to [`FINAL_EXPLANATION/`](../README.md)

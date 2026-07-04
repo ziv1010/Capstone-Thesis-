@@ -1,21 +1,20 @@
-# Visualizer Static Assets
+# 🎨 visualizer_static — Visualizer Frontend Assets
 
-This folder contains frontend assets served by `../visualizer.py`.
+> Part of [`FINAL_EXPLANATION/`](../README.md) · served by `../visualizer.py` — do **not**
+> open these files directly.
 
-## Files
+| File | Role |
+|------|------|
+| `index.html` | Main visualizer page. |
+| `style.css` | Visual styling. |
+| `app.js` | Client-side UI logic — loads summary tables, evidence rows, communities, traceability records, and raw CSV/JSON views from the Python server. |
 
-- `index.html`
-  - Main visualizer page.
-
-- `style.css`
-  - Visual styling for the visualizer.
-
-- `app.js`
-  - Client-side UI logic for loading summary tables, evidence rows, communities,
-    traceability records, and raw CSV/JSON views from the Python server.
-
-Do not open these files directly for normal use. Start the server instead:
+## ▶️ Start the Server Instead
 
 ```bash
-bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh
+bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh     # ⭐ port 8899
 ```
+
+---
+
+⬆️ Back to [`FINAL_EXPLANATION/`](../README.md)

@@ -1,20 +1,21 @@
-# src/models
+# 🤖 src/models — Model Definitions
 
-This package defines the neural model layers used by the training scripts.
+> Part of [`section_GNN/src/`](../README.md).
 
-## Files
+Neural model layers used by the training scripts.
 
-- `hetero_gnn.py`: heterogeneous GNN classifier. The default architecture uses
-  HGT-style message passing over PyG `HeteroData` metadata.
-- `mlp_head.py`: small MLP classifier head used on the final case-node
-  representation.
+| File | Role |
+|------|------|
+| `hetero_gnn.py` | Heterogeneous GNN classifier — the default architecture uses **HGT-style message passing** over PyG `HeteroData` metadata (relation-aware attention across all node/edge types). |
+| `mlp_head.py` | Small MLP classifier head applied to the final `case`-node representation. |
 
-## Inputs and Outputs
+## 🔁 Contract
 
-The model receives:
+**Inputs:** `x_dict` (node features by node type) and `edge_index_dict` (edge indices by
+relation type).
+**Output:** logits for `case` nodes. Training/evaluation scripts map case-node logits back to
+labels and case IDs through the graph metadata, so predictions stay traceable to source files.
 
-- `x_dict`: node features by node type
-- `edge_index_dict`: edge indices by relation type
+---
 
-It predicts logits for `case` nodes. Training/evaluation scripts map those case
-node logits back to labels and case IDs using graph metadata.
+⬆️ Back to [`src/`](../README.md)

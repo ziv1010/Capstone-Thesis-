@@ -1,13 +1,21 @@
-# outputs
+# 📤 outputs — Generated Visualiser Artifacts
 
-Generated graph visualiser artifacts.
+> Part of [`GRAPH_VISUALISER/`](../README.md) · 📤 **generated data**, large artifacts
+> ignored by Git.
 
-This folder is populated by `GRAPH_VISUALISER/build_graph.py`, plotting scripts,
-and graph-stat analysis scripts. Typical contents include graph pickles, GEXF
-exports, layouts, static plots, graph statistics, thesis figure collections, and
-logs.
+Populated by `build_graph.py`, the plotting scripts, and `graph_stats.py`. Typical contents:
 
-Regenerate outputs from:
+| Artifact | Produced by |
+|----------|-------------|
+| `graph_full.pkl` / `graph_full.gexf` | Full NetworkX graph (+ GEXF export) — `build_graph.py` |
+| `graph_sample.pkl` · `layout.pkl` · `case_layout.pkl` · `case_connections.pkl` | Connectivity-ranked display sample + layouts — `build_graph.py` |
+| `stats.json` · `graph_stats/` | Full-graph statistics — `graph_stats.py` |
+| `plots/` · `plots_full/` | Static figures — `generate_plots.py` / `generate_plots_full.py` |
+| `leakage_role_comparison/` | Rhetorical-role before/after leakage filtering — `generate_rhetorical_before_after.py` |
+| `thesis_figures/` · `thesis_extras/` | Curated thesis figure collections |
+| `logs/` | Build/plot logs |
+
+## ♻️ Regenerate
 
 ```bash
 bash GRAPH_VISUALISER/run_build.sh
@@ -15,4 +23,6 @@ micromamba run -n graph_vis python GRAPH_VISUALISER/generate_plots.py --config G
 micromamba run -n graph_vis python GRAPH_VISUALISER/graph_stats.py --config GRAPH_VISUALISER/config.yaml
 ```
 
-Large generated artifacts are ignored by Git.
+---
+
+⬆️ Back to [`GRAPH_VISUALISER/`](../README.md)

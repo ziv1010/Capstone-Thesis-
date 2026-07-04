@@ -1,260 +1,169 @@
-# section_GNN
+# 🕸️ section_GNN — Stage ④ · Graph Neural Network Modelling
 
-`section_GNN` contains the graph-neural-network pipeline used for leakage-aware
-legal outcome prediction. It converts extracted case JSON files into cleaned
-case records, builds heterogeneous PyTorch Geometric graphs, trains/evaluates
-GNN models, and runs the ablation and cross-domain experiments used for thesis
-tables.
+> **Pipeline position:** ① INPUT_DATA ▸ ② Fixed_GPU_OpenNyai ▸ ③ DATA_SET_BUILDER_AND_EXPLORER ▸ **④ section_GNN** ▸ ⑤ FINAL_EXPLANATION
 
-The folder is intentionally self-contained: paths in configs are relative to
-`section_GNN`, and paths to sibling repository folders use `../...`. The Python
-config loader resolves those relative paths at runtime.
+The modelling heart of the thesis. `section_GNN` converts the merged case JSONs from Stage ③
+into **leakage-safe cleaned cases**, builds **heterogeneous PyTorch Geometric case-star
+graphs**, trains and evaluates **HGT-style GNN models** with K-fold cross-validation, and
+runs the full **ablation, encoder-comparison, cross-domain, and multi-hearing** experiment
+matrix behind the thesis tables.
 
-## Quick Start
+The folder is self-contained: every config uses paths relative to `section_GNN`
+(sibling repo folders via `../...`), resolved at runtime by the config loader.
 
-Run commands from this folder:
+---
 
-```bash
-cd section_GNN
-```
-
-For a baseline timed-bucket run:
+## ⚡ Quick Start
 
 ```bash
+cd section_GNN                      # all commands run from here
+
+# One baseline bucket, end to end (preprocess → graph → 8-GPU K-fold):
+bash runs/fin_fraud_timed_mistral/run_all.sh
+
+# …or step by step:
 bash runs/fin_fraud_timed_mistral/01_preprocess.sh
 bash runs/fin_fraud_timed_mistral/02_build_graph.sh
 bash runs/fin_fraud_timed_mistral/03_kfold_8gpu.sh
 ```
 
-For the active text-only cross-bucket ablation:
+Most scripts default to the `thesis_work` micromamba environment; override with
+`MAMBA_ENV=my_env bash ...`.
 
-```bash
-bash ablations/text_only/cross_bucket_total_dataset/run.sh
-```
+---
 
-Most scripts use the micromamba environment named `thesis_work` by default.
-Override it with:
+## 🔄 Core Workflow
 
-```bash
-MAMBA_ENV=my_env bash runs/fin_fraud_timed_mistral/run_all.sh
-```
+| Step | Entry points | Main outputs |
+|:----:|--------------|--------------|
+| 1️⃣ **Preprocess** | `experiments/fixed_open_pipeline/preprocess_fixed_open.py` · bucket wrappers `runs/<bucket>/01_preprocess.sh` | `data/.../processed/cleaned_cases/` · `normalized_entities/` · `audits/` |
+| 2️⃣ **Build graph** | `src/scripts/build_graph.py` · `final_graph/build_graph.py` · `final_graph/build_graph_section_sep.py` · `runs_v2/party_args_lr_decay/graph/build_graph_v2.py` | `data/.../graph_cache/*.pt` (+ metadata & node mappings) · `data/.../embeddings_cache/*.npz` |
+| 3️⃣ **Train / evaluate** | `src/scripts/kfold_cv.py` · `runs_v2/party_args_lr_decay/scripts/kfold_cv_v2.py` · `src/scripts/train_gnn.py` · `src/scripts/evaluate_saved_model.py` | `outputs/.../models/<run_name>/kfold/fold_*/` · `kfold_summary.json` · predictions, metrics, plots |
 
-## Core Workflow
+---
 
-The standard pipeline has three stages.
-
-1. Preprocess raw JSON files.
-
-   Entry points:
-
-   - `experiments/fixed_open_pipeline/preprocess_fixed_open.py`
-   - bucket wrappers such as `runs/<bucket>/01_preprocess.sh`
-
-   Main outputs:
-
-   - `data/.../processed/cleaned_cases/*.json`
-   - `data/.../processed/normalized_entities/*.json`
-   - `data/.../audits/*.json`
-
-2. Build graph caches.
-
-   Entry points:
-
-   - `src/scripts/build_graph.py`
-   - `final_graph/build_graph.py`
-   - `final_graph/build_graph_section_sep.py`
-   - `runs_v2/party_args_lr_decay/graph/build_graph_v2.py`
-
-   Main outputs:
-
-   - `data/.../graph_cache/*.pt`
-   - `data/.../graph_cache/graph_metadata*.json`
-   - `data/.../graph_cache/node_mappings*.json`
-   - `data/.../embeddings_cache/*.npz`
-
-3. Train and evaluate.
-
-   Entry points:
-
-   - `src/scripts/kfold_cv.py`
-   - `runs_v2/party_args_lr_decay/scripts/kfold_cv_v2.py`
-   - `src/scripts/train_gnn.py`
-   - `src/scripts/evaluate_saved_model.py`
-
-   Main outputs:
-
-   - `outputs/.../models/<run_name>/kfold/fold_*/`
-   - `outputs/.../models/<run_name>/kfold/kfold_summary.json`
-   - predictions, metrics, confusion matrices, and training-history plots
-
-## Path Convention
-
-Configs store portable paths. Examples:
-
-```yaml
-paths:
-  raw_json_dir: ../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/cross_bucket_total_dataset
-  processed_dir: data/timed_bucket_runs/cross_bucket_total_dataset/processed
-  graph_cache_dir: data/timed_bucket_runs/cross_bucket_total_dataset/graph_cache
-  outputs_dir: outputs/timed_bucket_runs/cross_bucket_total_dataset
-```
-
-When a Python script calls `src.utils.io.load_yaml`, these values are resolved
-relative to `section_GNN`. Shell scripts that inspect YAML directly change into
-`section_GNN` first for the same reason.
-
-Avoid adding machine-specific absolute paths to configs or scripts.
-
-## Main Folders
+## 🗂️ Folder Map
 
 | Folder | Purpose |
-| --- | --- |
-| `src/` | Reusable preprocessing, graph construction, model, training, and utility code. |
-| `src/scripts/` | Python command-line entry points for build/train/eval/audit helpers. |
-| `runs/` | Baseline BGE-M3 timed-bucket configs and shell wrappers. |
-| `runs_v2/` | Later run families with party-argument case text and LR-decay controls. |
-| `runs_inlegalbert/` | InLegalBERT versions of the main comparison matrix. |
-| `runs_inlegalbert_remaining/` | InLegalBERT runs used to fill remaining thesis-table cells. |
-| `ablations/` | Controlled graph/input/model ablations. |
-| `experiments/` | Standalone experiments such as fixed-open preprocessing, size sweep, and encoder comparison. |
-| `final_graph/` | Reasoning-focused and section-separated graph builders. |
-| `embedding_analysis/` | Post-hoc embedding, SHAP, t-SNE, probing, and node-importance tools. |
-| `cross_domain_test/` | Cross-domain evaluation workflows, currently including food safety. |
-| `multi_hearing_stage_test/` | Multi-hearing/stage-transition experiment and visualiser. |
-| `run_scripts/` | Top-level orchestration scripts for larger matrices. |
-| `data/` | Generated cleaned cases, graph caches, embedding caches, and audits. |
-| `outputs/` | Generated predictions, metrics, model checkpoints, and summary tables. |
-| `run_logs/` | Long-running experiment logs. |
-| `configs/` | Older legacy configs retained for reference. |
-| `FINAL_DUMP/` | Archived dump material. Treat it as read-only and out of the main pipeline. |
+|--------|---------|
+| [`src/`](src/README.md) | Reusable preprocessing, graph, model, training, and utility packages. |
+| [`runs/`](runs/README.md) | Baseline BGE-M3 timed-bucket experiment definitions (config + 3-step wrappers). |
+| [`runs_v2/`](runs_v2/README.md) | Later run families: party-argument case text, LR-decay controls. |
+| [`runs_inlegalbert/`](runs_inlegalbert/README.md) | InLegalBERT mirror of the main comparison matrix. |
+| [`runs_inlegalbert_remaining/`](runs_inlegalbert_remaining/README.md) | InLegalBERT table-completion cells. |
+| [`ablations/`](ablations/README.md) | Controlled graph/input/model ablations (10 variants). |
+| [`experiments/`](experiments/README.md) | Standalone workflows: fixed-open preprocessing, dataset-size sweep. |
+| [`final_graph/`](final_graph/README.md) | Reasoning-focused & section-separated graph builders. |
+| [`embedding_analysis/`](embedding_analysis/README.md) | Post-hoc t-SNE, SHAP, probing, attention, node-importance tools. |
+| [`cross_domain_test/`](cross_domain_test/README.md) | Held-out-domain evaluation (food safety). |
+| [`multi_hearing_stage_test/`](multi_hearing_stage_test/README.md) | ⭐ Multi-hearing stage-transition experiment + **Multi-Hearing Stage Test Visualiser (port 8050)**. |
+| [`run_scripts/`](run_scripts/README.md) | Top-level orchestration for the big experiment matrices. |
+| [`configs/`](configs/README.md) | Legacy configs kept for reference. |
+| [`data/`](data/README.md) | 📤 Generated cleaned cases, graph caches, embeddings, audits. |
+| [`outputs/`](outputs/README.md) | 📤 Generated checkpoints, predictions, metrics, summary tables. |
+| [`run_logs/`](run_logs/README.md) | 📤 Long-running experiment logs. |
+| `summarize_bge_vs_inlegalbert.py` | Builds the BGE-M3 vs InLegalBERT comparison table from run outputs. |
 
-## Dataset Buckets
+---
+
+## 🪣 Dataset Buckets
 
 Most run families use the same six dataset names:
 
-- `family_matrimonial_timed_mistral`
-- `fin_fraud_timed_mistral`
-- `land_property_timed_mistral`
-- `motor_accidents_timed_mistral`
-- `sexual_offences_timed_mistral`
-- `cross_bucket_total_dataset`
+| Dataset | Description |
+|---------|-------------|
+| `family_matrimonial_timed_mistral` | Family & matrimonial bucket |
+| `fin_fraud_timed_mistral` | Financial fraud bucket |
+| `land_property_timed_mistral` | Land & property bucket |
+| `motor_accidents_timed_mistral` | Motor accidents bucket |
+| `sexual_offences_timed_mistral` | Sexual offences bucket |
+| `cross_bucket_total_dataset` | Combined five-domain corpus for cross-bucket training/evaluation |
 
-The first five are domain-specific timed buckets. `cross_bucket_total_dataset`
-is the combined dataset used for broader training/evaluation.
+---
 
-## Graph Variants
+## 🧬 Graph Variants
 
-The main graph family is a case-star heterogeneous graph. A case node connects
-to text-section nodes, party/court/lawyer nodes, and legal authority nodes.
-Graph variants change which nodes and edges are included:
+The main graph family is a **case-star heterogeneous graph**: each `case` node connects to
+text-section nodes (`preamble`, `facts`, `arguments`, party-specific argument sections),
+party/court/judge/lawyer nodes, and legal-authority nodes (`statute`, `provision`,
+`precedent`), with authorities **shared across cases**. Variants change what is included:
 
-- baseline: full reasoning-focused graph
-- `text_only`: case and text-section nodes only
-- `no_names`: removes identity/name-bearing nodes and features
-- `no_cross_case`: removes cross-case sharing
-- `hierarchical_enc`: changes text encoding/aggregation strategy
-- `section_sep_enc`: separates section embeddings
-- `case_node_minimised`: reduces case-node text/features
-- `entity_resolved_data`: uses externally resolved entity data
-- `remove_central_authorities`: filters overly central authority nodes
-- `runs_v2/party_args_*`: uses party-argument/preamble case-node text variants
+| Variant | Question it isolates |
+|---------|----------------------|
+| baseline | Full reasoning-focused graph |
+| `text_only` | Text encodings alone (no entity/authority structure) |
+| `no_names` | Contribution of identity/name-bearing nodes |
+| `no_cross_case` | Value of cross-case node sharing |
+| `hierarchical_enc` | Hierarchical text encoding |
+| `section_sep_enc` (+ `_lr_decay`) | Separate per-section embeddings |
+| `case_node_minimised` | Reduced case-node features |
+| `entity_resolved_data` | Externally resolved (canonicalized) entities |
+| `remove_central_authorities` | Dependence on high-degree hub authorities |
+| `runs_v2/party_args_*` | Party-argument / preamble case-node text policies |
 
-See `ablations/README.md`, `runs/README.md`, and `runs_v2/README.md` for more
-detail.
+---
 
-## Configuration Fields
+## ⚙️ Configuration Anatomy
 
-Important sections in each YAML config:
+Each YAML config has these sections: `project` (run name, seed) · `paths` (all directories,
+relative to `section_GNN`) · `data` (glob, limits) · `preprocessing` (label/role mapping,
+leakage masks) · `graph` (node types, section handling, cache name) · `features`
+(text encoder, scalars) · `labels` · `model` (architecture, hidden size, layers, heads,
+dropout) · `training` (epochs, optimizer, LR schedule, early stopping, folds).
 
-- `project`: run name and seed.
-- `paths`: input, intermediate, cache, audit, and output directories.
-- `data`: file glob, limits, and optional sample case IDs.
-- `preprocessing`: label mapping, role mapping, dropped roles, and leakage masks.
-- `graph`: graph build mode, included node types, section handling, cache name.
-- `features`: text encoder backend, scalar features, embedding settings.
-- `labels`: binary or multiclass label handling.
-- `model`: architecture, hidden size, layer count, heads, dropout.
-- `training`: epochs, optimizer, LR schedule, early stopping, folds/repeats.
+Load configs through `src.utils.io.load_yaml` — it resolves relative paths against
+`section_GNN` so configs stay portable. **Never add machine-specific absolute paths.**
 
-## Common Commands
+---
 
-Run one baseline bucket:
-
-```bash
-bash runs/fin_fraud_timed_mistral/run_all.sh
-```
-
-Run all baseline/ablation families:
+## 🧮 Common Commands
 
 ```bash
+# Full BGE-M3 experiment matrix (background + log):
 nohup bash run_scripts/run_all_experiments.sh > run_logs/run_all_experiments.log 2>&1 &
-```
 
-Run the main InLegalBERT matrix:
-
-```bash
+# Main InLegalBERT matrix:
 nohup bash run_scripts/run_inlegalbert_experiments.sh > run_logs/run_inlegalbert_experiments.log 2>&1 &
-```
 
-Run the timed-bucket pipeline:
-
-```bash
+# Timed-bucket pipeline (preprocess + build + train + eval, 8 GPUs):
 bash run_scripts/run_timed_mistral_buckets_8gpu.sh
-```
 
-Run fixed-open preprocessing directly:
-
-```bash
+# Direct invocations:
 micromamba run -n thesis_work python experiments/fixed_open_pipeline/preprocess_fixed_open.py \
   --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
-```
 
-Build a reasoning-focused graph directly:
-
-```bash
 CUDA_VISIBLE_DEVICES=0,1 micromamba run -n thesis_work python final_graph/build_graph.py \
   --config runs/cross_bucket_total_dataset/config.yaml
-```
 
-Run K-fold CV directly:
-
-```bash
 micromamba run -n thesis_work python src/scripts/kfold_cv.py \
-  --config runs/cross_bucket_total_dataset/config.yaml \
-  --run-name cross_bucket_kfold
+  --config runs/cross_bucket_total_dataset/config.yaml --run-name cross_bucket_kfold
 ```
 
-## Reading Results
+---
 
-Primary summaries usually live at:
+## 📊 Reading Results
+
+The authoritative per-run summary is:
 
 ```text
 outputs/<family>/<bucket>/models/<run_name>/kfold/kfold_summary.json
 ```
 
-Per-fold artifacts usually include:
+Per-fold folders contain `metrics.json`, `predictions.csv`, `model.pt`,
+`run_config_snapshot.yaml`, `training_history.png`, `split_metrics.png`, and
+`confusion_matrix_*.png`. Aggregate tables live directly under `outputs/`
+(e.g. `master_ablation_results.csv`, `inlegalbert_vs_bge_comparison.csv`).
 
-- `metrics.json`
-- `predictions.csv`
-- `model.pt`
-- `run_config_snapshot.yaml`
-- `training_history.png`
-- `split_metrics.png`
-- `confusion_matrix_*.png`
+---
 
-Aggregate result tables are stored under `outputs/`, including:
+## 🧑‍💻 Development Notes
 
-- `outputs/master_ablation_results.csv`
-- `outputs/inlegalbert_vs_bge_comparison.csv`
-
-## Development Notes
-
-- Keep source code in `src/`; keep experiment-specific orchestration in
-  `runs*/`, `ablations/`, `experiments/`, or `run_scripts/`.
+- Keep reusable code in `src/`; experiment orchestration in `runs*/`, `ablations/`,
+  `experiments/`, or `run_scripts/`.
 - Generated artifacts belong under `data/`, `outputs/`, or `run_logs/`.
-- Do not hand-edit generated graph metadata unless you are explicitly repairing
-  an artifact.
-- Prefer updating YAML configs and wrapper scripts over hardcoding paths inside
-  Python modules.
-- Keep `FINAL_DUMP/`, `dump/`, and `__pycache__/` out of operational docs and
-  new experiment wiring.
+- Never hand-edit generated graph metadata; rerun the preprocessing/build instead.
+- Prefer updating YAML configs and wrappers over hardcoding paths in Python modules.
+
+---
+
+⬆️ Back to the [repository root](../README.md) · Previous: [`DATA_SET_BUILDER_AND_EXPLORER/`](../DATA_SET_BUILDER_AND_EXPLORER/README.md) · Next: [`FINAL_EXPLANATION/`](../FINAL_EXPLANATION/README.md)

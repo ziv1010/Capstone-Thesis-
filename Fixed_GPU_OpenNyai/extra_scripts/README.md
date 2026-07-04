@@ -1,34 +1,25 @@
-# Extra Scripts
+# 🔬 extra_scripts — Optional Labelers
 
-This folder contains optional labelers that are useful for audits or experiments
-but are not part of the main production artifact chain.
+> Part of [`Fixed_GPU_OpenNyai/`](../README.md) · audit & experimental labelers, **not** part
+> of the main production chain.
 
-## Files
+| Script | Purpose | Wrapper | Writes to |
+|--------|---------|---------|-----------|
+| `add_case_outcome_labels_crossval_mistral.py` | **Audit/validation labeler** — multiple yes/no checks with deterministic aggregation, for verifying the main labels. | `../run_scripts/run_crossval_all_buckets.sh` | [`../cross_validated_outputs/`](../cross_validated_outputs/README.md) |
+| `add_multi_label_outcome_from_enriched.py` | **Experimental multi-label labeler** — six binary outcome flags plus a final ternary outcome label. | `../run_scripts/run_mistral_multi_labels_from_opennyai_summaries_all.sh` | separate multi-label folders under `../final_outputs/` |
 
-- `add_case_outcome_labels_crossval_mistral.py`
-  - Audit/validation outcome labeler.
-  - Uses multiple yes/no checks and deterministic aggregation.
-  - Reads enriched OpenNyAI summary JSONs.
-  - Used by `../run_scripts/run_crossval_all_buckets.sh`.
-  - Writes into `../cross_validated_outputs/`.
+Both read the enriched OpenNyAI summary JSONs
+(`../final_outputs/<bucket>_summary_opennyai/enriched_jsons/`).
 
-- `add_multi_label_outcome_from_enriched.py`
-  - Experimental richer outcome labeler.
-  - Produces six binary outcome flags plus a final ternary outcome label.
-  - Reads enriched OpenNyAI summary JSONs.
-  - Used by `../run_scripts/run_mistral_multi_labels_from_opennyai_summaries_all.sh`.
-  - Writes separate multi-label folders under `../final_outputs/`.
+## ⭐ Main Labeler (for reference)
 
-## Main Labeler
-
-For the current main pipeline, use:
+The production labeler lives one level up:
 
 ```text
-../add_case_outcome_labels_from_enriched.py
+../add_case_outcome_labels_from_enriched.py     ← main entry point
+../add_case_outcome_labels_mistral.py           ← shared classification logic it imports
 ```
 
-That script imports shared classification code from:
+---
 
-```text
-../add_case_outcome_labels_mistral.py
-```
+⬆️ Back to [`Fixed_GPU_OpenNyai/`](../README.md)

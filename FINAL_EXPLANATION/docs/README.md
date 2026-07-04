@@ -1,15 +1,15 @@
-# Docs
+# 📖 docs — Interpretation Guides
 
-This folder contains human-facing guides for understanding the explanation
-outputs.
+> Part of [`FINAL_EXPLANATION/`](../README.md) · documentation for **understanding** the
+> explanation outputs (not for running the pipeline).
 
-## Files
+| File | Contents |
+|------|----------|
+| [`VISUALIZER_GUIDE.md`](VISUALIZER_GUIDE.md) | How to read the ⭐ Final Explanation Visualizer (port 8899): counterfactual importance, evidence support, attention overlap, validation curves, prediction buckets, identity shortcuts, and leakage audits. |
 
-- `VISUALIZER_GUIDE.md`
-  - Explains how to read the local visualizer.
-  - Covers counterfactual importance, evidence support, attention overlap,
-    validation curves, prediction buckets, identity shortcuts, and leakage
-    audits.
+Add future "how to interpret results" material here; "how to run" documentation belongs in
+[`../run_scripts/README.md`](../run_scripts/README.md).
 
-Use this folder for documentation that explains how to interpret results rather
-than how to run the pipeline.
+---
+
+⬆️ Back to [`FINAL_EXPLANATION/`](../README.md)

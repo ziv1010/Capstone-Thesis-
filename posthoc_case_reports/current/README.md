@@ -1,7 +1,11 @@
-# current
+# 📤 current — Current Case-Level Reports
 
-Current generated case-level post-hoc reports.
+> Part of [`posthoc_case_reports/`](../README.md) · 📤 **generated output**.
 
-These outputs are local/generated. Regenerate them from the scripts documented
-in `posthoc_case_reports/README.md` when upstream GNN, timeline, or explanation
+The current generation of case-level post-hoc reports. Regenerate via the scripts documented
+in the [parent README](../README.md) whenever the upstream GNN, timeline, or explanation
 outputs change.
+
+---
+
+⬆️ Back to [`posthoc_case_reports/`](../README.md)

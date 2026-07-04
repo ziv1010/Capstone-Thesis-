@@ -1,17 +1,19 @@
-# no_cross_case
+# ✂️ no_cross_case — Cross-Case Sharing Ablation
 
-The no-cross-case ablation prevents cross-case sharing of graph nodes.
+> Part of [`ablations/`](../README.md).
 
-## Purpose
+The baseline graph shares canonical authority/context nodes **across cases** (the same
+statute cited by two cases is one node). This ablation disables that sharing, asking whether
+global graph connectivity improves prediction or whether local case-star structure suffices.
 
-The baseline graph can share canonical authority/context nodes across cases.
-This ablation asks whether that global graph connectivity improves prediction
-or whether local case-star structure is sufficient.
-
-## Run Example
+## ▶️ Run
 
 ```bash
 bash ablations/no_cross_case/cross_bucket_total_dataset/run.sh
 ```
 
-Compare results against the matching baseline bucket in `runs/<bucket>/`.
+Compare against the matching baseline bucket in `runs/<bucket>/`.
+
+---
+
+⬆️ Back to [`ablations/`](../README.md)

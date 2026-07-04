@@ -1,53 +1,43 @@
-# Final Outputs
+# 📤 final_outputs — Stage ② Generated Artifacts
 
-This folder stores the main generated artifacts from the OpenNyAI and Mistral
-pipeline.
+> Part of [`Fixed_GPU_OpenNyai/`](../README.md) · **generated data** — large and mostly ignored by Git.
 
-## Folder Pattern
-
-Each legal bucket has up to three output stages:
+The main production artifacts of the OpenNyAI + Mistral pipeline. Each legal bucket
+progresses through up to three output stages:
 
 ```text
-<bucket>_extract/
-<bucket>_summary_opennyai/
-<bucket>_labelled_mistral/
+<bucket>_extract/annotations/                    ← 1️⃣ OpenNyAI NER + rhetorical-role JSONs
+<bucket>_summary_opennyai/enriched_jsons/        ← 2️⃣ + OpenNyAI summary fields
+<bucket>_labelled_mistral/labelled_jsons/        ← 3️⃣ + Mistral outcome labels  (final)
 ```
 
-Current bucket names include:
+## 🪣 Buckets
 
-- `family_matrimonial`
-- `fin_fraud`
-- `food_safety`
-- `land_property`
-- `motor_accidents`
-- `sexual_offences`
+| Bucket | extract | summary | labelled |
+|--------|:-------:|:-------:|:--------:|
+| `family_matrimonial` | ✅ | ✅ | ✅ |
+| `fin_fraud` | ✅ | ✅ | ✅ |
+| `land_property` | ✅ | ✅ | ✅ |
+| `motor_accidents` | ✅ | ✅ | ✅ |
+| `sexual_offences` | ✅ | ✅ | ✅ |
+| `food_safety` | ✅ | ✅ | — (held-out cross-domain bucket; labelled downstream when needed) |
 
-Some buckets may be missing a later stage if that stage has not been run or was
-not part of the final selected dataset.
+A bucket may be missing a later stage if that stage has not been run or was not part of the
+final selected dataset.
 
-## Stage Contents
+## 🧹 Runtime Cache Folders
 
-- `<bucket>_extract/annotations/`
-  - OpenNyAI NER and rhetorical-role JSONs.
+Parallel extraction runs create per-worker runtime homes such as
+`<bucket>_extract/.worker_home_0/`. These contain CUDA/CuPy/OpenNyAI model caches — **not**
+thesis artifacts. Deleting them never deletes completed annotations, summaries, or labels;
+reruns simply re-download caches.
 
-- `<bucket>_summary_opennyai/enriched_jsons/`
-  - Extracted JSONs with OpenNyAI summary fields added.
+## ➡️ Downstream
 
-- `<bucket>_labelled_mistral/labelled_jsons/`
-  - Enriched JSONs with Mistral outcome labels added.
+The `labelled_jsons/` folders feed
+`../run_scripts/run_merge_timeline_from_final_outputs.sh`, which writes the merged
+`*_timed_mistral/` datasets into `DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/`.
 
-## Runtime Cache Folders
+---
 
-Parallel extraction runs may create folders like:
-
-```text
-<bucket>_extract/.worker_home_0/
-<bucket>_extract/.worker_home_1/
-```
-
-These are per-worker runtime/cache homes. They can contain CUDA, CuPy, and
-OpenNyAI model cache files. They are not the saved thesis artifacts; the saved
-artifacts are in `annotations/`, `enriched_jsons/`, and `labelled_jsons/`.
-
-Deleting `.worker_home_*` folders does not delete completed annotations,
-summaries, or labels, but future reruns may recreate/download cache files.
+⬆️ Back to [`Fixed_GPU_OpenNyai/`](../README.md)

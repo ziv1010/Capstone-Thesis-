@@ -1,6 +1,11 @@
-# financial_fraud
+# 🗃️ Financial Fraud — Raw Case Material
 
-Local raw/extracted financial-fraud case material.
+> Part of [`INPUT_DATA/`](../README.md) · **Stage ①** of the pipeline.
 
-Use `financial_fraud_text/` as the plain-text input source for the active
-OpenNyAI pipeline. This folder is local data and is ignored by Git.
+Raw/collected Indian court-judgment material for **financial fraud and economic-offence proceedings (cheating, forgery, cheque dishonour, misappropriation)**.
+
+- 📄 **Contents:** source PDFs / collected files from the original data-gathering step.
+- ➡️ **Next step:** extract plain text with `INPUT_DATA/01_extract_pdf_text.py`; the active
+  pipeline then consumes the sibling [`financial_fraud_text/`](../financial_fraud_text/README.md) folder.
+- 🧩 **Role in the thesis:** one of the five core GNN training buckets.
+- 🚫 **Git policy:** local data only — this folder's contents are ignored by Git.

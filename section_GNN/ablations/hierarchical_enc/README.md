@@ -1,21 +1,21 @@
-# hierarchical_enc
+# 🪜 hierarchical_enc — Hierarchical Text Encoding Ablation
 
-The hierarchical-encoding ablation changes how case text is represented before
-GNN training.
+> Part of [`ablations/`](../README.md).
 
-## Purpose
+Changes how case text is represented before GNN training: instead of one flat text
+representation, sections are encoded with a **more structured, hierarchical strategy** —
+testing whether richer text encoding improves downstream graph performance.
 
-Rather than treating all text as one flat representation, this variant tests
-whether a more structured text encoding improves downstream graph performance.
-
-## Run Example
+## ▶️ Run
 
 ```bash
+# One bucket:
 bash ablations/hierarchical_enc/cross_bucket_total_dataset/run.sh
-```
 
-There is also a group launcher:
-
-```bash
+# All buckets:
 bash runs/run_hierarchical_enc_all_buckets.sh
 ```
+
+---
+
+⬆️ Back to [`ablations/`](../README.md)

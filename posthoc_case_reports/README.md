@@ -1,11 +1,24 @@
-# Post-Hoc Case Reports
+# 📋 posthoc_case_reports — Case-Level Report Generation
 
-Utilities for converting explanation outputs into case-level CSVs and deeper analysis reports.
+> Supporting analysis · converts explanation and multi-hearing outputs into **case-level
+> CSVs and aggregate reports** that connect model explanations to case-stage timelines.
+> Use after the Stage ④ (`section_GNN`) and Stage ⑤ (`FINAL_EXPLANATION`) outputs exist.
 
-## Structure
+## 🗂️ Structure
 
-- `convert_current_outputs_to_csv.py`: converts current explanation outputs into tabular report inputs.
-- `old/aggregate_analysis/`: older aggregate visual analysis scripts.
-- `old/early_detection/`: older early-signal analysis scripts.
+| Path | Role |
+|------|------|
+| `convert_current_outputs_to_csv.py` | Converts current explanation outputs into tabular report inputs. |
+| [`current/`](current/README.md) | 📤 Current generated case-level reports. |
+| [`analysis/`](analysis/README.md) | 📤 Generated aggregate analysis outputs. |
+| [`timeline_merger/`](timeline_merger/README.md) | Stage/timeline merge outputs — influence & connectivity summaries, stage factors. |
+| [`old/`](old/README.md) | 🗄️ Older aggregate-analysis and early-detection scripts. |
 
-Current generated report folders are ignored. Keep only scripts and compact documentation in Git.
+## 📦 Git Policy
+
+Generated report folders are ignored — keep only scripts and compact documentation in Git,
+and regenerate reports when the upstream GNN, timeline, or explanation outputs change.
+
+---
+
+⬆️ Back to the [repository root](../README.md)

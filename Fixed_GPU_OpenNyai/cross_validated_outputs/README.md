@@ -1,43 +1,31 @@
-# Cross-Validated Outputs
+# 🔁 cross_validated_outputs — Audit / Validation Labels
 
-This folder stores optional audit/validation labels. It is separate from the
-main production outputs in `../final_outputs/`.
+> Part of [`Fixed_GPU_OpenNyai/`](../README.md) · **optional generated data**, separate from
+> the main production outputs in [`../final_outputs/`](../final_outputs/README.md).
 
-## Producer
+Outcome labels produced by the **cross-validation labeler**, used to audit agreement with the
+main Mistral labels rather than to feed the main pipeline.
 
-The wrapper is:
+## 🏭 Producer
 
 ```bash
 bash ../run_scripts/run_crossval_all_buckets.sh
 ```
 
-The underlying script is:
+which drives `../extra_scripts/add_case_outcome_labels_crossval_mistral.py` — a labeler that
+asks multiple yes/no checks and aggregates them deterministically.
 
-```text
-../extra_scripts/add_case_outcome_labels_crossval_mistral.py
-```
+## 🔄 Data Flow
 
-## Inputs
+- **Reads:** `../final_outputs/<bucket>_summary_opennyai/enriched_jsons/`
+- **Writes:** `<bucket>/` (per-bucket labelled JSONs) and `logs/`
+- **`label_comparison/`** holds agreement/difference artifacts comparing labelling approaches.
 
-The cross-validation labeler reads enriched OpenNyAI summary JSONs from:
+## 👀 Inspecting
 
-```text
-../final_outputs/<bucket>_summary_opennyai/enriched_jsons/
-```
+The [Pipeline Stage Visualiser](../../STAGE_VISUALISER/README.md) (port `8053`) renders these
+outputs side-by-side with the main pipeline stages.
 
-## Outputs
+---
 
-Per-bucket outputs are written to:
-
-```text
-<bucket>/
-```
-
-Logs are written to:
-
-```text
-logs/
-```
-
-`label_comparison/` contains comparison artifacts used to inspect agreement or
-differences between labeling approaches.
+⬆️ Back to [`Fixed_GPU_OpenNyai/`](../README.md)

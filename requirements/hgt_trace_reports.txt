@@ -1,0 +1,25 @@
+# Environment: hgt_trace_reports
+# Purpose: FINAL_EXPLANATION case-level traceability HTML report generation.
+# Source basis: FINAL_EXPLANATION/traceability_reports_env.yml.
+
+micromamba env create -f FINAL_EXPLANATION/traceability_reports_env.yml
+
+# channels:
+conda-forge
+
+# conda dependencies:
+python=3.11
+graphviz
+jinja2
+matplotlib
+networkx
+numpy
+pandas
+pip
+pydot
+
+# pip dependencies:
+--extra-index-url https://download.pytorch.org/whl/cpu
+pyvis
+torch==2.5.1+cpu
+torch-geometric

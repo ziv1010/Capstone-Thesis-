@@ -1,28 +1,24 @@
-# depth
+# 🪞 depth — GNN Depth Ablation
 
-The depth ablation tests different GNN layer counts.
+> Part of [`ablations/`](../README.md).
 
-## Layout
+Varies the number of GNN layers — measuring whether performance depends on shallow local
+aggregation or deeper **multi-hop message passing**.
 
-Each bucket can contain configs such as:
+## 🗂️ Layout
 
-```text
-config_depth1.yaml
-config_depth2.yaml
-config_depth3.yaml
-run.sh
-```
+Each bucket folder contains e.g. `config_depth1.yaml`, `config_depth2.yaml`,
+`config_depth3.yaml`, and a `run.sh`.
 
-## Purpose
-
-This measures whether performance depends on shallow local aggregation or
-deeper multi-hop message passing.
-
-## Run Example
+## ▶️ Run
 
 ```bash
 bash ablations/depth/fin_fraud_timed_mistral/run.sh
 ```
 
-The run script normally reuses the matching baseline graph cache and changes
-only the model depth/training config.
+The run script reuses the matching baseline graph cache and changes only the model
+depth/training config.
+
+---
+
+⬆️ Back to [`ablations/`](../README.md)

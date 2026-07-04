@@ -1,255 +1,174 @@
-# Capstone Thesis Repository
+<div align="center">
 
-This repository contains the full thesis pipeline for legal case processing,
-dataset construction, graph neural network experiments, and final post-hoc
-explanation analysis.
+# ⚖️ Legal Case Outcome Prediction & Explanation<br>with Heterogeneous Graph Neural Networks
 
-The codebase is organized as a staged workflow. A new user should generally
-read and run the folders in this order:
+**An end-to-end, leakage-aware pipeline for Indian court judgments — from raw PDF text to
+structured case graphs, HGT outcome models, and faithful counterfactual explanations.**
 
-1. `Fixed_GPU_OpenNyai/`
-2. `DATA_SET_BUILDER_AND_EXPLORER/`
-3. `section_GNN/`
-4. `FINAL_EXPLANATION/`
+*Capstone Thesis repository · accompanying paper accepted for conference publication* 🎉
 
-The remaining folders are supporting inputs, visualizers, archives, paper
-materials, and diagnostic analyses. They are documented after the main workflow
-below.
+</div>
 
-## Repository Policy
+---
 
-The repository is source-first. Scripts, configs, README files, LaTeX sources,
-and compact figures are intended to be versioned. Large generated datasets,
-model checkpoints, graph caches, embedding arrays, runtime homes, and logs are
-kept locally and ignored by Git where appropriate.
+## 🧭 Overview
 
-Use relative paths when adding new scripts or configs. The project has been
-cleaned so active paths point to sibling repository folders with `../...`
-instead of machine-specific absolute paths.
+This repository contains the complete research pipeline behind the thesis:
 
-## Main Workflow
+- **Extraction** — OpenNyAI named-entity recognition, rhetorical-role segmentation, and
+  summarization over raw judgment text, followed by Mistral-based case outcome labelling.
+- **Dataset construction** — merging per-hearing records into case timelines, building
+  cross-bucket datasets, and canonicalizing statutes/provisions/precedents via entity resolution.
+- **Modelling** — heterogeneous "case-star" graphs over five legal domains, trained with
+  HGT-style graph neural networks under K-fold cross-validation, plus a full ablation and
+  encoder-comparison matrix (BGE-M3 vs InLegalBERT) and cross-domain tests.
+- **Explanation** — typed counterfactual explanations of the frozen model, faithfulness
+  validation, identity-shortcut audits, community/full-graph analyses, traceability reports,
+  and interactive visualisers.
 
-### 1. OpenNyAI Extraction and Labelling
+The five core legal domains (*buckets*) are **family & matrimonial**, **financial fraud**,
+**land & property**, **motor accidents**, and **sexual offences**, with **food safety** held
+out for cross-domain evaluation.
 
-Start with:
+---
 
-```text
-Fixed_GPU_OpenNyai/
+## 🗺️ The Pipeline at a Glance
+
+Run (and read) the main folders **in this order**:
+
+```mermaid
+flowchart LR
+    A["① INPUT_DATA<br/><i>raw PDFs & judgment text</i>"] --> B["② Fixed_GPU_OpenNyai<br/><i>NER · roles · summaries · labels</i>"]
+    B --> C["③ DATA_SET_BUILDER_AND_EXPLORER<br/><i>timeline merge · entity resolution</i>"]
+    C --> D["④ section_GNN<br/><i>graphs · training · ablations</i>"]
+    D --> E["⑤ FINAL_EXPLANATION<br/><i>counterfactuals · audits · reports</i>"]
 ```
 
-This folder converts raw judgment text into enriched case JSONs. It runs:
+| Stage | Folder | What it does | Key outputs |
+|:-----:|--------|--------------|-------------|
+| ① | [`INPUT_DATA/`](INPUT_DATA/README.md) | Raw & extracted judgment text per legal domain; PDF → text extraction | `<domain>_text/*.txt` |
+| ② | [`Fixed_GPU_OpenNyai/`](Fixed_GPU_OpenNyai/README.md) | OpenNyAI NER + rhetorical roles, summaries, Mistral outcome labels | `final_outputs/<bucket>_labelled_mistral/labelled_jsons/` |
+| ③ | [`DATA_SET_BUILDER_AND_EXPLORER/`](DATA_SET_BUILDER_AND_EXPLORER/README.md) | Merges hearings into case timelines, builds cross-bucket datasets, resolves entities | `Timeline_Maker/output_merged_v3_resolved/` |
+| ④ | [`section_GNN/`](section_GNN/README.md) | Preprocessing, graph caches, HGT training, ablations, cross-domain & multi-hearing tests | `outputs/.../kfold/kfold_summary.json` |
+| ⑤ | [`FINAL_EXPLANATION/`](FINAL_EXPLANATION/README.md) | Post-hoc explanation, validation, audits, traceability reports, paper figures | `outputs/entity_resolved_section_sep_lr_decay_cross_bucket_*` |
 
-- OpenNyAI named-entity recognition
-- OpenNyAI rhetorical-role extraction
-- OpenNyAI summarization
-- Mistral-based outcome labelling
+---
 
-Important outputs:
+## 🖥️ Interactive Visualisers
 
-```text
-Fixed_GPU_OpenNyai/final_outputs/
-Fixed_GPU_OpenNyai/cross_validated_outputs/
-```
+The repository ships four browser-based visualisers. The **two main ones** are the
+Multi-Hearing Stage Test Visualiser and the Final Explanation Visualizer; the Graph
+Visualiser is an **extra** exploration tool.
 
-Typical output families inside `final_outputs/` are:
+| Visualiser | Role | Port | Launch | Env |
+|------------|:----:|:----:|--------|-----|
+| **Multi-Hearing Stage Test Visualiser** | ⭐ main | `8050` | `bash section_GNN/multi_hearing_stage_test/visualiser/run_app.sh` | `graph_vis` |
+| **Final Explanation Visualizer** | ⭐ main | `8899` | `bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh` | `thesis_work` |
+| **Graph Visualiser** | ➕ extra | `8050` | `bash GRAPH_VISUALISER/run_app.sh` | `graph_vis` |
+| Pipeline Stage Visualiser | 🔧 auxiliary | `8053` | `bash STAGE_VISUALISER/run_app.sh` | `graph_vis` |
 
-- `<bucket>_extract/annotations/`
-- `<bucket>_summary_opennyai/enriched_jsons/`
-- `<bucket>_labelled_mistral/labelled_jsons/`
+> **Note** — the Multi-Hearing Stage Test Visualiser and the Graph Visualiser both default to
+> port **8050**: run them one at a time, or pass an alternative port as the first argument
+> (e.g. `bash GRAPH_VISUALISER/run_app.sh 8051`). On a remote server, tunnel first:
+> `ssh -L <port>:localhost:<port> <user>@<server>`.
 
-Read:
+There is also an entity co-occurrence sub-app
+(`bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052`) and a one-command hub —
+`python3 run_visualisers.py` — that starts the Dash apps plus the static timeline viewers
+behind a single landing page.
 
-```text
-Fixed_GPU_OpenNyai/README.md
-Fixed_GPU_OpenNyai/run_scripts/README.md
-Fixed_GPU_OpenNyai/final_outputs/README.md
-```
+---
 
-### 2. Dataset Building and Timeline Merging
-
-Then use:
-
-```text
-DATA_SET_BUILDER_AND_EXPLORER/
-```
-
-The active part of this folder is:
-
-```text
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/
-```
-
-This stage merges labelled OpenNyAI outputs into the case format used by the
-graph experiments. It also builds combined cross-bucket datasets and resolved
-entity variants.
-
-Important generated outputs:
-
-```text
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3/
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/
-```
-
-The resolved output is the preferred final dataset source for visualisation and
-some downstream analysis:
-
-```text
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/
-```
-
-Read:
-
-```text
-DATA_SET_BUILDER_AND_EXPLORER/README.md
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/README.md
-```
-
-### 3. GNN Training, Ablations, and Evaluation
-
-Next use:
-
-```text
-section_GNN/
-```
-
-This is the main modelling folder. It preprocesses merged case JSONs, builds
-heterogeneous graph caches, trains graph neural networks, and runs the
-ablation/cross-domain experiments used in the thesis.
-
-The standard modelling flow is:
-
-1. Preprocess cases.
-2. Build graph caches and embeddings.
-3. Train/evaluate K-fold GNN models.
-4. Run ablations and InLegalBERT/BGE comparison matrices.
-
-Important areas:
-
-- `section_GNN/src/`: reusable graph, preprocessing, model, training, and utility code
-- `section_GNN/runs/`: baseline timed-bucket runs
-- `section_GNN/runs_v2/`: later run variants
-- `section_GNN/runs_inlegalbert/`: InLegalBERT experiment matrix
-- `section_GNN/ablations/`: controlled ablation experiments
-- `section_GNN/final_graph/`: final reasoning-focused graph builders
-- `section_GNN/embedding_analysis/`: post-hoc embedding and probing tools
-
-Generated data and model outputs are written under:
-
-```text
-section_GNN/data/
-section_GNN/outputs/
-section_GNN/run_logs/
-```
-
-Read:
-
-```text
-section_GNN/README.md
-section_GNN/src/README.md
-section_GNN/runs/README.md
-section_GNN/ablations/README.md
-section_GNN/final_graph/README.md
-```
-
-### 4. Final Explanation and Thesis Visualisation
-
-Finally use:
-
-```text
-FINAL_EXPLANATION/
-```
-
-This folder does not train models. It reads trained model artifacts from
-`section_GNN/` and runs final post-hoc analyses:
-
-- typed counterfactual explanations
-- faithfulness validation
-- identity shortcut audits
-- pattern/community analysis
-- full-graph bridge and hub analysis
-- final traceability reports
-- local explanation visualizer
-- paper/thesis figure generation
-
-The main current output families are:
-
-```text
-FINAL_EXPLANATION/outputs/entity_resolved_section_sep_lr_decay_cross_bucket_fold00/
-FINAL_EXPLANATION/outputs/entity_resolved_section_sep_lr_decay_cross_bucket_pattern_why/
-FINAL_EXPLANATION/outputs/entity_resolved_section_sep_lr_decay_cross_bucket_full_graph/
-```
-
-Read:
-
-```text
-FINAL_EXPLANATION/README.md
-FINAL_EXPLANATION/docs/README.md
-FINAL_EXPLANATION/run_scripts/README.md
-FINAL_EXPLANATION/outputs/README.md
-```
-
-## Supporting Folders
+## 📁 Repository Map
 
 | Folder | Purpose |
-| --- | --- |
-| `INPUT_DATA/` | Local raw and extracted text inputs used before OpenNyAI processing. Large domain folders are intentionally ignored by Git. |
-| `Thesis_FINAL_DATA/` | Local curated final data bundle for figures, graph info, timelines, embeddings, and experiment-result snapshots. |
-| `GRAPH_VISUALISER/` | Dash visualiser and static plotting tools for the final resolved Timeline Maker graph data. |
-| `Graph_Analyser_OLD/` | Legacy HGT explanation/graph-analysis prototype kept for reference and old figure generation. |
-| `STAGE_VISUALISER/` | Small visualiser for hearing-stage or transition outputs. |
-| `posthoc_case_reports/` | Case-level post-hoc report generation and timeline-merger diagnostics. |
-| `model comparison/` | LLM/model comparison experiments against held-out GNN test cases. |
-| `Latex_Documentation/` | LaTeX thesis/paper source material and final documentation bundles. |
-| `configs/` | Legacy/root-level config files retained for reference. Most active configs now live inside their pipeline folders. |
-| `DUMP_MISC/` | Archive for deprecated scripts, old experiments, exploratory utilities, and sample data moved out of active folders. |
+|--------|---------|
+| [`INPUT_DATA/`](INPUT_DATA/README.md) | **Stage ①** — raw/extracted judgment text per domain (data ignored by Git). |
+| [`Fixed_GPU_OpenNyai/`](Fixed_GPU_OpenNyai/README.md) | **Stage ②** — GPU OpenNyAI extraction + Mistral labelling pipeline. |
+| [`DATA_SET_BUILDER_AND_EXPLORER/`](DATA_SET_BUILDER_AND_EXPLORER/README.md) | **Stage ③** — Timeline Maker: merging, cross-bucket datasets, entity resolution. |
+| [`section_GNN/`](section_GNN/README.md) | **Stage ④** — GNN modelling: graphs, training, ablations, encoder matrix. |
+| [`FINAL_EXPLANATION/`](FINAL_EXPLANATION/README.md) | **Stage ⑤** — post-hoc explanation, validation, audits, reports, figures. |
+| [`GRAPH_VISUALISER/`](GRAPH_VISUALISER/README.md) | Extra Dash graph explorer + static thesis figure generation (port 8050). |
+| [`STAGE_VISUALISER/`](STAGE_VISUALISER/README.md) | Auxiliary stage-by-stage pipeline inspector (port 8053). |
+| [`model comparison/`](model%20comparison/README.md) | Legal-LLM baselines (InLegalLlama, FactLegalLlama) on held-out GNN test cases. |
+| [`posthoc_case_reports/`](posthoc_case_reports/README.md) | Case-level CSV reports connecting explanations to timelines/stages. |
+| [`Latex_Documentation/`](Latex_Documentation/README.md) | Thesis & paper LaTeX sources, figure-generation helpers. |
+| [`requirements/`](requirements/README.md) | Index of the micromamba environments used across the repo. |
+| `run_visualisers.py` | One-command local hub for the repo's visualisers. |
+| `DUMP_MISC/` | 🗄️ Archive of deprecated scripts, old experiments, and superseded outputs — not part of the active pipeline. |
 
-## Folder-Level Documentation
+---
 
-Each active top-level folder has a `README.md`. Many important subfolders also
-have local README files that explain their role, inputs, outputs, and whether
-they are active, generated, or archived.
+## 🧪 Environments
 
-Generated data/output/cache folders are documented by their parent README or by
-a short marker README when the folder is intended to be browsed directly. Do not
-treat files under `DUMP_MISC/`, old output folders, cache folders, or generated
-model-output folders as active entry points unless their local README says so.
+Different stages have incompatible dependency constraints, so each uses its own micromamba
+environment. Package inventories live in [`requirements/`](requirements/README.md).
 
-## Environment Summary
+| Environment | Used by |
+|-------------|---------|
+| `fixed_gpu_opennyai_final` | OpenNyAI NER/rhetorical-role extraction and summarization (Stage ②). |
+| `llm` | Mistral outcome labelling (Stage ②). |
+| `case_merge` | Lightweight timeline/case merging (Stage ③). |
+| `thesis_work` | `section_GNN` preprocessing, graph building, training, and `FINAL_EXPLANATION` analyses (Stages ④–⑤). |
+| `graph_vis` | Dash visualisers (Graph, Stage, Multi-Hearing). |
+| `hgt_trace_reports` | Traceability report generation (Stage ⑤). |
+| `model_comparison_inlegalllama` | Legal-LLM comparison runs. |
 
-Different stages use different environments because OpenNyAI, graph modelling,
-and report generation have incompatible dependency constraints.
+---
 
-Common environment names:
+## 🚀 End-to-End Quick Start
 
-- `fixed_gpu_opennyai_final`: OpenNyAI extraction, summaries, and GPU pipeline.
-- `llm`: local/Hugging Face Mistral outcome labelling.
-- `thesis_work`: `section_GNN` preprocessing, graph building, and training.
-- `graph_vis`: `GRAPH_VISUALISER` Dash apps and static graph plots.
-- `hgt_trace_reports`: final traceability report generation.
+```bash
+# ① Extract text from PDFs (if starting from PDFs)
+python INPUT_DATA/01_extract_pdf_text.py --input-dir <pdf_dir> --output-dir INPUT_DATA/<domain>_text
 
-Prefer the folder README for exact setup commands.
+# ② OpenNyAI extraction → summaries → Mistral labels → timeline merge
+cd Fixed_GPU_OpenNyai
+bash run_scripts/run_ner_rr_all_categories.sh --gpus 0,1,2,3
+bash run_scripts/run_opennyai_summaries_all.sh --gpus 0,1,2,3
+bash run_scripts/run_mistral_labels_from_opennyai_summaries_all.sh --gpus 0,1,2,3
+bash run_scripts/run_merge_timeline_from_final_outputs.sh
+cd ..
 
-## Reproducibility Notes
+# ③ Build the cross-bucket dataset and resolve entities
+cd DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker
+python merge_cases_v3.py            # see folder README for arguments
+python entity_resolver/resolve_entities.py --input-root output_merged_v3 --output-root output_merged_v3_resolved
+cd ../..
 
-- Run commands from the folder specified by the local README, or use the provided
-  shell wrappers.
-- Keep configs relative to the repository.
-- Do not commit large generated outputs, model checkpoints, caches, or raw case
-  corpora.
-- When adding a new experiment, place its README next to its scripts/configs and
-  document input folders, output folders, environment, and expected run command.
+# ④ Preprocess → build graph → K-fold training (one bucket shown)
+cd section_GNN
+bash runs/fin_fraud_timed_mistral/run_all.sh
+cd ..
 
-## Quick Navigation
+# ⑤ Full explanation + validation + audits + pattern/full-graph analyses
+bash FINAL_EXPLANATION/run_scripts/run_entity_resolved_section_sep_lr_decay_cross_bucket_all.sh
 
-Start here for the main thesis pipeline:
-
-```text
-Fixed_GPU_OpenNyai/README.md
-DATA_SET_BUILDER_AND_EXPLORER/README.md
-DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/README.md
-section_GNN/README.md
-FINAL_EXPLANATION/README.md
+# 🔍 Inspect the results
+bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh          # http://127.0.0.1:8899
 ```
 
-Then use the supporting README files only when you need visualisation, paper
-assets, post-hoc reports, model comparisons, or archived scripts.
+Each folder README documents the exact inputs, outputs, flags, and environment for its stage.
+
+---
+
+## 📐 Repository Policy & Reproducibility
+
+- **Source-first Git policy.** Scripts, configs, READMEs, LaTeX sources, and compact figures
+  are versioned. Large generated corpora, model checkpoints, graph caches, embedding arrays,
+  runtime homes, and logs are kept local and ignored by Git.
+- **Portable paths.** Active configs and wrappers use repository-relative paths
+  (e.g. `../DATA_SET_BUILDER_AND_EXPLORER/...`); nothing depends on a machine-specific
+  absolute path. Python configs are loaded through resolvers that expand these at runtime.
+- **Run from the documented folder.** Each README states where to launch its commands from —
+  most `section_GNN` tooling expects `cd section_GNN` first.
+- **Adding experiments.** Place the config + `run.sh` next to the closest existing variant,
+  keep paths relative, and document inputs/outputs/environment in a local README.
+
+---
+
+<div align="center">
+
+**Start here:** [`INPUT_DATA/`](INPUT_DATA/README.md) → [`Fixed_GPU_OpenNyai/`](Fixed_GPU_OpenNyai/README.md) → [`DATA_SET_BUILDER_AND_EXPLORER/`](DATA_SET_BUILDER_AND_EXPLORER/README.md) → [`section_GNN/`](section_GNN/README.md) → [`FINAL_EXPLANATION/`](FINAL_EXPLANATION/README.md)
+
+</div>

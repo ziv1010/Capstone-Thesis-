@@ -1,19 +1,22 @@
-# experiments
+# 🧫 experiments — Standalone Workflows
 
-`experiments` contains standalone workflows that sit beside the main bucket
-matrix. They reuse the core `src` package but answer narrower experimental
-questions.
+> Part of [`section_GNN/`](../README.md) · workflows that sit **beside** the main bucket
+> matrix, reusing the core `src` package to answer narrower experimental questions.
 
-## Subfolders
+## 🗂️ Subfolders
 
 | Folder | Purpose |
-| --- | --- |
-| `fixed_open_pipeline/` | Converts sentence-level fixed-open JSONs into cleaned cases for the reasoning graph. |
-| `dataset_size_sweep/` | Measures performance as training set size changes. |
-| `multi_embed_test/` | Compares text encoder backends and evaluates checkpoint transfer. |
+|--------|---------|
+| [`fixed_open_pipeline/`](fixed_open_pipeline/README.md) | Converts sentence-level fixed-open JSONs into the cleaned-case schema — the **standard preprocessing entry point**. |
+| [`dataset_size_sweep/`](dataset_size_sweep/README.md) | Measures how performance scales with training-set size. |
 
-## When to Use This Folder
+## 🤔 When to Use This Folder
 
-Use `experiments/` when a workflow is not simply "run a bucket config through
-preprocess/build/train." For ordinary baseline and ablation runs, prefer
-`runs/`, `runs_v2/`, or `ablations/`.
+Use `experiments/` when a workflow is *not* simply "run a bucket config through
+preprocess → build → train". For ordinary baseline and ablation runs, prefer
+[`runs/`](../runs/README.md), [`runs_v2/`](../runs_v2/README.md), or
+[`ablations/`](../ablations/README.md).
+
+---
+
+⬆️ Back to [`section_GNN/`](../README.md)

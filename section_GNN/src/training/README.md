@@ -1,22 +1,20 @@
-# src/training
+# 🏋️ src/training — Training & Evaluation Logic
 
-This package contains reusable training and evaluation logic.
+> Part of [`section_GNN/src/`](../README.md).
 
-## Files
+| File | Role |
+|------|------|
+| `dataset.py` | Graph label/split validation and dataset helpers. |
+| `train.py` | Training loop with early stopping, optimizer, and LR-scheduler handling. |
+| `evaluate.py` | Split evaluation and prediction collection. |
+| `metrics.py` | Metric computation + plots (training history, split bars, confusion matrices). |
 
-- `dataset.py`: graph label/split validation and dataset helpers.
-- `train.py`: training loop, early stopping, optimizer/scheduler handling.
-- `evaluate.py`: split evaluation and prediction collection.
-- `metrics.py`: metric computation and plots for history, split bars, and
-  confusion matrices.
+## 📜 Output Contract
 
-## Output Contract
+Training functions return a dictionary with the trained model state, a predictions
+DataFrame, per-split metric dictionaries (train/validation/test), and the training history.
+Script wrappers persist all of it under `outputs/.../models/<run_name>/`.
 
-Training functions return a dictionary containing:
+---
 
-- trained model state
-- predictions as a DataFrame
-- metric dictionaries for train/validation/test splits
-- training history
-
-Script wrappers save those outputs under `outputs/.../models/<run_name>/`.
+⬆️ Back to [`src/`](../README.md)

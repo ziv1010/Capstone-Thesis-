@@ -1,27 +1,23 @@
-# run_logs
+# 🧾 run_logs — Experiment Launcher Logs
 
-This folder stores logs from long-running `section_GNN` experiment launchers.
-The `.log` files are generated artifacts and can be deleted or regenerated.
+> Part of [`section_GNN/`](../README.md) · 📤 **generated artifacts** — deletable and
+> regenerable.
 
-## Recommended Pattern
-
-From `section_GNN`:
+Logs from long-running experiment launchers. Recommended pattern (from `section_GNN/`):
 
 ```bash
 nohup bash run_scripts/<script>.sh > run_logs/<script>.log 2>&1 &
 tail -f run_logs/<script>.log
 ```
 
-## Naming
+Name logs after the launcher or experiment family, e.g.
+`run_logs/run_inlegalbert_experiments.log`,
+`run_logs/remove_central_authorities_fin_fraud.log`.
 
-Use a descriptive name that includes the launcher or experiment family, for
-example:
+Logs help diagnose failed folds, GPU-assignment issues, and missing graph caches — but the
+**authoritative metrics** are the `kfold_summary.json` files under
+[`outputs/`](../outputs/README.md).
 
-```text
-run_logs/run_inlegalbert_experiments.log
-run_logs/remove_central_authorities_fin_fraud.log
-```
+---
 
-Logs are useful for diagnosing failed folds, GPU assignment issues, and missing
-graph caches, but the authoritative metrics are the `kfold_summary.json` files
-under `outputs/`.
+⬆️ Back to [`section_GNN/`](../README.md)

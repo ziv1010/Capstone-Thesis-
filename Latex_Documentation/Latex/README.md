@@ -1,6 +1,10 @@
-# Latex
+# 📘 Latex — Earlier LaTeX Material
 
-LaTeX source and older document-building material.
+> Part of [`Latex_Documentation/`](../README.md) · writing-support material.
 
-This is a writing-support folder. It is not part of the data-processing or model
-execution pipeline.
+Earlier LaTeX sources (currently `updates_slides.tex` — progress-update slides). Not part of
+the data-processing or model-execution pipeline.
+
+---
+
+⬆️ Back to [`Latex_Documentation/`](../README.md)

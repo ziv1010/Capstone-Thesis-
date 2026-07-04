@@ -1,61 +1,47 @@
-# Entity Analysis Visualiser
+# 🔗 entity_analysis — Entity Co-Occurrence Explorer (Port 8052)
 
-Within-bucket and cross-bucket entity co-occurrence analysis for the final resolved Timeline Maker dataset.
+> Part of [`GRAPH_VISUALISER/`](../README.md) · within-bucket and cross-bucket entity
+> co-occurrence analysis over the final resolved Timeline Maker dataset.
 
-## Input
+## 📥 Input
 
-`analyse.py` reads final JSONs from:
+`analyse.py` reads the final resolved JSONs:
 
 ```text
 ../../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/
 ```
 
-The active buckets are:
+Active buckets: `family_matrimonial`, `land_property`, `motor_accidents`,
+`sexual_offences`, `fin_fraud`. Cross-bucket analysis uses
+`output_merged_v3_resolved/combined_dataset_without_food_safety/`.
 
-- `family_matrimonial`
-- `land_property`
-- `motor_accidents`
-- `sexual_offences`
-- `fin_fraud`
+## 📤 Outputs
 
-Cross-bucket analysis uses:
+Written under `GRAPH_VISUALISER/entity_analysis/outputs/`:
 
-```text
-../../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/output_merged_v3_resolved/combined_dataset_without_food_safety/
-```
+| Subfolder | Contents |
+|-----------|----------|
+| `within_bucket/` | Per-domain entity graph summaries. |
+| `cross_bucket/` | Shared cross-domain entity graph summaries. |
+| `figures/` | Exported Plotly figures. |
+| `figures_readable/` | Reduced, thesis-readable figure exports. |
 
-## Outputs
+## ▶️ Run
 
-Generated JSONs and figures are written under:
-
-```text
-GRAPH_VISUALISER/entity_analysis/outputs/
-```
-
-Important subfolders:
-
-- `within_bucket/`: per-domain entity graph summaries.
-- `cross_bucket/`: shared cross-domain entity graph summaries.
-- `figures/`: exported Plotly figures.
-- `figures_readable/`: reduced, thesis-readable figure exports.
-
-## Run
-
-From the repo root:
+From the repository root:
 
 ```bash
+# Analysis only (refresh JSON outputs):
 bash GRAPH_VISUALISER/entity_analysis/run.sh analyse-only
-```
 
-Run analysis and launch the Dash app:
-
-```bash
+# Analysis + Dash app on port 8052:
 bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052
-```
 
-Export static figures after analysis:
-
-```bash
+# Static figure exports:
 micromamba run -n graph_vis python GRAPH_VISUALISER/entity_analysis/export_plots.py
 micromamba run -n graph_vis python GRAPH_VISUALISER/entity_analysis/export_plots_readable.py
 ```
+
+---
+
+⬆️ Back to [`GRAPH_VISUALISER/`](../README.md)

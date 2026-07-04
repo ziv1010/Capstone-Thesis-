@@ -1,33 +1,26 @@
-# remove_central_authorities
+# 🧹 remove_central_authorities — Hub-Filtering Ablation
 
-This ablation removes or filters highly central authority nodes before training.
+> Part of [`ablations/`](../README.md).
 
-## Purpose
+Very common statutes, provisions, or precedents become **high-degree hubs** in the global
+graph. This ablation filters those central authority nodes before training — testing whether
+performance depends on hubs or whether they inject noise/shortcut behaviour.
 
-Very common statutes, provisions, or precedents can become high-degree hubs.
-This variant tests whether performance depends on those hubs or whether they
-inject noise/shortcut behavior.
+## 📄 Main Files
 
-## Main Files
+| File | Role |
+|------|------|
+| `analyze_central_authorities.py` | Identifies high-centrality authority nodes. |
+| `filter_cleaned_cases.py` | Removes selected central authorities from cleaned cases. |
+| `prepare_configs.py` | Generates configs for the filtered runs. |
+| `run_remove_central_authorities_ablation.sh` | Main launcher. |
 
-- `analyze_central_authorities.py`: identifies high-centrality authority nodes.
-- `filter_cleaned_cases.py`: removes selected central authorities from cleaned
-  case records.
-- `prepare_configs.py`: generates configs for filtered runs.
-- `run_remove_central_authorities_ablation.sh`: main launcher.
+## 🗂️ Configs & Outputs
 
-## Config Layout
+Configs: `configs/` and `configs_no_lr/`.
+Outputs: `outputs/ablations/remove_central_authorities/` and
+`data/ablations/remove_central_authorities/`.
 
-Generated configs live under:
+---
 
-```text
-ablations/remove_central_authorities/configs/
-ablations/remove_central_authorities/configs_no_lr/
-```
-
-Outputs usually land under:
-
-```text
-outputs/ablations/remove_central_authorities/
-data/ablations/remove_central_authorities/
-```
+⬆️ Back to [`ablations/`](../README.md)

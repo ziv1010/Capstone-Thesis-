@@ -1,39 +1,33 @@
-# dataset_size_sweep
+# 📈 dataset_size_sweep — Training-Set Size Scaling
 
-This experiment measures how performance changes as the number of training
-examples changes while keeping the graph/pipeline assumptions fixed.
+> Part of [`experiments/`](../README.md).
 
-## Files
+Measures how model performance changes as the number of training examples grows, while
+keeping graph and pipeline assumptions fixed.
 
-- `run_fixed_open_dataset_size_sweep.py`: full sweep over configured sizes.
-- `run_fixed_open_limited_experiment.py`: smaller limited run for quick checks.
+## 📄 Files
 
-## Inputs
+| File | Role |
+|------|------|
+| `run_fixed_open_dataset_size_sweep.py` | Full sweep over the configured sizes. |
+| `run_fixed_open_limited_experiment.py` | Smaller limited run for quick checks. |
 
-The scripts usually start from:
+## ▶️ Run
 
-```text
-experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
-```
-
-They expect cleaned cases and graph-building settings compatible with the
-fixed-open pipeline.
-
-## Run
-
-From `section_GNN`:
+From `section_GNN/` (inputs follow the fixed-open pipeline config):
 
 ```bash
 micromamba run -n thesis_work python experiments/dataset_size_sweep/run_fixed_open_dataset_size_sweep.py \
   --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
-```
 
-For a quick limited run:
-
-```bash
+# quick limited check:
 micromamba run -n thesis_work python experiments/dataset_size_sweep/run_fixed_open_limited_experiment.py \
   --config experiments/fixed_open_pipeline/fixed_open_reasoning_config.yaml
 ```
 
 Outputs are written below the configured `outputs_dir`, usually under a
 `dataset_size_sweep/` subfolder.
+
+---
+
+⬆️ Back to [`experiments/`](../README.md)

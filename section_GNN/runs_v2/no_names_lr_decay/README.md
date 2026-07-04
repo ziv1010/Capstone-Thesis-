@@ -1,17 +1,20 @@
-# no_names_lr_decay
+# 🕶️ no_names_lr_decay — V2 No-Names Ablation
 
-V2 no-names ablation with LR-decay training.
+> Part of [`runs_v2/`](../README.md) · removes name-bearing features/nodes under LR-decay training.
 
-## Relationship to `party_args_lr_decay`
+Uses the shared v2 builder/trainer from
+[`../party_args_lr_decay/`](../party_args_lr_decay/README.md) but swaps in configs that strip
+identity information (party, lawyer, judge names), testing whether the v2 gains survive
+without identity signals.
 
-This folder uses the shared v2 builder/trainer from
-`runs_v2/party_args_lr_decay/` but swaps in configs that remove name-bearing
-features/nodes.
-
-## Run All Buckets
+## ▶️ Run
 
 ```bash
 bash runs_v2/no_names_lr_decay/run_all_buckets.sh
 ```
 
-Outputs follow each config's `paths.outputs_dir`.
+Outputs follow each per-bucket config's `paths.outputs_dir`.
+
+---
+
+⬆️ Back to [`runs_v2/`](../README.md)

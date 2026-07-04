@@ -1,33 +1,39 @@
-# src/graph
+# 🕸️ src/graph — Heterogeneous Graph Construction
 
-This package builds the heterogeneous legal graphs used by the GNN models.
+> Part of [`section_GNN/src/`](../README.md).
 
-## Files
+Builds the heterogeneous legal graphs consumed by the GNN models.
 
-- `schema.py`: node and relation names shared across graph builders.
-- `case_star_builder.py`: builds per-case star graphs from cleaned cases.
-- `global_graph_builder.py`: merges case-star graphs into a single global graph.
-- `pyg_builder.py`: converts the global graph into PyTorch Geometric `HeteroData`.
-- `pyg_builder_section_sep.py`: PyG conversion variant with section-separated case features.
+## 📄 Files
 
-## Graph Shape
+| File | Role |
+|------|------|
+| `schema.py` | Canonical node and relation names shared by all graph builders. |
+| `case_star_builder.py` | Builds a local **case-star graph** per cleaned case. |
+| `global_graph_builder.py` | Merges case-star graphs into one global graph, sharing canonical authority nodes across cases. |
+| `pyg_builder.py` | Converts the global graph into PyTorch Geometric `HeteroData` (encodes text features, caches embeddings). |
+| `pyg_builder_section_sep.py` | PyG conversion variant with **section-separated** case features. |
 
-The baseline graph centers each case around a `case` node connected to text,
-party, court, lawyer, and legal-authority nodes. Depending on the config, graph
-nodes can include:
+## 🌟 Graph Shape
 
-- `case`
-- `preamble`, `facts`, `arguments`
-- `petitioner_arguments`, `respondent_arguments`, `other_lawyer_arguments`
-- `petitioner`, `respondent`
-- `court`, `judge`, `lawyer`, `petitioner_lawyer`, `defence_lawyer`
-- `statute`, `provision`, `precedent`
+Each case is a star centred on a `case` node. Depending on the config, nodes include:
 
-Graph variants may remove node types, prevent cross-case sharing, or change how
-case text is encoded.
+- **Text sections:** `preamble`, `facts`, `arguments`, `petitioner_arguments`,
+  `respondent_arguments`, `other_lawyer_arguments`
+- **Participants:** `petitioner`, `respondent`, `court`, `judge`, `lawyer`,
+  `petitioner_lawyer`, `defence_lawyer`
+- **Legal authorities (shared across cases):** `statute`, `provision`, `precedent`
 
-## Embeddings
+Graph variants (see [`../../ablations/`](../../ablations/README.md)) remove node types,
+prevent cross-case sharing, or change text encoding.
 
-`pyg_builder.py` calls the configured text encoder through `src.utils.text_encoder`.
-Embeddings are cached in `paths.embeddings_cache_dir`, usually under
-`data/.../embeddings_cache/`.
+## 🧮 Embeddings
+
+`pyg_builder.py` calls the configured text encoder via `src.utils.text_encoder`
+(BGE-M3, InLegalBERT, hashing fallback, …). Embeddings are cached under
+`paths.embeddings_cache_dir` (usually `data/.../embeddings_cache/`), so rebuilding a graph
+with unchanged text is fast.
+
+---
+
+⬆️ Back to [`src/`](../README.md)

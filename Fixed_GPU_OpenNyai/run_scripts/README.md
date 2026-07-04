@@ -1,19 +1,14 @@
-# Run Scripts
+# 🚀 run_scripts — Stage ② Shell Wrappers
 
-Shell wrappers for the `Fixed_GPU_OpenNyai` pipeline live here. They resolve
-paths relative to this folder, so the repository can move without editing
-machine-specific absolute paths.
+> Part of [`Fixed_GPU_OpenNyai/`](../README.md) · the **recommended entry points** for Stage ②.
 
-Each wrapper derives:
+Every wrapper resolves its paths from its own location — `PROJECT_ROOT` (the parent
+`Fixed_GPU_OpenNyai/`) and `REPO_ROOT` (the repository) — so the repo can move between
+machines without editing any script. Prefer running these from `Fixed_GPU_OpenNyai/`.
 
-- `PROJECT_ROOT`: the parent `Fixed_GPU_OpenNyai/` folder.
-- `REPO_ROOT`: the parent `Capstone-Thesis-/` repository folder.
+---
 
-Prefer running these from `Fixed_GPU_OpenNyai/`.
-
-## Main Pipeline Wrappers
-
-Run in this order for the standard thesis artifact chain:
+## 🏭 Main Pipeline Wrappers (run in this order)
 
 ```bash
 bash run_scripts/run_ner_rr_all_categories.sh --gpus 0,1,2,3
@@ -22,68 +17,47 @@ bash run_scripts/run_mistral_labels_from_opennyai_summaries_all.sh --gpus 0,1,2,
 bash run_scripts/run_merge_timeline_from_final_outputs.sh
 ```
 
-- `run_ner_rr_all_categories.sh`
-  - Reads `../INPUT_DATA/*_text`.
-  - Writes `final_outputs/*_extract/annotations`.
+| Script | Reads | Writes |
+|--------|-------|--------|
+| `run_ner_rr_all_categories.sh` | `../INPUT_DATA/*_text/` | `final_outputs/<bucket>_extract/annotations/` |
+| `run_opennyai_summaries_all.sh` | `final_outputs/<bucket>_extract/annotations/` | `final_outputs/<bucket>_summary_opennyai/enriched_jsons/` |
+| `run_mistral_labels_from_opennyai_summaries_all.sh` | `final_outputs/<bucket>_summary_opennyai/enriched_jsons/` | `final_outputs/<bucket>_labelled_mistral/labelled_jsons/` |
+| `run_merge_timeline_from_final_outputs.sh` | `final_outputs/<bucket>_labelled_mistral/labelled_jsons/` | `../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/<bucket>_timed_mistral/` |
 
-- `run_opennyai_summaries_all.sh`
-  - Reads `final_outputs/*_extract/annotations`.
-  - Writes `final_outputs/*_summary_opennyai/enriched_jsons`.
+> The Mistral wrapper uses the `llm` micromamba environment and requires a Hugging Face token
+> (`HF_TOKEN`, `HUGGINGFACEHUB_API_TOKEN`, or `--hf-token`).
 
-- `run_mistral_labels_from_opennyai_summaries_all.sh`
-  - Reads `final_outputs/*_summary_opennyai/enriched_jsons`.
-  - Writes `final_outputs/*_labelled_mistral/labelled_jsons`.
+---
 
-- `run_merge_timeline_from_final_outputs.sh`
-  - Reads `final_outputs/*_labelled_mistral/labelled_jsons`.
-  - Writes `../DATA_SET_BUILDER_AND_EXPLORER/Timeline_Maker/*_timed_mistral`.
+## 🧱 Dataset-Building Wrappers
 
-## Dataset-Building Wrappers
+These consume the merged Timeline Maker folders and assemble the cross-bucket corpora used
+by `section_GNN`:
 
-These consume the merged Timeline Maker folders:
+| Script | Effect |
+|--------|--------|
+| `run_build_cross_bucket_cases.sh` | Copies up to **8 000** sorted case JSONs per bucket into `Timeline_Maker/cross_bucket_cases_8k_each_mistral/`. |
+| `run_build_cross_bucket_remaining_cases.sh` | Copies everything **after** the first 8 000 per bucket into `Timeline_Maker/cross_bucket_cases_remaining_after_8k_each_mistral/`. |
 
-```bash
-bash run_scripts/run_build_cross_bucket_cases.sh
-bash run_scripts/run_build_cross_bucket_remaining_cases.sh
-```
+---
 
-- `run_build_cross_bucket_cases.sh`
-  - Copies up to `8000` sorted case JSONs per bucket into
-    `Timeline_Maker/cross_bucket_cases_8k_each_mistral`.
+## 🔬 Optional Labelling Wrappers
 
-- `run_build_cross_bucket_remaining_cases.sh`
-  - Skips the first `8000` sorted case JSONs per bucket and copies the
-    remaining files into
-    `Timeline_Maker/cross_bucket_cases_remaining_after_8k_each_mistral`.
+Call scripts in [`../extra_scripts/`](../extra_scripts/README.md); not required for the main chain:
 
-## Optional Labeling Wrappers
+| Script | Effect |
+|--------|--------|
+| `run_crossval_all_buckets.sh` | Audit/validation labeler → `../cross_validated_outputs/<bucket>/`. |
+| `run_mistral_multi_labels_from_opennyai_summaries_all.sh` | Experimental multi-label labeler → separate multi-label folders under `../final_outputs/`. |
 
-These call scripts in `../extra_scripts/` and are not required for the main
-pipeline:
+---
 
-```bash
-bash run_scripts/run_crossval_all_buckets.sh
-bash run_scripts/run_mistral_multi_labels_from_opennyai_summaries_all.sh
-```
+## 🔧 Useful Overrides
 
-- `run_crossval_all_buckets.sh`
-  - Runs the cross-validation/audit labeler.
-  - Writes `cross_validated_outputs/<bucket>`.
+Most wrappers accept flags and environment variables: `CONDA_ENV`, `GPUS`,
+`MODEL` / `MODEL_ID`, `BASE_INPUT`, `BASE_OUTPUT`, `FINAL_OUTPUTS_DIR`, `TIMELINE_ROOT`,
+`OUTPUT_DIR`. Check each script's header before a large run.
 
-- `run_mistral_multi_labels_from_opennyai_summaries_all.sh`
-  - Runs the experimental multi-label outcome labeler.
-  - Writes separate multi-label output folders under `final_outputs/`.
+---
 
-## Useful Overrides
-
-Most wrappers accept command-line flags and environment variables. Common
-overrides include:
-
-- `CONDA_ENV`
-- `GPUS`
-- `MODEL` or `MODEL_ID`
-- `BASE_INPUT`
-- `BASE_OUTPUT`
-- `FINAL_OUTPUTS_DIR`
-- `TIMELINE_ROOT`
-- `OUTPUT_DIR`
+⬆️ Back to [`Fixed_GPU_OpenNyai/`](../README.md)

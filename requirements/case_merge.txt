@@ -1,0 +1,13 @@
+# Environment: case_merge
+# Purpose: lightweight timeline/case merge utilities.
+# Referenced by: Fixed_GPU_OpenNyai/run_scripts/run_merge_timeline_from_final_outputs.sh.
+# Source basis: installed micromamba env in this checkout; no dedicated repo YAML
+# was found.
+
+micromamba create -n case_merge -c conda-forge python=3.11 pip rapidfuzz
+
+# installed-env reference observed in this checkout:
+python=3.11.15
+pip=26.0.1
+RapidFuzz=3.14.3
+packaging=26.0
