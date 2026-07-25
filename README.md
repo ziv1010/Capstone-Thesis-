@@ -15,6 +15,10 @@ structured case graphs, HGT outcome models, and faithful counterfactual explanat
 
 This repository contains the complete research pipeline behind the thesis:
 
+> For a source-to-artifact methodology, including the exact final-model lineage,
+> corpus/graph statistics, and known reproducibility boundaries, see
+> **[`FRAMEWORK_AND_DATA_ACQUISITION.md`](FRAMEWORK_AND_DATA_ACQUISITION.md)**.
+
 - **Extraction** — OpenNyAI named-entity recognition, rhetorical-role segmentation, and
   summarization over raw judgment text, followed by Mistral-based case outcome labelling.
 - **Dataset construction** — merging per-hearing records into case timelines, building

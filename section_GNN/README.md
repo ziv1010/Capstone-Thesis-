@@ -15,7 +15,7 @@ The folder is self-contained: every config uses paths relative to `section_GNN`
 
 ## ⚡ Quick Start
 
-```bash
+```bashV
 cd section_GNN                      # all commands run from here
 
 # One baseline bucket, end to end (preprocess → graph → 8-GPU K-fold):

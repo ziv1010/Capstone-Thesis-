@@ -1,0 +1,301 @@
+
+\documentclass[runningheads]{llncs}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\urlstyle{rm}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdfauthor={Ziv Barretto, Lipika Dey, Partha Das},
+  pdftitle={From Legal Text to Legal Graphs: Judgment Prediction with Graph Neural Networks},
+  pdfborder={0 0 0}
+}
+
+\setlength{\emergencystretch}{2em}
+
+\newcommand{\method}{LegalGraph-LJP}
+\newcommand{\datasetname}{Indian Legal Graph Corpus}
+\newcommand{\best}[1]{\textbf{#1}}
+\newcommand{\second}[1]{\underline{#1}}
+\newcommand{\NA}{---}
+
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]{%
+  \oldthebibliography{#1}%
+  \scriptsize%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parskip}{0pt}%
+}{\endoldthebibliography}
+
+
+\begin{document}
+
+\title{From Legal Text to Legal Graphs: Judgment Prediction with Graph Neural Networks}
+\titlerunning{From Legal Text to Legal Graphs}
+
+\author{Ziv Barretto\inst{1}\and Lipika Dey\inst{1}\and Partha Das\inst{1}}
+\authorrunning{Z. Barretto et al.}
+
+\institute{
+Ashoka University, Rajiv Gandhi Education City, Sonipat, Haryana 131029, India\\
+\email{zivbarretto101003@gmail.com}\\
+\email{lipika.dey@ashoka.edu.in}\quad
+\email{partha.das@ashoka.edu.in}\\
+Project repository: \url{https://github.com/ziv1010/LegalGraph-LJP.git}
+}
+
+\maketitle
+
+\begin{abstract}
+The growing imbalance between court volumes and judicial capacity has intensified interest in automated legal analysis. In the Indian setting, judgments are long, noisy, often multilingual, and spread across multiple hearings, making Legal Judgment Prediction (LJP) especially challenging. This paper presents \method{}, a graph-embedding framework that constructs a heterogeneous knowledge graph from raw judgments using legal named entities, rhetorical roles, and multi-hearing consolidation. We introduce a corpus of over 72,000 Indian High Court cases spanning five legal domains. Using a Heterogeneous Graph Transformer, our framework achieves 80.6\% accuracy and 0.796 macro-F1 in the pooled cross-domain setting, outperforming a 7B-parameter legal LLM by over 18 points. Post-hoc counterfactual attribution identifies the typed nodes and relations
+that most influence each prediction.
+\keywords{Legal Judgment Prediction \and Legal NLP \and Graph Neural Networks \and Heterogeneous Graphs \and Indian Courts \and Explainable AI}
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Legal Judgment Prediction (LJP) studies whether computational models can forecast judicial outcomes from case information. The task is urgent given severe court backlogs, and technically challenging because legal decisions distribute evidence across facts, pleadings, statutory references, precedents, and procedural history. Indian High Court judgments amplify these difficulties: they are long, noisy, often multilingual, and span multiple hearings. A text-only pipeline risks learning shortcuts from operative phrases or recurring identities, while discarding structure loses meaningful legal signal.
+
+This paper proposes \method{}, a leakage-aware heterogeneous graph framework for Indian LJP. We extract legal named entities and rhetorical roles from raw judgments, consolidate multi-hearing timelines, retain only pre-outcome segments, and construct a typed graph linking cases to facts, arguments, courts, statutes, provisions, precedents, judges, and lawyers. A Heterogeneous Graph Transformer (HGT) learns over this graph to predict whether an appeal or petition is allowed or dismissed. Unlike generative LLMs, the pipeline is deterministic and every prediction is structurally traceable to the legal authorities and arguments that produced it. We further audit the model through relation-aware counterfactual attribution and stress tests against identity shortcuts.
+
+Evaluated on a new corpus of 72{,}556 multi-hearing cases spanning five domains, our framework achieves 80.6\% cross-bucket accuracy and 0.796 macro-F1, outperforming a domain-specialised 7B-parameter generative LLM while remaining fully auditable.
+
+\section{Related Work}
+\label{sec:related-work}
+
+Legal Judgment Prediction encompasses tasks of varying granularity---violation prediction, charge prediction, law-article prediction, prison-term estimation, and binary outcome forecasting~\cite{feng2022survey}. Early systems relied on hand-crafted features with linear classifiers~\cite{aletras2016predicting,katz2017general}, while neural approaches later adopted CNNs, RNNs, and Transformers to better represent long legal texts~\cite{chalkidis2019neural,luo2017learning,zhong2018legal}. Multi-task frameworks have exploited topological dependencies among articles, charges, and penalties~\cite{zhong2018legal,li2025kljp}, though these primarily address Chinese criminal law with fine-grained taxonomies. For the Indian jurisdiction, ILDC introduced a Supreme Court corpus with sentence-level explanations~\cite{malik2021ildc}, while Nyayaanumana expanded coverage to multiple courts~\cite{nigam2025nyayaanumana}; both treat judgments as single documents rather than multi-hearing records. 
+
+Recent Indian legal NLP work has pursued interpretability through step-wise verification~\cite{shi2025legalreasoner}, predictive explanation frameworks~\cite{nigam2024predex}, iterative question-answering rationales~\cite{zhong2020iteratively}, and appellate-specific architectures~\cite{nair2026vichara}. Complementary efforts have examined fairness and explainability in Swiss judgments~\cite{santosh2024explainability} and factual consistency in generative legal prediction~\cite{nigam2025tathyanyaya}. Graph-based approaches for Indian LJP have been explored by Khatri et al.~\cite{khatri2023exploring}, though without heterogeneous typing or leakage controls. Pre-trained Indian legal language models such as InLegalBERT~\cite{paul2023inlegalbert} and InLegalLlama~\cite{nigam2025nyayaanumana} provide strong text encoders but remain opaque text-to-text systems. 
+
+We differ from these lines by encoding legal structure directly through a heterogeneous graph rather than through label-knowledge interactions or flat text. Rhetorical role labelling and legal NER make document structure explicit for downstream tasks~\cite{bhattacharya2019identification,shukla2022legal,kalamkar2022opennyai}, but prior graph-based LJP work in India has typically used homogeneous citation-only graphs without rhetorical structure, typed legal entities, or leakage safeguards~\cite{xu2020distinguish,dong2021legal}. Our setting requires heterogeneous graph learning because cases, rhetorical segments, parties, courts, judges, statutes, provisions, precedents, and lawyers each play different relational roles. We adopt the Heterogeneous Graph Transformer (HGT)~\cite{hu2020heterogeneous} for its type-specific transformations and relation-aware attention, initialising text nodes with BGE-M3~\cite{chen2024bgem3} and InLegalBERT~\cite{paul2023inlegalbert} to cover the multilingual and domain-specific aspects of Indian judgments. Critically, we treat outcome leakage and identity shortcuts as first-class design constraints excluding decision-bearing rhetorical roles, masking canonical leakage phrases, and stress-testing against identity masking rather than as post-hoc concerns.
+
+\section{\textcolor{blue}{Legal Judgment Prediction: Data Preprocessing and Model Training}}
+\label{sec:pipeline}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.84\textwidth]{f6ac0e5a-2e03-49c6-a783-2806670fde6b_crop.png}
+    \caption{\method{} end-to-end architecture. Judgments are processed through leakage-safe extraction, converted into a heterogeneous legal graph with case-local actors and globally shared statutes/provisions/precedents, and passed through a 2-layer HGT for outcome prediction.}
+    \label{fig:architecture-pipeline}
+\end{figure}
+
+\textcolor{blue}{Given a consolidated document for case $c_i$ containing all case details
+along with its hearing timeline, the task is to predict the final binary
+outcome using only leakage-filtered pre-decision text $x_i$. We set
+$y_i=1$ when the petition or appeal is allowed or relief is granted, and
+$y_i=0$ when it is dismissed, denied, or procedurally closed without relief.
+Cases with unresolved labels are excluded. The pipeline comprises four stages: (i) legal information extraction and
+rhetorical-role tagging, (ii) cross-validated outcome labelling,
+(iii) multi-hearing consolidation and leakage-safe graph construction, and
+(iv) HGT model training.}
+
+\subsection{\textcolor{blue}{Data Preparation}}
+\label{subsec:pipeline-data}
+
+\paragraph{Source.}
+We assemble a corpus of Indian High Court judgments spanning five legal domains: \emph{family/matrimonial}, \emph{financial fraud}, \emph{land/property}, \emph{motor accidents}, and \emph{sexual offences}. Raw judgments are grouped into per-domain buckets and processed end-to-end through the same pipeline.
+
+\paragraph{\textcolor{blue}{Legal information extraction and rhetorical-role tagging.}} \textcolor{blue}{Every judgment is run through the OpenNyAI legal NLP pipeline~\cite{kalamkar2022opennyai}, which produces sentence-level rhetorical roles, typed legal entities (courts, judges, petitioners, respondents, lawyers, statutes, provisions, precedents, case numbers, organisations, locations, dates) with character offsets, and a structured per-section summary. Lawyer mentions are refined into side-specific roles using contextual cue phrases, and provisions are parsed into \emph{(provision-text, parent-statute)} tuples so the graph can carry an explicit \texttt{provision $\rightarrow$ statute} link.}
+
+\paragraph{\textcolor{blue}{Cross-validated outcome labelling and multi-hearing consolidation.}} \textcolor{blue}{Each judgment or hearing is assigned a binary outcome by a cross-validated,
+consistency-checked LLM labelling procedure applied to the OpenNyAI decision
+summary and final-ruling sentences. These outcome-bearing fields are used
+\emph{only} to derive the label; they are removed from the predictive features
+during leakage-safe preprocessing (Section~\ref{subsec:pipeline-graph}), so no
+decision-bearing text reaches the model. Multiple semantic win--loss signals
+are reconciled into a binary $\{+1,-1\}$ target, with procedural-neutral
+outcomes mapped according to the labelling protocol. Labelling deliberately
+precedes consolidation: it keeps outcome inference independent of
+case-identity grouping, and labels are persisted separately from features, so
+documents can be relabelled without re-running extraction. Judgments sharing a
+court registration number are then grouped, ordered chronologically, and
+merged using explicit boundary markers while preserving sentence and entity
+offsets. The consolidated case inherits the label of its final hearing,
+preserving auditable hearing-level labels while ensuring that the case-level
+target reflects the latest available judicial outcome.}
+
+
+\subsection{Graph Construction}
+\label{subsec:pipeline-graph}
+
+\paragraph{Leakage-safe preprocessing.}
+The preprocessing layer assembles six section texts per case: preamble, facts, petitioner arguments, respondent arguments, other-lawyer arguments, and a concatenated argument pool. Every sentence carrying an analysis, issue, ratio, lower-court-ruling, or final-ruling role is dropped entirely, since these segments contain the court's reasoning or operative text. Retained sentences are scrubbed by replacing a curated list of canonical outcome phrases (e.g.\ \emph{petition stands disposed of}, \emph{appeal allowed}) with a generic mask token. Any remaining decision-bearing top-level fields are dropped as a hard guardrail. 
+
+\paragraph{Heterogeneous legal graph.}
+We construct a heterogeneous graph $G=(V,E)$ in two layers. The \emph{local case-star graph} attaches a central case node to one node per available section text and to every extracted entity. Typed edges encode case-to-section, case-to-entity, citation (\texttt{cites-statute}, \texttt{cites-provision}, \texttt{cites-precedent}), structural (\texttt{provision-belongs-to-statute}), and bridging relations that connect statutes, provisions, parties, and judges directly to the argument node. No decision node is ever created. The \emph{global authority graph} is obtained by sharing normalised authority nodes across cases only for statutes, provisions, and precedents. Courts, judges, lawyers, parties, and all section nodes deliberately remain case-local, preventing actor identity from becoming a direct cross-case shortcut. Reverse edges are added and the graph is converted to undirected form.
+
+\paragraph{Node initialisation \& Text encoders.}
+Node features concatenate a dense text embedding with structural scalars (e.g., entity mention counts, role indicators, and citation frequencies). We compare BGE-M3~\cite{chen2024bgem3} and InLegalBERT~\cite{paul2023inlegalbert}, evaluated under identical graph schemas so any difference is attributable to the encoder alone.
+
+% \paragraph{Test-case configurations.}
+% To isolate the predictive value of our network topology, we evaluate ten base structural configurations, several re-run with learning-rate decay: \textbf{Networked} (full case-star and global authority baseline); \textbf{Party+arguments} (isolating per-side adversarial claims); \textbf{Text-only} (stripping all entity nodes); \textbf{Network--Names} (removing parties, judges, and lawyers); \textbf{Isolated} (disabling global cross-case authority sharing); \textbf{Hierarchical encoding} (chunking long sections); \textbf{Section-separated} (encoding sections independently); \textbf{Case-node minimised} (removing the central text channel); \textbf{Entity-resolved} (applying canonical resolution); and \textbf{Central authorities removed} (pruning corpus-wide procedural hubs).
+We evaluate structural configurations that remove entity nodes, actor identities, cross-case authority sharing, central case text, or high-degree authority hubs, and variants that use section-separated encoding, hierarchical encoding, entity resolution, and learning-rate decay. These ablations isolate whether performance comes from text, local entities, global legal authorities, or identity-bearing shortcuts.
+
+\subsection{\textcolor{blue}{Model Training}}
+\label{subsec:pipeline-training}
+
+{\color{blue}
+We use HGT because the graph contains distinct node and relation types:
+case sections, actors, and legal authorities interact through semantically
+different links. HGT applies type-specific transformations and
+relation-aware attention, preserving distinctions such as those between a
+judge association and a statute citation. Two message-passing layers allow
+evidence to flow from local case components and shared authorities to the
+case node.
+
+The model contains two HGT layers with hidden dimension 64, four attention
+heads, and dropout 0.25, followed by a 128-unit MLP classifier. Training uses
+class-weighted cross-entropy and AdamW under transductive full-graph training
+with case-level masks. We use stratified five-fold cross-validation partitioned by case
+identifier, so that all nodes belonging to a case remain in the same
+fold. Each fold holds out 20\% of cases for testing, and 10\% of the
+remaining training portion is reserved for validation, giving an
+approximate 72/8/20 train/validation/test split. Early stopping is based
+on validation macro-F1; full optimisation settings and seeds are provided in
+the repository. 
+}
+
+
+
+\section{\textcolor{blue}{Experiments and Results}}
+\label{sec:results}
+
+\subsection{\textcolor{blue}{Predictive Performance}}
+
+% The consolidated dataset comprises 72{,}556 multi-hearing case timelines derived from over 80{,}000 raw judgments, spanning five roughly balanced domains: family/matrimonial (14{,}930), financial fraud (14{,}325), land/property (13{,}446), motor accidents (15{,}110), and sexual offences (14{,}745).
+
+% Table~\ref{tab:accuracy-comparison} reports accuracy across all configurations, domains, encoders, and LLM baselines. Four core patterns emerge: 
+% (1) \textbf{BGE-M3 consistently outperforms InLegalBERT}, especially when identity nodes are masked (\emph{Network -- Names}), indicating multilingual embeddings are robust to missing name features. 
+% (2) \textbf{Entity nodes add predictive signal}: the \emph{Text-only} ablation drops cross-bucket accuracy by $\sim$1 point versus the fully networked graph. 
+% (3) \textbf{Global authority sharing is not a shortcut the model leans on}: the \emph{Isolated} variant (78.37 cross-bucket) matches the full graph, indicating that local case structure carries the predictive signal and the model does not exploit cross-case authority links---consistent with our leakage-aware design. 
+% (4) The \textbf{entity-resolved section-separated configuration with learning-rate decay achieves the best cross-bucket accuracy (80.63\%, macro-F1 0.796)}.
+
+% The LLM rows reveal a severe performance gap. InLegalLlama (CPT) achieves only 62.5\% cross-bucket accuracy and 0.565 macro-F1, lagging our sub-100M parameter GNN by over 18 accuracy points and 23 macro-F1 points. The LLM also suffers from catastrophic generation-format failures, parsing a valid label in only 53.2\% of cases under the structured prompt.\footnote{InLegalLlama (SFT) parses 78.7\% of cases but still underperforms the GNN by a wide margin.} Its textual rationales are unverifiable and prone to hallucination, whereas the GNN prediction is deterministic, always parseable, and structurally traceable.
+Table~\ref{tab:accuracy-comparison} reports a compact comparison of the main configurations and LLM baselines. BGE-M3 consistently outperforms InLegalBERT in the full ablation sweep, so we report the key BGE-M3 configurations here. Entity nodes add signal: the text-only graph ablation reaches 77.32\% cross-bucket accuracy, while the full graph reaches 78.11\%. \textcolor{blue}{The Isolated, Network–Names, and central-authority-removed variants match or slightly exceed the full model, indicating limited sensitivity to the tested identity, sharing, and hub-related shortcuts a leakage-safety property rather than a gain though not robustness to untested distribution shifts.} The best model, entity-resolved section-separated encoding with LR decay, achieves 80.63\% cross-bucket accuracy and 0.796 macro-F1.
+
+The LLM rows are operational generative baselines rather than exhaustive LLM evaluations. InLegalLlama (CPT) reaches 62.5\% cross-bucket accuracy and 0.565 macro-F1, while only 53.2\% of generations produce a parseable label. The GNN always produces a class logit, and its predictions can be audited
+through the structural interventions described in Section~4.2..
+
+
+\begin{table}[!htbp]
+\centering
+\caption{Compact comparison across selected configurations and LLM baselines. Avg.\ domain is the mean of the five single-domain accuracies.}
+\label{tab:accuracy-comparison}
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{3.45cm} l c c p{4.8cm}}
+\toprule
+Configuration & Enc. & Avg.\ domain & Cross-bucket & Main interpretation \\
+\midrule
+Text-only graph & BGE & 79.77 & 77.32 & Removes entity nodes; isolates section-text signal. \\
+Full Network & BGE & 80.31 & 78.11 & Full case-star graph with shared authority nodes. \\
+Isolated & BGE & 80.42 & 78.37 & Disables cross-case authority sharing; remains competitive. \\
+Network--Names & BGE & 80.52 & 78.66 & Identity removal does not collapse performance. \\
+Section-separated + LR decay & BGE & 80.45 & 80.48 & Section-wise encoding improves pooled generalisation. \\
+Entity-resolved sec-sep + LR decay & BGE & 80.44 & \textbf{80.63} & Best pooled result; macro-F1 = 0.796. \\
+Central auth.\ removed + LR decay & BGE & 80.49 & \underline{80.62} & Removing high-degree hubs has negligible effect. \\
+\midrule
+InLegalLlama (CPT) & --- & --- & 62.5 & Prompted 7B legal LLM; macro-F1 = 0.565; 53.2\% parse rate. \\
+InLegalLlama (SFT) & --- & --- & 61.5 & Higher parse rate, but lower cross-bucket accuracy. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{\textcolor{blue}{Post-hoc Explainability}}
+\label{sec:explainability}
+
+\textcolor{blue}{Explainability here means identifying which graph components most influence
+a trained model's prediction, rather than generating a natural-language
+legal rationale. The analysis is performed after training on a frozen HGT
+checkpoint and therefore audits the predictor without modifying it. The approach fits this task because the model's inputs are explicit,
+legally meaningful graph components on which controlled structural
+interventions can be performed.}
+
+\textcolor{blue}{Relation-aware counterfactual masking removes either one evidence node or
+all edges of one semantic relation type from the target case's two-hop
+neighbourhood and recomputes the prediction. The resulting change in the
+predicted-class probability, $\Delta p$, and any class flip quantify the
+component's influence. Since every intervention refers to named nodes and
+typed edges, the attribution is reproducible and structurally traceable,
+but it should not be interpreted as a legally valid explanation.}
+
+\textcolor{blue}{Across 14,363 test cases, relation-type interventions, the central argument
+node, and the judge node together account for approximately 66\% of total
+counterfactual importance. We evaluate attribution faithfulness using
+sufficiency, which measures whether retained evidence preserves the prediction,
+and comprehensiveness, which measures the effect of removing influential
+evidence. Counterfactual ranking outperforms both baselines on sufficiency
+(AUC 0.853 vs.\ 0.772 for attention) and comprehensiveness
+(AUC 0.088 vs.\ 0.040), as shown in Table~\ref{tab:faithfulness}.
+The margin is clearest on sufficiency, and the low agreement between
+the two rankings (14.2\% top-$k$ overlap) indicates that raw attention
+is an unreliable importance proxy on this graph. A log-likelihood-ratio G-test compares each authority's training-label distribution with the overall training-label distribution. After Benjamini--Hochberg correction, an authority is considered outcome-discriminative when $q\leq0.05$, it occurs in at least 20 training cases, and its positive-outcome rate differs from the training base rate by at least 0.10. Counterfactual components are ranked independently by $|\Delta p|$, retaining the top 10 per case.}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Faithfulness of evidence rankings. Sufficiency and
+comprehensiveness are reported as AUC. Top-$k$ overlap is the mean
+intersection between attention's and the counterfactual's top-$k$
+evidence groups per case.}
+\label{tab:faithfulness}
+\begin{tabular}{lccc}
+\hline
+Ranker & Sufficiency $\uparrow$ &
+Comprehensiveness $\uparrow$ & Top-$k$ overlap \\
+\hline
+Counterfactual & \textbf{0.853} & \textbf{0.088} & -- \\
+Attention      & 0.772          & 0.040          & 14.2\% \\
+Random         & 0.794          & 0.056          & -- \\
+\hline
+\end{tabular}
+\end{table}
+These results indicate that counterfactual masking better reflects the frozen
+model's computation than raw attention or random evidence rankings, while not
+implying that the identified evidence constitutes a legally valid rationale.
+% \subsection{\textcolor{blue}{Discussion}}
+% \label{sec:discussion}
+
+% \textcolor{blue}{The results show a modest advantage for heterogeneous structure over the text-only graph configuration: the full graph improves cross-bucket accuracy from 77.32\% to 78.11\%, while section-separated encoding and entity resolution produce the strongest pooled result. The isolated, Network--Names, and central-authority-removal variants remain close to the full model. Here, robustness means limited sensitivity to these specified structural and shortcut-oriented perturbations---removing identity-bearing nodes, disabling cross-case authority sharing, or pruning high-degree authority hubs---rather than guaranteed reliability under every distribution shift. These ablations suggest that performance does not depend on any one tested shortcut, although they cannot rule out untested latent shortcuts.}
+
+% \textcolor{blue}{The sub-100M parameter HGT also outperforms the evaluated domain-specialised 7B-parameter InLegalLlama operational baseline by over 18 accuracy points and always emits a class logit, whereas only 53.2\% of the structured-prompt CPT generations contain a parseable label. The counterfactual audit adds case-level traceability to explicit statutes, precedents, arguments, actors, and relation types; its faithfulness comparison provides evidence that these rankings reflect the frozen model's computation better than attention or random rankings. This supports computational auditability, not equivalence between influential graph evidence and a judicial explanation.}
+
+\section{\textcolor{blue}{Limitations}}
+\textcolor{blue}{Outcome labels are LLM-derived and lack a human-validated gold subset. We
+do not compare against flat-text classifiers, fine-tuned transformers, or
+simpler GNNs, limiting HGT-specific conclusions. Leakage controls cannot exclude latent procedural or identity shortcuts, and
+the targeted audits do not establish temporal, jurisdictional, or adversarial
+robustness. The framework is
+intended for research support, not automated adjudication, and its outputs
+require human review.}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented \method{}, a leakage-aware heterogeneous graph framework that models the relational dynamics of legal reasoning. Evaluated across 72{,}000 Indian High Court cases, it surpasses text-only ablations and large generative LLMs in accuracy, output reliability, and explanatory transparency. By rendering the judicial prediction process structurally auditable rather than treating it as a black-box generative task, our work establishes a robust foundation for large-scale legal AI.
+
+Our contributions are: (i) a large-scale annotated corpus of over 72{,}000 Indian High Court cases spanning five legal domains, consolidated into multi-hearing case timelines; (ii) a leakage-aware heterogeneous graph framework with explicit safeguards against outcome and identity shortcuts; and (iii) a deterministic audit layer combining counterfactual attribution and statistical grounding, making each prediction traceable to its supporting legal substrate.
+
+\begin{credits}
+\subsubsection{\discintname}
+The authors have no competing interests to declare that are relevant to the content of this article.
+\end{credits}
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}
