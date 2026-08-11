@@ -1,0 +1,190 @@
+{
+  "reference_run": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold",
+  "hgt_rerun": false,
+  "runs": {
+    "hgt": {
+      "aggregate": {
+        "accuracy_mean": 0.8063165295664116,
+        "accuracy_std": 0.00551921695225708,
+        "macro_f1_mean": 0.8001648064418477,
+        "macro_f1_std": 0.004966315864959177,
+        "micro_f1_mean": 0.8063165295664116,
+        "micro_f1_std": 0.00551921695225708,
+        "roc_auc_mean": 0.885461763262423,
+        "roc_auc_std": 0.005004295405376946
+      },
+      "n_parameters": 2011508,
+      "rerun": false,
+      "properties": {
+        "label": "HGT (paper model)",
+        "graph": true,
+        "relation_aware": true,
+        "attention": "typed"
+      }
+    },
+    "gat": {
+      "aggregate": {
+        "accuracy_mean": 0.8059404675572164,
+        "accuracy_std": 0.005405326329743473,
+        "macro_f1_mean": 0.7997485085396352,
+        "macro_f1_std": 0.005387804816498242,
+        "micro_f1_mean": 0.8059404675572164,
+        "micro_f1_std": 0.005405326329743473,
+        "roc_auc_mean": 0.8865130424060637,
+        "roc_auc_std": 0.00426558155959946
+      },
+      "n_parameters": 1281922,
+      "rerun": true,
+      "properties": {
+        "label": "GAT",
+        "graph": true,
+        "relation_aware": false,
+        "attention": "untyped"
+      }
+    },
+    "gcn": {
+      "aggregate": {
+        "accuracy_mean": 0.802709803131747,
+        "accuracy_std": 0.0034594439191764476,
+        "macro_f1_mean": 0.7965151485176454,
+        "macro_f1_std": 0.0033812767569972586,
+        "micro_f1_mean": 0.802709803131747,
+        "micro_f1_std": 0.0034594439191764476,
+        "roc_auc_mean": 0.8846173728322235,
+        "roc_auc_std": 0.003651794058998237
+      },
+      "n_parameters": 1281666,
+      "rerun": true,
+      "properties": {
+        "label": "GCN",
+        "graph": true,
+        "relation_aware": false,
+        "attention": "none"
+      }
+    },
+    "hgat": {
+      "aggregate": {
+        "accuracy_mean": 0.8107167933497603,
+        "accuracy_std": 0.003211437596128086,
+        "macro_f1_mean": 0.8032408377742687,
+        "macro_f1_std": 0.0024972984704894814,
+        "micro_f1_mean": 0.8107167933497603,
+        "micro_f1_std": 0.003211437596128086,
+        "roc_auc_mean": 0.8899412146679229,
+        "roc_auc_std": 0.003129745761672945
+      },
+      "n_parameters": 1977602,
+      "rerun": true,
+      "properties": {
+        "label": "Relational GAT",
+        "graph": true,
+        "relation_aware": true,
+        "attention": "per-relation"
+      }
+    },
+    "mlp": {
+      "aggregate": {
+        "accuracy_mean": 0.7769067125710788,
+        "accuracy_std": 0.005533517084044756,
+        "macro_f1_mean": 0.7697978499067766,
+        "macro_f1_std": 0.004130279607567546,
+        "micro_f1_mean": 0.7769067125710788,
+        "micro_f1_std": 0.005533517084044756,
+        "roc_auc_mean": 0.8578292234919687,
+        "roc_auc_std": 0.003343983584823241
+      },
+      "n_parameters": 1414786,
+      "rerun": true,
+      "properties": {
+        "label": "MLP (no graph)",
+        "graph": false,
+        "relation_aware": false,
+        "attention": "none"
+      }
+    },
+    "rgcn": {
+      "aggregate": {
+        "accuracy_mean": 0.8012338290926717,
+        "accuracy_std": 0.006679933317947855,
+        "macro_f1_mean": 0.7960200029383842,
+        "macro_f1_std": 0.006241738479401797,
+        "micro_f1_mean": 0.8012338290926717,
+        "micro_f1_std": 0.006679933317947855,
+        "roc_auc_mean": 0.8836277363766627,
+        "roc_auc_std": 0.004287901580629819
+      },
+      "n_parameters": 1966850,
+      "rerun": true,
+      "properties": {
+        "label": "R-GCN (relational SAGE)",
+        "graph": true,
+        "relation_aware": true,
+        "attention": "none"
+      }
+    },
+    "sage": {
+      "aggregate": {
+        "accuracy_mean": 0.7940484757021677,
+        "accuracy_std": 0.003573973100388409,
+        "macro_f1_mean": 0.7862086272297002,
+        "macro_f1_std": 0.0032064574474757433,
+        "micro_f1_mean": 0.7940484757021677,
+        "micro_f1_std": 0.003573973100388409,
+        "roc_auc_mean": 0.8753236141278379,
+        "roc_auc_std": 0.0032702554457385326
+      },
+      "n_parameters": 1289858,
+      "rerun": true,
+      "properties": {
+        "label": "GraphSAGE",
+        "graph": true,
+        "relation_aware": false,
+        "attention": "none"
+      }
+    }
+  },
+  "significance_vs_hgt": {
+    "gat": {
+      "a_correct_b_wrong": 2924,
+      "b_correct_a_wrong": 2897,
+      "p_value": 0.7332721895486719,
+      "paired_t_p": 0.8349150867849313,
+      "n_paired_cases": 71813
+    },
+    "gcn": {
+      "a_correct_b_wrong": 3249,
+      "b_correct_a_wrong": 2990,
+      "p_value": 0.0010878267537775346,
+      "paired_t_p": 0.15004359345222415,
+      "n_paired_cases": 71813
+    },
+    "hgat": {
+      "a_correct_b_wrong": 3281,
+      "b_correct_a_wrong": 3597,
+      "p_value": 0.0001453791999138735,
+      "paired_t_p": 0.15448548476540705,
+      "n_paired_cases": 71813
+    },
+    "mlp": {
+      "a_correct_b_wrong": 5883,
+      "b_correct_a_wrong": 3771,
+      "p_value": 3.299611215411928e-103,
+      "paired_t_p": 8.777302371807923e-05,
+      "n_paired_cases": 71813
+    },
+    "rgcn": {
+      "a_correct_b_wrong": 3374,
+      "b_correct_a_wrong": 3009,
+      "p_value": 5.183225279166989e-06,
+      "paired_t_p": 0.2228028563627807,
+      "n_paired_cases": 71813
+    },
+    "sage": {
+      "a_correct_b_wrong": 3794,
+      "b_correct_a_wrong": 2913,
+      "p_value": 5.278137457798518e-27,
+      "paired_t_p": 0.002492377343428567,
+      "n_paired_cases": 71813
+    }
+  }
+}

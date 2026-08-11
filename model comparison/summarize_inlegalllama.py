@@ -59,31 +59,53 @@ def f1_for_label(rows: list[dict[str, Any]], label: str) -> dict[str, float | in
 
 
 def build_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    scorable = [
+    evaluation_rows = [
         row
         for row in rows
-        if row.get("status") == "ok"
-        and row.get("true_label") in LABELS
-        and row.get("predicted_label") in LABELS
+        if row.get("true_label") in LABELS
     ]
-    correct = sum(1 for row in scorable if row.get("true_label") == row.get("predicted_label"))
-    per_label = {label: f1_for_label(scorable, label) for label in LABELS}
+    answered_rows = [row for row in evaluation_rows if row.get("predicted_label") in LABELS]
+    correct = sum(
+        1 for row in evaluation_rows if row.get("true_label") == row.get("predicted_label")
+    )
+
+    # Primary metrics use the complete evaluation set. A generation that cannot be
+    # parsed into a class is an abstention and therefore an incorrect prediction;
+    # excluding it would reward a model for declining the difficult cases.
+    per_label = {label: f1_for_label(evaluation_rows, label) for label in LABELS}
     macro_f1 = sum(per_label[label]["f1"] for label in LABELS) / len(LABELS) if LABELS else 0.0
+
+    # Conditional performance remains useful as a selective-classification
+    # diagnostic, but it is explicitly named and never used as headline accuracy.
+    selective_per_label = {label: f1_for_label(answered_rows, label) for label in LABELS}
+    selective_macro_f1 = (
+        sum(selective_per_label[label]["f1"] for label in LABELS) / len(LABELS)
+        if LABELS
+        else 0.0
+    )
+    coverage = len(answered_rows) / len(evaluation_rows) if evaluation_rows else None
     return {
         "total_rows": len(rows),
         "ok_rows": sum(1 for row in rows if row.get("status") == "ok"),
         "error_rows": sum(1 for row in rows if row.get("status") == "error"),
-        "parsed_rows": len(scorable),
+        "evaluation_rows": len(evaluation_rows),
+        "parsed_rows": len(answered_rows),
         "unparsed_ok_rows": sum(
             1
             for row in rows
             if row.get("status") == "ok" and row.get("predicted_label") not in LABELS
         ),
-        "accuracy": correct / len(scorable) if scorable else None,
-        "macro_f1": macro_f1 if scorable else None,
+        "coverage": coverage,
+        "accuracy": correct / len(evaluation_rows) if evaluation_rows else None,
+        "macro_f1": macro_f1 if evaluation_rows else None,
+        "metric_policy": "full denominator; unparseable generations are abstentions counted as errors",
+        "selective_accuracy": correct / len(answered_rows) if answered_rows else None,
+        "selective_macro_f1": selective_macro_f1 if answered_rows else None,
+        "selective_metric_policy": "parsed generations only; diagnostic, not headline performance",
         "true_label_distribution": dict(Counter(str(row.get("true_label")) for row in rows)),
         "predicted_label_distribution": dict(Counter(str(row.get("predicted_label")) for row in rows)),
         "per_label": per_label,
+        "selective_per_label": selective_per_label,
     }
 
 
@@ -101,6 +123,7 @@ def write_outputs(args: argparse.Namespace, rows: list[dict[str, Any]], metrics:
         "file_name",
         "true_label",
         "predicted_label",
+        "answered",
         "correct",
         "confidence",
         "status",
@@ -114,9 +137,10 @@ def write_outputs(args: argparse.Namespace, rows: list[dict[str, Any]], metrics:
         writer.writeheader()
         for row in rows:
             projected = {field: row.get(field) for field in fields}
+            projected["answered"] = row.get("predicted_label") in LABELS
             projected["correct"] = (
                 row.get("true_label") == row.get("predicted_label")
-                if row.get("true_label") in LABELS and row.get("predicted_label") in LABELS
+                if row.get("true_label") in LABELS
                 else ""
             )
             writer.writerow(projected)

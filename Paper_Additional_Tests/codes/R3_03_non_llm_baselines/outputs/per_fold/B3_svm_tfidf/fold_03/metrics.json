@@ -1,0 +1,161 @@
+{
+  "n_samples": 14362,
+  "accuracy": 0.8326834702687648,
+  "macro_f1": 0.8260382600653433,
+  "micro_f1": 0.8326834702687648,
+  "confusion_matrix": [
+    [
+      4576,
+      1049
+    ],
+    [
+      1354,
+      7383
+    ]
+  ],
+  "classification_report": {
+    "-1": {
+      "precision": 0.7716694772344014,
+      "recall": 0.8135111111111111,
+      "f1-score": 0.7920380787537863,
+      "support": 5625.0
+    },
+    "1": {
+      "precision": 0.8755929791271347,
+      "recall": 0.8450268971042691,
+      "f1-score": 0.8600384413769002,
+      "support": 8737.0
+    },
+    "accuracy": 0.8326834702687648,
+    "macro avg": {
+      "precision": 0.8236312281807681,
+      "recall": 0.8292690041076901,
+      "f1-score": 0.8260382600653433,
+      "support": 14362.0
+    },
+    "weighted avg": {
+      "precision": 0.8348904517530485,
+      "recall": 0.8326834702687648,
+      "f1-score": 0.8334055184027311,
+      "support": 14362.0
+    }
+  },
+  "per_class": {
+    "-1": {
+      "precision": 0.7716694772344014,
+      "recall": 0.8135111111111111,
+      "f1": 0.7920380787537863,
+      "support": 5625
+    },
+    "1": {
+      "precision": 0.8755929791271347,
+      "recall": 0.8450268971042691,
+      "f1": 0.8600384413769002,
+      "support": 8737
+    }
+  },
+  "roc_auc": 0.9087075299174645,
+  "pr_auc": 0.9403080735471016,
+  "hyperparameter": "C=1.0",
+  "val_macro_f1": 0.8335457236235446,
+  "fit_seconds": 12.5,
+  "valid_baseline": true,
+  "n_features": 300000,
+  "top_terms": {
+    "-1": [
+      "appellant insurance",
+      "ltd vs",
+      "bail and",
+      "insurance vs",
+      "manager vs",
+      "excessive",
+      "representation",
+      "has supported",
+      "bail of",
+      "company vs",
+      "respondent claimant",
+      "director vs",
+      "is minor",
+      "that despite",
+      "specific allegation",
+      "birth of",
+      "by submitting",
+      "specific",
+      "with civil",
+      "and submits",
+      "case application",
+      "higher side",
+      "is not",
+      "advocate absent",
+      "not inclined",
+      "and argued",
+      "cannot",
+      "is excessive",
+      "respondents claimants",
+      "crr",
+      "engineer",
+      "hobli",
+      "cancellation",
+      "case be",
+      "of",
+      "2023 bench",
+      "offence is",
+      "dispute outside",
+      "ors on",
+      "minor"
+    ],
+    "1": [
+      "not dispute",
+      "this court",
+      "crm",
+      "petitioner no",
+      "bail",
+      "appellants claimants",
+      "of compensation",
+      "vs the",
+      "not supported",
+      "appellant seeking",
+      "no insurance",
+      "identified by",
+      "case registered",
+      "the parties",
+      "has",
+      "appellant claimant",
+      "scr",
+      "been anticipatory",
+      "appellants",
+      "india criminal",
+      "but could",
+      "bhc",
+      "lower side",
+      "respondent no",
+      "dispute the",
+      "appellant submits",
+      "conviction",
+      "cra no",
+      "dispute",
+      "is aged",
+      "any allegation",
+      "13 july",
+      "exemption",
+      "respondent the",
+      "seeking of",
+      "pankaj bhatia",
+      "no criminal",
+      "jurisdiction criminal",
+      "compounding application",
+      "for r2"
+    ]
+  },
+  "text_sanitization": {
+    "source_mask_tokens": 18301,
+    "source_outcome_terms": 379251,
+    "source_set_aside_phrases": 20,
+    "sanitized_mask_tokens": 0,
+    "sanitized_outcome_terms": 0,
+    "sanitized_set_aside_phrases": 0,
+    "characters_removed": 3210379,
+    "empty_after_sanitization": 1,
+    "documents": 71813
+  }
+}

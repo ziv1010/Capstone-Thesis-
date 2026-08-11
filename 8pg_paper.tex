@@ -56,8 +56,7 @@ Project repository: \url{https://github.com/ziv1010/LegalGraph-LJP.git}
 \maketitle
 
 \begin{abstract}
-The growing imbalance between court volumes and judicial capacity has intensified interest in automated legal analysis. In the Indian setting, judgments are long, noisy, often multilingual, and spread across multiple hearings, making Legal Judgment Prediction (LJP) especially challenging. This paper presents \method{}, a graph-embedding framework that constructs a heterogeneous knowledge graph from raw judgments using legal named entities, rhetorical roles, and multi-hearing consolidation. We introduce a corpus of over 72,000 Indian High Court cases spanning five legal domains. Using a Heterogeneous Graph Transformer, our framework achieves 80.6\% accuracy and 0.796 macro-F1 in the pooled cross-domain setting, outperforming a 7B-parameter legal LLM by over 18 points. Post-hoc counterfactual attribution identifies the typed nodes and relations
-that most influence each prediction.
+The growing imbalance between court volumes and judicial capacity has intensified interest in automated legal analysis. In the Indian setting, judgments are long, noisy, often multilingual, and spread across multiple hearings, making Legal Judgment Prediction (LJP) especially challenging. This paper presents \method{}, a graph-embedding framework that constructs a heterogeneous knowledge graph from raw judgments using legal named entities, rhetorical roles, and multi-hearing consolidation. We introduce a corpus of over 72,000 Indian High Court cases spanning five legal domains. Using a Heterogeneous Graph Transformer, our framework achieves 80.6\% accuracy and 0.800 macro-F1 in the pooled cross-domain setting. A leakage-sanitised flat-text TF--IDF SVM reaches 83.1\%, showing that graph structure does not improve aggregate predictive performance in this setting; the graph instead provides explicit typed structure for intervention-based auditing. Post-hoc counterfactual attribution identifies the typed nodes and relations that most influence each prediction.
 \keywords{Legal Judgment Prediction \and Legal NLP \and Graph Neural Networks \and Heterogeneous Graphs \and Indian Courts \and Explainable AI}
 \end{abstract}
 
@@ -68,7 +67,7 @@ Legal Judgment Prediction (LJP) studies whether computational models can forecas
 
 This paper proposes \method{}, a leakage-aware heterogeneous graph framework for Indian LJP. We extract legal named entities and rhetorical roles from raw judgments, consolidate multi-hearing timelines, retain only pre-outcome segments, and construct a typed graph linking cases to facts, arguments, courts, statutes, provisions, precedents, judges, and lawyers. A Heterogeneous Graph Transformer (HGT) learns over this graph to predict whether an appeal or petition is allowed or dismissed. Unlike generative LLMs, the pipeline is deterministic and every prediction is structurally traceable to the legal authorities and arguments that produced it. We further audit the model through relation-aware counterfactual attribution and stress tests against identity shortcuts.
 
-Evaluated on a new corpus of 72{,}556 multi-hearing cases spanning five domains, our framework achieves 80.6\% cross-bucket accuracy and 0.796 macro-F1, outperforming a domain-specialised 7B-parameter generative LLM while remaining fully auditable.
+Evaluated on a new corpus of 72{,}556 multi-hearing cases spanning five domains, our framework achieves 80.6\% cross-bucket accuracy and 0.800 macro-F1. We compare it with genuine flat-document classifiers and coverage-aware generative baselines, separating predictive performance from the graph's auditability contribution.
 
 \section{Related Work}
 \label{sec:related-work}
@@ -178,37 +177,38 @@ the repository.
 % (1) \textbf{BGE-M3 consistently outperforms InLegalBERT}, especially when identity nodes are masked (\emph{Network -- Names}), indicating multilingual embeddings are robust to missing name features. 
 % (2) \textbf{Entity nodes add predictive signal}: the \emph{Text-only} ablation drops cross-bucket accuracy by $\sim$1 point versus the fully networked graph. 
 % (3) \textbf{Global authority sharing is not a shortcut the model leans on}: the \emph{Isolated} variant (78.37 cross-bucket) matches the full graph, indicating that local case structure carries the predictive signal and the model does not exploit cross-case authority links---consistent with our leakage-aware design. 
-% (4) The \textbf{entity-resolved section-separated configuration with learning-rate decay achieves the best cross-bucket accuracy (80.63\%, macro-F1 0.796)}.
+% (4) The \textbf{entity-resolved section-separated configuration with learning-rate decay achieves the best graph cross-bucket accuracy (80.63\%, macro-F1 0.8002)}.
+Table~\ref{tab:accuracy-comparison} reports a compact comparison of the main configurations and baselines. BGE-M3 consistently outperforms InLegalBERT in the full graph ablation sweep, so we report the key BGE-M3 configurations here. Entity nodes add signal within that sweep: the text-only \emph{graph} ablation reaches 77.32\% cross-bucket accuracy, while the full graph reaches 78.11\%. \textcolor{blue}{The Isolated, Network--Names, and central-authority-removed variants match or slightly exceed the full model, indicating limited sensitivity to the tested identity, sharing, and hub-related shortcuts---a leakage-safety result, not evidence of robustness to untested distribution shifts.} The best graph model, entity-resolved section-separated encoding with LR decay, achieves 80.63\% cross-bucket accuracy and 0.800 macro-F1.
 
-% The LLM rows reveal a severe performance gap. InLegalLlama (CPT) achieves only 62.5\% cross-bucket accuracy and 0.565 macro-F1, lagging our sub-100M parameter GNN by over 18 accuracy points and 23 macro-F1 points. The LLM also suffers from catastrophic generation-format failures, parsing a valid label in only 53.2\% of cases under the structured prompt.\footnote{InLegalLlama (SFT) parses 78.7\% of cases but still underperforms the GNN by a wide margin.} Its textual rationales are unverifiable and prone to hallucination, whereas the GNN prediction is deterministic, always parseable, and structurally traceable.
-Table~\ref{tab:accuracy-comparison} reports a compact comparison of the main configurations and LLM baselines. BGE-M3 consistently outperforms InLegalBERT in the full ablation sweep, so we report the key BGE-M3 configurations here. Entity nodes add signal: the text-only graph ablation reaches 77.32\% cross-bucket accuracy, while the full graph reaches 78.11\%. \textcolor{blue}{The Isolated, Network–Names, and central-authority-removed variants match or slightly exceed the full model, indicating limited sensitivity to the tested identity, sharing, and hub-related shortcuts a leakage-safety property rather than a gain though not robustness to untested distribution shifts.} The best model, entity-resolved section-separated encoding with LR decay, achieves 80.63\% cross-bucket accuracy and 0.796 macro-F1.
+The new flat-document baselines use the same 71{,}813 cases and five case-level folds as the HGT. Their input is the leakage-filtered preamble, facts, and arguments concatenated as one document; TF--IDF removes the mask token and direct operative-outcome vocabulary, and the vectoriser is fit on training rows only. Linear SVM reaches 83.13\% accuracy and 0.8251 macro-F1, exceeding the HGT by 2.50 accuracy points and 0.0249 macro-F1. We therefore make no claim that graph structure improves aggregate prediction over flat text; its demonstrated benefit is an explicit typed substrate for structural intervention and audit.
 
-The LLM rows are operational generative baselines rather than exhaustive LLM evaluations. InLegalLlama (CPT) reaches 62.5\% cross-bucket accuracy and 0.565 macro-F1, while only 53.2\% of generations produce a parseable label. The GNN always produces a class logit, and its predictions can be audited
-through the structural interventions described in Section~4.2..
+The LLM rows are operational zero-shot generative baselines on fold 0, not exhaustive or fine-tuned LLM evaluations. Primary metrics now use all 14{,}363 cases: an unparseable generation is an abstention counted as an error. InLegalLlama CPT has 53.2\% coverage and scores 33.22\% accuracy/0.3914 macro-F1; SFT has 78.7\% coverage and scores 48.42\%/0.3585. Parsed-only selective accuracy (62.48\% CPT; 61.55\% SFT) is reported parenthetically as a diagnostic, never as headline performance.
 
 
 \begin{table}[!htbp]
 \centering
-\caption{Compact comparison across selected configurations and LLM baselines. Avg.\ domain is the mean of the five single-domain accuracies.}
+\caption{Selected graph configurations and genuine flat-text/generative baselines. Flat-text and HGT values are five-fold means; LLM values are from fold 0 ($n=14{,}363$). LLM accuracy and macro-F1 use the full denominator, counting unparseable outputs as incorrect abstentions; parentheses give parsed-only selective metrics. Avg.\ domain is the mean of five single-domain accuracies.}
 \label{tab:accuracy-comparison}
 \setlength{\tabcolsep}{4.5pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{3.45cm} l c c p{4.8cm}}
+\begin{tabular}{p{3.25cm} l c c c p{4.5cm}}
 \toprule
-Configuration & Enc. & Avg.\ domain & Cross-bucket & Main interpretation \\
+Configuration & Enc./input & Avg.\ domain & Cross-bucket & Coverage & Main interpretation \\
 \midrule
-Text-only graph & BGE & 79.77 & 77.32 & Removes entity nodes; isolates section-text signal. \\
-Full Network & BGE & 80.31 & 78.11 & Full case-star graph with shared authority nodes. \\
-Isolated & BGE & 80.42 & 78.37 & Disables cross-case authority sharing; remains competitive. \\
-Network--Names & BGE & 80.52 & 78.66 & Identity removal does not collapse performance. \\
-Section-separated + LR decay & BGE & 80.45 & 80.48 & Section-wise encoding improves pooled generalisation. \\
-Entity-resolved sec-sep + LR decay & BGE & 80.44 & \textbf{80.63} & Best pooled result; macro-F1 = 0.796. \\
-Central auth.\ removed + LR decay & BGE & 80.49 & \underline{80.62} & Removing high-degree hubs has negligible effect. \\
+Text-only graph & BGE & 79.77 & 77.32 & 100\% & Still an HGT case-star graph; not a flat classifier. \\
+Full Network & BGE & 80.31 & 78.11 & 100\% & Full case-star graph with shared authority nodes. \\
+Isolated & BGE & 80.42 & 78.37 & 100\% & Disables cross-case authority sharing; remains competitive. \\
+Network--Names & BGE & 80.52 & 78.66 & 100\% & Identity removal does not collapse performance. \\
+Entity-resolved sec-sep + LR decay & BGE & 80.44 & 80.63 & 100\% & Best graph result; macro-F1 = 0.8002. \\
 \midrule
-InLegalLlama (CPT) & --- & --- & 62.5 & Prompted 7B legal LLM; macro-F1 = 0.565; 53.2\% parse rate. \\
-InLegalLlama (SFT) & --- & --- & 61.5 & Higher parse rate, but lower cross-bucket accuracy. \\
+Majority class & none & --- & 60.83 & 100\% & Trivial flat baseline; macro-F1 = 0.3782. \\
+Linear SVM & TF--IDF & --- & \textbf{83.13} & 100\% & Genuine flat text; macro-F1 = \textbf{0.8251}. \\
+Logistic regression & TF--IDF & --- & 83.12 & 100\% & Genuine flat text; macro-F1 = 0.8245. \\
+\midrule
+InLegalLlama (CPT) & zero-shot & --- & 33.22 (62.48) & 53.2\% & Full-denominator macro-F1 = 0.3914 (0.5649). \\
+InLegalLlama (SFT) & zero-shot & --- & 48.42 (61.55) & 78.7\% & Full-denominator macro-F1 = 0.3585 (0.3959). \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -272,12 +272,8 @@ implying that the identified evidence constitutes a legally valid rationale.
 
 % \textcolor{blue}{The results show a modest advantage for heterogeneous structure over the text-only graph configuration: the full graph improves cross-bucket accuracy from 77.32\% to 78.11\%, while section-separated encoding and entity resolution produce the strongest pooled result. The isolated, Network--Names, and central-authority-removal variants remain close to the full model. Here, robustness means limited sensitivity to these specified structural and shortcut-oriented perturbations---removing identity-bearing nodes, disabling cross-case authority sharing, or pruning high-degree authority hubs---rather than guaranteed reliability under every distribution shift. These ablations suggest that performance does not depend on any one tested shortcut, although they cannot rule out untested latent shortcuts.}
 
-% \textcolor{blue}{The sub-100M parameter HGT also outperforms the evaluated domain-specialised 7B-parameter InLegalLlama operational baseline by over 18 accuracy points and always emits a class logit, whereas only 53.2\% of the structured-prompt CPT generations contain a parseable label. The counterfactual audit adds case-level traceability to explicit statutes, precedents, arguments, actors, and relation types; its faithfulness comparison provides evidence that these rankings reflect the frozen model's computation better than attention or random rankings. This supports computational auditability, not equivalence between influential graph evidence and a judicial explanation.}
-
 \section{\textcolor{blue}{Limitations}}
-\textcolor{blue}{Outcome labels are LLM-derived and lack a human-validated gold subset. We
-do not compare against flat-text classifiers, fine-tuned transformers, or
-simpler GNNs, limiting HGT-specific conclusions. Leakage controls cannot exclude latent procedural or identity shortcuts, and
+\textcolor{blue}{Outcome labels are LLM-derived and lack a human-validated gold subset. Although we add leakage-sanitised TF--IDF classifiers and simpler GNNs, we do not include an end-to-end fine-tuned long-document transformer; the stronger SVM also shows that HGT has no aggregate predictive advantage over flat text here. The generative LLM comparison is zero-shot and limited to one held-out fold, so it is an operational baseline rather than a general claim about LLMs. Leakage controls cannot exclude latent procedural or identity shortcuts, and
 the targeted audits do not establish temporal, jurisdictional, or adversarial
 robustness. The framework is
 intended for research support, not automated adjudication, and its outputs
@@ -286,7 +282,7 @@ require human review.}
 \section{Conclusion}
 \label{sec:conclusion}
 
-We presented \method{}, a leakage-aware heterogeneous graph framework that models the relational dynamics of legal reasoning. Evaluated across 72{,}000 Indian High Court cases, it surpasses text-only ablations and large generative LLMs in accuracy, output reliability, and explanatory transparency. By rendering the judicial prediction process structurally auditable rather than treating it as a black-box generative task, our work establishes a robust foundation for large-scale legal AI.
+We presented \method{}, a leakage-aware heterogeneous graph framework that models typed relations in Indian judgments. Across 72{,}000 cases, it reaches 80.63\% accuracy but does not surpass the strongest leakage-sanitised flat-text baseline (83.13\%). Its contribution is therefore not aggregate predictive superiority: it is an explicit legal graph on which identity, authority, and relation-level interventions can be performed. The coverage-aware LLM evaluation further separates output reliability from conditional accuracy on parseable generations.
 
 Our contributions are: (i) a large-scale annotated corpus of over 72{,}000 Indian High Court cases spanning five legal domains, consolidated into multi-hearing case timelines; (ii) a leakage-aware heterogeneous graph framework with explicit safeguards against outcome and identity shortcuts; and (iii) a deterministic audit layer combining counterfactual attribution and statistical grounding, making each prediction traceable to its supporting legal substrate.
 

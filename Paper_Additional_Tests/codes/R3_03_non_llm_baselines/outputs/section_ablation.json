@@ -1,0 +1,86 @@
+{
+  "preamble only": {
+    "sections": [
+      "preamble"
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accuracy_mean": 0.7444612792681856,
+    "accuracy_std": 0.004447731581377326,
+    "macro_f1_mean": 0.7354274821121611,
+    "n_features": 103176
+  },
+  "facts only": {
+    "sections": [
+      "facts"
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accuracy_mean": 0.7527468084059888,
+    "accuracy_std": 0.0035220156036917688,
+    "macro_f1_mean": 0.7488602301952383,
+    "n_features": 212159
+  },
+  "arguments only": {
+    "sections": [
+      "arguments"
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accuracy_mean": 0.7496832302956089,
+    "accuracy_std": 0.00228757240722107,
+    "macro_f1_mean": 0.7480591744043416,
+    "n_features": 276666
+  },
+  "facts + arguments": {
+    "sections": [
+      "facts",
+      "arguments"
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accuracy_mean": 0.8140587591302338,
+    "accuracy_std": 0.001295927195949945,
+    "macro_f1_mean": 0.8092423969400558,
+    "n_features": 300000
+  },
+  "all three (fixed C)": {
+    "sections": [
+      "preamble",
+      "facts",
+      "arguments"
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accuracy_mean": 0.8296965864194273,
+    "accuracy_std": 0.001299338962329533,
+    "macro_f1_mean": 0.824144796100778,
+    "n_features": 300000
+  },
+  "_note": "All variants use a fixed C=0.25 so the only thing that differs is the section set. B3 in the main table tunes C on validation per fold and reaches 83.13%; the fixed-C counterpart here is 82.97%. Compare rows within this table, not across."
+}

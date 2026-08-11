@@ -1,0 +1,820 @@
+{
+  "hgt_reference": {
+    "accuracy": 0.8063165295664116,
+    "accuracy_std": 0.00551921695225708,
+    "macro_f1": 0.8001648064418477,
+    "macro_f1_std": 0.004966315864959177,
+    "roc_auc": 0.885461763262423,
+    "rerun": false,
+    "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold/kfold_summary.json"
+  },
+  "n_cases": 71813,
+  "class_balance": {
+    "positive": 43686,
+    "negative": 28127
+  },
+  "models": [
+    {
+      "id": "B3_svm_tfidf",
+      "aggregate": {
+        "accuracy_mean": 0.8313257851267505,
+        "accuracy_std": 0.002473771936117705,
+        "macro_f1_mean": 0.8250729812337557,
+        "macro_f1_std": 0.0021191768567750476,
+        "micro_f1_mean": 0.8313257851267505,
+        "micro_f1_std": 0.002473771936117705,
+        "roc_auc_mean": 0.908552313100001,
+        "roc_auc_std": 0.0017065013730384775
+      },
+      "fold_accuracy": [
+        0.8286569658149412,
+        0.8316507693378821,
+        0.8350623128872798,
+        0.8326834702687648,
+        0.8285754073248851
+      ],
+      "fold_macro_f1": [
+        0.8230532784377147,
+        0.8248660540310264,
+        0.8285850859674135,
+        0.8260382600653433,
+        0.8228222276672814
+      ],
+      "n_features": 300000,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.8334,
+      "significance": {
+        "hgt_only_correct": 4638,
+        "model_only_correct": 6434,
+        "n_discordant": 11072,
+        "p_value": 1.575714443643553e-65,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.831325804520073,
+      "label": "Linear SVM",
+      "family": "classical",
+      "note": "sanitized TF-IDF, 300k word 1-2 grams"
+    },
+    {
+      "id": "B4_logreg_tfidf",
+      "aggregate": {
+        "accuracy_mean": 0.8312282823978812,
+        "accuracy_std": 0.0034271943170294207,
+        "macro_f1_mean": 0.8244537242365644,
+        "macro_f1_std": 0.0037822264652729045,
+        "micro_f1_mean": 0.8312282823978812,
+        "micro_f1_std": 0.0034271943170294207,
+        "roc_auc_mean": 0.9093158446388797,
+        "roc_auc_std": 0.00242766517487438
+      },
+      "fold_accuracy": [
+        0.8297709392188262,
+        0.8321381327020817,
+        0.8351319362250226,
+        0.8337278930511071,
+        0.8253725107923687
+      ],
+      "fold_macro_f1": [
+        0.8227733801850052,
+        0.8251469313770541,
+        0.8284875169336106,
+        0.8277940140115243,
+        0.8180667786756274
+      ],
+      "n_features": 300000,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.8321,
+      "significance": {
+        "hgt_only_correct": 4830,
+        "model_only_correct": 6619,
+        "n_discordant": 11449,
+        "p_value": 6.219228584441132e-63,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.8312283291326084,
+      "label": "Logistic Regression",
+      "family": "classical",
+      "note": "sanitized TF-IDF, 300k word 1-2 grams"
+    },
+    {
+      "id": "B6_xgboost_tfidf_svd",
+      "aggregate": {
+        "accuracy_mean": 0.8260761175924891,
+        "accuracy_std": 0.002825580403848679,
+        "macro_f1_mean": 0.8179698616985128,
+        "macro_f1_std": 0.002925148622607472,
+        "micro_f1_mean": 0.8260761175924891,
+        "micro_f1_std": 0.002825580403848679,
+        "roc_auc_mean": 0.9068253404605571,
+        "roc_auc_std": 0.0020975070384568833
+      },
+      "fold_accuracy": [
+        0.8223908654180881,
+        0.8233655921464875,
+        0.8282392257884843,
+        0.8298287146636959,
+        0.82655618994569
+      ],
+      "fold_macro_f1": [
+        0.8144014157276681,
+        0.8149900795674142,
+        0.8207917370693893,
+        0.8216027458335855,
+        0.8180633302945073
+      ],
+      "n_features": 256,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.8259,
+      "significance": {
+        "hgt_only_correct": 5022,
+        "model_only_correct": 6441,
+        "n_discordant": 11463,
+        "p_value": 3.89005813522449e-40,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.8260760586523331,
+      "label": "XGBoost",
+      "family": "classical",
+      "note": "sanitized TF-IDF reduced to 256 SVD components"
+    },
+    {
+      "id": "arch_hgat_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.8107167933497603,
+        "accuracy_std": 0.003211437596128086,
+        "macro_f1_mean": 0.8032408377742687,
+        "macro_f1_std": 0.0024972984704894814,
+        "micro_f1_mean": 0.8107167933497603,
+        "micro_f1_std": 0.003211437596128086,
+        "roc_auc_mean": 0.8899412146679229,
+        "roc_auc_std": 0.003129745761672945
+      },
+      "fold_accuracy": [
+        0.8047761609691568,
+        0.8114600013924668,
+        0.8108333913527814,
+        0.8144408856705194,
+        0.812073527363877
+      ],
+      "fold_macro_f1": [
+        0.7989991183358436,
+        0.8048830452187697,
+        0.8021197721494773,
+        0.8040251776710544,
+        0.8061770754961977
+      ],
+      "n_parameters": 1977602,
+      "properties": {
+        "graph": true,
+        "relation_aware": true,
+        "attention": "per-relation"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 3281,
+        "model_only_correct": 3597,
+        "n_discordant": 6878,
+        "p_value": 0.0001453791999138737,
+        "n_paired": 71813,
+        "paired_t_p": 0.15448548476540697
+      },
+      "pooled_accuracy": 0.8107167225989723,
+      "label": "Relational GAT",
+      "family": "gnn",
+      "note": "one GAT operator per relation"
+    },
+    {
+      "id": "hgt",
+      "aggregate": {
+        "accuracy_mean": 0.8063165295664116,
+        "accuracy_std": 0.00551921695225708,
+        "macro_f1_mean": 0.8001648064418477,
+        "macro_f1_std": 0.004966315864959177,
+        "micro_f1_mean": 0.8063165295664116,
+        "micro_f1_std": 0.00551921695225708,
+        "roc_auc_mean": 0.885461763262423,
+        "roc_auc_std": 0.005004295405376946
+      },
+      "fold_accuracy": [
+        0.7978138271948757,
+        0.8026874608368725,
+        0.809510547935668,
+        0.8078958362345078,
+        0.8136749756301351
+      ],
+      "fold_macro_f1": [
+        0.7922378635176597,
+        0.7971119463874902,
+        0.8025056987996668,
+        0.8024385439893523,
+        0.8065299795150698
+      ],
+      "n_parameters": 2011508,
+      "rerun": false,
+      "significance": null,
+      "label": "HGT",
+      "family": "hgt",
+      "note": "the published model: typed attention over 17 node types, 42 relations"
+    },
+    {
+      "id": "arch_gat_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.8059404675572164,
+        "accuracy_std": 0.005405326329743473,
+        "macro_f1_mean": 0.7997485085396352,
+        "macro_f1_std": 0.005387804816498242,
+        "micro_f1_mean": 0.8059404675572164,
+        "micro_f1_std": 0.005405326329743473,
+        "roc_auc_mean": 0.8865130424060637,
+        "roc_auc_std": 0.00426558155959946
+      },
+      "fold_accuracy": [
+        0.7970479704797048,
+        0.8042887976049572,
+        0.8136879482002367,
+        0.8077565798635288,
+        0.8069210416376549
+      ],
+      "fold_macro_f1": [
+        0.7904533587543139,
+        0.7997171482434206,
+        0.8073105059458159,
+        0.8006101076528911,
+        0.8006514221017351
+      ],
+      "n_parameters": 1281922,
+      "properties": {
+        "graph": true,
+        "relation_aware": false,
+        "attention": "untyped"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 2924,
+        "model_only_correct": 2897,
+        "n_discordant": 5821,
+        "p_value": 0.7332721895486705,
+        "n_paired": 71813,
+        "paired_t_p": 0.8349150867849312
+      },
+      "pooled_accuracy": 0.8059404286132037,
+      "label": "GAT",
+      "family": "gnn",
+      "note": "type-collapsed graph, untyped attention"
+    },
+    {
+      "id": "arch_gcn_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.802709803131747,
+        "accuracy_std": 0.0034594439191764476,
+        "macro_f1_mean": 0.7965151485176454,
+        "macro_f1_std": 0.0033812767569972586,
+        "micro_f1_mean": 0.802709803131747,
+        "micro_f1_std": 0.0034594439191764476,
+        "roc_auc_mean": 0.8846173728322235,
+        "roc_auc_std": 0.003651794058998237
+      },
+      "fold_accuracy": [
+        0.7978834505326186,
+        0.8029659541878438,
+        0.8081877045185546,
+        0.8039966578470965,
+        0.8005152485726222
+      ],
+      "fold_macro_f1": [
+        0.7913690934634514,
+        0.7962321724099237,
+        0.8014281333438655,
+        0.7985525862838585,
+        0.7949937570871279
+      ],
+      "n_parameters": 1281666,
+      "properties": {
+        "graph": true,
+        "relation_aware": false,
+        "attention": "none"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 3249,
+        "model_only_correct": 2990,
+        "n_discordant": 6239,
+        "p_value": 0.0010878267537775357,
+        "n_paired": 71813,
+        "paired_t_p": 0.1500435934522242
+      },
+      "pooled_accuracy": 0.8027098157715177,
+      "label": "GCN",
+      "family": "gnn",
+      "note": "type-collapsed graph, no relation weights"
+    },
+    {
+      "id": "arch_rgcn_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.8012338290926717,
+        "accuracy_std": 0.006679933317947855,
+        "macro_f1_mean": 0.7960200029383842,
+        "macro_f1_std": 0.006241738479401797,
+        "micro_f1_mean": 0.8012338290926717,
+        "micro_f1_std": 0.006679933317947855,
+        "roc_auc_mean": 0.8836277363766627,
+        "roc_auc_std": 0.004287901580629819
+      },
+      "fold_accuracy": [
+        0.789598273341224,
+        0.8060293810485275,
+        0.8031052008633294,
+        0.8086617462748921,
+        0.798774543935385
+      ],
+      "fold_macro_f1": [
+        0.7850868155469629,
+        0.8008191660464559,
+        0.7979741271208841,
+        0.8025639152363613,
+        0.7936559907412564
+      ],
+      "n_parameters": 1966850,
+      "properties": {
+        "graph": true,
+        "relation_aware": true,
+        "attention": "none"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 3374,
+        "model_only_correct": 3009,
+        "n_discordant": 6383,
+        "p_value": 5.183225279167004e-06,
+        "n_paired": 71813,
+        "paired_t_p": 0.2228028563627805
+      },
+      "pooled_accuracy": 0.8012337599041957,
+      "label": "R-GCN",
+      "family": "gnn",
+      "note": "one SAGE operator per relation, no attention"
+    },
+    {
+      "id": "arch_sage_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.7940484757021677,
+        "accuracy_std": 0.003573973100388409,
+        "macro_f1_mean": 0.7862086272297002,
+        "macro_f1_std": 0.0032064574474757433,
+        "micro_f1_mean": 0.7940484757021677,
+        "micro_f1_std": 0.003573973100388409,
+        "roc_auc_mean": 0.8753236141278379,
+        "roc_auc_std": 0.0032702554457385326
+      },
+      "fold_accuracy": [
+        0.7873007031957112,
+        0.7946807769964492,
+        0.796978347141962,
+        0.794179083693079,
+        0.7971034674836374
+      ],
+      "fold_macro_f1": [
+        0.7813370235823467,
+        0.7878349986169311,
+        0.7906823729847938,
+        0.7841348813521816,
+        0.7870538596122485
+      ],
+      "n_parameters": 1289858,
+      "properties": {
+        "graph": true,
+        "relation_aware": false,
+        "attention": "none"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 3794,
+        "model_only_correct": 2913,
+        "n_discordant": 6707,
+        "p_value": 5.278137457798481e-27,
+        "n_paired": 71813,
+        "paired_t_p": 0.0024923773434285664
+      },
+      "pooled_accuracy": 0.7940484313425146,
+      "label": "GraphSAGE",
+      "family": "gnn",
+      "note": "type-collapsed graph, no relation weights"
+    },
+    {
+      "id": "arch_mlp_kfold",
+      "aggregate": {
+        "accuracy_mean": 0.7769067125710788,
+        "accuracy_std": 0.005533517084044756,
+        "macro_f1_mean": 0.7697978499067766,
+        "macro_f1_std": 0.004130279607567546,
+        "micro_f1_mean": 0.7769067125710788,
+        "micro_f1_std": 0.005533517084044756,
+        "roc_auc_mean": 0.8578292234919687,
+        "roc_auc_std": 0.003343983584823241
+      },
+      "fold_accuracy": [
+        0.7708695954884077,
+        0.7719139455545498,
+        0.7861867297918262,
+        0.7792090238128394,
+        0.7763542682077705
+      ],
+      "fold_macro_f1": [
+        0.7652202159733497,
+        0.7656566230065478,
+        0.7762143140117099,
+        0.772247129269706,
+        0.7696509672725692
+      ],
+      "n_parameters": 1414786,
+      "properties": {
+        "graph": false,
+        "relation_aware": false,
+        "attention": "none"
+      },
+      "rerun": true,
+      "significance": {
+        "hgt_only_correct": 5883,
+        "model_only_correct": 3771,
+        "n_discordant": 9654,
+        "p_value": 3.299611215411928e-103,
+        "n_paired": 71813,
+        "paired_t_p": 8.777302371807929e-05
+      },
+      "pooled_accuracy": 0.7769066882040856,
+      "label": "MLP (no message passing)",
+      "family": "gnn",
+      "note": "same case features, all edges removed"
+    },
+    {
+      "id": "B5_xgboost_entity",
+      "aggregate": {
+        "accuracy_mean": 0.7689415487113755,
+        "accuracy_std": 0.0033276144032518464,
+        "macro_f1_mean": 0.7619955669867913,
+        "macro_f1_std": 0.0037188119683394796,
+        "micro_f1_mean": 0.7689415487113755,
+        "micro_f1_std": 0.0033276144032518464,
+        "roc_auc_mean": 0.8528739131730882,
+        "roc_auc_std": 0.0032478781201326023
+      },
+      "fold_accuracy": [
+        0.7657174684954396,
+        0.7682935319919237,
+        0.773376035647149,
+        0.7651441303439632,
+        0.7721765770784014
+      ],
+      "fold_macro_f1": [
+        0.7589071319494372,
+        0.7613787823009828,
+        0.7671424824985043,
+        0.7572935775921014,
+        0.7652558605929305
+      ],
+      "n_features": 4039,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.7689,
+      "significance": {
+        "hgt_only_correct": 8584,
+        "model_only_correct": 5900,
+        "n_discordant": 14484,
+        "p_value": 1.0134104107444143e-110,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.7689415565426873,
+      "label": "XGBoost",
+      "family": "classical",
+      "note": "entity counts + top-4000 canonical authority counts"
+    },
+    {
+      "id": "B0_majority",
+      "aggregate": {
+        "accuracy_mean": 0.6083299684315706,
+        "accuracy_std": 2.7098097630293217e-05,
+        "macro_f1_mean": 0.37823704096052735,
+        "macro_f1_std": 1.047582695154462e-05,
+        "micro_f1_mean": 0.6083299684315706,
+        "micro_f1_std": 2.7098097630293217e-05,
+        "roc_auc_mean": 0.5,
+        "roc_auc_std": 0.0
+      },
+      "fold_accuracy": [
+        0.6082991018589431,
+        0.6082991018589431,
+        0.6083687251966859,
+        0.6083414566216404,
+        0.6083414566216404
+      ],
+      "fold_macro_f1": [
+        0.37822510822510824,
+        0.37822510822510824,
+        0.3782520237219168,
+        0.37824148231525173,
+        0.37824148231525173
+      ],
+      "n_features": null,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.6083,
+      "significance": {
+        "hgt_only_correct": 22659,
+        "model_only_correct": 8441,
+        "n_discordant": 31100,
+        "p_value": 0.0,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.6083299681116232,
+      "label": "Majority class",
+      "family": "trivial",
+      "note": "predicts the 60.8% positive class for every case"
+    },
+    {
+      "id": "B2_logreg_entity",
+      "aggregate": {
+        "accuracy_mean": 0.6019662984069442,
+        "accuracy_std": 0.0028286176542552106,
+        "macro_f1_mean": 0.5962250440992226,
+        "macro_f1_std": 0.003369848297118943,
+        "micro_f1_mean": 0.6019662984069442,
+        "micro_f1_std": 0.0028286176542552106,
+        "roc_auc_mean": 0.6378414157583929,
+        "roc_auc_std": 0.005433550294405682
+      },
+      "fold_accuracy": [
+        0.600570911369491,
+        0.5974378611710646,
+        0.6021026247998329,
+        0.6042333936777607,
+        0.6054867010165715
+      ],
+      "fold_macro_f1": [
+        0.5954497929352076,
+        0.5904282614118933,
+        0.5963271790652349,
+        0.5985557102643533,
+        0.6003642768194236
+      ],
+      "n_features": 39,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.602,
+      "significance": {
+        "hgt_only_correct": 20768,
+        "model_only_correct": 6093,
+        "n_discordant": 26861,
+        "p_value": 0.0,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.6019662178157158,
+      "label": "Logistic Regression",
+      "family": "classical",
+      "note": "the GNN's own 12 case scalars + entity counts + role histogram"
+    },
+    {
+      "id": "B1_stratified",
+      "aggregate": {
+        "accuracy_mean": 0.5234985115430132,
+        "accuracy_std": 0.0027946838173940206,
+        "macro_f1_mean": 0.49966639983481426,
+        "macro_f1_std": 0.002184425278485056,
+        "micro_f1_mean": 0.5234985115430132,
+        "micro_f1_std": 0.0027946838173940206,
+        "roc_auc_mean": 0.4996840893353177,
+        "roc_auc_std": 0.002191663905743959
+      },
+      "fold_accuracy": [
+        0.5272575367263107,
+        0.5211306830049433,
+        0.5234978764881989,
+        0.519774404679014,
+        0.5258320568165994
+      ],
+      "fold_macro_f1": [
+        0.5017961943422918,
+        0.4990571157573542,
+        0.500732736693435,
+        0.49568333369456063,
+        0.5010626186864298
+      ],
+      "n_features": null,
+      "rerun": true,
+      "accuracy_before_sanitizer": 0.5235,
+      "significance": {
+        "hgt_only_correct": 27582,
+        "model_only_correct": 7272,
+        "n_discordant": 34854,
+        "p_value": 0.0,
+        "n_paired": 71813
+      },
+      "pooled_accuracy": 0.5234985309066603,
+      "label": "Stratified random",
+      "family": "trivial",
+      "note": "samples from the training class prior"
+    }
+  ],
+  "llm_baselines": [
+    {
+      "label": "InLegalLlama (CPT)",
+      "accuracy": 0.3321729443709531,
+      "macro_f1": 0.3913809094952908,
+      "selective_accuracy": 0.6248035620743845,
+      "selective_macro_f1": 0.5649163536807071,
+      "parse_rate": 0.5316438070041077,
+      "note": "full denominator; unparseable generations count as incorrect abstentions; fold 0 test set"
+    },
+    {
+      "label": "InLegalLlama (SFT)",
+      "accuracy": 0.4842303140012532,
+      "macro_f1": 0.3584938690433237,
+      "selective_accuracy": 0.6154867256637168,
+      "selective_macro_f1": 0.3958820115863526,
+      "parse_rate": 0.7867437164937687,
+      "note": "full denominator; unparseable generations count as incorrect abstentions; fold 0 test set"
+    }
+  ],
+  "leakage_audit": {
+    "status": "PASS",
+    "n_cases": 71813,
+    "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/entity_resolved_data/cross_bucket_total_dataset/processed/cleaned_cases",
+    "hgt_case_sections": [
+      "preamble",
+      "facts",
+      "arguments"
+    ],
+    "source_documents_sha256": "5eb7e2c07d8b2b689174c2b36fa289732de4ab0b7d5dc728fb54af02d56e4943",
+    "sanitized_documents_sha256": "7053702c55338d05f3aedbb6e1842356771290aca966ee5685adb7ba3baec4aa",
+    "source_equals_hgt_case_node_content": true,
+    "case_order_and_labels_equal_hgt_predictions": true,
+    "allowed_retained_roles": [
+      "ARG_PETITIONER",
+      "ARG_RESPONDENT",
+      "FAC",
+      "PREAMBLE",
+      "PRE_NOT_RELIED",
+      "PRE_RELIED",
+      "STA"
+    ],
+    "forbidden_decision_roles": [
+      "ANALYSIS",
+      "ISSUE",
+      "NONE",
+      "RATIO",
+      "RLC",
+      "RPC"
+    ],
+    "kept_role_counts": {
+      "ARG_PETITIONER": 317708,
+      "ARG_RESPONDENT": 104790,
+      "FAC": 780851,
+      "PREAMBLE": 5861,
+      "PRE_NOT_RELIED": 422,
+      "PRE_RELIED": 310207,
+      "STA": 63592
+    },
+    "dropped_role_counts": {
+      "ANALYSIS": 1230605,
+      "ISSUE": 42869,
+      "NONE": 516192,
+      "RATIO": 94548,
+      "RLC": 63255,
+      "RPC": 443190
+    },
+    "unexpected_retained_role_count": 0,
+    "sanitization": {
+      "source_mask_tokens": 18301,
+      "source_outcome_terms": 379251,
+      "source_set_aside_phrases": 20,
+      "sanitized_mask_tokens": 0,
+      "sanitized_outcome_terms": 0,
+      "sanitized_set_aside_phrases": 0,
+      "characters_removed": 3210379,
+      "empty_after_sanitization": 1,
+      "documents": 71813
+    },
+    "fold_split_counts": {
+      "0": {
+        "train": 51705,
+        "test": 14363,
+        "val": 5745
+      },
+      "1": {
+        "train": 51705,
+        "test": 14363,
+        "val": 5745
+      },
+      "2": {
+        "train": 51705,
+        "test": 14363,
+        "val": 5745
+      },
+      "3": {
+        "train": 51706,
+        "test": 14362,
+        "val": 5745
+      },
+      "4": {
+        "train": 51706,
+        "test": 14362,
+        "val": 5745
+      }
+    },
+    "test_fold_overlap": 0,
+    "test_fold_union": 71813
+  },
+  "section_ablation": {
+    "preamble only": {
+      "sections": [
+        "preamble"
+      ],
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accuracy_mean": 0.7444612792681856,
+      "accuracy_std": 0.004447731581377326,
+      "macro_f1_mean": 0.7354274821121611,
+      "n_features": 103176
+    },
+    "facts only": {
+      "sections": [
+        "facts"
+      ],
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accuracy_mean": 0.7527468084059888,
+      "accuracy_std": 0.0035220156036917688,
+      "macro_f1_mean": 0.7488602301952383,
+      "n_features": 212159
+    },
+    "arguments only": {
+      "sections": [
+        "arguments"
+      ],
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accuracy_mean": 0.7496832302956089,
+      "accuracy_std": 0.00228757240722107,
+      "macro_f1_mean": 0.7480591744043416,
+      "n_features": 276666
+    },
+    "facts + arguments": {
+      "sections": [
+        "facts",
+        "arguments"
+      ],
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accuracy_mean": 0.8140587591302338,
+      "accuracy_std": 0.001295927195949945,
+      "macro_f1_mean": 0.8092423969400558,
+      "n_features": 300000
+    },
+    "all three (fixed C)": {
+      "sections": [
+        "preamble",
+        "facts",
+        "arguments"
+      ],
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accuracy_mean": 0.8296965864194273,
+      "accuracy_std": 0.001299338962329533,
+      "macro_f1_mean": 0.824144796100778,
+      "n_features": 300000
+    },
+    "_note": "All variants use a fixed C=0.25 so the only thing that differs is the section set. B3 in the main table tunes C on validation per fold and reaches 83.13%; the fixed-C counterpart here is 82.97%. Compare rows within this table, not across."
+  },
+  "fold_sizes": {
+    "train": [
+      51705,
+      51706
+    ],
+    "val": 5745,
+    "test": [
+      14362,
+      14363
+    ]
+  }
+}

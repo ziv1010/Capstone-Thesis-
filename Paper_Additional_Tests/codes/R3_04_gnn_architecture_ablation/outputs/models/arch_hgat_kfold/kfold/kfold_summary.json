@@ -1,0 +1,153 @@
+{
+  "run_name": "arch_hgat_kfold",
+  "k": 5,
+  "n_folds_completed": 5,
+  "graph_cache": "data/ablations/entity_resolved_data/cross_bucket_total_dataset/graph_cache/section/case_star_entity_resolved_cross_bucket_section_sep_lr_decay.reasoning_focused.pt",
+  "folds": [
+    {
+      "fold": 0,
+      "seed": 42,
+      "train_n": 51705,
+      "val_n": 5745,
+      "test_n": 14363,
+      "best_epoch": 90,
+      "epochs_completed": 90,
+      "test_accuracy": 0.8047761609691568,
+      "test_macro_f1": 0.7989991183358436,
+      "test_micro_f1": 0.8047761609691568,
+      "test_per_class": {
+        "-1": {
+          "precision": 0.7238971754998413,
+          "recall": 0.8108780661215784,
+          "f1": 0.7649228705566734,
+          "support": 5626
+        },
+        "1": {
+          "precision": 0.8680064508125542,
+          "recall": 0.8008469726450727,
+          "f1": 0.8330753661150136,
+          "support": 8737
+        }
+      },
+      "test_roc_auc": 0.8844905056442397
+    },
+    {
+      "fold": 1,
+      "seed": 43,
+      "train_n": 51705,
+      "val_n": 5745,
+      "test_n": 14363,
+      "best_epoch": 86,
+      "epochs_completed": 90,
+      "test_accuracy": 0.8114600013924668,
+      "test_macro_f1": 0.8048830452187697,
+      "test_micro_f1": 0.8114600013924668,
+      "test_per_class": {
+        "-1": {
+          "precision": 0.7391803278688525,
+          "recall": 0.8014575186633487,
+          "f1": 0.7690602080845983,
+          "support": 5626
+        },
+        "1": {
+          "precision": 0.8648190729759168,
+          "recall": 0.8179008813093739,
+          "f1": 0.8407058823529412,
+          "support": 8737
+        }
+      },
+      "test_roc_auc": 0.8919108745628718
+    },
+    {
+      "fold": 2,
+      "seed": 44,
+      "train_n": 51705,
+      "val_n": 5745,
+      "test_n": 14363,
+      "best_epoch": 84,
+      "epochs_completed": 90,
+      "test_accuracy": 0.8108333913527814,
+      "test_macro_f1": 0.8021197721494773,
+      "test_micro_f1": 0.8108333913527814,
+      "test_per_class": {
+        "-1": {
+          "precision": 0.7540181691125087,
+          "recall": 0.7672888888888889,
+          "f1": 0.7605956471935853,
+          "support": 5625
+        },
+        "1": {
+          "precision": 0.8484778330825327,
+          "recall": 0.8388647287708858,
+          "f1": 0.8436438971053691,
+          "support": 8738
+        }
+      },
+      "test_roc_auc": 0.8905849902087943
+    },
+    {
+      "fold": 3,
+      "seed": 45,
+      "train_n": 51706,
+      "val_n": 5745,
+      "test_n": 14362,
+      "best_epoch": 84,
+      "epochs_completed": 90,
+      "test_accuracy": 0.8144408856705194,
+      "test_macro_f1": 0.8040251776710544,
+      "test_micro_f1": 0.8144408856705194,
+      "test_per_class": {
+        "-1": {
+          "precision": 0.7727607814227793,
+          "recall": 0.7454222222222222,
+          "f1": 0.7588453533616867,
+          "support": 5625
+        },
+        "1": {
+          "precision": 0.8397493285586393,
+          "recall": 0.858876044408836,
+          "f1": 0.8492050019804221,
+          "support": 8737
+        }
+      },
+      "test_roc_auc": 0.8890202739307924
+    },
+    {
+      "fold": 4,
+      "seed": 46,
+      "train_n": 51706,
+      "val_n": 5745,
+      "test_n": 14362,
+      "best_epoch": 84,
+      "epochs_completed": 90,
+      "test_accuracy": 0.812073527363877,
+      "test_macro_f1": 0.8061770754961977,
+      "test_micro_f1": 0.812073527363877,
+      "test_per_class": {
+        "-1": {
+          "precision": 0.7347560975609756,
+          "recall": 0.8140444444444445,
+          "f1": 0.7723707514548368,
+          "support": 5625
+        },
+        "1": {
+          "precision": 0.871340713407134,
+          "recall": 0.810804624012819,
+          "f1": 0.8399833995375585,
+          "support": 8737
+        }
+      },
+      "test_roc_auc": 0.8936994289929164
+    }
+  ],
+  "aggregate": {
+    "accuracy_mean": 0.8107167933497603,
+    "accuracy_std": 0.003211437596128086,
+    "macro_f1_mean": 0.8032408377742687,
+    "macro_f1_std": 0.0024972984704894814,
+    "micro_f1_mean": 0.8107167933497603,
+    "micro_f1_std": 0.003211437596128086,
+    "roc_auc_mean": 0.8899412146679229,
+    "roc_auc_std": 0.003129745761672945
+  }
+}

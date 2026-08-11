@@ -1,0 +1,72 @@
+{
+  "n_cases": 71813,
+  "label_distribution": {
+    "-1": 28127,
+    "1": 43686
+  },
+  "ent_feature_names": [
+    "respondent_count",
+    "judge_count",
+    "lawyer_count",
+    "statute_count",
+    "provision_count",
+    "precedent_count",
+    "preamble_length",
+    "facts_length",
+    "arguments_length",
+    "case_year",
+    "petition_type_known",
+    "petition_type_hash",
+    "n_petitioner",
+    "n_respondent",
+    "n_court",
+    "n_judge",
+    "n_petitioner_lawyer",
+    "n_defence_lawyer",
+    "n_lawyer",
+    "n_statute",
+    "n_provision",
+    "n_precedent",
+    "mentions_petitioner",
+    "mentions_respondent",
+    "mentions_court",
+    "mentions_judge",
+    "mentions_petitioner_lawyer",
+    "mentions_defence_lawyer",
+    "mentions_lawyer",
+    "mentions_statute",
+    "mentions_provision",
+    "mentions_precedent",
+    "role_PREAMBLE",
+    "role_FAC",
+    "role_ARG_PETITIONER",
+    "role_ARG_RESPONDENT",
+    "role_PRE_RELIED",
+    "role_PRE_NOT_RELIED",
+    "role_STA"
+  ],
+  "ent_shape": [
+    71813,
+    39
+  ],
+  "leakage_mask_tokens_surviving_in_text": 18301,
+  "blocked_metadata_keys": [
+    "source_decision_label",
+    "source_label_field",
+    "source_label_value"
+  ],
+  "blocked_entity_keys": [
+    "degree",
+    "global_case_frequency",
+    "is_shared_node"
+  ],
+  "blocked_audit_keys": [
+    "dropped_sentence_role_counts"
+  ],
+  "blocked_keys_present_in_features": [],
+  "raw_text_resolution": {
+    "direct": 71603,
+    "merged": 210
+  },
+  "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/entity_resolved_data/cross_bucket_total_dataset/processed/cleaned_cases"
+}

@@ -1,0 +1,594 @@
+<title>Reviewer 3 results — LegalGraph-LJP</title>
+<style>
+  :root {
+    --paper:#faf9f6; --card:#fffefb; --ink:#171614; --ink2:#55534c; --ink3:#8a877e;
+    --rule:#e4e1d7; --hair:rgba(23,22,20,.09);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+    --good:#0ca30c; --bad:#d03b3b; --warn:#fab219;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark) {
+    :root:where(:not([data-theme=light])) {
+      --paper:#141412; --card:#1c1c1a; --ink:#f4f2ec; --ink2:#b6b3a8; --ink3:#8a877e;
+      --rule:#2e2e2b; --hair:rgba(244,242,236,.10);
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    }
+  }
+  :root[data-theme=dark] {
+    --paper:#141412; --card:#1c1c1a; --ink:#f4f2ec; --ink2:#b6b3a8; --ink3:#8a877e;
+    --rule:#2e2e2b; --hair:rgba(244,242,236,.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+         font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:48px 24px 96px; display:flex; flex-direction:column; gap:44px; }
+  .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); margin:0 0 10px; }
+  h1 { font-family:var(--serif); font-weight:600; font-size:clamp(28px,4.4vw,40px); line-height:1.14;
+        margin:0 0 12px; text-wrap:balance; letter-spacing:-.01em; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:22px; margin:0 0 4px; letter-spacing:-.005em; }
+  .sub { color:var(--ink2); max-width:66ch; margin:0; }
+  section { display:flex; flex-direction:column; gap:16px; }
+  .card { background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:22px 24px; }
+
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .tile { background:var(--card); border:1px solid var(--hair); border-radius:10px; padding:18px 20px;
+           display:flex; flex-direction:column; gap:4px; }
+  .tile .k { font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink3); }
+  .tile .v { font-size:30px; font-weight:600; letter-spacing:-.02em; line-height:1.1; }
+  .tile .n { font-size:12.5px; color:var(--ink2); }
+  .tile.flag { border-left:3px solid var(--warn); }
+
+  .chart { display:flex; flex-direction:column; gap:3px; position:relative; }
+  .row { display:grid; grid-template-columns:188px 1fr 118px; align-items:center; gap:12px;
+          padding:3px 0; border-radius:6px; outline:none; }
+  .row:hover, .row:focus-visible { background:color-mix(in srgb, var(--ink) 4%, transparent); }
+  .row:focus-visible { box-shadow:0 0 0 2px var(--s1); }
+  .rlabel { display:flex; align-items:center; gap:7px; font-size:13px; min-width:0; }
+  .rname { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .dot { width:9px; height:9px; border-radius:2px; flex:0 0 auto; }
+  .dot.s1 { background:var(--s1); } .dot.s2 { background:var(--s2); } .dot.s3 { background:var(--s3); }
+  .track { position:relative; height:22px; }
+  .bar { position:absolute; left:0; top:5px; height:12px; border-radius:0 4px 4px 0; display:block; }
+  .bar.s1 { background:var(--s1); } .bar.s2 { background:var(--s2); } .bar.s3 { background:var(--s3); }
+  .whisk { position:absolute; top:10px; height:2px; background:var(--ink); opacity:.34; }
+  .vlabel { position:absolute; top:2px; margin-left:8px; font-size:12px; font-variant-numeric:tabular-nums;
+             color:var(--ink2); white-space:nowrap; }
+  .rverdict { text-align:right; }
+  .refline { position:absolute; top:0; bottom:18px; width:0; border-left:1.5px dashed var(--s3); opacity:.85; }
+  .refcap { position:absolute; top:-19px; transform:translateX(-50%); font-size:11px; color:var(--s3);
+             white-space:nowrap; font-weight:600; }
+  .axis { position:relative; height:20px; margin:8px 130px 0 200px; border-top:1px solid var(--rule); }
+  .tick { position:absolute; transform:translateX(-50%); font-size:11px; color:var(--ink3);
+           font-variant-numeric:tabular-nums; padding-top:5px; }
+  .tick i { position:absolute; top:0; left:50%; width:1px; height:4px; background:var(--rule); }
+  .axname { margin:2px 130px 0 200px; font-size:11px; color:var(--ink3); }
+
+  .tip { position:absolute; left:0; bottom:26px; z-index:5; background:var(--ink); color:var(--paper);
+          padding:9px 11px; border-radius:7px; font-size:12px; line-height:1.45; max-width:340px;
+          opacity:0; visibility:hidden; transition:opacity .1s; pointer-events:none; }
+  .row:hover .tip, .row:focus-visible .tip { opacity:1; visibility:visible; }
+
+  .legend { display:flex; flex-wrap:wrap; gap:8px; }
+  .lg { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; padding:5px 11px;
+         border:1px solid var(--rule); border-radius:999px; background:none; color:var(--ink);
+         font-family:inherit; cursor:pointer; }
+  .lg[aria-pressed=false] { opacity:.42; }
+  .lg:focus-visible { outline:2px solid var(--s1); outline-offset:2px; }
+
+  .pill { font-size:11px; padding:2.5px 8px; border-radius:999px; white-space:nowrap; font-weight:500;
+           border:1px solid transparent; }
+  .pill.ahead { color:var(--bad); border-color:color-mix(in srgb,var(--bad) 40%,transparent);
+                 background:color-mix(in srgb,var(--bad) 9%,transparent); }
+  .pill.behind { color:var(--ink2); border-color:var(--rule); }
+  .pill.tie { color:var(--ink2); border-color:var(--rule); background:color-mix(in srgb,var(--ink) 5%,transparent); }
+  .pill.ref { color:var(--s3); border-color:color-mix(in srgb,var(--s3) 45%,transparent); font-weight:600; }
+
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink3);
+        font-weight:600; padding:0 10px 9px; border-bottom:1px solid var(--rule); white-space:nowrap; }
+  td { padding:9px 10px; border-bottom:1px solid var(--hair); vertical-align:middle; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  th.num { text-align:right; }
+  .pm { color:var(--ink3); font-size:11px; margin-left:4px; }
+  .mono { font-family:var(--mono); font-size:11.5px; }
+  .muted { color:var(--ink3); }
+  .pos { color:var(--bad); } .neg { color:var(--ink2); }
+  .tag { font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--s3);
+          border:1px solid color-mix(in srgb,var(--s3) 40%,transparent); border-radius:4px;
+          padding:1px 5px; margin-left:7px; white-space:nowrap; }
+
+  .auditbar { display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:8px;
+               background:color-mix(in srgb,var(--good) 10%,transparent);
+               border:1px solid color-mix(in srgb,var(--good) 35%,transparent); font-weight:500; }
+  .auditbar .big { font-size:15px; color:var(--good); }
+  ul.checks { list-style:none; margin:0; padding:0; display:grid; gap:7px;
+               grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); }
+  ul.checks li { display:flex; gap:9px; align-items:flex-start; font-size:13px; color:var(--ink2); }
+  .mk { flex:0 0 auto; font-weight:700; }
+  li.ok .mk { color:var(--good); } li.bad .mk { color:var(--bad); }
+  .note { font-size:13px; color:var(--ink2); max-width:72ch; }
+  .note strong { color:var(--ink); }
+  code { font-family:var(--mono); font-size:12px; background:color-mix(in srgb,var(--ink) 6%,transparent);
+          padding:1px 5px; border-radius:4px; }
+  footer { font-size:12px; color:var(--ink3); border-top:1px solid var(--rule); padding-top:18px; }
+  @media (max-width:640px) {
+    .row { grid-template-columns:130px 1fr; } .rverdict { display:none; }
+    .axis, .axname { margin:8px 0 0 142px; }
+  }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">ASONAM 2026 &middot; Reviewers 3 and 6 &middot; R3-03, R3-04 &amp; R6-02</p>
+    <h1>What happens to LegalGraph-LJP when you put it next to simpler models</h1>
+    <p class="sub">Every model below was trained and scored on the <strong>same 71,813 cases and the same five
+    folds</strong> as the published HGT run &mdash; splits read out of that run's own <code>predictions.csv</code>,
+    never re-derived. The HGT row is the published result, read from disk; it was not re-run.</p>
+  </header>
+
+  <section>
+    <div class="tiles">
+      <div class="tile">
+        <span class="k">Published HGT</span>
+        <span class="v">80.63%</span>
+        <span class="n">macro-F1 0.8002 &middot; 5-fold mean</span>
+      </div>
+      <div class="tile">
+        <span class="k">Gain over a trivial baseline</span>
+        <span class="v">+19.8</span>
+        <span class="n">accuracy points over majority class (60.83%)</span>
+      </div>
+      <div class="tile">
+        <span class="k">Gain from the graph itself</span>
+        <span class="v">+2.9</span>
+        <span class="n">vs. the same model with every edge removed</span>
+      </div>
+      <div class="tile flag">
+        <span class="k">Best simpler model</span>
+        <span class="v">83.13%</span>
+        <span class="n">Linear SVM on sanitized TF-IDF &mdash; +2.50 pts vs. HGT</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Accuracy, ranked</h2>
+    <p class="sub">Bars are five-fold mean accuracy; the thin horizontal line through each bar spans
+    &plusmn;1 population s.d. across folds. The dashed line marks the published HGT. Hover or focus a row for detail.</p>
+    <div class="legend" role="group" aria-label="Filter by model family">
+      <button class="lg" data-f="classical" aria-pressed="true"><span class="dot s1"></span>Classical non-LLM</button>
+      <button class="lg" data-f="trivial" aria-pressed="true"><span class="dot s1"></span>Trivial</button>
+      <button class="lg" data-f="gnn" aria-pressed="true"><span class="dot s2"></span>GNN variant (new)</button>
+      <button class="lg" data-f="hgt" aria-pressed="true"><span class="dot s3"></span>HGT (published)</button>
+    </div>
+    <div class="card">
+      <div class="chart" id="chart" style="padding-top:22px">
+        <div class="refline" style="left:calc(200px + (100% - 330px) * 0.85088)">
+          <span class="refcap">HGT 80.63</span>
+        </div>
+        <div class="row" data-family="classical" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">Linear SVM</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:92.035%"></span><span class="whisk" style="left:91.348%;width:1.374%"></span>
+        <span class="vlabel" style="left:92.035%">83.13</span>
+        <div class="tip">Linear SVM &middot; 83.13% accuracy &plusmn;0.25<br>macro-F1 0.8251<br>sanitized TF-IDF, 300k word 1-2 grams<br>McNemar vs HGT: p = 1.6&times;10<sup>-65</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill ahead">ahead of HGT</span></div>
+    </div><div class="row" data-family="classical" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">Logistic Regression</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:92.008%"></span><span class="whisk" style="left:91.056%;width:1.904%"></span>
+        <span class="vlabel" style="left:92.008%">83.12</span>
+        <div class="tip">Logistic Regression &middot; 83.12% accuracy &plusmn;0.34<br>macro-F1 0.8245<br>sanitized TF-IDF, 300k word 1-2 grams<br>McNemar vs HGT: p = 6.2&times;10<sup>-63</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill ahead">ahead of HGT</span></div>
+    </div><div class="row" data-family="classical" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">XGBoost</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:90.577%"></span><span class="whisk" style="left:89.792%;width:1.570%"></span>
+        <span class="vlabel" style="left:90.577%">82.61</span>
+        <div class="tip">XGBoost &middot; 82.61% accuracy &plusmn;0.28<br>macro-F1 0.8180<br>sanitized TF-IDF reduced to 256 SVD components<br>McNemar vs HGT: p = 3.9&times;10<sup>-40</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill ahead">ahead of HGT</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">Relational GAT</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:86.310%"></span><span class="whisk" style="left:85.418%;width:1.784%"></span>
+        <span class="vlabel" style="left:86.310%">81.07</span>
+        <div class="tip">Relational GAT &middot; 81.07% accuracy &plusmn;0.32<br>macro-F1 0.8032<br>one GAT operator per relation<br>McNemar vs HGT: p = 1.5&times;10<sup>-4</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill ahead">ahead of HGT</span></div>
+    </div><div class="row" data-family="hgt" tabindex="0">
+      <div class="rlabel"><span class="dot s3"></span><span class="rname">HGT</span></div>
+      <div class="track">
+        <span class="bar s3" style="width:85.088%"></span><span class="whisk" style="left:83.555%;width:3.066%"></span>
+        <span class="vlabel" style="left:85.088%">80.63</span>
+        <div class="tip">HGT &middot; 80.63% accuracy &plusmn;0.55<br>macro-F1 0.8002<br>the published model: typed attention over 17 node types, 42 relations</div>
+      </div>
+      <div class="rverdict"><span class="pill ref">reference</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">GAT</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:84.983%"></span><span class="whisk" style="left:83.482%;width:3.003%"></span>
+        <span class="vlabel" style="left:84.983%">80.59</span>
+        <div class="tip">GAT &middot; 80.59% accuracy &plusmn;0.54<br>macro-F1 0.7997<br>type-collapsed graph, untyped attention<br>McNemar vs HGT: p = 0.733 over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill tie">tied with HGT</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">GCN</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:84.086%"></span><span class="whisk" style="left:83.125%;width:1.922%"></span>
+        <span class="vlabel" style="left:84.086%">80.27</span>
+        <div class="tip">GCN &middot; 80.27% accuracy &plusmn;0.35<br>macro-F1 0.7965<br>type-collapsed graph, no relation weights<br>McNemar vs HGT: p = 0.001 over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">R-GCN</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:83.676%"></span><span class="whisk" style="left:81.821%;width:3.711%"></span>
+        <span class="vlabel" style="left:83.676%">80.12</span>
+        <div class="tip">R-GCN &middot; 80.12% accuracy &plusmn;0.67<br>macro-F1 0.7960<br>one SAGE operator per relation, no attention<br>McNemar vs HGT: p = 5.2&times;10<sup>-6</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">GraphSAGE</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:81.680%"></span><span class="whisk" style="left:80.687%;width:1.986%"></span>
+        <span class="vlabel" style="left:81.680%">79.40</span>
+        <div class="tip">GraphSAGE &middot; 79.40% accuracy &plusmn;0.36<br>macro-F1 0.7862<br>type-collapsed graph, no relation weights<br>McNemar vs HGT: p = 5.3&times;10<sup>-27</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="gnn" tabindex="0">
+      <div class="rlabel"><span class="dot s2"></span><span class="rname">MLP (no message passing)</span></div>
+      <div class="track">
+        <span class="bar s2" style="width:76.919%"></span><span class="whisk" style="left:75.381%;width:3.074%"></span>
+        <span class="vlabel" style="left:76.919%">77.69</span>
+        <div class="tip">MLP (no message passing) &middot; 77.69% accuracy &plusmn;0.55<br>macro-F1 0.7698<br>same case features, all edges removed<br>McNemar vs HGT: p = 3.3&times;10<sup>-103</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="classical" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">XGBoost</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:74.706%"></span><span class="whisk" style="left:73.782%;width:1.849%"></span>
+        <span class="vlabel" style="left:74.706%">76.89</span>
+        <div class="tip">XGBoost &middot; 76.89% accuracy &plusmn;0.33<br>macro-F1 0.7620<br>entity counts + top-4000 canonical authority counts<br>McNemar vs HGT: p = 1.0&times;10<sup>-110</sup> over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="trivial" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">Majority class</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:30.092%"></span><span class="whisk" style="left:30.084%;width:0.015%"></span>
+        <span class="vlabel" style="left:30.092%">60.83</span>
+        <div class="tip">Majority class &middot; 60.83% accuracy &plusmn;0.00<br>macro-F1 0.3782<br>predicts the 60.8% positive class for every case<br>McNemar vs HGT: p = &lt;1e-300 over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="classical" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">Logistic Regression</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:28.324%"></span><span class="whisk" style="left:27.538%;width:1.571%"></span>
+        <span class="vlabel" style="left:28.324%">60.20</span>
+        <div class="tip">Logistic Regression &middot; 60.20% accuracy &plusmn;0.28<br>macro-F1 0.5962<br>the GNN's own 12 case scalars + entity counts + role histogram<br>McNemar vs HGT: p = &lt;1e-300 over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div><div class="row" data-family="trivial" tabindex="0">
+      <div class="rlabel"><span class="dot s1"></span><span class="rname">Stratified random</span></div>
+      <div class="track">
+        <span class="bar s1" style="width:6.527%"></span><span class="whisk" style="left:5.751%;width:1.553%"></span>
+        <span class="vlabel" style="left:6.527%">52.35</span>
+        <div class="tip">Stratified random &middot; 52.35% accuracy &plusmn;0.28<br>macro-F1 0.4997<br>samples from the training class prior<br>McNemar vs HGT: p = &lt;1e-300 over 71,813 paired cases</div>
+      </div>
+      <div class="rverdict"><span class="pill behind">behind HGT</span></div>
+    </div>
+      </div>
+      <div class="axis"><span class="tick" style="left:0.000%"><i></i>50</span><span class="tick" style="left:13.889%"><i></i>55</span><span class="tick" style="left:27.778%"><i></i>60</span><span class="tick" style="left:41.667%"><i></i>65</span><span class="tick" style="left:55.556%"><i></i>70</span><span class="tick" style="left:69.444%"><i></i>75</span><span class="tick" style="left:83.333%"><i></i>80</span><span class="tick" style="left:97.222%"><i></i>85</span></div>
+      <p class="axname">Accuracy (%) &mdash; axis starts at 50, not 0, to separate models that all beat chance</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Did anything leak?</h2>
+    <p class="sub">This is the question that decides whether the rows above HGT mean anything. Two separate
+    guarantees: the text is the same text the HGT reads, and no outcome vocabulary reaches the sparse models.</p>
+    <div class="auditbar"><span class="big">✓</span>
+      <span>All six input-provenance and leakage assertions pass over all 71,813 cases.</span></div>
+    <div class="card"><ul class="checks"><li class="ok"><span class="mk">✓</span>Source text is byte-identical to the HGT case node</li><li class="ok"><span class="mk">✓</span>Case order and labels match the HGT's predictions.csv</li><li class="ok"><span class="mk">✓</span>No decision role (RPC / RATIO / RLC / ANALYSIS / ISSUE) retained</li><li class="ok"><span class="mk">✓</span>Test folds disjoint and covering all 71,813 cases</li><li class="ok"><span class="mk">✓</span>All 18,301 [LEAKAGE_MASK] artifacts removed before TF-IDF</li><li class="ok"><span class="mk">✓</span>All 379,251 operative-outcome terms removed before TF-IDF</li></ul></div>
+    <div class="card">
+      <h2 style="font-size:16px">How much did the extra sanitizer actually change?</h2>
+      <p class="note">The HGT reads the cleaned-case text as-is. The flat-text models get one
+      <em>additional</em> guard on top: <strong>18,301</strong> <code>[LEAKAGE_MASK]</code>
+      artifacts and <strong>379,251</strong> operative-outcome term occurrences
+      (3.21M characters) are stripped before vectorisation. If the TF-IDF
+      advantage were leakage, removing all of it would collapse the number. It moves by at most
+      <strong>0.21 accuracy points</strong> &mdash; an order of magnitude smaller than the
+      +2.50-point gap to HGT.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Flat-text model</th><th class="num">Before sanitizer</th>
+          <th class="num">After sanitizer (reported)</th><th class="num">Change</th></tr></thead>
+        <tbody><tr><td>Linear SVM<span class="mono muted"> B3_svm_tfidf</span></td>
+        <td class="num">83.34</td>
+        <td class="num">83.13</td>
+        <td class="num neg">-0.21</td></tr><tr><td>Logistic Regression<span class="mono muted"> B4_logreg_tfidf</span></td>
+        <td class="num">83.21</td>
+        <td class="num">83.12</td>
+        <td class="num neg">-0.09</td></tr><tr><td>XGBoost<span class="mono muted"> B6_xgboost_tfidf_svd</span></td>
+        <td class="num">82.59</td>
+        <td class="num">82.61</td>
+        <td class="num neg">+0.02</td></tr><tr><td>XGBoost<span class="mono muted"> B5_xgboost_entity</span></td>
+        <td class="num">76.89</td>
+        <td class="num">76.89</td>
+        <td class="num neg">+0.00</td></tr><tr><td>Majority class<span class="mono muted"> B0_majority</span></td>
+        <td class="num">60.83</td>
+        <td class="num">60.83</td>
+        <td class="num neg">+0.00</td></tr><tr><td>Logistic Regression<span class="mono muted"> B2_logreg_entity</span></td>
+        <td class="num">60.20</td>
+        <td class="num">60.20</td>
+        <td class="num neg">-0.00</td></tr><tr><td>Stratified random<span class="mono muted"> B1_stratified</span></td>
+        <td class="num">52.35</td>
+        <td class="num">52.35</td>
+        <td class="num neg">-0.00</td></tr></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where does the flat-text signal come from?</h2>
+    <p class="sub">Same folds, same sanitizer, same Linear SVM as B3 &mdash; only the sections fed to
+    TF-IDF change. This separates case-type base rates (preamble) from the case narrative
+    (facts, arguments).</p>
+    <div class="card">
+      <div class="scroll"><table>
+        <thead><tr><th>Sections used</th><th class="num">Accuracy %</th><th class="num">Macro-F1</th>
+          <th class="num">Features</th><th class="num">&Delta; maj.</th><th class="num">&Delta; HGT</th></tr></thead>
+        <tbody><tr><td>preamble only</td><td class="num">74.45<span class="pm">&plusmn;0.44</span></td><td class="num">0.7354</td><td class="num">103,176</td><td class="num">+13.61</td><td class="num">-6.19</td></tr><tr><td>facts only</td><td class="num">75.27<span class="pm">&plusmn;0.35</span></td><td class="num">0.7489</td><td class="num">212,159</td><td class="num">+14.44</td><td class="num">-5.36</td></tr><tr><td>arguments only</td><td class="num">74.97<span class="pm">&plusmn;0.23</span></td><td class="num">0.7481</td><td class="num">276,666</td><td class="num">+14.14</td><td class="num">-5.66</td></tr><tr><td>facts + arguments</td><td class="num">81.41<span class="pm">&plusmn;0.13</span></td><td class="num">0.8092</td><td class="num">300,000</td><td class="num">+20.57</td><td class="num">+0.77</td></tr><tr><td>all three (fixed C) <span class="tag">cf. B3</span></td><td class="num">82.97<span class="pm">&plusmn;0.13</span></td><td class="num">0.8241</td><td class="num">300,000</td><td class="num">+22.14</td><td class="num">+2.34</td></tr></tbody>
+      </table></div>
+      <p class="note"><strong>Reading.</strong> The preamble alone &mdash; party names, court and petition type, i.e. registry-level base rates rather than legal reasoning &mdash; reaches <strong>74.45%</strong>, +13.61 points over the majority class. That looks like a shortcut worth worrying about, but it is almost entirely redundant with the narrative: adding the preamble on top of facts and arguments is worth only <strong>+1.56 points</strong>. <br><br>Facts and arguments on their own &mdash; every party name, court and petition type removed &mdash; reach <strong>81.41%</strong>, already +0.77 against the HGT. So the flat-text advantage is not an identity shortcut. It comes from the case narrative, which is exactly the evidence the graph model is meant to reason over &mdash; which points at the frozen text encoder, not the graph, as the bottleneck.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Every model, every number</h2>
+    <p class="sub">McNemar is the exact two-sided test on the 71,813
+    paired held-out predictions you get by pooling each run's five disjoint test folds &mdash; every case is
+    held out exactly once, so this is a per-case paired test, not a comparison of five fold means.</p>
+    <div class="scroll"><table id="tbl">
+      <thead><tr>
+        <th>Model</th><th>Run ID</th><th class="num">Accuracy %</th><th class="num">Macro-F1</th>
+        <th class="num">ROC-AUC</th><th class="num">Size</th><th class="num">&Delta; vs HGT</th>
+        <th class="num">McNemar p</th><th>Verdict</th>
+      </tr></thead>
+      <tbody><tr data-family="classical">
+      <td><span class="dot s1"></span>Linear SVM
+          </td>
+      <td class="mono muted">B3_svm_tfidf</td>
+      <td class="num">83.13<span class="pm">&plusmn;0.25</span></td>
+      <td class="num">0.8251<span class="pm">&plusmn;0.0021</span></td>
+      <td class="num">0.9086</td>
+      <td class="num">300,000 feat.</td>
+      <td class="num pos">+2.50</td>
+      <td class="num">1.6&times;10<sup>-65</sup></td>
+      <td><span class="pill ahead">ahead of HGT</span></td>
+    </tr><tr data-family="classical">
+      <td><span class="dot s1"></span>Logistic Regression
+          </td>
+      <td class="mono muted">B4_logreg_tfidf</td>
+      <td class="num">83.12<span class="pm">&plusmn;0.34</span></td>
+      <td class="num">0.8245<span class="pm">&plusmn;0.0038</span></td>
+      <td class="num">0.9093</td>
+      <td class="num">300,000 feat.</td>
+      <td class="num pos">+2.49</td>
+      <td class="num">6.2&times;10<sup>-63</sup></td>
+      <td><span class="pill ahead">ahead of HGT</span></td>
+    </tr><tr data-family="classical">
+      <td><span class="dot s1"></span>XGBoost
+          </td>
+      <td class="mono muted">B6_xgboost_tfidf_svd</td>
+      <td class="num">82.61<span class="pm">&plusmn;0.28</span></td>
+      <td class="num">0.8180<span class="pm">&plusmn;0.0029</span></td>
+      <td class="num">0.9068</td>
+      <td class="num">256 feat.</td>
+      <td class="num pos">+1.98</td>
+      <td class="num">3.9&times;10<sup>-40</sup></td>
+      <td><span class="pill ahead">ahead of HGT</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>Relational GAT
+          </td>
+      <td class="mono muted">arch_hgat_kfold</td>
+      <td class="num">81.07<span class="pm">&plusmn;0.32</span></td>
+      <td class="num">0.8032<span class="pm">&plusmn;0.0025</span></td>
+      <td class="num">0.8899</td>
+      <td class="num">1,977,602</td>
+      <td class="num pos">+0.44</td>
+      <td class="num">1.5&times;10<sup>-4</sup></td>
+      <td><span class="pill ahead">ahead of HGT</span></td>
+    </tr><tr data-family="hgt">
+      <td><span class="dot s3"></span>HGT
+          <span class="tag">published, not re-run</span></td>
+      <td class="mono muted">hgt</td>
+      <td class="num">80.63<span class="pm">&plusmn;0.55</span></td>
+      <td class="num">0.8002<span class="pm">&plusmn;0.0050</span></td>
+      <td class="num">0.8855</td>
+      <td class="num">2,011,508</td>
+      <td class="num ">&mdash;</td>
+      <td class="num">&mdash;</td>
+      <td><span class="pill ref">reference</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>GAT
+          </td>
+      <td class="mono muted">arch_gat_kfold</td>
+      <td class="num">80.59<span class="pm">&plusmn;0.54</span></td>
+      <td class="num">0.7997<span class="pm">&plusmn;0.0054</span></td>
+      <td class="num">0.8865</td>
+      <td class="num">1,281,922</td>
+      <td class="num neg">-0.04</td>
+      <td class="num">0.733</td>
+      <td><span class="pill tie">tied with HGT</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>GCN
+          </td>
+      <td class="mono muted">arch_gcn_kfold</td>
+      <td class="num">80.27<span class="pm">&plusmn;0.35</span></td>
+      <td class="num">0.7965<span class="pm">&plusmn;0.0034</span></td>
+      <td class="num">0.8846</td>
+      <td class="num">1,281,666</td>
+      <td class="num neg">-0.36</td>
+      <td class="num">0.001</td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>R-GCN
+          </td>
+      <td class="mono muted">arch_rgcn_kfold</td>
+      <td class="num">80.12<span class="pm">&plusmn;0.67</span></td>
+      <td class="num">0.7960<span class="pm">&plusmn;0.0062</span></td>
+      <td class="num">0.8836</td>
+      <td class="num">1,966,850</td>
+      <td class="num neg">-0.51</td>
+      <td class="num">5.2&times;10<sup>-6</sup></td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>GraphSAGE
+          </td>
+      <td class="mono muted">arch_sage_kfold</td>
+      <td class="num">79.40<span class="pm">&plusmn;0.36</span></td>
+      <td class="num">0.7862<span class="pm">&plusmn;0.0032</span></td>
+      <td class="num">0.8753</td>
+      <td class="num">1,289,858</td>
+      <td class="num neg">-1.23</td>
+      <td class="num">5.3&times;10<sup>-27</sup></td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="gnn">
+      <td><span class="dot s2"></span>MLP (no message passing)
+          </td>
+      <td class="mono muted">arch_mlp_kfold</td>
+      <td class="num">77.69<span class="pm">&plusmn;0.55</span></td>
+      <td class="num">0.7698<span class="pm">&plusmn;0.0041</span></td>
+      <td class="num">0.8578</td>
+      <td class="num">1,414,786</td>
+      <td class="num neg">-2.94</td>
+      <td class="num">3.3&times;10<sup>-103</sup></td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="classical">
+      <td><span class="dot s1"></span>XGBoost
+          </td>
+      <td class="mono muted">B5_xgboost_entity</td>
+      <td class="num">76.89<span class="pm">&plusmn;0.33</span></td>
+      <td class="num">0.7620<span class="pm">&plusmn;0.0037</span></td>
+      <td class="num">0.8529</td>
+      <td class="num">4,039 feat.</td>
+      <td class="num neg">-3.74</td>
+      <td class="num">1.0&times;10<sup>-110</sup></td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="trivial">
+      <td><span class="dot s1"></span>Majority class
+          </td>
+      <td class="mono muted">B0_majority</td>
+      <td class="num">60.83<span class="pm">&plusmn;0.00</span></td>
+      <td class="num">0.3782<span class="pm">&plusmn;0.0000</span></td>
+      <td class="num">0.5000</td>
+      <td class="num">&mdash;</td>
+      <td class="num neg">-19.80</td>
+      <td class="num">&lt;1e-300</td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="classical">
+      <td><span class="dot s1"></span>Logistic Regression
+          </td>
+      <td class="mono muted">B2_logreg_entity</td>
+      <td class="num">60.20<span class="pm">&plusmn;0.28</span></td>
+      <td class="num">0.5962<span class="pm">&plusmn;0.0034</span></td>
+      <td class="num">0.6378</td>
+      <td class="num">39 feat.</td>
+      <td class="num neg">-20.44</td>
+      <td class="num">&lt;1e-300</td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr><tr data-family="trivial">
+      <td><span class="dot s1"></span>Stratified random
+          </td>
+      <td class="mono muted">B1_stratified</td>
+      <td class="num">52.35<span class="pm">&plusmn;0.28</span></td>
+      <td class="num">0.4997<span class="pm">&plusmn;0.0022</span></td>
+      <td class="num">0.4997</td>
+      <td class="num">&mdash;</td>
+      <td class="num neg">-28.28</td>
+      <td class="num">&lt;1e-300</td>
+      <td><span class="pill behind">behind HGT</span></td>
+    </tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Generative LLM baselines, for context</h2>
+    <p class="sub">Single fold (fold 0). Primary accuracy and macro-F1 use all 14,363 cases:
+    unparseable outputs are incorrect abstentions. Parsed-only selective metrics are diagnostics.</p>
+    <div class="card scroll"><table>
+      <thead><tr><th>Model</th><th class="num">Full-denom. accuracy %</th><th class="num">Full-denom. macro-F1</th>
+        <th class="num">Coverage</th><th class="num">Selective accuracy %</th>
+        <th class="num">Selective macro-F1</th><th class="num">&Delta; vs HGT</th></tr></thead>
+      <tbody><tr><td>InLegalLlama (CPT)</td><td class="num">33.22</td>
+        <td class="num">0.3914</td>
+        <td class="num">53.2%</td>
+        <td class="num">62.48</td>
+        <td class="num">0.5649</td>
+        <td class="num neg">-47.41</td></tr><tr><td>InLegalLlama (SFT)</td><td class="num">48.42</td>
+        <td class="num">0.3585</td>
+        <td class="num">78.7%</td>
+        <td class="num">61.55</td>
+        <td class="num">0.3959</td>
+        <td class="num neg">-32.21</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>How to read this</h2>
+    <div class="card" style="display:flex;flex-direction:column;gap:12px">
+      <p class="note"><strong>The graph is doing real work.</strong> Strip every edge and keep the same case
+      features and the same trainer, and accuracy falls 2.94 points. That effect is the largest
+      in the table and it is what the paper's representation claim rests on.</p>
+      <p class="note"><strong>The heterogeneous attention is not what earns the number.</strong> A plain GAT
+      on the type-collapsed graph &mdash; no node types, no per-relation weights, 36% fewer parameters &mdash;
+      is statistically indistinguishable from HGT (p = 0.73). Relational GAT is slightly ahead of it. The
+      accuracy-based argument for choosing HGT specifically does not survive; the explainability argument
+      (typed attention is what makes the relation-level counterfactuals of &sect;4.2 expressible) does.</p>
+      <p class="note"><strong>A sparse lexical model beats the graph on this corpus.</strong> TF-IDF with a
+      linear SVM reaches 83.13%. The likely reason is capacity where
+      it matters: 300,000 explicit n-gram features retain lexical detail that a 1024-dimensional mean-pooled
+      BGE-M3 section embedding averages away. This is reported as found, not tuned into or out of existence.</p>
+      <p class="note"><strong>Entity counts alone are weak.</strong> Logistic Regression on the GNN's own 12
+      case scalars plus entity counts reaches only 60.20% &mdash; below the majority class. The structured
+      metadata carries little signal without the text.</p>
+    </div>
+  </section>
+
+  <footer>
+    Sources: <code>R3_03_non_llm_baselines/outputs/baselines_summary.json</code>,
+    <code>R3_04_gnn_architecture_ablation/outputs/models/*/kfold/kfold_summary.json</code>,
+    <code>section_GNN/outputs/&hellip;/kfold_summary.json</code> (HGT, unmodified),
+    <code>model comparison/outputs/*/metrics.json</code>.
+    Metrics computed by <code>section_GNN/src/training/metrics.py::compute_metrics</code> &mdash; the same
+    function that produced the published numbers. Regenerate with
+    <code>collect_all_results.py &amp;&amp; build_dashboard.py</code>.
+    Sanitized-corpus SHA-256 <span class="mono">7053702c55338d05&hellip;</span>
+  </footer>
+</div>
+
+<script>
+  const buttons = [...document.querySelectorAll('.lg')];
+  const off = new Set();
+  function apply() {
+    for (const el of document.querySelectorAll('#chart .row, #tbl tbody tr')) {
+      el.style.display = off.has(el.dataset.family) ? 'none' : '';
+    }
+  }
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      const f = b.dataset.f;
+      const on = b.getAttribute('aria-pressed') === 'true';
+      if (on) { off.add(f); } else { off.delete(f); }
+      b.setAttribute('aria-pressed', String(!on));
+      apply();
+    });
+  }
+</script>

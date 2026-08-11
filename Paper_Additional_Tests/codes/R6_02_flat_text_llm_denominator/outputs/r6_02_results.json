@@ -1,0 +1,122 @@
+{
+  "task_id": "R6-02",
+  "status": "resolved",
+  "flat_text": {
+    "n": 71813,
+    "folds": 5,
+    "majority": {
+      "accuracy": 0.6083299684315706,
+      "macro_f1": 0.37823704096052735
+    },
+    "svm": {
+      "accuracy": 0.8313257851267505,
+      "macro_f1": 0.8250729812337557
+    },
+    "logreg": {
+      "accuracy": 0.8312282823978812,
+      "macro_f1": 0.8244537242365644
+    },
+    "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Paper_Additional_Tests/codes/R3_03_non_llm_baselines/outputs/baselines_summary.json"
+  },
+  "hgt": {
+    "accuracy": 0.8063165295664116,
+    "macro_f1": 0.8001648064418477,
+    "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/outputs/ablations/entity_resolved_data/cross_bucket_total_dataset/models/ablation_entity_resolved_section_sep_lr_decay_cross_bucket_kfold/kfold/kfold_summary.json"
+  },
+  "llm": {
+    "InLegalLlama (CPT)": {
+      "n": 14363,
+      "answered": 7636,
+      "abstained": 6727,
+      "coverage": 0.5316438070041077,
+      "accuracy": 0.3321729443709531,
+      "macro_f1": 0.3913809094952908,
+      "selective_accuracy": 0.6248035620743845,
+      "selective_macro_f1": 0.5649163536807071,
+      "per_label": {
+        "-1": {
+          "tp": 969,
+          "fp": 831,
+          "fn": 4657,
+          "precision": 0.5383333333333333,
+          "recall": 0.17223604692499112,
+          "f1": 0.2609749528683006
+        },
+        "1": {
+          "tp": 3802,
+          "fp": 2034,
+          "fn": 4935,
+          "precision": 0.6514736120630569,
+          "recall": 0.435160810346801,
+          "f1": 0.521786866122281
+        }
+      },
+      "selective_per_label": {
+        "-1": {
+          "tp": 969,
+          "fp": 831,
+          "fn": 2034,
+          "precision": 0.5383333333333333,
+          "recall": 0.3226773226773227,
+          "f1": 0.40349781386633354
+        },
+        "1": {
+          "tp": 3802,
+          "fp": 2034,
+          "fn": 831,
+          "precision": 0.6514736120630569,
+          "recall": 0.8206345780271962,
+          "f1": 0.7263348934950807
+        }
+      },
+      "policy": "full denominator; unparseable generations are abstentions counted as errors"
+    },
+    "InLegalLlama (SFT)": {
+      "n": 14363,
+      "answered": 11300,
+      "abstained": 3063,
+      "coverage": 0.7867437164937687,
+      "accuracy": 0.4842303140012532,
+      "macro_f1": 0.3584938690433237,
+      "selective_accuracy": 0.6154867256637168,
+      "selective_macro_f1": 0.3958820115863526,
+      "per_label": {
+        "-1": {
+          "tp": 71,
+          "fp": 82,
+          "fn": 5555,
+          "precision": 0.46405228758169936,
+          "recall": 0.012619978670458585,
+          "f1": 0.02457172521197439
+        },
+        "1": {
+          "tp": 6884,
+          "fp": 4263,
+          "fn": 1853,
+          "precision": 0.6175652641966448,
+          "recall": 0.7879134714432872,
+          "f1": 0.692416012874673
+        }
+      },
+      "selective_per_label": {
+        "-1": {
+          "tp": 71,
+          "fp": 82,
+          "fn": 4263,
+          "precision": 0.46405228758169936,
+          "recall": 0.016382095062298107,
+          "f1": 0.03164698016492088
+        },
+        "1": {
+          "tp": 6884,
+          "fp": 4263,
+          "fn": 82,
+          "precision": 0.6175652641966448,
+          "recall": 0.9882285386161355,
+          "f1": 0.7601170430077844
+        }
+      },
+      "policy": "full denominator; unparseable generations are abstentions counted as errors"
+    }
+  }
+}

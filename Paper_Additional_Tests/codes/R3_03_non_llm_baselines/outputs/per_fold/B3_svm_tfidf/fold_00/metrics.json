@@ -1,0 +1,161 @@
+{
+  "n_samples": 14363,
+  "accuracy": 0.8286569658149412,
+  "macro_f1": 0.8230532784377147,
+  "micro_f1": 0.8286569658149412,
+  "confusion_matrix": [
+    [
+      4673,
+      953
+    ],
+    [
+      1508,
+      7229
+    ]
+  ],
+  "classification_report": {
+    "-1": {
+      "precision": 0.7560265329234752,
+      "recall": 0.8306078919303235,
+      "f1-score": 0.7915643262471416,
+      "support": 5626.0
+    },
+    "1": {
+      "precision": 0.8835248105597653,
+      "recall": 0.8274007096257296,
+      "f1-score": 0.8545422306282877,
+      "support": 8737.0
+    },
+    "accuracy": 0.8286569658149412,
+    "macro avg": {
+      "precision": 0.8197756717416202,
+      "recall": 0.8290043007780266,
+      "f1-score": 0.8230532784377147,
+      "support": 14363.0
+    },
+    "weighted avg": {
+      "precision": 0.8335836206981927,
+      "recall": 0.8286569658149412,
+      "f1-score": 0.8298737289191511,
+      "support": 14363.0
+    }
+  },
+  "per_class": {
+    "-1": {
+      "precision": 0.7560265329234752,
+      "recall": 0.8306078919303235,
+      "f1": 0.7915643262471416,
+      "support": 5626
+    },
+    "1": {
+      "precision": 0.8835248105597653,
+      "recall": 0.8274007096257296,
+      "f1": 0.8545422306282877,
+      "support": 8737
+    }
+  },
+  "roc_auc": 0.9079710158785094,
+  "pr_auc": 0.9419045200330552,
+  "hyperparameter": "C=0.25",
+  "val_macro_f1": 0.8204198847764825,
+  "fit_seconds": 12.7,
+  "valid_baseline": true,
+  "n_features": 300000,
+  "top_terms": {
+    "-1": [
+      "appellant insurance",
+      "ltd vs",
+      "representation",
+      "bail and",
+      "insurance vs",
+      "respondent claimant",
+      "manager vs",
+      "respondent nos",
+      "has supported",
+      "director vs",
+      "respondents claimants",
+      "bail of",
+      "of",
+      "ors on",
+      "others on",
+      "case application",
+      "excessive",
+      "vs smt",
+      "minor girl",
+      "minor",
+      "cannot",
+      "land",
+      "specific",
+      "and submits",
+      "stage",
+      "higher side",
+      "and argued",
+      "be decided",
+      "is minor",
+      "is not",
+      "section 376",
+      "challenging the",
+      "stage of",
+      "challenging",
+      "direct",
+      "writ",
+      "company vs",
+      "second bail",
+      "engineer",
+      "offence is"
+    ],
+    "1": [
+      "appellants",
+      "this court",
+      "bail",
+      "the appellants",
+      "not dispute",
+      "appellants claimants",
+      "vs the",
+      "dispute",
+      "dispute the",
+      "for r2",
+      "crm",
+      "appellant claimant",
+      "petitioner no",
+      "the bail",
+      "pankaj bhatia",
+      "is",
+      "but could",
+      "appellant submits",
+      "conviction",
+      "rs 000",
+      "prosecutrix",
+      "of compensation",
+      "has opposed",
+      "respondent no",
+      "history",
+      "case registered",
+      "no objection",
+      "income",
+      "no insurance",
+      "situated",
+      "compensation by",
+      "identified by",
+      "head of",
+      "appeal seeking",
+      "not supported",
+      "the parties",
+      "sanap",
+      "india criminal",
+      "antecedents",
+      "lower side"
+    ]
+  },
+  "text_sanitization": {
+    "source_mask_tokens": 18301,
+    "source_outcome_terms": 379251,
+    "source_set_aside_phrases": 20,
+    "sanitized_mask_tokens": 0,
+    "sanitized_outcome_terms": 0,
+    "sanitized_set_aside_phrases": 0,
+    "characters_removed": 3210379,
+    "empty_after_sanitization": 1,
+    "documents": 71813
+  }
+}

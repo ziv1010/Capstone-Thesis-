@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "n_cases": 71813,
+  "source": "/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/section_GNN/data/ablations/entity_resolved_data/cross_bucket_total_dataset/processed/cleaned_cases",
+  "hgt_case_sections": [
+    "preamble",
+    "facts",
+    "arguments"
+  ],
+  "source_documents_sha256": "5eb7e2c07d8b2b689174c2b36fa289732de4ab0b7d5dc728fb54af02d56e4943",
+  "sanitized_documents_sha256": "7053702c55338d05f3aedbb6e1842356771290aca966ee5685adb7ba3baec4aa",
+  "source_equals_hgt_case_node_content": true,
+  "case_order_and_labels_equal_hgt_predictions": true,
+  "allowed_retained_roles": [
+    "ARG_PETITIONER",
+    "ARG_RESPONDENT",
+    "FAC",
+    "PREAMBLE",
+    "PRE_NOT_RELIED",
+    "PRE_RELIED",
+    "STA"
+  ],
+  "forbidden_decision_roles": [
+    "ANALYSIS",
+    "ISSUE",
+    "NONE",
+    "RATIO",
+    "RLC",
+    "RPC"
+  ],
+  "kept_role_counts": {
+    "ARG_PETITIONER": 317708,
+    "ARG_RESPONDENT": 104790,
+    "FAC": 780851,
+    "PREAMBLE": 5861,
+    "PRE_NOT_RELIED": 422,
+    "PRE_RELIED": 310207,
+    "STA": 63592
+  },
+  "dropped_role_counts": {
+    "ANALYSIS": 1230605,
+    "ISSUE": 42869,
+    "NONE": 516192,
+    "RATIO": 94548,
+    "RLC": 63255,
+    "RPC": 443190
+  },
+  "unexpected_retained_role_count": 0,
+  "sanitization": {
+    "source_mask_tokens": 18301,
+    "source_outcome_terms": 379251,
+    "source_set_aside_phrases": 20,
+    "sanitized_mask_tokens": 0,
+    "sanitized_outcome_terms": 0,
+    "sanitized_set_aside_phrases": 0,
+    "characters_removed": 3210379,
+    "empty_after_sanitization": 1,
+    "documents": 71813
+  },
+  "fold_split_counts": {
+    "0": {
+      "train": 51705,
+      "test": 14363,
+      "val": 5745
+    },
+    "1": {
+      "train": 51705,
+      "test": 14363,
+      "val": 5745
+    },
+    "2": {
+      "train": 51705,
+      "test": 14363,
+      "val": 5745
+    },
+    "3": {
+      "train": 51706,
+      "test": 14362,
+      "val": 5745
+    },
+    "4": {
+      "train": 51706,
+      "test": 14362,
+      "val": 5745
+    }
+  },
+  "test_fold_overlap": 0,
+  "test_fold_union": 71813
+}
