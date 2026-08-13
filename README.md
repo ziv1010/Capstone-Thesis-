@@ -60,9 +60,30 @@ flowchart LR
 
 ## 🖥️ Interactive Visualisers
 
-The repository ships four browser-based visualisers. The **two main ones** are the
-Multi-Hearing Stage Test Visualiser and the Final Explanation Visualizer; the Graph
-Visualiser is an **extra** exploration tool.
+For an examination or demo, use the unified dashboard. It starts every populated app,
+shows live links on one landing page, and puts the four examiner-facing questions first:
+
+1. **NER + rhetorical roles** — what was extracted from each judgment?
+2. **Explainability** — why did the frozen HGT make a prediction?
+3. **Multi-hearing cases** — how did the prediction change across hearings?
+4. **Early detection** — how soon did the prediction match the final outcome?
+
+```bash
+python3 run_visualisers.py
+```
+
+Open `http://localhost:8090`. The launcher also prints one SSH command containing all
+required port forwards for a remote examiner. Use `--no-extras` to start only the three
+apps containing the four priority views, or `--host 0.0.0.0` when the server and its app
+ports are deliberately exposed on a trusted network.
+
+The hub includes two supplementary tools after the priority views: the legal case graph
+and entity-network analysis. Every card is backed by the existing generated outputs and
+shows a few headline counts to help an examiner orient themselves before opening it. The
+NER/RR inventory is counted directly from the current non-empty annotation files rather
+than from historical run summaries.
+
+The individual launchers remain available:
 
 | Visualiser | Role | Port | Launch | Env |
 |------------|:----:|:----:|--------|-----|
@@ -77,9 +98,7 @@ Visualiser is an **extra** exploration tool.
 > `ssh -L <port>:localhost:<port> <user>@<server>`.
 
 There is also an entity co-occurrence sub-app
-(`bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052`) and a one-command hub —
-`python3 run_visualisers.py` — that starts the Dash apps plus the static timeline viewers
-behind a single landing page.
+(`bash GRAPH_VISUALISER/entity_analysis/run.sh both 8052`).
 
 ---
 

@@ -14,6 +14,12 @@
 | 3 | Mistral outcome labelling |
 | 4 | Cross-validated outcome augmentation |
 
+The Stage 1 selector discovers every populated `*_extract/annotations/` directory and
+currently covers all six buckets: family/matrimonial, financial fraud, food safety, land
+and property, motor accidents, and sexual offences. Bucket labels show their live
+browsable-file counts. Zero-byte artefacts left by interrupted workers are excluded from
+the case selector; NER-only fallbacks remain visible and are marked `rr_available=false`.
+
 ## ▶️ Running
 
 ```bash

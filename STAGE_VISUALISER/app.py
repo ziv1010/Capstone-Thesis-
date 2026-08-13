@@ -26,11 +26,11 @@ from dash import Input, Output, State, dcc, html as dhtml
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-ROOT = Path("/scratch/ziv_baretto/Thesis_Ziv/Capstone-Thesis-/Fixed_GPU_OpenNyai")
+ROOT = Path(__file__).resolve().parent.parent / "Fixed_GPU_OpenNyai"
 FINAL_OUTPUTS = ROOT / "final_outputs"
 CROSSVAL_OUTPUTS = ROOT / "cross_validated_outputs"
 
-BUCKETS = [
+PREFERRED_BUCKET_ORDER = [
     "family_matrimonial",
     "fin_fraud",
     "food_safety",
@@ -38,6 +38,28 @@ BUCKETS = [
     "motor_accidents",
     "sexual_offences",
 ]
+
+BUCKET_LABELS = {
+    "family_matrimonial": "Family & matrimonial",
+    "fin_fraud": "Financial fraud",
+    "food_safety": "Food safety",
+    "land_property": "Land & property",
+    "motor_accidents": "Motor accidents",
+    "sexual_offences": "Sexual offences",
+}
+
+
+def discover_buckets() -> List[str]:
+    discovered = {
+        path.name.removesuffix("_extract")
+        for path in FINAL_OUTPUTS.glob("*_extract")
+        if (path / "annotations").is_dir()
+    }
+    ordered = [bucket for bucket in PREFERRED_BUCKET_ORDER if bucket in discovered]
+    return ordered + sorted(discovered.difference(ordered))
+
+
+BUCKETS = discover_buckets()
 
 STAGES: List[Tuple[str, str, str]] = [
     ("extract",  "Stage 1",  "NER + RR"),
@@ -130,7 +152,13 @@ def list_cases(bucket: str) -> Tuple[str, ...]:
     d = stage_dir(bucket, "extract")
     if not d or not d.is_dir():
         return tuple()
-    return tuple(sorted(p.stem for p in d.glob("*.json")))
+    # A small number of interrupted workers left zero-byte JSON placeholders.
+    # They cannot be displayed and should never appear as selectable cases.
+    return tuple(sorted(p.stem for p in d.glob("*.json") if p.stat().st_size > 0))
+
+
+def bucket_inventory() -> Dict[str, int]:
+    return {bucket: len(list_cases(bucket)) for bucket in BUCKETS}
 
 
 @lru_cache(maxsize=128)
@@ -625,13 +653,15 @@ def render_raw(stages: Dict[str, Optional[dict]]) -> dhtml.Div:
 app = dash.Dash(
     __name__,
     external_stylesheets=[dbc.themes.BOOTSTRAP],
-    title="Pipeline Stage Visualiser",
+    title="NER + Rhetorical Roles · Pipeline Inspector",
     suppress_callback_exceptions=True,
 )
 server = app.server
 
 
 def topbar() -> dhtml.Div:
+    inventory = bucket_inventory()
+    total_cases = sum(inventory.values())
     return dhtml.Div(
         dbc.Row(
             [
@@ -641,8 +671,10 @@ def topbar() -> dhtml.Div:
                             dhtml.Div("FG", className="brand-mark"),
                             dhtml.Div(
                                 [
-                                    dhtml.Div("Pipeline Stage Visualiser", className="brand-title"),
-                                    dhtml.Div("Fixed_GPU_OpenNyai · per-case stage inspector",
+                                    dhtml.Div("NER + Rhetorical Roles", className="brand-title"),
+                                    dhtml.Div(
+                                        f"{total_cases:,} browsable annotations · "
+                                        f"{len(inventory)} legal buckets · pipeline inspector",
                                               className="brand-sub"),
                                 ]
                             ),
@@ -656,8 +688,15 @@ def topbar() -> dhtml.Div:
                         dhtml.Label("Bucket"),
                         dcc.Dropdown(
                             id="bucket-dd",
-                            options=[{"label": b, "value": b} for b in BUCKETS],
-                            value=BUCKETS[0],
+                            options=[
+                                {
+                                    "label": f"{BUCKET_LABELS.get(bucket, bucket.replace('_', ' ').title())} "
+                                             f"({inventory[bucket]:,})",
+                                    "value": bucket,
+                                }
+                                for bucket in BUCKETS
+                            ],
+                            value=BUCKETS[0] if BUCKETS else None,
                             clearable=False,
                         ),
                     ],
@@ -747,7 +786,7 @@ def sidebar_nav(active_view: str, presence: Dict[str, bool]) -> dhtml.Div:
 
 app.layout = dhtml.Div(
     [
-        dcc.Store(id="active-view", data="compare"),
+        dcc.Store(id="active-view", data="extract"),
         topbar(),
         dhtml.Div(
             [

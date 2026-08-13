@@ -6,9 +6,10 @@ Reads only from ../outputs/ — no GPU, no model.
 
 Tabs:
   1. Overview            — summary stats, transition counts, full-path Sankey
-  2. Transition Explorer — section-sentence deltas + entity-add frequencies
+  2. Early Detection     — first-hearing accuracy and ranked early/late signals
+  3. Transition Explorer — section-sentence deltas + entity-add frequencies
                            per transition (from transition_aggregates.json)
-  3. Case Drill-down     — per-case timeline, section deltas, entity adds/removes
+  4. Case Drill-down     — per-case timeline, section deltas, entity adds/removes
                            between consecutive hearings (from per_case_diffs/),
                            plus likely drivers when per_case_factors/ exists
 
@@ -56,6 +57,7 @@ INFER_DIR = OUT_DIR / "inference"
 PER_CASE_DIR = ANALYSIS_DIR / "per_case_diffs"
 PER_CASE_FACTORS_DIR = ANALYSIS_DIR / "per_case_factors"
 PER_CASE_RAW_FACTORS_DIR = ANALYSIS_DIR / "per_case_raw_outcome_factors"
+EARLY_SIGNAL_DIR = ANALYSIS_DIR / "early_signal_test"
 INPUT_JSON_DIR = EXP_ROOT / "data" / "input_jsons"
 
 ROLE_COLOR = {
@@ -178,6 +180,15 @@ def load_data() -> dict:
     if aggregates_path.exists():
         with open(aggregates_path) as f:
             aggregates = json.load(f)
+    early_summary = {}
+    early_summary_path = EARLY_SIGNAL_DIR / "early_signal_summary.json"
+    if early_summary_path.exists():
+        with open(early_summary_path) as f:
+            early_summary = json.load(f)
+
+    def read_optional_csv(name: str) -> pd.DataFrame:
+        path = EARLY_SIGNAL_DIR / name
+        return pd.read_csv(path) if path.exists() else pd.DataFrame()
     raw_label_lookup: dict[tuple[str, int], str] = {}
     for row in predictions.itertuples():
         stage_index = int(row.stage_index)
@@ -231,6 +242,12 @@ def load_data() -> dict:
         "summary": summary,
         "transition_counts": transition_counts,
         "aggregates": aggregates,
+        "early_summary": early_summary,
+        "first_hearing_signals": read_optional_csv("first_hearing_early_signals.csv"),
+        "first_hearing_high_conf_signals": read_optional_csv(
+            "first_hearing_high_conf_early_signals.csv"
+        ),
+        "later_correction_signals": read_optional_csv("later_added_correction_signals.csv"),
         "case_options": case_options,
         "case_option_meta": case_option_meta,
         "raw_label_lookup": raw_label_lookup,
@@ -425,6 +442,100 @@ def raw_outcome_distribution_bar(predictions: pd.DataFrame,
         xaxis_title="actual raw outcome",
         yaxis_title="cases",
         bargap=0.35,
+    )
+    return fig
+
+
+# ── early-detection figures ──────────────────────────────────────────────────
+
+def early_signal_label(feature: str) -> str:
+    """Turn the materialised feature key into a short examiner-facing label."""
+    parts = str(feature).split(":")
+    body = parts[1:]
+    if not body:
+        return str(feature)
+    key = body[0]
+    tail = body[1:]
+
+    if key.startswith("section_ge") and tail:
+        return f"≥{key.removeprefix('section_ge')} {tail[0]} sentences at first hearing"
+    if key == "section_present" and tail:
+        return f"{tail[0]} section present at first hearing"
+    if key.startswith("total_sentences_ge_"):
+        return f"≥{key.removeprefix('total_sentences_ge_')} total first-hearing sentences"
+    if key.startswith("entity_label_ge") and tail:
+        return f"≥{key.removeprefix('entity_label_ge')} {tail[0]} entities at first hearing"
+    if key == "entity_label_present" and tail:
+        return f"{tail[0]} entity present at first hearing"
+    if key == "entity" and len(tail) >= 2:
+        return f"{tail[0]}: {': '.join(tail[1:]).title()} at first hearing"
+    if key == "section_added" and tail:
+        return f"Later-added {tail[0]} section"
+    if key.startswith("section_added_ge") and tail:
+        return f"≥{key.removeprefix('section_added_ge')} later-added {tail[0]} sentences"
+    if key == "entity_label_added" and tail:
+        return f"Later-added {tail[0]} entity"
+    if key.startswith("entity_label_added_ge") and tail:
+        return f"≥{key.removeprefix('entity_label_added_ge')} later-added {tail[0]} entities"
+    if key == "entity_added" and len(tail) >= 2:
+        return f"Later-added {tail[0]}: {': '.join(tail[1:]).title()}"
+    return " ".join(body).replace("_", " ").title()
+
+
+def early_signal_rate_bar(signals: pd.DataFrame, title: str, top_n: int = 10) -> go.Figure:
+    if signals.empty:
+        fig = go.Figure()
+        fig.add_annotation(
+            text="No early-detection signal output is available.",
+            x=0.5,
+            y=0.5,
+            xref="paper",
+            yref="paper",
+            showarrow=False,
+        )
+        return fig.update_layout(title=title, height=430)
+
+    ranked = signals.copy()
+    ranked["abs_z"] = ranked["z_score"].abs()
+    ranked = ranked.sort_values(["abs_z", "support"], ascending=False).head(top_n)
+    ranked = ranked.sort_values("rate_diff_present_minus_absent")
+    labels = [early_signal_label(value) for value in ranked["feature"]]
+    support = ranked["support"].astype(int)
+    custom = list(zip(support, ranked["smoothed_odds_ratio"], ranked["z_score"]))
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=ranked["target_rate_absent"],
+        y=labels,
+        orientation="h",
+        name="Signal absent",
+        marker_color="#cbd5e1",
+        customdata=custom,
+        hovertemplate=(
+            "%{y}<br>rate when absent=%{x:.1%}<br>signal support=%{customdata[0]}"
+            "<br>smoothed OR=%{customdata[1]:.2f}<br>z=%{customdata[2]:.2f}<extra></extra>"
+        ),
+    ))
+    fig.add_trace(go.Bar(
+        x=ranked["target_rate_present"],
+        y=labels,
+        orientation="h",
+        name="Signal present",
+        marker_color="#0d9488",
+        customdata=custom,
+        hovertemplate=(
+            "%{y}<br>rate when present=%{x:.1%}<br>signal support=%{customdata[0]}"
+            "<br>smoothed OR=%{customdata[1]:.2f}<br>z=%{customdata[2]:.2f}<extra></extra>"
+        ),
+    ))
+    fig.update_layout(
+        title=title,
+        barmode="group",
+        height=500,
+        margin=dict(l=270, r=25, t=62, b=45),
+        xaxis=dict(title="target rate", tickformat=".0%", range=[0, 1]),
+        yaxis=dict(tickfont=dict(size=10)),
+        legend=dict(orientation="h", yanchor="bottom", y=1.01, x=1, xanchor="right"),
     )
     return fig
 
@@ -923,6 +1034,7 @@ def factor_report_panel(factor_report: dict | None) -> html.Div:
 
 def build_layout(data: dict) -> html.Div:
     summary = data["summary"]
+    early_summary = data.get("early_summary", {})
     transition_options = [
         {"label": k, "value": k} for k in data["aggregates"].get("by_transition", {}).keys()
     ] or [{"label": k, "value": k} for k in data["transition_counts"].keys()]
@@ -990,6 +1102,71 @@ def build_layout(data: dict) -> html.Div:
                               className="plot-card"), md=5),
         ]),
     ])
+
+    if early_summary:
+        early_n = int(early_summary.get("n_cases", 0))
+        early_correct = int(early_summary.get("early_correct_cases", 0))
+        early_correct_rate = float(early_summary.get("early_correct_rate", 0))
+        early_high_conf = int(early_summary.get("early_high_conf_correct_cases", 0))
+        early_high_conf_rate = float(early_summary.get("early_high_conf_correct_rate", 0))
+        initially_wrong = int(early_summary.get("n_initially_wrong_cases", 0))
+        later_corrected = int(early_summary.get("corrected_by_last_stage_cases", 0))
+        correction_rate = float(early_summary.get("correction_rate_among_initially_wrong", 0))
+        threshold = float(early_summary.get("early_high_conf_threshold", 0.8))
+
+        early_stat_grid = html.Div([
+            stat("Signal-audit cases", f"{early_n:,}",
+                 "cases with materialised first-to-last evidence diffs"),
+            stat("Correct at first hearing", f"{early_correct_rate:.1%}",
+                 f"{early_correct} / {early_n} matched the final outcome", kind="success"),
+            stat("Early + high confidence", f"{early_high_conf_rate:.1%}",
+                 f"{early_high_conf} / {early_n} correct at confidence ≥ {threshold:.2f}",
+                 kind="info"),
+            stat("Later correction rate", f"{correction_rate:.1%}",
+                 f"{later_corrected} / {initially_wrong} initially wrong cases corrected",
+                 kind="warning"),
+        ], className="stat-grid")
+        early_tab = html.Div([
+            early_stat_grid,
+            html.Div("How to read this audit", className="section-eyebrow"),
+            html.Div(
+                "Each pair compares the target rate when a signal is present versus absent. "
+                "Signals are ranked by the absolute two-proportion z-score and should be read "
+                "as associations, not causal effects.",
+                className="muted",
+                style={"marginBottom": "16px", "maxWidth": "900px"},
+            ),
+            dbc.Row([
+                dbc.Col(html.Div(dcc.Graph(
+                    figure=early_signal_rate_bar(
+                        data["first_hearing_signals"],
+                        "Signals associated with a correct first-hearing prediction",
+                    ),
+                    config={"displayModeBar": False},
+                ), className="plot-card"), md=6),
+                dbc.Col(html.Div(dcc.Graph(
+                    figure=early_signal_rate_bar(
+                        data["first_hearing_high_conf_signals"],
+                        f"Signals associated with correct, ≥{threshold:.2f}-confidence early detection",
+                    ),
+                    config={"displayModeBar": False},
+                ), className="plot-card"), md=6),
+            ]),
+            html.Div("Why initially wrong cases recover", className="section-eyebrow"),
+            html.Div(dcc.Graph(
+                figure=early_signal_rate_bar(
+                    data["later_correction_signals"],
+                    "Later-added signals associated with correction by the final hearing",
+                    top_n=12,
+                ),
+                config={"displayModeBar": False},
+            ), className="plot-card"),
+        ])
+    else:
+        early_tab = html.Div(
+            "Early-detection outputs are unavailable. Run the early-signal analysis first.",
+            className="empty-note",
+        )
 
     transition_tab = html.Div([
         html.Div("Transition", className="section-eyebrow"),
@@ -1074,10 +1251,10 @@ def build_layout(data: dict) -> html.Div:
                  style={"textTransform": "uppercase", "letterSpacing": "0.12em",
                         "fontSize": "0.72rem", "marginBottom": "8px",
                         "color": "rgba(255,255,255,0.65)"}),
-        html.H1("Multi-hearing test"),
+        html.H1("Multi-hearing & early detection"),
         html.Div(
-            "How does the model's verdict prediction shift between hearings of "
-            "the same case, and what changes in the case driving it?",
+            "How early can the final outcome be detected, how does the prediction shift "
+            "between hearings, and what new evidence drives a later correction?",
             className="subtitle",
         ),
         html.Div([
@@ -1100,6 +1277,8 @@ def build_layout(data: dict) -> html.Div:
                     parent_className="modern-tabs-wrap",
                     children=[
                         dcc.Tab(label="Overview", children=overview_tab,
+                                className="tab", selected_className="tab--selected"),
+                        dcc.Tab(label="Early detection", children=early_tab,
                                 className="tab", selected_className="tab--selected"),
                         dcc.Tab(label="Transition explorer", children=transition_tab,
                                 className="tab", selected_className="tab--selected"),

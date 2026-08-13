@@ -3,14 +3,16 @@
 > Part of [`multi_hearing_stage_test/`](../README.md) · one of the repository's **two main
 > visualisers** (the other is the [Final Explanation Visualizer](../../../FINAL_EXPLANATION/README.md#-visualizer--port-8899), port 8899).
 
-An interactive Dash app for browsing the multi-hearing stage-transition results — how the
-model's prediction for a case changes from hearing to hearing.
+An interactive Dash app for browsing the multi-hearing and early-detection results — how
+soon the model matches the final outcome and how its prediction changes from hearing to
+hearing.
 
 ## 🪟 Views
 
 | Tab | Contents |
 |-----|----------|
 | **Overview** | Aggregate transition statistics and dataset summary. |
+| **Early detection** | First-hearing correctness, high-confidence early detection, later correction rate, and ranked present-vs-absent signals. |
 | **Transition explorer** | Interactive exploration of prediction transitions across stages. |
 | **Case drill-down** | Per-case timeline of stage predictions, factors, and differences. |
 
@@ -29,6 +31,8 @@ Produced by [`../scripts/`](../scripts/README.md):
 - `../outputs/stage_manifest.csv`
 - `../outputs/inference/predictions.csv`
 - `../outputs/analysis/stage_transitions.csv`
+- `../outputs/analysis/early_signal_test/early_signal_summary.json`
+- early- and later-signal CSVs under `../outputs/analysis/early_signal_test/`
 - per-case factor reports under `../outputs/analysis/`
 
 ## ▶️ Run
