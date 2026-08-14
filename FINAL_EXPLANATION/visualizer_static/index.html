@@ -15,67 +15,77 @@
           <p class="brand-copy">Move through the experiments like a paper narrative: model representation, causal evidence, validation, legal patterns, then case-level drilldown.</p>
           <p id="outputDir" class="path"></p>
         </div>
-        <nav class="tabs" aria-label="Experiments">
-          <button class="tab active" data-view="overview" aria-current="page">
-            <span class="tab-index">Start</span>
-            <span class="tab-copy"><strong>Overview</strong><small>Pipeline map and headline results</small></span>
-          </button>
-          <button class="tab" data-view="exp1">
-            <span class="tab-index">01</span>
-            <span class="tab-copy"><strong>Embeddings</strong><small>What the trained HGT encoded</small></span>
-          </button>
-          <button class="tab" data-view="exp2">
-            <span class="tab-index">02</span>
-            <span class="tab-copy"><strong>Counterfactual Evidence</strong><small>What changes the prediction</small></span>
-          </button>
-          <button class="tab" data-view="exp10">
-            <span class="tab-index">Audit</span>
-            <span class="tab-copy"><strong>Identity Shortcuts</strong><small>Name-only train priors vs held-out labels</small></span>
-          </button>
-          <button class="tab" data-view="exp3">
-            <span class="tab-index">03</span>
-            <span class="tab-copy"><strong>Faithfulness</strong><small>Counterfactual vs attention/random</small></span>
-          </button>
-          <button class="tab" data-view="exp4">
-            <span class="tab-index">04</span>
-            <span class="tab-copy"><strong>Legal Communities</strong><small>Corpus-level legal patterns</small></span>
-          </button>
-          <button class="tab" data-view="exp5">
-            <span class="tab-index">05</span>
-            <span class="tab-copy"><strong>Embedding Clusters</strong><small>Topology vs learned geometry</small></span>
-          </button>
-          <button class="tab" data-view="exp6">
-            <span class="tab-index">06</span>
-            <span class="tab-copy"><strong>Opposite Cases</strong><small>Closest case decided the other way</small></span>
-          </button>
-          <button class="tab" data-view="exp7">
-            <span class="tab-index">07</span>
-            <span class="tab-copy"><strong>Full-Graph Communities</strong><small>Leiden on the heterogeneous graph</small></span>
-          </button>
-          <button class="tab" data-view="exp8">
-            <span class="tab-index">08</span>
-            <span class="tab-copy"><strong>Community Hierarchy</strong><small>Broad → specific legal groupings</small></span>
-          </button>
-          <button class="tab" data-view="exp9">
-            <span class="tab-index">09</span>
-            <span class="tab-copy"><strong>Bridge / Hub Authorities</strong><small>Core, bridge, and hub statutes</small></span>
-          </button>
-          <button class="tab" data-view="expMask">
-            <span class="tab-index">10</span>
-            <span class="tab-copy"><strong>Mask Sensitivity</strong><small>What breaks when you hide identities &amp; hubs</small></span>
-          </button>
-          <button class="tab tab-aggregate" data-view="aggregate">
-            <span class="tab-index">Synthesis</span>
-            <span class="tab-copy"><strong>Aggregate Trends</strong><small>The cross-experiment story</small></span>
-          </button>
-          <button class="tab" data-view="cases">
-            <span class="tab-index">Drill</span>
-            <span class="tab-copy"><strong>Case Explorer</strong><small>Inspect individual cases</small></span>
-          </button>
-          <button class="tab" data-view="tables">
-            <span class="tab-index">Data</span>
-            <span class="tab-copy"><strong>Raw Tables</strong><small>CSV reference view</small></span>
-          </button>
+        <nav class="tabs" aria-label="Explainability browser">
+          <!-- Navigation-only grouping: the underlying experiment views are unchanged. -->
+          <section class="tab-group tab-group-paper" aria-labelledby="paper-nav-label">
+            <h2 id="paper-nav-label" class="tab-group-label">Paper</h2>
+            <button class="tab active" data-view="overview" aria-current="page">
+              <span class="tab-index">Start</span>
+              <span class="tab-copy"><strong>Overview</strong><small>Pipeline map and headline results</small></span>
+            </button>
+
+            <h3 class="tab-subgroup-label">Explainability</h3>
+            <button class="tab" data-view="exp2">
+              <span class="tab-index">02</span>
+              <span class="tab-copy"><strong>Counterfactual Evidence</strong><small>What changes the prediction</small></span>
+            </button>
+            <button class="tab" data-view="exp10">
+              <span class="tab-index">Audit</span>
+              <span class="tab-copy"><strong>Identity Shortcuts</strong><small>Name-only train priors vs held-out labels</small></span>
+            </button>
+            <button class="tab" data-view="exp3">
+              <span class="tab-index">03</span>
+              <span class="tab-copy"><strong>Faithfulness</strong><small>Counterfactual vs attention/random</small></span>
+            </button>
+            <button class="tab" data-view="expMask">
+              <span class="tab-index">10</span>
+              <span class="tab-copy"><strong>Mask Sensitivity</strong><small>What breaks when you hide identities &amp; hubs</small></span>
+            </button>
+            <button class="tab" data-view="cases">
+              <span class="tab-index">Drill</span>
+              <span class="tab-copy"><strong>Case Explorer</strong><small>Inspect individual cases</small></span>
+            </button>
+          </section>
+
+          <section class="tab-group tab-group-extended" aria-labelledby="extended-nav-label">
+            <h2 id="extended-nav-label" class="tab-group-label">Extended Analysis</h2>
+            <button class="tab" data-view="exp1">
+              <span class="tab-index">01</span>
+              <span class="tab-copy"><strong>Embeddings</strong><small>What the trained HGT encoded</small></span>
+            </button>
+            <button class="tab" data-view="exp4">
+              <span class="tab-index">04</span>
+              <span class="tab-copy"><strong>Legal Communities</strong><small>Corpus-level legal patterns</small></span>
+            </button>
+            <button class="tab" data-view="exp5">
+              <span class="tab-index">05</span>
+              <span class="tab-copy"><strong>Embedding Clusters</strong><small>Topology vs learned geometry</small></span>
+            </button>
+            <button class="tab" data-view="exp6">
+              <span class="tab-index">06</span>
+              <span class="tab-copy"><strong>Opposite Cases</strong><small>Closest case decided the other way</small></span>
+            </button>
+            <button class="tab" data-view="exp7">
+              <span class="tab-index">07</span>
+              <span class="tab-copy"><strong>Full-Graph Communities</strong><small>Leiden on the heterogeneous graph</small></span>
+            </button>
+            <button class="tab" data-view="exp8">
+              <span class="tab-index">08</span>
+              <span class="tab-copy"><strong>Community Hierarchy</strong><small>Broad → specific legal groupings</small></span>
+            </button>
+            <button class="tab" data-view="exp9">
+              <span class="tab-index">09</span>
+              <span class="tab-copy"><strong>Bridge / Hub Authorities</strong><small>Core, bridge, and hub statutes</small></span>
+            </button>
+            <button class="tab tab-aggregate" data-view="aggregate">
+              <span class="tab-index">Synthesis</span>
+              <span class="tab-copy"><strong>Aggregate Trends</strong><small>The cross-experiment story</small></span>
+            </button>
+            <button class="tab" data-view="tables">
+              <span class="tab-index">Data</span>
+              <span class="tab-copy"><strong>Raw Tables</strong><small>CSV reference view</small></span>
+            </button>
+          </section>
         </nav>
         <div class="sidebar-note">
           <strong>Reading order</strong>
