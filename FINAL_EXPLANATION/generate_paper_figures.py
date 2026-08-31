@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import csv
 import math
-import textwrap
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -21,7 +20,6 @@ import matplotlib.patches as patches
 from matplotlib.path import Path as MplPath
 from matplotlib.patches import PathPatch
 import numpy as np
-import scipy.sparse as sp
 
 
 ROOT = Path(__file__).resolve().parent
@@ -274,203 +272,36 @@ def fig2_sankey(out_dir: Path, formats: list[str]) -> None:
     plt.close(fig)
 
 
-def wrap_label(text: str, width: int = 34) -> str:
-    text = text.replace("precedent:", "precedent: ").replace("provision:", "provision: ").replace("judge:", "judge: ")
-    return "\n".join(textwrap.wrap(text, width=width, break_long_words=False))
-
-
-def load_feature_metadata() -> dict[int, dict]:
-    out = {}
-    with open(EXP5 / "case_feature_metadata.csv", encoding="utf-8") as handle:
-        for row in csv.DictReader(handle):
-            out[int(row["feature_index"])] = row
-    return out
-
-
 def fig3_contrastive(out_dir: Path, formats: list[str]) -> None:
-    neighbourhood_path = EXP5 / "counterfactual_neighborhoods.csv"
-    diff_path = EXP5 / "counterfactual_neighborhood_feature_differences.csv"
-    row = None
-    for r in csv.DictReader(open(neighbourhood_path, encoding="utf-8")):
-        if r["case_index"] == "51419" and r["nearest_opposite_case_index"] == "15962":
-            row = r
-            break
-    if row is None:
-        raise RuntimeError("Could not find case 51419 -> 15962 in counterfactual_neighborhoods.csv")
+    """The published contrastive subgraph, case 51419 vs training case 15962.
 
-    q_features, o_features = [], []
-    for r in csv.DictReader(open(diff_path, encoding="utf-8")):
-        if r["case_index"] == "51419" and r["nearest_opposite_case_index"] == "15962":
-            item = {
-                "rank": int(r["rank"]),
-                "type": r["feature_type"],
-                "name": r["feature_name"],
-                "idf": float(r["idf"]) if r["idf"] else 0.0,
-                "skew": r.get("skew_direction", ""),
-                "log_odds": r.get("log_odds_vs_base", ""),
-            }
-            if r["side"] == "query_only":
-                q_features.append(item)
-            elif r["side"] == "opposite_only":
-                o_features.append(item)
-    q_features = sorted(q_features, key=lambda x: x["rank"])[:5]
-    o_features = sorted(o_features, key=lambda x: x["rank"])[:5]
+    Delegates to the shared renderer used by the visualiser and the slide
+    figures, so all three stay identical.  The pair is pinned (rather than
+    re-resolved from the test pool) because it is the figure the paper cites,
+    and the evidence keeps its published IDF + label-skew ranking.  Case 15962
+    is a training case, so its column carries no counterfactual badges.
+    """
+    from generate_presentation_figures import figure_contrast
+    from presentation_graphs import CaseNeighborIndex, CounterfactualFactorIndex, contrast_graph
 
-    feature_meta = load_feature_metadata()
-    feature_matrix = sp.load_npz(EXP5 / "case_feature_matrix.npz").tocsr()
-    q_set = set(feature_matrix[51419].indices)
-    o_set = set(feature_matrix[15962].indices)
-    shared_features = []
-    for feature_index in sorted(q_set & o_set, key=lambda i: float(feature_meta[i]["idf"]), reverse=True):
-        row_meta = feature_meta[feature_index]
-        shared_features.append({
-            "type": row_meta["feature_type"],
-            "name": row_meta["feature_name"],
-            "idf": float(row_meta["idf"]),
-        })
-        if len(shared_features) >= 7:
-            break
-
-    max_rows = max(len(shared_features), len(q_features), len(o_features), 4)
-    width = 1180
-    height = max(560, 160 + max_rows * 68)
-    fig, ax = plt.subplots(figsize=(width / 100, height / 100))
-    ax.set_xlim(0, width)
-    ax.set_ylim(height, 0)
-    ax.axis("off")
-
-    def type_style(feature_type: str) -> tuple[str, str]:
-        styles = {
-            "precedent": ("#eaf7ef", "#2e8b57"),
-            "court": ("#fff7e8", "#b36b00"),
-            "judge": ("#fff7e8", "#b36b00"),
-            "provision": ("#eaf7fb", "#1f7a9a"),
-            "statute": ("#edf2ff", "#4f46e5"),
-        }
-        return styles.get(feature_type, ("#f4f4f5", "#52525b"))
-
-    def type_label(feature_type: str) -> str:
-        return {
-            "precedent": "PRECEDENT",
-            "court": "COURT",
-            "judge": "JUDGE",
-            "provision": "PROVISION",
-            "statute": "STATUTE",
-        }.get(feature_type, feature_type.upper())
-
-    def clean_feature_name(name: str, limit: int = 27) -> str:
-        name = " ".join(name.replace("manusc", "MANU/SC/").replace("1983crilj1457", "1983 Cri LJ 1457").split())
-        if len(name) <= limit:
-            return name
-        return name[: max(0, limit - 3)].rstrip() + "..."
-
-    qx, ox = 112, 1068
-    q_only_x, shared_x, opp_only_x = 245, 486, 727
-    card_w, card_h = 205, 52
-    center_y = height / 2
-
-    def stack_y(rows, i):
-        block_h = max(len(rows), 1) * 62
-        return center_y - block_h / 2 + i * 62
-
-    ax.text(q_only_x + card_w / 2, 38, "Query-only evidence", ha="center", va="center", fontsize=10.5, weight="bold", color="#1f2937")
-    ax.text(shared_x + card_w / 2, 38, "Shared evidence", ha="center", va="center", fontsize=10.5, weight="bold", color="#1f2937")
-    ax.text(opp_only_x + card_w / 2, 38, "Opposite-only evidence", ha="center", va="center", fontsize=10.5, weight="bold", color="#1f2937")
-
-    def draw_case_circle(x, y, edge, title, subtitle):
-        circ = patches.Circle((x, y), 52, facecolor="white", edgecolor=edge, linewidth=2.4)
-        ax.add_patch(circ)
-        ax.text(x, y - 8, title, ha="center", va="center", fontsize=9.0, weight="bold", color="#1f2937")
-        ax.text(x, y + 16, subtitle, ha="center", va="center", fontsize=7.5, color="#64748b")
-
-    def draw_card(x, y, feature):
-        face, edge = type_style(feature["type"])
-        left, bottom = x, y
-        shadow = patches.FancyBboxPatch(
-            (left + 2.0, bottom + 3.2),
-            card_w,
-            card_h,
-            boxstyle="round,pad=0.008,rounding_size=8",
-            facecolor="#142330",
-            edgecolor="none",
-            alpha=0.055,
-            zorder=0.5,
-        )
-        ax.add_patch(shadow)
-        rect = patches.FancyBboxPatch(
-            (left, bottom),
-            card_w,
-            card_h,
-            boxstyle="round,pad=0.008,rounding_size=8",
-            facecolor=face,
-            edgecolor=edge,
-            linewidth=1.45 if feature["type"] not in {"court", "judge"} else 2.7,
-            zorder=2,
-        )
-        ax.add_patch(rect)
-        ax.text(left + 12, bottom + 18, type_label(feature["type"]), ha="left", va="center", fontsize=7.5, weight="bold", color=edge, zorder=3)
-        ax.text(left + card_w - 10, bottom + 18, f"idf {feature['idf']:.1f}", ha="right", va="center", fontsize=7.5, weight="bold", color="#64748b", zorder=3)
-        ax.text(left + 12, bottom + 38, clean_feature_name(feature["name"]), ha="left", va="center", fontsize=9.0, weight="bold", color="#1f2937", zorder=3)
-
-    def connect_path(points, color="#9cc9b1", dashed=False, alpha=0.42, lw=2.2):
-        path = MplPath(points, [MplPath.MOVETO, MplPath.CURVE4, MplPath.CURVE4, MplPath.CURVE4])
-        patch = PathPatch(
-            path,
-            facecolor="none",
-            edgecolor=color,
-            linewidth=lw,
-            alpha=alpha,
-            linestyle=(0, (5.0, 5.0)) if dashed else "solid",
-            capstyle="round",
-            zorder=1,
-        )
-        ax.add_patch(patch)
-
-    draw_case_circle(qx, center_y, "#1f7a83", "Case 51419", "target 1")
-    draw_case_circle(ox, center_y, "#a85f00", "Case 15962", "target -1")
-
-    for i, feature in enumerate(q_features):
-        y = stack_y(q_features, i)
-        draw_card(q_only_x, y, feature)
-        _, edge = type_style(feature["type"])
-        connect_path(
-            [(qx + 52, center_y), (185, center_y), (205, y + card_h / 2), (q_only_x, y + card_h / 2)],
-            color=edge,
-            alpha=0.36,
-        )
-
-    for i, feature in enumerate(shared_features):
-        y = stack_y(shared_features, i)
-        draw_card(shared_x, y, feature)
-        _, edge = type_style(feature["type"])
-        connect_path(
-            [(qx + 52, center_y), (260, center_y), (330, y + card_h / 2), (shared_x, y + card_h / 2)],
-            color=edge,
-            dashed=True,
-            alpha=0.30,
-            lw=2.0,
-        )
-        connect_path(
-            [(shared_x + card_w, y + card_h / 2), (790, y + card_h / 2), (900, center_y), (ox - 52, center_y)],
-            color=edge,
-            dashed=True,
-            alpha=0.30,
-            lw=2.0,
-        )
-
-    for i, feature in enumerate(o_features):
-        y = stack_y(o_features, i)
-        draw_card(opp_only_x, y, feature)
-        _, edge = type_style(feature["type"])
-        connect_path(
-            [(opp_only_x + card_w, y + card_h / 2), (950, y + card_h / 2), (980, center_y), (ox - 52, center_y)],
-            color=edge,
-            alpha=0.36,
-        )
-
-    fig.tight_layout(pad=0.15)
-    savefig(fig, out_dir, "fig3_contrastive_subgraph_51419_15962", formats)
-    plt.close(fig)
+    graph = contrast_graph(
+        CaseNeighborIndex(EXP5),
+        CounterfactualFactorIndex(EXP3),
+        51419,
+        side="opposite",
+        other_case=15962,
+        limit=5,
+        order="evidence",
+    )
+    if not graph.get("available"):
+        raise RuntimeError(f"Could not build the 51419 -> 15962 contrast: {graph.get('reason')}")
+    # Filename is pinned: Latex_Documentation/PAPER_DATA/main.tex includes it.
+    # detail=True keeps the idf readings and Δ values a print figure can carry;
+    # the slide figures drop both.
+    figure_contrast(
+        graph, out_dir, formats, "", rows=5,
+        stem="fig3_contrastive_subgraph_51419_15962", detail=True,
+    )
 
 
 def main() -> None:

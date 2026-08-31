@@ -88,15 +88,15 @@ def parse_args() -> argparse.Namespace:
         default="127.0.0.1",
         help="Interface used by the hub and apps (default: 127.0.0.1; use 0.0.0.0 for direct remote access).",
     )
-    parser.add_argument("--hub-port", type=int, default=8090)
+    parser.add_argument("--hub-port", type=int, default=18911)
     parser.add_argument("--timeline-port", type=int, default=8081)
     parser.add_argument("--gnn-static-port", type=int, default=8082)
-    parser.add_argument("--explainer-port", type=int, default=8899)
+    parser.add_argument("--explainer-port", type=int, default=18913)
     parser.add_argument("--embedding-port", type=int, default=8084)
     parser.add_argument("--graph-dash-port", type=int, default=8050)
-    parser.add_argument("--stage-dash-port", type=int, default=8051)
+    parser.add_argument("--stage-dash-port", type=int, default=18914)
     parser.add_argument("--entity-dash-port", type=int, default=8052)
-    parser.add_argument("--pipeline-stage-port", type=int, default=8053)
+    parser.add_argument("--pipeline-stage-port", type=int, default=18912)
     parser.add_argument("--static-only", action="store_true", help="Do not start Dash apps.")
     parser.add_argument("--no-extras", action="store_true", help="Start only the three examiner-focused apps.")
     parser.add_argument("--no-browser", action="store_true", help="Do not open the hub in a browser.")
@@ -264,7 +264,7 @@ def start_apps(args: argparse.Namespace, sites: list[Site]) -> None:
                 Site(
                     slug="explainability",
                     name="Prediction Explainability",
-                    url=f"http://localhost:{explainer_port}/",
+                    url="https://explain.wily.in/",
                     description=(
                         "Inspect case-level counterfactual evidence, typed legal paths, faithfulness curves, "
                         "prediction buckets, and identity/leakage audits for the frozen HGT."
@@ -315,7 +315,7 @@ def start_apps(args: argparse.Namespace, sites: list[Site]) -> None:
                 Site(
                     slug="ner-rr",
                     name="NER + Rhetorical Roles",
-                    url=f"http://localhost:{pipeline_port}/",
+                    url="https://ner.wily.in/",
                     description=(
                         "Choose a legal domain and case, then inspect highlighted named entities and rhetorical "
                         "roles alongside summaries and outcome-label stages."
@@ -369,7 +369,7 @@ def start_apps(args: argparse.Namespace, sites: list[Site]) -> None:
                 Site(
                     slug="multi-hearing",
                     name="Multi-Hearing + Early Detection",
-                    url=f"http://localhost:{hearing_port}/",
+                    url="https://hearing.wily.in/",
                     description=(
                         "Replay predictions as hearings accumulate. Review early-stage correctness, transition "
                         "patterns, confidence movement, decisive factors, and the evidence timeline for each case."
@@ -581,11 +581,8 @@ def write_hub(root: Path, sites: list[Site]) -> None:
     <footer>Links automatically use the hostname from which this hub was opened, so they work on localhost or a directly reachable research server. Keep <code>run_visualisers.py</code> running; press Ctrl+C in its terminal to stop every child server.</footer>
   </main>
   <script>
-    document.querySelectorAll('.app-link').forEach((link) => {{
-      const target = new URL(link.dataset.url);
-      target.hostname = window.location.hostname;
-      link.href = target.toString();
-    }});
+    // Live deployment: dashboard links use their dedicated Cloudflare hostnames.
+    // Do not rewrite hostnames here.
   </script>
 </body>
 </html>
@@ -627,13 +624,14 @@ def main() -> None:
     write_hub(hub_root, sites)
     hub_port = start_static_server("Visualiser hub", hub_root, args.hub_port, host=args.host)
     if hub_port:
-        hub_url = f"http://localhost:{hub_port}/"
+        hub_url = "https://legal.wily.in/"
         print("")
-        print(f"Examiner hub: {hub_url}")
-        app_ports = [site.url.split(":")[2].split("/")[0] for site in sites if site.url]
-        forwards = " ".join(f"-L {port}:localhost:{port}" for port in [str(hub_port), *app_ports])
-        print("Remote access (run from the examiner's computer):")
-        print(f"  ssh {forwards} <user>@<server>")
+        print(f"Examiner hub (Cloudflare): {hub_url}")
+        print("Cloudflare routes:")
+        print("  legal.wily.in   -> localhost:18911")
+        print("  ner.wily.in     -> localhost:18912")
+        print("  explain.wily.in -> localhost:18913")
+        print("  hearing.wily.in -> localhost:18914")
         print("Keep this terminal open. Press Ctrl+C to stop all servers.")
         if not args.no_browser:
             webbrowser.open(hub_url)

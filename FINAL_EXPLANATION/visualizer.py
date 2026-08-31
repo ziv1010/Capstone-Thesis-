@@ -16,15 +16,29 @@ import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 
+from presentation_graphs import (
+    CaseNeighborIndex,
+    CounterfactualFactorIndex,
+    case_display_name,
+)
+from presentation_graphs import contrast_graph as build_contrast_graph
+from presentation_graphs import ego_graph as build_ego_graph
+from presentation_graphs import showcase_ranking as build_showcase_ranking
+
 
 APP_ROOT = Path(__file__).resolve().parent
 DEFAULT_OUTPUT_DIR = APP_ROOT / "outputs/entity_resolved_section_sep_lr_decay_cross_bucket_fold00"
 STATIC_DIR = APP_ROOT / "visualizer_static"
+# Cosine similarity between two cases never ties exactly in float32, so
+# "equally similar" has to mean "equal once rounded" before the shared-label
+# count is allowed to break the tie.
+SIMILARITY_TIE_DECIMALS = 3
 
 
 TABLE_FILES = {
     "case_summary": "case_summary.csv",
     "case_counterfactual_groups": "case_counterfactual_groups.csv",
+    "case_counterfactual_factor_index": "case_counterfactual_factor_index.csv",
     "case_top_explanations": "case_top_explanations.csv",
     "typed_path_importance": "typed_path_importance.csv",
     "relation_type_importance": "relation_type_importance.csv",
@@ -85,6 +99,12 @@ def clean_value(value: Any) -> Any:
         return float(value)
     if isinstance(value, float) and np.isnan(value):
         return None
+    # Nested payloads (per-direction deltas, shared-feature lists) reach the JSON
+    # layer intact; pd.isna() would raise on them, so recurse instead.
+    if isinstance(value, dict):
+        return {key: clean_value(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [clean_value(item) for item in value]
     if pd.isna(value):
         return None
     return value
@@ -102,6 +122,38 @@ def relation_note(relation: str | None) -> str | None:
         original = relation.removeprefix("rev_")
         return f"{relation} is the reverse graph edge for {original}; it lets HGT pass messages back along the original relation."
     return f"{relation} is an original typed graph relation."
+
+
+# ToUndirected() mirrors every typed edge as `rev_<relation>`, so the explainer
+# emits two mask groups per relation: `case->heard_in->court` and its twin
+# `court->rev_heard_in->case`.  They are one relation seen from both ends, so we
+# fold the reverse form onto the forward label and keep the direction separately.
+def canonical_path_family(path_family: str | None) -> tuple[str, str]:
+    """Collapse a `rev_` mirror path onto its forward label.
+
+    Returns (canonical_label, direction) where direction is one of
+    "forward" (messages leave the case), "reverse" (messages arrive at the
+    case) or "mixed" (a multi-hop path that combines both).
+    """
+    text = str(path_family or "").strip()
+    if not text or "->" not in text:
+        return text, "forward"
+    parts = text.split("->")
+    relations = parts[1::2]
+    if not relations or not any(part.startswith("rev_") for part in relations):
+        return text, "forward"
+    if not all(part.startswith("rev_") for part in relations):
+        return text, "mixed"
+    flipped = list(reversed(parts))
+    flipped[1::2] = [part.removeprefix("rev_") for part in flipped[1::2]]
+    return "->".join(flipped), "reverse"
+
+
+DIRECTION_LABEL = {
+    "forward": "case → evidence",
+    "reverse": "evidence → case",
+    "mixed": "mixed direction",
+}
 
 
 def path_notes(path_family: str | None) -> list[str]:
@@ -164,6 +216,10 @@ class ExplanationStore:
         self._pattern_cache: dict[str, tuple[float, pd.DataFrame]] = {}
         self._full_graph_cache: dict[str, tuple[float, pd.DataFrame]] = {}
         self._feature_cache: tuple[tuple[float, float, float], sp.csr_matrix, pd.DataFrame, pd.DataFrame] | None = None
+        # Shared with generate_presentation_figures.py so the browser and the
+        # slide figures always agree.  Both load lazily on first use.
+        self.neighbors = CaseNeighborIndex(self.pattern_dir)
+        self.factors = CounterfactualFactorIndex(self.output_dir)
 
     def _related_output_dir(self, suffix: str) -> Path:
         name = self.output_dir.name
@@ -1245,6 +1301,7 @@ class ExplanationStore:
             sample["cosine_similarity"] = pd.to_numeric(sample["cosine_similarity"], errors="coerce")
             sample = sample.sort_values("cosine_similarity", ascending=False)
 
+        initial_case = safe_int(sample.iloc[0].get("case_index")) if not sample.empty else None
         return {
             "available": True,
             "n_pairs": int(n),
@@ -1253,124 +1310,145 @@ class ExplanationStore:
                 "median": safe_float(cosine.median()) if not cosine.empty else None,
                 "p95": safe_float(cosine.quantile(0.95)) if not cosine.empty else None,
             },
-            "top_pairs": self._records(sample, 50),
+            "top_pairs": self._named_pairs(self._records(sample, 50)),
             "feature_type_summary": self._diff_feature_summary(diffs),
-            "contrast_graph": self.opposite_graph(
-                safe_int(sample.iloc[0].get("case_index")) if not sample.empty else None
-            ),
+            "initial_case_index": initial_case,
+            "ego_graph": self.case_ego_graph(initial_case),
+            "similar_graph": self.contrast_graph(initial_case, side="same"),
+            "contrast_graph": self.contrast_graph(initial_case, side="opposite"),
             "findings": findings,
         }
 
     @staticmethod
-    def _feature_rows(df: pd.DataFrame, limit: int = 8) -> list[dict[str, Any]]:
-        if df.empty:
-            return []
-        work = df.copy()
-        if "rank" in work:
-            work["rank"] = pd.to_numeric(work["rank"], errors="coerce")
-            work = work.sort_values("rank", na_position="last")
-        columns = [
-            "rank",
-            "feature_index",
-            "feature_type",
-            "feature_name",
-            "idf",
-            "corpus_case_count",
-            "skew_class",
-            "skew_direction",
-            "log_odds_vs_base",
-            "g_test_q_value_bh",
-        ]
-        work = work[[column for column in columns if column in work.columns]]
-        return clean_records(work.head(limit).to_dict("records"))
+    def _named_pairs(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Add human case titles so the pairs table is searchable by name."""
+        for row in rows:
+            row["case_title"] = case_display_name(row.get("case_id")).get("title")
+            row["nearest_opposite_case_title"] = case_display_name(
+                row.get("nearest_opposite_case_id")
+            ).get("title")
+        return rows
 
-    def _top_shared_features(self, case_index: int, opposite_case_index: int, limit: int = 8) -> list[dict[str, Any]]:
-        artifacts = self.load_feature_artifacts()
-        if artifacts is None:
-            return []
-        matrix, features, case_rows = artifacts
-        row_map = self._case_to_feature_row(case_rows)
-        left = row_map.get(int(case_index))
-        right = row_map.get(int(opposite_case_index))
-        if left is None or right is None or left >= matrix.shape[0] or right >= matrix.shape[0]:
-            return []
-
-        left_cols = matrix.getrow(left).indices
-        right_cols = matrix.getrow(right).indices
-        shared = np.intersect1d(left_cols, right_cols, assume_unique=False)
-        if len(shared) == 0:
-            return []
-
-        meta = features.copy()
-        if "feature_index" in meta:
-            meta["_feature_index"] = pd.to_numeric(meta["feature_index"], errors="coerce")
-            meta = meta.dropna(subset=["_feature_index"]).set_index("_feature_index", drop=False)
-        else:
-            meta["_feature_index"] = np.arange(len(meta))
-            meta = meta.set_index("_feature_index", drop=False)
-
-        rows: list[dict[str, Any]] = []
-        for feature_index in shared:
-            if feature_index not in meta.index:
-                continue
-            row = meta.loc[feature_index]
-            if isinstance(row, pd.DataFrame):
-                row = row.iloc[0]
-            rows.append({
-                "rank": len(rows) + 1,
-                "feature_index": int(feature_index),
-                "feature_type": row.get("feature_type"),
-                "feature_name": row.get("feature_name"),
-                "idf": safe_float(row.get("idf")) or 0.0,
-                "corpus_case_count": safe_int(row.get("corpus_case_count")),
-                "side": "shared",
-            })
-        rows.sort(key=lambda row: (row.get("idf") or 0, -(row.get("corpus_case_count") or 0)), reverse=True)
-        for idx, row in enumerate(rows[:limit], start=1):
-            row["rank"] = idx
-        return clean_records(rows[:limit])
-
-    def opposite_graph(self, case_index: int | None) -> dict[str, Any]:
+    def _default_contrast_case(self) -> int | None:
+        """Highest-cosine boundary pair, used when no case is selected yet."""
         neigh = self.load_pattern_table("counterfactual_neighborhoods")
-        diffs = self.load_pattern_table("counterfactual_neighborhood_feature_differences")
-        if neigh.empty:
-            return {"available": False, "reason": "counterfactual_neighborhoods.csv not found"}
-
+        if neigh.empty or "case_index" not in neigh:
+            return None
         work = neigh.copy()
         if "cosine_similarity" in work:
             work["cosine_similarity"] = pd.to_numeric(work["cosine_similarity"], errors="coerce")
-        if case_index is None or int(case_index) < 0:
             work = work.sort_values("cosine_similarity", ascending=False, na_position="last")
-            row_df = work.head(1)
-        else:
-            row_df = work[pd.to_numeric(work.get("case_index", pd.Series(dtype=float)), errors="coerce") == int(case_index)]
-            if row_df.empty:
-                return {"available": False, "reason": f"case_index {case_index} has no opposite-neighborhood row"}
-        if row_df.empty:
-            return {"available": False, "reason": "No opposite-neighborhood rows available"}
+        return safe_int(work.iloc[0].get("case_index"))
 
-        row = row_df.iloc[0]
-        query_idx = safe_int(row.get("case_index"))
-        opposite_idx = safe_int(row.get("nearest_opposite_case_index"))
-        diff_rows = pd.DataFrame()
-        if not diffs.empty and query_idx is not None and "case_index" in diffs:
-            diff_rows = diffs[pd.to_numeric(diffs["case_index"], errors="coerce") == int(query_idx)].copy()
-            if opposite_idx is not None and "nearest_opposite_case_index" in diff_rows:
-                diff_rows = diff_rows[
-                    pd.to_numeric(diff_rows["nearest_opposite_case_index"], errors="coerce") == int(opposite_idx)
-                ]
+    def _published_opposite_case(self, case_index: int) -> int | None:
+        """The nearest opposite-label *training* case from the published CSV."""
+        neigh = self.load_pattern_table("counterfactual_neighborhoods")
+        if neigh.empty or "case_index" not in neigh:
+            return None
+        match = neigh[pd.to_numeric(neigh["case_index"], errors="coerce") == int(case_index)]
+        if match.empty:
+            return None
+        return safe_int(match.iloc[0].get("nearest_opposite_case_index"))
 
-        query_only = diff_rows[diff_rows["side"].astype(str) == "query_only"] if not diff_rows.empty and "side" in diff_rows else pd.DataFrame()
-        opposite_only = diff_rows[diff_rows["side"].astype(str) == "opposite_only"] if not diff_rows.empty and "side" in diff_rows else pd.DataFrame()
-        shared = self._top_shared_features(query_idx, opposite_idx, 8) if query_idx is not None and opposite_idx is not None else []
+    def contrast_graph(
+        self,
+        case_index: int | None,
+        side: str = "opposite",
+        pool: str = "test",
+        order: str = "counterfactual",
+        limit: int = 8,
+        match: str = "target",
+    ) -> dict[str, Any]:
+        """Query case vs its nearest same-label or opposite-label case.
 
-        return {
-            "available": True,
-            "summary": clean_records(row_df.head(1).to_dict("records"))[0],
-            "shared_features": shared,
-            "query_only_features": self._feature_rows(query_only, 8),
-            "opposite_only_features": self._feature_rows(opposite_only, 8),
-        }
+        ``match="target"`` pairs on true labels (the published analysis);
+        ``match="pred"`` pairs on what the model predicted, which is the only
+        setting where the two cases actually got different verdicts from the
+        model.  With ``pool="train"`` and ``match="target"`` the opposite side
+        reuses the neighbour recorded in ``counterfactual_neighborhoods.csv`` so
+        the published analysis stays reproducible.
+        """
+        side = "same" if str(side) == "same" else "opposite"
+        pool = pool if pool in {"test", "train", "val", "all"} else "test"
+        order = "evidence" if str(order) == "evidence" else "counterfactual"
+        match = "pred" if str(match) == "pred" else "target"
+        if case_index is None or int(case_index) < 0:
+            case_index = self._default_contrast_case()
+        if case_index is None:
+            return {"available": False, "reason": "No case available to contrast."}
+
+        other_case = None
+        if pool == "train" and side == "opposite" and match == "target":
+            other_case = self._published_opposite_case(int(case_index))
+        try:
+            payload = build_contrast_graph(
+                self.neighbors,
+                self.factors,
+                int(case_index),
+                side=side,
+                pool=pool,
+                other_case=other_case,
+                limit=limit,
+                order=order,
+                match=match,
+            )
+        except (FileNotFoundError, KeyError) as exc:
+            return {"available": False, "reason": str(exc)}
+        if payload.get("available"):
+            payload["published_row"] = self._published_neighborhood_row(int(case_index))
+        return payload
+
+    def _published_neighborhood_row(self, case_index: int) -> dict[str, Any] | None:
+        neigh = self.load_pattern_table("counterfactual_neighborhoods")
+        if neigh.empty or "case_index" not in neigh:
+            return None
+        match = neigh[pd.to_numeric(neigh["case_index"], errors="coerce") == int(case_index)]
+        if match.empty:
+            return None
+        return clean_records(match.head(1).to_dict("records"))[0]
+
+    def opposite_graph(self, case_index: int | None) -> dict[str, Any]:
+        """Back-compatible entry point for ``/api/opposite_graph``."""
+        return self.contrast_graph(case_index, side="opposite", pool="test")
+
+    def case_ego_graph(
+        self,
+        case_index: int | None,
+        k_same: int = 3,
+        k_opposite: int = 3,
+        pool: str = "test",
+        match: str = "target",
+    ) -> dict[str, Any]:
+        """The 'case among its most similar cases' overview network."""
+        pool = pool if pool in {"test", "train", "val", "all"} else "test"
+        match = "pred" if str(match) == "pred" else "target"
+        if case_index is None or int(case_index) < 0:
+            case_index = self._default_contrast_case()
+        if case_index is None:
+            return {"available": False, "reason": "No case available to plot."}
+        try:
+            return build_ego_graph(
+                self.neighbors,
+                self.factors,
+                int(case_index),
+                k_same=max(1, min(int(k_same), 8)),
+                k_opposite=max(1, min(int(k_opposite), 8)),
+                pool=pool,
+                match=match,
+            )
+        except (FileNotFoundError, KeyError) as exc:
+            return {"available": False, "reason": str(exc)}
+
+    def showcase_cases(self, limit: int = 25, pool: str = "test") -> dict[str, Any]:
+        """Cases whose similarity figures read well on a slide."""
+        pool = pool if pool in {"test", "train", "val", "all"} else "test"
+        try:
+            rows = build_showcase_ranking(
+                self.neighbors, self.factors, limit=max(1, min(int(limit), 100)), pool=pool
+            )
+        except (FileNotFoundError, KeyError) as exc:
+            return {"available": False, "reason": str(exc), "cases": []}
+        return {"available": bool(rows), "pool": pool, "cases": rows}
 
     @staticmethod
     def _case_to_feature_row(case_rows: pd.DataFrame) -> dict[int, int]:
@@ -1726,27 +1804,100 @@ class ExplanationStore:
         rows = rows[[column for column in columns if column in rows.columns]]
         return {"rows": clean_records(rows.to_dict("records")), "total": total, "page": page, "limit": limit}
 
-    def _connected_cases_for_case(self, case_index: int, limit: int = 18) -> tuple[list[dict[str, Any]], int]:
+    def _most_similar_case(self, case_index: int) -> tuple[int | None, float | None]:
+        """The single nearest case in the model's own embedding space.
+
+        Label-agnostic on purpose: ``CaseNeighborIndex.nearest()`` always splits
+        the pool into same / opposite label, so it can never answer "which case
+        is simply the closest one?" — which is the case that has to be on the
+        canvas.
+        """
+        try:
+            if not self.neighbors.available:
+                return None, None
+            matches = self.neighbors.nearest_any(int(case_index), k=1, pool="all")
+        except (FileNotFoundError, KeyError, ValueError):
+            return None, None
+        if not matches:
+            return None, None
+        return int(matches[0][0]), float(matches[0][1])
+
+    def _case_similarity(self, case_index: int, others: list[int]) -> dict[int, float]:
+        """Cosine of ``case_index`` against each candidate, or {} if unavailable."""
+        if not others:
+            return {}
+        try:
+            if not self.neighbors.available:
+                return {}
+            return self.neighbors.cosine_to_cases(int(case_index), others)
+        except (FileNotFoundError, KeyError, ValueError):
+            return {}
+
+    def _connected_cases_for_case(
+        self, case_index: int, limit: int = 18
+    ) -> tuple[list[dict[str, Any]], int, dict[str, list[int]]]:
+        """Neighbour cases for the local subgraph, under both ranking rules.
+
+        Two orders are returned rather than one: ``"shared"`` is the literal
+        feature-overlap count the panel has always used, and ``"similarity"``
+        ranks on embedding cosine first and uses the shared-feature count only
+        to break ties between equally similar cases.  The maximally similar case
+        is pinned into both orders so it can never fall off the canvas.
+        """
+        empty_orders: dict[str, list[int]] = {"shared": [], "similarity": []}
         artifacts = self.load_feature_artifacts()
         if artifacts is None:
-            return [], 0
-        matrix, _, case_rows = artifacts
+            return [], 0, dict(empty_orders)
+        matrix, feature_meta, case_rows = artifacts
         row_map = self._case_to_feature_row(case_rows)
         row_index = row_map.get(int(case_index))
         if row_index is None or row_index >= matrix.shape[0]:
-            return [], 0
+            return [], 0, dict(empty_orders)
 
         feature_indices = matrix.getrow(row_index).indices
         if len(feature_indices) == 0:
-            return [], 0
+            return [], 0, dict(empty_orders)
 
         overlaps = np.asarray(matrix[:, feature_indices].sum(axis=1)).ravel()
         overlaps[row_index] = 0
         connected_row_indices = np.flatnonzero(overlaps > 0)
-        if len(connected_row_indices) == 0:
-            return [], 0
 
-        top_rows = connected_row_indices[np.argsort(overlaps[connected_row_indices])[::-1]][:limit]
+        # `overlaps` only counts the intersection; recover which columns actually
+        # overlap so the UI can show a per-type split and name the shared items.
+        shared_submatrix = matrix[:, feature_indices].tocsr()
+        feature_types: list[str] = []
+        feature_names: list[str] = []
+        if feature_meta is not None and "feature_type" in feature_meta:
+            type_lookup = feature_meta["feature_type"].astype(str).tolist()
+            name_lookup = (
+                feature_meta["feature_name"].astype(str).tolist()
+                if "feature_name" in feature_meta else type_lookup
+            )
+            for column in feature_indices:
+                column = int(column)
+                feature_types.append(type_lookup[column] if column < len(type_lookup) else "unknown")
+                feature_names.append(name_lookup[column] if column < len(name_lookup) else "")
+
+        def shared_profile(feature_row: int) -> tuple[dict[str, int], list[dict[str, Any]]]:
+            if not feature_types:
+                return {}, []
+            positions = shared_submatrix.getrow(int(feature_row)).indices
+            counts: dict[str, int] = {}
+            items: list[dict[str, Any]] = []
+            for position in positions:
+                position = int(position)
+                if position >= len(feature_types):
+                    continue
+                kind = feature_types[position]
+                counts[kind] = counts.get(kind, 0) + 1
+                items.append({
+                    "feature_type": kind,
+                    "feature_name": feature_names[position] if position < len(feature_names) else "",
+                    "feature_index": int(feature_indices[position]),
+                })
+            ordered = dict(sorted(counts.items(), key=lambda pair: (-pair[1], pair[0])))
+            items.sort(key=lambda item: (item["feature_type"], item["feature_name"]))
+            return ordered, items
         row_to_case = {
             int(row): int(case)
             for case, row in zip(
@@ -1755,8 +1906,58 @@ class ExplanationStore:
             )
             if pd.notna(case) and pd.notna(row)
         }
-        top_case_indices = [row_to_case.get(int(feature_row)) for feature_row in top_rows]
-        top_case_indices = [int(idx) for idx in top_case_indices if idx is not None]
+
+        # Overlap count and cosine are collected for every candidate before any
+        # cut is made, so the two orders below rank the same pool.
+        shared_counts: dict[int, int] = {}
+        case_to_row: dict[int, int] = {}
+        for feature_row in connected_row_indices:
+            idx = row_to_case.get(int(feature_row))
+            if idx is None:
+                continue
+            shared_counts[idx] = int(overlaps[int(feature_row)])
+            case_to_row[idx] = int(feature_row)
+
+        similarity = self._case_similarity(int(case_index), list(shared_counts))
+        most_similar_case, most_similar_cosine = self._most_similar_case(int(case_index))
+        if most_similar_case is not None and most_similar_case != int(case_index):
+            # The nearest case in embedding space need not share a single
+            # feature, so it is added to the pool rather than looked up in it.
+            shared_counts.setdefault(most_similar_case, 0)
+            if most_similar_cosine is not None:
+                similarity[most_similar_case] = most_similar_cosine
+            fallback_row = row_map.get(most_similar_case)
+            if fallback_row is not None and fallback_row < matrix.shape[0]:
+                case_to_row.setdefault(most_similar_case, int(fallback_row))
+        else:
+            most_similar_case = None
+
+        if not shared_counts:
+            return [], 0, dict(empty_orders)
+
+        def shared_key(idx: int) -> tuple[float, float, int]:
+            cosine = similarity.get(idx)
+            return (-shared_counts.get(idx, 0), -(cosine if cosine is not None else -1.0), idx)
+
+        def similarity_key(idx: int) -> tuple[float, float, int]:
+            # Professor Dey's rule: similarity ranks first, and cases that are
+            # equally similar are then ordered by how many labels they share.
+            # Float cosines never tie exactly, so equality is a rounded band.
+            cosine = similarity.get(idx)
+            band = round(cosine, SIMILARITY_TIE_DECIMALS) if cosine is not None else -1.0
+            return (-band, -shared_counts.get(idx, 0), idx)
+
+        shared_order = sorted(shared_counts, key=shared_key)[:limit]
+        similarity_order = sorted(shared_counts, key=similarity_key)[:limit]
+        if most_similar_case is not None:
+            for order in (shared_order, similarity_order):
+                if most_similar_case not in order:
+                    if len(order) >= limit:
+                        order.pop()
+                    order.append(most_similar_case)
+            similarity_order.sort(key=similarity_key)
+
+        top_case_indices = list(dict.fromkeys(similarity_order + shared_order))
 
         community_rows = self.load_pattern_table("case_communities")
         profiles: dict[int, dict[str, Any]] = {}
@@ -1784,12 +1985,10 @@ class ExplanationStore:
                         profiles[idx][key] = clean_value(row.get(key))
 
         connected: list[dict[str, Any]] = []
-        for feature_row in top_rows:
-            idx = row_to_case.get(int(feature_row))
-            if idx is None:
-                continue
+        for idx in top_case_indices:
             profile = profiles.get(idx, {})
-            connected.append({
+            cosine = similarity.get(idx)
+            record = {
                 "case_index": idx,
                 "case_id": profile.get("case_id"),
                 "split": profile.get("split"),
@@ -1798,9 +1997,21 @@ class ExplanationStore:
                 "confidence": profile.get("confidence", profile.get("baseline_pred_proba")),
                 "community_id": profile.get("community_id"),
                 "domain_bucket": profile.get("domain_bucket"),
-                "shared_feature_count": int(overlaps[int(feature_row)]),
-            })
-        return clean_records(connected), int(len(connected_row_indices))
+                "shared_feature_count": int(shared_counts.get(idx, 0)),
+                "cosine_similarity": safe_float(cosine),
+                "is_most_similar": bool(most_similar_case is not None and idx == most_similar_case),
+            }
+            # clean_records() cannot walk nested containers, so scrub the scalar
+            # fields first and attach the breakdown afterwards.
+            record = clean_records([record])[0]
+            feature_row = case_to_row.get(idx)
+            breakdown, items = shared_profile(feature_row) if feature_row is not None else ({}, [])
+            record["shared_breakdown"] = breakdown
+            record["shared_items"] = items[:40]
+            record["shared_items_truncated"] = max(0, len(items) - 40)
+            connected.append(record)
+        orders = {"shared": shared_order, "similarity": similarity_order}
+        return connected, int(len(connected_row_indices)), orders
 
     def local_case_graph(
         self,
@@ -1820,6 +2031,7 @@ class ExplanationStore:
                 "paths": [],
                 "evidence": [],
                 "connected_cases": [],
+                "connected_orders": {"shared": [], "similarity": []},
             }
 
         for column in ("group_rank_abs", "abs_delta_pred_proba", "delta_pred_proba", "attention_score"):
@@ -1830,19 +2042,43 @@ class ExplanationStore:
         elif "group_rank_abs" in groups:
             groups = groups.sort_values("group_rank_abs", na_position="last")
 
-        path_rows: list[dict[str, Any]] = []
+        # Fold `rev_` mirrors onto their forward label before grouping, so one
+        # relation produces one card instead of two near-identical ones.
         if "path_family" in groups:
-            for path, part in groups.groupby("path_family", dropna=False):
-                path_text = str(path) if path is not None and not pd.isna(path) else "unknown path"
-                importance = safe_float(part.get("abs_delta_pred_proba", pd.Series(dtype=float)).max()) or 0.0
-                path_rows.append({
-                    "id": f"path:{path_text}",
-                    "path_family": path_text,
-                    "label": path_text,
-                    "group_count": int(len(part)),
-                    "importance": importance,
-                    "mean_attention": safe_float(pd.to_numeric(part.get("attention_score", pd.Series(dtype=float)), errors="coerce").mean()),
-                })
+            canonical = groups["path_family"].map(canonical_path_family)
+            groups["path_family_canonical"] = [item[0] or "unknown path" for item in canonical]
+            groups["path_direction"] = [item[1] for item in canonical]
+        else:
+            groups["path_family_canonical"] = "unknown path"
+            groups["path_direction"] = "forward"
+
+        path_rows: list[dict[str, Any]] = []
+        for path_text, part in groups.groupby("path_family_canonical", dropna=False):
+            path_text = str(path_text) if path_text is not None and not pd.isna(path_text) else "unknown path"
+            abs_delta = pd.to_numeric(part.get("abs_delta_pred_proba", pd.Series(dtype=float)), errors="coerce")
+            importance = safe_float(abs_delta.max()) or 0.0
+            directions = part["path_direction"]
+            per_direction = {}
+            for name in ("forward", "reverse", "mixed"):
+                selected = abs_delta[directions == name]
+                if len(selected) and selected.notna().any():
+                    per_direction[name] = {
+                        "group_count": int(len(selected)),
+                        "importance": safe_float(selected.max()) or 0.0,
+                    }
+            raw_families = sorted({str(item) for item in part.get("path_family", pd.Series(dtype=object)).dropna()})
+            path_rows.append({
+                "id": f"path:{path_text}",
+                "path_family": path_text,
+                "label": path_text,
+                "group_count": int(len(part)),
+                "importance": importance,
+                "directions": per_direction,
+                "direction_count": len(per_direction),
+                "merged_from": raw_families,
+                "merged_count": len(raw_families),
+                "mean_attention": safe_float(pd.to_numeric(part.get("attention_score", pd.Series(dtype=float)), errors="coerce").mean()),
+            })
         path_rows.sort(key=lambda row: (row.get("importance") or 0, row.get("group_count") or 0), reverse=True)
 
         evidence_columns = [
@@ -1864,10 +2100,53 @@ class ExplanationStore:
             "support_positive_rate",
             "support_negative_rate",
         ]
-        visible_evidence = groups[[column for column in evidence_columns if column in groups.columns]].head(32).copy()
+        evidence_columns = evidence_columns + ["path_family_canonical", "path_direction"]
+        available = groups[[column for column in evidence_columns if column in groups.columns]].copy()
+
+        # A `relation_type` group exists once per edge type, so each relation shows
+        # up twice: `has_arguments` and its ToUndirected mirror `rev_has_arguments`.
+        # Merge the pair into one row and keep both deltas on it.
+        def mirror_key(row: pd.Series) -> str:
+            if str(row.get("evidence_type") or "") != "relation_type":
+                # Fall back to the row label when group_id is absent, otherwise
+                # every node group would share the key "group::None" and merge.
+                group_id = row.get("group_id")
+                if group_id is None or (isinstance(group_id, float) and pd.isna(group_id)):
+                    group_id = row.name
+                return f"group::{group_id}"
+            relation = str(row.get("evidence_name") or "").removeprefix("rev_")
+            return f"relation::{row.get('path_family_canonical')}::{relation}"
+
+        available["mirror_key"] = available.apply(mirror_key, axis=1)
+        merged_rows: list[pd.Series] = []
+        direction_detail: dict[str, dict[str, Any]] = {}
+        for key, part in available.groupby("mirror_key", sort=False):
+            abs_delta = pd.to_numeric(part.get("abs_delta_pred_proba", pd.Series(dtype=float)), errors="coerce")
+            lead = part.loc[abs_delta.idxmax()] if abs_delta.notna().any() else part.iloc[0]
+            detail = {}
+            for _, sibling in part.iterrows():
+                name = str(sibling.get("path_direction") or "forward")
+                detail[name] = {
+                    "relation": clean_value(sibling.get("evidence_name")),
+                    "delta_pred_proba": safe_float(sibling.get("delta_pred_proba")),
+                    "abs_delta_pred_proba": safe_float(sibling.get("abs_delta_pred_proba")),
+                    "masked_edge_count": safe_int(sibling.get("masked_edge_count")),
+                }
+            direction_detail[key] = detail
+            merged_rows.append(lead)
+
+        visible_evidence = pd.DataFrame(merged_rows)
+        if not visible_evidence.empty and "abs_delta_pred_proba" in visible_evidence:
+            visible_evidence["abs_delta_pred_proba"] = pd.to_numeric(
+                visible_evidence["abs_delta_pred_proba"], errors="coerce"
+            )
+            visible_evidence = visible_evidence.sort_values("abs_delta_pred_proba", ascending=False, na_position="last")
+        merged_total = int(len(visible_evidence))
+        visible_evidence = visible_evidence.head(32)
+
         evidence_records: list[dict[str, Any]] = []
         for idx, row in visible_evidence.iterrows():
-            path_text = row.get("path_family")
+            path_text = row.get("path_family_canonical") or row.get("path_family")
             path_text = str(path_text) if path_text is not None and not pd.isna(path_text) else "unknown path"
             group_id = row.get("group_id") if "group_id" in visible_evidence else idx
             record = {key: clean_value(value) for key, value in row.items()}
@@ -1875,9 +2154,16 @@ class ExplanationStore:
             record["path_id"] = f"path:{path_text}"
             record["label"] = record.get("evidence_name") or record.get("evidence_type") or "evidence"
             record["importance"] = safe_float(record.get("abs_delta_pred_proba")) or 0.0
+            detail = direction_detail.get(str(row.get("mirror_key")), {})
+            record["directions"] = detail
+            record["direction_count"] = len(detail)
+            if str(record.get("evidence_type") or "") == "relation_type":
+                # Show the un-prefixed relation; direction lives in its own badge.
+                record["label"] = str(record["label"]).removeprefix("rev_")
             evidence_records.append(record)
 
-        connected_cases, connected_count = self._connected_cases_for_case(case_index, limit=18)
+        connected_cases, connected_count, connected_orders = self._connected_cases_for_case(case_index, limit=18)
+        most_similar = next((row for row in connected_cases if row.get("is_most_similar")), None)
         return {
             "available": True,
             "summary": {
@@ -1887,12 +2173,18 @@ class ExplanationStore:
                 "total_paths": int(len(path_rows)),
                 "shown_paths": int(min(len(path_rows), 18)),
                 "shown_evidence": int(len(evidence_records)),
+                "merged_evidence_total": merged_total,
+                "mirror_pairs_merged": int(len(groups) - merged_total),
                 "connected_case_count": connected_count,
                 "shown_connected_cases": int(len(connected_cases)),
+                "most_similar_case_index": most_similar.get("case_index") if most_similar else None,
+                "most_similar_cosine": most_similar.get("cosine_similarity") if most_similar else None,
+                "similarity_tie_decimals": SIMILARITY_TIE_DECIMALS,
             },
             "paths": clean_records(path_rows[:18]),
             "evidence": clean_records(evidence_records),
             "connected_cases": connected_cases,
+            "connected_orders": connected_orders,
         }
 
     def case_detail(self, case_index: int) -> dict[str, Any]:
@@ -2603,6 +2895,34 @@ class VisualizerHandler(BaseHTTPRequestHandler):
                 self.send_json(self.store.exp_neighborhoods())
             elif path == "/api/opposite_graph":
                 self.send_json(self.store.opposite_graph(safe_int(first(params, "case_index", "-1"))))
+            elif path == "/api/contrast_graph":
+                self.send_json(
+                    self.store.contrast_graph(
+                        safe_int(first(params, "case_index", "-1")),
+                        side=first(params, "side", "opposite"),
+                        pool=first(params, "pool", "test"),
+                        order=first(params, "order", "counterfactual"),
+                        limit=safe_int(first(params, "limit", "8")) or 8,
+                        match=first(params, "match", "target"),
+                    )
+                )
+            elif path == "/api/case_ego_graph":
+                self.send_json(
+                    self.store.case_ego_graph(
+                        safe_int(first(params, "case_index", "-1")),
+                        k_same=safe_int(first(params, "k_same", "3")) or 3,
+                        k_opposite=safe_int(first(params, "k_opposite", "3")) or 3,
+                        pool=first(params, "pool", "test"),
+                        match=first(params, "match", "target"),
+                    )
+                )
+            elif path == "/api/showcase_cases":
+                self.send_json(
+                    self.store.showcase_cases(
+                        limit=safe_int(first(params, "limit", "25")) or 25,
+                        pool=first(params, "pool", "test"),
+                    )
+                )
             elif path == "/api/exp/aggregate":
                 self.send_json(self.store.exp_aggregate())
             elif path == "/api/exp/full_graph_communities":

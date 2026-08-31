@@ -569,14 +569,14 @@
       <section id="exp6" class="view">
         <header class="exp-header">
           <span class="exp-pill">Experiment 6</span>
-          <h2 class="exp-title">Counterfactual Neighborhoods (Opposite Cases)</h2>
-          <p class="exp-lede">For each test case, find the closest training case in HGT-embedding space that has the <em>opposite</em> true label. The feature differences become the contrastive explanation.</p>
+          <h2 class="exp-title">Counterfactual Neighborhoods (Similar &amp; Opposite Cases)</h2>
+          <p class="exp-lede">For a chosen case, find the cases the model sees as most alike in HGT-embedding space — the closest ones decided the <em>same</em> way and the closest ones decided the <em>opposite</em> way. The evidence differences become the contrastive explanation.</p>
         </header>
 
         <section class="briefing-grid">
           <div class="briefing-card briefing-what">
             <h3>What</h3>
-            <p>GPU cosine search over embeddings. For each query case, retrieve the K nearest opposite-label train cases. Then rank feature differences by IDF and label-discriminative skew.</p>
+            <p>Cosine search over the frozen case embeddings. First a similarity network placing the case among its nearest same-label and opposite-label neighbours, then two contrast diagrams — closest agreeing case, closest disagreeing case — with feature differences ranked either by counterfactual effect or by IDF and label-discriminative skew.</p>
           </div>
           <div class="briefing-card briefing-why">
             <h3>Why</h3>
@@ -584,7 +584,7 @@
           </div>
           <div class="briefing-card briefing-how">
             <h3>How to Read</h3>
-            <p>High cosine = the model sees the cases as similar despite opposite labels. Query-only features = present here, absent in the opposite. Opposite-only features = absent here, present in the opposite. Together they describe the contrastive boundary.</p>
+            <p>High cosine = the model sees the cases as similar despite opposite labels. Query-only features = present here, absent in the other case. Each evidence box carries its counterfactual rank: <b>▲ supports</b> the decision (masking it lowers confidence), <b>▼ argues against</b> it, and a ribbon marks a top-3 driving factor.</p>
           </div>
         </section>
 
@@ -596,8 +596,58 @@
         <section id="exp6ResultStory" class="result-story"></section>
 
         <section class="panel graph-panel">
-          <div class="panel-head"><h3>Case Contrast Graph</h3>
-            <span class="panel-sub">The selected query case, its nearest opposite-label case, and the evidence they share or disagree on.</span>
+          <div class="panel-head"><h3>Case Selector</h3>
+            <span class="panel-sub">Everything below re-centres on this case.</span>
+          </div>
+          <div class="match-switch" role="group" aria-label="Which case to compare against">
+            <div class="match-switch-head">Compare this case against&hellip;</div>
+            <div class="match-switch-options">
+              <button type="button" class="match-option is-active" data-match="target" aria-pressed="true">
+                <span class="match-option-title">the closest case <em>decided</em> the other way</span>
+                <span class="match-option-sub">Pairs on the <b>real</b> outcome. This is the published analysis &mdash; but the model gave <b>both</b> cases the same verdict about 93% of the time, so the pair usually shows that it could <b>not</b> tell them apart.</span>
+              </button>
+              <button type="button" class="match-option" data-match="pred" aria-pressed="false">
+                <span class="match-option-title">the closest case the <em>model</em> decided differently</span>
+                <span class="match-option-sub">Pairs on the model&rsquo;s <b>prediction</b>. The two cases genuinely got opposite verdicts &mdash; the only setting where &ldquo;what drove the difference&rdquo; is a real question. Similarity is lower (median cosine 0.81 vs 0.99).</span>
+              </button>
+            </div>
+          </div>
+          <div class="toolbar">
+            <input id="exp6CasePick" type="number" min="0" step="1" placeholder="Case index" />
+            <button id="exp6LoadCase" type="button">Load Case</button>
+            <button id="exp6Suggest" type="button">Suggest a showcase case</button>
+            <label for="exp6Pool">Neighbour pool</label>
+            <select id="exp6Pool">
+              <option value="test" selected>test (counterfactuals on both sides)</option>
+              <option value="train">train (published analysis)</option>
+              <option value="all">all splits</option>
+            </select>
+            <label for="exp6Order">Evidence ranked by</label>
+            <select id="exp6Order">
+              <option value="counterfactual" selected>counterfactual effect</option>
+              <option value="evidence">IDF + label skew</option>
+            </select>
+          </div>
+          <div id="exp6Showcase" class="showcase-strip"></div>
+        </section>
+
+        <section class="panel graph-panel">
+          <div class="panel-head"><h3>Case Similarity Network</h3>
+            <span class="panel-sub">The selected case among its three closest same-label and three closest opposite-label cases, with the evidence they share on each edge.</span>
+          </div>
+          <div id="exp6EgoGraph" class="graph-wrap"></div>
+        </section>
+
+        <section class="panel graph-panel">
+          <div class="panel-head"><h3>Closest Same-Label Case</h3>
+            <span class="panel-sub">The most similar case that was decided the <em>same</em> way, and the evidence they share or differ on.</span>
+          </div>
+          <div id="exp6SimilarGraph" class="graph-wrap"></div>
+        </section>
+
+        <section class="panel graph-panel">
+          <div class="panel-head"><h3>Closest Opposite-Label Case</h3>
+            <span class="panel-sub">The most similar case that was decided the <em>other</em> way — the decision boundary.</span>
           </div>
           <div id="exp6ContrastGraph" class="graph-wrap"></div>
         </section>
@@ -620,9 +670,7 @@
             <span class="panel-sub">Sorted by cosine similarity. Click a row to redraw the contrast graph.</span>
           </div>
           <div class="toolbar">
-            <input id="exp6Search" type="search" placeholder="Search case, evidence, opposite case" />
-            <input id="exp6CasePick" type="number" min="0" step="1" placeholder="Case index for graph" />
-            <button id="exp6LoadCase" type="button">Load Graph</button>
+            <input id="exp6Search" type="search" placeholder="Search case name, evidence, opposite case" />
           </div>
           <div id="exp6Pairs" class="table-wrap"></div>
         </section>

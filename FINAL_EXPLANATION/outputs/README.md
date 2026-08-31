@@ -21,8 +21,18 @@
 
 ```text
 case_summary.csv · case_top_explanations.csv · case_counterfactual_groups.csv
+case_counterfactual_factor_index.csv
 typed_path_importance.csv · relation_type_importance.csv · evidence_type_importance.csv
 manifest.json · run_summary.json
+```
+
+`case_counterfactual_factor_index.csv` is a compact derivative of
+`case_counterfactual_groups.csv` (evidence-node groups only, ~27 MB vs ~390 MB) that the
+visualizer and figure scripts read to badge evidence with its counterfactual rank. Rebuild it
+after any new explanation run:
+
+```bash
+micromamba run -n thesis_work python FINAL_EXPLANATION/build_counterfactual_factor_index.py
 ```
 
 **Validation directories:**

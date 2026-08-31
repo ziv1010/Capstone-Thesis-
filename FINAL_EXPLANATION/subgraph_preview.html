@@ -1,0 +1,3961 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Local subgraph preview</title><style>:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #1f2933;
+  --muted: #657383;
+  --line: #d8dee6;
+  --accent: #176b87;
+  --accent-2: #2f855a;
+  --warn: #b7791f;
+  --bad: #b83232;
+  --good: #237a57;
+  --bar: #d6e9ef;
+  --bar-strong: #176b87;
+
+  --briefing-what: #eaf3f7;
+  --briefing-what-line: #b9d8e3;
+  --briefing-why: #f0eff7;
+  --briefing-why-line: #cfcce0;
+  --briefing-how: #ecf6ee;
+  --briefing-how-line: #c5dec9;
+
+  --findings-bg: #fff8df;
+  --findings-line: #ddc679;
+
+  --tone-good: #237a57;
+  --tone-warn: #b7791f;
+  --tone-bad: #b83232;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+}
+
+/* ── Top bar / tabs ──────────────────────────────────────────────── */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 28px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.path {
+  max-width: 880px;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+button, select, input {
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+}
+
+button { padding: 0 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.tab-aggregate {
+  border-color: #b7791f;
+  color: #6f4910;
+}
+.tab-aggregate.active {
+  background: #b7791f;
+  border-color: #b7791f;
+  color: #ffffff;
+}
+
+input, select { padding: 0 10px; }
+
+main {
+  padding: 22px 28px 56px;
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── Experiment header ───────────────────────────────────────────── */
+
+.exp-header {
+  margin: 0 0 18px;
+  padding: 4px 0 0;
+}
+
+.exp-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.exp-title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.exp-lede {
+  margin: 0;
+  max-width: 920px;
+  color: #4a5968;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ── Briefing trio: What / Why / How ────────────────────────────── */
+
+.briefing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.briefing-card {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid;
+  line-height: 1.5;
+}
+
+.briefing-card h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.briefing-card p { margin: 0; color: #2a3744; }
+
+.briefing-what { background: var(--briefing-what); border-color: var(--briefing-what-line); }
+.briefing-what h3 { color: #1d4d63; }
+.briefing-why  { background: var(--briefing-why);  border-color: var(--briefing-why-line); }
+.briefing-why h3  { color: #4a4477; }
+.briefing-how  { background: var(--briefing-how);  border-color: var(--briefing-how-line); }
+.briefing-how h3  { color: #2c5435; }
+
+/* ── Findings strip ──────────────────────────────────────────────── */
+
+.findings-strip {
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  background: var(--findings-bg);
+  border: 1px solid var(--findings-line);
+  border-radius: 10px;
+}
+
+.findings-strip h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6e5a14;
+}
+
+.findings-strip ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.findings-strip-wide ul {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 28px;
+}
+
+.finding {
+  color: #3a3014;
+  line-height: 1.5;
+}
+.finding code {
+  background: #fef0c7;
+  border: 1px solid #d9c178;
+  border-radius: 3px;
+  padding: 0 4px;
+}
+.finding-empty { color: #8a7332; font-style: italic; }
+
+/* ── Metrics grid ────────────────────────────────────────────────── */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metric {
+  min-height: 108px;
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.metric .label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.metric .value {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.metric-note {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.metric-good .value { color: var(--tone-good); }
+.metric-warn .value { color: var(--tone-warn); }
+.metric-bad  .value { color: var(--tone-bad); }
+
+/* ── Experiment map cards (overview tab) ─────────────────────────── */
+
+.experiment-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 14px;
+}
+
+.experiment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  background: #fbfcfd;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 120ms, background 120ms;
+}
+
+.experiment-card:hover {
+  border-color: var(--accent);
+  background: #f4f9fb;
+}
+
+.experiment-card-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.experiment-card h4 {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.experiment-card p {
+  margin: 0;
+  color: #4a5968;
+  line-height: 1.45;
+}
+
+/* ── Panels ─────────────────────────────────────────────────────── */
+
+.grid { display: grid; gap: 16px; margin-bottom: 16px; }
+.grid.two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.panel-head, .toolbar, .pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.panel-sub {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.panel-body {
+  padding: 14px;
+}
+
+.panel-note-inline {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: #f5f8fa;
+  border: 1px solid #d8e4eb;
+  border-radius: 6px;
+  color: #43525f;
+  line-height: 1.5;
+}
+
+.panel.collapsible .panel-head { background: #fbfcfd; }
+.panel.collapsible .bullets { margin: 0; padding-left: 20px; line-height: 1.55; }
+
+.toolbar { flex-wrap: wrap; }
+.toolbar input[type="search"] { width: min(440px, 100%); }
+
+/* ── Tables ─────────────────────────────────────────────────────── */
+
+.table-wrap { overflow: auto; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #edf0f3;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f9fafb;
+  color: #52616f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+td.num, th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+tr.clickable { cursor: pointer; }
+tr.clickable:hover { background: #f3f8fa; }
+tr.selected { background: #eaf5f8; }
+
+/* ── Pills, bars, paths ─────────────────────────────────────────── */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: #eef2f6;
+  color: #34495e;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pill.good { background: #e3f3ec; color: var(--good); }
+.pill.bad  { background: #fae7e7; color: var(--bad); }
+
+.bar-cell { min-width: 140px; }
+.bar-bg { height: 8px; background: var(--bar); border-radius: 999px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--bar-strong); }
+.bar-fill.neg { background: var(--bad); }
+.bar-fill.pos { background: var(--accent-2); }
+
+.small { color: var(--muted); font-size: 12px; }
+
+.rel {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 1px 6px;
+  border: 1px solid #cad7df;
+  border-radius: 4px;
+  background: #f8fafc;
+  color: #244254;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.rel.reverse { border-color: #e1c88d; background: #fff8e8; color: #73510d; }
+
+.cell-note { margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.25; }
+.cell-note.inline { display: inline; margin: 0 0 0 4px; }
+
+.path-chain { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; line-height: 1.7; }
+.path-node { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: #35495b; }
+.arrow { color: #7a8896; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+
+/* ── Detail/inspector ───────────────────────────────────────────── */
+
+.detail-body.empty {
+  min-height: 220px;
+  padding: 28px;
+  color: var(--muted);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-stat {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.detail-stat .value {
+  margin-top: 4px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.case-title { padding: 14px; border-bottom: 1px solid var(--line); }
+.case-title.compact { padding: 0 0 12px; border-bottom: 0; }
+.case-title h3 { margin: 0; font-size: 16px; }
+
+.case-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+.case-reading { margin: 12px 0 0; max-width: 1000px; color: #4a5968; line-height: 1.45; }
+
+.pattern-card { padding: 14px; border-bottom: 1px solid var(--line); background: #f8fbfc; }
+.pattern-reading {
+  padding: 10px 12px;
+  border: 1px solid #cfe3ea;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #365564;
+  line-height: 1.45;
+}
+.compact-grid { padding: 12px 0 0; border-bottom: 0; }
+
+.inspector { padding: 14px; }
+.inspector-loading { padding: 18px; color: var(--muted); }
+.inspector-section { padding: 12px 0; border-top: 1px solid #edf0f3; }
+.inspector-section h4 { margin: 0 0 8px; font-size: 13px; }
+.inspector-section p { margin: 0 0 8px; color: #4a5968; line-height: 1.45; }
+.inspector-grid { padding: 0 0 12px; border-bottom: 0; }
+
+.raw-id { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px; align-items: start; margin-top: 7px; }
+.raw-id span { color: var(--muted); font-size: 12px; }
+.raw-id code { overflow-wrap: anywhere; }
+
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid #b7d8e3;
+  border-radius: 999px;
+  background: #f1fafc;
+  color: var(--accent);
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.external-link:hover { border-color: var(--accent); }
+
+.relation-notes { background: #fbfcfd; margin: 0 -14px; padding: 12px 14px; }
+
+/* ── kv-grid (manifest etc) ─────────────────────────────────────── */
+
+.kv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+}
+
+.kv-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fbfcfd;
+}
+
+.kv span { color: var(--muted); font-size: 12px; }
+.kv strong { font-variant-numeric: tabular-nums; font-weight: 700; }
+.kv-wide { grid-column: 1 / -1; }
+.kv-wide code { overflow-wrap: anywhere; }
+
+/* ── Charts ─────────────────────────────────────────────────────── */
+
+.chart-wrap { min-height: 320px; padding: 12px; overflow: auto; }
+.chart-inner { min-width: 620px; }
+.chart-inner svg { display: block; width: 100%; height: auto; }
+
+.axis { stroke: #7d8b99; stroke-width: 1; }
+.grid-line { stroke: #e5eaf0; stroke-width: 1; }
+.chart-line { fill: none; stroke-width: 2.4; }
+
+.bar-rect { fill: var(--bar-strong); opacity: 0.85; }
+
+.tick, .axis-label {
+  fill: #52616f;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 8px 8px 46px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #52616f;
+  font-size: 12px;
+}
+
+.legend-item span {
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
+}
+
+/* ── Explanation graph figures ──────────────────────────────────── */
+
+.graph-wrap {
+  padding: 18px;
+  overflow: auto;
+}
+
+.graph-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.graph-summary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 9px;
+  border: 1px solid #d5e2e7;
+  border-radius: 999px;
+  background: #f6fafb;
+  color: #41515f;
+  font-size: 12px;
+}
+
+.graph-summary strong {
+  margin-right: 4px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.graph-frame {
+  min-width: 840px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.graph-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.graph-axis-title {
+  fill: #243342;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.graph-label {
+  fill: #1f2f3f;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.graph-label.strong {
+  font-weight: 800;
+}
+
+.graph-tag {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.graph-micro {
+  fill: #5e6d7c;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.graph-micro.card-meta {
+  fill: #52616f;
+  font-weight: 700;
+}
+
+.graph-micro.inverse {
+  fill: #ffffff;
+  font-weight: 800;
+}
+
+.graph-empty-label {
+  fill: #8a96a3;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.flow-link {
+  fill: none;
+  opacity: 0.26;
+  stroke-linecap: round;
+}
+
+.flow-link:hover {
+  opacity: 0.58;
+}
+
+.flow-node rect {
+  fill: #ffffff;
+  stroke: #cfd9e2;
+  stroke-width: 1.2;
+}
+
+.flow-node.target rect {
+  stroke-width: 2;
+}
+
+.case-node circle {
+  fill: #ffffff;
+  stroke: var(--chapter);
+  stroke-width: 2.4;
+}
+
+.case-node.opposite circle {
+  stroke: #b36b13;
+}
+
+.case-node.same circle {
+  stroke: #2f855a;
+}
+
+.case-node.center circle {
+  fill: #f7fbfb;
+  stroke-width: 2.8;
+}
+
+.case-node-label {
+  fill: #1f2f3f;
+  font-size: 13px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.case-node-label.wrong {
+  fill: #b23a3a;
+}
+
+.case-node-wrong {
+  fill: #b23a3a;
+  font-size: 8.5px;
+  font-weight: 800;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.case-node.misclassified circle {
+  stroke-dasharray: 6 4;
+}
+
+.case-chip-meta b.wrong {
+  color: #b23a3a;
+}
+
+.verdict-warn {
+  border-color: #e7b9b5 !important;
+  background: #fdeceb !important;
+  color: #8c2f2f !important;
+}
+
+.verdict-ok {
+  border-color: #b6dcc6 !important;
+  background: #eefaf3 !important;
+  color: #1f6b47 !important;
+}
+
+.graph-label.case-caption {
+  fill: #24323f;
+  font-size: 11.5px;
+}
+
+.contrast-edge,
+.local-edge {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-opacity: 0.42;
+}
+
+.contrast-edge.shared {
+  stroke-dasharray: 5 5;
+  stroke-opacity: 0.34;
+}
+
+.feature-card rect.card-body {
+  filter: drop-shadow(0 4px 10px rgba(20, 35, 48, 0.07));
+}
+
+.feature-card.identity rect.card-body {
+  fill: #fff8e8;
+}
+
+.feature-card.cf-unscored rect.card-body {
+  opacity: 0.62;
+}
+
+/* ── Counterfactual factor badges ─────────────────────────────────────── */
+
+.cf-badge text {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+.cf-badge rect {
+  stroke-width: 1.1;
+}
+
+.cf-badge.muted text {
+  fill: #97a4b1;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.cf-ribbon {
+  pointer-events: none;
+}
+
+.cf-legend {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #fbfdfe;
+  font-size: 12px;
+}
+
+.cf-legend-key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  color: #4f6070;
+}
+
+.cf-swatch {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.cf-swatch.supports { background: #e6f6ed; border: 1.2px solid #1f7a4d; }
+.cf-swatch.opposes  { background: #fdeceb; border: 1.2px solid #b23a3a; }
+.cf-swatch.top      { background: #52616f; width: 5px; height: 15px; border-radius: 2.5px; }
+
+.cf-legend-factors {
+  margin-bottom: 9px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cf-legend-heading {
+  margin-bottom: 6px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cf-legend-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.cf-legend-label {
+  min-width: 116px;
+  font-weight: 700;
+  color: #4f6070;
+}
+
+.cf-legend-none {
+  color: #8a96a3;
+  font-style: italic;
+}
+
+.cf-legend-factors .panel-note-inline {
+  margin: 6px 0 0;
+}
+
+.cf-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #cfd9e2;
+  background: #ffffff;
+  font-size: 11.5px;
+}
+
+.cf-chip.supports { border-color: #1f7a4d; background: #f2fbf6; }
+.cf-chip.opposes  { border-color: #b23a3a; background: #fef6f5; }
+.cf-chip.no-box   { opacity: 0.62; }
+.cf-chip b { font-weight: 900; }
+.cf-chip i { color: #5e6d7c; font-style: normal; font-weight: 700; }
+
+/* ── Case names ───────────────────────────────────────────────────────── */
+
+.case-name-summary .case-chip {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 460px;
+  padding: 5px 11px;
+  border: 1px solid #d5e2e7;
+  border-radius: 999px;
+  background: #f6fafb;
+  font-size: 12px;
+}
+
+.case-chip em {
+  font-style: normal;
+  font-weight: 800;
+  color: #5e6d7c;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+}
+
+.case-chip strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+/* Neutralise the .graph-summary span pill styling for spans nested in a chip. */
+.case-name-summary .case-chip span {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.case-chip-meta {
+  color: #5e6d7c;
+}
+
+.case-lookup {
+  color: var(--chapter);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.case-lookup:hover {
+  text-decoration: underline;
+}
+
+/* ── Case similarity network ──────────────────────────────────────────── */
+
+.ego-node ellipse {
+  fill: #2c6b85;
+  stroke: #1b4a5e;
+  stroke-width: 1.6;
+  cursor: pointer;
+}
+
+.ego-node.center ellipse {
+  fill: #1f4f66;
+  stroke: #12303f;
+  stroke-width: 2.4;
+  cursor: default;
+}
+
+.ego-node.same ellipse { fill: #2f7a5c; stroke: #1c5540; }
+.ego-node.opposite ellipse { fill: #a2662a; stroke: #77471a; }
+.ego-node:not(.center):hover ellipse { filter: brightness(1.14); }
+
+.ego-edge path {
+  fill: none;
+  stroke-opacity: 0.55;
+  stroke-linecap: round;
+}
+
+.ego-edge-label {
+  fill: #24323f;
+  font-size: 12.5px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.ego-edge-cos {
+  fill: #61707f;
+  font-size: 10.5px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+.showcase-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px 12px;
+}
+
+.showcase-strip:empty {
+  padding: 0;
+}
+
+.showcase-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #5e6d7c;
+}
+
+.showcase-pick {
+  padding: 4px 10px;
+  border: 1px solid #cfd9e2;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #24323f;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.showcase-pick:hover {
+  border-color: var(--chapter);
+  color: var(--chapter);
+}
+
+.path-card rect,
+.connected-case-card rect {
+  stroke-width: 1.8;
+  filter: drop-shadow(0 4px 10px rgba(20, 35, 48, 0.08));
+}
+
+.path-card .graph-label,
+.connected-case-card .graph-label {
+  fill: #182838;
+}
+
+.path-card .graph-micro,
+.connected-case-card .graph-micro {
+  fill: #4f6070;
+  font-weight: 600;
+}
+
+/* Path families render as a wrapped node/relation chain instead of a truncated
+   string, so `case->has_arguments->arguments` and its longer cousins no longer
+   collapse onto the same label. */
+.path-chain {
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.path-chain .path-node-token {
+  fill: #16283a;
+  font-weight: 800;
+}
+
+.path-chain .path-rel-token {
+  fill: #55697c;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.path-chain .path-sep {
+  fill: #a9b7c4;
+  font-weight: 700;
+}
+
+.graph-axis-sub {
+  fill: #7b8a99;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* "in / out" pills recording which halves of a ToUndirected mirror were folded
+   into the card. */
+.dir-badge text {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.dir-badge.both rect { fill: #eef2fb; stroke: #6b5ca5; stroke-width: 1.2; }
+.dir-badge.both text { fill: #58499a; }
+.dir-badge.in rect { fill: #e8f4ee; stroke: #2f855a; stroke-width: 1.2; }
+.dir-badge.in text { fill: #256c48; }
+.dir-badge.out rect { fill: #f1f4f7; stroke: #8c9bab; stroke-width: 1.2; }
+.dir-badge.out text { fill: #5e6d7c; }
+.dir-badge.mixed rect { fill: #fdf2e4; stroke: #b36b13; stroke-width: 1.2; }
+.dir-badge.mixed text { fill: #96590f; }
+
+.shared-chip text {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.shared-chip rect {
+  stroke-width: 1.2;
+}
+
+.connected-edge {
+  stroke: #93a2b1;
+  stroke-dasharray: 5 4;
+  opacity: 0.75;
+  fill: none;
+}
+
+.shared-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 12px;
+}
+
+.shared-legend-label {
+  color: var(--soft-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shared-legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid var(--chip, #8c9bab);
+  border-radius: 999px;
+  background: var(--chip-bg, #f1f4f7);
+  color: var(--chip, #52616f);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.graph-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.case-graph-block {
+  padding: 18px;
+  border-top: 1px solid var(--hairline);
+  background: #fbfcfd;
+}
+
+.case-graph-head {
+  max-width: 980px;
+  margin-bottom: 12px;
+}
+
+.case-graph-head h4 {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.case-graph-head p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.local-graph-frame {
+  min-width: 900px;
+}
+
+.local-node circle {
+  stroke: #ffffff;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 5px 12px rgba(20, 35, 48, 0.15));
+}
+
+.local-node.identity circle {
+  stroke: #b36b13;
+  stroke-width: 4;
+}
+
+.local-label {
+  fill: #344454;
+  font-size: 11px;
+}
+
+/* ── Misc ───────────────────────────────────────────────────────── */
+
+code {
+  padding: 1px 5px;
+  border: 1px solid #d9e1e8;
+  border-radius: 4px;
+  background: #f7f9fb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .metrics, .briefing-grid, .experiment-map, .grid.two, .detail-grid, .kv-grid, .findings-strip-wide ul {
+    grid-template-columns: 1fr;
+  }
+  .kv-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   2026 thesis-browser redesign
+   Keeps the same DOM ids/API but makes each experiment read like a tabbed
+   chapter instead of a dense dashboard.
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --page: #f4f6f8;
+  --paper: #ffffff;
+  --ink: #18222d;
+  --soft-ink: #485867;
+  --quiet: #6f7d8a;
+  --hairline: #dfe5eb;
+  --hairline-strong: #c7d0da;
+  --chapter: #1d6f7a;
+  --chapter-soft: #e8f4f3;
+  --chapter-ink: #0f4f58;
+  --gold: #9a6a19;
+  --gold-soft: #fff5dc;
+  --green-soft: #eaf6ef;
+  --red-soft: #faeaea;
+  --shadow-soft: 0 14px 40px rgba(20, 35, 48, 0.08);
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px 16px;
+  background: #fbfcfd;
+  border-right: 1px solid var(--hairline);
+  overflow-y: auto;
+}
+
+.brand {
+  padding: 4px 8px 10px;
+}
+
+.brand-kicker {
+  margin-bottom: 8px;
+  color: var(--chapter);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.brand h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.brand-copy {
+  margin: 10px 0 0;
+  color: var(--soft-ink);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.path {
+  max-width: 100%;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hairline);
+  color: var(--quiet);
+  font-size: 11px;
+}
+
+.content {
+  max-width: 1480px;
+  width: 100%;
+  padding: 30px clamp(22px, 3vw, 46px) 70px;
+}
+
+.topbar {
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tab-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.tab-group-label,
+.tab-subgroup-label {
+  margin: 0;
+  color: var(--quiet);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.tab-group-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 6px;
+}
+
+.tab-group-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--hairline-strong);
+}
+
+.tab-subgroup-label {
+  padding: 8px 12px 1px 76px;
+  color: var(--chapter);
+  letter-spacing: 0.09em;
+}
+
+.tab-group-extended {
+  padding-top: 22px;
+  border-top: 2px solid var(--hairline-strong);
+}
+
+button.tab {
+  height: auto;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-color: transparent;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+}
+
+button.tab:hover {
+  border-color: var(--hairline-strong);
+  background: #ffffff;
+}
+
+.tab.active,
+.tab-aggregate.active {
+  background: var(--chapter-soft);
+  border-color: #abd5d1;
+  color: var(--chapter-ink);
+  box-shadow: inset 3px 0 0 var(--chapter);
+}
+
+.tab-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #eef2f5;
+  color: #596776;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.tab.active .tab-index {
+  background: var(--chapter);
+  color: #ffffff;
+}
+
+.tab-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tab-copy strong {
+  color: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.tab-copy small {
+  color: var(--quiet);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.tab.active .tab-copy small {
+  color: #386b70;
+}
+
+.sidebar-note {
+  margin: auto 8px 0;
+  padding: 12px;
+  border: 1px solid #ead9aa;
+  border-radius: 8px;
+  background: var(--gold-soft);
+  color: #624611;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sidebar-note strong,
+.sidebar-note span {
+  display: block;
+}
+
+.sidebar-note strong {
+  margin-bottom: 4px;
+}
+
+.view {
+  animation: fadeIn 140ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exp-header {
+  max-width: 1040px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.exp-pill {
+  margin-bottom: 12px;
+  border-radius: 6px;
+  background: var(--chapter-soft);
+  color: var(--chapter-ink);
+}
+
+.exp-title {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.exp-lede {
+  max-width: 980px;
+  margin-top: 10px;
+  color: var(--soft-ink);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.metrics {
+  grid-template-columns: repeat(4, minmax(190px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.metric {
+  min-height: 124px;
+  padding: 16px 17px;
+  border-color: var(--hairline);
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(20, 35, 48, 0.02);
+}
+
+.metric .label {
+  color: var(--quiet);
+  font-weight: 700;
+}
+
+.metric .value {
+  font-size: 28px;
+  letter-spacing: 0;
+}
+
+.briefing-grid {
+  grid-template-columns: minmax(240px, 0.9fr) minmax(240px, 1fr) minmax(240px, 1.05fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.briefing-card {
+  padding: 18px;
+  border-radius: 8px;
+}
+
+.briefing-card h3 {
+  margin-bottom: 8px;
+}
+
+.briefing-card p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.findings-strip {
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: var(--gold-soft);
+}
+
+.findings-strip h3 {
+  margin-bottom: 10px;
+}
+
+.findings-strip ul {
+  gap: 8px;
+}
+
+.finding {
+  max-width: 1180px;
+  font-size: 14px;
+}
+
+.grid {
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.panel {
+  border-color: var(--hairline);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.panel-head {
+  min-height: 56px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  background: #fbfcfd;
+}
+
+.panel-head h3 {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.panel-sub {
+  margin-left: 0;
+  color: var(--quiet);
+  font-size: 12px;
+}
+
+.panel-body {
+  padding: 18px;
+}
+
+.panel-note-inline {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #f6f9fb;
+}
+
+.experiment-map {
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 14px;
+  padding: 18px;
+}
+
+.experiment-card {
+  min-height: 142px;
+  padding: 18px;
+  border-radius: 8px;
+}
+
+.experiment-card h4 {
+  font-size: 15px;
+}
+
+.experiment-card p {
+  color: var(--soft-ink);
+}
+
+.table-wrap {
+  max-width: 100%;
+  overflow: auto;
+}
+
+table {
+  min-width: 760px;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 11px 12px;
+}
+
+th {
+  background: #f7f9fb;
+  color: #445464;
+  white-space: nowrap;
+}
+
+td {
+  color: #263544;
+}
+
+td:first-child,
+th:first-child {
+  padding-left: 16px;
+}
+
+tr:nth-child(even) td {
+  background: #fbfcfd;
+}
+
+tr.clickable:hover td {
+  background: #edf7f7;
+}
+
+.bar-cell {
+  min-width: 160px;
+}
+
+.bar-bg {
+  margin-top: 5px;
+}
+
+.path-chain {
+  max-width: 540px;
+}
+
+.rel,
+.path-node {
+  line-height: 1.45;
+}
+
+.detail-grid {
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.detail-stat {
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.case-title {
+  padding: 18px;
+}
+
+.case-title h3 {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.case-reading {
+  color: var(--soft-ink);
+  line-height: 1.6;
+}
+
+.toolbar,
+.pager {
+  padding: 14px 18px;
+}
+
+.toolbar input[type="search"] {
+  flex: 1 1 360px;
+  max-width: 620px;
+}
+
+button,
+select,
+input {
+  border-radius: 7px;
+}
+
+button:not(.tab) {
+  background: #fbfcfd;
+}
+
+button:not(.tab):hover {
+  background: var(--chapter-soft);
+  color: var(--chapter-ink);
+}
+
+.kv-grid {
+  gap: 10px;
+}
+
+.kv {
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.chart-wrap {
+  padding: 18px;
+}
+
+.legend {
+  padding-left: 56px;
+}
+
+.result-story {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(190px, 1fr));
+  gap: 14px;
+  margin: 0 0 24px;
+}
+
+.result-story-wide {
+  grid-template-columns: repeat(4, minmax(210px, 1fr));
+}
+
+.result-card {
+  min-height: 178px;
+  padding: 17px 18px;
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--chapter);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.result-kicker {
+  color: var(--quiet);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.result-value {
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.result-card h3 {
+  margin: 12px 0 7px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.result-card p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.result-good {
+  border-left-color: #16805f;
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbf7 100%);
+}
+
+.result-warn {
+  border-left-color: #b36b13;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8e8 100%);
+}
+
+.result-caution {
+  border-left-color: #6b7480;
+}
+
+.findings-strip {
+  padding: 0;
+  background: transparent;
+}
+
+.findings-strip h3 {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+.findings-strip ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.finding-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #fffdf7;
+}
+
+.finding-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.finding-label {
+  margin-bottom: 4px;
+  color: #705111;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.finding-card p {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.finding-warn {
+  border-color: #edd5a3;
+  background: #fff7e6;
+}
+
+.finding-caution {
+  border-color: #d4dbe2;
+  background: #f8fafc;
+}
+
+.finding-caution .finding-index {
+  background: #eef2f5;
+  color: #5f6d79;
+}
+
+.finding-empty {
+  display: block;
+  color: var(--quiet);
+}
+
+.mini-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.mini-list span,
+.mini-list em {
+  display: inline-flex;
+  max-width: 280px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #eef5f5;
+  color: #23474d;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.25;
+}
+
+.mini-list em {
+  background: #f0f2f4;
+  color: var(--quiet);
+}
+
+.muted {
+  color: var(--quiet);
+}
+
+tbody tr:first-child td {
+  background: #fffdf4;
+}
+
+td {
+  vertical-align: top;
+}
+
+@media (max-width: 1240px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .tabs {
+    gap: 22px;
+  }
+
+  .tab-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tab-group-label,
+  .tab-subgroup-label {
+    grid-column: 1 / -1;
+  }
+
+  .tab-subgroup-label {
+    padding-left: 12px;
+  }
+
+  .sidebar-note {
+    margin-top: 0;
+  }
+
+  .content {
+    padding-top: 24px;
+  }
+
+  .result-story,
+  .result-story-wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .content {
+    padding: 20px 14px 46px;
+  }
+
+  .tab-group,
+  .metrics,
+  .briefing-grid,
+  .experiment-map,
+    .grid.two,
+    .detail-grid,
+    .kv-grid,
+    .result-story,
+    .result-story-wide,
+    .findings-strip ul,
+    .findings-strip-wide ul {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-title {
+    font-size: 28px;
+  }
+
+  table {
+    min-width: 680px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Visual components for exp7/8/9 — community cards, role tally,
+   authority cards, hierarchy rows, mini stacked bars.
+   ───────────────────────────────────────────────────────────────── */
+
+.narrative-panel {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+  background: #fbfdfe;
+  margin-bottom: 16px;
+}
+.narrative-panel h3 { margin: 0 0 6px; font-size: 15px; }
+.narrative-panel p { margin: 0; color: #374151; line-height: 1.55; }
+.narrative-panel p + p { margin-top: 8px; }
+.narrative-panel code { background: #eef2f6; padding: 1px 5px; border-radius: 4px; }
+
+/* Hero tally — large numbers under headings */
+.hero-tally {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.hero-tally .tile {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+.hero-tally .tile .kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-tally .tile .big {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 6px;
+  line-height: 1;
+}
+.hero-tally .tile .sub {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: #4a5968;
+  line-height: 1.5;
+}
+.hero-tally .tile.role-core   { border-top: 4px solid #2563a6; }
+.hero-tally .tile.role-bridge { border-top: 4px solid #b58105; }
+.hero-tally .tile.role-hub    { border-top: 4px solid #237a57; }
+.hero-tally .tile.role-rare   { border-top: 4px solid #6b7480; }
+.hero-tally .tile.tone-good   { border-top: 4px solid var(--good); }
+.hero-tally .tile.tone-warn   { border-top: 4px solid var(--warn); }
+.hero-tally .tile.tone-bad    { border-top: 4px solid var(--bad); }
+
+/* Community card grid for Exp 7 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 14px;
+}
+.card-grid.cards-wide {
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+}
+.community-card,
+.authority-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.community-card:hover,
+.authority-card:hover {
+  border-color: #b3c4d2;
+  box-shadow: 0 2px 12px rgba(20, 40, 60, 0.06);
+}
+.community-card.tone-warn { border-left: 4px solid var(--warn); }
+.community-card.tone-bad  { border-left: 4px solid var(--bad);  }
+.community-card.tone-good { border-left: 4px solid var(--good); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+}
+.card-id {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.card-id small {
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: 6px;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.card-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.card-pills .pill { font-size: 11px; padding: 2px 8px; }
+
+/* Compact stat row inside cards */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.stat-row.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat-row .stat {
+  background: #f7f9fb;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+.stat-row .stat .label {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.stat-row .stat .val {
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.stat-row .stat .val.tone-good { color: var(--good); }
+.stat-row .stat .val.tone-warn { color: var(--warn); }
+.stat-row .stat .val.tone-bad  { color: var(--bad); }
+
+/* Mini stacked bar for label / prediction-bucket distributions */
+.stack-bar-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+}
+.stack-bar-row + .stack-bar-row { margin-top: 6px; }
+.stack-bar-row .stack-label {
+  color: var(--muted);
+  text-align: right;
+}
+.stack-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #eef2f6;
+}
+.stack-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.stack-seg-pos    { background: #2f855a; }
+.stack-seg-neg    { background: #b83232; }
+.stack-seg-good   { background: #2d9268; }
+.stack-seg-warn   { background: #d99318; color: #4d3608; }
+.stack-seg-caution{ background: #c4a04a; color: #4d3608; }
+.stack-seg-muted  { background: #95a3b1; }
+.stack-seg-blue   { background: #2f6db5; }
+.stack-seg-purple { background: #6b5ca5; }
+
+/* Authority pill list */
+.evidence-list {
+  font-size: 12px;
+  color: #354554;
+  line-height: 1.6;
+}
+.evidence-list .header {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.evidence-pill {
+  display: inline-block;
+  background: #eef4f7;
+  color: #1d4d63;
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin: 2px 4px 2px 0;
+  font-size: 11.5px;
+}
+.evidence-pill .count { color: #51728a; margin-left: 4px; }
+
+/* Role badge for authorities */
+.role-badge {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.role-badge.role-core   { background: #e1edf6; color: #20517a; }
+.role-badge.role-bridge { background: #fbf1d8; color: #7a4f08; }
+.role-badge.role-hub    { background: #e3f3ec; color: #186b4a; }
+.role-badge.role-rare   { background: #ebeef2; color: #4d5763; }
+
+/* Hierarchy view */
+.hier-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.hier-legend .col-name {
+  background: #eef2f6;
+  color: #1f2933;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-variant-numeric: tabular-nums;
+}
+.hier-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  align-items: stretch;
+  border-bottom: 1px dashed #e3e8ee;
+  padding: 10px 0;
+}
+.hier-row:last-child { border-bottom: 0; }
+.hier-leaf {
+  background: #f0f6fa;
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hier-leaf .id { font-weight: 800; font-size: 16px; }
+.hier-leaf .size { font-size: 11px; color: var(--muted); }
+.hier-chain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+.hier-step {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid #d8dee6;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12px;
+  min-width: 80px;
+}
+.hier-step .gamma { font-size: 10px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; }
+.hier-step .pid { font-weight: 700; font-size: 14px; color: var(--text); }
+.hier-step .share { font-size: 10.5px; color: #51728a; font-variant-numeric: tabular-nums; }
+.hier-arrow {
+  margin: 0 4px;
+  color: #95a3b1;
+  font-size: 16px;
+}
+.hier-step.weak { background: #fff8e8; border-color: #e1c88d; }
+
+/* Spread bar — used inside authority cards to show community distribution */
+.spread-row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 60px;
+  gap: 8px;
+  align-items: center;
+  font-size: 11.5px;
+  color: #4a5968;
+}
+.spread-row + .spread-row { margin-top: 4px; }
+.spread-row .lbl { font-variant-numeric: tabular-nums; color: var(--muted); }
+.spread-row .bar-track {
+  height: 8px;
+  background: #eef2f6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.spread-row .bar-fill {
+  height: 100%;
+  background: var(--bar-strong);
+  border-radius: 999px;
+}
+.spread-row .pctv { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+/* Bridge pair connector */
+.bridge-pair-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr 80px;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eef2f6;
+}
+.bridge-pair-row:last-child { border-bottom: 0; }
+.bridge-pair-comm {
+  background: #eef4f7;
+  color: #1d4d63;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 700;
+  text-align: center;
+}
+.bridge-pair-arrow {
+  color: #b58105;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+.bridge-pair-count {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  font-weight: 700;
+}
+.bridge-pair-count small { color: var(--muted); font-weight: 500; display: block; font-size: 10.5px; }
+
+/* Heatmap cell for pairwise alignment */
+.heatmap {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #1f2933;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.summary-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-soft);
+}
+.summary-card .lbl {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.summary-card .val {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+.summary-card .help { margin-top: 6px; font-size: 12px; color: #4a5968; line-height: 1.5; }
+
+/* Pill colors for dominant labels */
+.pill.label-pos { background: #e3f3ec; color: var(--good); }
+.pill.label-neg { background: #fae7e7; color: var(--bad); }
+.pill.role-core   { background: #e1edf6; color: #20517a; }
+.pill.role-bridge { background: #fbf1d8; color: #7a4f08; }
+.pill.role-hub    { background: #e3f3ec; color: #186b4a; }
+.pill.role-rare   { background: #ebeef2; color: #4d5763; }
+
+
+/* ── Exp 6: pairing switch ────────────────────────────────────────────
+   Which case we compare against changes what the whole panel claims, so it
+   gets a full-width switch rather than one option inside a select. */
+
+.match-switch {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfdfe;
+}
+
+.match-switch-head {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.match-switch-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.match-option {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: auto;
+  padding: 13px 15px;
+  text-align: left;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms, box-shadow 120ms;
+}
+
+.match-option:hover {
+  border-color: #9fc4cf;
+  background: #f7fbfc;
+}
+
+.match-option.is-active {
+  border-color: var(--chapter);
+  background: #f0f8fa;
+  box-shadow: 0 2px 10px rgba(29, 111, 122, 0.13);
+}
+
+.match-option-title {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.match-option-title em {
+  font-style: normal;
+  color: var(--chapter);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* radio-style marker */
+.match-option-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #b9c6d0;
+  background: #ffffff;
+}
+
+.match-option.is-active .match-option-title::before {
+  border-color: var(--chapter);
+  background: radial-gradient(circle at center, var(--chapter) 0 4.5px, #ffffff 4.5px);
+}
+
+.match-option-sub {
+  padding-left: 26px;
+  color: #4f6070;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .match-switch-options { grid-template-columns: minmax(0, 1fr); }
+}
+</style></head>
+<body><main style="padding:20px"><section class="panel"><h3 style="padding:14px 18px 0;margin:0">case_index 4</h3>
+    <div class="case-graph-block">
+      <div class="case-graph-head">
+        <h4>Local Explanation Subgraph</h4>
+        <p>Shows the selected case pointing into its counterfactual path families, evidence groups, and feature-overlap neighbors. Counts include all generated groups; the figure shows the strongest nodes to keep it readable.</p>
+      </div>
+      <div class="graph-summary">
+        <span><strong>28</strong> counterfactual groups</span>
+        <span><strong>10</strong> path families</span>
+        <span><strong>15,591</strong> feature-connected cases</span>
+        <span><strong>19</strong> evidence nodes shown</span>
+        <span><strong>9</strong> rev_ mirror pairs merged</span>
+      </div>
+      <div class="shared-legend"><span class="shared-legend-label">Shared with the neighbours on the right:</span><span class="shared-legend-chip" style="--chip:#b36b13;--chip-bg:#fff7e6">court <b>10</b></span><span class="shared-legend-chip" style="--chip:#2f855a;--chip-bg:#eefaf3">precedent <b>8</b></span><span class="shared-legend-chip" style="--chip:#b36b13;--chip-bg:#fff7e6">judge <b>3</b></span></div>
+      <div class="graph-frame local-graph-frame">
+        <svg class="graph-svg" viewBox="0 0 1340 1121" role="img" aria-label="Local case explanation graph with paths and connected cases">
+          <text class="graph-axis-title" x="212" y="44">Connected path families</text>
+          <text class="graph-axis-title" x="596" y="44">Evidence groups</text>
+          <text class="graph-axis-title" x="972" y="44">Other connected cases</text>
+          <text class="graph-axis-sub" x="212" y="63">rev_ mirrors folded onto the forward relation · +2 weaker not shown</text>
+          <text class="graph-axis-sub" x="596" y="63">mirrored edge pairs shown once · +5 not shown</text>
+          <text class="graph-axis-sub" x="972" y="63">chips split the shared count by type · +8 not shown</text>
+          <path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 204, 972 204" stroke-width="6.70">
+      <title>Case 4884: 3 shared features (1 court, 1 judge, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 285, 972 285" stroke-width="4.87">
+      <title>Case 11221: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 366, 972 366" stroke-width="4.87">
+      <title>Case 69671: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 447, 972 447" stroke-width="4.87">
+      <title>Case 4647: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 528, 972 528" stroke-width="4.87">
+      <title>Case 170: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 609, 972 609" stroke-width="4.87">
+      <title>Case 13689: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 690, 972 690" stroke-width="4.87">
+      <title>Case 421: 2 shared features (1 court, 1 judge)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 771, 972 771" stroke-width="4.87">
+      <title>Case 46759: 2 shared features (1 court, 1 judge)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 852, 972 852" stroke-width="4.87">
+      <title>Case 65561: 2 shared features (1 court, 1 precedent)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 933, 972 933" stroke-width="4.87">
+      <title>Case 27045: 2 shared features (1 court, 1 precedent)</title>
+    </path>
+          <path class="local-edge" d="M 158 568.5 C 150 568.5, 176 269, 212 269" stroke="#b36b13" stroke-width="6.60"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 358, 212 358" stroke="#b36b13" stroke-width="5.23"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 447, 212 447" stroke="#b36b13" stroke-width="4.88"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 528, 212 528" stroke="#6b5ca5" stroke-width="4.42"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 609, 212 609" stroke="#b36b13" stroke-width="3.79"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 690, 212 690" stroke="#2f855a" stroke-width="3.44"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 779, 212 779" stroke="#2f855a" stroke-width="3.44"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 868, 212 868" stroke="#b36b13" stroke-width="3.31"></path>
+          <path class="local-edge evidence-edge" d="M 528 269 C 574 269, 550 120, 596 120" stroke="#b36b13" stroke-width="6.40">
+      <title>case-&gt;decided_by_bench-&gt;judge</title>
+    </path><path class="local-edge evidence-edge" d="M 528 269 C 574 269, 550 189, 596 189" stroke="#b36b13" stroke-width="6.40">
+      <title>judge-&gt;rev_decided_by_bench-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 358 C 574 358, 550 258, 596 258" stroke="#b36b13" stroke-width="5.03">
+      <title>other_lawyer_arguments-&gt;rev_has_other_lawyer_arguments-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 358 C 574 358, 550 327, 596 327" stroke="#b36b13" stroke-width="5.03">
+      <title>case-&gt;has_other_lawyer_arguments-&gt;other_lawyer_arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 447 C 574 447, 550 396, 596 396" stroke="#b36b13" stroke-width="4.68">
+      <title>case-&gt;heard_in-&gt;court</title>
+    </path><path class="local-edge evidence-edge" d="M 528 528 C 574 528, 550 465, 596 465" stroke="#6b5ca5" stroke-width="4.22">
+      <title>arguments-&gt;rev_has_arguments-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 528 C 574 528, 550 534, 596 534" stroke="#2f855a" stroke-width="4.22">
+      <title>case-&gt;has_arguments-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 447 C 574 447, 550 603, 596 603" stroke="#b36b13" stroke-width="4.19">
+      <title>court-&gt;rev_heard_in-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 609 C 574 609, 550 672, 596 672" stroke="#b36b13" stroke-width="3.59">
+      <title>petitioner-&gt;rev_has_petitioner-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 609 C 574 609, 550 741, 596 741" stroke="#b36b13" stroke-width="3.59">
+      <title>case-&gt;has_petitioner-&gt;petitioner</title>
+    </path><path class="local-edge evidence-edge" d="M 528 690 C 574 690, 550 810, 596 810" stroke="#2f855a" stroke-width="3.24">
+      <title>precedent-&gt;rev_cites_precedent-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 779 C 574 779, 550 879, 596 879" stroke="#2f855a" stroke-width="3.24">
+      <title>case-&gt;has_arguments-&gt;arguments-&gt;cites_precedent-&gt;precedent</title>
+    </path><path class="local-edge evidence-edge" d="M 528 868 C 574 868, 550 948, 596 948" stroke="#b36b13" stroke-width="3.11">
+      <title>lawyer-&gt;rev_has_lawyer-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 868 C 574 868, 550 1017, 596 1017" stroke="#b36b13" stroke-width="3.11">
+      <title>case-&gt;has_lawyer-&gt;lawyer</title>
+    </path>
+          <g class="case-node center">
+            <circle cx="104" cy="568.5" r="54"></circle>
+            <text class="graph-label strong" x="104" y="559.5" text-anchor="middle">Case 4</text>
+            <text class="graph-micro" x="104" y="581.5" text-anchor="middle">pred 1</text>
+          </g>
+          
+      <g class="path-card">
+        <title>case-&gt;decided_by_bench-&gt;judge
+3 counterfactual group(s) · max |Δp| 0.1311
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.131
+  in  (evidence → case, rev_ edge) · |Δp| 0.131</title>
+        <rect x="212" y="235" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="235" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="254" fill="#b36b13">path family 1</text>
+        
+        <text class="path-chain" x="226" y="275" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">decided_by_bench</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">judge</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="294" text-anchor="start">3 groups · max |Δp| 0.131</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_other_lawyer_arguments-&gt;other_lawyer_arguments
+3 counterfactual group(s) · max |Δp| 0.0692
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.069
+  in  (evidence → case, rev_ edge) · |Δp| 0.069</title>
+        <rect x="212" y="316" width="316" height="84" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="316" width="4.5" height="84" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="335" fill="#b36b13">path family 2</text>
+        
+        <text class="path-chain" x="226" y="356" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_other_lawyer_arguments</tspan></text><text class="path-chain" x="226" y="372" text-anchor="start"><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">other_lawyer_arguments</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="391" text-anchor="start">3 groups · max |Δp| 0.069</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;heard_in-&gt;court
+4 counterfactual group(s) · max |Δp| 0.0564
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.056
+  in  (evidence → case, rev_ edge) · |Δp| 0.041</title>
+        <rect x="212" y="413" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="413" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="432" fill="#b36b13">path family 3</text>
+        
+        <text class="path-chain" x="226" y="453" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">heard_in</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">court</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="472" text-anchor="start">4 groups · max |Δp| 0.056</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_arguments-&gt;arguments
+3 counterfactual group(s) · max |Δp| 0.0418
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.042
+  in  (evidence → case, rev_ edge) · |Δp| 0.042</title>
+        <rect x="212" y="494" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#6b5ca5"></rect>
+        <rect x="212" y="494" width="4.5" height="68" rx="2.2" fill="#6b5ca5"></rect>
+        <text class="graph-tag" x="226" y="513" fill="#6b5ca5">path family 4</text>
+        
+        <text class="path-chain" x="226" y="534" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">arguments</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="553" text-anchor="start">3 groups · max |Δp| 0.042</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_petitioner-&gt;petitioner
+3 counterfactual group(s) · max |Δp| 0.0251
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.025
+  in  (evidence → case, rev_ edge) · |Δp| 0.025</title>
+        <rect x="212" y="575" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="575" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="594" fill="#b36b13">path family 5</text>
+        
+        <text class="path-chain" x="226" y="615" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_petitioner</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">petitioner</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="634" text-anchor="start">3 groups · max |Δp| 0.025</text>
+      </g>
+      <g class="path-card">
+        <title>arguments-&gt;cites_precedent-&gt;precedent
+2 counterfactual group(s) · max |Δp| 0.0178
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0
+  in  (evidence → case, rev_ edge) · |Δp| 0.018</title>
+        <rect x="212" y="656" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#2f855a"></rect>
+        <rect x="212" y="656" width="4.5" height="68" rx="2.2" fill="#2f855a"></rect>
+        <text class="graph-tag" x="226" y="675" fill="#2f855a">path family 6</text>
+        
+        <text class="path-chain" x="226" y="696" text-anchor="start"><tspan class="path-node-token">arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">cites_precedent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">precedent</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="715" text-anchor="start">2 groups · max |Δp| 0.018</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_arguments-&gt;arguments-&gt;cites_precedent-&gt;precedent
+1 counterfactual group(s) · max |Δp| 0.0178
+
+Forward edge only:
+  out (case → evidence) · |Δp| 0.018</title>
+        <rect x="212" y="737" width="316" height="84" rx="9" fill="#f4f9fc" stroke="#2f855a"></rect>
+        <rect x="212" y="737" width="4.5" height="84" rx="2.2" fill="#2f855a"></rect>
+        <text class="graph-tag" x="226" y="756" fill="#2f855a">path family 7</text>
+        
+        <text class="path-chain" x="226" y="777" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">arguments</tspan></text><text class="path-chain" x="226" y="793" text-anchor="start"><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">cites_precedent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">precedent</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="812" text-anchor="start">1 group · max |Δp| 0.018</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_lawyer-&gt;lawyer
+3 counterfactual group(s) · max |Δp| 0.0153
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.015
+  in  (evidence → case, rev_ edge) · |Δp| 0.015</title>
+        <rect x="212" y="834" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="834" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="853" fill="#b36b13">path family 8</text>
+        
+        <text class="path-chain" x="226" y="874" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_lawyer</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">lawyer</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="893" text-anchor="start">3 groups · max |Δp| 0.015</text>
+      </g>
+          
+    <g class="feature-card identity">
+      <title>judge: manjunatha
+Forward edge only:
+  out (case → evidence) · manjunatha · |Δp| 0.131</title>
+      <rect class="card-body" x="596" y="92" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="110" fill="#b36b13">judge</text>
+      
+      
+      <text class="graph-label strong" x="608" y="130" text-anchor="start">manjunatha</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: decided_by_bench
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_decided_by_bench · |Δp| 0.131
+  out (case → evidence) · decided_by_bench · |Δp| 0.010</title>
+      <rect class="card-body" x="596" y="161" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="179" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="199" text-anchor="start">decided_by_bench</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_other_lawyer_arguments
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_other_lawyer_arguments · |Δp| 0.069
+  out (case → evidence) · has_other_lawyer_arguments · |Δp| 0.007</title>
+      <rect class="card-body" x="596" y="230" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="248" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="268" text-anchor="start">has_other_lawyer_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>other_lawyer_arguments: other_lawyer_arguments
+Forward edge only:
+  out (case → evidence) · other_lawyer_arguments · |Δp| 0.069</title>
+      <rect class="card-body" x="596" y="299" width="300" height="56" rx="8" fill="#f4f0ff" stroke="#6b5ca5" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="317" fill="#6b5ca5">other_lawyer_argume…</text>
+      
+      
+      <text class="graph-label strong" x="608" y="337" text-anchor="start">other_lawyer_arguments</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>court: court of xlv addl city civil sessions judge bengaluru city cch46
+Forward edge only:
+  out (case → evidence) · court of xlv addl city civil sessions judge bengaluru city cch46 · |Δp| 0.056</title>
+      <rect class="card-body" x="596" y="368" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="386" fill="#b36b13">court</text>
+      
+      
+      <text class="graph-label strong" x="608" y="406" text-anchor="start">court of xlv addl city civil…</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_arguments
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_arguments · |Δp| 0.042
+  out (case → evidence) · has_arguments · |Δp| 0.033</title>
+      <rect class="card-body" x="596" y="437" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="455" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="475" text-anchor="start">has_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>arguments: arguments
+Forward edge only:
+  out (case → evidence) · arguments · |Δp| 0.042</title>
+      <rect class="card-body" x="596" y="506" width="300" height="56" rx="8" fill="#f4f0ff" stroke="#6b5ca5" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="524" fill="#6b5ca5">arguments</text>
+      
+      
+      <text class="graph-label strong" x="608" y="544" text-anchor="start">arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: heard_in
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_heard_in · |Δp| 0.041
+  out (case → evidence) · heard_in · |Δp| 0.002</title>
+      <rect class="card-body" x="596" y="575" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="593" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="613" text-anchor="start">heard_in</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_petitioner
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_petitioner · |Δp| 0.025
+  out (case → evidence) · has_petitioner · |Δp| 0.004</title>
+      <rect class="card-body" x="596" y="644" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="662" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="682" text-anchor="start">has_petitioner</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>petitioner: state
+Forward edge only:
+  out (case → evidence) · state · |Δp| 0.025</title>
+      <rect class="card-body" x="596" y="713" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="731" fill="#b36b13">petitioner</text>
+      
+      
+      <text class="graph-label strong" x="608" y="751" text-anchor="start">state</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: cites_precedent
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_cites_precedent · |Δp| 0.018
+  out (case → evidence) · cites_precedent · |Δp| 0</title>
+      <rect class="card-body" x="596" y="782" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="800" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="820" text-anchor="start">cites_precedent</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306
+Forward edge only:
+  out (case → evidence) · ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306 · |Δp| 0.018</title>
+      <rect class="card-body" x="596" y="851" width="300" height="56" rx="8" fill="#eefaf3" stroke="#2f855a" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="869" fill="#2f855a">precedent</text>
+      
+      
+      <text class="graph-label strong" x="608" y="889" text-anchor="start">ude singh v state of haryana…</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_lawyer
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_lawyer · |Δp| 0.015
+  out (case → evidence) · has_lawyer · |Δp| 2e-6</title>
+      <rect class="card-body" x="596" y="920" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="938" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="958" text-anchor="start">has_lawyer</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>lawyer: hr
+Forward edge only:
+  out (case → evidence) · hr · |Δp| 0.015</title>
+      <rect class="card-body" x="596" y="989" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="1007" fill="#b36b13">lawyer</text>
+      
+      
+      <text class="graph-label strong" x="608" y="1027" text-anchor="start">hr</text>
+      
+    </g>
+          
+      <g class="connected-case-card">
+        <title>family_matrimonial__Kengeri Ps vs Shivarama on 15 February, 2024
+Shares 3 features with this case:
+· court: supreme court
+· judge: manjunatha
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="170" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="190" text-anchor="start">Case 4884</text>
+        <text class="graph-micro card-meta" x="1260" y="190" text-anchor="end" fill="#2f855a">3 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="202" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="213.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared judge:
+· manjunatha</title>
+      <rect x="1047.7" y="202" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1077.05" y="213.5" text-anchor="middle" fill="#b36b13">1 judge</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1111.4" y="202" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1137.7" y="213.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Shantuben W-O Lalji Nanji vs State Of Gujarat on 8 September, 2025
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="251" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="271" text-anchor="start">Case 11221</text>
+        <text class="graph-micro card-meta" x="1260" y="271" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="283" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="294.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="283" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="294.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>sexual_offences__State Of Gujarat vs Gomanbhai Parshottambhai Prajapati on 6 October, 2025
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="332" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="352" text-anchor="start">Case 69671</text>
+        <text class="graph-micro card-meta" x="1260" y="352" text-anchor="end" fill="#b36b13">2 shared · label -1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="364" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="375.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="364" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="375.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Kajalben Ashvinbhai Chotara vs State Of Gujarat on 5 March, 2026
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="413" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="433" text-anchor="start">Case 4647</text>
+        <text class="graph-micro card-meta" x="1260" y="433" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="445" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="456.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="445" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="456.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Abbas Uddin Sekh @ Abbasuddin Sk. @ Apel ... vs The State Of West Bengal And Anr on 12 December, 2024
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="494" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="514" text-anchor="start">Case 170</text>
+        <text class="graph-micro card-meta" x="1260" y="514" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="526" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="537.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="526" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="537.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Tarunjeet Singh Bhogal vs State Of Himachal Pradesh And Others on 14 June, 2024
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="575" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="595" text-anchor="start">Case 13689</text>
+        <text class="graph-micro card-meta" x="1260" y="595" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="607" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="618.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="607" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="618.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__After The Marriage The Deceased-Smt. ... vs Persons Have Denied Incriminating ... on 15 February, 2023
+Shares 2 features with this case:
+· court: court of xlv addl city civil sessions judge bengaluru city cch46
+· judge: manjunatha</title>
+        <rect x="972" y="656" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="676" text-anchor="start">Case 421</text>
+        <text class="graph-micro card-meta" x="1260" y="676" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· court of xlv addl city civil sessions judge bengaluru city cch46</title>
+      <rect x="984" y="688" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="699.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared judge:
+· manjunatha</title>
+      <rect x="1047.7" y="688" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1077.05" y="699.5" text-anchor="middle" fill="#b36b13">1 judge</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>motor_accidents__M-S.Reliance General vs Sri. Puttaraj on 16 February, 2023
+Shares 2 features with this case:
+· court: supreme court
+· judge: manjunatha</title>
+        <rect x="972" y="737" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="757" text-anchor="start">Case 46759</text>
+        <text class="graph-micro card-meta" x="1260" y="757" text-anchor="end" fill="#2f855a">2 shared · label 1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="769" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="780.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared judge:
+· manjunatha</title>
+      <rect x="1047.7" y="769" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1077.05" y="780.5" text-anchor="middle" fill="#b36b13">1 judge</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>sexual_offences__Pradip Das vs State Of West Bengal on 21 April, 2023
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="818" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="838" text-anchor="start">Case 65561</text>
+        <text class="graph-micro card-meta" x="1260" y="838" text-anchor="end" fill="#b36b13">2 shared · label -1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="850" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="861.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="850" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="861.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__State Of Rajasthan vs Manohar Singh (2024:Rj-Jd:12468) on 15 March, 2024
+Shares 2 features with this case:
+· court: supreme court
+· precedent: ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+        <rect x="972" y="899" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="919" text-anchor="start">Case 27045</text>
+        <text class="graph-micro card-meta" x="1260" y="919" text-anchor="end" fill="#b36b13">2 shared · label -1</text>
+        <g class="shared-chip">
+      <title>1 shared court:
+· supreme court</title>
+      <rect x="984" y="931" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1013.35" y="942.5" text-anchor="middle" fill="#b36b13">1 court</text>
+    </g><g class="shared-chip">
+      <title>1 shared precedent:
+· ude singh v state of haryana ude singh v state of haryana 2019 17 scc 301 2020 3 scc cri 306</title>
+      <rect x="1047.7" y="931" width="52.599999999999994" height="16" rx="8" fill="#eefaf3" stroke="#2f855a"></rect>
+      <text x="1074" y="942.5" text-anchor="middle" fill="#2f855a">1 prec</text>
+    </g>
+      </g>
+        </svg>
+      </div>
+      <p class="panel-note-inline">Path chains read <b>node ▸ relation ▸ node</b>. Every relation exists twice in the graph
+        (<code>ToUndirected()</code> mirrors each edge as <code>rev_</code>), and the pair is drawn here as a single card —
+        hover it to see both directions and their separate effects. Dashed grey links are feature overlap, not
+        message-passing paths — hover a chip to list the shared judges, courts, statutes, provisions and precedents.</p>
+      <div class="graph-actions connected-actions"><button data-open-case="69671">Case 69671 (2)</button></div>
+    </div>
+  </section>
+<section class="panel"><h3 style="padding:14px 18px 0;margin:0">case_index 53</h3>
+    <div class="case-graph-block">
+      <div class="case-graph-head">
+        <h4>Local Explanation Subgraph</h4>
+        <p>Shows the selected case pointing into its counterfactual path families, evidence groups, and feature-overlap neighbors. Counts include all generated groups; the figure shows the strongest nodes to keep it readable.</p>
+      </div>
+      <div class="graph-summary">
+        <span><strong>6</strong> counterfactual groups</span>
+        <span><strong>2</strong> path families</span>
+        <span><strong>0</strong> feature-connected cases</span>
+        <span><strong>4</strong> evidence nodes shown</span>
+        <span><strong>2</strong> rev_ mirror pairs merged</span>
+      </div>
+      
+      <div class="graph-frame local-graph-frame">
+        <svg class="graph-svg" viewBox="0 0 1340 431" role="img" aria-label="Local case explanation graph with paths and connected cases">
+          <text class="graph-axis-title" x="212" y="44">Connected path families</text>
+          <text class="graph-axis-title" x="596" y="44">Evidence groups</text>
+          <text class="graph-axis-title" x="972" y="44">Other connected cases</text>
+          <text class="graph-axis-sub" x="212" y="63">rev_ mirrors folded onto the forward relation</text>
+          <text class="graph-axis-sub" x="596" y="63">mirrored edge pairs shown once</text>
+          <text class="graph-axis-sub" x="972" y="63">chips split the shared count by type</text>
+          
+          <path class="local-edge" d="M 158 223.5 C 150 223.5, 176 183, 212 183" stroke="#b36b13" stroke-width="6.60"></path><path class="local-edge" d="M 158 223.5 C 150 223.5, 176 264, 212 264" stroke="#52616f" stroke-width="5.88"></path>
+          <path class="local-edge evidence-edge" d="M 528 183 C 574 183, 550 120, 596 120" stroke="#b36b13" stroke-width="6.40">
+      <title>respondent-&gt;rev_has_respondent-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 183 C 574 183, 550 189, 596 189" stroke="#b36b13" stroke-width="6.40">
+      <title>case-&gt;has_respondent-&gt;respondent</title>
+    </path><path class="local-edge evidence-edge" d="M 528 264 C 574 264, 550 258, 596 258" stroke="#52616f" stroke-width="5.68">
+      <title>preamble-&gt;rev_has_preamble-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 264 C 574 264, 550 327, 596 327" stroke="#52616f" stroke-width="5.68">
+      <title>case-&gt;has_preamble-&gt;preamble</title>
+    </path>
+          <g class="case-node center">
+            <circle cx="104" cy="223.5" r="54"></circle>
+            <text class="graph-label strong" x="104" y="214.5" text-anchor="middle">Case 53</text>
+            <text class="graph-micro" x="104" y="236.5" text-anchor="middle">pred -1</text>
+          </g>
+          
+      <g class="path-card">
+        <title>case-&gt;has_respondent-&gt;respondent
+3 counterfactual group(s) · max |Δp| 0.051
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.051
+  in  (evidence → case, rev_ edge) · |Δp| 0.051</title>
+        <rect x="212" y="149" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="149" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="168" fill="#b36b13">path family 1</text>
+        
+        <text class="path-chain" x="226" y="189" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_respondent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">respondent</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="208" text-anchor="start">3 groups · max |Δp| 0.051</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_preamble-&gt;preamble
+3 counterfactual group(s) · max |Δp| 0.0373
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.037
+  in  (evidence → case, rev_ edge) · |Δp| 0.037</title>
+        <rect x="212" y="230" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#52616f"></rect>
+        <rect x="212" y="230" width="4.5" height="68" rx="2.2" fill="#52616f"></rect>
+        <text class="graph-tag" x="226" y="249" fill="#52616f">path family 2</text>
+        
+        <text class="path-chain" x="226" y="270" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_preamble</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">preamble</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="289" text-anchor="start">3 groups · max |Δp| 0.037</text>
+      </g>
+          
+    <g class="feature-card ">
+      <title>relation_type: has_respondent
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_respondent · |Δp| 0.051
+  out (case → evidence) · has_respondent · |Δp| 0.006</title>
+      <rect class="card-body" x="596" y="92" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="110" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="130" text-anchor="start">has_respondent</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>respondent: manaranjan jana
+Forward edge only:
+  out (case → evidence) · manaranjan jana · |Δp| 0.051</title>
+      <rect class="card-body" x="596" y="161" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="179" fill="#b36b13">respondent</text>
+      
+      
+      <text class="graph-label strong" x="608" y="199" text-anchor="start">manaranjan jana</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_preamble
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_preamble · |Δp| 0.037
+  out (case → evidence) · has_preamble · |Δp| 0.017</title>
+      <rect class="card-body" x="596" y="230" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="248" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="268" text-anchor="start">has_preamble</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>preamble: preamble
+Forward edge only:
+  out (case → evidence) · preamble · |Δp| 0.037</title>
+      <rect class="card-body" x="596" y="299" width="300" height="56" rx="8" fill="#ffffff" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="317" fill="#52616f">preamble</text>
+      
+      
+      <text class="graph-label strong" x="608" y="337" text-anchor="start">preamble</text>
+      
+    </g>
+          <text class="graph-empty-label" x="1122" y="223.5" text-anchor="middle">No feature-overlap cases</text>
+        </svg>
+      </div>
+      <p class="panel-note-inline">Path chains read <b>node ▸ relation ▸ node</b>. Every relation exists twice in the graph
+        (<code>ToUndirected()</code> mirrors each edge as <code>rev_</code>), and the pair is drawn here as a single card —
+        hover it to see both directions and their separate effects. Dashed grey links are feature overlap, not
+        message-passing paths — hover a chip to list the shared judges, courts, statutes, provisions and precedents.</p>
+      
+    </div>
+  </section>
+<section class="panel"><h3 style="padding:14px 18px 0;margin:0">case_index 153</h3>
+    <div class="case-graph-block">
+      <div class="case-graph-head">
+        <h4>Local Explanation Subgraph</h4>
+        <p>Shows the selected case pointing into its counterfactual path families, evidence groups, and feature-overlap neighbors. Counts include all generated groups; the figure shows the strongest nodes to keep it readable.</p>
+      </div>
+      <div class="graph-summary">
+        <span><strong>78</strong> counterfactual groups</span>
+        <span><strong>18</strong> path families</span>
+        <span><strong>33,183</strong> feature-connected cases</span>
+        <span><strong>32</strong> evidence nodes shown</span>
+        <span><strong>15</strong> rev_ mirror pairs merged</span>
+      </div>
+      <div class="shared-legend"><span class="shared-legend-label">Shared with the neighbours on the right:</span><span class="shared-legend-chip" style="--chip:#176b87;--chip-bg:#edf8fb">provision <b>51</b></span><span class="shared-legend-chip" style="--chip:#176b87;--chip-bg:#edf8fb">statute <b>35</b></span><span class="shared-legend-chip" style="--chip:#b36b13;--chip-bg:#fff7e6">court <b>20</b></span></div>
+      <div class="graph-frame local-graph-frame">
+        <svg class="graph-svg" viewBox="0 0 1340 1121" role="img" aria-label="Local case explanation graph with paths and connected cases">
+          <text class="graph-axis-title" x="212" y="44">Connected path families</text>
+          <text class="graph-axis-title" x="596" y="44">Evidence groups</text>
+          <text class="graph-axis-title" x="972" y="44">Other connected cases</text>
+          <text class="graph-axis-sub" x="212" y="63">rev_ mirrors folded onto the forward relation · +10 weaker not shown</text>
+          <text class="graph-axis-sub" x="596" y="63">mirrored edge pairs shown once · +18 not shown</text>
+          <text class="graph-axis-sub" x="972" y="63">chips split the shared count by type · +8 not shown</text>
+          <path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 204, 972 204" stroke-width="6.70">
+      <title>Case 28265: 12 shared features (7 provision, 3 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 285, 972 285" stroke-width="6.24">
+      <title>Case 2581: 11 shared features (5 provision, 4 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 366, 972 366" stroke-width="6.24">
+      <title>Case 7141: 11 shared features (5 provision, 4 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 447, 972 447" stroke-width="6.24">
+      <title>Case 13975: 11 shared features (5 provision, 4 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 528, 972 528" stroke-width="6.24">
+      <title>Case 26565: 11 shared features (5 provision, 4 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 609, 972 609" stroke-width="5.78">
+      <title>Case 25735: 10 shared features (5 provision, 3 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 690, 972 690" stroke-width="5.78">
+      <title>Case 11240: 10 shared features (4 provision, 4 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 771, 972 771" stroke-width="5.78">
+      <title>Case 23709: 10 shared features (5 provision, 3 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 852, 972 852" stroke-width="5.78">
+      <title>Case 15892: 10 shared features (5 provision, 3 statute, 2 court)</title>
+    </path><path class="local-edge connected-edge" d="M 144 612.5 C 420 718.5, 780 933, 972 933" stroke-width="5.78">
+      <title>Case 17470: 10 shared features (5 provision, 3 statute, 2 court)</title>
+    </path>
+          <path class="local-edge" d="M 158 568.5 C 150 568.5, 176 269, 212 269" stroke="#6b5ca5" stroke-width="6.60"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 358, 212 358" stroke="#b36b13" stroke-width="4.52"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 447, 212 447" stroke="#2f855a" stroke-width="3.65"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 528, 212 528" stroke="#b36b13" stroke-width="3.50"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 609, 212 609" stroke="#b36b13" stroke-width="3.44"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 690, 212 690" stroke="#2f855a" stroke-width="3.04"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 779, 212 779" stroke="#b36b13" stroke-width="2.87"></path><path class="local-edge" d="M 158 568.5 C 150 568.5, 176 868, 212 868" stroke="#2f855a" stroke-width="2.77"></path>
+          <path class="local-edge evidence-edge" d="M 528 269 C 574 269, 550 120, 596 120" stroke="#6b5ca5" stroke-width="6.40">
+      <title>arguments-&gt;rev_has_arguments-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 269 C 574 269, 550 189, 596 189" stroke="#2f855a" stroke-width="6.40">
+      <title>case-&gt;has_arguments-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 358 C 574 358, 550 258, 596 258" stroke="#b36b13" stroke-width="4.32">
+      <title>case-&gt;has_respondent_arguments-&gt;respondent_arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 358 C 574 358, 550 327, 596 327" stroke="#b36b13" stroke-width="4.31">
+      <title>respondent_arguments-&gt;rev_has_respondent_arguments-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 447 C 574 447, 550 396, 596 396" stroke="#2f855a" stroke-width="3.45">
+      <title>precedent-&gt;rev_cites_precedent-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 528 C 574 528, 550 465, 596 465" stroke="#b36b13" stroke-width="3.30">
+      <title>case-&gt;has_respondent-&gt;respondent</title>
+    </path><path class="local-edge evidence-edge" d="M 528 609 C 574 609, 550 534, 596 534" stroke="#b36b13" stroke-width="3.24">
+      <title>court-&gt;rev_heard_in-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 690 C 574 690, 550 603, 596 603" stroke="#2f855a" stroke-width="2.84">
+      <title>provision-&gt;rev_cites_provision-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 528 C 574 528, 550 672, 596 672" stroke="#b36b13" stroke-width="2.76">
+      <title>respondent-&gt;rev_has_respondent-&gt;case</title>
+    </path><path class="local-edge evidence-edge" d="M 528 779 C 574 779, 550 741, 596 741" stroke="#b36b13" stroke-width="2.67">
+      <title>respondent-&gt;is_party_in_arguments-&gt;respondent_arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 868 C 574 868, 550 810, 596 810" stroke="#2f855a" stroke-width="2.57">
+      <title>statute-&gt;rev_cites_statute-&gt;arguments</title>
+    </path><path class="local-edge evidence-edge" d="M 528 609 C 574 609, 550 879, 596 879" stroke="#b36b13" stroke-width="2.42">
+      <title>case-&gt;heard_in-&gt;court</title>
+    </path><path class="local-edge evidence-edge" d="M 528 609 C 574 609, 550 948, 596 948" stroke="#b36b13" stroke-width="2.15">
+      <title>case-&gt;heard_in-&gt;court</title>
+    </path><path class="local-edge evidence-edge" d="M 528 528 C 574 528, 550 1017, 596 1017" stroke="#b36b13" stroke-width="2.07">
+      <title>case-&gt;has_respondent-&gt;respondent</title>
+    </path>
+          <g class="case-node center">
+            <circle cx="104" cy="568.5" r="54"></circle>
+            <text class="graph-label strong" x="104" y="559.5" text-anchor="middle">Case 153</text>
+            <text class="graph-micro" x="104" y="581.5" text-anchor="middle">pred -1</text>
+          </g>
+          
+      <g class="path-card">
+        <title>case-&gt;has_arguments-&gt;arguments
+3 counterfactual group(s) · max |Δp| 0.2917
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.292
+  in  (evidence → case, rev_ edge) · |Δp| 0.292</title>
+        <rect x="212" y="235" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#6b5ca5"></rect>
+        <rect x="212" y="235" width="4.5" height="68" rx="2.2" fill="#6b5ca5"></rect>
+        <text class="graph-tag" x="226" y="254" fill="#6b5ca5">path family 1</text>
+        
+        <text class="path-chain" x="226" y="275" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">arguments</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="294" text-anchor="start">3 groups · max |Δp| 0.292</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_respondent_arguments-&gt;respondent_arguments
+3 counterfactual group(s) · max |Δp| 0.0993
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.099
+  in  (evidence → case, rev_ edge) · |Δp| 0.099</title>
+        <rect x="212" y="316" width="316" height="84" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="316" width="4.5" height="84" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="335" fill="#b36b13">path family 2</text>
+        
+        <text class="path-chain" x="226" y="356" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_respondent_arguments</tspan></text><text class="path-chain" x="226" y="372" text-anchor="start"><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">respondent_arguments</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="391" text-anchor="start">3 groups · max |Δp| 0.099</text>
+      </g>
+      <g class="path-card">
+        <title>arguments-&gt;cites_precedent-&gt;precedent
+2 counterfactual group(s) · max |Δp| 0.049
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0
+  in  (evidence → case, rev_ edge) · |Δp| 0.049</title>
+        <rect x="212" y="413" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#2f855a"></rect>
+        <rect x="212" y="413" width="4.5" height="68" rx="2.2" fill="#2f855a"></rect>
+        <text class="graph-tag" x="226" y="432" fill="#2f855a">path family 3</text>
+        
+        <text class="path-chain" x="226" y="453" text-anchor="start"><tspan class="path-node-token">arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">cites_precedent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">precedent</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="472" text-anchor="start">2 groups · max |Δp| 0.049</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;has_respondent-&gt;respondent
+5 counterfactual group(s) · max |Δp| 0.0421
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.042
+  in  (evidence → case, rev_ edge) · |Δp| 0.022</title>
+        <rect x="212" y="494" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="494" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="513" fill="#b36b13">path family 4</text>
+        
+        <text class="path-chain" x="226" y="534" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">has_respondent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">respondent</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="553" text-anchor="start">5 groups · max |Δp| 0.042</text>
+      </g>
+      <g class="path-card">
+        <title>case-&gt;heard_in-&gt;court
+8 counterfactual group(s) · max |Δp| 0.0397
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.012
+  in  (evidence → case, rev_ edge) · |Δp| 0.040</title>
+        <rect x="212" y="575" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="575" width="4.5" height="68" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="594" fill="#b36b13">path family 5</text>
+        
+        <text class="path-chain" x="226" y="615" text-anchor="start"><tspan class="path-node-token">case</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">heard_in</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">court</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="634" text-anchor="start">8 groups · max |Δp| 0.04</text>
+      </g>
+      <g class="path-card">
+        <title>arguments-&gt;cites_provision-&gt;provision
+2 counterfactual group(s) · max |Δp| 0.0243
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0
+  in  (evidence → case, rev_ edge) · |Δp| 0.024</title>
+        <rect x="212" y="656" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#2f855a"></rect>
+        <rect x="212" y="656" width="4.5" height="68" rx="2.2" fill="#2f855a"></rect>
+        <text class="graph-tag" x="226" y="675" fill="#2f855a">path family 6</text>
+        
+        <text class="path-chain" x="226" y="696" text-anchor="start"><tspan class="path-node-token">arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">cites_provision</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">provision</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="715" text-anchor="start">2 groups · max |Δp| 0.024</text>
+      </g>
+      <g class="path-card">
+        <title>respondent-&gt;is_party_in_arguments-&gt;respondent_arguments
+2 counterfactual group(s) · max |Δp| 0.0189
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 0.019
+  in  (evidence → case, rev_ edge) · |Δp| 7e-4</title>
+        <rect x="212" y="737" width="316" height="84" rx="9" fill="#f4f9fc" stroke="#b36b13"></rect>
+        <rect x="212" y="737" width="4.5" height="84" rx="2.2" fill="#b36b13"></rect>
+        <text class="graph-tag" x="226" y="756" fill="#b36b13">path family 7</text>
+        
+        <text class="path-chain" x="226" y="777" text-anchor="start"><tspan class="path-node-token">respondent</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">is_party_in_arguments</tspan></text><text class="path-chain" x="226" y="793" text-anchor="start"><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">respondent_arguments</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="812" text-anchor="start">2 groups · max |Δp| 0.019</text>
+      </g>
+      <g class="path-card">
+        <title>arguments-&gt;cites_statute-&gt;statute
+2 counterfactual group(s) · max |Δp| 0.016
+
+Merged mirror pair:
+  out (case → evidence) · |Δp| 6e-8
+  in  (evidence → case, rev_ edge) · |Δp| 0.016</title>
+        <rect x="212" y="834" width="316" height="68" rx="9" fill="#f4f9fc" stroke="#2f855a"></rect>
+        <rect x="212" y="834" width="4.5" height="68" rx="2.2" fill="#2f855a"></rect>
+        <text class="graph-tag" x="226" y="853" fill="#2f855a">path family 8</text>
+        
+        <text class="path-chain" x="226" y="874" text-anchor="start"><tspan class="path-node-token">arguments</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-rel-token">cites_statute</tspan><tspan class="path-sep"> ▸ </tspan><tspan class="path-node-token">statute</tspan></text>
+        <text class="graph-micro card-meta" x="226" y="893" text-anchor="start">2 groups · max |Δp| 0.016</text>
+      </g>
+          
+    <g class="feature-card ">
+      <title>relation_type: has_arguments
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_arguments · |Δp| 0.292
+  out (case → evidence) · has_arguments · |Δp| 0.002</title>
+      <rect class="card-body" x="596" y="92" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="110" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="130" text-anchor="start">has_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>arguments: arguments
+Forward edge only:
+  out (case → evidence) · arguments · |Δp| 0.292</title>
+      <rect class="card-body" x="596" y="161" width="300" height="56" rx="8" fill="#f4f0ff" stroke="#6b5ca5" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="179" fill="#6b5ca5">arguments</text>
+      
+      
+      <text class="graph-label strong" x="608" y="199" text-anchor="start">arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>respondent_arguments: respondent_arguments
+Forward edge only:
+  out (case → evidence) · respondent_arguments · |Δp| 0.099</title>
+      <rect class="card-body" x="596" y="230" width="300" height="56" rx="8" fill="#f4f0ff" stroke="#6b5ca5" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="248" fill="#6b5ca5">respondent_arguments</text>
+      
+      
+      <text class="graph-label strong" x="608" y="268" text-anchor="start">respondent_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_respondent_arguments
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_respondent_arguments · |Δp| 0.099
+  out (case → evidence) · has_respondent_arguments · |Δp| 0.023</title>
+      <rect class="card-body" x="596" y="299" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="317" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="337" text-anchor="start">has_respondent_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: cites_precedent
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_cites_precedent · |Δp| 0.049
+  out (case → evidence) · cites_precedent · |Δp| 0</title>
+      <rect class="card-body" x="596" y="368" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="386" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="406" text-anchor="start">cites_precedent</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>respondent: bnss
+Forward edge only:
+  out (case → evidence) · bnss · |Δp| 0.042</title>
+      <rect class="card-body" x="596" y="437" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="455" fill="#b36b13">respondent</text>
+      
+      
+      <text class="graph-label strong" x="608" y="475" text-anchor="start">bnss</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: heard_in
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_heard_in · |Δp| 0.040
+  out (case → evidence) · heard_in · |Δp| 0.005</title>
+      <rect class="card-body" x="596" y="506" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="524" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="544" text-anchor="start">heard_in</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: cites_provision
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_cites_provision · |Δp| 0.024
+  out (case → evidence) · cites_provision · |Δp| 0</title>
+      <rect class="card-body" x="596" y="575" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="593" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="613" text-anchor="start">cites_provision</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: has_respondent
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_has_respondent · |Δp| 0.022
+  out (case → evidence) · has_respondent · |Δp| 2e-4</title>
+      <rect class="card-body" x="596" y="644" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="662" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="682" text-anchor="start">has_respondent</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: is_party_in_arguments
+Merged mirror pair:
+  out (case → evidence) · is_party_in_arguments · |Δp| 0.019
+  in  (evidence → case, rev_ edge) · rev_is_party_in_arguments · |Δp| 7e-4</title>
+      <rect class="card-body" x="596" y="713" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="731" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="751" text-anchor="start">is_party_in_arguments</text>
+      
+    </g>
+    <g class="feature-card ">
+      <title>relation_type: cites_statute
+Merged mirror pair:
+  in  (evidence → case, rev_ edge) · rev_cites_statute · |Δp| 0.016
+  out (case → evidence) · cites_statute · |Δp| 6e-8</title>
+      <rect class="card-body" x="596" y="782" width="300" height="56" rx="8" fill="#f7fafc" stroke="#52616f" stroke-width="1.4"></rect>
+      
+      <text class="graph-tag" x="608" y="800" fill="#52616f">relation_type</text>
+      
+      
+      <text class="graph-label strong" x="608" y="820" text-anchor="start">cites_statute</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>court: apex court
+Forward edge only:
+  out (case → evidence) · apex court · |Δp| 0.012</title>
+      <rect class="card-body" x="596" y="851" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="869" fill="#b36b13">court</text>
+      
+      
+      <text class="graph-label strong" x="608" y="889" text-anchor="start">apex court</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>court: sessions court east champaran at motihari
+Forward edge only:
+  out (case → evidence) · sessions court east champaran at motihari · |Δp| 0.007</title>
+      <rect class="card-body" x="596" y="920" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="938" fill="#b36b13">court</text>
+      
+      
+      <text class="graph-label strong" x="608" y="958" text-anchor="start">sessions court east champaran…</text>
+      
+    </g>
+    <g class="feature-card identity">
+      <title>respondent: richu kumari
+Forward edge only:
+  out (case → evidence) · richu kumari · |Δp| 0.005</title>
+      <rect class="card-body" x="596" y="989" width="300" height="56" rx="8" fill="#fff7e6" stroke="#b36b13" stroke-width="2.8"></rect>
+      
+      <text class="graph-tag" x="608" y="1007" fill="#b36b13">respondent</text>
+      
+      
+      <text class="graph-label strong" x="608" y="1027" text-anchor="start">richu kumari</text>
+      
+    </g>
+          
+      <g class="connected-case-card">
+        <title>fin_fraud__Venugopal Nandllal Dhoot vs Central Bureau Of Investigation Mumbai ... on 20 January, 2023
+Shares 12 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 438
+· provision: section 498a
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="170" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="190" text-anchor="start">Case 28265</text>
+        <text class="graph-micro card-meta" x="1260" y="190" text-anchor="end" fill="#2f855a">12 shared · label 1</text>
+        <g class="shared-chip">
+      <title>7 shared provision:
+· section 4
+· section 41
+· section 41(1)
+· section 41(1)(b)
+· section 41a
+· section 438
+· section 498a</title>
+      <rect x="984" y="202" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="213.5" text-anchor="middle" fill="#176b87">7 prov</text>
+    </g><g class="shared-chip">
+      <title>3 shared statute:
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="202" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="213.5" text-anchor="middle" fill="#176b87">3 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="202" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="213.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Criminal Procedure vs Unknown on 24 February, 2026
+Shares 11 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: bharatiya nagarik suraksha sanhita 2023
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="251" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="271" text-anchor="start">Case 2581</text>
+        <text class="graph-micro card-meta" x="1260" y="271" text-anchor="end" fill="#b36b13">11 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="283" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="294.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>4 shared statute:
+· bharatiya nagarik suraksha sanhita 2023
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="283" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="294.5" text-anchor="middle" fill="#176b87">4 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="283" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="294.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Nallabothula Venkata Suresh vs The State Of Andhra Pradesh on 5 March, 2026
+Shares 11 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: bharatiya nagarik suraksha sanhita 2023
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="332" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="352" text-anchor="start">Case 7141</text>
+        <text class="graph-micro card-meta" x="1260" y="352" text-anchor="end" fill="#b36b13">11 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="364" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="375.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>4 shared statute:
+· bharatiya nagarik suraksha sanhita 2023
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="364" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="375.5" text-anchor="middle" fill="#176b87">4 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="364" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="375.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Vadisela Durga Bhavani Alias Hema vs The State Of Andhra Pradesh on 7 March, 2026
+Shares 11 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: bharatiya nagarik suraksha sanhita 2023
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="413" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="433" text-anchor="start">Case 13975</text>
+        <text class="graph-micro card-meta" x="1260" y="433" text-anchor="end" fill="#b36b13">11 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="445" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="456.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>4 shared statute:
+· bharatiya nagarik suraksha sanhita 2023
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="445" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="456.5" text-anchor="middle" fill="#176b87">4 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="445" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="456.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__Smt. Surabhi vs State Of U.P. And 2 Others on 11 April, 2025
+Shares 11 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: bharatiya nagarik suraksha sanhita 2023
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="494" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="514" text-anchor="start">Case 26565</text>
+        <text class="graph-micro card-meta" x="1260" y="514" text-anchor="end" fill="#b36b13">11 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="526" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="537.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>4 shared statute:
+· bharatiya nagarik suraksha sanhita 2023
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="526" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="537.5" text-anchor="middle" fill="#176b87">4 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="526" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="537.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__Shakil Ahmed vs State Of Up And 2 Others on 16 April, 2024
+Shares 10 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="575" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="595" text-anchor="start">Case 25735</text>
+        <text class="graph-micro card-meta" x="1260" y="595" text-anchor="end" fill="#b36b13">10 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="607" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="618.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>3 shared statute:
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="607" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="618.5" text-anchor="middle" fill="#176b87">3 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="607" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="618.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>family_matrimonial__Sharda Sahay Maurya vs State Of U.P. And 3 Others on 7 May, 2025
+Shares 10 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: bharatiya nagarik suraksha sanhita 2023
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="656" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="676" text-anchor="start">Case 11240</text>
+        <text class="graph-micro card-meta" x="1260" y="676" text-anchor="end" fill="#b36b13">10 shared · label -1</text>
+        <g class="shared-chip">
+      <title>4 shared provision:
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="688" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="699.5" text-anchor="middle" fill="#176b87">4 prov</text>
+    </g><g class="shared-chip">
+      <title>4 shared statute:
+· bharatiya nagarik suraksha sanhita 2023
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="688" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="699.5" text-anchor="middle" fill="#176b87">4 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="688" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="699.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__Rajesh Kumar Yadav vs State Of U.P. And 3 Others on 16 April, 2024
+Shares 10 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="737" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="757" text-anchor="start">Case 23709</text>
+        <text class="graph-micro card-meta" x="1260" y="757" text-anchor="end" fill="#b36b13">10 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="769" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="780.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>3 shared statute:
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="769" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="780.5" text-anchor="middle" fill="#176b87">3 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="769" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="780.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__Anuj Sharma vs State Of Up Others on 17 January, 2024
+Shares 10 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="818" width="300" height="68" rx="9" fill="#effaf3" stroke="#2f855a"></rect>
+        <text class="graph-label strong" x="984" y="838" text-anchor="start">Case 15892</text>
+        <text class="graph-micro card-meta" x="1260" y="838" text-anchor="end" fill="#2f855a">10 shared · label 1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="850" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="861.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>3 shared statute:
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="850" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="861.5" text-anchor="middle" fill="#176b87">3 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="850" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="861.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+      <g class="connected-case-card">
+        <title>fin_fraud__Dayashankar Sharma And Another vs State Of Up And 2 Others on 16 April, 2024
+Shares 10 features with this case:
+· court: apex court
+· court: supreme court
+· provision: section 4
+· provision: section 41
+· provision: section 41(1)(b)
+· provision: section 41a
+· provision: section 498a
+· statute: code of criminal procedure 1973
+· statute: dowry prohibition act 1961
+· statute: indian penal code 1860</title>
+        <rect x="972" y="899" width="300" height="68" rx="9" fill="#fff7e8" stroke="#b36b13"></rect>
+        <text class="graph-label strong" x="984" y="919" text-anchor="start">Case 17470</text>
+        <text class="graph-micro card-meta" x="1260" y="919" text-anchor="end" fill="#b36b13">10 shared · label -1</text>
+        <g class="shared-chip">
+      <title>5 shared provision:
+· section 4
+· section 41
+· section 41(1)(b)
+· section 41a
+· section 498a</title>
+      <rect x="984" y="931" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1010.3" y="942.5" text-anchor="middle" fill="#176b87">5 prov</text>
+    </g><g class="shared-chip">
+      <title>3 shared statute:
+· code of criminal procedure 1973
+· dowry prohibition act 1961
+· indian penal code 1860</title>
+      <rect x="1041.6" y="931" width="52.599999999999994" height="16" rx="8" fill="#edf8fb" stroke="#176b87"></rect>
+      <text x="1067.8999999999999" y="942.5" text-anchor="middle" fill="#176b87">3 stat</text>
+    </g><g class="shared-chip">
+      <title>2 shared court:
+· apex court
+· supreme court</title>
+      <rect x="1099.1999999999998" y="931" width="58.699999999999996" height="16" rx="8" fill="#fff7e6" stroke="#b36b13"></rect>
+      <text x="1128.5499999999997" y="942.5" text-anchor="middle" fill="#b36b13">2 court</text>
+    </g>
+      </g>
+        </svg>
+      </div>
+      <p class="panel-note-inline">Path chains read <b>node ▸ relation ▸ node</b>. Every relation exists twice in the graph
+        (<code>ToUndirected()</code> mirrors each edge as <code>rev_</code>), and the pair is drawn here as a single card —
+        hover it to see both directions and their separate effects. Dashed grey links are feature overlap, not
+        message-passing paths — hover a chip to list the shared judges, courts, statutes, provisions and precedents.</p>
+      <div class="graph-actions connected-actions"><button data-open-case="26565">Case 26565 (11)</button><button data-open-case="23709">Case 23709 (10)</button></div>
+    </div>
+  </section></main></body></html>

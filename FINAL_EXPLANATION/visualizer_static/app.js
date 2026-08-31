@@ -6,6 +6,11 @@ const state = {
   casePage: 1,
   caseLimit: 50,
   selectedCase: null,
+  // Which rule orders the "other connected cases" column of the local subgraph:
+  // "shared" is the literal feature-overlap count, "similarity" is embedding
+  // cosine first with the shared count only breaking ties between equals.
+  connectedRankMode: "shared",
+  caseDetailData: null,
   tableName: "typed_path_importance",
   loaded: {},
 };
@@ -102,7 +107,10 @@ function number(v, digits = 4) {
   const n = Number(v);
   if (!Number.isFinite(n)) return String(v);
   if (Math.abs(n) >= 1000) return fmt.format(n);
-  return n.toFixed(digits).replace(/0+$/, "").replace(/\.$/, "");
+  // Trim trailing zeros of the fraction only.  The old unconditional strip also
+  // ate integer zeros, so number(100, 0) printed "1" and number(0, 0) printed "".
+  const text = n.toFixed(digits);
+  return text.includes(".") ? text.replace(/0+$/, "").replace(/\.$/, "") : text;
 }
 
 function pct(v) {
@@ -491,21 +499,122 @@ function svgText(text, x, y, opts = {}) {
   return `<text class="${cls}" x="${x}" y="${y}" text-anchor="${anchor}">${escapeHtml(graphLabel(text, max))}</text>`;
 }
 
+// Counterfactual masking measured delta_pred_proba = baseline - masked, so a
+// positive delta means removing the evidence weakened the decision: it supports
+// the predicted label.  Negative means it argued against it.
+const CF_TONE = {
+  supports: { color: "#1f7a4d", fill: "#e6f6ed", arrow: "▲" },
+  opposes: { color: "#b23a3a", fill: "#fdeceb", arrow: "▼" },
+};
+
+// Counterfactual effects span several orders of magnitude; toFixed(4) would
+// print most of them as 0.0000.
+function formatDelta(delta) {
+  const value = Math.abs(Number(delta));
+  if (!Number.isFinite(value)) return "";
+  if (value >= 0.001) return value.toFixed(3);
+  if (value === 0) return "0";
+  return value.toExponential(0).replace("e-0", "e-");
+}
+
+// Slide layout by default: just "#3 ▲". The Δ lives in the hover tooltip, where
+// it can be read, rather than on a projected card where it cannot.
+function cfBadgeText(item, detail) {
+  const rank = item.cf_evidence_rank;
+  const tone = CF_TONE[item.cf_direction] || null;
+  const parts = [];
+  if (rank !== null && rank !== undefined) parts.push(detail ? `CF #${rank}` : `#${rank}`);
+  if (tone) parts.push(tone.arrow);
+  if (detail && item.cf_abs_delta !== null && item.cf_abs_delta !== undefined) {
+    parts.push(`Δ${formatDelta(item.cf_abs_delta)}`);
+  }
+  return parts.join(" ");
+}
+
+// "judge: udurga prasad rao", but just "arguments" for whole-section factors
+// whose name repeats their type.
+function factorLabel(row, max = 34) {
+  const type = String(row.evidence_type || "").trim();
+  const name = String(row.evidence_name || "").trim();
+  const prettyType = type.replace(/_/g, " ");
+  if (!name || name === type) return prettyType;
+  return `${prettyType}: ${compactText(name, max)}`;
+}
+
+function cfBadgeTitle(item) {
+  if (item.cf_available === false) return "No counterfactual masking for this case (non-test split).";
+  if (item.cf_evidence_rank === null || item.cf_evidence_rank === undefined) {
+    return "Present in the case but not scored by the counterfactual masking.";
+  }
+  const dir = item.cf_direction === "supports"
+    ? "masking it lowers confidence in the predicted label — it drives the decision"
+    : "masking it raises confidence in the predicted label — it argues against the decision";
+  const flip = item.cf_flips ? " Masking this group alone flips the prediction." : "";
+  return `Counterfactual rank ${item.cf_evidence_rank} of this case's evidence groups; ${dir}`
+    + ` (confidence moved by ${formatDelta(item.cf_abs_delta)}).${flip}`;
+}
+
+// Two card layouts. "slide" (default) is type + name with a compact "#3 ▲" pill
+// on the type row; opts.detail restores the idf reading and the full
+// "CF #3 ▲ Δ0.011" badge on its own row. The local explanation subgraph passes
+// no cf_* fields at all and is unaffected by either.
+const CARD_H_SLIDE = 52, ROW_PITCH_SLIDE = 66;
+const CARD_H_DETAIL = 66, ROW_PITCH_DETAIL = 80;
+const BADGE_W_SLIDE = 62, BADGE_W_DETAIL = 124;
+
+function cardMetrics(detail) {
+  return detail
+    ? { cardH: CARD_H_DETAIL, pitch: ROW_PITCH_DETAIL }
+    : { cardH: CARD_H_SLIDE, pitch: ROW_PITCH_SLIDE };
+}
+
 function svgFeatureCard(item, x, y, w = 210, h = 54, opts = {}) {
   const type = item.feature_type || item.evidence_type || "evidence";
   const color = featureColor(type);
   const fill = featureFill(type);
   const identity = isIdentityNode(item);
-  const title = `${type}: ${item.feature_name || item.evidence_name || ""}`;
-  const labelMax = opts.metaText ? Math.min(opts.max || 30, 27) : (opts.max || 30);
+  const detail = Boolean(opts.detail);
+  const title = `${type}: ${item.feature_name || item.evidence_name || ""}`
+    + (opts.titleExtra ? `\n${opts.titleExtra}` : "");
+
+  const hasCf = item.cf_available !== undefined;
+  const scored = hasCf && item.cf_available !== false
+    && item.cf_evidence_rank !== null && item.cf_evidence_rank !== undefined;
+  const tone = scored ? (CF_TONE[item.cf_direction] || null) : null;
+  const badgeW = detail ? BADGE_W_DETAIL : BADGE_W_SLIDE;
+  const badgeY = detail ? y + h - 21 : y + 9;
+  const badgeX = detail ? x + 11 : x + w - 10 - badgeW;
+  // The slide badge sits on the type row, so the name gets the width back.
+  const showIdf = detail && !opts.metaText && item.idf !== undefined && item.idf !== null;
+  const labelMax = (opts.metaText || (hasCf && !detail)) ? Math.min(opts.max || 30, 27) : (opts.max || 30);
+
+  let badge = "";
+  if (hasCf) {
+    badge = scored
+      ? `<g class="cf-badge ${item.cf_direction || ""}${item.cf_flips ? " flips" : ""}">
+          <title>${escapeHtml(cfBadgeTitle(item))}</title>
+          <rect x="${badgeX}" y="${badgeY}" width="${badgeW}" height="17" rx="8.5"
+                fill="${tone ? tone.fill : "#eef2f6"}" stroke="${tone ? tone.color : "#94a3b8"}"></rect>
+          <text x="${badgeX + badgeW / 2}" y="${badgeY + 12.5}" text-anchor="middle" fill="${tone ? tone.color : "#52616f"}">${escapeHtml(cfBadgeText(item, detail))}</text>
+          ${item.cf_flips ? `<rect x="${detail ? badgeX + badgeW + 6 : badgeX - 48}" y="${badgeY}" width="42" height="17" rx="8.5" fill="#b23a3a" stroke="#b23a3a"></rect>
+          <text x="${(detail ? badgeX + badgeW + 6 : badgeX - 48) + 21}" y="${badgeY + 12.5}" text-anchor="middle" fill="#ffffff">FLIPS</text>` : ""}
+        </g>`
+      : `<g class="cf-badge muted">
+          <title>${escapeHtml(cfBadgeTitle(item))}</title>
+          <text x="${detail ? x + 12 : x + w - 10}" y="${badgeY + 12.5}" text-anchor="${detail ? "start" : "end"}">${item.cf_available === false ? "no CF data" : "not scored"}</text>
+        </g>`;
+  }
+
   return `
-    <g class="feature-card ${identity ? "identity" : ""}">
+    <g class="feature-card ${identity ? "identity" : ""}${item.cf_top ? " cf-top" : ""}${hasCf && !scored ? " cf-unscored" : ""}">
       <title>${escapeHtml(title)}</title>
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${color}" stroke-width="${identity ? 2.8 : 1.4}"></rect>
+      <rect class="card-body" x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${color}" stroke-width="${identity ? 2.8 : 1.4}"></rect>
+      ${item.cf_top ? `<rect class="cf-ribbon" x="${x + 3}" y="${y + 8}" width="5" height="${h - 16}" rx="2.5" fill="${tone ? tone.color : "#52616f"}"></rect>` : ""}
       <text class="graph-tag" x="${x + 12}" y="${y + 18}" fill="${color}">${escapeHtml(graphLabel(type, 20))}</text>
       ${opts.metaText ? `<text class="graph-micro card-meta" x="${x + w - 10}" y="${y + 18}" text-anchor="end">${escapeHtml(opts.metaText)}</text>` : ""}
-      ${!opts.metaText && item.idf !== undefined && item.idf !== null ? `<text class="graph-micro card-meta" x="${x + w - 10}" y="${y + 18}" text-anchor="end">idf ${number(item.idf, 1)}</text>` : ""}
-      <text class="graph-label strong" x="${x + 12}" y="${y + 38}" text-anchor="start">${escapeHtml(graphLabel(item.feature_name || item.evidence_name || "unnamed evidence", labelMax))}</text>
+      ${showIdf ? `<text class="graph-micro card-meta" x="${x + w - 10}" y="${y + 18}" text-anchor="end">idf ${number(item.idf, 1)}</text>` : ""}
+      <text class="graph-label strong" x="${x + 12}" y="${y + (detail ? 36 : 38)}" text-anchor="start">${escapeHtml(graphLabel(item.feature_name || item.evidence_name || "unnamed evidence", labelMax))}</text>
+      ${badge}
     </g>`;
 }
 
@@ -572,181 +681,769 @@ function renderCommunityEmbeddingFlow(flow) {
     </div>`;
 }
 
+// Case names -----------------------------------------------------------------
+
+// Wrap a case title onto at most `maxLines` lines of ~`width` characters, so a
+// real case name can sit under a graph node without overflowing its column.
+function wrapCaseTitle(meta, width = 24, maxLines = 3) {
+  const title = String(meta?.title || meta?.short_title || `Case ${meta?.case_index ?? "?"}`);
+  const words = title.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+  words.forEach((word) => {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length <= width) { current = candidate; return; }
+    if (current) lines.push(current);
+    current = word.length > width ? `${word.slice(0, width - 1)}…` : word;
+  });
+  if (current) lines.push(current);
+  if (lines.length > maxLines) {
+    const kept = lines.slice(0, maxLines);
+    kept[maxLines - 1] = `${kept[maxLines - 1].slice(0, Math.max(0, width - 1))}…`;
+    return kept;
+  }
+  return lines;
+}
+
+// Two short lines for an ellipse node: the parties, then the date tail.
+function caseTitleLines(meta, max = 40) {
+  const title = String(meta?.short_title || meta?.title || `Case ${meta?.case_index ?? "?"}`);
+  const split = title.match(/^(.*?)(\s+on\s+.*)$/);
+  const head = (split ? split[1] : title).trim();
+  const tail = split ? split[2].replace(/^\s*on\s*/, "").trim() : "";
+  return [graphLabel(head, max), tail ? graphLabel(tail, max) : ""];
+}
+
+// The circle stays compact and the real case name is captioned underneath it —
+// a full Indian case title never fits inside a 52px radius. Both the true label
+// and the model's prediction are shown: the nearest opposite-*true*-label case
+// usually gets the *same* prediction, so ground truth alone would hide whether
+// the model separated the two cases at all.
+function caseNodeSvg(meta, cx, cy, r, cls) {
+  const wrong = meta?.correct === false;
+  const caption = wrapCaseTitle(meta, 24, 3)
+    .map((line, i) => svgText(line, cx, cy + r + 24 + i * 15, { max: 26, cls: "graph-label strong case-caption" }))
+    .join("");
+  const bucket = meta?.bucket_label
+    ? svgText(meta.bucket_label, cx, cy + r + 24 + wrapCaseTitle(meta, 24, 3).length * 15 + 2, { max: 26, cls: "graph-micro" })
+    : "";
+  return `
+    <g class="case-node ${cls}${wrong ? " misclassified" : ""}">
+      <title>${escapeHtml(`${meta?.case_id || ""} (case_index ${meta?.case_index ?? "?"}, ${meta?.split || "?"} split) — true ${meta?.label_badge || "?"}, model predicted ${meta?.pred_badge || "?"}`)}</title>
+      <circle cx="${cx}" cy="${cy}" r="${r}"></circle>
+      <text class="case-node-label" x="${cx}" y="${cy - 12}" text-anchor="middle">true ${escapeHtml(meta?.label_badge || "?")}</text>
+      <text class="case-node-label ${wrong ? "wrong" : ""}" x="${cx}" y="${cy + 8}" text-anchor="middle">pred ${escapeHtml(meta?.pred_badge || "?")}</text>
+      ${wrong ? `<text class="case-node-wrong" x="${cx}" y="${cy + 24}" text-anchor="middle">misclassified</text>` : ""}
+      ${svgText(`#${meta?.case_index ?? "?"}`, cx, cy + (wrong ? 40 : 30), { max: 20, cls: "graph-micro" })}
+      ${caption}
+      ${bucket}
+    </g>`;
+}
+
+function caseNameChip(meta, role) {
+  if (!meta) return "";
+  const bucket = meta.bucket_label ? ` · ${escapeHtml(meta.bucket_label)}` : "";
+  const link = meta.search_url
+    ? ` <a class="case-lookup" href="${escapeHtml(meta.search_url)}" target="_blank" rel="noopener">look up ↗</a>`
+    : "";
+  return `<span class="case-chip"><em>${escapeHtml(role)}</em>
+    <strong>${escapeHtml(meta.title || `Case ${meta.case_index}`)}</strong>
+    <span class="case-chip-meta">true ${escapeHtml(meta.label_badge || "?")} · pred <b class="${meta.correct === false ? "wrong" : ""}">${escapeHtml(meta.pred_badge || "?")}</b>${bucket} · #${escapeHtml(meta.case_index)}</span>${link}</span>`;
+}
+
+// Contrast graph --------------------------------------------------------------
+
 function renderCaseContrastGraph(graph) {
   if (!graph || !graph.available) {
-    return `<div class="detail-body empty">${escapeHtml(graph?.reason || "Select an opposite-case pair to render the contrast graph.")}</div>`;
+    return `<div class="detail-body empty">${escapeHtml(graph?.reason || "Select a case to render the contrast graph.")}</div>`;
   }
-  const summary = graph.summary || {};
+  const side = graph.side === "same" ? "same" : "opposite";
+  const query = graph.query || {};
+  const other = graph.other || {};
   const shared = graph.shared_features || [];
   const queryOnly = graph.query_only_features || [];
-  const oppositeOnly = graph.opposite_only_features || [];
-  const maxRows = Math.max(shared.length, queryOnly.length, oppositeOnly.length, 4);
+  const otherOnly = graph.other_only_features || graph.opposite_only_features || [];
+  const otherHeading = side === "same" ? "Similar-case-only evidence" : "Opposite-only evidence";
+  const field = graph.match === "pred" ? "prediction" : "label";
+  const otherRole = side === "same" ? `Closest same-${field} case` : `Closest opposite-${field} case`;
+  const sameCall = String(query.pred_label) === String(other.pred_label);
+
+  const detail = graph.detail === true;
+  const { cardH, pitch: rowPitch } = cardMetrics(detail);
+  const maxRows = Math.max(shared.length, queryOnly.length, otherOnly.length, 4);
   const width = 1180;
-  const height = Math.max(560, 160 + maxRows * 68);
+  const height = Math.max(600, 170 + maxRows * rowPitch);
   const centerY = height / 2;
   const stackY = (rows, i) => {
-    const blockH = Math.max(rows.length, 1) * 62;
-    return centerY - blockH / 2 + i * 62;
+    const blockH = Math.max(rows.length, 1) * rowPitch;
+    return centerY - blockH / 2 + i * rowPitch;
   };
   const qx = 112, ox = 1068;
   const qOnlyX = 245, sharedX = 486, oppOnlyX = 727;
-  const cardW = 205, cardH = 52;
+  const cardW = 205;
+  const mid = cardH / 2;
   const edges = [];
-  queryOnly.forEach((item, i) => edges.push(`<path class="contrast-edge" d="M ${qx + 52} ${centerY} C 185 ${centerY}, 205 ${stackY(queryOnly, i) + 26}, ${qOnlyX} ${stackY(queryOnly, i) + 26}" stroke="${featureColor(item.feature_type)}"></path>`));
+  queryOnly.forEach((item, i) => edges.push(`<path class="contrast-edge" d="M ${qx + 52} ${centerY} C 185 ${centerY}, 205 ${stackY(queryOnly, i) + mid}, ${qOnlyX} ${stackY(queryOnly, i) + mid}" stroke="${featureColor(item.feature_type)}"></path>`));
   shared.forEach((item, i) => {
-    const y = stackY(shared, i) + 26;
+    const y = stackY(shared, i) + mid;
     edges.push(`<path class="contrast-edge shared" d="M ${qx + 52} ${centerY} C 260 ${centerY}, 330 ${y}, ${sharedX} ${y}" stroke="${featureColor(item.feature_type)}"></path>`);
     edges.push(`<path class="contrast-edge shared" d="M ${sharedX + cardW} ${y} C 790 ${y}, 900 ${centerY}, ${ox - 52} ${centerY}" stroke="${featureColor(item.feature_type)}"></path>`);
   });
-  oppositeOnly.forEach((item, i) => edges.push(`<path class="contrast-edge" d="M ${oppOnlyX + cardW} ${stackY(oppositeOnly, i) + 26} C 950 ${stackY(oppositeOnly, i) + 26}, 980 ${centerY}, ${ox - 52} ${centerY}" stroke="${featureColor(item.feature_type)}"></path>`));
-  const queryCards = queryOnly.map((item, i) => svgFeatureCard(item, qOnlyX, stackY(queryOnly, i), cardW, cardH, { max: 27 })).join("");
-  const sharedCards = shared.map((item, i) => svgFeatureCard(item, sharedX, stackY(shared, i), cardW, cardH, { max: 27 })).join("");
-  const oppositeCards = oppositeOnly.map((item, i) => svgFeatureCard(item, oppOnlyX, stackY(oppositeOnly, i), cardW, cardH, { max: 27 })).join("");
+  otherOnly.forEach((item, i) => edges.push(`<path class="contrast-edge" d="M ${oppOnlyX + cardW} ${stackY(otherOnly, i) + mid} C 950 ${stackY(otherOnly, i) + mid}, 980 ${centerY}, ${ox - 52} ${centerY}" stroke="${featureColor(item.feature_type)}"></path>`));
+  const cardOpts = { max: 27, detail };
+  const queryCards = queryOnly.map((item, i) => svgFeatureCard(item, qOnlyX, stackY(queryOnly, i), cardW, cardH, cardOpts)).join("");
+  const sharedCards = shared.map((item, i) => svgFeatureCard(item, sharedX, stackY(shared, i), cardW, cardH, cardOpts)).join("");
+  const otherCards = otherOnly.map((item, i) => svgFeatureCard(item, oppOnlyX, stackY(otherOnly, i), cardW, cardH, cardOpts)).join("");
+
   return `
-    <div class="graph-summary">
-      <span><strong>Query ${escapeHtml(summary.case_index)}</strong> label ${escapeHtml(summary.target_label)}</span>
-      <span><strong>Opposite ${escapeHtml(summary.nearest_opposite_case_index)}</strong> label ${escapeHtml(summary.nearest_opposite_target_label)}</span>
-      <span><strong>${number(summary.cosine_similarity, 4)}</strong> cosine similarity</span>
+    <div class="graph-summary case-name-summary">
+      ${caseNameChip(query, "Query case")}
+      ${caseNameChip(other, otherRole)}
+      <span><strong>${number(graph.cosine_similarity, 4)}</strong> cosine similarity</span>
+      ${sameCall
+        ? `<span class="verdict-warn">the model gave <strong>both</strong> cases the same label — it did not separate them</span>`
+        : `<span class="verdict-ok">the model decided these two <strong>differently</strong></span>`}
     </div>
-    <div class="graph-frame graph-contrast-frame">
-      <svg class="graph-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Query case and nearest opposite-label case contrast">
+    <div class="graph-frame graph-contrast-frame contrast-${side}">
+      <svg class="graph-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Query case and nearest ${side}-label case contrast">
         <text class="graph-axis-title" x="${qOnlyX}" y="38">Query-only evidence</text>
         <text class="graph-axis-title" x="${sharedX}" y="38">Shared evidence</text>
-        <text class="graph-axis-title" x="${oppOnlyX}" y="38">Opposite-only evidence</text>
+        <text class="graph-axis-title" x="${oppOnlyX}" y="38">${escapeHtml(otherHeading)}</text>
         ${edges.join("")}
-        <g class="case-node">
-          <circle cx="${qx}" cy="${centerY}" r="52"></circle>
-          ${svgText(`Case ${summary.case_index}`, qx, centerY - 8, { max: 18, cls: "graph-label strong" })}
-          ${svgText(`target ${summary.target_label}`, qx, centerY + 14, { max: 18, cls: "graph-micro" })}
-        </g>
-        <g class="case-node opposite">
-          <circle cx="${ox}" cy="${centerY}" r="52"></circle>
-          ${svgText(`Case ${summary.nearest_opposite_case_index}`, ox, centerY - 8, { max: 18, cls: "graph-label strong" })}
-          ${svgText(`target ${summary.nearest_opposite_target_label}`, ox, centerY + 14, { max: 18, cls: "graph-micro" })}
-        </g>
+        ${caseNodeSvg(query, qx, centerY, 52, "query")}
+        ${caseNodeSvg(other, ox, centerY, 52, side)}
         ${queryCards || svgText("No query-only rows", qOnlyX + cardW / 2, centerY, { max: 26, cls: "graph-empty-label" })}
         ${sharedCards || svgText("No shared feature rows", sharedX + cardW / 2, centerY, { max: 26, cls: "graph-empty-label" })}
-        ${oppositeCards || svgText("No opposite-only rows", oppOnlyX + cardW / 2, centerY, { max: 26, cls: "graph-empty-label" })}
+        ${otherCards || svgText(`No ${side === "same" ? "similar" : "opposite"}-only rows`, oppOnlyX + cardW / 2, centerY, { max: 26, cls: "graph-empty-label" })}
       </svg>
     </div>
+    ${renderCfLegend(graph)}
     <div class="graph-actions">
-      <button data-open-case="${escapeHtml(summary.case_index)}">Open query in Case Explorer</button>
-      ${String(summary.nearest_opposite_split || "") === "test" ? `<button data-open-case="${escapeHtml(summary.nearest_opposite_case_index)}">Open opposite case</button>` : ""}
+      <button data-open-case="${escapeHtml(query.case_index)}">Open query in Case Explorer</button>
+      ${String(other.split || "") === "test" ? `<button data-open-case="${escapeHtml(other.case_index)}">Open ${side === "same" ? "similar" : "opposite"} case</button>` : ""}
+      <button data-load-exp6-case="${escapeHtml(other.case_index)}">Re-centre the graphs on this case</button>
     </div>`;
+}
+
+function cfFactorRow(caseMeta, role) {
+  const label = `${role} (${caseMeta.label_badge || "?"})`;
+  if (caseMeta.cf_available === false) {
+    return `<div class="cf-legend-top">
+      <span class="cf-legend-label">${escapeHtml(label)}:</span>
+      <span class="cf-legend-none">no counterfactual data — masking was only run on test cases</span>
+    </div>`;
+  }
+  const factors = (caseMeta.top_factors || [])
+    .filter((row) => row.cf_evidence_rank !== null && row.cf_evidence_rank !== undefined)
+    .slice(0, 3);
+  if (!factors.length) return "";
+  const chips = factors.map((row) => (
+    `<span class="cf-chip ${row.cf_direction === "supports" ? "supports" : "opposes"}${row.has_box ? "" : " no-box"}">
+      <b>#${escapeHtml(row.cf_evidence_rank)}</b> ${escapeHtml(factorLabel(row))}</span>`
+  )).join("");
+  return `<div class="cf-legend-top"><span class="cf-legend-label">${escapeHtml(label)}:</span>${chips}</div>`;
+}
+
+// Both sides get a strongest-factors line: the boxes only cover five evidence
+// types, so the real top driver is often not drawn at all.
+function renderCfLegend(graph) {
+  const otherRole = graph.side === "same" ? "Similar case" : "Opposite case";
+  const rows = cfFactorRow(graph.query || {}, "Query case") + cfFactorRow(graph.other || {}, otherRole);
+  const anyNoBox = [...((graph.query || {}).top_factors || []), ...((graph.other || {}).top_factors || [])]
+    .slice(0, 6).some((row) => row.has_box === false);
+  return `
+    <div class="cf-legend">
+      ${rows ? `<div class="cf-legend-factors">
+        <div class="cf-legend-heading">Strongest counterfactual factors</div>
+        ${rows}
+        ${anyNoBox ? `<p class="panel-note-inline">Greyed factors are evidence types (parties, arguments, lawyers) that carry no box in this diagram.</p>` : ""}
+      </div>` : ""}
+      <div class="cf-legend-key">
+        <span class="cf-swatch supports"></span> ▲ supports the decision (masking lowers confidence)
+        <span class="cf-swatch opposes"></span> ▼ argues against it (masking raises confidence)
+        <span class="cf-swatch top"></span> ribbon = top-3 driving factor
+      </div>
+    </div>`;
+}
+
+// Ego similarity network ------------------------------------------------------
+
+function renderCaseEgoGraph(graph) {
+  if (!graph || !graph.available) {
+    return `<div class="detail-body empty">${escapeHtml(graph?.reason || "Select a case to render the similarity network.")}</div>`;
+  }
+  const center = graph.center || {};
+  const nodes = graph.nodes || [];
+  const same = nodes.filter((row) => row.side === "same");
+  const opposite = nodes.filter((row) => row.side === "opposite");
+  const edgeFor = (caseIndex) => (graph.edges || []).find((row) => String(row.target) === String(caseIndex)) || {};
+
+  const width = 1180;
+  const rows = Math.max(same.length, opposite.length, 1);
+  const height = Math.max(520, 200 + rows * 128);
+  const cx = width / 2, cy = height / 2;
+  const rx = 132, ry = 52;
+  const nodeRx = 118, nodeRy = 46;
+  const colX = { same: 190, opposite: width - 190 };
+  const stackY = (list, i) => {
+    const blockH = Math.max(list.length, 1) * 128;
+    return cy - blockH / 2 + 64 + i * 128;
+  };
+  const maxShared = Math.max(...(graph.edges || []).map((row) => Number(row.shared_total) || 0), 1);
+  const egoField = graph.match === "pred" ? "model prediction" : "true label";
+
+  const parts = [];
+  [["same", same], ["opposite", opposite]].forEach(([side, list]) => {
+    list.forEach((node, i) => {
+      const x = colX[side];
+      const y = stackY(list, i);
+      const edge = edgeFor(node.case_index);
+      const total = Number(edge.shared_total) || 0;
+      const sw = 1.6 + Math.sqrt(total / maxShared) * 6.5;
+      const stroke = side === "same" ? "#2f855a" : "#b36b13";
+      const anchorX = side === "same" ? cx - rx : cx + rx;
+      const nodeEdgeX = side === "same" ? x + nodeRx : x - nodeRx;
+      const midX = (anchorX + nodeEdgeX) / 2;
+      const midY = (cy + y) / 2;
+      parts.push(`<g class="ego-edge ${side}">
+        <title>${escapeHtml(`cosine ${Number(edge.cosine || 0).toFixed(4)} · ${total} shared evidence items`)}</title>
+        <path d="M ${anchorX} ${cy} L ${nodeEdgeX} ${y}" stroke="${stroke}" stroke-width="${sw}"></path>
+        ${edge.shared_label ? `<text class="ego-edge-label" x="${midX}" y="${midY - 8}" text-anchor="middle">${escapeHtml(edge.shared_label)}</text>` : ""}
+        <text class="ego-edge-cos" x="${midX}" y="${midY + (edge.shared_label ? 7 : 0)}" text-anchor="middle">cos ${Number(edge.cosine || 0).toFixed(3)}</text>
+      </g>`);
+    });
+  });
+
+  [["same", same], ["opposite", opposite]].forEach(([side, list]) => {
+    list.forEach((node, i) => {
+      const x = colX[side];
+      const y = stackY(list, i);
+      const [line1, line2] = caseTitleLines(node, 26);
+      parts.push(`<g class="ego-node ${side}" data-load-exp6-case="${escapeHtml(node.case_index)}">
+        <title>${escapeHtml(`${node.case_id || ""} (case_index ${node.case_index})`)}</title>
+        <ellipse cx="${x}" cy="${y}" rx="${nodeRx}" ry="${nodeRy}"></ellipse>
+        ${svgText(line1, x, y - 10, { max: 26, cls: "graph-label strong inverse" })}
+        ${line2 ? svgText(line2, x, y + 6, { max: 26, cls: "graph-micro inverse" })
+                : ""}
+        ${svgText(node.correct === false
+            ? `true ${node.label_badge || "?"} / pred ${node.pred_badge || "?"}`
+            : `(${node.label_badge || "?"})`,
+          x, y + (line2 ? 24 : 12), { max: 26, cls: "graph-micro inverse" })}
+      </g>`);
+    });
+  });
+
+  const [cLine1, cLine2] = caseTitleLines(center, 30);
+  parts.push(`<g class="ego-node center">
+    <title>${escapeHtml(`${center.case_id || ""} (case_index ${center.case_index})`)}</title>
+    <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"></ellipse>
+    ${svgText(cLine1, cx, cy - 12, { max: 30, cls: "graph-label strong inverse" })}
+    ${cLine2 ? svgText(cLine2, cx, cy + 5, { max: 30, cls: "graph-micro inverse" }) : ""}
+    ${svgText(center.correct === false
+        ? `true ${center.label_badge || "?"} / pred ${center.pred_badge || "?"}`
+        : `(${center.label_badge || "?"})`,
+      cx, cy + (cLine2 ? 23 : 11), { max: 30, cls: "graph-micro inverse" })}
+  </g>`);
+
+  return `
+    <div class="graph-summary case-name-summary">
+      ${caseNameChip(center, "Selected case")}
+      <span><strong>${same.length}</strong> closest same-label</span>
+      <span><strong>${opposite.length}</strong> closest opposite-label</span>
+      <span><strong>${escapeHtml(graph.pool)}</strong> candidate pool</span>
+    </div>
+    <div class="graph-frame graph-ego-frame">
+      <svg class="graph-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Case similarity network with same-label and opposite-label neighbours">
+        <text class="graph-axis-title" x="${colX.same}" y="42" text-anchor="middle">Most similar · same ${escapeHtml(egoField)}</text>
+        <text class="graph-axis-title" x="${colX.opposite}" y="42" text-anchor="middle">Most similar · opposite ${escapeHtml(egoField)}</text>
+        ${parts.join("")}
+      </svg>
+    </div>
+    <p class="panel-note-inline">Edge labels count evidence the two cases share, by type:
+      <b>J</b>udge, <b>P</b>recedent, pro<b>V</b>ision, <b>C</b>ourt, <b>S</b>tatute — thickness scales with the total.
+      Click any neighbour to re-centre the network on it.</p>`;
+}
+
+// Local-subgraph helpers -----------------------------------------------------
+
+const SHARED_TYPE_ABBR = {
+  precedent: "prec", court: "court", provision: "prov", judge: "judge", statute: "stat",
+};
+
+// ToUndirected() mirrors every relation as `rev_*`, and the backend now folds the
+// pair onto one card.  These badges say which halves of the pair were merged:
+// "in" is the reverse edge (evidence -> case), which is what actually feeds the
+// classified node, so it is the half that usually carries the signal.
+// Set to true to draw the "in / out" pills on path and evidence cards.  With it
+// off the same information still reaches the reader through each card's tooltip,
+// so turning it off removes visual noise, never a fact.
+const SHOW_DIRECTION_BADGES = false;
+
+const DIRECTION_BADGE = {
+  both: { text: "in + out", cls: "both" },
+  reverse: { text: "in", cls: "in" },
+  forward: { text: "out", cls: "out" },
+  mixed: { text: "multi-hop", cls: "mixed" },
+};
+
+function directionKind(directions) {
+  const keys = Object.keys(directions || {});
+  if (!keys.length) return null;
+  if (keys.includes("mixed")) return "mixed";
+  if (keys.includes("forward") && keys.includes("reverse")) return "both";
+  return keys.includes("reverse") ? "reverse" : "forward";
+}
+
+function directionTitle(directions) {
+  const rows = Object.entries(directions || {}).map(([name, info]) => {
+    const label = name === "reverse" ? "in  (evidence → case, rev_ edge)"
+      : name === "forward" ? "out (case → evidence)"
+      : "multi-hop";
+    // Evidence rows carry abs_delta_pred_proba; path rows carry importance.
+    const magnitude = info && info.abs_delta_pred_proba !== undefined && info.abs_delta_pred_proba !== null
+      ? info.abs_delta_pred_proba
+      : (info ? info.importance : null);
+    const delta = magnitude !== undefined && magnitude !== null ? ` · |Δp| ${formatDelta(magnitude)}` : "";
+    const relation = info && info.relation ? ` · ${info.relation}` : "";
+    return `  ${label}${relation}${delta}`;
+  });
+  return rows.length ? rows.join("\n") : "";
+}
+
+// Plain-text version of the badge, for the card tooltips.
+function directionSummary(directions) {
+  const kind = directionKind(directions);
+  if (!kind) return "";
+  const headline = kind === "both"
+    ? "Merged mirror pair:"
+    : kind === "reverse" ? "Reverse edge only:"
+    : kind === "forward" ? "Forward edge only:"
+    : "Multi-hop path:";
+  const detail = directionTitle(directions);
+  return detail ? `${headline}\n${detail}` : headline;
+}
+
+function directionBadge(directions, x, y, anchor = "end") {
+  if (!SHOW_DIRECTION_BADGES) return "";
+  const kind = directionKind(directions);
+  if (!kind) return "";
+  const spec = DIRECTION_BADGE[kind];
+  const w = spec.text.length * 6.2 + 16;
+  const bx = anchor === "end" ? x - w : x;
+  return `<g class="dir-badge ${spec.cls}">
+    <title>${escapeHtml(directionTitle(directions))}</title>
+    <rect x="${bx}" y="${y}" width="${w}" height="16" rx="8"></rect>
+    <text x="${bx + w / 2}" y="${y + 11.5}" text-anchor="middle">${escapeHtml(spec.text)}</text>
+  </g>`;
+}
+
+// A path family is an alternating node/relation chain.  The old renderer cut it
+// at 27 characters, which made `case->has_arguments->arguments` and
+// `case->has_arguments->arguments->cites_statute->statute` render as the same
+// string.  Tokenise instead, then wrap - nothing is ever silently dropped.
+function pathChainTokens(pathFamily) {
+  return String(value(pathFamily, ""))
+    .split("->")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((text, index) => ({ text, kind: index % 2 === 0 ? "node" : "rel" }));
+}
+
+function pathChainLines(tokens, maxWidth) {
+  const widthOf = (token) => token.text.length * (token.kind === "node" ? 6.9 : 6.0) + 12;
+  const lines = [];
+  let line = [];
+  let used = 0;
+  tokens.forEach((token) => {
+    const w = widthOf(token);
+    if (line.length && used + w > maxWidth) {
+      lines.push(line);
+      line = [];
+      used = 0;
+    }
+    line.push(token);
+    used += w;
+  });
+  if (line.length) lines.push(line);
+  return lines.length ? lines : [[{ text: "unknown path", kind: "node" }]];
+}
+
+function pathChainSvg(lines, x, y, lineHeight) {
+  return lines.map((line, i) => {
+    const spans = line.map((token, j) => {
+      const sep = (i === 0 && j === 0) ? "" : `<tspan class="path-sep"> ▸ </tspan>`;
+      const cls = token.kind === "node" ? "path-node-token" : "path-rel-token";
+      return `${sep}<tspan class="${cls}">${escapeHtml(token.text)}</tspan>`;
+    }).join("");
+    return `<text class="path-chain" x="${x}" y="${y + i * lineHeight}" text-anchor="start">${spans}</text>`;
+  }).join("");
+}
+
+// The connected-case cards used to show a bare count ("6 shared features") with
+// no way to see what the 6 were.  These chips break the count down by evidence
+// type and carry the actual names in the tooltip.
+function sharedChips(row, x, y, maxWidth) {
+  const breakdown = row.shared_breakdown || {};
+  const entries = Object.entries(breakdown).filter(([, n]) => Number(n) > 0);
+  if (!entries.length) return { svg: "", rows: 0 };
+  const byType = new Map();
+  (row.shared_items || []).forEach((item) => {
+    const list = byType.get(item.feature_type) || [];
+    list.push(item.feature_name);
+    byType.set(item.feature_type, list);
+  });
+
+  let cx = x;
+  let cy = y;
+  let rows = 1;
+  const parts = entries.map(([type, count]) => {
+    const label = `${count} ${SHARED_TYPE_ABBR[type] || type}`;
+    const w = label.length * 6.1 + 16;
+    if (cx + w > x + maxWidth) {
+      cx = x;
+      cy += 20;
+      rows += 1;
+    }
+    const all = byType.get(type) || [];
+    const names = all.slice(0, 8);
+    const extra = all.length - names.length;
+    const tip = names.length
+      ? `${count} shared ${type}:\n· ${names.join("\n· ")}${extra > 0 ? `\n· +${extra} more` : ""}`
+      : `${count} shared ${type}`;
+    const chip = `<g class="shared-chip">
+      <title>${escapeHtml(tip)}</title>
+      <rect x="${cx}" y="${cy}" width="${w}" height="16" rx="8" fill="${featureFill(type)}" stroke="${featureColor(type)}"></rect>
+      <text x="${cx + w / 2}" y="${cy + 11.5}" text-anchor="middle" fill="${featureColor(type)}">${escapeHtml(label)}</text>
+    </g>`;
+    cx += w + 5;
+    return chip;
+  });
+  return { svg: parts.join(""), rows };
+}
+
+// Reorder the neighbour records to match one of the server-supplied rankings.
+// Anything the chosen ranking left out is dropped: each order is already the
+// server's top-N under that rule, and mixing them would break both.
+function orderConnectedCases(rows, order) {
+  if (!Array.isArray(order) || !order.length) return rows;
+  const byIndex = new Map(rows.map((row) => [String(row.case_index), row]));
+  return order.map((index) => byIndex.get(String(index))).filter(Boolean);
+}
+
+// Keep the maximally similar case visible under the display cap: if it sits
+// outside the first `max` rows it takes the last slot instead of vanishing.
+function pinMostSimilar(rows, max) {
+  const shown = rows.slice(0, max);
+  if (shown.some((row) => row.is_most_similar)) return shown;
+  const pin = rows.find((row) => row.is_most_similar);
+  if (!pin) return shown;
+  if (shown.length < max) return shown.concat([pin]);
+  return shown.slice(0, max - 1).concat([pin]);
+}
+
+// Re-renders only the subgraph block from the case payload already in memory.
+function setConnectedRankMode(mode) {
+  const next = mode === "similarity" ? "similarity" : "shared";
+  if (state.connectedRankMode === next) return;
+  state.connectedRankMode = next;
+  const data = state.caseDetailData;
+  const host = document.querySelector("#caseDetail .case-graph-block");
+  if (!data || !data.summary || !host) return;
+  const holder = document.createElement("div");
+  holder.innerHTML = renderLocalExplanationSubgraph(data.summary, data.local_graph || data.top_explanations || []);
+  const replacement = holder.firstElementChild;
+  if (replacement) host.replaceWith(replacement);
 }
 
 function renderLocalExplanationSubgraph(summary, localGraph) {
   const graph = Array.isArray(localGraph)
     ? { available: true, summary: {}, paths: [], evidence: localGraph, connected_cases: [] }
     : (localGraph || {});
-  const evidence = graph.evidence || [];
-  if (!graph.available || !evidence.length) {
+  const allEvidence = graph.evidence || [];
+  if (!graph.available || !allEvidence.length) {
     return `<div class="case-graph-block detail-body empty">No local graph rows are available for this case.</div>`;
   }
 
-  const paths = graph.paths || [];
-  const connected = graph.connected_cases || [];
+  // Presentation caps: the panel used to grow to ~1600px tall, which is unusable
+  // on a slide.  Everything stays reachable (counts in the header, names in the
+  // tooltips, test cases in the buttons below) but the figure stays legible.
+  const MAX_PATHS = 8, MAX_EVIDENCE = 14, MAX_CONNECTED = 10;
+  const allPaths = graph.paths || [];
   const stats = graph.summary || {};
-  const rows = Math.max(paths.length, evidence.length, connected.length, 5);
-  const width = 1220;
-  const height = Math.max(600, 142 + rows * 56);
-  const top = 88;
-  const bottom = height - 78;
-  const yScale = (list, i) => list.length <= 1 ? (top + bottom) / 2 : top + (i / (list.length - 1)) * (bottom - top);
-  const pathY = new Map(paths.map((row, i) => [row.id, yScale(paths, i)]));
-  const evidenceY = new Map(evidence.map((row, i) => [row.id, yScale(evidence, i)]));
-  const connectedY = new Map(connected.map((row, i) => [`case:${row.case_index}`, yScale(connected, i)]));
-  const caseX = 100, pathX = 230, evidenceX = 520, connectedX = 865;
-  const pathW = 220, evidenceW = 255, connectedW = 235;
-  const centerY = (top + bottom) / 2;
-  const maxImportance = Math.max(...evidence.map((row) => Number(row.importance || row.abs_delta_pred_proba) || 0), 1e-9);
+  const paths = allPaths.slice(0, MAX_PATHS);
+  const hiddenPaths = allPaths.length - paths.length;
 
-  const caseToPathEdges = paths.map((row) => {
-    const y = pathY.get(row.id);
+  // The server ranks the same neighbour pool twice and ships both orders, so
+  // flipping the toggle is a re-sort of data already in the page, not a refetch.
+  const orders = graph.connected_orders || {};
+  // A server process started before the similarity ranking shipped returns no
+  // `connected_orders` at all.  Say so on the button instead of leaving a live
+  // control that silently does nothing.
+  const similarityAvailable = (orders.similarity || []).length > 0;
+  const rankMode = state.connectedRankMode === "similarity" && similarityAvailable
+    ? "similarity"
+    : "shared";
+  const allConnected = orderConnectedCases(graph.connected_cases || [], orders[rankMode]);
+  // Professor Dey's second point: the maximally similar case has to be on the
+  // canvas even when the display cap would have cut it, so it takes the last
+  // slot rather than dropping off.
+  const connected = pinMostSimilar(allConnected, MAX_CONNECTED);
+  const hiddenConnected = allConnected.length - connected.length;
+  const mostSimilar = allConnected.find((row) => row.is_most_similar) || null;
+
+  // Keep evidence whose path family is still on the canvas, so no card is left
+  // dangling without an incoming edge.
+  // The legacy call path passes a bare top_explanations array with no path
+  // families at all, so only filter when there are paths to filter against.
+  const shownPathIds = new Set(paths.map((row) => row.id));
+  const evidence = (shownPathIds.size
+    ? allEvidence.filter((row) => shownPathIds.has(row.path_id))
+    : allEvidence
+  ).slice(0, MAX_EVIDENCE);
+  const hiddenEvidence = allEvidence.length - evidence.length;
+
+  const width = 1340;
+  const caseX = 104, pathX = 212, evidenceX = 596, connectedX = 972;
+  const pathW = 316, evidenceW = 300, connectedW = 300;
+  const gap = 13;
+  const top = 92;
+
+  // Cards are measured before they are placed: a wrapped path chain is taller
+  // than a one-line one, and a connected case with many evidence types needs a
+  // second chip row.  Even spacing (the old yScale) overlapped both.
+  const pathLines = paths.map((row) => pathChainLines(pathChainTokens(row.label || row.path_family), pathW - 26));
+  const pathH = pathLines.map((lines) => 32 + lines.length * 16 + 20);
+  const evidenceH = evidence.map(() => 56);
+  const connectedChipRows = connected.map((row) => {
+    const probe = sharedChips(row, 0, 0, connectedW - 24);
+    return probe.rows;
+  });
+  // Two header lines now: identity on top, then cosine + shared count, so both
+  // halves of the ranking rule are readable on the card itself.
+  const CONNECTED_CHIP_TOP = 50;
+  // Math.max(rows, 1) keeps the card full height for a neighbour with no shared
+  // labels at all — which the maximally similar case is allowed to be.
+  const connectedH = connectedChipRows.map((rows) => CONNECTED_CHIP_TOP + Math.max(rows, 1) * 20 + 8);
+
+  const stack = (heights) => {
+    const ys = [];
+    let cursor = 0;
+    heights.forEach((h) => { ys.push(cursor); cursor += h + gap; });
+    return { ys, total: Math.max(0, cursor - gap) };
+  };
+  const pathStack = stack(pathH);
+  const evidenceStack = stack(evidenceH);
+  const connectedStack = stack(connectedH);
+
+  const contentH = Math.max(pathStack.total, evidenceStack.total, connectedStack.total, 260);
+  const height = top + contentH + 76;
+  const centerY = top + contentH / 2;
+  const offsetFor = (total) => top + (contentH - total) / 2;
+  const pathTop = offsetFor(pathStack.total);
+  const evidenceTop = offsetFor(evidenceStack.total);
+  const connectedTop = offsetFor(connectedStack.total);
+
+  const pathMid = paths.map((_, i) => pathTop + pathStack.ys[i] + pathH[i] / 2);
+  const evidenceMid = evidence.map((_, i) => evidenceTop + evidenceStack.ys[i] + evidenceH[i] / 2);
+  const connectedMid = connected.map((_, i) => connectedTop + connectedStack.ys[i] + connectedH[i] / 2);
+
+  const pathIndex = new Map(paths.map((row, i) => [row.id, i]));
+  const maxImportance = Math.max(...evidence.map((row) => Number(row.importance || row.abs_delta_pred_proba) || 0), 1e-9);
+  const maxShared = Math.max(...connected.map((row) => Number(row.shared_feature_count) || 0), 1);
+
+  const caseToPathEdges = paths.map((row, i) => {
+    const y = pathMid[i];
     const sw = 1.6 + Math.sqrt((Number(row.importance) || 0) / maxImportance) * 5;
-    return `<path class="local-edge" d="M ${caseX + 54} ${centerY} C 165 ${centerY}, 185 ${y}, ${pathX} ${y}" stroke="${relationColor(row)}" stroke-width="${sw}"></path>`;
+    return `<path class="local-edge" d="M ${caseX + 54} ${centerY} C 150 ${centerY}, 176 ${y}, ${pathX} ${y}" stroke="${relationColor(row)}" stroke-width="${sw.toFixed(2)}"></path>`;
   }).join("");
-  const pathToEvidenceEdges = evidence.map((row) => {
-    const y1 = pathY.get(row.path_id) ?? centerY;
-    const y2 = evidenceY.get(row.id) ?? centerY;
+
+  const pathToEvidenceEdges = evidence.map((row, i) => {
+    const pi = pathIndex.get(row.path_id);
+    const y1 = pi === undefined ? centerY : pathMid[pi];
+    const y2 = evidenceMid[i];
     const sw = 1.4 + Math.sqrt((Number(row.importance || row.abs_delta_pred_proba) || 0) / maxImportance) * 5;
-    return `<path class="local-edge evidence-edge" d="M ${pathX + pathW} ${y1} C 440 ${y1}, 460 ${y2}, ${evidenceX} ${y2}" stroke="${relationColor(row)}" stroke-width="${sw}">
+    return `<path class="local-edge evidence-edge" d="M ${pathX + pathW} ${y1} C ${pathX + pathW + 46} ${y1}, ${evidenceX - 46} ${y2}, ${evidenceX} ${y2}" stroke="${relationColor(row)}" stroke-width="${sw.toFixed(2)}">
       <title>${escapeHtml(row.path_family || row.relation_types || row.evidence_type)}</title>
     </path>`;
   }).join("");
-  const connectedEdges = connected.map((row) => {
-    const y = connectedY.get(`case:${row.case_index}`) ?? centerY;
-    const sw = Math.min(7, 1.3 + Math.sqrt(Number(row.shared_feature_count) || 0));
-    return `<path class="local-edge connected-edge" d="M ${caseX + 54} ${centerY} C 430 ${centerY}, 600 ${y}, ${connectedX} ${y}" stroke="#657383" stroke-width="${sw}"></path>`;
+
+  // Feature-overlap links are not message-passing paths, so they get their own
+  // dashed style and a thickness that actually separates 6 shared from 3.
+  const connectedEdges = connected.map((row, i) => {
+    const y = connectedMid[i];
+    const share = Number(row.shared_feature_count) || 0;
+    const sw = 1.2 + (share / maxShared) * 5.5;
+    const parts = Object.entries(row.shared_breakdown || {}).map(([type, n]) => `${n} ${type}`);
+    const cosine = row.cosine_similarity;
+    // The nearest case in embedding space may share nothing at all, so its link
+    // is drawn as a similarity link instead of a (possibly zero-width) overlap.
+    const cls = row.is_most_similar ? "local-edge connected-edge most-similar-edge" : "local-edge connected-edge";
+    const tip = `Case ${row.case_index}: ${share} shared feature${share === 1 ? "" : "s"}${parts.length ? ` (${parts.join(", ")})` : ""}`
+      + (cosine === null || cosine === undefined ? "" : `\ncosine similarity ${number(cosine, 4)}`)
+      + (row.is_most_similar ? "\nMaximally similar case in the model's embedding space" : "");
+    return `<path class="${cls}" d="M ${caseX + 40} ${centerY + 44} C 420 ${centerY + 150}, 780 ${y}, ${connectedX} ${y}" stroke-width="${(row.is_most_similar ? Math.max(sw, 2.6) : sw).toFixed(2)}">
+      <title>${escapeHtml(tip)}</title>
+    </path>`;
   }).join("");
 
-  const pathCards = paths.map((row) => {
-    const y = pathY.get(row.id) - 23;
+  const pathCards = paths.map((row, i) => {
+    const y = pathTop + pathStack.ys[i];
+    const h = pathH[i];
+    const color = relationColor(row);
+    const summaryLine = directionSummary(row.directions);
+    const title = `${row.path_family}\n${number(row.group_count, 0)} counterfactual group(s) · max |Δp| ${number(row.importance, 4)}`
+      + (summaryLine ? `\n\n${summaryLine}` : "");
     return `
       <g class="path-card">
-        <rect x="${pathX}" y="${y}" width="${pathW}" height="46" rx="8" fill="#eef6fb" stroke="${relationColor(row)}"></rect>
-        <text class="graph-label strong" x="${pathX + 11}" y="${y + 18}" text-anchor="start">${escapeHtml(graphLabel(row.label, 27))}</text>
-        <text class="graph-micro" x="${pathX + 11}" y="${y + 35}" text-anchor="start">${number(row.group_count, 0)} groups | max |Δp| ${number(row.importance, 3)}</text>
+        <title>${escapeHtml(title)}</title>
+        <rect x="${pathX}" y="${y}" width="${pathW}" height="${h}" rx="9" fill="#f4f9fc" stroke="${color}"></rect>
+        <rect x="${pathX}" y="${y}" width="4.5" height="${h}" rx="2.2" fill="${color}"></rect>
+        <text class="graph-tag" x="${pathX + 14}" y="${y + 19}" fill="${color}">path family ${i + 1}</text>
+        ${directionBadge(row.directions, pathX + pathW - 12, y + 8)}
+        ${pathChainSvg(pathLines[i], pathX + 14, y + 40, 16)}
+        <text class="graph-micro card-meta" x="${pathX + 14}" y="${y + h - 9}" text-anchor="start">${number(row.group_count, 0)} group${row.group_count === 1 ? "" : "s"} · max |Δp| ${number(row.importance, 3)}</text>
       </g>`;
   }).join("");
-  const evidenceCards = evidence.map((row) => {
-    const y = evidenceY.get(row.id) - 24;
-    return svgFeatureCard({
+
+  const evidenceCards = evidence.map((row, i) => {
+    const y = evidenceTop + evidenceStack.ys[i];
+    const card = svgFeatureCard({
       evidence_type: row.evidence_type,
       evidence_name: row.label || row.evidence_name,
-    }, evidenceX, y, evidenceW, 48, {
-      max: 34,
-      metaText: row.support_train_n !== undefined && row.support_train_n !== null ? `support ${number(row.support_train_n, 0)}` : "",
+    }, evidenceX, y, evidenceW, evidenceH[i], {
+      max: 30,
+      // Train-support counts are dropped from the card: they describe the corpus,
+      // not this case's explanation, and read as if they were part of it.
+      titleExtra: (Number(row.direction_count) || 0) > 0 ? directionSummary(row.directions) : "",
     });
+    const badge = (Number(row.direction_count) || 0) > 0
+      ? directionBadge(row.directions, evidenceX + evidenceW - 11, y + evidenceH[i] - 21)
+      : "";
+    return `${card}${badge}`;
   }).join("");
-  const connectedCards = connected.map((row) => {
-    const y = connectedY.get(`case:${row.case_index}`) - 24;
-    const tone = String(row.target_label) === String(summary.target_label) ? "#2f855a" : "#b36b13";
+
+  const connectedCards = connected.map((row, i) => {
+    const y = connectedTop + connectedStack.ys[i];
+    const h = connectedH[i];
+    const same = String(row.target_label) === String(summary.target_label);
+    const tone = same ? "#2f855a" : "#b36b13";
+    const share = Number(row.shared_feature_count) || 0;
+    const chips = sharedChips(row, connectedX + 12, y + CONNECTED_CHIP_TOP - 8, connectedW - 24);
+    const names = (row.shared_items || []).map((item) => `· ${item.feature_type}: ${item.feature_name}`);
+    const extra = Number(row.shared_items_truncated) || 0;
+    const cosine = row.cosine_similarity;
+    const cosineText = cosine === null || cosine === undefined ? "cos —" : `cos ${number(cosine, 3)}`;
+    // True and predicted labels both matter here: the similarity ranking pulls in
+    // neighbours that agree with the prediction, so a neighbour the model got
+    // wrong is worth seeing rather than hiding behind a single "label" field.
+    const trueLabel = row.target_label ?? "";
+    const predLabel = row.pred_label ?? "";
+    const hasPred = predLabel !== "" && predLabel !== null && predLabel !== undefined;
+    const mispredicted = hasPred && String(trueLabel) !== String(predLabel);
+    const badge = row.is_most_similar
+      ? `<g class="most-similar-badge">
+           <rect x="${connectedX + connectedW - 96}" y="${y + 26}" width="84" height="15" rx="7.5"></rect>
+           <text x="${connectedX + connectedW - 54}" y="${y + 37}" text-anchor="middle">most similar</text>
+         </g>`
+      : "";
     return `
-      <g class="connected-case-card">
-        <title>${escapeHtml(row.case_id || `Case ${row.case_index}`)}</title>
-        <rect x="${connectedX}" y="${y}" width="${connectedW}" height="48" rx="8" fill="${tone === "#2f855a" ? "#effaf3" : "#fff7e8"}" stroke="${tone}"></rect>
-        <text class="graph-label strong" x="${connectedX + 11}" y="${y + 18}" text-anchor="start">Case ${escapeHtml(row.case_index)}</text>
-        <text class="graph-micro" x="${connectedX + 11}" y="${y + 35}" text-anchor="start">${number(row.shared_feature_count, 0)} shared features | label ${escapeHtml(row.target_label ?? "")}</text>
+      <g class="connected-case-card${row.is_most_similar ? " is-most-similar" : ""}">
+        <title>${escapeHtml(`${row.case_id || `Case ${row.case_index}`}${row.is_most_similar ? "\nMaximally similar case in the model's embedding space" : ""}\nTrue label ${trueLabel} · predicted ${hasPred ? predLabel : "unknown"}${mispredicted ? " (model got this case wrong)" : ""}${row.confidence === null || row.confidence === undefined ? "" : ` · confidence ${number(row.confidence, 3)}`}${row.split ? ` · ${row.split} split` : ""}\nCosine similarity: ${cosine === null || cosine === undefined ? "unknown" : number(cosine, 4)}\nShares ${share} feature${share === 1 ? "" : "s"} with this case:\n${names.join("\n")}${extra > 0 ? `\n· +${extra} more` : ""}`)}</title>
+        <rect x="${connectedX}" y="${y}" width="${connectedW}" height="${h}" rx="9" fill="${same ? "#effaf3" : "#fff7e8"}" stroke="${tone}" stroke-width="${row.is_most_similar ? 2.2 : 1}"></rect>
+        <text class="graph-label strong" x="${connectedX + 12}" y="${y + 20}" text-anchor="start">Case ${escapeHtml(row.case_index)}</text>
+        <text class="graph-micro card-meta" x="${connectedX + connectedW - 12}" y="${y + 20}" text-anchor="end" fill="${tone}">true ${escapeHtml(trueLabel)} · <tspan fill="${mispredicted ? "#b83232" : tone}">pred ${hasPred ? escapeHtml(predLabel) : "—"}${mispredicted ? " ✗" : ""}</tspan></text>
+        <text class="graph-micro card-meta" x="${connectedX + 12}" y="${y + 37}" text-anchor="start">${escapeHtml(cosineText)} · ${share} shared</text>
+        ${badge}
+        ${chips.svg || `<text class="graph-micro card-empty" x="${connectedX + 12}" y="${y + CONNECTED_CHIP_TOP + 4}" text-anchor="start">no shared labels — similarity only</text>`}
       </g>`;
   }).join("");
-  const connectedButtons = connected.filter((row) => String(row.split || "") === "test").slice(0, 10).map((row) => (
-    `<button data-open-case="${escapeHtml(row.case_index)}">Case ${escapeHtml(row.case_index)} (${number(row.shared_feature_count, 0)})</button>`
+
+  const buttonRows = connected.filter((row) => String(row.split || "") === "test" || row.is_most_similar).slice(0, 10);
+  const connectedButtons = buttonRows.map((row) => (
+    `<button data-open-case="${escapeHtml(row.case_index)}">${row.is_most_similar ? "★ " : ""}Case ${escapeHtml(row.case_index)} (${number(row.shared_feature_count, 0)} shared${row.cosine_similarity === null || row.cosine_similarity === undefined ? "" : `, cos ${number(row.cosine_similarity, 3)}`})</button>`
   )).join("");
+
+  // Roll the per-case breakdowns up so the caption can say what "shared" means
+  // for this case overall, not just neighbour by neighbour.
+  const totals = {};
+  connected.forEach((row) => {
+    Object.entries(row.shared_breakdown || {}).forEach(([type, n]) => {
+      totals[type] = (totals[type] || 0) + Number(n || 0);
+    });
+  });
+  const totalChips = Object.entries(totals).sort((a, b) => b[1] - a[1]).map(([type, n]) => (
+    `<span class="shared-legend-chip" style="--chip:${featureColor(type)};--chip-bg:${featureFill(type)}">${escapeHtml(type)} <b>${number(n, 0)}</b></span>`
+  )).join("");
+
+  const mirrorNote = Number(stats.mirror_pairs_merged) > 0
+    ? `<span><strong>${number(stats.mirror_pairs_merged, 0)}</strong> rev_ mirror pairs merged</span>`
+    : "";
 
   return `
     <div class="case-graph-block">
       <div class="case-graph-head">
         <h4>Local Explanation Subgraph</h4>
-        <p>Shows the selected case pointing into its counterfactual path families, evidence groups, and feature-overlap neighbors. Counts include all generated groups; the figure shows the strongest nodes to keep it readable.</p>
+        <p>Shows the selected case pointing into its counterfactual path families, evidence groups, and its neighbouring cases. Counts include all generated groups; the figure shows the strongest nodes to keep it readable.</p>
+        <div class="rank-toggle" role="group" aria-label="Rank connected cases by">
+          <span class="rank-toggle-label">Rank connected cases by</span>
+          <button type="button" class="rank-toggle-option${rankMode === "shared" ? " is-active" : ""}"
+            data-connected-rank="shared" aria-pressed="${rankMode === "shared"}"
+            title="Neighbours ordered purely by how many statutes, precedents, courts and judges they share with this case.">shared labels</button>
+          <button type="button" class="rank-toggle-option${rankMode === "similarity" ? " is-active" : ""}${similarityAvailable ? "" : " is-unavailable"}"
+            data-connected-rank="similarity" aria-pressed="${rankMode === "similarity"}"
+            ${similarityAvailable ? "" : "disabled"}
+            title="${similarityAvailable
+              ? "Neighbours ordered by cosine similarity in the model's embedding space; cases that are equally similar are then ordered by how many labels they share."
+              : "This server process was started before the similarity ranking was added. Restart the visualizer to enable it."}">similarity, then shared labels</button>
+        </div>
+        <p class="rank-toggle-note">${!similarityAvailable
+          ? "This visualizer process predates the similarity ranking, so only the shared-label order is available — restart the server to enable the toggle."
+          : rankMode === "similarity"
+          ? `Similarity ranks first: neighbours are ordered by cosine in the model's own representation, and cases that are equally similar (equal to ${number(stats.similarity_tie_decimals ?? 3, 0)} decimal places) are ordered by how many labels they share.`
+          : "Ordered by the number of shared labels — statutes, precedents, courts and judges — regardless of where the cases sit in the model's representation."}
+          ${mostSimilar ? `The maximally similar case (<strong>Case ${escapeHtml(mostSimilar.case_index)}</strong>, cos ${number(mostSimilar.cosine_similarity, 3)}) is always shown in both orders.` : ""}</p>
       </div>
       <div class="graph-summary">
         <span><strong>${number(stats.total_groups, 0)}</strong> counterfactual groups</span>
         <span><strong>${number(stats.total_paths, 0)}</strong> path families</span>
         <span><strong>${number(stats.connected_case_count, 0)}</strong> feature-connected cases</span>
+        ${mostSimilar ? `<span>max similarity <strong>${number(mostSimilar.cosine_similarity, 3)}</strong> (Case ${escapeHtml(mostSimilar.case_index)})</span>` : ""}
         <span><strong>${number(stats.shown_evidence, 0)}</strong> evidence nodes shown</span>
+        ${mirrorNote}
       </div>
+      ${totalChips ? `<div class="shared-legend"><span class="shared-legend-label">Shared with the neighbours on the right:</span>${totalChips}</div>` : ""}
       <div class="graph-frame local-graph-frame">
         <svg class="graph-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Local case explanation graph with paths and connected cases">
-          <text class="graph-axis-title" x="${pathX}" y="42">Connected path families</text>
-          <text class="graph-axis-title" x="${evidenceX}" y="42">Evidence groups</text>
-          <text class="graph-axis-title" x="${connectedX}" y="42">Other connected cases</text>
+          <text class="graph-axis-title" x="${pathX}" y="44">Connected path families</text>
+          <text class="graph-axis-title" x="${evidenceX}" y="44">Evidence groups</text>
+          <text class="graph-axis-title" x="${connectedX}" y="44">${rankMode === "similarity" ? "Most similar cases" : "Other connected cases"}</text>
+          <text class="graph-axis-sub" x="${pathX}" y="63">rev_ mirrors folded onto the forward relation${hiddenPaths > 0 ? ` · +${hiddenPaths} weaker not shown` : ""}</text>
+          <text class="graph-axis-sub" x="${evidenceX}" y="63">mirrored edge pairs shown once${hiddenEvidence > 0 ? ` · +${hiddenEvidence} not shown` : ""}</text>
+          <text class="graph-axis-sub" x="${connectedX}" y="63">${rankMode === "similarity" ? "cosine first, shared labels break ties" : "ranked by shared labels"}${hiddenConnected > 0 ? ` · +${hiddenConnected} not shown` : ""}</text>
           ${connectedEdges}
           ${caseToPathEdges}
           ${pathToEvidenceEdges}
           <g class="case-node center">
             <circle cx="${caseX}" cy="${centerY}" r="54"></circle>
             ${svgText(`Case ${summary.case_index}`, caseX, centerY - 9, { max: 20, cls: "graph-label strong" })}
-            ${svgText(`pred ${summary.baseline_pred_label}`, caseX, centerY + 13, { max: 20, cls: "graph-micro" })}
+            ${svgText(`true ${summary.target_label} · pred ${summary.baseline_pred_label}`, caseX, centerY + 13, { max: 22, cls: "graph-micro" })}
           </g>
           ${pathCards}
           ${evidenceCards}
           ${connectedCards || svgText("No feature-overlap cases", connectedX + connectedW / 2, centerY, { cls: "graph-empty-label", max: 28 })}
         </svg>
       </div>
+      <p class="panel-note-inline">Path chains read <b>node ▸ relation ▸ node</b>. Every relation exists twice in the graph
+        (<code>ToUndirected()</code> mirrors each edge as <code>rev_</code>), and the pair is drawn here as a single card —
+        hover it to see both directions and their separate effects. Dashed grey links are feature overlap, not
+        message-passing paths — hover a chip to list the shared judges, courts, statutes, provisions and precedents.
+        The highlighted card is the maximally similar case in the model's embedding space; it can share few labels or none,
+        which is exactly why it never appeared under the shared-label ranking alone.</p>
       ${connectedButtons ? `<div class="graph-actions connected-actions">${connectedButtons}</div>` : ""}
-    </div>`;
+    </div>
+  `;
 }
+
 
 // ---------------------------------------------------------------------------
 // OVERVIEW
@@ -1419,11 +2116,21 @@ async function loadExp5() {
 // EXP 6: Opposite Cases
 // ---------------------------------------------------------------------------
 
+const EXP6_GRAPH_PANELS = ["exp6EgoGraph", "exp6SimilarGraph", "exp6ContrastGraph"];
+
+function exp6Options() {
+  return {
+    pool: byId("exp6Pool")?.value || "test",
+    order: byId("exp6Order")?.value || "counterfactual",
+    match: state.exp6Match || "target",
+  };
+}
+
 async function loadExp6() {
   const data = await api("/api/exp/neighborhoods");
   renderFindings("exp6Findings", data.findings);
   if (!data.available) {
-    ["exp6CosineSummary", "exp6FeatureTypes", "exp6Pairs", "exp6ContrastGraph"].forEach((id) => byId(id).innerHTML = `<div class="detail-body empty">Neighborhood outputs not found.</div>`);
+    ["exp6CosineSummary", "exp6FeatureTypes", "exp6Pairs", ...EXP6_GRAPH_PANELS].forEach((id) => byId(id).innerHTML = `<div class="detail-body empty">Neighborhood outputs not found.</div>`);
     renderResultStory("exp6ResultStory", []);
     return;
   }
@@ -1443,8 +2150,8 @@ async function loadExp6() {
     {
       kicker: "Closest pair",
       valueText: number(topPair.cosine_similarity, 4) || "—",
-      title: compactText(topPair.case_id || "No pair found", 90),
-      body: `Opposite case ${topPair.nearest_opposite_case_index ?? "—"}; use the table to inspect the boundary evidence.`,
+      title: compactText(topPair.case_title || topPair.case_id || "No pair found", 90),
+      body: `Decided the other way: ${compactText(topPair.nearest_opposite_case_title || String(topPair.nearest_opposite_case_index ?? "—"), 80)}.`,
       tone: "neutral",
     },
     {
@@ -1462,8 +2169,10 @@ async function loadExp6() {
       tone: oppositeTop.feature_type === "precedent" || oppositeTop.feature_type === "provision" ? "good" : "neutral",
     },
   ]);
-  state.exp6SelectedCase = topPair.case_index;
-  if (byId("exp6CasePick")) byId("exp6CasePick").value = topPair.case_index ?? "";
+  state.exp6SelectedCase = data.initial_case_index ?? topPair.case_index;
+  if (byId("exp6CasePick")) byId("exp6CasePick").value = state.exp6SelectedCase ?? "";
+  byId("exp6EgoGraph").innerHTML = renderCaseEgoGraph(data.ego_graph);
+  byId("exp6SimilarGraph").innerHTML = renderCaseContrastGraph(data.similar_graph);
   byId("exp6ContrastGraph").innerHTML = renderCaseContrastGraph(data.contrast_graph);
 
   byId("exp6CosineSummary").innerHTML = `
@@ -1484,7 +2193,9 @@ async function loadExp6() {
   loadExp6Pairs(data.top_pairs || []);
 }
 
-async function loadOppositeGraphForCase(caseIndex) {
+// Re-centres all three graphs (similarity network, same-label contrast,
+// opposite-label contrast) on one case.
+async function loadExp6Case(caseIndex) {
   const cleanIndex = String(caseIndex ?? "").trim();
   if (!cleanIndex) return;
   state.exp6SelectedCase = cleanIndex;
@@ -1492,12 +2203,42 @@ async function loadOppositeGraphForCase(caseIndex) {
   document.querySelectorAll("#exp6Pairs tr.clickable").forEach((other) => {
     other.classList.toggle("selected", String(other.dataset.caseIndex) === cleanIndex);
   });
-  byId("exp6ContrastGraph").innerHTML = `<div class="detail-body empty">Loading contrast graph for case ${escapeHtml(cleanIndex)}…</div>`;
+  const { pool, order, match } = exp6Options();
+  const qs = `case_index=${encodeURIComponent(cleanIndex)}&pool=${encodeURIComponent(pool)}`
+    + `&match=${encodeURIComponent(match)}`;
+  EXP6_GRAPH_PANELS.forEach((id) => {
+    byId(id).innerHTML = `<div class="detail-body empty">Loading case ${escapeHtml(cleanIndex)}…</div>`;
+  });
+  const panels = [
+    ["exp6EgoGraph", `/api/case_ego_graph?${qs}&k_same=3&k_opposite=3`, renderCaseEgoGraph],
+    ["exp6SimilarGraph", `/api/contrast_graph?${qs}&side=same&order=${encodeURIComponent(order)}`, renderCaseContrastGraph],
+    ["exp6ContrastGraph", `/api/contrast_graph?${qs}&side=opposite&order=${encodeURIComponent(order)}`, renderCaseContrastGraph],
+  ];
+  await Promise.all(panels.map(async ([id, url, render]) => {
+    try {
+      byId(id).innerHTML = render(await api(url));
+    } catch (err) {
+      byId(id).innerHTML = `<div class="detail-body empty">${escapeHtml(err.message)}</div>`;
+    }
+  }));
+}
+
+async function suggestExp6Case() {
+  const button = byId("exp6Suggest");
+  const original = button ? button.textContent : "";
+  if (button) { button.disabled = true; button.textContent = "Finding…"; }
   try {
-    const graph = await api(`/api/opposite_graph?case_index=${encodeURIComponent(cleanIndex)}`);
-    byId("exp6ContrastGraph").innerHTML = renderCaseContrastGraph(graph);
-  } catch (err) {
-    byId("exp6ContrastGraph").innerHTML = `<div class="detail-body empty">${escapeHtml(err.message)}</div>`;
+    const data = await api(`/api/showcase_cases?limit=12&pool=${encodeURIComponent(exp6Options().pool)}`);
+    const cases = (data.cases || []).filter((row) => String(row.case_index) !== String(state.exp6SelectedCase));
+    if (!cases.length) return;
+    await loadExp6Case(cases[0].case_index);
+    byId("exp6Showcase").innerHTML = `<span class="showcase-label">Cases that make legible figures:</span>` + cases.slice(0, 8).map((row) => (
+      `<button class="showcase-pick" data-load-exp6-case="${escapeHtml(row.case_index)}"
+         title="${escapeHtml(`${row.case_id} · ${row.rich_edges} rich edges · ${row.shared_total} shared evidence items · mean cosine ${row.mean_cosine}`)}">
+        ${escapeHtml(compactText(String(row.short_title || row.case_index), 42))}</button>`
+    )).join("");
+  } finally {
+    if (button) { button.disabled = false; button.textContent = original; }
   }
 }
 
@@ -1508,10 +2249,11 @@ function loadExp6Pairs(pairs) {
   ) : pairs;
   byId("exp6Pairs").innerHTML = renderSimpleTable(filtered, [
     { key: "case_index", label: "Case", num: true, format: "num", digits: 0 },
+    { key: "case_title", label: "Case name" },
     { key: "target_label", label: "Target", format: "label" },
     { key: "pred_label", label: "Pred", format: "label" },
-    { key: "community_id", label: "Community", num: true, format: "num", digits: 0 },
-    { key: "nearest_opposite_case_index", label: "Opposite case", num: true, format: "num", digits: 0 },
+    { key: "nearest_opposite_case_index", label: "Opp. case", num: true, format: "num", digits: 0 },
+    { key: "nearest_opposite_case_title", label: "Opposite case name" },
     { key: "nearest_opposite_target_label", label: "Opp. label", format: "label" },
     { key: "cosine_similarity", label: "Cosine", num: true, format: "num" },
     { key: "top_query_only_features", label: "Case-only evidence", format: "list", limit: 3 },
@@ -1519,7 +2261,7 @@ function loadExp6Pairs(pairs) {
   ], { clickable: true, barColumn: "cosine_similarity" });
   document.querySelectorAll("#exp6Pairs tr.clickable").forEach((row) => {
     row.classList.toggle("selected", String(row.dataset.caseIndex) === String(state.exp6SelectedCase));
-    row.addEventListener("click", () => loadOppositeGraphForCase(row.dataset.caseIndex));
+    row.addEventListener("click", () => loadExp6Case(row.dataset.caseIndex));
   });
   // Cache pairs so search re-uses without refetching
   state.exp6Pairs = pairs;
@@ -2301,6 +3043,8 @@ async function loadCaseDetail(caseIndex) {
   byId("caseEvidenceInspector").className = "detail-body empty";
   byId("caseEvidenceInspector").innerHTML = "Loading evidence inspector…";
   const data = await api(`/api/case?case_index=${encodeURIComponent(caseIndex)}`);
+  // Cached so the ranking toggle can re-render the subgraph without a refetch.
+  state.caseDetailData = data;
   const summary = data.summary;
   if (!summary) {
     target.className = "detail-body empty";
@@ -2527,6 +3271,21 @@ function wireEvents() {
     });
   });
   document.body.addEventListener("click", async (e) => {
+    // Emitted inside the exp6 SVGs and the showcase picker; re-centres all
+    // three similarity graphs without leaving the tab.
+    const recentre = e.target.closest("[data-load-exp6-case]");
+    if (recentre) {
+      e.preventDefault();
+      loadExp6Case(recentre.dataset.loadExp6Case);
+      return;
+    }
+    // Re-sorts the connected-case column of the local subgraph in place.
+    const rank = e.target.closest("[data-connected-rank]");
+    if (rank) {
+      e.preventDefault();
+      setConnectedRankMode(rank.dataset.connectedRank);
+      return;
+    }
     const openCase = e.target.closest("[data-open-case]");
     if (openCase) {
       e.preventDefault();
@@ -2563,9 +3322,30 @@ function wireEvents() {
   byId("exp6Search").addEventListener("input", () => {
     if (state.exp6Pairs) loadExp6Pairs(state.exp6Pairs);
   });
-  byId("exp6LoadCase").addEventListener("click", () => loadOppositeGraphForCase(byId("exp6CasePick").value));
+  byId("exp6LoadCase").addEventListener("click", () => loadExp6Case(byId("exp6CasePick").value));
   byId("exp6CasePick").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") loadOppositeGraphForCase(byId("exp6CasePick").value);
+    if (e.key === "Enter") loadExp6Case(byId("exp6CasePick").value);
+  });
+  byId("exp6Suggest").addEventListener("click", suggestExp6Case);
+  ["exp6Pool", "exp6Order"].forEach((id) => {
+    byId(id).addEventListener("change", () => {
+      if (state.exp6SelectedCase) loadExp6Case(state.exp6SelectedCase);
+    });
+  });
+  // Pairing rule is a prominent two-button switch rather than a select: which
+  // one is active changes what the whole panel is claiming, so it must not be
+  // possible to miss.
+  document.querySelectorAll(".match-option").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (state.exp6Match === button.dataset.match) return;
+      state.exp6Match = button.dataset.match;
+      document.querySelectorAll(".match-option").forEach((other) => {
+        const active = other === button;
+        other.classList.toggle("is-active", active);
+        other.setAttribute("aria-pressed", String(active));
+      });
+      if (state.exp6SelectedCase) loadExp6Case(state.exp6SelectedCase);
+    });
   });
 
   byId("tableSelect").addEventListener("input", (e) => {

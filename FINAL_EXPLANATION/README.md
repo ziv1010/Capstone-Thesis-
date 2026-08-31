@@ -22,6 +22,9 @@ explanation results:
 | Path | Role |
 |------|------|
 | `*.py` | Explanation, validation, community, report, and visualizer modules (entry points below). |
+| `presentation_graphs.py` | Shared data layer for the case-similarity graphs: nearest same/opposite-label cases, shared-evidence sets, counterfactual factor lookup, case display names. Used by the visualizer *and* the figure scripts. |
+| `presentation_figure_style.py` | Matplotlib primitives (evidence cards, case nodes, connectors) shared by `generate_paper_figures.py` and `generate_presentation_figures.py`. |
+| `build_counterfactual_factor_index.py` | One-off: compacts the 390 MB `case_counterfactual_groups.csv` into the per-case factor index the evidence badges read. |
 | [`run_scripts/`](run_scripts/README.md) | Shell launchers: single-GPU, multi-GPU, audits, full workflow, visualizer. |
 | [`docs/`](docs/README.md) | Reading guides — how to *interpret* the outputs (`VISUALIZER_GUIDE.md`). |
 | [`figures/`](figures/README.md) | Final PNG/PDF paper figures generated from output tables. |
@@ -98,9 +101,28 @@ bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh \
 
 Open **http://127.0.0.1:8899**. The server (`visualizer.py`, env `thesis_work`) merges the
 CSVs server-side and presents: summary metrics · faithfulness curves · evidence support ·
-identity-shortcut audits · communities · opposite-label comparisons · embedding clusters ·
-case-level traceability drilldowns · raw table browsing.
-The defaults above are baked into the launcher, so a bare
+identity-shortcut audits · communities · similar/opposite-label case comparisons · embedding
+clusters · case-level traceability drilldowns · raw table browsing.
+
+**Experiment 6** builds its three graphs live from `hgt_case_embeddings.npz` — a case
+similarity network (3 closest same-label + 3 closest opposite-label cases, edges labelled with
+the evidence they share) followed by the two contrast diagrams. Evidence boxes carry their
+counterfactual rank, and every case node shows its true label *and* the model's prediction.
+
+⚠️ **Read the labels carefully.** Pairing defaults to the *true* label, and the nearest
+opposite-true-label case gets the **same** prediction from the model ~93% of the time. Such a
+pair shows that the model could not separate the two cases — it does **not** show what made
+their outcomes differ. The **Compare this case against…** switch at the top of the Case Selector
+flips the pairing to *the closest case the model decided differently* (`--match pred` in the
+figure script) — the only setting where "what drove the difference" is a real question.
+
+Run the one-off index builder first so the counterfactual badges appear:
+
+```bash
+micromamba run -n thesis_work python FINAL_EXPLANATION/build_counterfactual_factor_index.py
+```
+
+The launcher defaults are baked in, so a bare
 `bash FINAL_EXPLANATION/run_scripts/run_visualizer.sh` works once the main outputs exist.
 📖 Interpretation guide: [`docs/VISUALIZER_GUIDE.md`](docs/VISUALIZER_GUIDE.md).
 
@@ -156,13 +178,22 @@ Each run writes machine JSON, case HTML, standalone graph HTML, DOT files, and a
 
 ---
 
-## 🖼️ Paper Figures
+## 🖼️ Paper & Presentation Figures
 
 ```bash
 micromamba run -n thesis_work python FINAL_EXPLANATION/generate_paper_figures.py
+
+# Slide figures for one case: similarity network + same-label and opposite-label contrasts
+micromamba run -n thesis_work python FINAL_EXPLANATION/generate_presentation_figures.py \
+  --case-index 51419 --formats png pdf svg
+
+# Rank cases by how legible their figures come out
+micromamba run -n thesis_work python FINAL_EXPLANATION/generate_presentation_figures.py --suggest 20
 ```
 
-Writes PNG + PDF into [`figures/`](figures/README.md).
+Writes PNG + PDF (+ SVG) into [`figures/`](figures/README.md). Both scripts and the visualizer
+share `presentation_graphs.py` (data) and `presentation_figure_style.py` (drawing), so the
+figures and the on-screen panels always agree.
 
 ---
 

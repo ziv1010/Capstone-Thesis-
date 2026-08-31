@@ -708,9 +708,57 @@ tr.selected { background: #eaf5f8; }
   stroke: #b36b13;
 }
 
+.case-node.same circle {
+  stroke: #2f855a;
+}
+
 .case-node.center circle {
   fill: #f7fbfb;
   stroke-width: 2.8;
+}
+
+.case-node-label {
+  fill: #1f2f3f;
+  font-size: 13px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.case-node-label.wrong {
+  fill: #b23a3a;
+}
+
+.case-node-wrong {
+  fill: #b23a3a;
+  font-size: 8.5px;
+  font-weight: 800;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.case-node.misclassified circle {
+  stroke-dasharray: 6 4;
+}
+
+.case-chip-meta b.wrong {
+  color: #b23a3a;
+}
+
+.verdict-warn {
+  border-color: #e7b9b5 !important;
+  background: #fdeceb !important;
+  color: #8c2f2f !important;
+}
+
+.verdict-ok {
+  border-color: #b6dcc6 !important;
+  background: #eefaf3 !important;
+  color: #1f6b47 !important;
+}
+
+.graph-label.case-caption {
+  fill: #24323f;
+  font-size: 11.5px;
 }
 
 .contrast-edge,
@@ -725,12 +773,254 @@ tr.selected { background: #eaf5f8; }
   stroke-opacity: 0.34;
 }
 
-.feature-card rect {
+.feature-card rect.card-body {
   filter: drop-shadow(0 4px 10px rgba(20, 35, 48, 0.07));
 }
 
-.feature-card.identity rect {
+.feature-card.identity rect.card-body {
   fill: #fff8e8;
+}
+
+.feature-card.cf-unscored rect.card-body {
+  opacity: 0.62;
+}
+
+/* ── Counterfactual factor badges ─────────────────────────────────────── */
+
+.cf-badge text {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+.cf-badge rect {
+  stroke-width: 1.1;
+}
+
+.cf-badge.muted text {
+  fill: #97a4b1;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.cf-ribbon {
+  pointer-events: none;
+}
+
+.cf-legend {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #fbfdfe;
+  font-size: 12px;
+}
+
+.cf-legend-key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  color: #4f6070;
+}
+
+.cf-swatch {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.cf-swatch.supports { background: #e6f6ed; border: 1.2px solid #1f7a4d; }
+.cf-swatch.opposes  { background: #fdeceb; border: 1.2px solid #b23a3a; }
+.cf-swatch.top      { background: #52616f; width: 5px; height: 15px; border-radius: 2.5px; }
+
+.cf-legend-factors {
+  margin-bottom: 9px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.cf-legend-heading {
+  margin-bottom: 6px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cf-legend-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.cf-legend-label {
+  min-width: 116px;
+  font-weight: 700;
+  color: #4f6070;
+}
+
+.cf-legend-none {
+  color: #8a96a3;
+  font-style: italic;
+}
+
+.cf-legend-factors .panel-note-inline {
+  margin: 6px 0 0;
+}
+
+.cf-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #cfd9e2;
+  background: #ffffff;
+  font-size: 11.5px;
+}
+
+.cf-chip.supports { border-color: #1f7a4d; background: #f2fbf6; }
+.cf-chip.opposes  { border-color: #b23a3a; background: #fef6f5; }
+.cf-chip.no-box   { opacity: 0.62; }
+.cf-chip b { font-weight: 900; }
+.cf-chip i { color: #5e6d7c; font-style: normal; font-weight: 700; }
+
+/* ── Case names ───────────────────────────────────────────────────────── */
+
+.case-name-summary .case-chip {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 460px;
+  padding: 5px 11px;
+  border: 1px solid #d5e2e7;
+  border-radius: 999px;
+  background: #f6fafb;
+  font-size: 12px;
+}
+
+.case-chip em {
+  font-style: normal;
+  font-weight: 800;
+  color: #5e6d7c;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+}
+
+.case-chip strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+/* Neutralise the .graph-summary span pill styling for spans nested in a chip. */
+.case-name-summary .case-chip span {
+  display: inline;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.case-chip-meta {
+  color: #5e6d7c;
+}
+
+.case-lookup {
+  color: var(--chapter);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.case-lookup:hover {
+  text-decoration: underline;
+}
+
+/* ── Case similarity network ──────────────────────────────────────────── */
+
+.ego-node ellipse {
+  fill: #2c6b85;
+  stroke: #1b4a5e;
+  stroke-width: 1.6;
+  cursor: pointer;
+}
+
+.ego-node.center ellipse {
+  fill: #1f4f66;
+  stroke: #12303f;
+  stroke-width: 2.4;
+  cursor: default;
+}
+
+.ego-node.same ellipse { fill: #2f7a5c; stroke: #1c5540; }
+.ego-node.opposite ellipse { fill: #a2662a; stroke: #77471a; }
+.ego-node:not(.center):hover ellipse { filter: brightness(1.14); }
+
+.ego-edge path {
+  fill: none;
+  stroke-opacity: 0.55;
+  stroke-linecap: round;
+}
+
+.ego-edge-label {
+  fill: #24323f;
+  font-size: 12.5px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.ego-edge-cos {
+  fill: #61707f;
+  font-size: 10.5px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+.showcase-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px 12px;
+}
+
+.showcase-strip:empty {
+  padding: 0;
+}
+
+.showcase-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #5e6d7c;
+}
+
+.showcase-pick {
+  padding: 4px 10px;
+  border: 1px solid #cfd9e2;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #24323f;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.showcase-pick:hover {
+  border-color: var(--chapter);
+  color: var(--chapter);
 }
 
 .path-card rect,
@@ -748,6 +1038,134 @@ tr.selected { background: #eaf5f8; }
 .connected-case-card .graph-micro {
   fill: #4f6070;
   font-weight: 600;
+}
+
+/* Path families render as a wrapped node/relation chain instead of a truncated
+   string, so `case->has_arguments->arguments` and its longer cousins no longer
+   collapse onto the same label. */
+.path-chain {
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.path-chain .path-node-token {
+  fill: #16283a;
+  font-weight: 800;
+}
+
+.path-chain .path-rel-token {
+  fill: #55697c;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.path-chain .path-sep {
+  fill: #a9b7c4;
+  font-weight: 700;
+}
+
+.graph-axis-sub {
+  fill: #7b8a99;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* "in / out" pills recording which halves of a ToUndirected mirror were folded
+   into the card. */
+.dir-badge text {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.dir-badge.both rect { fill: #eef2fb; stroke: #6b5ca5; stroke-width: 1.2; }
+.dir-badge.both text { fill: #58499a; }
+.dir-badge.in rect { fill: #e8f4ee; stroke: #2f855a; stroke-width: 1.2; }
+.dir-badge.in text { fill: #256c48; }
+.dir-badge.out rect { fill: #f1f4f7; stroke: #8c9bab; stroke-width: 1.2; }
+.dir-badge.out text { fill: #5e6d7c; }
+.dir-badge.mixed rect { fill: #fdf2e4; stroke: #b36b13; stroke-width: 1.2; }
+.dir-badge.mixed text { fill: #96590f; }
+
+.shared-chip text {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.shared-chip rect {
+  stroke-width: 1.2;
+}
+
+.connected-edge {
+  stroke: #93a2b1;
+  stroke-dasharray: 5 4;
+  opacity: 0.75;
+  fill: none;
+}
+
+/* The maximally similar case is a link in the model's embedding space, not a
+   feature overlap, so it reads as a solid accent link even at zero shared
+   labels. */
+.most-similar-edge {
+  stroke: var(--accent);
+  stroke-dasharray: none;
+  opacity: 0.9;
+}
+
+.connected-case-card.is-most-similar rect {
+  stroke-width: 2.6;
+  filter: drop-shadow(0 5px 14px rgba(23, 107, 135, 0.28));
+}
+
+.connected-case-card.is-most-similar .connected-case-card .card-empty {
+  fill: #8494a3;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.most-similar-badge rect {
+  stroke-width: 0;
+}
+
+.most-similar-badge rect {
+  fill: var(--accent);
+  stroke: none;
+  filter: none;
+}
+
+.most-similar-badge text {
+  fill: #ffffff;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.shared-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 12px;
+}
+
+.shared-legend-label {
+  color: var(--soft-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shared-legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid var(--chip, #8c9bab);
+  border-radius: 999px;
+  background: var(--chip-bg, #f1f4f7);
+  color: var(--chip, #52616f);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .graph-actions {
@@ -781,8 +1199,67 @@ tr.selected { background: #eaf5f8; }
   line-height: 1.45;
 }
 
+/* Ranking rule for the connected-case column: shared labels only, or cosine
+   similarity first with shared labels breaking ties. */
+.rank-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 11px 0 7px;
+}
+
+.rank-toggle-label {
+  margin-right: 3px;
+  color: var(--soft-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rank-toggle-option {
+  padding: 5px 12px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--soft-ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rank-toggle-option:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.rank-toggle-option.is-unavailable,
+.rank-toggle-option[disabled] {
+  border-style: dashed;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.rank-toggle-option[disabled]:hover {
+  border-color: var(--hairline-strong);
+  color: var(--soft-ink);
+}
+
+.rank-toggle-option.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.case-graph-head .rank-toggle-note {
+  margin: 0;
+  color: var(--soft-ink);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
 .local-graph-frame {
-  min-width: 760px;
+  min-width: 900px;
 }
 
 .local-node circle {
@@ -1982,3 +2459,99 @@ td {
 .pill.role-bridge { background: #fbf1d8; color: #7a4f08; }
 .pill.role-hub    { background: #e3f3ec; color: #186b4a; }
 .pill.role-rare   { background: #ebeef2; color: #4d5763; }
+
+
+/* ── Exp 6: pairing switch ────────────────────────────────────────────
+   Which case we compare against changes what the whole panel claims, so it
+   gets a full-width switch rather than one option inside a select. */
+
+.match-switch {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfdfe;
+}
+
+.match-switch-head {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.match-switch-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.match-option {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: auto;
+  padding: 13px 15px;
+  text-align: left;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms, box-shadow 120ms;
+}
+
+.match-option:hover {
+  border-color: #9fc4cf;
+  background: #f7fbfc;
+}
+
+.match-option.is-active {
+  border-color: var(--chapter);
+  background: #f0f8fa;
+  box-shadow: 0 2px 10px rgba(29, 111, 122, 0.13);
+}
+
+.match-option-title {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.match-option-title em {
+  font-style: normal;
+  color: var(--chapter);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+/* radio-style marker */
+.match-option-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #b9c6d0;
+  background: #ffffff;
+}
+
+.match-option.is-active .match-option-title::before {
+  border-color: var(--chapter);
+  background: radial-gradient(circle at center, var(--chapter) 0 4.5px, #ffffff 4.5px);
+}
+
+.match-option-sub {
+  padding-left: 26px;
+  color: #4f6070;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (max-width: 980px) {
+  .match-switch-options { grid-template-columns: minmax(0, 1fr); }
+}
